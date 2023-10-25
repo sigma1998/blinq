@@ -35,6 +35,81 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  # for api
+  dio: ^4.0.6
+  logger: ^2.0.2+1
+
+  shimmer: ^3.0.0
+  cached_network_image: ^3.3.0
+  lottie: ^2.2.0
+  image_picker: ^1.0.4
+  speech_to_text: ^6.3.0
+  flutter_painter_v2: ^2.0.1
+  flutter_animate: ^4.2.0+1
+  image_cropper: ^5.0.0
+  video_thumbnail: ^0.5.3
+  mime_type: ^1.0.0
+  file_picker: ^6.0.0
+  flutter_screenutil: 5.9.0
+  blinkid_flutter: ^6.1.2
+  flutter_blue_plus: ^1.3.0
+  url_launcher: ^6.1.14
+  video_player: ^2.7.2
+  fluttertoast: ^8.2.2
+  flutter_svg: ^2.0.7
+  get_it: ^7.6.4
+
+  # state mangment
+  flutter_bloc: ^8.1.3
+
+  # Flutter plugin for local db for small data
+  hive: ^2.2.3
+
+
+  # country code
+  country_code_picker: ^3.0.0
+  # for bluetooth modules
+  flutter_reactive_ble: ^5.1.1
+  reactive_ble_mobile: ^5.1.1
+  location_permissions: ^4.0.1
+  convert: ^3.1.1
+  crypto: ^3.0.3
+  device_info: ^2.0.3
+  # for scan blinq user
+  qr_code_scanner: ^1.0.1
+  #
+  permission_handler: ^10.2.0
+  open_file: ^3.3.1
+  # for map
+  google_maps_flutter: ^2.4.0
+  # take user permission to location
+  geolocator: ^10.0.0
+  # for datetime and internationalization
+  intl: ^0.18.0
+  # for animation the widget
+  animate_do: ^3.0.2
+  # for pdf view in app
+  syncfusion_flutter_pdfviewer: ^22.2.10
+  # for send message in background
+  background_sms: ^0.0.4
+  flutter_sms: ^2.3.3
+  # for google and apple sign in
+  google_sign_in: ^6.1.5
+  sign_in_with_apple: ^5.0.0
+  flutter_secure_storage: ^9.0.0
+  # for signature
+  hand_signature: ^3.0.1
+  # for rotate img
+  flutter_exif_rotation: ^0.5.1
+  # for animation button
+  scale_button: ^2.1.2
+
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.8.1
+  equatable: ^2.0.5
+
+  easy_localization: ^3.0.3
+
 
 dev_dependencies:
   flutter_test:
@@ -47,6 +122,11 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
 
+  freezed: ^2.4.5
+  json_serializable: ^6.7.1
+  build_runner: ^2.4.6
+
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -58,6 +138,11 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  assets:
+    - assets/fonts/
+    - assets/icons/
+    - assets/locale/
+    - assets/video/
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
