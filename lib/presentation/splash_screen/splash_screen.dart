@@ -21,13 +21,13 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    SplashScreenBloc bloc = SplashScreenBloc(authRepository: getIt());
-    bloc.checkStatus();
     _controller = VideoPlayerController.asset("assets/video/logo.mp4");
     _controller.initialize();
 
     _controller.setLooping(false);
     _controller.play();
+    SplashScreenBloc bloc = SplashScreenBloc(authRepository: getIt());
+    bloc.checkStatus();
   }
 
   @override

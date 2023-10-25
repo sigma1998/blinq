@@ -1,6 +1,9 @@
 import 'package:blinq/app/locator.dart';
+import 'package:blinq/core/theme/app_theme.dart';
+import 'package:blinq/presentation/main_screen/main_screen_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'app/routes.dart';
 import 'utils/navigation_service.dart';
@@ -25,16 +28,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<MainScreenBloc>(
+          create: (context) => MainScreenBloc(),
+        ),
+      ],
+      child: MaterialApp(
+        theme: AppTheme.darkTheme,
+        navigatorKey: NavigationService.navigatorKey,
+        routes: getRoutes(context),
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
       ),
-      navigatorKey: NavigationService.navigatorKey,
-      routes: getRoutes(context),
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
     );
   }
 }
