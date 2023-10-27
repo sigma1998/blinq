@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:blinq/core/drawables/drawables.dart';
+import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/presentation/contacts/contacts_screen.dart';
 import 'package:blinq/presentation/home/home_screen.dart';
 import 'package:blinq/presentation/main_screen/main_screen_event.dart';
