@@ -4,10 +4,15 @@ import 'package:flutter/foundation.dart' show immutable;
 
 enum Status { initial,empty, loading, failure, success }
 
+class Error{
+  final Map<String, dynamic> data;
+  Error({required this.data});
+}
+
 @immutable
 class GenericBlocState<T> {
   final T? data;
-  final String? error;
+  final Error? error;
   final Status status;
 
   const GenericBlocState({this.data, this.error, required this.status});
@@ -18,7 +23,7 @@ class GenericBlocState<T> {
 
   factory GenericBlocState.loading() => const GenericBlocState(status: Status.loading);
 
-  factory GenericBlocState.failure(String error) => GenericBlocState(error: error, status: Status.failure);
+  factory GenericBlocState.failure(Error error) => GenericBlocState(error: error, status: Status.failure);
 
   factory GenericBlocState.success(T? data) => GenericBlocState(data: data, status: Status.success);
 }
