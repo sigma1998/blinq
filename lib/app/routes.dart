@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import '../presentation/sign_in_screen/sign_in_screen.dart';
 
-
 Map<String, WidgetBuilder> getRoutes(BuildContext context) {
   return {
     SplashScreen.route: (context) => const SplashScreen(),
