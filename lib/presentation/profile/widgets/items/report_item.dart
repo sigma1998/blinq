@@ -34,7 +34,8 @@ class ProfileReportItem extends StatefulWidget {
   State<ProfileReportItem> createState() => _ProfileReportItemState();
 }
 
-class _ProfileReportItemState extends State<ProfileReportItem> {
+class _ProfileReportItemState extends State<ProfileReportItem>
+    with AutomaticKeepAliveClientMixin<ProfileReportItem> {
   //
   late bool isExpanded;
 
@@ -48,6 +49,8 @@ class _ProfileReportItemState extends State<ProfileReportItem> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return MyInfoContainer(
       onTap: onTap,
       margin: const EdgeInsets.only(bottom: 10),
@@ -118,4 +121,7 @@ class _ProfileReportItemState extends State<ProfileReportItem> {
     isExpanded = !isExpanded;
     updateState();
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

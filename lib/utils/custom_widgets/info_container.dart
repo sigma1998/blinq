@@ -56,22 +56,20 @@ class MyInfoContainer extends StatelessWidget {
           children: [
             if (isEdit) ...[
               const SizedBox(height: 4),
-              Padding(
-                padding: const EdgeInsets.only(right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    GestureDetector(
-                      onTap: onClose,
-                      child: SvgPicture.asset(
-                        AppDrawables.close,
-                        width: 20,
-                        height: 20,
-                      ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  GestureDetector(
+                    onTap: onClose,
+                    child: SvgPicture.asset(
+                      AppDrawables.close,
+                      width: 20,
+                      height: 20,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+              const SizedBox(height: 4),
             ],
             child,
           ],

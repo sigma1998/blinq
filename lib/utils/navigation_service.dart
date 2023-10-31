@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:fluttertoast/fluttertoast.dart';
 
-
-
 class NavigationService {
-  static final  GlobalKey<NavigatorState>  navigatorKey = GlobalKey();
+  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   static bool isActiveDialog = false;
 
-  static Future<dynamic> pushNamed({required String routeName,
-    Object? arguments,
-    GlobalKey<NavigatorState>? nestedKey}) {
+  static Future<dynamic> pushNamed(
+      {required String routeName,
+      Object? arguments,
+      GlobalKey<NavigatorState>? nestedKey}) {
     Fluttertoast.cancel();
     FocusManager.instance.primaryFocus?.unfocus();
     if (nestedKey != null) {
@@ -28,7 +27,8 @@ class NavigationService {
         .pushReplacementNamed(routeName, arguments: arguments);
   }
 
-  static Future<dynamic>? newRootScreen(String newRouteName, {
+  static Future<dynamic>? newRootScreen(
+    String newRouteName, {
     RoutePredicate? predicate,
     dynamic arguments,
     int? id,
@@ -58,9 +58,10 @@ class NavigationService {
     ScaffoldMessenger.of(navigatorKey.currentContext!).hideCurrentSnackBar();
   }
 
-  static Future<dynamic>? showBottomSheet({required Widget sheet,
-    Color? barierColor,
-    bool isScrollControlled = true}) async {
+  static Future<dynamic>? showBottomSheet(
+      {required Widget sheet,
+      Color? barierColor,
+      bool isScrollControlled = true}) async {
     return await material.showModalBottomSheet(
         context: navigatorKey.currentContext!,
         isScrollControlled: isScrollControlled,
@@ -71,22 +72,26 @@ class NavigationService {
         });
   }
 
-  static Future<dynamic>? showDialog({required Widget dialog,
+  static Future<dynamic>? showDialog({
+    required Widget dialog,
     double? padding,
-    Color barrierColor = Colors.black45}) {
+    Color barrierColor = Colors.black45,
+  }) {
     isActiveDialog = true;
 
     return material.showDialog(
-        useSafeArea: false,
-        context: navigatorKey.currentContext!,
-        barrierDismissible: false,
-        barrierColor: barrierColor,
-        builder: (context) {
-          return Dialog(
-              insetPadding: EdgeInsets.zero,
-              backgroundColor: barrierColor,
-              child: dialog);
-        });
+      useSafeArea: false,
+      barrierDismissible: true,
+      barrierColor: Colors.black54,
+      context: navigatorKey.currentContext!,
+      builder: (context) {
+        return Dialog(
+          insetPadding: EdgeInsets.zero,
+          backgroundColor: barrierColor,
+          child: dialog,
+        );
+      },
+    );
   }
 
   static void showErrorToast(String text) {

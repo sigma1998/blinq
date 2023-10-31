@@ -242,7 +242,8 @@ class TextFieldRoundedWidget extends StatelessWidget {
             filled: true,
             hintText: hint,
             counterText: '',
-            hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith( fontSize: 14),
+            hintStyle:
+                Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 14),
             suffixIcon: suffix,
             prefixIcon: prefix,
             prefix: prefixes,

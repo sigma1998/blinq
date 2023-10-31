@@ -61,7 +61,7 @@ class ProfileUserInfoSection extends StatelessWidget {
                 detail: 'B',
               ),
               ProfileUserInfoItem(
-                title: 'strValidUntil'.tr(),
+                title: 'strDrivingLicenceValidTill'.tr(),
                 detail: '07 July 2024',
                 hasDivider: false,
               ),

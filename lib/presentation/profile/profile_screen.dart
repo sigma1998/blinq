@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:blinq/utils/custom_widgets/default_image.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
+import 'widgets/editors/user_info/user_info_editor.dart';
 import 'widgets/sections/accident/accident_reports_section.dart';
 import 'widgets/sections/breakdown/breakdown_reports_section.dart';
 import 'widgets/sections/order_history/order_history_section.dart';
@@ -40,12 +41,19 @@ class ProfileScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 24),
+            const ProfileUserInfoEditor(),
+
+            //& Info & Policy
+
             const ProfileUserInfoSection(),
             const SizedBox(height: 54),
             const ProfileVehicleSection(),
             const SizedBox(height: 54),
             const ProfileCarPolicySection(),
             const SizedBox(height: 54),
+
+            //* Reports & History
+
             const ProfileOrderHistorySection(),
             const SizedBox(height: 36),
             const ProfileAccidentReportsSection(),

@@ -32,6 +32,9 @@ class AppDrawables {
   static const String delete = '$icons/delete.svg';
   static const String download = '$icons/download.svg';
 
+  //* Arrows
+  static const String arrowDown = '$icons/arrow_down.svg';
+
   ///
   /// Images
   ///
