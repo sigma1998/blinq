@@ -110,6 +110,8 @@ dependencies:
   equatable: ^2.0.5
 
   easy_localization: ^3.0.3
+  email_validator: ^2.1.17
+  another_flushbar: ^1.12.30
 
 
 dev_dependencies:

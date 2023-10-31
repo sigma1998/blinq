@@ -37,7 +37,7 @@ class LogInBottomSheet extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(16),
                   margin: EdgeInsets.only(
-                      bottom: MediaQuery.of(context).viewInsets.bottom),
+                      bottom: MediaQuery.of(context).viewInsets.bottom ),
                   decoration: BoxDecoration(
                       border: Border.all(
                           color: Theme.of(context).colorScheme.secondary,
@@ -113,12 +113,31 @@ class LogInBottomSheet extends StatelessWidget {
                       const SizedBox(
                         height: 30,
                       ),
-                      TextFieldRoundedWidget(
-                        hint: 'strYourEmail'.tr(),
-                        textController: bloc.mailController,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextFieldRoundedWidget(
+                            hint: 'strYourEmail'.tr(),
+                            textController: bloc.mailController,
+                          ),
+                          if (!state.isMailValid)
+                          const SizedBox(
+                            height: 6,
+                          ),
+                          if (!state.isMailValid)
+                            Text(
+                              'strInvalidEmail'.tr(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                    fontSize: 14,
+                                  ),
+                            ),
+                        ],
                       ),
                       const SizedBox(
-                        height: 30,
+                        height: 24,
                       ),
                       TextFieldRoundedWidget(
                         obscureText: !state.isCodeVisible,
@@ -148,9 +167,7 @@ class LogInBottomSheet extends StatelessWidget {
                       InkWell(
                         child: Text('strForgotpasswordOrEmail'.tr()),
                       ),
-                      const SizedBox(
-                        height: 40,
-                      ),
+
                     ],
                   ),
                 ),

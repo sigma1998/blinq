@@ -19,6 +19,7 @@ mixin _$LoginBottomSheetState {
   Status get status => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
   bool get isCodeVisible => throw _privateConstructorUsedError;
+  bool get isMailValid => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LoginBottomSheetStateCopyWith<LoginBottomSheetState> get copyWith =>
@@ -31,7 +32,8 @@ abstract class $LoginBottomSheetStateCopyWith<$Res> {
           $Res Function(LoginBottomSheetState) then) =
       _$LoginBottomSheetStateCopyWithImpl<$Res, LoginBottomSheetState>;
   @useResult
-  $Res call({Status status, Error? error, bool isCodeVisible});
+  $Res call(
+      {Status status, Error? error, bool isCodeVisible, bool isMailValid});
 }
 
 /// @nodoc
@@ -51,6 +53,7 @@ class _$LoginBottomSheetStateCopyWithImpl<$Res,
     Object? status = null,
     Object? error = freezed,
     Object? isCodeVisible = null,
+    Object? isMailValid = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -65,6 +68,10 @@ class _$LoginBottomSheetStateCopyWithImpl<$Res,
           ? _value.isCodeVisible
           : isCodeVisible // ignore: cast_nullable_to_non_nullable
               as bool,
+      isMailValid: null == isMailValid
+          ? _value.isMailValid
+          : isMailValid // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -78,7 +85,8 @@ abstract class _$$LoginBottomSheetStateImplCopyWith<$Res>
       __$$LoginBottomSheetStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Status status, Error? error, bool isCodeVisible});
+  $Res call(
+      {Status status, Error? error, bool isCodeVisible, bool isMailValid});
 }
 
 /// @nodoc
@@ -96,6 +104,7 @@ class __$$LoginBottomSheetStateImplCopyWithImpl<$Res>
     Object? status = null,
     Object? error = freezed,
     Object? isCodeVisible = null,
+    Object? isMailValid = null,
   }) {
     return _then(_$LoginBottomSheetStateImpl(
       status: null == status
@@ -110,6 +119,10 @@ class __$$LoginBottomSheetStateImplCopyWithImpl<$Res>
           ? _value.isCodeVisible
           : isCodeVisible // ignore: cast_nullable_to_non_nullable
               as bool,
+      isMailValid: null == isMailValid
+          ? _value.isMailValid
+          : isMailValid // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -118,7 +131,10 @@ class __$$LoginBottomSheetStateImplCopyWithImpl<$Res>
 
 class _$LoginBottomSheetStateImpl implements _LoginBottomSheetState {
   const _$LoginBottomSheetStateImpl(
-      {this.status = Status.initial, this.error, this.isCodeVisible = true});
+      {this.status = Status.initial,
+      this.error,
+      this.isCodeVisible = true,
+      this.isMailValid = true});
 
   @override
   @JsonKey()
@@ -128,10 +144,13 @@ class _$LoginBottomSheetStateImpl implements _LoginBottomSheetState {
   @override
   @JsonKey()
   final bool isCodeVisible;
+  @override
+  @JsonKey()
+  final bool isMailValid;
 
   @override
   String toString() {
-    return 'LoginBottomSheetState(status: $status, error: $error, isCodeVisible: $isCodeVisible)';
+    return 'LoginBottomSheetState(status: $status, error: $error, isCodeVisible: $isCodeVisible, isMailValid: $isMailValid)';
   }
 
   @override
@@ -142,11 +161,14 @@ class _$LoginBottomSheetStateImpl implements _LoginBottomSheetState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.error, error) || other.error == error) &&
             (identical(other.isCodeVisible, isCodeVisible) ||
-                other.isCodeVisible == isCodeVisible));
+                other.isCodeVisible == isCodeVisible) &&
+            (identical(other.isMailValid, isMailValid) ||
+                other.isMailValid == isMailValid));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, error, isCodeVisible);
+  int get hashCode =>
+      Object.hash(runtimeType, status, error, isCodeVisible, isMailValid);
 
   @JsonKey(ignore: true)
   @override
@@ -160,7 +182,8 @@ abstract class _LoginBottomSheetState implements LoginBottomSheetState {
   const factory _LoginBottomSheetState(
       {final Status status,
       final Error? error,
-      final bool isCodeVisible}) = _$LoginBottomSheetStateImpl;
+      final bool isCodeVisible,
+      final bool isMailValid}) = _$LoginBottomSheetStateImpl;
 
   @override
   Status get status;
@@ -168,6 +191,8 @@ abstract class _LoginBottomSheetState implements LoginBottomSheetState {
   Error? get error;
   @override
   bool get isCodeVisible;
+  @override
+  bool get isMailValid;
   @override
   @JsonKey(ignore: true)
   _$$LoginBottomSheetStateImplCopyWith<_$LoginBottomSheetStateImpl>

@@ -8,6 +8,7 @@ import 'package:blinq/presentation/log_in/login_bottom_sheet_state.dart';
 import 'package:blinq/presentation/main_screen/main_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,11 +23,19 @@ class LoginBottomSheetBloc
       : super(const LoginBottomSheetState()) {
     on<OnSubmitted>(_onSubmitted);
     on<OnPasswordVisibilityChanged>(_onPasswordVisibilityChanged);
+    on<OnMailEdited>(_onMailEdited);
+
+    mailController.addListener(() {
+      add(OnMailEdited());
+    });
   }
 
   FutureOr<void> _onSubmitted(
       OnSubmitted event, Emitter<LoginBottomSheetState> emit) async {
     try {
+      if(!state.isMailValid){
+        return;
+      }
       emit(state.copyWith(status: Status.loading));
       final res = await authRepository.login(
           mail: mailController.text, password: passwordController.text);
@@ -38,12 +47,17 @@ class LoginBottomSheetBloc
       NavigationService.newRootScreen(MainScreen.route);
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
-      NavigationService.showErrorToast(e.toString());
     }
   }
 
   FutureOr<void> _onPasswordVisibilityChanged(
       OnPasswordVisibilityChanged event, Emitter<LoginBottomSheetState> emit) {
     emit(state.copyWith(isCodeVisible: !state.isCodeVisible));
+  }
+
+  FutureOr<void> _onMailEdited(
+      OnMailEdited event, Emitter<LoginBottomSheetState> emit) {
+    emit(state.copyWith(
+        isMailValid: EmailValidator.validate(mailController.text)));
   }
 }

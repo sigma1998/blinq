@@ -1,4 +1,3 @@
-
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -11,6 +10,10 @@ class CustomInterceptor extends Interceptor {
         err.type == DioErrorType.receiveTimeout) {
       NavigationService.showErrorToast('common.low_internet_connection'.tr());
       return handler.next(err);
+    }
+    int statusCode = (err.response?.statusCode ?? 0);
+    if (statusCode >= 400 && statusCode <= 500) {
+      NavigationService.showErrorToast(err.response!.data['message']);
     }
 
     return handler.next(err);

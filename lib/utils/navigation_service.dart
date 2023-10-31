@@ -1,17 +1,18 @@
+import 'package:another_flushbar/flushbar.dart';
+import 'package:blinq/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:fluttertoast/fluttertoast.dart';
 
-
-
 class NavigationService {
-  static final  GlobalKey<NavigatorState>  navigatorKey = GlobalKey();
+  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   static bool isActiveDialog = false;
 
-  static Future<dynamic> pushNamed({required String routeName,
-    Object? arguments,
-    GlobalKey<NavigatorState>? nestedKey}) {
+  static Future<dynamic> pushNamed(
+      {required String routeName,
+      Object? arguments,
+      GlobalKey<NavigatorState>? nestedKey}) {
     Fluttertoast.cancel();
     FocusManager.instance.primaryFocus?.unfocus();
     if (nestedKey != null) {
@@ -28,7 +29,8 @@ class NavigationService {
         .pushReplacementNamed(routeName, arguments: arguments);
   }
 
-  static Future<dynamic>? newRootScreen(String newRouteName, {
+  static Future<dynamic>? newRootScreen(
+    String newRouteName, {
     RoutePredicate? predicate,
     dynamic arguments,
     int? id,
@@ -50,6 +52,10 @@ class NavigationService {
     ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(snackBar);
   }
 
+  static void showErrorSnackBar({required SnackBar snackBar}) {
+    ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(snackBar);
+  }
+
   static void removeSnackBar() {
     ScaffoldMessenger.of(navigatorKey.currentContext!).removeCurrentSnackBar();
   }
@@ -58,9 +64,10 @@ class NavigationService {
     ScaffoldMessenger.of(navigatorKey.currentContext!).hideCurrentSnackBar();
   }
 
-  static Future<dynamic>? showBottomSheet({required Widget sheet,
-    Color? barierColor,
-    bool isScrollControlled = true}) async {
+  static Future<dynamic>? showBottomSheet(
+      {required Widget sheet,
+      Color? barierColor,
+      bool isScrollControlled = true}) async {
     return await material.showModalBottomSheet(
         context: navigatorKey.currentContext!,
         isScrollControlled: isScrollControlled,
@@ -71,9 +78,10 @@ class NavigationService {
         });
   }
 
-  static Future<dynamic>? showDialog({required Widget dialog,
-    double? padding,
-    Color barrierColor = Colors.black45}) {
+  static Future<dynamic>? showDialog(
+      {required Widget dialog,
+      double? padding,
+      Color barrierColor = Colors.black45}) {
     isActiveDialog = true;
 
     return material.showDialog(
@@ -90,16 +98,15 @@ class NavigationService {
   }
 
   static void showErrorToast(String text) {
-    Fluttertoast.cancel();
-    Fluttertoast.showToast(
-      msg: text,
-      toastLength: Toast.LENGTH_LONG,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 1,
-      backgroundColor: Colors.red,
-      textColor: Colors.white,
-      fontSize: 18.0,
-    );
+    Flushbar(
+      borderRadius: BorderRadius.circular(24),
+      title: 'Error',
+      messageText: Text(text),
+      flushbarPosition: FlushbarPosition.TOP,
+      backgroundColor: AppColors.primaryColor,
+      duration: const Duration(seconds: 3),
+      
+    ).show(navigatorKey.currentContext!);
   }
 
   static bool canPop() {
