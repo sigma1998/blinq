@@ -1,14 +1,14 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-class ProfileUserDetailsItem extends StatelessWidget {
+class ProfileUserInfoItem extends StatelessWidget {
   //
   final String title;
   final String detail;
 
   final bool hasDivider;
 
-  const ProfileUserDetailsItem({
+  const ProfileUserInfoItem({
     super.key,
     required this.title,
     required this.detail,

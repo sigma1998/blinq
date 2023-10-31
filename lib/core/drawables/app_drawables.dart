@@ -12,6 +12,7 @@ class AppDrawables {
   static const String eyeClosed = '$icons/eye_closed.svg';
 
   static const String edit = '$icons/edit.svg';
+  static const String editLarge = '$icons/edit_large.svg';
   static const String close = '$icons/close.svg';
 
   //~ My vehicle
@@ -19,6 +20,17 @@ class AppDrawables {
   static const String gear = '$icons/gear.svg';
   static const String oil = '$icons/oil.svg';
   static const String batteryReplacement = '$icons/battery_replacement.svg';
+
+  //^ Reports
+  static const String cart = '$icons/cart.svg';
+
+  static const String history = '$icons/history.svg';
+  static const String success = '$icons/success.svg';
+  static const String pause = '$icons/pause.svg';
+
+  static const String pdf = '$icons/pdf.svg';
+  static const String delete = '$icons/delete.svg';
+  static const String download = '$icons/download.svg';
 
   ///
   /// Images

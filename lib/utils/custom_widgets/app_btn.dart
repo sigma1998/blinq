@@ -2,28 +2,39 @@ import 'package:blinq/utils/custom_widgets/loading.dart';
 import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
-  final VoidCallback onTap;
+  //
   final String text;
+  final VoidCallback onTap;
+
   final Color? btnColor;
   final Color txtColor;
+
   final bool loading;
 
-  const AppButton(
-      {Key? key,
-      required this.onTap,
-      required this.text,
-      this.btnColor,
-      this.loading = false,
-      this.txtColor = Colors.white})
-      : super(key: key);
+  final double width;
+  final double height;
+
+  const AppButton({
+    super.key,
+    required this.onTap,
+    required this.text,
+    //
+    this.btnColor,
+    this.txtColor = Colors.white,
+    //
+    this.loading = false,
+    //
+    this.width = double.infinity,
+    this.height = 45,
+  });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
       child: Container(
-        height: 45,
-        width: double.maxFinite,
+        width: width,
+        height: height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
           color: btnColor ?? Theme.of(context).colorScheme.primary,

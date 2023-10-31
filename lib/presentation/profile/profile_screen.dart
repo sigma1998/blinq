@@ -4,14 +4,16 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:blinq/utils/custom_widgets/default_image.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
-
+import 'widgets/sections/accident/accident_reports_section.dart';
+import 'widgets/sections/breakdown/breakdown_reports_section.dart';
+import 'widgets/sections/order_history/order_history_section.dart';
 import 'widgets/sections/car_policy/car_policy_section.dart';
 import 'widgets/sections/user_info/user_info_section.dart';
 import 'widgets/sections/vehicle/vehicle_section.dart';
 
 class ProfileScreen extends StatelessWidget {
   //
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +46,11 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(height: 54),
             const ProfileCarPolicySection(),
             const SizedBox(height: 54),
+            const ProfileOrderHistorySection(),
+            const SizedBox(height: 36),
+            const ProfileAccidentReportsSection(),
+            const SizedBox(height: 36),
+            const ProfileBreakdownReportsSection(),
             const SafeArea(
               top: false,
               child: SizedBox(height: 16),

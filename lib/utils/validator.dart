@@ -1,4 +1,3 @@
-
 /*========================Email Validator==============================================*/
 import 'package:easy_localization/easy_localization.dart';
 
@@ -18,7 +17,7 @@ class Validator {
   bool validateStrongPassword(value) {
     var pattern =
         "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@\$%^&*-]).{8,}\$";
-    RegExp regex = new RegExp(pattern);
+    RegExp regex = RegExp(pattern);
     return (regex.hasMatch(value)) ? false : true;
   }
 
@@ -37,8 +36,8 @@ class Validator {
   static String? validatePhoneNumber(String value) {
     if (value.isEmpty) {
       return 'strPhoneEmEmpty'.tr();
-    // } else if (!GetUtils.isPhoneNumber(value.trim())) {
-    //   return "strPhoneNumberInvalid".tr();
+      // } else if (!GetUtils.isPhoneNumber(value.trim())) {
+      //   return "strPhoneNumberInvalid".tr();
     }
 
     //TODO add validator

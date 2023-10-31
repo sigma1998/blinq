@@ -38,8 +38,8 @@ class ProfileVehicleCard extends StatelessWidget {
           const SizedBox(height: 24),
           Text(
             title,
+            overflow: TextOverflow.ellipsis,
             style: const TextStyle(
-              fontSize: 12,
               fontWeight: FontWeight.w700,
             ),
           ),

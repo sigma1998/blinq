@@ -1,8 +1,12 @@
-import 'package:blinq/core/drawables/app_drawables.dart';
-import 'package:easy_localization/easy_localization.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_svg/svg.dart';
 
+// Project imports:
+import 'package:blinq/core/drawables/app_drawables.dart';
 import 'card.dart';
 
 class ProfileVehicleSection extends StatelessWidget {
@@ -37,7 +41,7 @@ class ProfileVehicleSection extends StatelessWidget {
               child: ProfileVehicleCard(
                 icon: AppDrawables.wheel,
                 title: 'strKMTravelled'.tr(),
-                desc: 'View your vehicle details',
+                desc: 'strAllTime'.tr(),
                 value: '',
                 unit: 'km',
               ),

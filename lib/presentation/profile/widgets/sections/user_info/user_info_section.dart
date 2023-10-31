@@ -36,31 +36,31 @@ class ProfileUserInfoSection extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ProfileUserDetailsItem(
+              ProfileUserInfoItem(
                 title: 'strDateBirthday'.tr(),
                 detail: '07 July 2003',
               ),
-              ProfileUserDetailsItem(
+              ProfileUserInfoItem(
                 title: 'strAddress'.tr(),
                 detail: 'Mirzo Ulugbek district Asaka 35',
               ),
-              ProfileUserDetailsItem(
+              ProfileUserInfoItem(
                 title: 'strCountry'.tr(),
                 detail: 'Uzbekistan',
               ),
-              ProfileUserDetailsItem(
+              ProfileUserInfoItem(
                 title: 'strPhoneNumber'.tr(),
                 detail: '+998 90 002 83 82',
               ),
-              ProfileUserDetailsItem(
+              ProfileUserInfoItem(
                 title: 'strDrivingLicenseNumber'.tr(),
                 detail: '13443f3r43',
               ),
-              ProfileUserDetailsItem(
+              ProfileUserInfoItem(
                 title: 'strCategory'.tr(),
                 detail: 'B',
               ),
-              ProfileUserDetailsItem(
+              ProfileUserInfoItem(
                 title: 'strValidUntil'.tr(),
                 detail: '07 July 2024',
                 hasDivider: false,
