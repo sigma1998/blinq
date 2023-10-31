@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:blinq/domain/repositories/auth_repository.dart';
 import 'package:blinq/presentation/registration/email_screen/email_screen_event.dart';
 import 'package:blinq/presentation/registration/email_screen/email_screen_state.dart';
+import 'package:blinq/presentation/registration/registration_screen/registration_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -42,6 +44,8 @@ class EmailScreenBloc extends Bloc<EmailScreenEvent, EmailScreenState> {
     await Future.delayed(const Duration(seconds: 2)).then((value) {
       emit(state.copyWith(status: Status.initial));
     });
+
+    NavigationService.pushNamed(routeName: RegistrationScreen.route);
 
   }
 

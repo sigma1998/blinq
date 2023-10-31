@@ -1,11 +1,10 @@
 import 'package:blinq/app/locator.dart';
+import 'package:blinq/domain/repositories/auth_repository.dart';
 import 'package:blinq/presentation/splash_screen/splash_screen_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-
 class SplashScreen extends StatefulWidget {
-
   static const String route = '/';
 
   const SplashScreen({super.key});
@@ -15,7 +14,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   late VideoPlayerController _controller;
 
   @override
@@ -26,7 +24,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
     _controller.setLooping(false);
     _controller.play();
-    SplashScreenBloc bloc = SplashScreenBloc(authRepository: getIt());
+    SplashScreenBloc bloc =
+        SplashScreenBloc(authRepository: getIt<AuthRepositoryImpl>());
     bloc.checkStatus();
   }
 

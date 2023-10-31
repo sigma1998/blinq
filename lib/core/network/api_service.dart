@@ -17,7 +17,7 @@ class AppApi {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      final Response response = await DioClient.clickStartDio.get(
+      final Response response = await DioClient.myDio.get(
         uri,
         queryParameters: queryParameters,
         // options: Options(headers: {"Authorization": token}),
@@ -40,7 +40,7 @@ class AppApi {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      final Response response = await DioClient.clickStartDio.get(
+      final Response response = await DioClient.myDio.get(
         uri,
         queryParameters: queryParameters,
         // options: Options(headers: {"Authorization": token}),
@@ -66,7 +66,7 @@ class AppApi {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      final Response response = await DioClient.clickStartDio.post(
+      final Response response = await DioClient.myDio.post(
         uri,
         data: data,
         queryParameters: queryParameters,
@@ -93,7 +93,7 @@ class AppApi {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      final Response response = await DioClient.clickStartDio.put(
+      final Response response = await DioClient.myDio.put(
         uri,
         data: data,
         queryParameters: queryParameters,
@@ -120,7 +120,7 @@ class AppApi {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      final Response response = await DioClient.clickStartDio.delete(
+      final Response response = await DioClient.myDio.delete(
         uri,
         data: data,
         queryParameters: queryParameters,
@@ -145,7 +145,7 @@ class AppApi {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      final Response response = await DioClient.clickStartDio.download(
+      final Response response = await DioClient.myDio.download(
           uri, savePath,
           data: data,
           queryParameters: queryParameters,
