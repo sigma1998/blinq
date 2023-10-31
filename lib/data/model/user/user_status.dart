@@ -10,9 +10,4 @@ enum UserStatus {
   @HiveField(1)
   signed,
 
-  @HiveField(2)
-  languageSelected,
-
-  @HiveField(3)
-  haveToRegister
 }

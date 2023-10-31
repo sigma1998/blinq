@@ -17,10 +17,6 @@ class UserStatusAdapter extends TypeAdapter<UserStatus> {
         return UserStatus.newUser;
       case 1:
         return UserStatus.signed;
-      case 2:
-        return UserStatus.languageSelected;
-      case 3:
-        return UserStatus.haveToRegister;
       default:
         return UserStatus.newUser;
     }
@@ -34,12 +30,6 @@ class UserStatusAdapter extends TypeAdapter<UserStatus> {
         break;
       case UserStatus.signed:
         writer.writeByte(1);
-        break;
-      case UserStatus.languageSelected:
-        writer.writeByte(2);
-        break;
-      case UserStatus.haveToRegister:
-        writer.writeByte(3);
         break;
     }
   }

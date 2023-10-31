@@ -8,7 +8,7 @@ class AppDrawables {
   static const String blinq = '$icons/blinq.svg';
   static const String contacts = '$icons/contacts.svg';
   static const String profile = '$icons/profile.svg';
-  static const String eyeOpen = '$icons/eye_open.svg';
+  static const String eyeOpened = '$icons/eye_opened.svg';
   static const String eyeClosed = '$icons/eye_closed.svg';
 
   static const String edit = '$icons/edit.svg';

@@ -6,8 +6,12 @@ import 'package:blinq/presentation/registration/email_screen/email_screen_bloc.d
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'app/routes.dart';
+import 'data/datasource/local/storage_constants.dart';
+import 'data/model/user/user_status.dart';
 import 'utils/navigation_service.dart';
 
 void main() async {
@@ -15,11 +19,19 @@ void main() async {
 
   await EasyLocalization.ensureInitialized();
   setUpLocator();
-
+  await _setUpHive();
   runApp(EasyLocalization(supportedLocales: const [
     Locale('en'),
     Locale('hu'),
   ], path: 'assets/locale', child: const MyApp()));
+}
+
+Future<void> _setUpHive() async {
+  Hive.init((await getApplicationDocumentsDirectory()).path);
+  Hive.registerAdapter(UserStatusAdapter());
+
+  await Hive.openBox(StorageConstants.appBox);
+  await Hive.openBox(StorageConstants.userStatusBox);
 }
 
 class MyApp extends StatelessWidget {

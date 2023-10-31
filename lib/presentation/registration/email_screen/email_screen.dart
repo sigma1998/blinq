@@ -40,7 +40,9 @@ class EmailScreen extends StatelessWidget {
                   height: 32,
                 ),
                 Text(
-                  'strWelcomeBack'.tr(),
+                  state.sendEmailResponse == null
+                      ? 'strWelcomeBack'.tr()
+                      : 'strEnterCode'.tr(),
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(
@@ -49,7 +51,6 @@ class EmailScreen extends StatelessWidget {
                 TextFieldRoundedWidget(
                   hint: 'strYourEmail'.tr(),
                   textController: bloc.emailController,
-
                 ),
                 const SizedBox(
                   height: 30,
