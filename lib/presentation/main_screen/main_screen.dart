@@ -23,12 +23,17 @@ class MainScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           extendBody: true,
-          body:  IndexedStack(
+          body: IndexedStack(
             index: state.data,
-            children: const[
+            children: const [
               HomeScreen(),
               ContactsScreen(),
-              ProfileScreen(),
+              IndexedStack(
+                children: [
+                  ProfileScreen(), // tab bar + внутри profile, profile body
+                  //SettingsScreen
+                ],
+              )
             ],
           ),
           bottomNavigationBar: Padding(

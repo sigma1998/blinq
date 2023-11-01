@@ -6,39 +6,43 @@ import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
 import 'package:blinq/utils/custom_widgets/info_container.dart';
-import 'package:blinq/utils/custom_widgets/text_fields/date_picker_text_field.dart';
-import 'package:blinq/utils/custom_widgets/text_fields/number_text_field.dart';
 import 'package:blinq/utils/custom_widgets/secondary_button.dart';
+import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
+import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 
-class ProfileVehicleEditor extends StatelessWidget {
-  // Bloc с полями вызывать метод из родительского блока для edit и save
-  const ProfileVehicleEditor({super.key});
+class ProfileCarInfoVehicleEditor extends StatelessWidget {
+  //
+  const ProfileCarInfoVehicleEditor({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MyInfoContainer(
-      isEdit: true,
       child: Column(
         children: [
-          NumberTextField(
-            labelText: 'strMilesTravelled'.tr(),
+          NameTextField(
+            labelText: 'strMakeType'.tr(),
             onChanged: (value) {},
           ),
           const SizedBox(height: 16),
-          NumberTextField(
-            labelText: 'strNextTechnicalInspection'.tr(),
+          NameTextField(
+            labelText: '${'strRegistrationNumber'.tr()} (${'strMotor'.tr()})',
             onChanged: (value) {},
           ),
           const SizedBox(height: 16),
-          NumberTextField(
-            labelText: 'strLastOilReplacementDate'.tr(),
+          PickerTextField(
+            labelText: 'strCountryRegistration'.tr(),
+            onTap: () {},
+          ),
+          const SizedBox(height: 16),
+          NameTextField(
+            labelText: '${'strRegistrationNumber'.tr()} (${'strTrailer'.tr()})',
             onChanged: (value) {},
           ),
           const SizedBox(height: 16),
-          DatePickerTextField(
-            labelText: 'strLastBatteryReplacementDate'.tr(),
-            maxDate: DateTime.now(),
-            onDateChanged: (date) {},
+          PickerTextField(
+            labelText:
+                '${'strCountryRegistration'.tr()} (${'strTrailer'.tr()})',
+            onTap: () {},
           ),
           const SizedBox(height: 40),
           Row(

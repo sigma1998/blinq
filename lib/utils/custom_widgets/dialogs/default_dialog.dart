@@ -7,7 +7,8 @@ import 'package:blinq/utils/custom_widgets/info_container.dart';
 import 'item.dart';
 
 class MyDialog extends StatelessWidget {
-  //
+  // открывать в блоке и передавать
+  // countires list widget - свой блок - только за страны отвечает, snap widgets. parentID
   final List<String> items;
 
   final void Function(String) onChanged;

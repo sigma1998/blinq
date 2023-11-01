@@ -6,39 +6,47 @@ import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
 import 'package:blinq/utils/custom_widgets/info_container.dart';
-import 'package:blinq/utils/custom_widgets/text_fields/date_picker_text_field.dart';
-import 'package:blinq/utils/custom_widgets/text_fields/number_text_field.dart';
 import 'package:blinq/utils/custom_widgets/secondary_button.dart';
+import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
+import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 
-class ProfileVehicleEditor extends StatelessWidget {
-  // Bloc с полями вызывать метод из родительского блока для edit и save
-  const ProfileVehicleEditor({super.key});
+class ProfileCarInfoPolicyHolderEditor extends StatelessWidget {
+  //
+  const ProfileCarInfoPolicyHolderEditor({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MyInfoContainer(
-      isEdit: true,
       child: Column(
         children: [
-          NumberTextField(
-            labelText: 'strMilesTravelled'.tr(),
+          NameTextField(
+            labelText: 'strFirstName'.tr(),
             onChanged: (value) {},
           ),
           const SizedBox(height: 16),
-          NumberTextField(
-            labelText: 'strNextTechnicalInspection'.tr(),
+          NameTextField(
+            labelText: 'strLastName'.tr(),
             onChanged: (value) {},
           ),
           const SizedBox(height: 16),
-          NumberTextField(
-            labelText: 'strLastOilReplacementDate'.tr(),
+          NameTextField(
+            labelText: 'strAddress'.tr(),
             onChanged: (value) {},
           ),
           const SizedBox(height: 16),
-          DatePickerTextField(
-            labelText: 'strLastBatteryReplacementDate'.tr(),
-            maxDate: DateTime.now(),
-            onDateChanged: (date) {},
+          NameTextField(
+            labelText: 'strPostalCode'.tr(),
+            onChanged: (value) {},
+          ),
+          const SizedBox(height: 16),
+          PickerTextField(
+            labelText: 'strCountry'.tr(),
+            onTap: () {},
+          ),
+          const SizedBox(height: 16),
+          NameTextField(
+            labelText: 'strTelEmail'.tr(),
+            onChanged: (value) {},
           ),
           const SizedBox(height: 40),
           Row(

@@ -20,7 +20,6 @@ abstract class LocalStorage {
 
   String getUserName();
 
-
   void setUserId(int id);
 
   int getUserId();
@@ -28,7 +27,6 @@ abstract class LocalStorage {
   void setUserPhone(String phone);
 
   String getUserPhone();
-
 }
 
 class LocalStorageImpl implements LocalStorage {
@@ -72,7 +70,8 @@ class LocalStorageImpl implements LocalStorage {
   @override
   void setRefreshToken(String token) {
     final box = Hive.box(StorageConstants.appBox);
-    box.put(StorageConstants.refreshToken, token);  }
+    box.put(StorageConstants.refreshToken, token);
+  }
 
   @override
   int getUserId() {
@@ -109,6 +108,4 @@ class LocalStorageImpl implements LocalStorage {
     final box = Hive.box(StorageConstants.appBox);
     box.put(StorageConstants.userPhone, phone);
   }
-
-
 }

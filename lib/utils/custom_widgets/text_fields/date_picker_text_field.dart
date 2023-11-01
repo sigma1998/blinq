@@ -11,26 +11,21 @@ class DatePickerTextField extends StatefulWidget {
   final String labelText;
   final DateTime? initialDate;
 
-  final void Function() onTap;
   final void Function(DateTime) onDateChanged;
 
   final DateTime? minDate;
   final DateTime? maxDate;
-  final DateTime? calendarDate;
 
   DatePickerTextField({
     required this.labelText,
-    required this.onTap,
     required this.onDateChanged,
     //
     this.initialDate,
-    calendarDate,
     //
     this.minDate,
     this.maxDate,
     //
-  })  : calendarDate = calendarDate ?? MyDateHelper.today,
-        super(key: ValueKey(initialDate ?? calendarDate));
+  }) : super(key: UniqueKey());
 
   @override
   State<DatePickerTextField> createState() => _DatePickerTextFieldState();
@@ -44,7 +39,7 @@ class _DatePickerTextFieldState extends State<DatePickerTextField> {
 
   @override
   void initState() {
-    dateTime = widget.initialDate ?? widget.calendarDate;
+    dateTime = widget.initialDate ?? MyDateHelper.today;
     if (widget.initialDate != null) setText();
 
     super.initState();

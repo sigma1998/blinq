@@ -6,44 +6,58 @@ import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
 import 'package:blinq/utils/custom_widgets/info_container.dart';
-import 'package:blinq/utils/custom_widgets/text_fields/date_picker_text_field.dart';
-import 'package:blinq/presentation/profile/widgets/sections/user_info/bloc/user_info_bloc.dart';
-import 'package:blinq/presentation/profile/widgets/sections/user_info/bloc/user_info_event.dart';
-import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
-import 'package:blinq/utils/custom_widgets/text_fields/phone_text_field.dart';
-import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/custom_widgets/secondary_button.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:blinq/utils/custom_widgets/text_fields/date_picker_text_field.dart';
+import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
+import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 
-class ProfileUserInfoEditor extends StatelessWidget {
+class ProfileCarInfoInsuranceEditor extends StatelessWidget {
   //
-  const ProfileUserInfoEditor({super.key});
+  const ProfileCarInfoInsuranceEditor({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final userInfoBloc = context.read<ProfileUserInfoBloc>();
-
     return MyInfoContainer(
-      isEdit: true,
-      onClose: () {
-        userInfoBloc.add(OnEditPressed(isEdit: false));
-      },
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           NameTextField(
-            labelText: 'strFirstName'.tr(),
+            labelText: 'strName'.tr(),
             onChanged: (value) {},
           ),
           const SizedBox(height: 16),
           NameTextField(
-            labelText: 'strLastName'.tr(),
+            labelText: 'strPolicyNumber'.tr(),
             onChanged: (value) {},
+          ),
+          const SizedBox(height: 16),
+          NameTextField(
+            labelText: 'strGreenCardNumber'.tr(),
+            onChanged: (value) {},
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'strInsuranceCertificateGreenCardValid'.tr(),
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+              color: Theme.of(context).colorScheme.onSecondary,
+            ),
           ),
           const SizedBox(height: 16),
           DatePickerTextField(
-            labelText: 'strDateBirthday'.tr(),
-            onDateChanged: (value) {},
-            maxDate: DateTime.now(),
+            labelText: 'strFrom'.tr(),
+            onDateChanged: (date) {},
+          ),
+          const SizedBox(height: 16),
+          DatePickerTextField(
+            labelText: 'strTo'.tr(),
+            onDateChanged: (date) {},
+          ),
+          const SizedBox(height: 16),
+          NameTextField(
+            labelText: 'strAgency'.tr(),
+            onChanged: (value) {},
           ),
           const SizedBox(height: 16),
           NameTextField(
@@ -56,25 +70,14 @@ class ProfileUserInfoEditor extends StatelessWidget {
             onTap: () {},
           ),
           const SizedBox(height: 16),
-          PhoneTextField(
-            labelText: 'strPhoneNumber'.tr(),
-            onChanged: (value) {},
-          ),
-          const SizedBox(height: 16),
           NameTextField(
-            labelText: 'strDrivingLicenseNumber'.tr(),
+            labelText: 'strTelEmail'.tr(),
             onChanged: (value) {},
           ),
           const SizedBox(height: 16),
           PickerTextField(
-            labelText: 'strCategory'.tr(),
+            labelText: 'strPolicCover'.tr(),
             onTap: () {},
-          ),
-          const SizedBox(height: 16),
-          DatePickerTextField(
-            labelText: 'strDrivingLicenceValidTill'.tr(),
-            minDate: DateTime.now(),
-            onDateChanged: (date) {},
           ),
           const SizedBox(height: 40),
           Row(

@@ -13,6 +13,8 @@ class PermissionService extends IPermissionService {
     required this.openSettingsPopUp,
   });
 
+  //
+
   @override
   Future<PermissionStatus> requestCameraPermission() async {
     return await Permission.camera.request();
@@ -27,6 +29,8 @@ class PermissionService extends IPermissionService {
   Future<PermissionStatus> requestLocationPermission() async {
     return await Permission.location.request();
   }
+
+  //
 
   @override
   Future<bool> handleCameraPermission() async {
@@ -48,7 +52,7 @@ class PermissionService extends IPermissionService {
     return true;
   }
 
-  @override
+  @override 
   Future<bool> handleLocationPermission() async {
     PermissionStatus locationPermissionStatus =
         await requestLocationPermission();

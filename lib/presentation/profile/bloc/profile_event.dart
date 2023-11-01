@@ -1,6 +1,3 @@
-part of 'profile_bloc.dart';
+sealed class ProfileEvent {}
 
-@freezed
-class ProfileEvent with _$ProfileEvent {
-  const factory ProfileEvent.started() = _Started;
-}
+class OnFetchProfile extends ProfileEvent {}

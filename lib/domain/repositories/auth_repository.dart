@@ -21,7 +21,7 @@ abstract class AuthRepository {
 }
 
 class AuthRepositoryImpl implements AuthRepository {
-  final AuthApi api;
+  final AuthApi api; // сохранять отправлять,
   final LocalStorage localStorage;
 
   AuthRepositoryImpl({required this.api, required this.localStorage});

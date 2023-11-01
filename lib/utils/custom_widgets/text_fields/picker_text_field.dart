@@ -21,10 +21,10 @@ class PickerTextField extends StatelessWidget {
 
   const PickerTextField({
     super.key,
+    required this.labelText,
     required this.onTap,
     this.suffixIcon,
     //
-    this.labelText,
     this.initialValue,
     //
     this.minLines = 1,
