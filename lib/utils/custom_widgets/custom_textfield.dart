@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class TextFieldWidget extends StatelessWidget {
+  final String? Function(String?)? validate;
   final String? hint;
   final String? labelText;
   final String? tvHeading;
@@ -46,6 +47,7 @@ class TextFieldWidget extends StatelessWidget {
     super.key,
     this.hint,
     this.labelText,
+    this.validate,
     this.tvHeading,
     this.inputType,
     this.textController,
@@ -113,6 +115,7 @@ class TextFieldWidget extends StatelessWidget {
             obscureText: obscure ?? false,
             controller: textController,
             focusNode: focusNode,
+            validator: validate,
             keyboardType: inputType,
             maxLength: maxLength,
             onChanged: onChange,
@@ -165,6 +168,7 @@ class TextFieldWidget extends StatelessWidget {
 
 class TextFieldRoundedWidget extends StatelessWidget {
   final String? hint;
+  final String? Function(String?)? validate;
 
   final TextInputType? inputType;
   final TextEditingController? textController;
@@ -199,6 +203,7 @@ class TextFieldRoundedWidget extends StatelessWidget {
       this.obscureText,
       this.inputFormatters,
       this.suffix,
+      this.validate,
       this.prefix,
       this.prefixes,
       this.maxLines,
@@ -232,6 +237,7 @@ class TextFieldRoundedWidget extends StatelessWidget {
           maxLength: maxLength,
           onChanged: onChanged,
           textInputAction: inputAction,
+          validator: validate,
           obscuringCharacter: "*",
           autovalidateMode: AutovalidateMode.onUserInteraction,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 14),
@@ -242,7 +248,8 @@ class TextFieldRoundedWidget extends StatelessWidget {
             filled: true,
             hintText: hint,
             counterText: '',
-            hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith( fontSize: 14),
+            hintStyle:
+                Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 14),
             suffixIcon: suffix,
             prefixIcon: prefix,
             prefix: prefixes,

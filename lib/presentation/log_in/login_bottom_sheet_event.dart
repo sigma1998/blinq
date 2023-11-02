@@ -4,4 +4,6 @@ class OnSubmitted extends LoginBottomSheetEvent{}
 
 class OnPasswordVisibilityChanged extends LoginBottomSheetEvent{}
 
-class OnMailEdited extends LoginBottomSheetEvent{}
+class OnGoogleSelected extends LoginBottomSheetEvent{}
+
+class OnAppleSelected extends LoginBottomSheetEvent{}

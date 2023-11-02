@@ -17,10 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$EmailScreenState {
   Status get status => throw _privateConstructorUsedError;
-  Error? get error => throw _privateConstructorUsedError;
   SendEmailResponse? get sendEmailResponse =>
       throw _privateConstructorUsedError;
-  bool get changeEye => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $EmailScreenStateCopyWith<EmailScreenState> get copyWith =>
@@ -33,11 +31,7 @@ abstract class $EmailScreenStateCopyWith<$Res> {
           EmailScreenState value, $Res Function(EmailScreenState) then) =
       _$EmailScreenStateCopyWithImpl<$Res, EmailScreenState>;
   @useResult
-  $Res call(
-      {Status status,
-      Error? error,
-      SendEmailResponse? sendEmailResponse,
-      bool changeEye});
+  $Res call({Status status, SendEmailResponse? sendEmailResponse});
 
   $SendEmailResponseCopyWith<$Res>? get sendEmailResponse;
 }
@@ -56,27 +50,17 @@ class _$EmailScreenStateCopyWithImpl<$Res, $Val extends EmailScreenState>
   @override
   $Res call({
     Object? status = null,
-    Object? error = freezed,
     Object? sendEmailResponse = freezed,
-    Object? changeEye = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as Error?,
       sendEmailResponse: freezed == sendEmailResponse
           ? _value.sendEmailResponse
           : sendEmailResponse // ignore: cast_nullable_to_non_nullable
               as SendEmailResponse?,
-      changeEye: null == changeEye
-          ? _value.changeEye
-          : changeEye // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 
@@ -101,11 +85,7 @@ abstract class _$$EmailScreenStateImplCopyWith<$Res>
       __$$EmailScreenStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {Status status,
-      Error? error,
-      SendEmailResponse? sendEmailResponse,
-      bool changeEye});
+  $Res call({Status status, SendEmailResponse? sendEmailResponse});
 
   @override
   $SendEmailResponseCopyWith<$Res>? get sendEmailResponse;
@@ -123,27 +103,17 @@ class __$$EmailScreenStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? error = freezed,
     Object? sendEmailResponse = freezed,
-    Object? changeEye = null,
   }) {
     return _then(_$EmailScreenStateImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as Error?,
       sendEmailResponse: freezed == sendEmailResponse
           ? _value.sendEmailResponse
           : sendEmailResponse // ignore: cast_nullable_to_non_nullable
               as SendEmailResponse?,
-      changeEye: null == changeEye
-          ? _value.changeEye
-          : changeEye // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -152,25 +122,17 @@ class __$$EmailScreenStateImplCopyWithImpl<$Res>
 
 class _$EmailScreenStateImpl implements _EmailScreenState {
   const _$EmailScreenStateImpl(
-      {this.status = Status.initial,
-      this.error,
-      this.sendEmailResponse,
-      this.changeEye = false});
+      {this.status = Status.initial, this.sendEmailResponse});
 
   @override
   @JsonKey()
   final Status status;
   @override
-  final Error? error;
-  @override
   final SendEmailResponse? sendEmailResponse;
-  @override
-  @JsonKey()
-  final bool changeEye;
 
   @override
   String toString() {
-    return 'EmailScreenState(status: $status, error: $error, sendEmailResponse: $sendEmailResponse, changeEye: $changeEye)';
+    return 'EmailScreenState(status: $status, sendEmailResponse: $sendEmailResponse)';
   }
 
   @override
@@ -179,16 +141,12 @@ class _$EmailScreenStateImpl implements _EmailScreenState {
         (other.runtimeType == runtimeType &&
             other is _$EmailScreenStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.error, error) || other.error == error) &&
             (identical(other.sendEmailResponse, sendEmailResponse) ||
-                other.sendEmailResponse == sendEmailResponse) &&
-            (identical(other.changeEye, changeEye) ||
-                other.changeEye == changeEye));
+                other.sendEmailResponse == sendEmailResponse));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, status, error, sendEmailResponse, changeEye);
+  int get hashCode => Object.hash(runtimeType, status, sendEmailResponse);
 
   @JsonKey(ignore: true)
   @override
@@ -201,18 +159,12 @@ class _$EmailScreenStateImpl implements _EmailScreenState {
 abstract class _EmailScreenState implements EmailScreenState {
   const factory _EmailScreenState(
       {final Status status,
-      final Error? error,
-      final SendEmailResponse? sendEmailResponse,
-      final bool changeEye}) = _$EmailScreenStateImpl;
+      final SendEmailResponse? sendEmailResponse}) = _$EmailScreenStateImpl;
 
   @override
   Status get status;
   @override
-  Error? get error;
-  @override
   SendEmailResponse? get sendEmailResponse;
-  @override
-  bool get changeEye;
   @override
   @JsonKey(ignore: true)
   _$$EmailScreenStateImplCopyWith<_$EmailScreenStateImpl> get copyWith =>

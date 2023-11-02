@@ -99,10 +99,11 @@ class NavigationService {
 
   static void showErrorToast(String text) {
     Flushbar(
-      borderRadius: BorderRadius.circular(24),
+      borderRadius: BorderRadius.circular(15),
       title: 'Error',
       messageText: Text(text),
       flushbarPosition: FlushbarPosition.TOP,
+      barBlur: 7.0,
       backgroundColor: AppColors.primaryColor,
       duration: const Duration(seconds: 3),
       
@@ -113,16 +114,16 @@ class NavigationService {
     return navigatorKey.currentState!.canPop();
   }
 
-  static void showToast(String text) {
-    Fluttertoast.cancel();
-    Fluttertoast.showToast(
-      msg: text,
-      toastLength: Toast.LENGTH_LONG,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 1,
-      backgroundColor: Colors.green,
-      textColor: Colors.white,
-      fontSize: 18.0,
-    );
+  static void showToast({required String text, required String title}) {
+    Flushbar(
+      borderRadius: BorderRadius.circular(15),
+      title: title,
+      messageText: Text(text),
+      flushbarPosition: FlushbarPosition.TOP,
+      barBlur: 7.0,
+      backgroundColor: Colors.grey.withOpacity(0.2),
+      duration: const Duration(seconds: 3),
+
+    ).show(navigatorKey.currentContext!);
   }
 }

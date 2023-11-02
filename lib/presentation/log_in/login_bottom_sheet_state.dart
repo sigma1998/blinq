@@ -9,6 +9,5 @@ class LoginBottomSheetState with _$LoginBottomSheetState{
     @Default(Status.initial) Status status,
     Error? error,
     @Default(true) bool isCodeVisible,
-    @Default(true) bool isMailValid,
   }) = _LoginBottomSheetState;
 }

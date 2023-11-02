@@ -17,7 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$RegistrationScreenState {
   Status get status => throw _privateConstructorUsedError;
-  Error? get error => throw _privateConstructorUsedError;
   dynamic get firstCodeVisible => throw _privateConstructorUsedError;
   dynamic get secondCodeVisible => throw _privateConstructorUsedError;
 
@@ -33,10 +32,7 @@ abstract class $RegistrationScreenStateCopyWith<$Res> {
       _$RegistrationScreenStateCopyWithImpl<$Res, RegistrationScreenState>;
   @useResult
   $Res call(
-      {Status status,
-      Error? error,
-      dynamic firstCodeVisible,
-      dynamic secondCodeVisible});
+      {Status status, dynamic firstCodeVisible, dynamic secondCodeVisible});
 }
 
 /// @nodoc
@@ -54,7 +50,6 @@ class _$RegistrationScreenStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? status = null,
-    Object? error = freezed,
     Object? firstCodeVisible = freezed,
     Object? secondCodeVisible = freezed,
   }) {
@@ -63,10 +58,6 @@ class _$RegistrationScreenStateCopyWithImpl<$Res,
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as Error?,
       firstCodeVisible: freezed == firstCodeVisible
           ? _value.firstCodeVisible
           : firstCodeVisible // ignore: cast_nullable_to_non_nullable
@@ -89,10 +80,7 @@ abstract class _$$RegistrationScreenStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Status status,
-      Error? error,
-      dynamic firstCodeVisible,
-      dynamic secondCodeVisible});
+      {Status status, dynamic firstCodeVisible, dynamic secondCodeVisible});
 }
 
 /// @nodoc
@@ -109,7 +97,6 @@ class __$$RegistrationScreenStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? error = freezed,
     Object? firstCodeVisible = freezed,
     Object? secondCodeVisible = freezed,
   }) {
@@ -118,10 +105,6 @@ class __$$RegistrationScreenStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as Error?,
       firstCodeVisible: freezed == firstCodeVisible
           ? _value.firstCodeVisible!
           : firstCodeVisible,
@@ -137,15 +120,12 @@ class __$$RegistrationScreenStateImplCopyWithImpl<$Res>
 class _$RegistrationScreenStateImpl implements _RegistrationScreenState {
   const _$RegistrationScreenStateImpl(
       {this.status = Status.initial,
-      this.error,
       this.firstCodeVisible = true,
       this.secondCodeVisible = true});
 
   @override
   @JsonKey()
   final Status status;
-  @override
-  final Error? error;
   @override
   @JsonKey()
   final dynamic firstCodeVisible;
@@ -155,7 +135,7 @@ class _$RegistrationScreenStateImpl implements _RegistrationScreenState {
 
   @override
   String toString() {
-    return 'RegistrationScreenState(status: $status, error: $error, firstCodeVisible: $firstCodeVisible, secondCodeVisible: $secondCodeVisible)';
+    return 'RegistrationScreenState(status: $status, firstCodeVisible: $firstCodeVisible, secondCodeVisible: $secondCodeVisible)';
   }
 
   @override
@@ -164,7 +144,6 @@ class _$RegistrationScreenStateImpl implements _RegistrationScreenState {
         (other.runtimeType == runtimeType &&
             other is _$RegistrationScreenStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.error, error) || other.error == error) &&
             const DeepCollectionEquality()
                 .equals(other.firstCodeVisible, firstCodeVisible) &&
             const DeepCollectionEquality()
@@ -175,7 +154,6 @@ class _$RegistrationScreenStateImpl implements _RegistrationScreenState {
   int get hashCode => Object.hash(
       runtimeType,
       status,
-      error,
       const DeepCollectionEquality().hash(firstCodeVisible),
       const DeepCollectionEquality().hash(secondCodeVisible));
 
@@ -190,14 +168,11 @@ class _$RegistrationScreenStateImpl implements _RegistrationScreenState {
 abstract class _RegistrationScreenState implements RegistrationScreenState {
   const factory _RegistrationScreenState(
       {final Status status,
-      final Error? error,
       final dynamic firstCodeVisible,
       final dynamic secondCodeVisible}) = _$RegistrationScreenStateImpl;
 
   @override
   Status get status;
-  @override
-  Error? get error;
   @override
   dynamic get firstCodeVisible;
   @override
