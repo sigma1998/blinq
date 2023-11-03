@@ -1,3 +1,4 @@
+import 'package:blinq/presentation/forgot_password/reset_password/reset_password_screen.dart';
 import 'package:blinq/presentation/intro/first_intro_screen/first_intro_screen.dart';
 import 'package:blinq/presentation/intro/second_intro_screen/second_intro_screen.dart';
 import 'package:blinq/presentation/main_screen/main_screen.dart';
@@ -20,5 +21,6 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     FirstIntroScreen.route: (context) => const FirstIntroScreen(),
     SecondIntroScreen.route: (context) => const SecondIntroScreen(),
     SuccessVideoScreen.route: (context) => const SuccessVideoScreen(),
+    ResetPasswordScreen.route: (context) => const ResetPasswordScreen(),
   };
 }

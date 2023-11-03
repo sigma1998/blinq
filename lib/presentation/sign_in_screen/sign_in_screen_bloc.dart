@@ -4,7 +4,9 @@ import 'package:blinq/utils/navigation_service.dart';
 
 class SignInScreenBloc {
   void onSignUpPressed() {
-    NavigationService.pushNamed(routeName: EmailScreen.route);
+    NavigationService.pushNamed(
+        routeName: EmailScreen.route,
+        arguments: EmailScreenArgs(isVerifying: false));
   }
 
   void onLogInPressed() {

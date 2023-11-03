@@ -7,6 +7,7 @@ import 'package:blinq/domain/repositories/auth_repository.dart';
 import 'package:blinq/presentation/log_in/login_bottom_sheet_event.dart';
 import 'package:blinq/presentation/log_in/login_bottom_sheet_state.dart';
 import 'package:blinq/presentation/main_screen/main_screen.dart';
+import 'package:blinq/presentation/registration/email_screen/email_screen.dart';
 import 'package:blinq/presentation/success_video/success_video_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
@@ -28,6 +29,7 @@ class LoginBottomSheetBloc
     on<OnPasswordVisibilityChanged>(_onPasswordVisibilityChanged);
     on<OnAppleSelected>(_onAppleSelected);
     on<OnGoogleSelected>(_onGoogleSelected);
+    on<OnForgotPasswordPressed>(_onForgotPasswordPressed);
   }
 
   FutureOr<void> _onSubmitted(
@@ -79,5 +81,12 @@ class LoginBottomSheetBloc
     authRepository.setToken(res.access!);
     authRepository.setRefreshToken(res.refresh!);
     authRepository.setUserStatus(UserStatus.signed);
+  }
+
+  FutureOr<void> _onForgotPasswordPressed(
+      OnForgotPasswordPressed event, Emitter<LoginBottomSheetState> emit) {
+    NavigationService.pushNamed(
+        routeName: EmailScreen.route,
+        arguments: EmailScreenArgs(isVerifying: true));
   }
 }

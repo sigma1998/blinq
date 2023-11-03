@@ -1,6 +1,9 @@
 import 'dart:async';
 
+import 'package:blinq/core/network/dio_client.dart';
+import 'package:blinq/data/model/send_email/response/send_email_response.dart';
 import 'package:blinq/domain/repositories/auth_repository.dart';
+import 'package:blinq/presentation/forgot_password/reset_password/reset_password_screen.dart';
 import 'package:blinq/presentation/log_in/log_in_bottim_sheet.dart';
 import 'package:blinq/presentation/registration/email_screen/email_screen_event.dart';
 import 'package:blinq/presentation/registration/email_screen/email_screen_state.dart';
@@ -14,10 +17,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EmailScreenBloc extends Bloc<EmailScreenEvent, EmailScreenState> {
   final AuthRepository authRepository;
+  final bool isVerifying;
+
   late final TextEditingController emailController;
   late final TextEditingController codeController;
+  SendEmailResponse? sendEmailForRegistrationResponse;
 
-  EmailScreenBloc({required this.authRepository})
+  EmailScreenBloc({required this.authRepository, required this.isVerifying})
       : super(const EmailScreenState()) {
     on<OnPrimaryButtonPressed>(_onPrimaryButtonPressed);
     on<OnSecondaryButtonPressed>(_onSecondaryButtonPressed);
@@ -28,26 +34,42 @@ class EmailScreenBloc extends Bloc<EmailScreenEvent, EmailScreenState> {
 
   FutureOr<void> _onPrimaryButtonPressed(
       OnPrimaryButtonPressed event, Emitter<EmailScreenState> emit) async {
-    if (state.sendEmailResponse == null) {
-      await _sendMailForCode(emit);
+    if (!state.isCodeSent) {
+
+      if (isVerifying) {
+        await _sendVerificationMailForCode(emit);
+      } else {
+        await _sendRegistrationMailForCode(emit);
+      }
     } else {
-      if (state.sendEmailResponse!.verificationCode == codeController.text) {
-        NavigationService.pushReplacement(routeName: RegistrationScreen.route,
-        arguments: state.sendEmailResponse!.email);
+      if (isVerifying) {
+        await _sendVerificationCode(emit);
+      } else {
+        if (sendEmailForRegistrationResponse!.verificationCode ==
+            codeController.text) {
+          NavigationService.pushReplacement(
+              routeName: RegistrationScreen.route,
+              arguments: sendEmailForRegistrationResponse!.email);
+        }
       }
     }
   }
 
   FutureOr<void> _onSecondaryButtonPressed(
       OnSecondaryButtonPressed event, Emitter<EmailScreenState> emit) async {
-    if (state.sendEmailResponse == null) {
+    if (!state.isCodeSent) {
       NavigationService.showBottomSheet(sheet: const LogInBottomSheet());
     } else {
-      await _sendMailForCode(emit);
+      if (isVerifying) {
+        await _sendVerificationMailForCode(emit);
+      } else {
+        await _sendRegistrationMailForCode(emit);
+      }
     }
   }
 
-  Future<void> _sendMailForCode(Emitter<EmailScreenState> emit) async {
+  Future<void> _sendRegistrationMailForCode(
+      Emitter<EmailScreenState> emit) async {
     if (!EmailValidator.validate(emailController.text)) {
       return;
     }
@@ -56,10 +78,47 @@ class EmailScreenBloc extends Bloc<EmailScreenEvent, EmailScreenState> {
 
     try {
       final res = await authRepository.sendEmail(emailController.text);
-      emit(state.copyWith(status: Status.initial, sendEmailResponse: res));
+      sendEmailForRegistrationResponse = res;
+      emit(state.copyWith(status: Status.initial, isCodeSent: true));
 
       NavigationService.showToast(
           text: "strCodeSent".tr(), title: 'strCheckMain'.tr());
+    } catch (e) {
+      emit(state.copyWith(status: Status.initial));
+    }
+  }
+
+  Future<void> _sendVerificationMailForCode(
+      Emitter<EmailScreenState> emit) async {
+    if (!EmailValidator.validate(emailController.text)) {
+      return;
+    }
+
+    emit(state.copyWith(status: Status.loading));
+
+    try {
+      await authRepository.getVerificationCode(emailController.text);
+
+      emit(state.copyWith(status: Status.initial, isCodeSent: true));
+
+      NavigationService.showToast(
+          text: "strCodeSent".tr(), title: 'strCheckMain'.tr());
+
+    } catch (e) {
+      emit(state.copyWith(status: Status.initial));
+    }
+  }
+
+  Future<void> _sendVerificationCode(Emitter<EmailScreenState> emit) async {
+    emit(state.copyWith(status: Status.loading));
+
+    try {
+      final res = await authRepository.confirmMailVerification(mail: emailController.text, code: codeController.text);
+      DioClient.setToken(res);
+
+      emit(state.copyWith(status: Status.initial));
+
+      NavigationService.pushNamed(routeName: ResetPasswordScreen.route);
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }

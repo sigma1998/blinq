@@ -30,6 +30,16 @@ abstract class AuthRepository {
   void setUserStatus(UserStatus userStatus);
 
   UserStatus getUserStatus();
+
+  Future<void> getVerificationCode(String mail);
+
+  Future<String> confirmMailVerification(
+      {required String mail, required String code});
+
+  Future<void> resetPassword(String newPassword);
+
+  Future<void> deleteUser(String id);
+
 }
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -113,5 +123,42 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   UserStatus getUserStatus() {
     return localStorage.getUserStatus();
+  }
+
+  @override
+  Future<String> confirmMailVerification(
+      {required String mail, required String code}) async {
+    try {
+      return await api.confirmMailVerification(mail: mail, code: code);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> getVerificationCode(String mail) async {
+    try {
+      await api.getVerificationCode(mail);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> resetPassword(String newPassword) async {
+    try {
+      await api.resetPassword(newPassword);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> deleteUser(String id) async{
+    try {
+      await api.deleteUser(id);
+    } catch (e) {
+      rethrow;
+    }
   }
 }

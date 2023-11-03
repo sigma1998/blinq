@@ -17,6 +17,15 @@ abstract class AuthApi {
   Future<LoginResponseModel> loginWithApple(String token);
 
   Future<LoginResponseModel> loginWithGoogle(LoginGoogleRequest request);
+
+  Future<void> getVerificationCode(String mail);
+
+  Future<String> confirmMailVerification(
+      {required String mail, required String code});
+
+  Future<void> resetPassword(String newPassword);
+
+  Future<void> deleteUser(String id);
 }
 
 class AuthApiImpl implements AuthApi {
@@ -81,6 +90,47 @@ class AuthApiImpl implements AuthApi {
           await api.post(NetworkConstants.loginGoogle, data: request.toJson());
 
       return LoginResponseModel.fromJson(res);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<String> confirmMailVerification(
+      {required String mail, required String code}) async {
+    try {
+      final res = await api.post(NetworkConstants.confirmMailVerification,
+          data: {'email': mail, 'verification_code': code});
+      return res['token'];
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> getVerificationCode(String mail) async {
+    try {
+      await api
+          .post(NetworkConstants.getVerificationCode, data: {'email': mail});
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> resetPassword(String newPassword) async {
+    try {
+      await api.post(NetworkConstants.resetPassword,
+          data: {'password': newPassword});
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> deleteUser(String id) async {
+    try {
+      await api.delete(NetworkConstants.deleteUser(id));
     } catch (e) {
       rethrow;
     }

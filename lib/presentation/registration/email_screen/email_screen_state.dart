@@ -1,4 +1,3 @@
-import 'package:blinq/data/model/send_email/response/send_email_response.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -8,6 +7,6 @@ part 'email_screen_state.freezed.dart';
 class EmailScreenState with _$EmailScreenState {
   const factory EmailScreenState({
     @Default(Status.initial) Status status,
-    SendEmailResponse? sendEmailResponse,
+    @Default(false)bool isCodeSent,
   }) = _EmailScreenState;
 }

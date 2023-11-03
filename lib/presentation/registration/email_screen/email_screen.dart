@@ -25,11 +25,21 @@ class EmailScreen extends StatefulWidget {
 
 class _EmailScreenState extends State<EmailScreen> {
   late final EmailScreenBloc bloc;
+  late EmailScreenArgs args;
 
   @override
   void initState() {
-    bloc = EmailScreenBloc(authRepository: getIt<AuthRepositoryImpl>());
     super.initState();
+
+  }
+
+  @override
+  void didChangeDependencies() {
+    args = ModalRoute.of(context)!.settings.arguments as EmailScreenArgs;
+    bloc = EmailScreenBloc(
+        authRepository: getIt<AuthRepositoryImpl>(),
+        isVerifying: args.isVerifying);
+    super.didChangeDependencies();
   }
 
   @override
@@ -58,9 +68,9 @@ class _EmailScreenState extends State<EmailScreen> {
                       height: 32,
                     ),
                     Text(
-                      state.sendEmailResponse == null
-                          ? 'strWelcomeBack'.tr()
-                          : 'strEnterCode'.tr(),
+                      (state.isCodeSent || args.isVerifying)
+                          ? 'strEnterCode'.tr()
+                          : 'strWelcomeBack'.tr(),
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     const SizedBox(
@@ -69,13 +79,13 @@ class _EmailScreenState extends State<EmailScreen> {
                     TextFieldRoundedWidget(
                       hint: 'strYourEmail'.tr(),
                       textController: bloc.emailController,
-                      validate: (value) =>  Validator.validateEmail(value),
-                      readOnly: state.sendEmailResponse != null,
+                      validate: (value) => Validator.validateEmail(value),
+                      readOnly: state.isCodeSent,
                     ),
                     const SizedBox(
                       height: 30,
                     ),
-                    if (state.sendEmailResponse != null)
+                    if (state.isCodeSent)
                       TextFieldRoundedWidget(
                         hint: 'strEnterCode'.tr(),
                         textController: bloc.codeController,
@@ -84,8 +94,9 @@ class _EmailScreenState extends State<EmailScreen> {
                     AppButton(
                       loading: state.status == Status.loading,
                       onTap: () => bloc.add(OnPrimaryButtonPressed()),
-                      text: state.sendEmailResponse == null? 'strSendCode'.tr():
-                      'strSubmit'.tr(),
+                      text: !state.isCodeSent
+                          ? 'strSendCode'.tr()
+                          : 'strSubmit'.tr(),
                       btnColor: Colors.white,
                       txtColor: Colors.black,
                     ),
@@ -94,7 +105,7 @@ class _EmailScreenState extends State<EmailScreen> {
                     ),
                     AppButton(
                       onTap: () => bloc.add(OnSecondaryButtonPressed()),
-                      text: state.sendEmailResponse == null
+                      text: !state.isCodeSent
                           ? 'strLogin'.tr()
                           : 'strResendCode'.tr(),
                       btnColor: Theme.of(context).colorScheme.secondary,
@@ -106,4 +117,10 @@ class _EmailScreenState extends State<EmailScreen> {
           );
         });
   }
+}
+
+class EmailScreenArgs {
+  final bool isVerifying;
+
+  EmailScreenArgs({required this.isVerifying});
 }

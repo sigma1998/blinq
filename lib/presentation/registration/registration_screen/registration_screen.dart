@@ -96,7 +96,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     },
                     suffix: IconButton(
                       onPressed: () =>
-                          bloc.add(OnFirstPasswordVisibilityChanged()),
+                          bloc.add(OnSecondPasswordVisibilityChanged()),
                       icon: state.secondCodeVisible
                           ? SvgPicture.asset(AppDrawables.eyeOpened)
                           : SvgPicture.asset(AppDrawables.eyeClosed),

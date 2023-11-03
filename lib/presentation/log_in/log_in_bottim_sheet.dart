@@ -158,6 +158,7 @@ class _LogInBottomSheetState extends State<LogInBottomSheet> {
                         height: 30,
                       ),
                       InkWell(
+                        onTap: ()=>bloc.add(OnForgotPasswordPressed()),
                         child: Text('strForgotpasswordOrEmail'.tr()),
                       ),
                     ],
