@@ -37,17 +37,17 @@ class SettingsView extends StatelessWidget {
               onTap: bloc.onEmailPressed,
               title: profileBloc.state.profile?.email ?? 'strEmail'.tr(),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
             SettingsItem(
               onTap: bloc.onPasswordPressed,
               title: 'strChangePassword'.tr(),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
             SettingsItem(
               onTap: bloc.onLanguagePressed,
               title: 'strChangeLanguage'.tr(),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
             SettingsItem(
               title: 'strNotification'.tr(),
               trailing: MyToggle(
@@ -57,7 +57,7 @@ class SettingsView extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
             SettingsItem(
               onTap: bloc.onDeleteAccount,
               title: 'strDeleteAccount'.tr(),

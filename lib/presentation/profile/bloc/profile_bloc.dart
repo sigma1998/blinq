@@ -49,4 +49,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       NavigationService.showErrorToast(e.toString());
     }
   }
+
+  // change language
 }

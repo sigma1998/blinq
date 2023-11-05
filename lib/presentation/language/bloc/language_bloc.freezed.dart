@@ -15,188 +15,13 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$LanguageEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $LanguageEventCopyWith<$Res> {
-  factory $LanguageEventCopyWith(
-          LanguageEvent value, $Res Function(LanguageEvent) then) =
-      _$LanguageEventCopyWithImpl<$Res, LanguageEvent>;
-}
-
-/// @nodoc
-class _$LanguageEventCopyWithImpl<$Res, $Val extends LanguageEvent>
-    implements $LanguageEventCopyWith<$Res> {
-  _$LanguageEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$StartedImplCopyWith<$Res> {
-  factory _$$StartedImplCopyWith(
-          _$StartedImpl value, $Res Function(_$StartedImpl) then) =
-      __$$StartedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$StartedImplCopyWithImpl<$Res>
-    extends _$LanguageEventCopyWithImpl<$Res, _$StartedImpl>
-    implements _$$StartedImplCopyWith<$Res> {
-  __$$StartedImplCopyWithImpl(
-      _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$StartedImpl implements _Started {
-  const _$StartedImpl();
-
-  @override
-  String toString() {
-    return 'LanguageEvent.started()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$StartedImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-  }) {
-    return started();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-  }) {
-    return started?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    required TResult orElse(),
-  }) {
-    if (started != null) {
-      return started();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-  }) {
-    return started(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-  }) {
-    return started?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    required TResult orElse(),
-  }) {
-    if (started != null) {
-      return started(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Started implements LanguageEvent {
-  const factory _Started() = _$StartedImpl;
-}
-
-/// @nodoc
 mixin _$LanguageState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) =>
+  Status get status => throw _privateConstructorUsedError;
+  ProfileLanguage? get lang => throw _privateConstructorUsedError;
+  Error? get error => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $LanguageStateCopyWith<LanguageState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -205,6 +30,8 @@ abstract class $LanguageStateCopyWith<$Res> {
   factory $LanguageStateCopyWith(
           LanguageState value, $Res Function(LanguageState) then) =
       _$LanguageStateCopyWithImpl<$Res, LanguageState>;
+  @useResult
+  $Res call({Status status, ProfileLanguage? lang, Error? error});
 }
 
 /// @nodoc
@@ -216,100 +43,130 @@ class _$LanguageStateCopyWithImpl<$Res, $Val extends LanguageState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+    Object? lang = freezed,
+    Object? error = freezed,
+  }) {
+    return _then(_value.copyWith(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as Status,
+      lang: freezed == lang
+          ? _value.lang
+          : lang // ignore: cast_nullable_to_non_nullable
+              as ProfileLanguage?,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as Error?,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$LanguageStateImplCopyWith<$Res>
+    implements $LanguageStateCopyWith<$Res> {
+  factory _$$LanguageStateImplCopyWith(
+          _$LanguageStateImpl value, $Res Function(_$LanguageStateImpl) then) =
+      __$$LanguageStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Status status, ProfileLanguage? lang, Error? error});
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$LanguageStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$LanguageStateImplCopyWithImpl<$Res>
+    extends _$LanguageStateCopyWithImpl<$Res, _$LanguageStateImpl>
+    implements _$$LanguageStateImplCopyWith<$Res> {
+  __$$LanguageStateImplCopyWithImpl(
+      _$LanguageStateImpl _value, $Res Function(_$LanguageStateImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+    Object? lang = freezed,
+    Object? error = freezed,
+  }) {
+    return _then(_$LanguageStateImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as Status,
+      lang: freezed == lang
+          ? _value.lang
+          : lang // ignore: cast_nullable_to_non_nullable
+              as ProfileLanguage?,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as Error?,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$LanguageStateImpl implements _LanguageState {
+  const _$LanguageStateImpl(
+      {this.status = Status.initial,
+      this.lang = ProfileLanguage.en,
+      this.error});
+
+  @override
+  @JsonKey()
+  final Status status;
+  @override
+  @JsonKey()
+  final ProfileLanguage? lang;
+  @override
+  final Error? error;
 
   @override
   String toString() {
-    return 'LanguageState.initial()';
+    return 'LanguageState(status: $status, lang: $lang, error: $error)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$LanguageStateImpl &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.lang, lang) || other.lang == lang) &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, status, lang, error);
 
+  @JsonKey(ignore: true)
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
+  @pragma('vm:prefer-inline')
+  _$$LanguageStateImplCopyWith<_$LanguageStateImpl> get copyWith =>
+      __$$LanguageStateImplCopyWithImpl<_$LanguageStateImpl>(this, _$identity);
 }
 
-abstract class _Initial implements LanguageState {
-  const factory _Initial() = _$InitialImpl;
+abstract class _LanguageState implements LanguageState {
+  const factory _LanguageState(
+      {final Status status,
+      final ProfileLanguage? lang,
+      final Error? error}) = _$LanguageStateImpl;
+
+  @override
+  Status get status;
+  @override
+  ProfileLanguage? get lang;
+  @override
+  Error? get error;
+  @override
+  @JsonKey(ignore: true)
+  _$$LanguageStateImplCopyWith<_$LanguageStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

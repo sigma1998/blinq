@@ -57,8 +57,8 @@ class ProfileApiImpl implements ProfileApi {
   @override
   Future<void> updateLanguage(String language) {
     try {
-      return api
-          .post(NetworkConstants.changeLanguage, data: {'language': language});
+      return api.get(NetworkConstants.changeLanguage,
+          queryParameters: {'lan_code': language});
     } catch (e) {
       rethrow;
     }
