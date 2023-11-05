@@ -17,6 +17,8 @@ class ProfileInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<ProfileBloc>();
+
     return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
         return Column(
@@ -25,8 +27,9 @@ class ProfileInfoWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: ProfileInfoCard(
-                    image: AppDrawables.policyHolder,
                     title: 'strDriver'.tr(),
+                    onTap: bloc.onDriverPressed,
+                    image: AppDrawables.policyHolder,
                     desc:
                         '${state.profile?.firstName} ${state.profile?.lastName}',
                   ),
@@ -34,9 +37,10 @@ class ProfileInfoWidget extends StatelessWidget {
                 const SizedBox(width: 10),
                 Expanded(
                   child: ProfileInfoCard(
-                    image: AppDrawables.policyHolder,
-                    title: 'strPolicyHolder'.tr(),
                     desc: 'Laziz',
+                    title: 'strPolicyHolder'.tr(),
+                    image: AppDrawables.policyHolder,
+                    onTap: bloc.onPolicyHolderPressed,
                   ),
                 ),
               ],
@@ -46,17 +50,19 @@ class ProfileInfoWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: ProfileInfoCard(
-                    image: AppDrawables.electricBolt,
-                    title: 'strVehicle'.tr(),
                     desc: 'Motor, trailer',
+                    title: 'strVehicle'.tr(),
+                    onTap: bloc.onVehiclePressed,
+                    image: AppDrawables.electricBolt,
                   ),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: ProfileInfoCard(
-                    image: AppDrawables.insurance,
-                    title: 'strInsurance'.tr(),
                     desc: 'Allianz',
+                    title: 'strInsurance'.tr(),
+                    image: AppDrawables.insurance,
+                    onTap: bloc.onInsurancePressed,
                   ),
                 ),
               ],
@@ -65,15 +71,15 @@ class ProfileInfoWidget extends StatelessWidget {
             ProfileImageCard(
               title: 'strMyCar'.tr(),
               desc: 'adsfadfs',
+              onTap: bloc.onMyCarPressed,
               image: AppDrawables.vehicle,
-              onTap: () {},
             ),
             const SizedBox(height: 10),
             ProfileImageCard(
               title: 'strMyCar'.tr(),
               desc: 'strQrCode'.tr(),
+              onTap: bloc.onQrCodePressed,
               image: AppDrawables.scanningQr,
-              onTap: () {},
             ),
           ],
         );

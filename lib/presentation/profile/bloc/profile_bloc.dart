@@ -6,6 +6,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
+import 'package:blinq/presentation/profile/widgets/editors/driver/driver_editor_screen.dart';
+import 'package:blinq/presentation/order_history/order_history_screen.dart';
+import 'package:blinq/presentation/profile/widgets/editors/insurance/insurance_editor_screen.dart';
+import 'package:blinq/presentation/profile/widgets/editors/my_car/my_car_editor_screen.dart';
+import 'package:blinq/presentation/profile/widgets/editors/my_vehicle/my_vehicle_editor_screen.dart';
+import 'package:blinq/presentation/profile/widgets/editors/policy_holder/policy_holder_editor_screen.dart';
+import 'package:blinq/presentation/profile/widgets/editors/vehicle/vehicle_editor_screen.dart';
+import 'package:blinq/presentation/reports/reports_screen.dart';
 import 'package:blinq/data/model/profile/profile_response_model.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
@@ -50,5 +58,34 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     }
   }
 
-  // change language
+  //* My Information
+
+  void onDriverPressed() =>
+      NavigationService.pushNamed(routeName: DriverEditorScreen.route);
+
+  void onPolicyHolderPressed() =>
+      NavigationService.pushNamed(routeName: PolicyHolderEditorScreen.route);
+
+  void onVehiclePressed() =>
+      NavigationService.pushNamed(routeName: VehicleEditorScreen.route);
+
+  void onInsurancePressed() =>
+      NavigationService.pushNamed(routeName: InsuranceEditorScreen.route);
+
+  void onMyCarPressed() =>
+      NavigationService.pushNamed(routeName: MyCarEditorScreen.route);
+
+  void onQrCodePressed() =>
+      NavigationService.pushNamed(routeName: DriverEditorScreen.route);
+
+  //& My Vehicle
+
+  void onMyVehiclePressed() =>
+      NavigationService.pushNamed(routeName: MyVehicleEditorScreen.route);
+
+  void onReportsPressed() =>
+      NavigationService.pushNamed(routeName: ReportsScreen.route);
+
+  void onOrderHistoryPressed() =>
+      NavigationService.pushNamed(routeName: OrderHistoryScreen.route);
 }

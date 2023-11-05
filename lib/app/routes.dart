@@ -1,14 +1,23 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:blinq/presentation/email_editor/email_editor_screen.dart';
 import 'package:blinq/presentation/language/language_screen.dart';
 import 'package:blinq/presentation/main_screen/main_screen.dart';
 import 'package:blinq/presentation/password_editor/password_editor_screen.dart';
+import 'package:blinq/presentation/order_history/order_history_screen.dart';
+import 'package:blinq/presentation/profile/widgets/editors/insurance/insurance_editor_screen.dart';
+import 'package:blinq/presentation/profile/widgets/editors/my_car/my_car_editor_screen.dart';
+import 'package:blinq/presentation/profile/widgets/editors/policy_holder/policy_holder_editor_screen.dart';
+import 'package:blinq/presentation/profile/widgets/editors/my_vehicle/my_vehicle_editor_screen.dart';
+import 'package:blinq/presentation/profile/widgets/editors/vehicle/vehicle_editor_screen.dart';
+import 'package:blinq/presentation/profile/widgets/editors/driver/driver_editor_screen.dart';
 import 'package:blinq/presentation/registration/email_screen/email_screen.dart';
 import 'package:blinq/presentation/registration/registration_screen/registration_screen.dart';
 import 'package:blinq/presentation/reports/reports_screen.dart';
+import 'package:blinq/presentation/sign_in_screen/sign_in_screen.dart';
 import 'package:blinq/presentation/splash_screen/splash_screen.dart';
-import 'package:flutter/material.dart';
-
-import '../presentation/sign_in_screen/sign_in_screen.dart';
 
 Map<String, WidgetBuilder> getRoutes(BuildContext context) {
   return {
@@ -24,9 +33,17 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     PasswordEditorScreen.route: (context) => const PasswordEditorScreen(),
 
     //* Reports
-
     ReportsScreen.route: (context) => const ReportsScreen(),
+    OrderHistoryScreen.route: (context) => const OrderHistoryScreen(),
 
     //! Profile Editors
+    DriverEditorScreen.route: (context) => const DriverEditorScreen(),
+    PolicyHolderEditorScreen.route: (context) =>
+        const PolicyHolderEditorScreen(),
+    VehicleEditorScreen.route: (context) => const VehicleEditorScreen(),
+    InsuranceEditorScreen.route: (context) => const InsuranceEditorScreen(),
+    MyCarEditorScreen.route: (context) => const MyCarEditorScreen(),
+
+    MyVehicleEditorScreen.route: (context) => const MyVehicleEditorScreen(),
   };
 }

@@ -10,16 +10,21 @@ class ProfileInfoCard extends StatelessWidget {
   final String title;
   final String desc;
 
+  final VoidCallback? onTap;
+
   const ProfileInfoCard({
     super.key,
     required this.image,
     required this.title,
     required this.desc,
+    //
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return MyInfoContainer(
+      onTap: onTap,
       child: Column(
         children: [
           Image.asset(

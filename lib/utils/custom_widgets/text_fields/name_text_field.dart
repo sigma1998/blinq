@@ -12,6 +12,7 @@ class NameTextField extends StatelessWidget {
   final void Function(String) onChanged;
 
   final FocusNode? focusNode;
+  final int maxLines;
 
   final bool enabled;
   final bool autofocus;
@@ -24,6 +25,7 @@ class NameTextField extends StatelessWidget {
     this.initialValue,
     //
     this.focusNode,
+    this.maxLines = 1,
     //
     this.enabled = true,
     this.autofocus = false,
@@ -35,6 +37,7 @@ class NameTextField extends StatelessWidget {
     return MyTextField(
       key: key,
       enabled: enabled,
+      maxLines: maxLines,
       labelText: labelText,
       autofocus: autofocus,
       onChanged: onChanged,

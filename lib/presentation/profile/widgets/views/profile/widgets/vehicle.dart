@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 // Project imports:
+import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'cards/report_card.dart';
 import 'cards/vehicle_card.dart';
@@ -16,6 +18,8 @@ class ProfileVehicleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<ProfileBloc>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -28,7 +32,7 @@ class ProfileVehicleWidget extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: bloc.onMyVehiclePressed,
               child: SvgPicture.asset(
                 AppDrawables.edit,
               ),

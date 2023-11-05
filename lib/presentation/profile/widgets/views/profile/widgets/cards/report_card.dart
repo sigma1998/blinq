@@ -1,8 +1,10 @@
 // Flutter imports:
+import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 // Project imports:
@@ -15,12 +17,14 @@ class ProfileReportCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<ProfileBloc>();
+
     return MyInfoContainer(
       padding: EdgeInsets.zero,
       child: Column(
         children: [
           GestureDetector(
-            onTap: () {},
+            onTap: bloc.onReportsPressed,
             child: Padding(
               padding: const EdgeInsets.all(24),
               child: Row(
@@ -43,7 +47,7 @@ class ProfileReportCard extends StatelessWidget {
             color: Colors.black,
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: bloc.onOrderHistoryPressed,
             child: Padding(
               padding: const EdgeInsets.all(24),
               child: Row(
