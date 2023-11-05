@@ -7,22 +7,26 @@ import 'default_text_field.dart';
 
 class EmailTextField extends StatelessWidget {
   //
-  final bool autofocus;
+  final String? initialValue;
 
   final FocusNode? focusNode;
 
   final void Function(String) onChanged;
 
   final bool enabled;
-  final String? initialValue;
+  final bool autofocus;
+  final bool isRequired;
 
   const EmailTextField({
     super.key,
     required this.onChanged,
-    this.focusNode,
-    this.autofocus = false,
-    this.enabled = true,
     this.initialValue,
+    //
+    this.focusNode,
+    //
+    this.enabled = true,
+    this.autofocus = false,
+    this.isRequired = false,
   });
 
   @override

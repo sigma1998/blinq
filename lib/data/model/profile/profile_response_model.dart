@@ -1,6 +1,10 @@
-// Package imports:
 // ignore_for_file: invalid_annotation_target
+
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
+import 'driver_license/driver_license_type.dart';
 
 part 'profile_response_model.freezed.dart';
 part 'profile_response_model.g.dart';
@@ -19,7 +23,7 @@ class ProfileResponseModel with _$ProfileResponseModel {
     @JsonKey(name: 'phone_number') String? phoneNumber,
     @JsonKey(name: 'email') String? email,
     @JsonKey(name: 'qr_code') String? qrCode,
-    @JsonKey(name: 'driver_license') String? driverLicense,
+    @JsonKey(name: 'driver_license') DriverLicenseType? driverLicense,
     @JsonKey(name: 'driver_license_number') String? driverLicenseNumber,
     @JsonKey(name: 'driver_license_expired_date')
     String? driverLicenseExpiredDate,

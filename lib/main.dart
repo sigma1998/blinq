@@ -1,5 +1,6 @@
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/core/theme/app_theme.dart';
+import 'package:blinq/data/model/profile/driver_license/driver_license_type.dart';
 import 'package:blinq/domain/repositories/auth_repository.dart';
 import 'package:blinq/presentation/main_screen/main_screen_bloc.dart';
 import 'package:blinq/presentation/registration/email_screen/email_screen_bloc.dart';
@@ -12,6 +13,9 @@ import 'package:path_provider/path_provider.dart';
 import 'app/routes.dart';
 import 'data/datasource/local/storage_constants.dart';
 import 'data/model/user/user_status.dart';
+import 'domain/repositories/profile_repository.dart';
+import 'presentation/profile/bloc/profile_bloc.dart';
+import 'presentation/profile/bloc/profile_event.dart';
 import 'utils/navigation_service.dart';
 
 void main() async {
@@ -29,6 +33,7 @@ void main() async {
 Future<void> _setUpHive() async {
   Hive.init((await getApplicationDocumentsDirectory()).path);
   Hive.registerAdapter(UserStatusAdapter());
+  Hive.registerAdapter(DriverLicenseTypeAdapter());
 
   await Hive.openBox(StorageConstants.appBox);
   await Hive.openBox(StorageConstants.userStatusBox);
@@ -47,6 +52,11 @@ class MyApp extends StatelessWidget {
         BlocProvider<EmailScreenBloc>(
           create: (context) =>
               EmailScreenBloc(authRepository: getIt<AuthRepositoryImpl>()),
+        ),
+        BlocProvider<ProfileBloc>(
+          create: (context) =>
+              ProfileBloc(repository: getIt<ProfileRepositoryImpl>())
+                ..add(OnFetch()),
         ),
       ],
       child: MaterialApp(

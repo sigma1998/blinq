@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -15,6 +16,8 @@ class MyImage extends StatelessWidget {
 
   final BoxFit? fit;
 
+  final String? errorImage;
+
   MyImage(
     this.imgUrl, {
     //
@@ -25,6 +28,7 @@ class MyImage extends StatelessWidget {
     this.minHeight,
     this.maxHeight,
     //
+    this.errorImage = AppDrawables.errorProfileImage,
     this.fit = BoxFit.cover,
   }) : super(key: ValueKey(imgUrl));
 
@@ -42,9 +46,7 @@ class MyImage extends StatelessWidget {
           height: height,
           imageUrl: imgUrl,
           placeholder: (context, url, [_]) => getPlaceholder(),
-          httpHeaders: const {
-            // HttpHeaders.authorizationHeader: 'Bearer ${MySPHelper.token}',
-          },
+          errorWidget: (context, url, error) => getErrorImage(),
         ),
       ),
     );
@@ -61,5 +63,15 @@ class MyImage extends StatelessWidget {
         height: height ?? minHeight,
       ),
     );
+  }
+
+  Widget getErrorImage() {
+    return errorImage != null
+        ? Image.asset(
+            errorImage!,
+            width: width,
+            height: height,
+          )
+        : getPlaceholder();
   }
 }

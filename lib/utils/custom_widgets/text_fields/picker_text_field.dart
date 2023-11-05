@@ -9,15 +9,17 @@ import 'default_text_field.dart';
 class PickerTextField extends StatelessWidget {
   //
   final String? labelText;
+  final String? initialValue;
 
   final Widget? suffixIcon;
 
   final void Function() onTap;
 
-  final String? initialValue;
-
   final int minLines;
   final int maxLines;
+
+  final bool enabled;
+  final bool isRequired;
 
   const PickerTextField({
     super.key,
@@ -29,6 +31,9 @@ class PickerTextField extends StatelessWidget {
     //
     this.minLines = 1,
     this.maxLines = 1,
+    //
+    this.enabled = true,
+    this.isRequired = false,
   });
 
   @override
@@ -37,6 +42,7 @@ class PickerTextField extends StatelessWidget {
       key: key,
       onTap: onTap,
       readOnly: true,
+      enabled: enabled,
       minLines: minLines,
       maxLines: maxLines,
       labelText: labelText,
@@ -54,8 +60,12 @@ class PickerTextField extends StatelessWidget {
   Widget get _suffixIcon {
     return SvgPicture.asset(
       AppDrawables.arrowDown,
-      width: 16,
-      height: 16,
+      width: 24,
+      height: 24,
+      colorFilter: const ColorFilter.mode(
+        Colors.white,
+        BlendMode.srcIn,
+      ),
     );
   }
 }

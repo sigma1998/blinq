@@ -11,22 +11,24 @@ import 'default_text_field.dart';
 
 class PhoneTextField extends StatelessWidget {
   //
-  final bool enabled;
-
   final String? labelText;
+  final String? initialValue;
+
   final void Function(String) onChanged;
 
-  final String? initialValue;
+  final bool enabled;
   final bool autofocus;
+  final bool isRequired;
 
   const PhoneTextField({
     super.key,
     required this.onChanged,
     this.labelText,
-    //
-    this.autofocus = false,
-    this.enabled = true,
     this.initialValue,
+    //
+    this.enabled = true,
+    this.autofocus = false,
+    this.isRequired = false,
   });
 
   @override

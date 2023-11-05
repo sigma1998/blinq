@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:blinq/utils/custom_widgets/info_container.dart';
 
-class ProfileCarPolicyCard extends StatelessWidget {
+class ProfileInfoCard extends StatelessWidget {
   //
   final String image;
   final String title;
   final String desc;
 
-  const ProfileCarPolicyCard({
+  const ProfileInfoCard({
     super.key,
     required this.image,
     required this.title,

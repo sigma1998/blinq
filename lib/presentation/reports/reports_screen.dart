@@ -1,9 +1,10 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-class SettingsView extends StatelessWidget {
+class ReportsScreen extends StatelessWidget {
   //
-  const SettingsView({super.key});
+  static const route = '/reports';
+
+  const ReportsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

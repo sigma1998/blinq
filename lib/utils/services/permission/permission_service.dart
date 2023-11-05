@@ -6,59 +6,60 @@ import 'i_permission_service.dart';
 
 class PermissionService extends IPermissionService {
   //
-  Future<bool> Function(Future<bool> Function() openAppSettings)
-      openSettingsPopUp;
-
-  PermissionService({
-    required this.openSettingsPopUp,
-  });
-
-  //
+  @override
+  Future<PermissionStatus> requestCameraPermission() async =>
+      await Permission.camera.request();
 
   @override
-  Future<PermissionStatus> requestCameraPermission() async {
-    return await Permission.camera.request();
-  }
+  Future<PermissionStatus> requestPhotosPermission() async =>
+      await Permission.photos.request();
 
   @override
-  Future<PermissionStatus> requestPhotosPermission() async {
-    return await Permission.photos.request();
-  }
+  Future<PermissionStatus> requestLocationPermission() async =>
+      await Permission.location.request();
 
   @override
-  Future<PermissionStatus> requestLocationPermission() async {
-    return await Permission.location.request();
-  }
+  Future<PermissionStatus> requestNotificationPermission() async =>
+      await Permission.notification.request();
 
   //
 
   @override
   Future<bool> handleCameraPermission() async {
-    PermissionStatus cameraPermissionStatus = await requestCameraPermission();
+    final cameraPermissionStatus = await requestCameraPermission();
 
     if (cameraPermissionStatus != PermissionStatus.granted) {
-      return await openSettingsPopUp(openAppSettings);
+      return await openAppSettings();
     }
     return true;
   }
 
   @override
   Future<bool> handlePhotosPermission() async {
-    PermissionStatus photosPermissionStatus = await requestPhotosPermission();
+    final photosPermissionStatus = await requestPhotosPermission();
 
     if (photosPermissionStatus != PermissionStatus.granted) {
-      return await openSettingsPopUp(openAppSettings);
+      return await openAppSettings();
     }
     return true;
   }
 
-  @override 
+  @override
   Future<bool> handleLocationPermission() async {
-    PermissionStatus locationPermissionStatus =
-        await requestLocationPermission();
+    final locationPermissionStatus = await requestLocationPermission();
 
     if (locationPermissionStatus != PermissionStatus.granted) {
-      return await openSettingsPopUp(openAppSettings);
+      return await openAppSettings();
+    }
+    return true;
+  }
+
+  @override
+  Future<bool> handleNotificationPermission() async {
+    final notificationPermissionStatus = await requestNotificationPermission();
+
+    if (notificationPermissionStatus != PermissionStatus.granted) {
+      return openAppSettings();
     }
     return true;
   }

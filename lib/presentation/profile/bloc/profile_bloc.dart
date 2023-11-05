@@ -22,15 +22,28 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ProfileBloc({required ProfileRepository repository})
       : _repository = repository,
         super(const ProfileState()) {
-    on<OnFetchProfile>(_fetchProfile);
+    on<OnFetch>(_onFetch);
+    on<OnUpdate>(_onUpdate);
   }
 
-  FutureOr<void> _fetchProfile(
-      OnFetchProfile event, Emitter<ProfileState> emit) async {
+  FutureOr<void> _onFetch(OnFetch event, Emitter<ProfileState> emit) async {
     try {
       emit(const ProfileState(status: Status.loading));
-      final res = await _repository.fetchProfile();
-      emit(ProfileState(profile: res, status: Status.success));
+      final data = await _repository.fetch();
+      _repository.setProfile(data);
+      emit(ProfileState(profile: data, status: Status.success));
+    } catch (e) {
+      emit(state.copyWith(status: Status.initial));
+      NavigationService.showErrorToast(e.toString());
+    }
+  }
+
+  FutureOr<void> _onUpdate(OnUpdate event, Emitter<ProfileState> emit) async {
+    try {
+      emit(state.copyWith(status: Status.loading));
+      final data = await _repository.update(event.profile);
+      _repository.setProfile(data);
+      emit(ProfileState(profile: data, status: Status.success));
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
       NavigationService.showErrorToast(e.toString());

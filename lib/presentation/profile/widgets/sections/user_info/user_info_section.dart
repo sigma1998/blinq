@@ -22,7 +22,7 @@ class ProfileUserInfoSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<ProfileBloc>();
-    final userInfoBloc = context.read<ProfileUserInfoBloc>();
+    final userInfoBloc = ProfileUserInfoBloc();
 
     return Column(
       children: [
@@ -75,7 +75,7 @@ class ProfileUserInfoSection extends StatelessWidget {
                   ),
                   ProfileUserInfoItem(
                     title: 'strCategory'.tr(),
-                    detail: state.profile?.driverLicense ?? '-',
+                    detail: state.profile?.driverLicense!.name ?? '-',
                   ),
                   ProfileUserInfoItem(
                     title: 'strDrivingLicenceValidTill'.tr(),

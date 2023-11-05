@@ -19,7 +19,8 @@ _$ProfileResponseModelImpl _$$ProfileResponseModelImplFromJson(
       phoneNumber: json['phone_number'] as String?,
       email: json['email'] as String?,
       qrCode: json['qr_code'] as String?,
-      driverLicense: json['driver_license'] as String?,
+      driverLicense: $enumDecodeNullable(
+          _$DriverLicenseTypeEnumMap, json['driver_license']),
       driverLicenseNumber: json['driver_license_number'] as String?,
       driverLicenseExpiredDate: json['driver_license_expired_date'] as String?,
     );
@@ -37,7 +38,25 @@ Map<String, dynamic> _$$ProfileResponseModelImplToJson(
       'phone_number': instance.phoneNumber,
       'email': instance.email,
       'qr_code': instance.qrCode,
-      'driver_license': instance.driverLicense,
+      'driver_license': _$DriverLicenseTypeEnumMap[instance.driverLicense],
       'driver_license_number': instance.driverLicenseNumber,
       'driver_license_expired_date': instance.driverLicenseExpiredDate,
     };
+
+const _$DriverLicenseTypeEnumMap = {
+  DriverLicenseType.am: 'AM',
+  DriverLicenseType.a1: 'A1',
+  DriverLicenseType.a2: 'A2',
+  DriverLicenseType.a: 'A',
+  DriverLicenseType.b1: 'B1',
+  DriverLicenseType.b: 'B',
+  DriverLicenseType.c1: 'C1',
+  DriverLicenseType.c: 'C',
+  DriverLicenseType.d1: 'D1',
+  DriverLicenseType.d: 'D',
+  DriverLicenseType.be: 'C1E',
+  DriverLicenseType.c1e: 'CE',
+  DriverLicenseType.ce: 'D1E',
+  DriverLicenseType.d1e: 'DE',
+  DriverLicenseType.de: 'T',
+};

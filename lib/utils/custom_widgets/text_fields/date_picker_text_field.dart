@@ -16,6 +16,9 @@ class DatePickerTextField extends StatefulWidget {
   final DateTime? minDate;
   final DateTime? maxDate;
 
+  final bool enabled;
+  final bool isRequired;
+
   DatePickerTextField({
     required this.labelText,
     required this.onDateChanged,
@@ -25,6 +28,8 @@ class DatePickerTextField extends StatefulWidget {
     this.minDate,
     this.maxDate,
     //
+    this.enabled = true,
+    this.isRequired = false,
   }) : super(key: UniqueKey());
 
   @override
@@ -51,6 +56,7 @@ class _DatePickerTextFieldState extends State<DatePickerTextField> {
       onTap: onTap,
       readOnly: true,
       controller: controller,
+      enabled: widget.enabled,
       labelText: widget.labelText,
     );
   }

@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
-import 'package:blinq/presentation/profile/widgets/items/report_item.dart';
+import 'package:blinq/presentation/reports/widgets/items/report_item.dart';
 
-class ProfileAccidentReportsSection extends StatelessWidget {
+class ReportsAccident extends StatelessWidget {
   //
-  const ProfileAccidentReportsSection({super.key});
+  const ReportsAccident({super.key});
 
   @override
   Widget build(BuildContext context) {

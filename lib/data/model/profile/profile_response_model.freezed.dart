@@ -39,7 +39,7 @@ mixin _$ProfileResponseModel {
   @JsonKey(name: 'qr_code')
   String? get qrCode => throw _privateConstructorUsedError;
   @JsonKey(name: 'driver_license')
-  String? get driverLicense => throw _privateConstructorUsedError;
+  DriverLicenseType? get driverLicense => throw _privateConstructorUsedError;
   @JsonKey(name: 'driver_license_number')
   String? get driverLicenseNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'driver_license_expired_date')
@@ -68,7 +68,7 @@ abstract class $ProfileResponseModelCopyWith<$Res> {
       @JsonKey(name: 'phone_number') String? phoneNumber,
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'qr_code') String? qrCode,
-      @JsonKey(name: 'driver_license') String? driverLicense,
+      @JsonKey(name: 'driver_license') DriverLicenseType? driverLicense,
       @JsonKey(name: 'driver_license_number') String? driverLicenseNumber,
       @JsonKey(name: 'driver_license_expired_date')
       String? driverLicenseExpiredDate});
@@ -146,7 +146,7 @@ class _$ProfileResponseModelCopyWithImpl<$Res,
       driverLicense: freezed == driverLicense
           ? _value.driverLicense
           : driverLicense // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DriverLicenseType?,
       driverLicenseNumber: freezed == driverLicenseNumber
           ? _value.driverLicenseNumber
           : driverLicenseNumber // ignore: cast_nullable_to_non_nullable
@@ -178,7 +178,7 @@ abstract class _$$ProfileResponseModelImplCopyWith<$Res>
       @JsonKey(name: 'phone_number') String? phoneNumber,
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'qr_code') String? qrCode,
-      @JsonKey(name: 'driver_license') String? driverLicense,
+      @JsonKey(name: 'driver_license') DriverLicenseType? driverLicense,
       @JsonKey(name: 'driver_license_number') String? driverLicenseNumber,
       @JsonKey(name: 'driver_license_expired_date')
       String? driverLicenseExpiredDate});
@@ -253,7 +253,7 @@ class __$$ProfileResponseModelImplCopyWithImpl<$Res>
       driverLicense: freezed == driverLicense
           ? _value.driverLicense
           : driverLicense // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DriverLicenseType?,
       driverLicenseNumber: freezed == driverLicenseNumber
           ? _value.driverLicenseNumber
           : driverLicenseNumber // ignore: cast_nullable_to_non_nullable
@@ -318,7 +318,7 @@ class _$ProfileResponseModelImpl implements _ProfileResponseModel {
   final String? qrCode;
   @override
   @JsonKey(name: 'driver_license')
-  final String? driverLicense;
+  final DriverLicenseType? driverLicense;
   @override
   @JsonKey(name: 'driver_license_number')
   final String? driverLicenseNumber;
@@ -405,7 +405,7 @@ abstract class _ProfileResponseModel implements ProfileResponseModel {
       @JsonKey(name: 'phone_number') final String? phoneNumber,
       @JsonKey(name: 'email') final String? email,
       @JsonKey(name: 'qr_code') final String? qrCode,
-      @JsonKey(name: 'driver_license') final String? driverLicense,
+      @JsonKey(name: 'driver_license') final DriverLicenseType? driverLicense,
       @JsonKey(name: 'driver_license_number') final String? driverLicenseNumber,
       @JsonKey(name: 'driver_license_expired_date')
       final String? driverLicenseExpiredDate}) = _$ProfileResponseModelImpl;
@@ -443,7 +443,7 @@ abstract class _ProfileResponseModel implements ProfileResponseModel {
   String? get qrCode;
   @override
   @JsonKey(name: 'driver_license')
-  String? get driverLicense;
+  DriverLicenseType? get driverLicense;
   @override
   @JsonKey(name: 'driver_license_number')
   String? get driverLicenseNumber;

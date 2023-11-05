@@ -14,6 +14,7 @@ class AppDrawables {
   static const String edit = '$icons/edit.svg';
   static const String editLarge = '$icons/edit_large.svg';
   static const String close = '$icons/close.svg';
+  static const String tick = '$icons/tick.svg';
 
   //~ My vehicle
   static const String wheel = '$icons/wheel.svg';
@@ -34,6 +35,8 @@ class AppDrawables {
 
   //* Arrows
   static const String arrowDown = '$icons/arrow_down.svg';
+  static const String arrowRight = '$icons/arrow_right.svg';
+  static const String arrowLeft = '$icons/arrow_left.svg';
 
   ///
   /// Images
@@ -41,6 +44,11 @@ class AppDrawables {
   static const String welcome = '$images/welcome.png';
   static const String apple = '$images/apple.png';
   static const String google = '$images/google.png';
+
+  static const String errorProfileImage = '$images/error_profile_image.png';
+
+  static const String vehicle = '$images/vehicle.png';
+  static const String scanningQr = '$images/scanning_qr.png';
 
   //! My information
   static const String qr = '$images/qr.png';

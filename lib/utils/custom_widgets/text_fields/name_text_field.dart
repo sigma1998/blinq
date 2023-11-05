@@ -6,24 +6,28 @@ import 'default_text_field.dart';
 
 class NameTextField extends StatelessWidget {
   //
-  final bool autofocus;
+  final String labelText;
+  final String? initialValue;
+
+  final void Function(String) onChanged;
 
   final FocusNode? focusNode;
 
-  final String labelText;
-  final void Function(String) onChanged;
-
   final bool enabled;
-  final String? initialValue;
+  final bool autofocus;
+  final bool isRequired;
 
   const NameTextField({
     super.key,
     required this.labelText,
     required this.onChanged,
-    this.focusNode,
-    this.autofocus = false,
-    this.enabled = true,
     this.initialValue,
+    //
+    this.focusNode,
+    //
+    this.enabled = true,
+    this.autofocus = false,
+    this.isRequired = false,
   });
 
   @override

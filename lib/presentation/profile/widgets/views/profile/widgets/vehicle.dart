@@ -7,11 +7,12 @@ import 'package:flutter_svg/svg.dart';
 
 // Project imports:
 import 'package:blinq/core/drawables/app_drawables.dart';
-import 'card.dart';
+import 'cards/report_card.dart';
+import 'cards/vehicle_card.dart';
 
-class ProfileVehicleSection extends StatelessWidget {
+class ProfileVehicleWidget extends StatelessWidget {
   //
-  const ProfileVehicleSection({super.key});
+  const ProfileVehicleWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +82,9 @@ class ProfileVehicleSection extends StatelessWidget {
               ),
             ),
           ],
-        )
+        ),
+        const SizedBox(height: 20),
+        const ProfileReportCard(),
       ],
     );
   }

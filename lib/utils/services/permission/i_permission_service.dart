@@ -1,13 +1,13 @@
 abstract class IPermissionService {
-  Future requestPhotosPermission();
-
-  Future<bool> handlePhotosPermission();
-
   Future requestCameraPermission();
+  Future requestPhotosPermission();
+  Future requestLocationPermission();
+  Future requestNotificationPermission();
+
+  //
 
   Future<bool> handleCameraPermission();
-
-  Future requestLocationPermission();
-
+  Future<bool> handlePhotosPermission();
   Future<bool> handleLocationPermission();
+  Future<bool> handleNotificationPermission();
 }
