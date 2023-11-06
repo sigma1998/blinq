@@ -9,7 +9,8 @@ class NameTextField extends StatelessWidget {
   final String labelText;
   final String? initialValue;
 
-  final void Function(String) onChanged;
+  final void Function(String)? onChanged;
+  final TextEditingController controller;
 
   final FocusNode? focusNode;
   final int maxLines;
@@ -21,7 +22,8 @@ class NameTextField extends StatelessWidget {
   const NameTextField({
     super.key,
     required this.labelText,
-    required this.onChanged,
+    required this.controller,
+    this.onChanged,
     this.initialValue,
     //
     this.focusNode,
@@ -42,6 +44,7 @@ class NameTextField extends StatelessWidget {
       autofocus: autofocus,
       onChanged: onChanged,
       focusNode: focusNode,
+      controller: controller,
       initialValue: initialValue,
       keyboardType: TextInputType.text,
       textCapitalization: TextCapitalization.words,

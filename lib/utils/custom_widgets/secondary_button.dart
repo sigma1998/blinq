@@ -45,6 +45,7 @@ class SecondaryButton extends StatelessWidget {
         onTap: onTap,
         child: Container(
           margin: margin,
+          height: 35,
           padding: padding,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50),

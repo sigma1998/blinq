@@ -1,11 +1,12 @@
-import 'package:blinq/data/model/profile/profile_response_model.dart';
+// Dart imports:
+import 'dart:io';
 
 sealed class ProfileEvent {}
 
-class OnFetch extends ProfileEvent {}
+class OnFetchProfile extends ProfileEvent {}
 
-class OnUpdate extends ProfileEvent {
-  ProfileResponseModel profile;
+class OnUpdateProfileImage extends ProfileEvent {
+  File file;
 
-  OnUpdate({required this.profile});
+  OnUpdateProfileImage({required this.file});
 }

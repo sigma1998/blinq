@@ -11,7 +11,7 @@ class EmailTextField extends StatelessWidget {
 
   final FocusNode? focusNode;
 
-  final void Function(String) onChanged;
+  final TextEditingController controller;
 
   final bool enabled;
   final bool autofocus;
@@ -19,7 +19,7 @@ class EmailTextField extends StatelessWidget {
 
   const EmailTextField({
     super.key,
-    required this.onChanged,
+    required this.controller,
     this.initialValue,
     //
     this.focusNode,
@@ -35,8 +35,8 @@ class EmailTextField extends StatelessWidget {
       key: key,
       enabled: enabled,
       autofocus: autofocus,
-      onChanged: onChanged,
       focusNode: focusNode,
+      controller: controller,
       labelText: 'strEmail'.tr(),
       initialValue: initialValue,
       keyboardType: TextInputType.emailAddress,

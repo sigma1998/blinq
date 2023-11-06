@@ -29,25 +29,26 @@ class MyCarEditorScreen extends StatelessWidget {
           ),
           physics: const NeverScrollableScrollPhysics(),
           children: [
-            PickerTextField(
-              labelText: 'strMark'.tr(),
-              onTap: () {},
-            ),
+            // PickerTextField(
+            //   labelText: 'strMark'.tr(),
+            //   onTap: () {},
+            // ),
             const SizedBox(height: 16),
-            PickerTextField(
-              labelText: 'strModel'.tr(),
-              onTap: () {},
-            ),
+            // PickerTextField(
+            //   labelText: 'strModel'.tr(),
+            //   onTap: () {},
+            // ),
             const SizedBox(height: 16),
             NameTextField(
-              labelText: 'strModelSeries'.tr(),
-              onChanged: (value) {},
-            ),
+                labelText: 'strModelSeries'.tr(),
+                controller: TextEditingController(
+                  text: '01.01.2022',
+                )),
             const SizedBox(height: 16),
-            PickerTextField(
-              labelText: 'strColour'.tr(),
-              onTap: () {},
-            ),
+            // PickerTextField(
+            //   labelText: 'strColour'.tr(),
+            //   onTap: () {},
+            // ),
             const SizedBox(height: 40),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

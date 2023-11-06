@@ -8,8 +8,7 @@ class NumberTextField extends StatelessWidget {
   //
   final String labelText;
   final String? initialValue;
-
-  final void Function(int) onChanged;
+  final TextEditingController controller;
 
   final FocusNode? focusNode;
 
@@ -20,7 +19,7 @@ class NumberTextField extends StatelessWidget {
   const NumberTextField({
     super.key,
     required this.labelText,
-    required this.onChanged,
+    required this.controller,
     this.initialValue,
     //
     this.focusNode,
@@ -38,10 +37,10 @@ class NumberTextField extends StatelessWidget {
       labelText: labelText,
       autofocus: autofocus,
       focusNode: focusNode,
+      controller: controller,
       initialValue: initialValue,
       keyboardType: TextInputType.number,
       textCapitalization: TextCapitalization.none,
-      onChanged: (value) => onChanged(int.parse(value)),
     );
   }
 }

@@ -72,14 +72,27 @@ class ProfileInfoWidget extends StatelessWidget {
               title: 'strMyCar'.tr(),
               desc: 'adsfadfs',
               onTap: bloc.onMyCarPressed,
-              image: AppDrawables.vehicle,
+              image: Align(
+                alignment: Alignment.centerRight,
+                child: Image.asset(
+                  AppDrawables.vehicle,
+                  width: 305,
+                  height: 153,
+                ),
+              ),
             ),
             const SizedBox(height: 10),
             ProfileImageCard(
               title: 'strTapToOpen'.tr(),
               desc: 'strQrCode'.tr(),
               onTap: bloc.onQrCodePressed,
-              image: AppDrawables.scanningQr,
+              image: Align(
+                alignment: Alignment.centerRight,
+                child: Image.asset(
+                  AppDrawables.scanningQr,
+                  height: 163,
+                ),
+              ),
             ),
           ],
         );

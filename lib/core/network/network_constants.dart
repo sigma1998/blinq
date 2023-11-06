@@ -24,4 +24,5 @@ class NetworkConstants {
   static String insurance = '${profile}insurance/update/';
   static String policyHolder = '${profile}policy/holder/update/';
   static String vehicle = '${profile}vehicle/update/';
+  static String myVehicle = '${profile}vehicle/datas/update/';
 }

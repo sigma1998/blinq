@@ -1,26 +1,57 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+
 // Project imports:
 import 'package:blinq/utils/custom_widgets/text_fields/search_text_field.dart';
 import 'package:blinq/utils/custom_widgets/info_container.dart';
 import 'item.dart';
 
-class MyDialog extends StatelessWidget {
-  // открывать в блоке и передавать
-  // countires list widget - свой блок - только за страны отвечает, snap widgets. parentID
+class MyDialog extends StatefulWidget {
+  //
   final List<String> items;
-
-  final void Function(String) onChanged;
-  final TextEditingController controller;
 
   const MyDialog({
     super.key,
     required this.items,
-    //
-    required this.onChanged,
-    required this.controller,
   });
+
+  @override
+  State<MyDialog> createState() => _MyDialogState();
+}
+
+class _MyDialogState extends State<MyDialog> {
+  //
+  List<String> filteredItems = [];
+
+  final _controller = TextEditingController();
+
+  @override
+  void initState() {
+    filteredItems = widget.items;
+    _controller.addListener(_onSearchTextChanged);
+    super.initState();
+  }
+
+  void _onSearchTextChanged() {
+    final searchText = _controller.text.toLowerCase();
+
+    filteredItems = List.of(widget.items
+        .where((item) => item.toLowerCase().contains(searchText))
+        .toList());
+
+    updateState();
+  }
+
+  void updateState() => {if (mounted) setState(() {})};
+
+  @override
+  void dispose() {
+    _controller.removeListener(_onSearchTextChanged);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,22 +61,19 @@ class MyDialog extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 14),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 36),
-            child: SearchTextField(
-              onChanged: onChanged,
-              controller: controller,
-            ),
+          SearchTextField(
+            controller: _controller,
+            hintText: 'strSearch'.tr(),
           ),
           const SizedBox(height: 20),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.42,
             child: ListView.builder(
               shrinkWrap: true,
-              itemCount: items.length,
               padding: EdgeInsets.zero,
+              itemCount: filteredItems.length,
               itemBuilder: (context, index) {
-                final item = items[index];
+                final item = filteredItems[index];
 
                 return DialogItem(
                   title: item,

@@ -1,7 +1,9 @@
 // Dart imports:
 import 'dart:async';
+import 'dart:io';
 
 // Package imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,11 +13,14 @@ import 'package:blinq/presentation/order_history/order_history_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/insurance/insurance_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/my_car/my_car_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/my_vehicle/my_vehicle_editor_screen.dart';
+import 'package:blinq/data/model/profile/request/profile_request_model.dart';
+import 'package:blinq/data/model/profile/response/profile_response_model.dart';
+import 'package:blinq/domain/repositories/profile_repository.dart';
+import 'package:blinq/utils/custom_widgets/cupertino_action/cupertino_action.dart';
+import 'package:blinq/utils/services/media/i_media_service.dart';
 import 'package:blinq/presentation/profile/widgets/editors/policy_holder/policy_holder_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/vehicle/vehicle_editor_screen.dart';
 import 'package:blinq/presentation/reports/reports_screen.dart';
-import 'package:blinq/data/model/profile/profile_response_model.dart';
-import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'profile_event.dart';
@@ -25,37 +30,69 @@ part 'profile_bloc.freezed.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   //
-  final ProfileRepository _repository;
+  final ProfileRepository repository;
+  final IMediaService mediaService;
 
-  ProfileBloc({required ProfileRepository repository})
-      : _repository = repository,
-        super(const ProfileState()) {
-    on<OnFetch>(_onFetch);
-    on<OnUpdate>(_onUpdate);
+  ProfileBloc({
+    required this.repository,
+    required this.mediaService,
+  }) : super(const ProfileState()) {
+    on<OnFetchProfile>(_onFetchProfile);
+    on<OnUpdateProfileImage>(_onUpdateProfileImage);
   }
 
-  FutureOr<void> _onFetch(OnFetch event, Emitter<ProfileState> emit) async {
+  FutureOr<void> _onFetchProfile(
+      OnFetchProfile event, Emitter<ProfileState> emit) async {
     try {
       emit(const ProfileState(status: Status.loading));
-      final data = await _repository.fetch();
-      _repository.setProfile(data);
+      final data = await repository.fetch();
+      repository.setProfile(data);
       emit(ProfileState(profile: data, status: Status.success));
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
-      NavigationService.showErrorToast(e.toString());
     }
   }
 
-  FutureOr<void> _onUpdate(OnUpdate event, Emitter<ProfileState> emit) async {
+  Future<void> onUpdateProfile(ProfileRequestModel profile) async {
     try {
-      emit(state.copyWith(status: Status.loading));
-      final data = await _repository.update(event.profile);
-      _repository.setProfile(data);
-      emit(ProfileState(profile: data, status: Status.success));
+      final data = await repository.update(profile);
+      repository.setProfile(data);
+      add(OnFetchProfile());
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  FutureOr<void> _onUpdateProfileImage(
+      OnUpdateProfileImage event, Emitter<ProfileState> emit) async {
+    try {
+      emit(const ProfileState(status: Status.loading));
+      await repository.updateProfileImage(event.file);
+      emit(const ProfileState(status: Status.success));
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
-      NavigationService.showErrorToast(e.toString());
     }
+  }
+
+  Future<void> imagePickerPressed() async {
+    await NavigationService.showMyCupertinoModalPopup(
+      actions: [
+        MyCupertinoActionSheetAction(
+          label: 'strTakeImage'.tr(),
+          onPressed: () async {
+            final file =
+                await mediaService.pickImagePath(AppImageSource.camera);
+          },
+        ),
+        MyCupertinoActionSheetAction(
+          label: 'strSelectPhoto'.tr(),
+          onPressed: () async {
+            final file =
+                await mediaService.pickImagePath(AppImageSource.gallery);
+          },
+        ),
+      ],
+    );
   }
 
   //* My Information

@@ -16,6 +16,8 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<ProfileBloc>();
+
     return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
         return ListView(
@@ -30,6 +32,7 @@ class ProfileView extends StatelessWidget {
                   state.profile?.image ?? '',
                   width: 86,
                   height: 86,
+                  onChangeImage: bloc.imagePickerPressed,
                 ),
               ],
             ),

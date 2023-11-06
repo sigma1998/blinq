@@ -11,7 +11,8 @@ class DatePickerTextField extends StatefulWidget {
   final String labelText;
   final DateTime? initialDate;
 
-  final void Function(DateTime) onDateChanged;
+  final void Function(DateTime)? onDateChanged;
+  final TextEditingController controller;
 
   final DateTime? minDate;
   final DateTime? maxDate;
@@ -21,7 +22,8 @@ class DatePickerTextField extends StatefulWidget {
 
   DatePickerTextField({
     required this.labelText,
-    required this.onDateChanged,
+    required this.controller,
+    this.onDateChanged,
     //
     this.initialDate,
     //
@@ -40,8 +42,6 @@ class _DatePickerTextFieldState extends State<DatePickerTextField> {
   //
   DateTime? dateTime;
 
-  final controller = TextEditingController();
-
   @override
   void initState() {
     dateTime = widget.initialDate ?? MyDateHelper.today;
@@ -55,9 +55,9 @@ class _DatePickerTextFieldState extends State<DatePickerTextField> {
     return MyTextField(
       onTap: onTap,
       readOnly: true,
-      controller: controller,
       enabled: widget.enabled,
       labelText: widget.labelText,
+      controller: widget.controller,
     );
   }
 
@@ -74,11 +74,11 @@ class _DatePickerTextFieldState extends State<DatePickerTextField> {
     if (newDate != null) {
       dateTime = newDate;
       setText();
-      widget.onDateChanged(dateTime!);
+      // widget.onDateChanged(dateTime!);
     }
   }
 
   void setText() {
-    controller.text = DateFormatter.fddMMyyyySlash(dateTime);
+    widget.controller.text = DateFormatter.fyyyyMMdd(dateTime);
   }
 }

@@ -1,8 +1,11 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:blinq/core/theme/app_colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:fluttertoast/fluttertoast.dart';
+
+import 'custom_widgets/cupertino_action/cupertino_action_sheet.dart';
 
 class NavigationService {
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey();
@@ -76,6 +79,19 @@ class NavigationService {
         builder: (context) {
           return sheet;
         });
+  }
+
+  static Future showMyCupertinoModalPopup({
+    required List<Widget> actions,
+    String? title,
+  }) {
+    return showCupertinoModalPopup(
+      context: navigatorKey.currentContext!,
+      builder: (_) => MyCupertinoActionSheet(
+        title: title,
+        actions: actions,
+      ),
+    );
   }
 
   static Future<dynamic>? showDialog({

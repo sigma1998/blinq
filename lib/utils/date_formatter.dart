@@ -27,6 +27,9 @@ class DateFormatter {
         date,
         DateFormats.ddMMMyyyyCommaHHmm,
       );
+
+  static String fyyyyMMdd(DateTime? date) => format(date, DateFormats.yyyyMMdd);
+  static DateTime? pyyyyMMdd(String date) => parse(date, DateFormats.yyyyMMdd);
 }
 
 class DateFormats {
@@ -35,4 +38,6 @@ class DateFormats {
 
   static const String ddMMyyyySlash = 'dd/MM/yyyy';
   static const String ddMMMyyyyCommaHHmm = 'dd MMM yyyy, hh:mma';
+
+  static const String yyyyMMdd = 'yyyy-MM-dd';
 }
