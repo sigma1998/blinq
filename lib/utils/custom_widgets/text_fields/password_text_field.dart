@@ -13,7 +13,9 @@ class PasswordTextField extends StatelessWidget {
   final String? labelText;
   final String? hintText;
 
-  final void Function(String) onChanged;
+  final TextEditingController controller;
+
+  final void Function(String)? onChanged;
   final VoidCallback? onVisibilityChanged;
 
   final FocusNode? focusNode;
@@ -25,7 +27,9 @@ class PasswordTextField extends StatelessWidget {
 
   const PasswordTextField({
     super.key,
-    required this.onChanged,
+    required this.controller,
+    this.onChanged,
+    //
     this.labelText,
     this.hintText,
     this.onVisibilityChanged,
@@ -50,6 +54,7 @@ class PasswordTextField extends StatelessWidget {
       onChanged: onChanged,
       focusNode: focusNode,
       isRequired: isRequired,
+      controller: controller,
       obscureText: !isPasswordVisible,
       suffixIcon: onVisibilityChanged != null
           ? IconButton(

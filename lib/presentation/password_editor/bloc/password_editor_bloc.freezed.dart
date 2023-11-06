@@ -18,9 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$PasswordEditorState {
   Status get status => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError; //
-  String get oldPassword => throw _privateConstructorUsedError;
-  String get newPassword => throw _privateConstructorUsedError;
-  String get passwordConfirm => throw _privateConstructorUsedError; //
   bool get isCodeVisible => throw _privateConstructorUsedError;
   bool get isConfirmCodeVisible => throw _privateConstructorUsedError;
 
@@ -38,9 +35,6 @@ abstract class $PasswordEditorStateCopyWith<$Res> {
   $Res call(
       {Status status,
       Error? error,
-      String oldPassword,
-      String newPassword,
-      String passwordConfirm,
       bool isCodeVisible,
       bool isConfirmCodeVisible});
 }
@@ -60,9 +54,6 @@ class _$PasswordEditorStateCopyWithImpl<$Res, $Val extends PasswordEditorState>
   $Res call({
     Object? status = null,
     Object? error = freezed,
-    Object? oldPassword = null,
-    Object? newPassword = null,
-    Object? passwordConfirm = null,
     Object? isCodeVisible = null,
     Object? isConfirmCodeVisible = null,
   }) {
@@ -75,18 +66,6 @@ class _$PasswordEditorStateCopyWithImpl<$Res, $Val extends PasswordEditorState>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as Error?,
-      oldPassword: null == oldPassword
-          ? _value.oldPassword
-          : oldPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-      newPassword: null == newPassword
-          ? _value.newPassword
-          : newPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-      passwordConfirm: null == passwordConfirm
-          ? _value.passwordConfirm
-          : passwordConfirm // ignore: cast_nullable_to_non_nullable
-              as String,
       isCodeVisible: null == isCodeVisible
           ? _value.isCodeVisible
           : isCodeVisible // ignore: cast_nullable_to_non_nullable
@@ -110,9 +89,6 @@ abstract class _$$PasswordEditorStateImplCopyWith<$Res>
   $Res call(
       {Status status,
       Error? error,
-      String oldPassword,
-      String newPassword,
-      String passwordConfirm,
       bool isCodeVisible,
       bool isConfirmCodeVisible});
 }
@@ -130,9 +106,6 @@ class __$$PasswordEditorStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? error = freezed,
-    Object? oldPassword = null,
-    Object? newPassword = null,
-    Object? passwordConfirm = null,
     Object? isCodeVisible = null,
     Object? isConfirmCodeVisible = null,
   }) {
@@ -145,18 +118,6 @@ class __$$PasswordEditorStateImplCopyWithImpl<$Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as Error?,
-      oldPassword: null == oldPassword
-          ? _value.oldPassword
-          : oldPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-      newPassword: null == newPassword
-          ? _value.newPassword
-          : newPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-      passwordConfirm: null == passwordConfirm
-          ? _value.passwordConfirm
-          : passwordConfirm // ignore: cast_nullable_to_non_nullable
-              as String,
       isCodeVisible: null == isCodeVisible
           ? _value.isCodeVisible
           : isCodeVisible // ignore: cast_nullable_to_non_nullable
@@ -175,9 +136,6 @@ class _$PasswordEditorStateImpl implements _PasswordEditorState {
   const _$PasswordEditorStateImpl(
       {this.status = Status.initial,
       this.error,
-      this.oldPassword = '',
-      this.newPassword = '',
-      this.passwordConfirm = '',
       this.isCodeVisible = true,
       this.isConfirmCodeVisible = true});
 
@@ -189,16 +147,6 @@ class _$PasswordEditorStateImpl implements _PasswordEditorState {
 //
   @override
   @JsonKey()
-  final String oldPassword;
-  @override
-  @JsonKey()
-  final String newPassword;
-  @override
-  @JsonKey()
-  final String passwordConfirm;
-//
-  @override
-  @JsonKey()
   final bool isCodeVisible;
   @override
   @JsonKey()
@@ -206,7 +154,7 @@ class _$PasswordEditorStateImpl implements _PasswordEditorState {
 
   @override
   String toString() {
-    return 'PasswordEditorState(status: $status, error: $error, oldPassword: $oldPassword, newPassword: $newPassword, passwordConfirm: $passwordConfirm, isCodeVisible: $isCodeVisible, isConfirmCodeVisible: $isConfirmCodeVisible)';
+    return 'PasswordEditorState(status: $status, error: $error, isCodeVisible: $isCodeVisible, isConfirmCodeVisible: $isConfirmCodeVisible)';
   }
 
   @override
@@ -216,12 +164,6 @@ class _$PasswordEditorStateImpl implements _PasswordEditorState {
             other is _$PasswordEditorStateImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.error, error) || other.error == error) &&
-            (identical(other.oldPassword, oldPassword) ||
-                other.oldPassword == oldPassword) &&
-            (identical(other.newPassword, newPassword) ||
-                other.newPassword == newPassword) &&
-            (identical(other.passwordConfirm, passwordConfirm) ||
-                other.passwordConfirm == passwordConfirm) &&
             (identical(other.isCodeVisible, isCodeVisible) ||
                 other.isCodeVisible == isCodeVisible) &&
             (identical(other.isConfirmCodeVisible, isConfirmCodeVisible) ||
@@ -229,8 +171,8 @@ class _$PasswordEditorStateImpl implements _PasswordEditorState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, error, oldPassword,
-      newPassword, passwordConfirm, isCodeVisible, isConfirmCodeVisible);
+  int get hashCode => Object.hash(
+      runtimeType, status, error, isCodeVisible, isConfirmCodeVisible);
 
   @JsonKey(ignore: true)
   @override
@@ -244,9 +186,6 @@ abstract class _PasswordEditorState implements PasswordEditorState {
   const factory _PasswordEditorState(
       {final Status status,
       final Error? error,
-      final String oldPassword,
-      final String newPassword,
-      final String passwordConfirm,
       final bool isCodeVisible,
       final bool isConfirmCodeVisible}) = _$PasswordEditorStateImpl;
 
@@ -254,12 +193,6 @@ abstract class _PasswordEditorState implements PasswordEditorState {
   Status get status;
   @override
   Error? get error;
-  @override //
-  String get oldPassword;
-  @override
-  String get newPassword;
-  @override
-  String get passwordConfirm;
   @override //
   bool get isCodeVisible;
   @override

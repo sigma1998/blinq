@@ -1,13 +1,16 @@
 // Dart imports:
 import 'dart:async';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
 // Package imports:
-import 'package:blinq/domain/repositories/profile_repository.dart';
-import 'package:blinq/utils/navigation_service.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
+import 'package:blinq/domain/repositories/profile_repository.dart';
+import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'password_editor_event.dart';
 
@@ -19,13 +22,13 @@ class PasswordEditorBloc
   //
   final ProfileRepository repository;
 
+  final oldPasswordController = TextEditingController();
+  final newPasswordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
   PasswordEditorBloc({required this.repository})
       : super(const PasswordEditorState()) {
     on<OnUpdatePassword>(_onUpdatePassword);
-    //
-    on<OnOldPasswordChanged>(_onOldPasswordChanged);
-    on<OnNewPasswordChanged>(_onNewPasswordChanged);
-    on<OnPasswordConfirmChanged>(_onPasswordConfirmChanged);
     //
     on<OnNewPasswordVisibilityChanged>(_onNewPasswordVisibilityChanged);
     on<OnPasswordConfirmVisibilityChanged>(_onPasswordConfirmVisibilityChanged);
@@ -35,28 +38,16 @@ class PasswordEditorBloc
       OnUpdatePassword event, Emitter<PasswordEditorState> emit) async {
     try {
       emit(state.copyWith(status: Status.loading));
-      await repository.updatePassword(state.oldPassword, state.newPassword);
+      await repository.updatePassword(
+        oldPasswordController.text,
+        newPasswordController.text,
+      );
       emit(state.copyWith(status: Status.success));
       NavigationService.back();
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
       NavigationService.showErrorToast(e.toString());
     }
-  }
-
-  FutureOr<void> _onOldPasswordChanged(
-      OnOldPasswordChanged event, Emitter<PasswordEditorState> emit) {
-    emit(state.copyWith(oldPassword: event.oldPassword));
-  }
-
-  FutureOr<void> _onNewPasswordChanged(
-      OnNewPasswordChanged event, Emitter<PasswordEditorState> emit) {
-    emit(state.copyWith(newPassword: event.newPassword));
-  }
-
-  FutureOr<void> _onPasswordConfirmChanged(
-      OnPasswordConfirmChanged event, Emitter<PasswordEditorState> emit) {
-    emit(state.copyWith(passwordConfirm: event.passwordConfirm));
   }
 
   ///

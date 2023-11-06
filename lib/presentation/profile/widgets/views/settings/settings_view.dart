@@ -16,18 +16,30 @@ import 'bloc/settings_bloc.dart';
 import 'bloc/settings_event.dart';
 import 'widgets/item.dart';
 
-class SettingsView extends StatelessWidget {
+class SettingsView extends StatefulWidget {
   //
   const SettingsView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final profileBloc = context.read<ProfileBloc>();
-    final bloc = SettingsBloc(
+  State<SettingsView> createState() => _SettingsViewState();
+}
+
+class _SettingsViewState extends State<SettingsView> {
+  //
+  late final profileBloc = context.read<ProfileBloc>();
+  late SettingsBloc bloc;
+
+  @override
+  void initState() {
+    bloc = SettingsBloc(
       profileBloc: profileBloc,
       permissionService: getIt<PermissionService>(),
     );
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return BlocBuilder<SettingsBloc, GenericBlocState<bool>>(
       bloc: bloc,
       builder: (context, state) {

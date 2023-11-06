@@ -15,7 +15,6 @@ import 'data/datasource/local/storage_constants.dart';
 import 'data/model/user/user_status.dart';
 import 'domain/repositories/profile_repository.dart';
 import 'presentation/profile/bloc/profile_bloc.dart';
-import 'presentation/profile/bloc/profile_event.dart';
 import 'utils/navigation_service.dart';
 
 void main() async {
@@ -56,8 +55,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<ProfileBloc>(
           create: (context) =>
-              ProfileBloc(repository: getIt<ProfileRepositoryImpl>())
-                ..add(OnFetch()),
+              ProfileBloc(repository: getIt<ProfileRepositoryImpl>()),
         ),
       ],
       child: MaterialApp(

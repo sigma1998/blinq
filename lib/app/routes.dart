@@ -28,8 +28,8 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     RegistrationScreen.route: (context) => const RegistrationScreen(),
 
     //^ Settings
-    EmailEditorScreen.route: (context) => const EmailEditorScreen(),
-    LanguageScreen.route: (context) => const LanguageScreen(),
+    EmailEditorScreen.route: (context) => EmailEditorScreen(),
+    LanguageScreen.route: (context) => LanguageScreen(),
     PasswordEditorScreen.route: (context) => const PasswordEditorScreen(),
 
     //* Reports

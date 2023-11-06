@@ -20,10 +20,14 @@
   "strEnterEngineNumber": "ter engine number",
   "strEngineNumber": "Engine number",
   "strMakeType": "Make type",
+  "strEnterTheCurrentPassword": "Enter the current password",
   "strEnterNewPassword": "Enter a new password",
   "strEnterThePassword": "Enter the password",
   "strPasswordChangedSuccessfully": "Password changed successfully",
-  "strEnterYourNewEmail": "enter your new email",
+  "strYourCurrentEmail": "Your current email",
+  "strYourNewEmail": "Your new email",
+  "strEnterYourCurrentEmail": "Enter your current email",
+  "strEnterYourNewEmail": "Enter your new email",
   "strEnterNewEmailIfYouWantChange": "Enter a new email if you want to change",
   "strChangeEmail": "Change email",
   "strEditPolicyHolder": "Edit policy holder",
@@ -626,9 +630,11 @@
   "november": "November",
   "december": "December",
   "strChooseLanguage": "Choose a language",
+  "strChangeLanguage": "Change Language",
   "english": "English",
   "hungary": "Hungary",
   "strDeleteAccount": "Delete account",
   "strMotor": "Motor",
-  "strTrailer": "Trailer"
+  "strTrailer": "Trailer",
+  "strNotification": "Notification"
 }

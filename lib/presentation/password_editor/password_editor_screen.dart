@@ -42,24 +42,22 @@ class PasswordEditorScreen extends StatelessWidget {
                   PasswordTextField(
                     isPasswordVisible: true,
                     hintText: 'strPasswordHint'.tr(),
-                    labelText: 'strYourPassword'.tr(),
-                    onChanged: (value) =>
-                        bloc..add(OnOldPasswordChanged(value)),
+                    controller: bloc.oldPasswordController,
+                    labelText: 'strEnterTheCurrentPassword'.tr(),
                   ),
                   const SizedBox(height: 48),
                   PasswordTextField(
                     hintText: 'strPasswordHint'.tr(),
                     labelText: 'strEnterNewPassword'.tr(),
                     isPasswordVisible: state.isCodeVisible,
+                    controller: bloc.newPasswordController,
                     onVisibilityChanged: () =>
                         bloc..add(OnNewPasswordVisibilityChanged()),
-                    onChanged: (value) => bloc.add(OnNewPasswordChanged(value)),
                   ),
                   const SizedBox(height: 6),
                   PasswordTextField(
                     hintText: 'strConfirmPassword'.tr(),
-                    onChanged: (value) =>
-                        bloc..add(OnPasswordConfirmChanged(value)),
+                    controller: bloc.confirmPasswordController,
                     isPasswordVisible: state.isConfirmCodeVisible,
                     onVisibilityChanged: () =>
                         bloc..add(OnPasswordConfirmVisibilityChanged()),

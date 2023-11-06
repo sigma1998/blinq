@@ -9,6 +9,7 @@ import 'package:blinq/utils/services/permission/i_permission_service.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/presentation/sign_in_screen/sign_in_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/core/network/dio_client.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'settings_event.dart';
 
@@ -42,6 +43,7 @@ class SettingsBloc extends Bloc<SettingsEvent, GenericBlocState<bool>> {
   }
 
   void onLogoutPressed() {
+    DioClient.setToken(null);
     NavigationService.pushReplacement(routeName: SignInScreen.route);
   }
 }

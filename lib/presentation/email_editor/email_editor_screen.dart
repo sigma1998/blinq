@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:blinq/app/locator.dart';
+import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/custom_widgets/expanded_section.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:flutter/material.dart';
@@ -21,11 +22,13 @@ class EmailEditorScreen extends StatelessWidget {
   //
   static const route = '/email_editor';
 
-  const EmailEditorScreen({super.key});
+  final bloc = EmailEditorBloc(repository: getIt<ProfileRepositoryImpl>());
+
+  EmailEditorScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final bloc = EmailEditorBloc(repository: getIt<ProfileRepositoryImpl>());
+    final profileBloc = context.read<ProfileBloc>();
 
     return KeyboardEscape(
       child: Scaffold(
@@ -41,16 +44,16 @@ class EmailEditorScreen extends StatelessWidget {
                 children: [
                   const SizedBox(height: 48),
                   BaseTextField(
+                    enabled: false,
                     labelText: 'strYourCurrentEmail'.tr(),
                     keyboardType: TextInputType.emailAddress,
-                    onChanged: (value) =>
-                        bloc..add(OnCurrentEmailChanged(value)),
+                    initialValue: profileBloc.state.profile?.email,
                   ),
                   const SizedBox(height: 48),
                   BaseTextField(
                     labelText: 'strYourNewEmail'.tr(),
+                    controller: bloc.newEmailController,
                     keyboardType: TextInputType.emailAddress,
-                    onChanged: (value) => bloc..add(OnNewEmailChanged(value)),
                   ),
                   ExpandedSection(
                     expand: state.isCodeSent,
@@ -59,9 +62,8 @@ class EmailEditorScreen extends StatelessWidget {
                         const SizedBox(height: 6),
                         BaseTextField(
                           hintText: 'strEnterCode'.tr(),
+                          controller: bloc.codeController,
                           keyboardType: TextInputType.emailAddress,
-                          onChanged: (value) =>
-                              bloc..add(OnConfrimationCodeChanged(value)),
                         ),
                       ],
                     ),

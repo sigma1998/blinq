@@ -17,13 +17,12 @@ import 'widgets/item.dart';
 class LanguageScreen extends StatelessWidget {
   //
   static const route = '/language';
+  final bloc = LanguageBloc(repository: getIt<ProfileRepositoryImpl>());
 
-  const LanguageScreen({super.key});
+  LanguageScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final bloc = LanguageBloc(repository: getIt<ProfileRepositoryImpl>());
-
     return Scaffold(
       appBar: MyAppBar(title: 'strChooseLanguage'.tr()),
       body: BlocBuilder<LanguageBloc, LanguageState>(
@@ -39,7 +38,8 @@ class LanguageScreen extends StatelessWidget {
                 title: language.name,
                 isSelected: state.lang == language,
                 isLoading: state.status == Status.loading,
-                onSelect: () => bloc.add(OnLanguageChanged(language)),
+                onSelect: () => bloc
+                    .add(OnLanguageChanged(lang: language, context: context)),
               );
             },
           );

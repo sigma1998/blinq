@@ -13,6 +13,8 @@ class BaseTextField extends StatefulWidget {
 
   final TextEditingController? controller;
 
+  final String? Function(String?)? validator;
+
   final TextStyle? labelTextstyle;
   final TextStyle? hintTextstyle;
   final TextStyle? inputTextstyle;
@@ -53,6 +55,7 @@ class BaseTextField extends StatefulWidget {
   const BaseTextField({
     this.labelText,
     this.controller,
+    this.validator,
     this.initialValue,
     //
     this.labelTextstyle = const TextStyle(
@@ -205,11 +208,8 @@ class _BaseTextFieldState extends State<BaseTextField> {
         Stack(
           children: [
             TextFormField(
-              validator: (value) {
-                // TODO: Validator
-              },
-
               controller: controller,
+              validator: widget.validator,
               //
               focusNode: focusNode,
               enabled: widget.enabled,
@@ -219,7 +219,6 @@ class _BaseTextFieldState extends State<BaseTextField> {
               textAlign: widget.textAlign,
               obscureText: widget.obscureText,
               keyboardType: widget.keyboardType,
-              initialValue: widget.initialValue,
               textInputAction: widget.textInputAction,
               textCapitalization: widget.textCapitalization,
               //

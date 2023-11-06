@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -6,6 +7,8 @@ import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
 import 'package:blinq/utils/custom_widgets/tab_bar.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'bloc/profile_event.dart';
 import 'widgets/views/profile/profile_view.dart';
 import 'widgets/views/settings/settings_view.dart';
 
@@ -24,6 +27,7 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   @override
   void initState() {
+    context.read<ProfileBloc>().add(OnFetch());
     _tabController = TabController(length: 2, vsync: this);
     super.initState();
   }

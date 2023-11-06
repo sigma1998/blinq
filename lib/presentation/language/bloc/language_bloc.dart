@@ -1,5 +1,6 @@
 // Dart imports:
 import 'dart:async';
+import 'dart:ui';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
@@ -50,9 +51,8 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
       OnLanguageChanged event, Emitter<LanguageState> emit) async {
     try {
       emit(const LanguageState(status: Status.loading));
+      event.context.setLocale(Locale(event.lang.code));
       await repository.updateLanguage(event.lang.code);
-      repository.setLanguage(event.lang.code);
-      //TODO: update locale using context
       emit(LanguageState(lang: event.lang, status: Status.success));
     } catch (e) {
       emit(state.copyWith(status: Status.initial));

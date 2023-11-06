@@ -20,7 +20,12 @@
   "strMakeType": "Gyártmány típusa",
   "strEngineNumber": "Motorszám",
   "strEnterEngineNumber": "Írja be a motor számát",
+  "strEnterTheCurrentPassword": "Írja be a jelenlegi jelszót",
   "strPasswordChangedSuccessfully": "Adjon meg egy új jelszót",
+  "strYourCurrentEmail": "Az aktuális e-mail címe",
+  "strYourNewEmail": "Az új e-mail címe",
+  "strEnterYourCurrentEmail": "Írja be az aktuális e-mail címét",
+  "strEnterYourNewEmail": "Írja be az új e-mail címét",
   "strEnterThePassword": "Írja be a jelszót",
   "strEnterNewPassword": "Adjon meg egy új jelszót",
   "strEnterNewEmailIfYouWantChange":
@@ -631,9 +636,11 @@
   "november": "november",
   "december": "december",
   "strChooseLanguage": "Válasszon nyelvet",
+  "strChangeLanguage": "Nyelv megváltoztatása",
   "english": "Angol",
   "hungary": "Magyarország",
   "strDeleteAccount": "Fiók törlése",
   "strMotor": "Motor",
-  "strTrailer": "Filmelőzetes"
+  "strTrailer": "Filmelőzetes",
+  "strNotification": "Értesítés"
 }
