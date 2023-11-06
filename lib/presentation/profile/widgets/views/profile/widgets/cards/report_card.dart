@@ -52,7 +52,7 @@ class ProfileReportCard extends StatelessWidget {
               padding: const EdgeInsets.all(24),
               child: Row(
                 children: [
-                  SvgPicture.asset(AppDrawables.pdf),
+                  SvgPicture.asset(AppDrawables.cart),
                   const SizedBox(width: 16),
                   Text(
                     'strOrderHistory'.tr(),

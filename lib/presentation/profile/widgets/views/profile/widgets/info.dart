@@ -76,7 +76,7 @@ class ProfileInfoWidget extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             ProfileImageCard(
-              title: 'strMyCar'.tr(),
+              title: 'strTapToOpen'.tr(),
               desc: 'strQrCode'.tr(),
               onTap: bloc.onQrCodePressed,
               image: AppDrawables.scanningQr,

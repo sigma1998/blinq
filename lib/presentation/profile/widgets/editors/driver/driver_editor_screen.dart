@@ -83,18 +83,21 @@ class DriverEditorScreen extends StatelessWidget {
             ),
           ],
         ),
-        bottomNavigationBar: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SecondaryButton(
-              onTap: () {},
-              label: 'strSave'.tr(),
-              padding: const EdgeInsets.symmetric(
-                vertical: 8,
-                horizontal: 60,
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SecondaryButton(
+                onTap: () {},
+                label: 'strSave'.tr(),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8,
+                  horizontal: 60,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

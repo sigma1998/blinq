@@ -34,6 +34,7 @@ class ProfileInfoCard extends StatelessWidget {
           const SizedBox(height: 24),
           Text(
             title,
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(
               fontWeight: FontWeight.w700,
               color: Theme.of(context).colorScheme.onSecondary,
@@ -42,6 +43,7 @@ class ProfileInfoCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             desc,
+            overflow: TextOverflow.ellipsis,
             style: const TextStyle(
               fontWeight: FontWeight.w700,
             ),
