@@ -46,7 +46,6 @@ class PasswordEditorBloc
       NavigationService.back();
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
-      NavigationService.showErrorToast(e.toString());
     }
   }
 

@@ -2,19 +2,20 @@
 import 'dart:async';
 import 'dart:ui';
 
-// Package imports:
-import 'package:easy_localization/easy_localization.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 // Project imports:
 import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
-import 'package:blinq/utils/navigation_service.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'language_event.dart';
 
-part 'language_state.dart';
 part 'language_bloc.freezed.dart';
+
+part 'language_state.dart';
 
 enum ProfileLanguage {
   en,
@@ -56,7 +57,6 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
       emit(LanguageState(lang: event.lang, status: Status.success));
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
-      NavigationService.showErrorToast(e.toString());
     }
   }
 }

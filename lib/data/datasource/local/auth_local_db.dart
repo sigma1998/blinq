@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 
 import 'storage_constants.dart';
 
-abstract class LocalStorage {
+abstract class AuthLocalStorage {
   void setUserStatus(UserStatus userStatus);
 
   UserStatus getUserStatus();
@@ -29,7 +29,7 @@ abstract class LocalStorage {
   String getUserPhone();
 }
 
-class LocalStorageImpl implements LocalStorage {
+class AuthLocalStorageImpl implements AuthLocalStorage {
   @override
   UserStatus getUserStatus() {
     final box = Hive.box(StorageConstants.userStatusBox);

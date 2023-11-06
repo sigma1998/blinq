@@ -1,4 +1,4 @@
-import 'package:blinq/data/datasource/local/local_db.dart';
+import 'package:blinq/data/datasource/local/auth_local_db.dart';
 import 'package:blinq/data/datasource/remote/auth_api.dart';
 import 'package:blinq/data/model/login/google_request/login_google_request.dart';
 import 'package:blinq/data/model/login/response/login_response_model.dart';
@@ -44,7 +44,7 @@ abstract class AuthRepository {
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthApi api; // сохранять отправлять,
-  final LocalStorage localStorage;
+  final AuthLocalStorage localStorage;
 
   AuthRepositoryImpl({required this.api, required this.localStorage});
 

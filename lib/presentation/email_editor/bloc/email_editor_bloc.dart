@@ -1,21 +1,22 @@
 // Dart imports:
 import 'dart:async';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 // Project imports:
 import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
-import 'package:blinq/utils/navigation_service.dart';
+
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Package imports:
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'email_editor_event.dart';
 
-part 'email_editor_state.dart';
 part 'email_editor_bloc.freezed.dart';
+
+part 'email_editor_state.dart';
 
 class EmailEditorBloc extends Bloc<EmailEditorEvent, EmailEditorState> {
   //
@@ -40,7 +41,6 @@ class EmailEditorBloc extends Bloc<EmailEditorEvent, EmailEditorState> {
       emit(state.copyWith(status: Status.success, isCodeSent: true));
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
-      NavigationService.showErrorToast(e.toString());
     }
   }
 
@@ -52,7 +52,6 @@ class EmailEditorBloc extends Bloc<EmailEditorEvent, EmailEditorState> {
       emit(state.copyWith(status: Status.success));
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
-      NavigationService.showErrorToast(e.toString());
     }
   }
 }
