@@ -13,19 +13,30 @@ import 'package:blinq/utils/custom_widgets/custom_textfield.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/validator.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class LogInBottomSheet extends StatelessWidget {
+class LogInBottomSheet extends StatefulWidget {
   const LogInBottomSheet({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final LoginBottomSheetBloc bloc =
-        LoginBottomSheetBloc(authRepository: getIt<AuthRepositoryImpl>());
+  State<LogInBottomSheet> createState() => _LogInBottomSheetState();
+}
 
+class _LogInBottomSheetState extends State<LogInBottomSheet> {
+  late final LoginBottomSheetBloc bloc;
+
+  @override
+  void initState() {
+    bloc = LoginBottomSheetBloc(authRepository: getIt<AuthRepositoryImpl>());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return BlocBuilder<LoginBottomSheetBloc, LoginBottomSheetState>(
       bloc: bloc,
       builder: (context, state) {
@@ -116,6 +127,7 @@ class LogInBottomSheet extends StatelessWidget {
                       TextFieldRoundedWidget(
                         hint: 'strYourEmail'.tr(),
                         textController: bloc.mailController,
+                        validate: (value) => Validator.validateEmail(value),
                       ),
                       const SizedBox(
                         height: 30,
@@ -146,10 +158,8 @@ class LogInBottomSheet extends StatelessWidget {
                         height: 30,
                       ),
                       InkWell(
+                        onTap: ()=>bloc.add(OnForgotPasswordPressed()),
                         child: Text('strForgotpasswordOrEmail'.tr()),
-                      ),
-                      const SizedBox(
-                        height: 40,
                       ),
                     ],
                   ),

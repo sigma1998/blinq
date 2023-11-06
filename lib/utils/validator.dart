@@ -1,16 +1,14 @@
-/*========================Email Validator==============================================*/
 import 'package:easy_localization/easy_localization.dart';
+import 'package:email_validator/email_validator.dart';
 
+/*========================Email Validator==============================================*/
 class Validator {
-  static String? validateEmail(String value) {
-    if (value.isEmpty) {
+  static String? validateEmail(String? value) {
+    if (value?.isEmpty ?? true) {
       return 'strEmailEmpty'.tr();
-      // } else if (!GetUtils.isEmail(value.trim())) {
-      //   return 'strInvalidEmail'.tr();
-      // }
+    } else if (!EmailValidator.validate(value!)) {
+      return 'strInvalidEmail'.tr();
     }
-    //TODO add validator
-
     return null;
   }
 
@@ -33,17 +31,14 @@ class Validator {
     return null;
   }
 
-  static String? validatePhoneNumber(String value) {
-    if (value.isEmpty) {
-      return 'strPhoneEmEmpty'.tr();
-      // } else if (!GetUtils.isPhoneNumber(value.trim())) {
-      //   return "strPhoneNumberInvalid".tr();
-    }
-
-    //TODO add validator
-
-    return null;
-  }
+  // static String? validatePhoneNumber(String value) {
+  //   if (value.isEmpty) {
+  //     return 'strPhoneEmEmpty'.tr();
+  //   } else if (!GetUtils.isPhoneNumber(value.trim())) {
+  //     return "strPhoneNumberInvalid".tr();
+  //   }
+  //   return null;
+  // }
 
   static String? fieldChecker({required String value, required message}) {
     if (value.toString().trim().isEmpty) {

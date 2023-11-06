@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'registration_screen_state.dart';
+part of 'reset_password_screen_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,31 +15,31 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$RegistrationScreenState {
+mixin _$ResetPasswordScreenState {
   Status get status => throw _privateConstructorUsedError;
   dynamic get firstCodeVisible => throw _privateConstructorUsedError;
   dynamic get secondCodeVisible => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $RegistrationScreenStateCopyWith<RegistrationScreenState> get copyWith =>
+  $ResetPasswordScreenStateCopyWith<ResetPasswordScreenState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RegistrationScreenStateCopyWith<$Res> {
-  factory $RegistrationScreenStateCopyWith(RegistrationScreenState value,
-          $Res Function(RegistrationScreenState) then) =
-      _$RegistrationScreenStateCopyWithImpl<$Res, RegistrationScreenState>;
+abstract class $ResetPasswordScreenStateCopyWith<$Res> {
+  factory $ResetPasswordScreenStateCopyWith(ResetPasswordScreenState value,
+          $Res Function(ResetPasswordScreenState) then) =
+      _$ResetPasswordScreenStateCopyWithImpl<$Res, ResetPasswordScreenState>;
   @useResult
   $Res call(
       {Status status, dynamic firstCodeVisible, dynamic secondCodeVisible});
 }
 
 /// @nodoc
-class _$RegistrationScreenStateCopyWithImpl<$Res,
-        $Val extends RegistrationScreenState>
-    implements $RegistrationScreenStateCopyWith<$Res> {
-  _$RegistrationScreenStateCopyWithImpl(this._value, this._then);
+class _$ResetPasswordScreenStateCopyWithImpl<$Res,
+        $Val extends ResetPasswordScreenState>
+    implements $ResetPasswordScreenStateCopyWith<$Res> {
+  _$ResetPasswordScreenStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -71,12 +71,12 @@ class _$RegistrationScreenStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$RegistrationScreenStateImplCopyWith<$Res>
-    implements $RegistrationScreenStateCopyWith<$Res> {
-  factory _$$RegistrationScreenStateImplCopyWith(
-          _$RegistrationScreenStateImpl value,
-          $Res Function(_$RegistrationScreenStateImpl) then) =
-      __$$RegistrationScreenStateImplCopyWithImpl<$Res>;
+abstract class _$$ResetPasswordScreenStateImplCopyWith<$Res>
+    implements $ResetPasswordScreenStateCopyWith<$Res> {
+  factory _$$ResetPasswordScreenStateImplCopyWith(
+          _$ResetPasswordScreenStateImpl value,
+          $Res Function(_$ResetPasswordScreenStateImpl) then) =
+      __$$ResetPasswordScreenStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -84,13 +84,13 @@ abstract class _$$RegistrationScreenStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$RegistrationScreenStateImplCopyWithImpl<$Res>
-    extends _$RegistrationScreenStateCopyWithImpl<$Res,
-        _$RegistrationScreenStateImpl>
-    implements _$$RegistrationScreenStateImplCopyWith<$Res> {
-  __$$RegistrationScreenStateImplCopyWithImpl(
-      _$RegistrationScreenStateImpl _value,
-      $Res Function(_$RegistrationScreenStateImpl) _then)
+class __$$ResetPasswordScreenStateImplCopyWithImpl<$Res>
+    extends _$ResetPasswordScreenStateCopyWithImpl<$Res,
+        _$ResetPasswordScreenStateImpl>
+    implements _$$ResetPasswordScreenStateImplCopyWith<$Res> {
+  __$$ResetPasswordScreenStateImplCopyWithImpl(
+      _$ResetPasswordScreenStateImpl _value,
+      $Res Function(_$ResetPasswordScreenStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -100,7 +100,7 @@ class __$$RegistrationScreenStateImplCopyWithImpl<$Res>
     Object? firstCodeVisible = freezed,
     Object? secondCodeVisible = freezed,
   }) {
-    return _then(_$RegistrationScreenStateImpl(
+    return _then(_$ResetPasswordScreenStateImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -117,8 +117,8 @@ class __$$RegistrationScreenStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RegistrationScreenStateImpl implements _RegistrationScreenState {
-  const _$RegistrationScreenStateImpl(
+class _$ResetPasswordScreenStateImpl implements _ResetPasswordScreenState {
+  const _$ResetPasswordScreenStateImpl(
       {this.status = Status.initial,
       this.firstCodeVisible = true,
       this.secondCodeVisible = true});
@@ -135,14 +135,14 @@ class _$RegistrationScreenStateImpl implements _RegistrationScreenState {
 
   @override
   String toString() {
-    return 'RegistrationScreenState(status: $status, firstCodeVisible: $firstCodeVisible, secondCodeVisible: $secondCodeVisible)';
+    return 'ResetPasswordScreenState(status: $status, firstCodeVisible: $firstCodeVisible, secondCodeVisible: $secondCodeVisible)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RegistrationScreenStateImpl &&
+            other is _$ResetPasswordScreenStateImpl &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality()
                 .equals(other.firstCodeVisible, firstCodeVisible) &&
@@ -160,16 +160,16 @@ class _$RegistrationScreenStateImpl implements _RegistrationScreenState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RegistrationScreenStateImplCopyWith<_$RegistrationScreenStateImpl>
-      get copyWith => __$$RegistrationScreenStateImplCopyWithImpl<
-          _$RegistrationScreenStateImpl>(this, _$identity);
+  _$$ResetPasswordScreenStateImplCopyWith<_$ResetPasswordScreenStateImpl>
+      get copyWith => __$$ResetPasswordScreenStateImplCopyWithImpl<
+          _$ResetPasswordScreenStateImpl>(this, _$identity);
 }
 
-abstract class _RegistrationScreenState implements RegistrationScreenState {
-  const factory _RegistrationScreenState(
+abstract class _ResetPasswordScreenState implements ResetPasswordScreenState {
+  const factory _ResetPasswordScreenState(
       {final Status status,
       final dynamic firstCodeVisible,
-      final dynamic secondCodeVisible}) = _$RegistrationScreenStateImpl;
+      final dynamic secondCodeVisible}) = _$ResetPasswordScreenStateImpl;
 
   @override
   Status get status;
@@ -179,6 +179,6 @@ abstract class _RegistrationScreenState implements RegistrationScreenState {
   dynamic get secondCodeVisible;
   @override
   @JsonKey(ignore: true)
-  _$$RegistrationScreenStateImplCopyWith<_$RegistrationScreenStateImpl>
+  _$$ResetPasswordScreenStateImplCopyWith<_$ResetPasswordScreenStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -10,4 +10,7 @@ enum UserStatus {
   @HiveField(1)
   signed,
 
+  @HiveField(2)
+  haveSeenIntro
+
 }

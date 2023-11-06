@@ -44,6 +44,9 @@ class AppDrawables {
   static const String welcome = '$images/welcome.png';
   static const String apple = '$images/apple.png';
   static const String google = '$images/google.png';
+  static const String iphone1 = '$images/iphone0.png';
+  static const String iphone2 = '$images/iphone1.png';
+  static const String iphone3 = '$images/iphone2.png';
 
   static const String errorProfileImage = '$images/error_profile_image.png';
 

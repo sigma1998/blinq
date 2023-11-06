@@ -1,3 +1,5 @@
+import 'package:another_flushbar/flushbar.dart';
+import 'package:blinq/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:fluttertoast/fluttertoast.dart';
@@ -50,6 +52,10 @@ class NavigationService {
     ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(snackBar);
   }
 
+  static void showErrorSnackBar({required SnackBar snackBar}) {
+    ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(snackBar);
+  }
+
   static void removeSnackBar() {
     ScaffoldMessenger.of(navigatorKey.currentContext!).removeCurrentSnackBar();
   }
@@ -95,32 +101,30 @@ class NavigationService {
   }
 
   static void showErrorToast(String text) {
-    Fluttertoast.cancel();
-    Fluttertoast.showToast(
-      msg: text,
-      toastLength: Toast.LENGTH_LONG,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 1,
-      backgroundColor: Colors.red,
-      textColor: Colors.white,
-      fontSize: 18.0,
-    );
+    Flushbar(
+      borderRadius: BorderRadius.circular(15),
+      title: 'Error',
+      messageText: Text(text),
+      flushbarPosition: FlushbarPosition.TOP,
+      barBlur: 7.0,
+      backgroundColor: AppColors.primaryColor,
+      duration: const Duration(seconds: 3),
+    ).show(navigatorKey.currentContext!);
   }
 
   static bool canPop() {
     return navigatorKey.currentState!.canPop();
   }
 
-  static void showToast(String text) {
-    Fluttertoast.cancel();
-    Fluttertoast.showToast(
-      msg: text,
-      toastLength: Toast.LENGTH_LONG,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 1,
-      backgroundColor: Colors.green,
-      textColor: Colors.white,
-      fontSize: 18.0,
-    );
+  static void showToast({required String text, required String title}) {
+    Flushbar(
+      borderRadius: BorderRadius.circular(15),
+      title: title,
+      messageText: Text(text),
+      flushbarPosition: FlushbarPosition.TOP,
+      barBlur: 7.0,
+      backgroundColor: Colors.grey.withOpacity(0.2),
+      duration: const Duration(seconds: 3),
+    ).show(navigatorKey.currentContext!);
   }
 }
