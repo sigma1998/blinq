@@ -1,3 +1,4 @@
+import 'package:blinq/core/network/dio_client.dart';
 import 'package:blinq/data/model/user/user_status.dart';
 import 'package:blinq/domain/repositories/auth_repository.dart';
 import 'package:blinq/presentation/intro/first_intro_screen/first_intro_screen.dart';
@@ -15,6 +16,9 @@ class SplashScreenBloc {
     Future.delayed(const Duration(seconds: 3)).then((_) {
       switch (status) {
         case UserStatus.signed:
+
+          DioClient.setToken(authRepository.getToken());
+
           NavigationService.newRootScreen(MainScreen.route);
           break;
 
