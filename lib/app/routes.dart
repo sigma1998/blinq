@@ -4,7 +4,6 @@ import 'package:blinq/presentation/forgot_password/reset_password/reset_password
 import 'package:blinq/presentation/intro/first_intro_screen/first_intro_screen.dart';
 import 'package:blinq/presentation/intro/second_intro_screen/second_intro_screen.dart';
 import 'package:blinq/presentation/language/language_screen.dart';
-import 'package:blinq/presentation/order_history/order_history_screen.dart';
 import 'package:blinq/presentation/password_editor/password_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/driver/driver_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/insurance/insurance_editor_screen.dart';
@@ -12,6 +11,7 @@ import 'package:blinq/presentation/profile/widgets/editors/my_car/my_car_editor_
 import 'package:blinq/presentation/profile/widgets/editors/my_vehicle/my_vehicle_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/policy_holder/policy_holder_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/vehicle/vehicle_editor_screen.dart';
+import 'package:blinq/presentation/reports/pdf_view/pdf_view.dart';
 import 'package:blinq/presentation/reports/reports_screen.dart';
 import 'package:blinq/presentation/success_video/success_video_screen.dart';
 import 'package:flutter/material.dart';
@@ -37,8 +37,8 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     PasswordEditorScreen.route: (context) => const PasswordEditorScreen(),
 
     //* Reports
-    ReportsScreen.route: (context) => const ReportsScreen(),
-    OrderHistoryScreen.route: (context) => const OrderHistoryScreen(),
+    ReportsScreen.route: (context) =>  const ReportsScreen(),
+    PdfViewScreen.route: (context) =>  const PdfViewScreen(),
 
     //! Profile Editors
     DriverEditorScreen.route: (context) => const DriverEditorScreen(),

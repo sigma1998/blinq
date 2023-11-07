@@ -166,12 +166,16 @@ class AppApi {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      final Response response = await DioClient.myDio.download(uri, savePath,
-          data: data,
-          queryParameters: queryParameters,
-          cancelToken: cancelToken,
-          onReceiveProgress: onReceiveProgress);
-      return response.data;
+    DioClient.myDioOptions.headers = {};
+    final Response response = await DioClient.myDio.download(uri, savePath,
+        data: data,
+        queryParameters: queryParameters,
+        cancelToken: cancelToken,
+        onReceiveProgress: onReceiveProgress);
+    DioClient.myDioOptions.headers = {
+      'Content-Type': 'application/json; charset=utf-8'
+    };
+    return response.data;
     } catch (e) {
       throw 'common.file_downloading_error'.tr();
     }

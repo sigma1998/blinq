@@ -1,5 +1,5 @@
 import 'package:blinq/core/network/api_service.dart';
-import 'package:blinq/data/datasource/local/local_db.dart';
+import 'package:blinq/data/datasource/local/auth_local_db.dart';
 import 'package:blinq/data/datasource/local/profile_local_db.dart';
 import 'package:blinq/data/datasource/remote/auth_api.dart';
 import 'package:blinq/data/datasource/remote/profile_api.dart';
@@ -17,7 +17,7 @@ void setUpLocator() {
 
   ///data sources
   getIt.registerLazySingleton<AppApi>(() => AppApi());
-  getIt.registerLazySingleton(() => LocalStorageImpl());
+  getIt.registerLazySingleton(() => AuthLocalStorageImpl());
   getIt.registerLazySingleton(() => ProfileLocalStorageImpl());
 
   ///apis
@@ -29,7 +29,7 @@ void setUpLocator() {
 
   ///repositories
   getIt.registerLazySingleton<AuthRepositoryImpl>(() => AuthRepositoryImpl(
-      api: getIt<AuthApiImpl>(), localStorage: getIt<LocalStorageImpl>()));
+      api: getIt<AuthApiImpl>(), localStorage: getIt<AuthLocalStorageImpl>()));
   getIt.registerLazySingleton<ProfileRepositoryImpl>(() =>
       ProfileRepositoryImpl(
           api: getIt<ProfileApiImpl>(),

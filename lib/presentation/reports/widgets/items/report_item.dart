@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:blinq/data/model/history/history_item/history_item_dto.dart';
+import 'package:blinq/utils/general_functions.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -13,16 +15,15 @@ import 'package:blinq/utils/custom_widgets/info_container.dart';
 
 class ProfileReportItem extends StatefulWidget {
   //
-  final String date;
-  // final ReportStatus status;
+  final HistoryItemModelDto historyItemModelDto;
 
   final void Function()? onPdfOpen;
   final void Function()? onDownload;
-  final void Function(int id)? onDelete;
+  final void Function()? onDelete;
 
   const ProfileReportItem({
     super.key,
-    required this.date,
+    required this.historyItemModelDto,
     // required this.status,
     //
     this.onPdfOpen,
@@ -62,7 +63,7 @@ class _ProfileReportItemState extends State<ProfileReportItem>
               const SizedBox(width: 20),
               Expanded(
                 child: Text(
-                  widget.date,
+                  getReportTime(widget.historyItemModelDto.createdAt!),
                   style: const TextStyle(
                     fontWeight: FontWeight.w700,
                   ),
@@ -104,7 +105,7 @@ class _ProfileReportItemState extends State<ProfileReportItem>
                     ),
                     const SizedBox(width: 16),
                     GestureDetector(
-                      onTap: () => widget.onDelete,
+                      onTap: widget.onDelete,
                       child: SvgPicture.asset(AppDrawables.delete),
                     ),
                   ],

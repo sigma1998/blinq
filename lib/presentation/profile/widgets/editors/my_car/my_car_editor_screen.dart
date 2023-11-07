@@ -1,15 +1,14 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:easy_localization/easy_localization.dart';
+import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
+import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 
 // Project imports:
 import 'package:blinq/utils/custom_widgets/secondary_button.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
-import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
-import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
-import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 
 class MyCarEditorScreen extends StatelessWidget {
   //

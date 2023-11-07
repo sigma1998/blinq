@@ -10,7 +10,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:blinq/presentation/profile/widgets/editors/driver/driver_editor_screen.dart';
-import 'package:blinq/presentation/order_history/order_history_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/insurance/insurance_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/my_car/my_car_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/my_vehicle/my_vehicle_editor_screen.dart';
@@ -134,6 +133,4 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   void onReportsPressed() =>
       NavigationService.pushNamed(routeName: ReportsScreen.route);
 
-  void onOrderHistoryPressed() =>
-      NavigationService.pushNamed(routeName: OrderHistoryScreen.route);
 }
