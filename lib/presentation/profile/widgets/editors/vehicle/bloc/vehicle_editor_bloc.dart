@@ -10,6 +10,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'package:blinq/presentation/dialogs/countries_dialog/countries_dialog.dart';
+import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
+import 'package:blinq/presentation/profile/bloc/profile_event.dart';
 import 'package:blinq/data/model/car/request/car_request_model.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/utils/navigation_service.dart';
@@ -21,6 +23,8 @@ part 'vehicle_editor_bloc.freezed.dart';
 
 class VehicleEditorBloc extends Bloc<VehicleEditorEvent, VehicleEditorState> {
   //
+  final ProfileBloc profileBloc;
+
   final ProfileRepository repository;
 
   final makeTypeController = TextEditingController();
@@ -30,9 +34,25 @@ class VehicleEditorBloc extends Bloc<VehicleEditorEvent, VehicleEditorState> {
   final trailerRegistrationNumberController = TextEditingController();
   final trailerCountryOfRegistrationController = TextEditingController();
 
-  VehicleEditorBloc({required this.repository})
-      : super(const VehicleEditorState()) {
+  VehicleEditorBloc({
+    required this.profileBloc,
+    required this.repository,
+  }) : super(const VehicleEditorState()) {
     on<OnSubmitVehicle>(_onSubmitVehicle);
+  }
+
+  void initializeFields() {
+    makeTypeController.text = profileBloc.state.profile?.car?.makeType ?? '';
+    modelSeriesController.text =
+        profileBloc.state.profile?.car?.modelSeries ?? '';
+    engineNumberController.text =
+        profileBloc.state.profile?.car?.engineNumber ?? '';
+    countryOfRegistrationController.text =
+        profileBloc.state.profile?.car?.countryOfRegistration ?? '';
+    trailerRegistrationNumberController.text =
+        profileBloc.state.profile?.car?.trailerRegistrationNumber ?? '';
+    trailerCountryOfRegistrationController.text =
+        profileBloc.state.profile?.car?.trailerCountryOfRegistration ?? '';
   }
 
   FutureOr<void> _onSubmitVehicle(
@@ -53,6 +73,7 @@ class VehicleEditorBloc extends Bloc<VehicleEditorEvent, VehicleEditorState> {
       emit(const VehicleEditorState(status: Status.loading));
       await repository.updateCar(vehicle);
       emit(const VehicleEditorState(status: Status.success));
+      profileBloc.add(OnFetchProfile());
       NavigationService.back();
     } catch (e) {
       emit(state.copyWith(status: Status.initial));

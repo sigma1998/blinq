@@ -40,7 +40,7 @@ class AppButton extends StatelessWidget {
           color: btnColor ?? Theme.of(context).colorScheme.primary,
         ),
         child: loading
-            ? const Loading()
+            ? Loading(color: txtColor)
             : Center(
                 child: Text(
                   text,

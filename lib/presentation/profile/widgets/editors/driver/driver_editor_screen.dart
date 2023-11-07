@@ -36,6 +36,8 @@ class _DriverEditorScreenState extends State<DriverEditorScreen> {
   void initState() {
     final profileBloc = context.read<ProfileBloc>();
     bloc = DriverEditorBloc(profileBloc: profileBloc);
+    bloc.initializeFields();
+
     super.initState();
   }
 

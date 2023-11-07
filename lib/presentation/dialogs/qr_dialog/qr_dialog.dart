@@ -1,17 +1,17 @@
 // Flutter imports:
-import 'package:blinq/utils/custom_widgets/loading.dart';
-import 'package:blinq/utils/custom_widgets/secondary_button.dart';
-import 'package:blinq/utils/navigation_service.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 
 // Project imports:
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/custom_widgets/info_container.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:blinq/utils/custom_widgets/secondary_button.dart';
+import 'package:blinq/utils/navigation_service.dart';
 
 class QrDialog extends StatelessWidget {
   //
@@ -30,7 +30,7 @@ class QrDialog extends StatelessWidget {
           CachedNetworkImage(
             width: 177,
             height: 177,
-            placeholder: (context, url) => const Loading(),
+            placeholder: (context, url) => getPlaceholder(),
             imageUrl: '${profileBloc.state.profile?.qrCode}',
             errorWidget: (context, url, error) => const Icon(Icons.error),
           ),
@@ -44,6 +44,17 @@ class QrDialog extends StatelessWidget {
             color: Colors.white,
           ),
         ],
+      ),
+    );
+  }
+
+  Widget getPlaceholder() {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      direction: ShimmerDirection.ltr,
+      child: Container(
+        color: Colors.grey[300],
       ),
     );
   }

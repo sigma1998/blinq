@@ -69,7 +69,7 @@ class _SettingsViewState extends State<SettingsView> {
                 ),
               ),
             ),
-            // const SizedBox(height: 16),
+            const SizedBox(height: 8),
             SettingsItem(
               onTap: bloc.onDeleteAccount,
               title: 'strDeleteAccount'.tr(),
@@ -79,6 +79,7 @@ class _SettingsViewState extends State<SettingsView> {
               width: 104,
               text: 'strLogout'.tr(),
               onTap: bloc.onLogoutPressed,
+              loading: state.status == Status.loading,
             ),
             const SafeArea(
               top: false,

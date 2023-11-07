@@ -1,7 +1,11 @@
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/core/theme/app_theme.dart';
+import 'package:blinq/data/model/car/response/car_response_model.dart';
+import 'package:blinq/data/model/insurance/response/insurance_response_model.dart';
+import 'package:blinq/data/model/policy_holder/response/policy_holder_response_model.dart';
 import 'package:blinq/data/model/profile/driver_license/driver_license_type.dart';
 import 'package:blinq/data/model/profile/response/profile_response_model.dart';
+import 'package:blinq/data/model/vehicle/response/vehicle_response_model.dart';
 import 'package:blinq/presentation/main_screen/main_screen_bloc.dart';
 import 'package:blinq/presentation/success_video/success_video_bloc.dart';
 import 'package:blinq/utils/image_crop.dart';
@@ -35,6 +39,12 @@ Future<void> _setUpHive() async {
   Hive.init((await getApplicationDocumentsDirectory()).path);
   Hive.registerAdapter(UserStatusAdapter());
   Hive.registerAdapter(DriverLicenseTypeAdapter());
+
+  Hive.registerAdapter(CarResponseModelAdapter());
+  Hive.registerAdapter(PolicyHolderResponseModelAdapter());
+  Hive.registerAdapter(InsuranceResponseModelAdapter());
+  Hive.registerAdapter(UserVehicleResponseModelAdapter());
+
   Hive.registerAdapter(ProfileResponseModelAdapter());
 
   await Hive.openBox(StorageConstants.appBox);

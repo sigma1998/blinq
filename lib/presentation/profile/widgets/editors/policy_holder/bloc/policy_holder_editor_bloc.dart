@@ -11,6 +11,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 // Project imports:
 import 'package:blinq/presentation/dialogs/countries_dialog/countries_dialog.dart';
 import 'package:blinq/data/model/policy_holder/request/policy_holder_request_model.dart';
+import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
+import 'package:blinq/presentation/profile/bloc/profile_event.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
@@ -22,6 +24,7 @@ part 'policy_holder_editor_bloc.freezed.dart';
 class PolicyHolderEditorBloc
     extends Bloc<PolicyHolderEditorEvent, PolicyHolderEditorState> {
   //
+  final ProfileBloc profileBloc;
   final ProfileRepository repository;
 
   final firstNameController = TextEditingController();
@@ -31,9 +34,26 @@ class PolicyHolderEditorBloc
   final countryController = TextEditingController();
   final phoneNumberController = TextEditingController();
 
-  PolicyHolderEditorBloc({required this.repository})
-      : super(const PolicyHolderEditorState()) {
+  PolicyHolderEditorBloc({
+    required this.profileBloc,
+    required this.repository,
+  }) : super(const PolicyHolderEditorState()) {
     on<OnSubmitPolicyHolder>(_onSubmitPolicyHolder);
+  }
+
+  void initializeFields() {
+    firstNameController.text =
+        profileBloc.state.profile?.policyHolder?.firstName ?? '';
+    lastNameController.text =
+        profileBloc.state.profile?.policyHolder?.lastName ?? '';
+    addressController.text =
+        profileBloc.state.profile?.policyHolder?.address ?? '';
+    postalCodeController.text =
+        profileBloc.state.profile?.policyHolder?.postalCode ?? '';
+    countryController.text =
+        profileBloc.state.profile?.policyHolder?.country ?? '';
+    phoneNumberController.text =
+        profileBloc.state.profile?.policyHolder?.phoneNumber ?? '';
   }
 
   FutureOr<void> _onSubmitPolicyHolder(
@@ -51,6 +71,7 @@ class PolicyHolderEditorBloc
       emit(const PolicyHolderEditorState(status: Status.loading));
       await repository.updatePolicyHolder(policyHolder);
       emit(const PolicyHolderEditorState(status: Status.success));
+      profileBloc.add(OnFetchProfile());
       NavigationService.back();
     } catch (e) {
       emit(state.copyWith(status: Status.initial));

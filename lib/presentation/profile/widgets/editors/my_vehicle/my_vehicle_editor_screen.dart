@@ -11,18 +11,38 @@ import 'package:blinq/utils/custom_widgets/text_fields/number_text_field.dart';
 import 'package:blinq/utils/custom_widgets/secondary_button.dart';
 import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
+import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'bloc/my_vehicle_editor_event.dart';
 import 'bloc/my_vehicle_editor_bloc.dart';
 import 'package:blinq/app/locator.dart';
 
-class MyVehicleEditorScreen extends StatelessWidget {
+class MyVehicleEditorScreen extends StatefulWidget {
   //
   static const String route = '/my_vehicle_editor';
 
-  final bloc = MyVehicleEditorBloc(repository: getIt<ProfileRepositoryImpl>());
+  const MyVehicleEditorScreen({super.key});
 
-  MyVehicleEditorScreen({super.key});
+  @override
+  State<MyVehicleEditorScreen> createState() => _MyVehicleEditorScreenState();
+}
+
+class _MyVehicleEditorScreenState extends State<MyVehicleEditorScreen> {
+  //
+  late MyVehicleEditorBloc bloc;
+
+  @override
+  void initState() {
+    final profileBloc = context.read<ProfileBloc>();
+    bloc = MyVehicleEditorBloc(
+      profileBloc: profileBloc,
+      repository: getIt<ProfileRepositoryImpl>(),
+    );
+    bloc.initializeFields();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +89,7 @@ class MyVehicleEditorScreen extends StatelessWidget {
                         vertical: 8,
                         horizontal: 60,
                       ),
+                      isLoading: state.status == Status.loading,
                       onTap: () => bloc.add(OnSubmitMyVehicle()),
                     ),
                   ],

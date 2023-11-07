@@ -205,9 +205,8 @@ class ProfileApiImpl implements ProfileApi {
   Future<void> downloadReport(
       {required String url, required String localPath}) async {
     try {
-      await api.download(
-          url, localPath, onReceiveProgress: ( count,  total){
-            debugPrint('$count / $total');
+      await api.download(url, localPath, onReceiveProgress: (count, total) {
+        debugPrint('$count / $total');
       });
     } catch (e) {
       rethrow;

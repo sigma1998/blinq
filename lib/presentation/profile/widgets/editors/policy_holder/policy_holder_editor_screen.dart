@@ -12,19 +12,37 @@ import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
+import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/app/locator.dart';
-
 import 'bloc/policy_holder_editor_bloc.dart';
 import 'bloc/policy_holder_editor_event.dart';
 
-class PolicyHolderEditorScreen extends StatelessWidget {
+class PolicyHolderEditorScreen extends StatefulWidget {
   //
   static const String route = '/policy_holder_editor';
 
-  final bloc =
-      PolicyHolderEditorBloc(repository: getIt<ProfileRepositoryImpl>());
+  const PolicyHolderEditorScreen({super.key});
 
-  PolicyHolderEditorScreen({super.key});
+  @override
+  State<PolicyHolderEditorScreen> createState() =>
+      _PolicyHolderEditorScreenState();
+}
+
+class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
+  //
+  late final PolicyHolderEditorBloc bloc;
+
+  @override
+  void initState() {
+    final profileBloc = context.read<ProfileBloc>();
+    bloc = PolicyHolderEditorBloc(
+      profileBloc: profileBloc,
+      repository: getIt<ProfileRepositoryImpl>(),
+    );
+    bloc.initializeFields();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

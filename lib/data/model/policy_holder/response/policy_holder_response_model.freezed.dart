@@ -21,18 +21,25 @@ PolicyHolderResponseModel _$PolicyHolderResponseModelFromJson(
 
 /// @nodoc
 mixin _$PolicyHolderResponseModel {
+  @HiveField(0)
   @JsonKey(name: 'first_name')
   String? get firstName => throw _privateConstructorUsedError;
+  @HiveField(1)
   @JsonKey(name: 'last_name')
   String? get lastName => throw _privateConstructorUsedError;
+  @HiveField(2)
   @JsonKey(name: 'country')
   String? get country => throw _privateConstructorUsedError;
+  @HiveField(3)
   @JsonKey(name: 'address')
   String? get address => throw _privateConstructorUsedError;
+  @HiveField(4)
   @JsonKey(name: 'postal_code')
   String? get postalCode => throw _privateConstructorUsedError;
+  @HiveField(5)
   @JsonKey(name: 'phone_number')
   String? get phoneNumber => throw _privateConstructorUsedError;
+  @HiveField(6)
   @JsonKey(name: 'email')
   String? get email => throw _privateConstructorUsedError;
 
@@ -49,13 +56,13 @@ abstract class $PolicyHolderResponseModelCopyWith<$Res> {
       _$PolicyHolderResponseModelCopyWithImpl<$Res, PolicyHolderResponseModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'first_name') String? firstName,
-      @JsonKey(name: 'last_name') String? lastName,
-      @JsonKey(name: 'country') String? country,
-      @JsonKey(name: 'address') String? address,
-      @JsonKey(name: 'postal_code') String? postalCode,
-      @JsonKey(name: 'phone_number') String? phoneNumber,
-      @JsonKey(name: 'email') String? email});
+      {@HiveField(0) @JsonKey(name: 'first_name') String? firstName,
+      @HiveField(1) @JsonKey(name: 'last_name') String? lastName,
+      @HiveField(2) @JsonKey(name: 'country') String? country,
+      @HiveField(3) @JsonKey(name: 'address') String? address,
+      @HiveField(4) @JsonKey(name: 'postal_code') String? postalCode,
+      @HiveField(5) @JsonKey(name: 'phone_number') String? phoneNumber,
+      @HiveField(6) @JsonKey(name: 'email') String? email});
 }
 
 /// @nodoc
@@ -123,13 +130,13 @@ abstract class _$$PolicyHolderResponseModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'first_name') String? firstName,
-      @JsonKey(name: 'last_name') String? lastName,
-      @JsonKey(name: 'country') String? country,
-      @JsonKey(name: 'address') String? address,
-      @JsonKey(name: 'postal_code') String? postalCode,
-      @JsonKey(name: 'phone_number') String? phoneNumber,
-      @JsonKey(name: 'email') String? email});
+      {@HiveField(0) @JsonKey(name: 'first_name') String? firstName,
+      @HiveField(1) @JsonKey(name: 'last_name') String? lastName,
+      @HiveField(2) @JsonKey(name: 'country') String? country,
+      @HiveField(3) @JsonKey(name: 'address') String? address,
+      @HiveField(4) @JsonKey(name: 'postal_code') String? postalCode,
+      @HiveField(5) @JsonKey(name: 'phone_number') String? phoneNumber,
+      @HiveField(6) @JsonKey(name: 'email') String? email});
 }
 
 /// @nodoc
@@ -190,37 +197,44 @@ class __$$PolicyHolderResponseModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PolicyHolderResponseModelImpl extends _PolicyHolderResponseModel {
   const _$PolicyHolderResponseModelImpl(
-      {@JsonKey(name: 'first_name') this.firstName,
-      @JsonKey(name: 'last_name') this.lastName,
-      @JsonKey(name: 'country') this.country,
-      @JsonKey(name: 'address') this.address,
-      @JsonKey(name: 'postal_code') this.postalCode,
-      @JsonKey(name: 'phone_number') this.phoneNumber,
-      @JsonKey(name: 'email') this.email})
+      {@HiveField(0) @JsonKey(name: 'first_name') this.firstName,
+      @HiveField(1) @JsonKey(name: 'last_name') this.lastName,
+      @HiveField(2) @JsonKey(name: 'country') this.country,
+      @HiveField(3) @JsonKey(name: 'address') this.address,
+      @HiveField(4) @JsonKey(name: 'postal_code') this.postalCode,
+      @HiveField(5) @JsonKey(name: 'phone_number') this.phoneNumber,
+      @HiveField(6) @JsonKey(name: 'email') this.email})
       : super._();
 
   factory _$PolicyHolderResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PolicyHolderResponseModelImplFromJson(json);
 
   @override
+  @HiveField(0)
   @JsonKey(name: 'first_name')
   final String? firstName;
   @override
+  @HiveField(1)
   @JsonKey(name: 'last_name')
   final String? lastName;
   @override
+  @HiveField(2)
   @JsonKey(name: 'country')
   final String? country;
   @override
+  @HiveField(3)
   @JsonKey(name: 'address')
   final String? address;
   @override
+  @HiveField(4)
   @JsonKey(name: 'postal_code')
   final String? postalCode;
   @override
+  @HiveField(5)
   @JsonKey(name: 'phone_number')
   final String? phoneNumber;
   @override
+  @HiveField(6)
   @JsonKey(name: 'email')
   final String? email;
 
@@ -269,38 +283,46 @@ class _$PolicyHolderResponseModelImpl extends _PolicyHolderResponseModel {
 
 abstract class _PolicyHolderResponseModel extends PolicyHolderResponseModel {
   const factory _PolicyHolderResponseModel(
-          {@JsonKey(name: 'first_name') final String? firstName,
-          @JsonKey(name: 'last_name') final String? lastName,
-          @JsonKey(name: 'country') final String? country,
-          @JsonKey(name: 'address') final String? address,
-          @JsonKey(name: 'postal_code') final String? postalCode,
-          @JsonKey(name: 'phone_number') final String? phoneNumber,
-          @JsonKey(name: 'email') final String? email}) =
-      _$PolicyHolderResponseModelImpl;
+      {@HiveField(0) @JsonKey(name: 'first_name') final String? firstName,
+      @HiveField(1) @JsonKey(name: 'last_name') final String? lastName,
+      @HiveField(2) @JsonKey(name: 'country') final String? country,
+      @HiveField(3) @JsonKey(name: 'address') final String? address,
+      @HiveField(4) @JsonKey(name: 'postal_code') final String? postalCode,
+      @HiveField(5) @JsonKey(name: 'phone_number') final String? phoneNumber,
+      @HiveField(6)
+      @JsonKey(name: 'email')
+      final String? email}) = _$PolicyHolderResponseModelImpl;
   const _PolicyHolderResponseModel._() : super._();
 
   factory _PolicyHolderResponseModel.fromJson(Map<String, dynamic> json) =
       _$PolicyHolderResponseModelImpl.fromJson;
 
   @override
+  @HiveField(0)
   @JsonKey(name: 'first_name')
   String? get firstName;
   @override
+  @HiveField(1)
   @JsonKey(name: 'last_name')
   String? get lastName;
   @override
+  @HiveField(2)
   @JsonKey(name: 'country')
   String? get country;
   @override
+  @HiveField(3)
   @JsonKey(name: 'address')
   String? get address;
   @override
+  @HiveField(4)
   @JsonKey(name: 'postal_code')
   String? get postalCode;
   @override
+  @HiveField(5)
   @JsonKey(name: 'phone_number')
   String? get phoneNumber;
   @override
+  @HiveField(6)
   @JsonKey(name: 'email')
   String? get email;
   @override

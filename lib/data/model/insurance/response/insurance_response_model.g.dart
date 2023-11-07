@@ -3,6 +3,72 @@
 part of 'insurance_response_model.dart';
 
 // **************************************************************************
+// TypeAdapterGenerator
+// **************************************************************************
+
+class InsuranceResponseModelAdapter
+    extends TypeAdapter<InsuranceResponseModel> {
+  @override
+  final int typeId = 6;
+
+  @override
+  InsuranceResponseModel read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return InsuranceResponseModel(
+      name: fields[0] as String?,
+      policyNumber: fields[1] as String?,
+      greenCardNumber: fields[2] as String?,
+      certificateValidFrom: fields[3] as String?,
+      certificateValidTo: fields[4] as String?,
+      agency: fields[5] as String?,
+      country: fields[6] as String?,
+      address: fields[7] as String?,
+      email: fields[8] as String?,
+      policyCover: fields[9] as String?,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, InsuranceResponseModel obj) {
+    writer
+      ..writeByte(10)
+      ..writeByte(0)
+      ..write(obj.name)
+      ..writeByte(1)
+      ..write(obj.policyNumber)
+      ..writeByte(2)
+      ..write(obj.greenCardNumber)
+      ..writeByte(3)
+      ..write(obj.certificateValidFrom)
+      ..writeByte(4)
+      ..write(obj.certificateValidTo)
+      ..writeByte(5)
+      ..write(obj.agency)
+      ..writeByte(6)
+      ..write(obj.country)
+      ..writeByte(7)
+      ..write(obj.address)
+      ..writeByte(8)
+      ..write(obj.email)
+      ..writeByte(9)
+      ..write(obj.policyCover);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is InsuranceResponseModelAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+// **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
