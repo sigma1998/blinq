@@ -188,7 +188,8 @@ class ProfileApiImpl implements ProfileApi {
   @override
   Future<void> verifyEmail(String code) {
     try {
-      return api.post(NetworkConstants.changeEmail, data: {'code': code});
+      return api.post(NetworkConstants.verifyEmail,
+          data: {'verification_code': code});
     } catch (e) {
       rethrow;
     }

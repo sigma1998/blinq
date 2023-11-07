@@ -25,7 +25,7 @@ abstract class AuthApi {
 
   Future<void> resetPassword(String newPassword);
 
-  Future<void> deleteUser(String id);
+  Future<void> deleteUser();
   Future<void> verifyDeleteUser(String code);
 }
 
@@ -129,9 +129,9 @@ class AuthApiImpl implements AuthApi {
   }
 
   @override
-  Future<void> deleteUser(String id) async {
+  Future<void> deleteUser() async {
     try {
-      await api.delete(NetworkConstants.deleteUser(id));
+      await api.post(NetworkConstants.deleteUser);
     } catch (e) {
       rethrow;
     }

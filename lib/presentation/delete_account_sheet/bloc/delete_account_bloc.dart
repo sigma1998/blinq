@@ -12,7 +12,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:blinq/presentation/delete_account_sheet/delete_account_confirm_sheet.dart';
 import 'package:blinq/presentation/sign_in_screen/sign_in_screen.dart';
 import 'package:blinq/domain/repositories/auth_repository.dart';
-import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/core/network/dio_client.dart';
@@ -23,15 +22,12 @@ part 'delete_account_bloc.freezed.dart';
 
 class DeleteAccountBloc extends Bloc<DeleteAccountEvent, DeleteAccountState> {
   //
-  final ProfileBloc profileBloc;
   final AuthRepository repository;
 
   final codeController = TextEditingController();
 
-  DeleteAccountBloc({
-    required this.profileBloc,
-    required this.repository,
-  }) : super(const DeleteAccountState()) {
+  DeleteAccountBloc({required this.repository})
+      : super(const DeleteAccountState()) {
     on<OnSendCodeDeleteAccount>(_onSendCodeDeleteAccount);
     on<OnVerifyDeleteAccount>(_onVerifyDeleteAccount);
   }
@@ -40,7 +36,7 @@ class DeleteAccountBloc extends Bloc<DeleteAccountEvent, DeleteAccountState> {
       OnSendCodeDeleteAccount event, Emitter<DeleteAccountState> emit) async {
     try {
       emit(state.copyWith(status: Status.loading));
-      await repository.deleteUser(profileBloc.state.profile!.id.toString());
+      await repository.deleteUser();
       emit(state.copyWith(status: Status.success));
       NavigationService.back();
       NavigationService.showBottomSheet(

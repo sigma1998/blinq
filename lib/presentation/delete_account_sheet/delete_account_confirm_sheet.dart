@@ -24,7 +24,6 @@ class DeleteAccountConfirmSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = DeleteAccountBloc(
-      profileBloc: context.read<ProfileBloc>(),
       repository: getIt<AuthRepositoryImpl>(),
     );
 

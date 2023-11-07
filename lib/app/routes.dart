@@ -32,7 +32,7 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     RegistrationScreen.route: (context) => const RegistrationScreen(),
 
     //^ Settings
-    EmailEditorScreen.route: (context) => EmailEditorScreen(),
+    EmailEditorScreen.route: (context) => const EmailEditorScreen(),
     LanguageScreen.route: (context) => const LanguageScreen(),
     PasswordEditorScreen.route: (context) => const PasswordEditorScreen(),
 
@@ -42,7 +42,8 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
 
     //! Profile Editors
     DriverEditorScreen.route: (context) => const DriverEditorScreen(),
-    PolicyHolderEditorScreen.route: (context) => const PolicyHolderEditorScreen(),
+    PolicyHolderEditorScreen.route: (context) =>
+        const PolicyHolderEditorScreen(),
     VehicleEditorScreen.route: (context) => const VehicleEditorScreen(),
     InsuranceEditorScreen.route: (context) => const InsuranceEditorScreen(),
     EditorMyCarScreen.route: (context) => const EditorMyCarScreen(),

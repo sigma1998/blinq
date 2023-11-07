@@ -6,7 +6,6 @@ import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
 import 'package:blinq/domain/repositories/auth_repository.dart';
-import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/utils/custom_widgets/app_btn.dart';
 import 'package:blinq/utils/custom_widgets/base_sheet.dart';
@@ -24,7 +23,6 @@ class DeleteAccountSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = DeleteAccountBloc(
-      profileBloc: context.read<ProfileBloc>(),
       repository: getIt<AuthRepositoryImpl>(),
     );
 

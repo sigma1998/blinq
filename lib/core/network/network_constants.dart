@@ -8,7 +8,7 @@ class NetworkConstants {
   static String confirmMailVerification = 'confirm/email/for/reset/password';
   static String getVerificationCode = '/send/code/for/reset/password/';
   static String resetPassword = 'reset/password/';
-  static String deleteUser(String id) => 'user/$id/';
+  static String deleteUser = 'user/delete/request/';
   static String verifyDeleteUser(String code) =>
       'user/accept/delete/request/$code/';
 
@@ -37,5 +37,4 @@ class NetworkConstants {
   static String brands = 'vehicle/brands/';
   static String models = 'vehicle/brand/models/';
   static String colors = 'vehicle/brand/colors/';
-
 }

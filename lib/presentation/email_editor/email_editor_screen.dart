@@ -18,18 +18,34 @@ import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/email_editor_event.dart';
 
-class EmailEditorScreen extends StatelessWidget {
+class EmailEditorScreen extends StatefulWidget {
   //
   static const route = '/email_editor';
 
-  final bloc = EmailEditorBloc(repository: getIt<ProfileRepositoryImpl>());
+  const EmailEditorScreen({super.key});
 
-  EmailEditorScreen({super.key});
+  @override
+  State<EmailEditorScreen> createState() => _EmailEditorScreenState();
+}
+
+class _EmailEditorScreenState extends State<EmailEditorScreen> {
+  //
+  late final profileBloc = context.read<ProfileBloc>();
+
+  late EmailEditorBloc bloc;
+
+  @override
+  void initState() {
+    bloc = EmailEditorBloc(
+      profileBloc: profileBloc,
+      repository: getIt<ProfileRepositoryImpl>(),
+    );
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final profileBloc = context.read<ProfileBloc>();
-
     return KeyboardEscape(
       child: Scaffold(
         appBar: MyAppBar(title: 'strEmail'.tr()),
