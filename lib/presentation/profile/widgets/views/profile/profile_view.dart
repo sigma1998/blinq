@@ -1,6 +1,4 @@
 // Flutter imports:
-import 'package:blinq/utils/custom_widgets/loading.dart';
-import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -8,8 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:blinq/utils/custom_widgets/default_image.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/custom_widgets/loading.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
-import 'widgets/cards/report_card.dart';
 import 'widgets/info.dart';
 import 'widgets/vehicle.dart';
 
@@ -58,7 +57,6 @@ class ProfileView extends StatelessWidget {
                   const SizedBox(height: 20),
 
                   //* Reports & History
-                  const ProfileReportCard(),
                   const SizedBox(height: 54),
 
                   const SafeArea(
