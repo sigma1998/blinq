@@ -71,12 +71,15 @@ class ProfileInfoWidget extends StatelessWidget {
               title: 'strMyCar'.tr(),
               onTap: bloc.onMyCarPressed,
               desc: '${state.profile?.car?.brand}',
-              image: Align(
-                alignment: Alignment.centerRight,
-                child: Image.asset(
-                  AppDrawables.vehicle,
-                  width: 305,
-                  height: 153,
+              image: SizedBox(
+                height: 163,
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: Image.asset(
+                    AppDrawables.vehicle,
+                    width: 305,
+                    height: 137,
+                  ),
                 ),
               ),
             ),
