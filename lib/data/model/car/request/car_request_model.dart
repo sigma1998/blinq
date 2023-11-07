@@ -16,10 +16,14 @@ class CarRequestModel with _$CarRequestModel {
     @JsonKey(name: 'make_type') String? makeType,
     @JsonKey(name: 'engine_number') String? engineNumber,
     @JsonKey(name: 'country_of_registration') String? countryOfRegistration,
+    @JsonKey(name: 'brand_id') int? brandId,
     @JsonKey(name: 'trailer_registration_number')
     String? trailerRegistrationNumber,
     @JsonKey(name: 'trailer_country_of_registration')
     String? trailerCountryOfRegistration,
+    String? car,
+    String? color,
+    String? brand,
   }) = _CarRequestModel;
 
   factory CarRequestModel.fromJson(Map<String, dynamic> json) =>

@@ -435,6 +435,7 @@
   "strServerUnderMaintance":
   "Valami hiba történt. Kérjük, próbálja újra később",
   "strPleaseTryAgain": "Kérjük, próbálja újra később",
+  "strTryAgain": "Próbálja újra",
   "strFalidToHostLookup": "Sikertelen gazda keresés",
   "strEmailEmpty": "Az e-mail nem lehet üres!",
   "strPhoneEmEmpty": "A telefonszám nem lehet üres!",

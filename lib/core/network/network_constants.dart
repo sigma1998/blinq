@@ -31,4 +31,9 @@ class NetworkConstants {
 
   static String car = '${profile}vehicle/update/';
   static String userVehicle = '${profile}vehicle/datas/update/';
+
+  static String brands = 'vehicle/brands/';
+  static String models = 'vehicle/brand/models/';
+  static String colors = 'vehicle/brand/colors/';
+
 }

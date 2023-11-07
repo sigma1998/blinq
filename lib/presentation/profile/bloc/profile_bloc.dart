@@ -119,7 +119,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       NavigationService.pushNamed(routeName: InsuranceEditorScreen.route);
 
   void onMyCarPressed() =>
-      NavigationService.pushNamed(routeName: MyCarEditorScreen.route);
+      NavigationService.pushNamed(routeName: EditorMyCarScreen.route);
 
   void onQrCodePressed() =>
       NavigationService.pushNamed(routeName: DriverEditorScreen.route);

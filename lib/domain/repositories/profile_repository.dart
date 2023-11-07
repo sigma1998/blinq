@@ -3,13 +3,15 @@ import 'dart:io';
 
 import 'package:blinq/data/datasource/local/profile_local_db.dart';
 import 'package:blinq/data/datasource/remote/profile_api.dart';
-import 'package:blinq/data/model/history/history_response_dto.dart';
 import 'package:blinq/data/model/car/request/car_request_model.dart';
+import 'package:blinq/data/model/history/history_response_dto.dart';
 import 'package:blinq/data/model/insurance/request/insurance_request_model.dart';
 import 'package:blinq/data/model/policy_holder/request/policy_holder_request_model.dart';
 import 'package:blinq/data/model/profile/request/profile_request_model.dart';
 import 'package:blinq/data/model/profile/response/profile_response_model.dart';
 import 'package:blinq/data/model/vehicle/request/vehicle_request_model.dart';
+import 'package:blinq/data/model/vehicle_info/brand_response.dart';
+import 'package:blinq/data/model/vehicle_info/color_response.dart';
 
 abstract class ProfileRepository {
   ///
@@ -18,14 +20,19 @@ abstract class ProfileRepository {
   Future<ProfileResponseModel> fetch();
 
   Future<ProfileResponseModel> update(ProfileRequestModel profile);
+
   Future<void> updateProfileImage(File file);
 
   //
   Future<void> updatePolicyHolder(PolicyHolderRequestModel policyHolder);
+
   Future<void> updateCar(CarRequestModel vehicle);
+
   Future<void> updateUserVehicle(UserVehicleRequestModel myVehicle);
+
   Future<void> updateInsurance(InsuranceRequestModel insurance);
-  Future<void> updateMyCar(UserVehicleRequestModel myVehicle);
+
+  Future<void> updateMyCar(CarRequestModel carRequestModel);
 
   //
   Future<void> updatePassword(String oldPassword, String newPassword);
@@ -53,6 +60,12 @@ abstract class ProfileRepository {
   String getLanguage();
 
   void setLanguage(String language);
+
+  Future<BrandResponseDto> fetchBrands(int page);
+
+  Future<BrandResponseDto> fetchModels(int page, int brandId);
+
+  Future<ColorResponseDto> fetchColors(int page, int brandId);
 }
 
 class ProfileRepositoryImpl implements ProfileRepository {
@@ -136,9 +149,9 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<void> updateMyCar(UserVehicleRequestModel myVehicle) {
+  Future<void> updateMyCar(CarRequestModel carRequestModel) {
     try {
-      return api.updateUserVehicle(myVehicle);
+      return api.updateMyCar(carRequestModel);
     } catch (e) {
       rethrow;
     }
@@ -206,9 +219,36 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   @override
   Future<void> downloadReport(
-      {required String url, required String localPath}) async{
+      {required String url, required String localPath}) async {
     try {
       await api.downloadReport(url: url, localPath: localPath);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BrandResponseDto> fetchBrands(int page) async {
+    try {
+      return await api.fetchBrands(page);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<ColorResponseDto> fetchColors(int page, int brandId) async {
+    try {
+      return await api.fetchColors(page, brandId);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BrandResponseDto> fetchModels(int page, int brandId) async {
+    try {
+      return await api.fetchModels(page, brandId);
     } catch (e) {
       rethrow;
     }

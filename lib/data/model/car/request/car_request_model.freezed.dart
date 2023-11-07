@@ -32,11 +32,16 @@ mixin _$CarRequestModel {
   String? get engineNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'country_of_registration')
   String? get countryOfRegistration => throw _privateConstructorUsedError;
+  @JsonKey(name: 'brand_id')
+  int? get brandId => throw _privateConstructorUsedError;
   @JsonKey(name: 'trailer_registration_number')
   String? get trailerRegistrationNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'trailer_country_of_registration')
   String? get trailerCountryOfRegistration =>
       throw _privateConstructorUsedError;
+  String? get car => throw _privateConstructorUsedError;
+  String? get color => throw _privateConstructorUsedError;
+  String? get brand => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -57,10 +62,14 @@ abstract class $CarRequestModelCopyWith<$Res> {
       @JsonKey(name: 'make_type') String? makeType,
       @JsonKey(name: 'engine_number') String? engineNumber,
       @JsonKey(name: 'country_of_registration') String? countryOfRegistration,
+      @JsonKey(name: 'brand_id') int? brandId,
       @JsonKey(name: 'trailer_registration_number')
       String? trailerRegistrationNumber,
       @JsonKey(name: 'trailer_country_of_registration')
-      String? trailerCountryOfRegistration});
+      String? trailerCountryOfRegistration,
+      String? car,
+      String? color,
+      String? brand});
 }
 
 /// @nodoc
@@ -82,8 +91,12 @@ class _$CarRequestModelCopyWithImpl<$Res, $Val extends CarRequestModel>
     Object? makeType = freezed,
     Object? engineNumber = freezed,
     Object? countryOfRegistration = freezed,
+    Object? brandId = freezed,
     Object? trailerRegistrationNumber = freezed,
     Object? trailerCountryOfRegistration = freezed,
+    Object? car = freezed,
+    Object? color = freezed,
+    Object? brand = freezed,
   }) {
     return _then(_value.copyWith(
       carId: freezed == carId
@@ -110,6 +123,10 @@ class _$CarRequestModelCopyWithImpl<$Res, $Val extends CarRequestModel>
           ? _value.countryOfRegistration
           : countryOfRegistration // ignore: cast_nullable_to_non_nullable
               as String?,
+      brandId: freezed == brandId
+          ? _value.brandId
+          : brandId // ignore: cast_nullable_to_non_nullable
+              as int?,
       trailerRegistrationNumber: freezed == trailerRegistrationNumber
           ? _value.trailerRegistrationNumber
           : trailerRegistrationNumber // ignore: cast_nullable_to_non_nullable
@@ -117,6 +134,18 @@ class _$CarRequestModelCopyWithImpl<$Res, $Val extends CarRequestModel>
       trailerCountryOfRegistration: freezed == trailerCountryOfRegistration
           ? _value.trailerCountryOfRegistration
           : trailerCountryOfRegistration // ignore: cast_nullable_to_non_nullable
+              as String?,
+      car: freezed == car
+          ? _value.car
+          : car // ignore: cast_nullable_to_non_nullable
+              as String?,
+      color: freezed == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as String?,
+      brand: freezed == brand
+          ? _value.brand
+          : brand // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -137,10 +166,14 @@ abstract class _$$CarRequestModelImplCopyWith<$Res>
       @JsonKey(name: 'make_type') String? makeType,
       @JsonKey(name: 'engine_number') String? engineNumber,
       @JsonKey(name: 'country_of_registration') String? countryOfRegistration,
+      @JsonKey(name: 'brand_id') int? brandId,
       @JsonKey(name: 'trailer_registration_number')
       String? trailerRegistrationNumber,
       @JsonKey(name: 'trailer_country_of_registration')
-      String? trailerCountryOfRegistration});
+      String? trailerCountryOfRegistration,
+      String? car,
+      String? color,
+      String? brand});
 }
 
 /// @nodoc
@@ -160,8 +193,12 @@ class __$$CarRequestModelImplCopyWithImpl<$Res>
     Object? makeType = freezed,
     Object? engineNumber = freezed,
     Object? countryOfRegistration = freezed,
+    Object? brandId = freezed,
     Object? trailerRegistrationNumber = freezed,
     Object? trailerCountryOfRegistration = freezed,
+    Object? car = freezed,
+    Object? color = freezed,
+    Object? brand = freezed,
   }) {
     return _then(_$CarRequestModelImpl(
       carId: freezed == carId
@@ -188,6 +225,10 @@ class __$$CarRequestModelImplCopyWithImpl<$Res>
           ? _value.countryOfRegistration
           : countryOfRegistration // ignore: cast_nullable_to_non_nullable
               as String?,
+      brandId: freezed == brandId
+          ? _value.brandId
+          : brandId // ignore: cast_nullable_to_non_nullable
+              as int?,
       trailerRegistrationNumber: freezed == trailerRegistrationNumber
           ? _value.trailerRegistrationNumber
           : trailerRegistrationNumber // ignore: cast_nullable_to_non_nullable
@@ -195,6 +236,18 @@ class __$$CarRequestModelImplCopyWithImpl<$Res>
       trailerCountryOfRegistration: freezed == trailerCountryOfRegistration
           ? _value.trailerCountryOfRegistration
           : trailerCountryOfRegistration // ignore: cast_nullable_to_non_nullable
+              as String?,
+      car: freezed == car
+          ? _value.car
+          : car // ignore: cast_nullable_to_non_nullable
+              as String?,
+      color: freezed == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as String?,
+      brand: freezed == brand
+          ? _value.brand
+          : brand // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -210,10 +263,14 @@ class _$CarRequestModelImpl implements _CarRequestModel {
       @JsonKey(name: 'make_type') this.makeType,
       @JsonKey(name: 'engine_number') this.engineNumber,
       @JsonKey(name: 'country_of_registration') this.countryOfRegistration,
+      @JsonKey(name: 'brand_id') this.brandId,
       @JsonKey(name: 'trailer_registration_number')
       this.trailerRegistrationNumber,
       @JsonKey(name: 'trailer_country_of_registration')
-      this.trailerCountryOfRegistration});
+      this.trailerCountryOfRegistration,
+      this.car,
+      this.color,
+      this.brand});
 
   factory _$CarRequestModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CarRequestModelImplFromJson(json);
@@ -237,15 +294,24 @@ class _$CarRequestModelImpl implements _CarRequestModel {
   @JsonKey(name: 'country_of_registration')
   final String? countryOfRegistration;
   @override
+  @JsonKey(name: 'brand_id')
+  final int? brandId;
+  @override
   @JsonKey(name: 'trailer_registration_number')
   final String? trailerRegistrationNumber;
   @override
   @JsonKey(name: 'trailer_country_of_registration')
   final String? trailerCountryOfRegistration;
+  @override
+  final String? car;
+  @override
+  final String? color;
+  @override
+  final String? brand;
 
   @override
   String toString() {
-    return 'CarRequestModel(carId: $carId, colorId: $colorId, modelSeries: $modelSeries, makeType: $makeType, engineNumber: $engineNumber, countryOfRegistration: $countryOfRegistration, trailerRegistrationNumber: $trailerRegistrationNumber, trailerCountryOfRegistration: $trailerCountryOfRegistration)';
+    return 'CarRequestModel(carId: $carId, colorId: $colorId, modelSeries: $modelSeries, makeType: $makeType, engineNumber: $engineNumber, countryOfRegistration: $countryOfRegistration, brandId: $brandId, trailerRegistrationNumber: $trailerRegistrationNumber, trailerCountryOfRegistration: $trailerCountryOfRegistration, car: $car, color: $color, brand: $brand)';
   }
 
   @override
@@ -263,13 +329,17 @@ class _$CarRequestModelImpl implements _CarRequestModel {
                 other.engineNumber == engineNumber) &&
             (identical(other.countryOfRegistration, countryOfRegistration) ||
                 other.countryOfRegistration == countryOfRegistration) &&
+            (identical(other.brandId, brandId) || other.brandId == brandId) &&
             (identical(other.trailerRegistrationNumber,
                     trailerRegistrationNumber) ||
                 other.trailerRegistrationNumber == trailerRegistrationNumber) &&
             (identical(other.trailerCountryOfRegistration,
                     trailerCountryOfRegistration) ||
                 other.trailerCountryOfRegistration ==
-                    trailerCountryOfRegistration));
+                    trailerCountryOfRegistration) &&
+            (identical(other.car, car) || other.car == car) &&
+            (identical(other.color, color) || other.color == color) &&
+            (identical(other.brand, brand) || other.brand == brand));
   }
 
   @JsonKey(ignore: true)
@@ -282,8 +352,12 @@ class _$CarRequestModelImpl implements _CarRequestModel {
       makeType,
       engineNumber,
       countryOfRegistration,
+      brandId,
       trailerRegistrationNumber,
-      trailerCountryOfRegistration);
+      trailerCountryOfRegistration,
+      car,
+      color,
+      brand);
 
   @JsonKey(ignore: true)
   @override
@@ -309,10 +383,14 @@ abstract class _CarRequestModel implements CarRequestModel {
       @JsonKey(name: 'engine_number') final String? engineNumber,
       @JsonKey(name: 'country_of_registration')
       final String? countryOfRegistration,
+      @JsonKey(name: 'brand_id') final int? brandId,
       @JsonKey(name: 'trailer_registration_number')
       final String? trailerRegistrationNumber,
       @JsonKey(name: 'trailer_country_of_registration')
-      final String? trailerCountryOfRegistration}) = _$CarRequestModelImpl;
+      final String? trailerCountryOfRegistration,
+      final String? car,
+      final String? color,
+      final String? brand}) = _$CarRequestModelImpl;
 
   factory _CarRequestModel.fromJson(Map<String, dynamic> json) =
       _$CarRequestModelImpl.fromJson;
@@ -336,11 +414,20 @@ abstract class _CarRequestModel implements CarRequestModel {
   @JsonKey(name: 'country_of_registration')
   String? get countryOfRegistration;
   @override
+  @JsonKey(name: 'brand_id')
+  int? get brandId;
+  @override
   @JsonKey(name: 'trailer_registration_number')
   String? get trailerRegistrationNumber;
   @override
   @JsonKey(name: 'trailer_country_of_registration')
   String? get trailerCountryOfRegistration;
+  @override
+  String? get car;
+  @override
+  String? get color;
+  @override
+  String? get brand;
   @override
   @JsonKey(ignore: true)
   _$$CarRequestModelImplCopyWith<_$CarRequestModelImpl> get copyWith =>

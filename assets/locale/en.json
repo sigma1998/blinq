@@ -407,6 +407,7 @@
   "strNetworkUnReachable": "Network is unreachable",
   "strServerUnderMaintance": "Something went wrong. Please try again later",
   "strPleaseTryAgain": "Please try again later",
+  "strTryAgain": "Try again",
   "strFalidToHostLookup": "Failed host lookup",
   "strEmailEmpty": "Email cannot be empty!",
   "strPhoneEmEmpty": "Phone number cannot be empty!",
