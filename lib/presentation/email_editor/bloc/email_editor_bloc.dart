@@ -4,6 +4,7 @@ import 'dart:async';
 // Project imports:
 import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/navigation_service.dart';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -50,6 +51,7 @@ class EmailEditorBloc extends Bloc<EmailEditorEvent, EmailEditorState> {
       emit(state.copyWith(status: Status.loading));
       await repository.verifyEmail(codeController.text);
       emit(state.copyWith(status: Status.success));
+      NavigationService.back();
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }

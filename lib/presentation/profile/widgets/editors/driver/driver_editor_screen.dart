@@ -36,6 +36,8 @@ class _DriverEditorScreenState extends State<DriverEditorScreen> {
   void initState() {
     final profileBloc = context.read<ProfileBloc>();
     bloc = DriverEditorBloc(profileBloc: profileBloc);
+    bloc.initializeFields();
+
     super.initState();
   }
 
@@ -112,8 +114,8 @@ class _DriverEditorScreenState extends State<DriverEditorScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SecondaryButton(
-                    onTap: () => bloc.add(OnSubmitDriver()),
                     label: 'strSave'.tr(),
+                    onTap: () => bloc.add(OnSubmitDriver()),
                     isLoading: state.status == Status.loading,
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,

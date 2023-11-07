@@ -1,8 +1,4 @@
 // Flutter imports:
-import 'package:blinq/app/locator.dart';
-import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
-import 'package:blinq/utils/custom_widgets/expanded_section.dart';
-import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -14,6 +10,10 @@ import 'package:blinq/utils/custom_widgets/text_fields/base_text_field.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/presentation/email_editor/bloc/email_editor_bloc.dart';
 import 'package:blinq/utils/custom_widgets/app_btn.dart';
+import 'package:blinq/app/locator.dart';
+import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
+import 'package:blinq/utils/custom_widgets/expanded_section.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/email_editor_event.dart';

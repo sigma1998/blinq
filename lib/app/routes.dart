@@ -37,17 +37,17 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     PasswordEditorScreen.route: (context) => const PasswordEditorScreen(),
 
     //* Reports
-    ReportsScreen.route: (context) =>  const ReportsScreen(),
-    PdfViewScreen.route: (context) =>  const PdfViewScreen(),
+    ReportsScreen.route: (context) => const ReportsScreen(),
+    PdfViewScreen.route: (context) => const PdfViewScreen(),
 
     //! Profile Editors
     DriverEditorScreen.route: (context) => const DriverEditorScreen(),
-    PolicyHolderEditorScreen.route: (context) => PolicyHolderEditorScreen(),
-    VehicleEditorScreen.route: (context) => VehicleEditorScreen(),
-    InsuranceEditorScreen.route: (context) => InsuranceEditorScreen(),
+    PolicyHolderEditorScreen.route: (context) => const PolicyHolderEditorScreen(),
+    VehicleEditorScreen.route: (context) => const VehicleEditorScreen(),
+    InsuranceEditorScreen.route: (context) => const InsuranceEditorScreen(),
     EditorMyCarScreen.route: (context) => const EditorMyCarScreen(),
 
-    MyVehicleEditorScreen.route: (context) => MyVehicleEditorScreen(),
+    MyVehicleEditorScreen.route: (context) => const MyVehicleEditorScreen(),
     FirstIntroScreen.route: (context) => const FirstIntroScreen(),
     SecondIntroScreen.route: (context) => const SecondIntroScreen(),
     SuccessVideoScreen.route: (context) => const SuccessVideoScreen(),

@@ -50,6 +50,7 @@ class ProfileVehicleCard extends StatelessWidget {
               style: TextStyle(
                 fontSize: 11,
                 fontWeight: FontWeight.w700,
+                overflow: TextOverflow.ellipsis,
                 color: Theme.of(context).colorScheme.onSecondary,
               ),
             ),

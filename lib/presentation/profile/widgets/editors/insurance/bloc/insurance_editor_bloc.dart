@@ -2,6 +2,8 @@
 import 'dart:async';
 
 // Flutter imports:
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -11,6 +13,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 // Project imports:
 import 'package:blinq/presentation/dialogs/countries_dialog/countries_dialog.dart';
 import 'package:blinq/data/model/insurance/request/insurance_request_model.dart';
+import 'package:blinq/utils/custom_widgets/dialogs/cupertino_dialog.dart';
+import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
+import 'package:blinq/presentation/profile/bloc/profile_event.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
@@ -22,6 +27,7 @@ part 'insurance_editor_bloc.freezed.dart';
 class InsuranceEditorBloc
     extends Bloc<InsuranceEditorEvent, InsuranceEditorState> {
   //
+  final ProfileBloc profileBloc;
   final ProfileRepository repository;
 
   final nameController = TextEditingController();
@@ -35,9 +41,31 @@ class InsuranceEditorBloc
   final emailController = TextEditingController();
   final policyCoverController = TextEditingController();
 
-  InsuranceEditorBloc({required this.repository})
-      : super(const InsuranceEditorState()) {
+  InsuranceEditorBloc({
+    required this.profileBloc,
+    required this.repository,
+  }) : super(const InsuranceEditorState()) {
     on<OnSubmitInsurance>(_onSubmitDriver);
+  }
+
+  void initializeFields() {
+    nameController.text = profileBloc.state.profile?.insurance?.name ?? '';
+    policyNumberController.text =
+        profileBloc.state.profile?.insurance?.policyNumber ?? '';
+    greenCardNumberController.text =
+        profileBloc.state.profile?.insurance?.greenCardNumber ?? '';
+    certificateValidFromController.text =
+        profileBloc.state.profile?.insurance?.certificateValidFrom ?? '';
+    certificateValidToController.text =
+        profileBloc.state.profile?.insurance?.certificateValidTo ?? '';
+    agencyController.text = profileBloc.state.profile?.insurance?.agency ?? '';
+    countryController.text =
+        profileBloc.state.profile?.insurance?.country ?? '';
+    addressController.text =
+        profileBloc.state.profile?.insurance?.address ?? '';
+    emailController.text = profileBloc.state.profile?.insurance?.email ?? '';
+    policyCoverController.text =
+        profileBloc.state.profile?.insurance?.policyCover ?? '';
   }
 
   FutureOr<void> _onSubmitDriver(
@@ -45,7 +73,7 @@ class InsuranceEditorBloc
     try {
       final insurance = InsuranceRequestModel(
         name: nameController.text,
-        policyNumber: policyCoverController.text,
+        policyNumber: policyNumberController.text,
         greenCardNumber: greenCardNumberController.text,
         certificateValidFrom: certificateValidFromController.text,
         certificateValidTo: certificateValidToController.text,
@@ -59,6 +87,7 @@ class InsuranceEditorBloc
       emit(state.copyWith(status: Status.loading));
       await repository.updateInsurance(insurance);
       emit(const InsuranceEditorState(status: Status.success));
+      profileBloc.add(OnFetchProfile());
       NavigationService.back();
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
@@ -70,6 +99,16 @@ class InsuranceEditorBloc
         .then((value) {
       if (value != null) {
         countryController.text = value;
+      }
+    });
+  }
+
+  void onPolicyCoverPressed() {
+    NavigationService.showDialog(
+            dialog: MyCupertinoDialog(title: 'strPolicCover'.tr()))!
+        .then((value) {
+      if (value != null) {
+        policyCoverController.text = value;
       }
     });
   }

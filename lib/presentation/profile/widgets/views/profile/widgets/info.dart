@@ -69,14 +69,17 @@ class ProfileInfoWidget extends StatelessWidget {
             const SizedBox(height: 10),
             ProfileImageCard(
               title: 'strMyCar'.tr(),
-              desc: 'adsfadfs',
               onTap: bloc.onMyCarPressed,
-              image: Align(
-                alignment: Alignment.centerRight,
-                child: Image.asset(
-                  AppDrawables.vehicle,
-                  width: 305,
-                  height: 153,
+              desc: '${state.profile?.car?.brand}',
+              image: SizedBox(
+                height: 163,
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: Image.asset(
+                    AppDrawables.vehicle,
+                    width: 305,
+                    height: 137,
+                  ),
                 ),
               ),
             ),

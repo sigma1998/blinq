@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:blinq/utils/custom_widgets/secondary_button.dart';
@@ -10,19 +11,40 @@ import 'package:blinq/utils/custom_widgets/text_fields/date_picker_text_field.da
 import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:blinq/app/locator.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
+import 'package:blinq/app/locator.dart';
+import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'bloc/insurance_editor_bloc.dart';
+import 'bloc/insurance_editor_event.dart';
 
-class InsuranceEditorScreen extends StatelessWidget {
+class InsuranceEditorScreen extends StatefulWidget {
   //
   static const String route = '/insurance_editor';
 
-  final bloc = InsuranceEditorBloc(repository: getIt<ProfileRepositoryImpl>());
+  const InsuranceEditorScreen({super.key});
 
-  InsuranceEditorScreen({super.key});
+  @override
+  State<InsuranceEditorScreen> createState() => _InsuranceEditorScreenState();
+}
+
+class _InsuranceEditorScreenState extends State<InsuranceEditorScreen> {
+  //
+
+  late InsuranceEditorBloc bloc;
+
+  @override
+  void initState() {
+    final profileBloc = context.read<ProfileBloc>();
+    bloc = InsuranceEditorBloc(
+      profileBloc: profileBloc,
+      repository: getIt<ProfileRepositoryImpl>(),
+    );
+    bloc.initializeFields();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,8 +119,8 @@ class InsuranceEditorScreen extends StatelessWidget {
                 const SizedBox(height: 16),
                 PickerTextField(
                   labelText: 'strPolicCover'.tr(),
+                  onTap: bloc.onPolicyCoverPressed,
                   controller: bloc.policyCoverController,
-                  onTap: () {},
                 ),
                 const SizedBox(height: 90),
               ],
@@ -109,12 +131,13 @@ class InsuranceEditorScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SecondaryButton(
-                    onTap: () {},
+                    onTap: () => bloc.add(OnSubmitInsurance()),
                     label: 'strSave'.tr(),
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,
                       horizontal: 60,
                     ),
+                    isLoading: state.status == Status.loading,
                   ),
                 ],
               ),

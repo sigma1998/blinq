@@ -41,6 +41,7 @@ class PhoneTextField extends StatelessWidget {
       key: key,
       enabled: enabled,
       autofocus: autofocus,
+      controller: controller,
       inputFormatters: [mask],
       keyboardType: TextInputType.phone,
       labelText: labelText ?? 'strPhoneNumber'.tr(),

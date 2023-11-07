@@ -51,10 +51,13 @@ class SecondaryButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(50),
             color: color ?? Theme.of(context).colorScheme.primary,
           ),
-          child: Stack(
-            children: [
-              if (!isLoading)
-                Row(
+          child: isLoading
+              ? const SizedBox(
+                  height: 20,
+                  width: 20,
+                  child: Loading(),
+                )
+              : Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     if (iconLeft != null) ...[
@@ -70,13 +73,7 @@ class SecondaryButton extends StatelessWidget {
                       iconRight!,
                     ],
                   ],
-                )
-              else
-                const Center(
-                  child: Loading(),
                 ),
-            ],
-          ),
         ),
       ),
     );

@@ -67,18 +67,28 @@ class NavigationService {
     ScaffoldMessenger.of(navigatorKey.currentContext!).hideCurrentSnackBar();
   }
 
-  static Future<dynamic>? showBottomSheet(
-      {required Widget sheet,
-      Color? barierColor,
-      bool isScrollControlled = true}) async {
+  static Future<dynamic>? showBottomSheet({
+    required Widget sheet,
+    Color? barierColor,
+    bool isScrollable = true,
+    bool isScrollControlled = true,
+  }) async {
     return await material.showModalBottomSheet(
-        context: navigatorKey.currentContext!,
-        isScrollControlled: isScrollControlled,
-        backgroundColor: Colors.transparent,
-        barrierColor: barierColor,
-        builder: (context) {
-          return sheet;
-        });
+      context: navigatorKey.currentContext!,
+      isScrollControlled: isScrollControlled,
+      shape: isScrollable
+          ? const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(36),
+              topRight: Radius.circular(36),
+            ))
+          : null,
+      backgroundColor: isScrollable
+          ? Theme.of(navigatorKey.currentContext!).colorScheme.secondary
+          : Colors.transparent,
+      barrierColor: barierColor,
+      builder: (context) => sheet,
+    );
   }
 
   static Future showMyCupertinoModalPopup({

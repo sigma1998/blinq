@@ -1,13 +1,15 @@
 // Flutter imports:
-import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
+import 'package:blinq/utils/custom_widgets/text_fields/number_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
+import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
+import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/utils/custom_widgets/secondary_button.dart';
 import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
@@ -16,13 +18,30 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/vehicle_editor_bloc.dart';
 import 'bloc/vehicle_editor_event.dart';
 
-class VehicleEditorScreen extends StatelessWidget {
+class VehicleEditorScreen extends StatefulWidget {
   //
   static const String route = '/vehicle_editor';
 
-  final bloc = VehicleEditorBloc(repository: getIt<ProfileRepositoryImpl>());
+  const VehicleEditorScreen({super.key});
 
-  VehicleEditorScreen({super.key});
+  @override
+  State<VehicleEditorScreen> createState() => _VehicleEditorScreenState();
+}
+
+class _VehicleEditorScreenState extends State<VehicleEditorScreen> {
+  //
+  late VehicleEditorBloc bloc;
+
+  @override
+  void initState() {
+    final profileBloc = context.read<ProfileBloc>();
+    bloc = VehicleEditorBloc(
+      profileBloc: profileBloc,
+      repository: getIt<ProfileRepositoryImpl>(),
+    );
+    bloc.initializeFields();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +63,10 @@ class VehicleEditorScreen extends StatelessWidget {
                   controller: bloc.makeTypeController,
                 ),
                 const SizedBox(height: 16),
-                NameTextField(
+                NumberTextField(
                   labelText:
                       '${'strRegistrationNumber'.tr()} (${'strMotor'.tr()})',
-                  controller: bloc.modelSeriesController,
+                  controller: bloc.engineNumberController,
                 ),
                 const SizedBox(height: 16),
                 PickerTextField(
@@ -56,7 +75,7 @@ class VehicleEditorScreen extends StatelessWidget {
                   onTap: bloc.onSelectCountryOfRegistrationPressed,
                 ),
                 const SizedBox(height: 16),
-                NameTextField(
+                NumberTextField(
                   controller: bloc.trailerRegistrationNumberController,
                   labelText:
                       '${'strRegistrationNumber'.tr()} (${'strTrailer'.tr()})',

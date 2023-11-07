@@ -41,6 +41,22 @@ class DriverEditorBloc extends Bloc<DriverEditorEvent, DriverEditorState> {
     on<OnSubmitDriver>(_onSubmitDriver);
   }
 
+  void initializeFields() {
+    firstNameController.text = profileBloc.state.profile?.firstName ?? '';
+    lastNameController.text = profileBloc.state.profile?.lastName ?? '';
+    dateOfBirthController.text = profileBloc.state.profile?.birthDate ?? '';
+    addressController.text = profileBloc.state.profile?.address ?? '';
+    countryController.text = profileBloc.state.profile?.country ?? '';
+    phoneNumberController.text =
+        MyStringHelper.phoneMask(profileBloc.state.profile?.phoneNumber ?? '');
+    drivingLicenseNumberController.text =
+        profileBloc.state.profile?.driverLicenseNumber ?? '';
+    categoryController.text =
+        profileBloc.state.profile?.driverLicense?.name ?? '';
+    licenseDateOfExpiryController.text =
+        profileBloc.state.profile?.driverLicenseExpiredDate ?? '';
+  }
+
   FutureOr<void> _onSubmitDriver(
       OnSubmitDriver event, Emitter<DriverEditorState> emit) async {
     try {

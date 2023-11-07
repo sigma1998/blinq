@@ -1,18 +1,17 @@
 // Flutter imports:
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/domain/repositories/auth_repository.dart';
+import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
+import 'package:blinq/utils/custom_widgets/app_btn.dart';
+import 'package:blinq/utils/custom_widgets/toggle.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/services/permission/permission_service.dart';
-import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
-
-// Project imports:
-import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
-import 'package:blinq/utils/custom_widgets/toggle.dart';
-import 'package:blinq/utils/custom_widgets/app_btn.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'bloc/settings_bloc.dart';
 import 'bloc/settings_event.dart';
 import 'widgets/item.dart';
@@ -33,10 +32,9 @@ class _SettingsViewState extends State<SettingsView> {
   @override
   void initState() {
     bloc = SettingsBloc(
-      profileBloc: profileBloc,
-      permissionService: getIt<PermissionService>(),
-      authRepository: getIt<AuthRepositoryImpl>()
-    );
+        profileBloc: profileBloc,
+        permissionService: getIt<PermissionService>(),
+        authRepository: getIt<AuthRepositoryImpl>());
     super.initState();
   }
 
@@ -71,16 +69,17 @@ class _SettingsViewState extends State<SettingsView> {
                 ),
               ),
             ),
-            // const SizedBox(height: 16),
+            const SizedBox(height: 8),
             SettingsItem(
               onTap: bloc.onDeleteAccount,
               title: 'strDeleteAccount'.tr(),
             ),
             const Expanded(child: SizedBox(height: 24)),
             AppButton(
-              width: 104,
+              width: 120,
               text: 'strLogout'.tr(),
               onTap: bloc.onLogoutPressed,
+              loading: state.status == Status.loading,
             ),
             const SafeArea(
               top: false,

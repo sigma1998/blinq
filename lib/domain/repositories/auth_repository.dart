@@ -39,7 +39,7 @@ abstract class AuthRepository {
   Future<void> resetPassword(String newPassword);
 
   Future<void> deleteUser(String id);
-
+  Future<void> verifyDeleteUser(String code);
 }
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -154,9 +154,18 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> deleteUser(String id) async{
+  Future<void> deleteUser(String id) async {
     try {
       await api.deleteUser(id);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> verifyDeleteUser(String code) async {
+    try {
+      await api.verifyDeleteUser(code);
     } catch (e) {
       rethrow;
     }

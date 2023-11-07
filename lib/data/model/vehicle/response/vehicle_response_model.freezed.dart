@@ -21,20 +21,29 @@ UserVehicleResponseModel _$UserVehicleResponseModelFromJson(
 
 /// @nodoc
 mixin _$UserVehicleResponseModel {
+  @HiveField(0)
   @JsonKey(name: 'traveled_km')
   int? get traveledKm => throw _privateConstructorUsedError;
+  @HiveField(1)
+  @HiveField(2)
   @JsonKey(name: 'next_technical')
   int? get nextTechnical => throw _privateConstructorUsedError;
+  @HiveField(3)
   @JsonKey(name: 'next_technical_updated_date')
   String? get nextTechnicalUpdatedDate => throw _privateConstructorUsedError;
+  @HiveField(4)
   @JsonKey(name: 'oil_replacement')
   int? get oilReplacement => throw _privateConstructorUsedError;
+  @HiveField(5)
   @JsonKey(name: 'oil_replacement_updated_date')
   String? get oilReplacementUpdatedDate => throw _privateConstructorUsedError;
+  @HiveField(6)
   @JsonKey(name: 'battery_replacement_date')
   String? get batteryReplacementDate => throw _privateConstructorUsedError;
+  @HiveField(7)
   @JsonKey(name: 'battery_replacement')
   int? get batteryReplacement => throw _privateConstructorUsedError;
+  @HiveField(8)
   @JsonKey(name: 'battery_replacement_updated_date')
   String? get batteryReplacementUpdatedDate =>
       throw _privateConstructorUsedError;
@@ -52,15 +61,25 @@ abstract class $UserVehicleResponseModelCopyWith<$Res> {
       _$UserVehicleResponseModelCopyWithImpl<$Res, UserVehicleResponseModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'traveled_km') int? traveledKm,
-      @JsonKey(name: 'next_technical') int? nextTechnical,
+      {@HiveField(0) @JsonKey(name: 'traveled_km') int? traveledKm,
+      @HiveField(1)
+      @HiveField(2)
+      @JsonKey(name: 'next_technical')
+      int? nextTechnical,
+      @HiveField(3)
       @JsonKey(name: 'next_technical_updated_date')
       String? nextTechnicalUpdatedDate,
-      @JsonKey(name: 'oil_replacement') int? oilReplacement,
+      @HiveField(4) @JsonKey(name: 'oil_replacement') int? oilReplacement,
+      @HiveField(5)
       @JsonKey(name: 'oil_replacement_updated_date')
       String? oilReplacementUpdatedDate,
-      @JsonKey(name: 'battery_replacement_date') String? batteryReplacementDate,
-      @JsonKey(name: 'battery_replacement') int? batteryReplacement,
+      @HiveField(6)
+      @JsonKey(name: 'battery_replacement_date')
+      String? batteryReplacementDate,
+      @HiveField(7)
+      @JsonKey(name: 'battery_replacement')
+      int? batteryReplacement,
+      @HiveField(8)
       @JsonKey(name: 'battery_replacement_updated_date')
       String? batteryReplacementUpdatedDate});
 }
@@ -135,15 +154,25 @@ abstract class _$$UserVehicleResponseModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'traveled_km') int? traveledKm,
-      @JsonKey(name: 'next_technical') int? nextTechnical,
+      {@HiveField(0) @JsonKey(name: 'traveled_km') int? traveledKm,
+      @HiveField(1)
+      @HiveField(2)
+      @JsonKey(name: 'next_technical')
+      int? nextTechnical,
+      @HiveField(3)
       @JsonKey(name: 'next_technical_updated_date')
       String? nextTechnicalUpdatedDate,
-      @JsonKey(name: 'oil_replacement') int? oilReplacement,
+      @HiveField(4) @JsonKey(name: 'oil_replacement') int? oilReplacement,
+      @HiveField(5)
       @JsonKey(name: 'oil_replacement_updated_date')
       String? oilReplacementUpdatedDate,
-      @JsonKey(name: 'battery_replacement_date') String? batteryReplacementDate,
-      @JsonKey(name: 'battery_replacement') int? batteryReplacement,
+      @HiveField(6)
+      @JsonKey(name: 'battery_replacement_date')
+      String? batteryReplacementDate,
+      @HiveField(7)
+      @JsonKey(name: 'battery_replacement')
+      int? batteryReplacement,
+      @HiveField(8)
       @JsonKey(name: 'battery_replacement_updated_date')
       String? batteryReplacementUpdatedDate});
 }
@@ -211,15 +240,25 @@ class __$$UserVehicleResponseModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserVehicleResponseModelImpl implements _UserVehicleResponseModel {
   const _$UserVehicleResponseModelImpl(
-      {@JsonKey(name: 'traveled_km') this.traveledKm,
-      @JsonKey(name: 'next_technical') this.nextTechnical,
+      {@HiveField(0) @JsonKey(name: 'traveled_km') this.traveledKm,
+      @HiveField(1)
+      @HiveField(2)
+      @JsonKey(name: 'next_technical')
+      this.nextTechnical,
+      @HiveField(3)
       @JsonKey(name: 'next_technical_updated_date')
       this.nextTechnicalUpdatedDate,
-      @JsonKey(name: 'oil_replacement') this.oilReplacement,
+      @HiveField(4) @JsonKey(name: 'oil_replacement') this.oilReplacement,
+      @HiveField(5)
       @JsonKey(name: 'oil_replacement_updated_date')
       this.oilReplacementUpdatedDate,
-      @JsonKey(name: 'battery_replacement_date') this.batteryReplacementDate,
-      @JsonKey(name: 'battery_replacement') this.batteryReplacement,
+      @HiveField(6)
+      @JsonKey(name: 'battery_replacement_date')
+      this.batteryReplacementDate,
+      @HiveField(7)
+      @JsonKey(name: 'battery_replacement')
+      this.batteryReplacement,
+      @HiveField(8)
       @JsonKey(name: 'battery_replacement_updated_date')
       this.batteryReplacementUpdatedDate});
 
@@ -227,27 +266,36 @@ class _$UserVehicleResponseModelImpl implements _UserVehicleResponseModel {
       _$$UserVehicleResponseModelImplFromJson(json);
 
   @override
+  @HiveField(0)
   @JsonKey(name: 'traveled_km')
   final int? traveledKm;
   @override
+  @HiveField(1)
+  @HiveField(2)
   @JsonKey(name: 'next_technical')
   final int? nextTechnical;
   @override
+  @HiveField(3)
   @JsonKey(name: 'next_technical_updated_date')
   final String? nextTechnicalUpdatedDate;
   @override
+  @HiveField(4)
   @JsonKey(name: 'oil_replacement')
   final int? oilReplacement;
   @override
+  @HiveField(5)
   @JsonKey(name: 'oil_replacement_updated_date')
   final String? oilReplacementUpdatedDate;
   @override
+  @HiveField(6)
   @JsonKey(name: 'battery_replacement_date')
   final String? batteryReplacementDate;
   @override
+  @HiveField(7)
   @JsonKey(name: 'battery_replacement')
   final int? batteryReplacement;
   @override
+  @HiveField(8)
   @JsonKey(name: 'battery_replacement_updated_date')
   final String? batteryReplacementUpdatedDate;
 
@@ -313,45 +361,63 @@ class _$UserVehicleResponseModelImpl implements _UserVehicleResponseModel {
 
 abstract class _UserVehicleResponseModel implements UserVehicleResponseModel {
   const factory _UserVehicleResponseModel(
-          {@JsonKey(name: 'traveled_km') final int? traveledKm,
-          @JsonKey(name: 'next_technical') final int? nextTechnical,
-          @JsonKey(name: 'next_technical_updated_date')
-          final String? nextTechnicalUpdatedDate,
-          @JsonKey(name: 'oil_replacement') final int? oilReplacement,
-          @JsonKey(name: 'oil_replacement_updated_date')
-          final String? oilReplacementUpdatedDate,
-          @JsonKey(name: 'battery_replacement_date')
-          final String? batteryReplacementDate,
-          @JsonKey(name: 'battery_replacement') final int? batteryReplacement,
-          @JsonKey(name: 'battery_replacement_updated_date')
-          final String? batteryReplacementUpdatedDate}) =
-      _$UserVehicleResponseModelImpl;
+      {@HiveField(0) @JsonKey(name: 'traveled_km') final int? traveledKm,
+      @HiveField(1)
+      @HiveField(2)
+      @JsonKey(name: 'next_technical')
+      final int? nextTechnical,
+      @HiveField(3)
+      @JsonKey(name: 'next_technical_updated_date')
+      final String? nextTechnicalUpdatedDate,
+      @HiveField(4) @JsonKey(name: 'oil_replacement') final int? oilReplacement,
+      @HiveField(5)
+      @JsonKey(name: 'oil_replacement_updated_date')
+      final String? oilReplacementUpdatedDate,
+      @HiveField(6)
+      @JsonKey(name: 'battery_replacement_date')
+      final String? batteryReplacementDate,
+      @HiveField(7)
+      @JsonKey(name: 'battery_replacement')
+      final int? batteryReplacement,
+      @HiveField(8)
+      @JsonKey(name: 'battery_replacement_updated_date')
+      final String?
+          batteryReplacementUpdatedDate}) = _$UserVehicleResponseModelImpl;
 
   factory _UserVehicleResponseModel.fromJson(Map<String, dynamic> json) =
       _$UserVehicleResponseModelImpl.fromJson;
 
   @override
+  @HiveField(0)
   @JsonKey(name: 'traveled_km')
   int? get traveledKm;
   @override
+  @HiveField(1)
+  @HiveField(2)
   @JsonKey(name: 'next_technical')
   int? get nextTechnical;
   @override
+  @HiveField(3)
   @JsonKey(name: 'next_technical_updated_date')
   String? get nextTechnicalUpdatedDate;
   @override
+  @HiveField(4)
   @JsonKey(name: 'oil_replacement')
   int? get oilReplacement;
   @override
+  @HiveField(5)
   @JsonKey(name: 'oil_replacement_updated_date')
   String? get oilReplacementUpdatedDate;
   @override
+  @HiveField(6)
   @JsonKey(name: 'battery_replacement_date')
   String? get batteryReplacementDate;
   @override
+  @HiveField(7)
   @JsonKey(name: 'battery_replacement')
   int? get batteryReplacement;
   @override
+  @HiveField(8)
   @JsonKey(name: 'battery_replacement_updated_date')
   String? get batteryReplacementUpdatedDate;
   @override

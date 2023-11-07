@@ -608,5 +608,12 @@
   "strDeleteAccount": "Delete account",
   "strMotor": "Motor",
   "strTrailer": "Trailer",
-  "strNotification": "Notification"
+  "strNotification": "Notification",
+  "strYouAreDeletingYourAccount": "Hey, wait! You are deleting your account",
+  "strRecoveryIsNotPossible": "After deleting the account, recovery is not possible",
+  "strDoNotDelete": "Do not delete",
+  "strYesWantToDelete": "Yes, I want to delete",
+  "strConfirmYourAccount": "Confirm your account",
+  "strIfYouWantToDelete": "If you want to delete, please enter the code that we have sent to your email",
+  "strConfirmDeleteAccount": "Confirm, delete account"
 }

@@ -1,16 +1,16 @@
 // Flutter imports:
-import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
+import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/custom_widgets/tab_bar.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'bloc/profile_event.dart';
 import 'widgets/views/profile/profile_view.dart';
 import 'widgets/views/settings/settings_view.dart';
+import 'bloc/profile_event.dart';
 
 class ProfileScreen extends StatefulWidget {
   //

@@ -55,6 +55,8 @@ class AppDrawables {
   static const String vehicle = '$images/vehicle.png';
   static const String scanningQr = '$images/scanning_qr.png';
 
+  static const String deleteAccount = '$images/delete_account.png';
+
   //! My information
   static const String qr = '$images/qr.png';
   static const String car = '$images/car.png';

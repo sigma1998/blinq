@@ -649,5 +649,12 @@
   "strDeleteAccount": "Fiók törlése",
   "strMotor": "Motor",
   "strTrailer": "Filmelőzetes",
-  "strNotification": "Értesítés"
+  "strNotification": "Értesítés",
+  "strYouAreDeletingYourAccount": "Hé, várj! Törli a fiókját",
+  "strRecoveryIsNotPossible": "A fiók törlése után a helyreállítás nem lehetséges",
+  "strDoNotDelete": "Ne törölje",
+  "strYesWantToDelete": "Igen, törölni szeretném",
+  "strConfirmYourAccount": "Erősítse meg a fiókját",
+  "strIfYouWantToDelete": "Ha törölni szeretné, adja meg a kódot, amelyet e-mailben küldtünk",
+  "strConfirmDeleteAccount": "Erősítse meg, hogy törli a fiókját"
 }
