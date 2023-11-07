@@ -9,7 +9,6 @@ import 'package:flutter_svg/svg.dart';
 // Project imports:
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
-import 'cards/report_card.dart';
 import 'cards/vehicle_card.dart';
 
 class ProfileVehicleWidget extends StatelessWidget {
@@ -87,8 +86,7 @@ class ProfileVehicleWidget extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 20),
-        const ProfileReportCard(),
+
       ],
     );
   }

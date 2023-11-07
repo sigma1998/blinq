@@ -1,17 +1,29 @@
 // Project imports:
 import 'package:blinq/core/network/api_service.dart';
 import 'package:blinq/core/network/network_constants.dart';
+import 'package:blinq/data/model/history/history_response_dto.dart';
 import 'package:blinq/data/model/profile/profile_response_model.dart';
+import 'package:flutter/foundation.dart';
 
 abstract class ProfileApi {
   //
   Future<ProfileResponseModel> fetch();
+
   Future<ProfileResponseModel> update(ProfileResponseModel profile);
 
   Future<void> updatePassword(String oldPassword, String newPassword);
+
   Future<void> updateEmail(String email);
+
   Future<void> verifyEmail(String code);
+
   Future<void> updateLanguage(String language);
+
+  Future<HistoryResponseDto> fetchHistory();
+
+  Future<void> deleteReport(int docId);
+
+  Future<void> downloadReport({required String url, required String localPath});
 }
 
 class ProfileApiImpl implements ProfileApi {
@@ -83,5 +95,37 @@ class ProfileApiImpl implements ProfileApi {
     }
   }
 
-  //
+  @override
+  Future<HistoryResponseDto> fetchHistory() async {
+    try {
+      final res = await api.get(NetworkConstants.history);
+      return HistoryResponseDto.fromJson(res);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> deleteReport(int docId) async {
+    try {
+      await api.delete('${NetworkConstants.deleteReport}/$docId/');
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> downloadReport(
+      {required String url, required String localPath}) async {
+    try {
+      await api.download(
+          url, localPath, onReceiveProgress: ( count,  total){
+            debugPrint('$count / $total');
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+//
 }

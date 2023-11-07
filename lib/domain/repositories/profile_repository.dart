@@ -1,6 +1,7 @@
 // Project imports:
 import 'package:blinq/data/datasource/local/profile_local_db.dart';
 import 'package:blinq/data/datasource/remote/profile_api.dart';
+import 'package:blinq/data/model/history/history_response_dto.dart';
 import 'package:blinq/data/model/profile/profile_response_model.dart';
 
 abstract class ProfileRepository {
@@ -8,21 +9,33 @@ abstract class ProfileRepository {
   /// Remote API
   ///
   Future<ProfileResponseModel> fetch();
+
   Future<ProfileResponseModel> update(ProfileResponseModel profile);
 
   Future<void> updatePassword(String oldPassword, String newPassword);
+
   Future<void> updateEmail(String email);
+
   Future<void> verifyEmail(String code);
+
   Future<void> updateLanguage(String language);
+
+  Future<HistoryResponseDto> fetchHistory();
+
+  Future<void> deleteReport(int docId);
+
+  Future<void> downloadReport({required String url, required String localPath});
 
   ///
   /// Local storage
   ///
 
   ProfileResponseModel getProfile();
+
   void setProfile(ProfileResponseModel profile);
 
   String getLanguage();
+
   void setLanguage(String language);
 }
 
@@ -89,6 +102,34 @@ class ProfileRepositoryImpl implements ProfileRepository {
   Future<void> verifyEmail(String code) {
     try {
       return api.verifyEmail(code);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<HistoryResponseDto> fetchHistory() async {
+    try {
+      return await api.fetchHistory();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> deleteReport(int docId) async {
+    try {
+      await api.deleteReport(docId);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> downloadReport(
+      {required String url, required String localPath}) async{
+    try {
+      await api.downloadReport(url: url, localPath: localPath);
     } catch (e) {
       rethrow;
     }

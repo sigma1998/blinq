@@ -13,8 +13,10 @@ class CustomInterceptor extends Interceptor {
     }
     int statusCode = (err.response?.statusCode ?? 0);
     if (statusCode >= 400 && statusCode <= 500) {
+
+      final text = err.response!.data?['message'] ?? err.response!.data['detail'];
       NavigationService.showErrorToast(
-          (err.response!.data['message']).toString());
+          (text).toString());
     }
 
     return handler.next(err);

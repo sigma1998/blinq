@@ -117,6 +117,7 @@ dependencies:
   email_validator: ^2.1.17
   another_flushbar: ^1.12.30
   carousel_slider: ^4.2.1
+  device_info_plus: ^9.1.0
 
 
 dev_dependencies:
