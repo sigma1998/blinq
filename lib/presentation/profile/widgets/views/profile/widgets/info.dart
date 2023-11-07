@@ -85,8 +85,8 @@ class ProfileInfoWidget extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             ProfileImageCard(
-              title: 'strTapToOpen'.tr(),
               desc: 'strQrCode'.tr(),
+              title: 'strTapToOpen'.tr(),
               onTap: bloc.onQrCodePressed,
               image: Align(
                 alignment: Alignment.centerRight,

@@ -61,6 +61,7 @@ class ProfileVehicleCard extends StatelessWidget {
             children: [
               Text(
                 value,
+                overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   fontSize: 26,
                   height: 16 / 34,
@@ -68,11 +69,14 @@ class ProfileVehicleCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 6),
-              Text(
-                unit,
-                style: const TextStyle(
-                  height: 16 / 20,
-                  fontWeight: FontWeight.w700,
+              Flexible(
+                child: Text(
+                  unit,
+                  style: const TextStyle(
+                    height: 16 / 20,
+                    fontWeight: FontWeight.w700,
+                  ),
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],
