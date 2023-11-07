@@ -1,0 +1,66 @@
+// Package imports:
+import 'package:permission_handler/permission_handler.dart';
+
+// Project imports:
+import 'i_permission_service.dart';
+
+class PermissionService extends IPermissionService {
+  //
+  @override
+  Future<PermissionStatus> requestCameraPermission() async =>
+      await Permission.camera.request();
+
+  @override
+  Future<PermissionStatus> requestPhotosPermission() async =>
+      await Permission.photos.request();
+
+  @override
+  Future<PermissionStatus> requestLocationPermission() async =>
+      await Permission.location.request();
+
+  @override
+  Future<PermissionStatus> requestNotificationPermission() async =>
+      await Permission.notification.request();
+
+  //
+
+  @override
+  Future<bool> handleCameraPermission() async {
+    final cameraPermissionStatus = await requestCameraPermission();
+
+    if (cameraPermissionStatus != PermissionStatus.granted) {
+      return await openAppSettings();
+    }
+    return true;
+  }
+
+  @override
+  Future<bool> handlePhotosPermission() async {
+    final photosPermissionStatus = await requestPhotosPermission();
+
+    if (photosPermissionStatus != PermissionStatus.granted) {
+      return await openAppSettings();
+    }
+    return true;
+  }
+
+  @override
+  Future<bool> handleLocationPermission() async {
+    final locationPermissionStatus = await requestLocationPermission();
+
+    if (locationPermissionStatus != PermissionStatus.granted) {
+      return await openAppSettings();
+    }
+    return true;
+  }
+
+  @override
+  Future<bool> handleNotificationPermission() async {
+    final notificationPermissionStatus = await requestNotificationPermission();
+
+    if (notificationPermissionStatus != PermissionStatus.granted) {
+      return openAppSettings();
+    }
+    return true;
+  }
+}

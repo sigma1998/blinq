@@ -23,9 +23,9 @@ class MainScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           extendBody: true,
-          body:  IndexedStack(
+          body: IndexedStack(
             index: state.data,
-            children: const[
+            children: const [
               HomeScreen(),
               ContactsScreen(),
               ProfileScreen(),

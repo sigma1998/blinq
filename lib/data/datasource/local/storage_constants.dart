@@ -8,4 +8,6 @@ class StorageConstants {
   static String userName = 'userName';
   static String userPhone = 'userPhone';
 
+  static String profile = 'profile';
+  static String language = 'language';
 }

@@ -1,4 +1,4 @@
-import 'package:blinq/data/datasource/local/local_db.dart';
+import 'package:blinq/data/datasource/local/auth_local_db.dart';
 import 'package:blinq/data/datasource/remote/auth_api.dart';
 import 'package:blinq/data/model/login/google_request/login_google_request.dart';
 import 'package:blinq/data/model/login/response/login_response_model.dart';
@@ -39,12 +39,12 @@ abstract class AuthRepository {
   Future<void> resetPassword(String newPassword);
 
   Future<void> deleteUser(String id);
-
+  Future<void> verifyDeleteUser(String code);
 }
 
 class AuthRepositoryImpl implements AuthRepository {
-  final AuthApi api;
-  final LocalStorage localStorage;
+  final AuthApi api; // сохранять отправлять,
+  final AuthLocalStorage localStorage;
 
   AuthRepositoryImpl({required this.api, required this.localStorage});
 
@@ -154,9 +154,18 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> deleteUser(String id) async{
+  Future<void> deleteUser(String id) async {
     try {
       await api.deleteUser(id);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> verifyDeleteUser(String code) async {
+    try {
+      await api.verifyDeleteUser(code);
     } catch (e) {
       rethrow;
     }

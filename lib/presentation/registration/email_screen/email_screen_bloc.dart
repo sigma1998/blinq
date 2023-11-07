@@ -4,7 +4,7 @@ import 'package:blinq/core/network/dio_client.dart';
 import 'package:blinq/data/model/send_email/response/send_email_response.dart';
 import 'package:blinq/domain/repositories/auth_repository.dart';
 import 'package:blinq/presentation/forgot_password/reset_password/reset_password_screen.dart';
-import 'package:blinq/presentation/log_in/log_in_bottim_sheet.dart';
+import 'package:blinq/presentation/log_in/log_in_bottom_sheet.dart';
 import 'package:blinq/presentation/registration/email_screen/email_screen_event.dart';
 import 'package:blinq/presentation/registration/email_screen/email_screen_state.dart';
 import 'package:blinq/presentation/registration/registration_screen/registration_screen.dart';
@@ -35,7 +35,6 @@ class EmailScreenBloc extends Bloc<EmailScreenEvent, EmailScreenState> {
   FutureOr<void> _onPrimaryButtonPressed(
       OnPrimaryButtonPressed event, Emitter<EmailScreenState> emit) async {
     if (!state.isCodeSent) {
-
       if (isVerifying) {
         await _sendVerificationMailForCode(emit);
       } else {
@@ -103,7 +102,6 @@ class EmailScreenBloc extends Bloc<EmailScreenEvent, EmailScreenState> {
 
       NavigationService.showToast(
           text: "strCodeSent".tr(), title: 'strCheckMain'.tr());
-
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }
@@ -113,7 +111,8 @@ class EmailScreenBloc extends Bloc<EmailScreenEvent, EmailScreenState> {
     emit(state.copyWith(status: Status.loading));
 
     try {
-      final res = await authRepository.confirmMailVerification(mail: emailController.text, code: codeController.text);
+      final res = await authRepository.confirmMailVerification(
+          mail: emailController.text, code: codeController.text);
       DioClient.setToken(res);
 
       emit(state.copyWith(status: Status.initial));

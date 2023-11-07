@@ -35,30 +35,23 @@ class DioClient {
     if (isOn) {
       myDio.options.headers['Content-Type'] = 'multipart/form-data';
     } else {
-      myDio.options.headers['Content-Type'] =
-          'application/json; charset=utf-8';
+      myDio.options.headers['Content-Type'] = 'application/json; charset=utf-8';
     }
   }
 
-
-
-  static void setLanguage(String? languageCode){
+  static void setLanguage(String? languageCode) {
     if (languageCode == null) {
       myDio.options.headers.remove('Accept-Language');
     } else {
       myDio.options.headers['Accept-Language'] = languageCode;
     }
-
   }
 
-  static void setToken(String? token){
+  static void setToken(String? token) {
     if (token == null) {
       myDio.options.headers.remove('Authorization');
     } else {
       myDio.options.headers['Authorization'] = 'Bearer $token';
     }
-
   }
-
-  
 }

@@ -4,7 +4,7 @@ import 'package:email_validator/email_validator.dart';
 /*========================Email Validator==============================================*/
 class Validator {
   static String? validateEmail(String? value) {
-    if (value?.isEmpty??true) {
+    if (value?.isEmpty ?? true) {
       return 'strEmailEmpty'.tr();
     } else if (!EmailValidator.validate(value!)) {
       return 'strInvalidEmail'.tr();

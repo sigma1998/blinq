@@ -60,7 +60,7 @@ class RegistrationScreenBloc
               email: event.email,
               password: firstCodeController.text,
               lastName: secondNameController.text,
-              firstName: firstCodeController.text));
+              firstName: firstNameController.text));
       authRepository.setToken(res.access!);
       authRepository.setRefreshToken(res.refresh!);
       authRepository.setUserStatus(UserStatus.signed);

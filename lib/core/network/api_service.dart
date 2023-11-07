@@ -1,12 +1,9 @@
-
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import 'dio_client.dart';
 
-
 class AppApi {
-
   // Get
   Future<dynamic> get(
     String uri, {
@@ -53,8 +50,6 @@ class AppApi {
     }
   }
 
-
-
   // Post
   Future<dynamic> post(
     String uri, {
@@ -67,6 +62,32 @@ class AppApi {
   }) async {
     try {
       final Response response = await DioClient.myDio.post(
+        uri,
+        data: data,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+        onSendProgress: onSendProgress,
+        onReceiveProgress: onReceiveProgress,
+      );
+      return response.data;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  // Patch
+  Future<dynamic> patch(
+    String uri, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    try {
+      final Response response = await DioClient.myDio.patch(
         uri,
         data: data,
         queryParameters: queryParameters,
@@ -145,16 +166,18 @@ class AppApi {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      final Response response = await DioClient.myDio.download(
-          uri, savePath,
-          data: data,
-          queryParameters: queryParameters,
-          cancelToken: cancelToken,
-          onReceiveProgress: onReceiveProgress);
-      return response.data;
+    DioClient.myDioOptions.headers = {};
+    final Response response = await DioClient.myDio.download(uri, savePath,
+        data: data,
+        queryParameters: queryParameters,
+        cancelToken: cancelToken,
+        onReceiveProgress: onReceiveProgress);
+    DioClient.myDioOptions.headers = {
+      'Content-Type': 'application/json; charset=utf-8'
+    };
+    return response.data;
     } catch (e) {
       throw 'common.file_downloading_error'.tr();
     }
   }
-
 }

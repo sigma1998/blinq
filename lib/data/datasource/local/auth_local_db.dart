@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 
 import 'storage_constants.dart';
 
-abstract class LocalStorage {
+abstract class AuthLocalStorage {
   void setUserStatus(UserStatus userStatus);
 
   UserStatus getUserStatus();
@@ -20,7 +20,6 @@ abstract class LocalStorage {
 
   String getUserName();
 
-
   void setUserId(int id);
 
   int getUserId();
@@ -28,10 +27,9 @@ abstract class LocalStorage {
   void setUserPhone(String phone);
 
   String getUserPhone();
-
 }
 
-class LocalStorageImpl implements LocalStorage {
+class AuthLocalStorageImpl implements AuthLocalStorage {
   @override
   UserStatus getUserStatus() {
     final box = Hive.box(StorageConstants.userStatusBox);
@@ -72,7 +70,8 @@ class LocalStorageImpl implements LocalStorage {
   @override
   void setRefreshToken(String token) {
     final box = Hive.box(StorageConstants.appBox);
-    box.put(StorageConstants.refreshToken, token);  }
+    box.put(StorageConstants.refreshToken, token);
+  }
 
   @override
   int getUserId() {
@@ -109,6 +108,4 @@ class LocalStorageImpl implements LocalStorage {
     final box = Hive.box(StorageConstants.appBox);
     box.put(StorageConstants.userPhone, phone);
   }
-
-
 }
