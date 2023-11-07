@@ -16,6 +16,8 @@ class AppDrawables {
   static const String close = '$icons/close.svg';
   static const String tick = '$icons/tick.svg';
 
+  static const String gallery = '$icons/gallery.svg';
+
   //~ My vehicle
   static const String wheel = '$icons/wheel.svg';
   static const String gear = '$icons/gear.svg';

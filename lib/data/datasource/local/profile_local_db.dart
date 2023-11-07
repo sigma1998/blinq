@@ -2,7 +2,7 @@
 import 'package:hive/hive.dart';
 
 // Project imports:
-import 'package:blinq/data/model/profile/profile_response_model.dart';
+import 'package:blinq/data/model/profile/response/profile_response_model.dart';
 import 'storage_constants.dart';
 
 abstract class ProfileLocalStorage {
@@ -24,9 +24,9 @@ class ProfileLocalStorageImpl implements ProfileLocalStorage {
   }
 
   @override
-  void setProfile(ProfileResponseModel token) {
+  void setProfile(ProfileResponseModel profile) {
     final box = Hive.box(StorageConstants.appBox);
-    box.put(StorageConstants.token, token);
+    box.put(StorageConstants.profile, profile);
   }
 
   //

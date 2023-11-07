@@ -6,6 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/date_picker_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/phone_text_field.dart';
@@ -14,91 +15,116 @@ import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
 import 'package:blinq/utils/custom_widgets/secondary_button.dart';
+import 'bloc/driver_editor_bloc.dart';
+import 'bloc/driver_editor_event.dart';
 
-class DriverEditorScreen extends StatelessWidget {
+class DriverEditorScreen extends StatefulWidget {
   //
   static const String route = '/driver_editor';
 
   const DriverEditorScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final bloc = context.read<ProfileBloc>();
+  State<DriverEditorScreen> createState() => _DriverEditorScreenState();
+}
 
+class _DriverEditorScreenState extends State<DriverEditorScreen> {
+  //
+  late DriverEditorBloc bloc;
+
+  @override
+  void initState() {
+    final profileBloc = context.read<ProfileBloc>();
+    bloc = DriverEditorBloc(profileBloc: profileBloc);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return KeyboardEscape(
-      child: Scaffold(
-        appBar: MyAppBar(title: 'strDriver'.tr()),
-        body: ListView(
-          padding: const EdgeInsets.symmetric(
-            vertical: 40,
-            horizontal: 32,
-          ),
-          physics: const BouncingScrollPhysics(),
-          children: [
-            NameTextField(
-              labelText: 'strFirstName'.tr(),
-              onChanged: (value) {},
-            ),
-            const SizedBox(height: 16),
-            NameTextField(
-              labelText: 'strLastName'.tr(),
-              onChanged: (value) {},
-            ),
-            const SizedBox(height: 16),
-            DatePickerTextField(
-              labelText: 'strDateBirthday'.tr(),
-              onDateChanged: (value) {},
-              maxDate: DateTime.now(),
-            ),
-            const SizedBox(height: 16),
-            NameTextField(
-              labelText: 'strAddress'.tr(),
-              onChanged: (value) {},
-            ),
-            const SizedBox(height: 16),
-            PickerTextField(
-              labelText: 'strCountry'.tr(),
-              onTap: () {},
-            ),
-            const SizedBox(height: 16),
-            PhoneTextField(
-              labelText: 'strPhoneNumber'.tr(),
-              onChanged: (value) {},
-            ),
-            const SizedBox(height: 16),
-            NameTextField(
-              labelText: 'strDrivingLicenseNumber'.tr(),
-              onChanged: (value) {},
-            ),
-            const SizedBox(height: 16),
-            PickerTextField(
-              labelText: 'strCategory'.tr(),
-              onTap: () {},
-            ),
-            const SizedBox(height: 16),
-            DatePickerTextField(
-              labelText: 'strDrivingLicenceValidTill'.tr(),
-              minDate: DateTime.now(),
-              onDateChanged: (date) {},
-            ),
-          ],
-        ),
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SecondaryButton(
-                onTap: () {},
-                label: 'strSave'.tr(),
-                padding: const EdgeInsets.symmetric(
-                  vertical: 8,
-                  horizontal: 60,
-                ),
+      child: BlocBuilder<DriverEditorBloc, DriverEditorState>(
+        bloc: bloc,
+        builder: (context, state) {
+          return Scaffold(
+            extendBody: true,
+            appBar: MyAppBar(title: 'strDriver'.tr()),
+            body: ListView(
+              padding: const EdgeInsets.symmetric(
+                vertical: 40,
+                horizontal: 32,
               ),
-            ],
-          ),
-        ),
+              physics: const BouncingScrollPhysics(),
+              children: [
+                NameTextField(
+                  labelText: 'strFirstName'.tr(),
+                  controller: bloc.firstNameController,
+                ),
+                const SizedBox(height: 16),
+                NameTextField(
+                  labelText: 'strLastName'.tr(),
+                  controller: bloc.lastNameController,
+                ),
+                const SizedBox(height: 16),
+                DatePickerTextField(
+                  labelText: 'strDateBirthday'.tr(),
+                  maxDate: DateTime.now(),
+                  controller: bloc.dateOfBirthController,
+                ),
+                const SizedBox(height: 16),
+                NameTextField(
+                  labelText: 'strAddress'.tr(),
+                  controller: bloc.addressController,
+                ),
+                const SizedBox(height: 16),
+                PickerTextField(
+                  labelText: 'strCountry'.tr(),
+                  controller: bloc.countryController,
+                  onTap: bloc.onSelectCountriesPressed,
+                ),
+                const SizedBox(height: 16),
+                PhoneTextField(
+                  labelText: 'strPhoneNumber'.tr(),
+                  controller: bloc.phoneNumberController,
+                ),
+                const SizedBox(height: 16),
+                NameTextField(
+                  labelText: 'strDrivingLicenseNumber'.tr(),
+                  controller: bloc.drivingLicenseNumberController,
+                ),
+                const SizedBox(height: 16),
+                PickerTextField(
+                  labelText: 'strCategory'.tr(),
+                  controller: bloc.categoryController,
+                  onTap: bloc.onSelectCategoryPressed,
+                ),
+                const SizedBox(height: 16),
+                DatePickerTextField(
+                  minDate: DateTime.now(),
+                  labelText: 'strDrivingLicenceValidTill'.tr(),
+                  controller: bloc.licenseDateOfExpiryController,
+                ),
+                const SizedBox(height: 90),
+              ],
+            ),
+            bottomNavigationBar: Padding(
+              padding: const EdgeInsets.only(bottom: 60),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SecondaryButton(
+                    onTap: () => bloc.add(OnSubmitDriver()),
+                    label: 'strSave'.tr(),
+                    isLoading: state.status == Status.loading,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8,
+                      horizontal: 60,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

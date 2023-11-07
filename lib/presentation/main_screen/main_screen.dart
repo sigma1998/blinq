@@ -28,12 +28,7 @@ class MainScreen extends StatelessWidget {
             children: const [
               HomeScreen(),
               ContactsScreen(),
-              IndexedStack(
-                children: [
-                  ProfileScreen(), // tab bar + внутри profile, profile body
-                  //SettingsScreen
-                ],
-              )
+              ProfileScreen(),
             ],
           ),
           bottomNavigationBar: Padding(

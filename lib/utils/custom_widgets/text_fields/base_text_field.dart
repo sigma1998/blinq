@@ -29,6 +29,7 @@ class BaseTextField extends StatefulWidget {
   final bool canClear;
   final bool isLoading;
   final bool isValid;
+  final bool isOutlined;
 
   final FocusNode? focusNode;
   final TextAlign textAlign;
@@ -86,6 +87,7 @@ class BaseTextField extends StatefulWidget {
     this.canClear = true,
     this.isLoading = false,
     this.isValid = true,
+    this.isOutlined = false,
     //
     this.focusNode,
     this.textAlign = TextAlign.start,
@@ -314,7 +316,10 @@ class _BaseTextFieldState extends State<BaseTextField> {
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(color: Colors.transparent),
+        borderSide: BorderSide(
+            color: widget.isOutlined
+                ? Theme.of(context).colorScheme.outlineVariant
+                : Colors.transparent),
       ),
       disabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),

@@ -13,8 +13,9 @@ class PhoneTextField extends StatelessWidget {
   //
   final String? labelText;
   final String? initialValue;
+  final TextEditingController controller;
 
-  final void Function(String) onChanged;
+  final void Function(String)? onChanged;
 
   final bool enabled;
   final bool autofocus;
@@ -22,7 +23,8 @@ class PhoneTextField extends StatelessWidget {
 
   const PhoneTextField({
     super.key,
-    required this.onChanged,
+    required this.controller,
+    this.onChanged,
     this.labelText,
     this.initialValue,
     //
@@ -43,7 +45,6 @@ class PhoneTextField extends StatelessWidget {
       keyboardType: TextInputType.phone,
       labelText: labelText ?? 'strPhoneNumber'.tr(),
       initialValue: MyStringHelper.phoneMask(initialValue),
-      onChanged: (text) => onChanged(MyStringHelper.removeNonNumbers(text)),
     );
   }
 }

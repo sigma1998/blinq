@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProfileState {
   Status get status => throw _privateConstructorUsedError;
   ProfileResponseModel? get profile => throw _privateConstructorUsedError;
+  File? get profileImage => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +32,11 @@ abstract class $ProfileStateCopyWith<$Res> {
           ProfileState value, $Res Function(ProfileState) then) =
       _$ProfileStateCopyWithImpl<$Res, ProfileState>;
   @useResult
-  $Res call({Status status, ProfileResponseModel? profile, Error? error});
+  $Res call(
+      {Status status,
+      ProfileResponseModel? profile,
+      File? profileImage,
+      Error? error});
 
   $ProfileResponseModelCopyWith<$Res>? get profile;
 }
@@ -51,6 +56,7 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
   $Res call({
     Object? status = null,
     Object? profile = freezed,
+    Object? profileImage = freezed,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -62,6 +68,10 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
               as ProfileResponseModel?,
+      profileImage: freezed == profileImage
+          ? _value.profileImage
+          : profileImage // ignore: cast_nullable_to_non_nullable
+              as File?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -90,7 +100,11 @@ abstract class _$$ProfileStateImplCopyWith<$Res>
       __$$ProfileStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Status status, ProfileResponseModel? profile, Error? error});
+  $Res call(
+      {Status status,
+      ProfileResponseModel? profile,
+      File? profileImage,
+      Error? error});
 
   @override
   $ProfileResponseModelCopyWith<$Res>? get profile;
@@ -109,6 +123,7 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? profile = freezed,
+    Object? profileImage = freezed,
     Object? error = freezed,
   }) {
     return _then(_$ProfileStateImpl(
@@ -120,6 +135,10 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
               as ProfileResponseModel?,
+      profileImage: freezed == profileImage
+          ? _value.profileImage
+          : profileImage // ignore: cast_nullable_to_non_nullable
+              as File?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -132,7 +151,10 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
 
 class _$ProfileStateImpl implements _ProfileState {
   const _$ProfileStateImpl(
-      {this.status = Status.initial, this.profile, this.error});
+      {this.status = Status.initial,
+      this.profile,
+      this.profileImage,
+      this.error});
 
   @override
   @JsonKey()
@@ -140,11 +162,13 @@ class _$ProfileStateImpl implements _ProfileState {
   @override
   final ProfileResponseModel? profile;
   @override
+  final File? profileImage;
+  @override
   final Error? error;
 
   @override
   String toString() {
-    return 'ProfileState(status: $status, profile: $profile, error: $error)';
+    return 'ProfileState(status: $status, profile: $profile, profileImage: $profileImage, error: $error)';
   }
 
   @override
@@ -154,11 +178,14 @@ class _$ProfileStateImpl implements _ProfileState {
             other is _$ProfileStateImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.profile, profile) || other.profile == profile) &&
+            (identical(other.profileImage, profileImage) ||
+                other.profileImage == profileImage) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, profile, error);
+  int get hashCode =>
+      Object.hash(runtimeType, status, profile, profileImage, error);
 
   @JsonKey(ignore: true)
   @override
@@ -171,12 +198,15 @@ abstract class _ProfileState implements ProfileState {
   const factory _ProfileState(
       {final Status status,
       final ProfileResponseModel? profile,
+      final File? profileImage,
       final Error? error}) = _$ProfileStateImpl;
 
   @override
   Status get status;
   @override
   ProfileResponseModel? get profile;
+  @override
+  File? get profileImage;
   @override
   Error? get error;
   @override

@@ -5,6 +5,7 @@ import 'package:blinq/data/datasource/remote/auth_api.dart';
 import 'package:blinq/data/datasource/remote/profile_api.dart';
 import 'package:blinq/domain/repositories/auth_repository.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
+import 'package:blinq/utils/image_crop.dart';
 import 'package:blinq/utils/services/media/media_service.dart';
 import 'package:blinq/utils/services/permission/permission_service.dart';
 import 'package:get_it/get_it.dart';
@@ -38,4 +39,7 @@ void setUpLocator() {
   getIt.registerLazySingleton<PermissionService>(() => PermissionService());
   getIt.registerLazySingleton<MediaService>(
       () => MediaService(permissionService: getIt<PermissionService>()));
+
+  ///
+  getIt.registerLazySingleton<ImageCropImpl>(() => ImageCropImpl());
 }

@@ -27,7 +27,7 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   @override
   void initState() {
-    context.read<ProfileBloc>().add(OnFetch());
+    context.read<ProfileBloc>().add(OnFetchProfile());
     _tabController = TabController(length: 2, vsync: this);
     super.initState();
   }

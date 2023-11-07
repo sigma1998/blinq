@@ -15,7 +15,7 @@ class DialogItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onSelect,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -8,7 +8,7 @@ class ProfileImageCard extends StatelessWidget {
   //
   final String title;
   final String desc;
-  final String image;
+  final Widget image;
 
   final VoidCallback onTap;
 
@@ -30,11 +30,7 @@ class ProfileImageCard extends StatelessWidget {
       padding: EdgeInsets.zero,
       child: Stack(
         children: [
-          Image.asset(
-            image,
-            height: 163,
-            width: double.infinity,
-          ),
+          image,
           Padding(
             padding: const EdgeInsets.symmetric(
               vertical: 20,

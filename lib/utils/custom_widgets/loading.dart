@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Loading extends StatelessWidget {
+  //
   const Loading({Key? key}) : super(key: key);
 
   @override
@@ -11,7 +12,9 @@ class Loading extends StatelessWidget {
     return Center(
       child: Platform.isIOS
           ? const CupertinoActivityIndicator()
-          : const CircularProgressIndicator(),
+          : const CircularProgressIndicator(
+              color: Colors.white,
+            ),
     );
   }
 }

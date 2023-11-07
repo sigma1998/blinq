@@ -3,20 +3,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:blinq/utils/custom_widgets/custom_textfield.dart';
+import 'package:blinq/utils/custom_widgets/text_fields/base_text_field.dart';
 
 class SearchTextField extends StatelessWidget {
   //
   final String? hintText;
-  final void Function(String) onChanged;
+
+  final void Function(String)? onChanged;
   final TextEditingController controller;
 
   final FocusNode? focusNode;
 
   const SearchTextField({
     super.key,
-    required this.onChanged,
     required this.controller,
+    this.onChanged,
     //
     this.hintText,
     //
@@ -25,33 +26,19 @@ class SearchTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFieldRoundedWidget(
+    return BaseTextField(
       key: key,
-      hint: hintText,
-      suffix: suffixIcon,
+      isOutlined: true,
+      hintText: hintText,
       onChanged: onChanged,
       focusNode: focusNode,
-      textController: controller,
-      inputAction: TextInputAction.search,
-    );
-  }
-
-  Widget get suffixIcon {
-    return GestureDetector(
-      onTap: onClear,
-      child: const Padding(
-        padding: EdgeInsets.only(right: 10),
-        child: Icon(
-          CupertinoIcons.xmark_circle,
-          size: 28,
-          color: Colors.grey,
-        ),
-      ),
+      controller: controller,
+      textInputAction: TextInputAction.search,
     );
   }
 
   void onClear() {
     controller.clear();
-    onChanged.call('');
+    onChanged?.call('');
   }
 }

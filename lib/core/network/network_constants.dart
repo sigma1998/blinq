@@ -15,6 +15,7 @@ class NetworkConstants {
   ///
 
   static String profile = 'profile/';
+  static String profileData = '${profile}with/all/datas/';
 
   static String changeEmail = '${profile}change/email/';
   static String verifyEmail = '${profile}verify/changed/email/';
@@ -23,7 +24,11 @@ class NetworkConstants {
 
   static String insurance = '${profile}insurance/update/';
   static String policyHolder = '${profile}policy/holder/update/';
+
   static String vehicle = '${profile}vehicle/update/';
   static String history = 'accident/breakdown/history/?page=1';
   static String deleteReport = 'accident/breakdown/delete';
+
+  static String car = '${profile}vehicle/update/';
+  static String userVehicle = '${profile}vehicle/datas/update/';
 }
