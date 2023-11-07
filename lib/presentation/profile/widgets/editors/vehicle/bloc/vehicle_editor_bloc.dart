@@ -28,7 +28,6 @@ class VehicleEditorBloc extends Bloc<VehicleEditorEvent, VehicleEditorState> {
   final ProfileRepository repository;
 
   final makeTypeController = TextEditingController();
-  final modelSeriesController = TextEditingController();
   final engineNumberController = TextEditingController();
   final countryOfRegistrationController = TextEditingController();
   final trailerRegistrationNumberController = TextEditingController();
@@ -43,8 +42,6 @@ class VehicleEditorBloc extends Bloc<VehicleEditorEvent, VehicleEditorState> {
 
   void initializeFields() {
     makeTypeController.text = profileBloc.state.profile?.car?.makeType ?? '';
-    modelSeriesController.text =
-        profileBloc.state.profile?.car?.modelSeries ?? '';
     engineNumberController.text =
         profileBloc.state.profile?.car?.engineNumber ?? '';
     countryOfRegistrationController.text =
@@ -62,7 +59,6 @@ class VehicleEditorBloc extends Bloc<VehicleEditorEvent, VehicleEditorState> {
         // carId: ,
         // colorId: ,
         makeType: makeTypeController.text,
-        modelSeries: modelSeriesController.text,
         engineNumber: engineNumberController.text,
         countryOfRegistration: countryOfRegistrationController.text,
         trailerRegistrationNumber: trailerRegistrationNumberController.text,

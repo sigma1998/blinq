@@ -65,7 +65,7 @@ class _VehicleEditorScreenState extends State<VehicleEditorScreen> {
                 NameTextField(
                   labelText:
                       '${'strRegistrationNumber'.tr()} (${'strMotor'.tr()})',
-                  controller: bloc.modelSeriesController,
+                  controller: bloc.engineNumberController,
                 ),
                 const SizedBox(height: 16),
                 PickerTextField(
