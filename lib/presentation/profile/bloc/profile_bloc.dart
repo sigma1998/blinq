@@ -23,6 +23,7 @@ import 'package:blinq/presentation/profile/widgets/editors/vehicle/vehicle_edito
 import 'package:blinq/presentation/reports/reports_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/image_crop.dart';
 import 'profile_event.dart';
 
 part 'profile_state.dart';
@@ -32,10 +33,12 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   //
   final ProfileRepository repository;
   final IMediaService mediaService;
+  final ImageCrop imageCrop;
 
   ProfileBloc({
     required this.repository,
     required this.mediaService,
+    required this.imageCrop,
   }) : super(const ProfileState()) {
     on<OnFetchProfile>(_onFetchProfile);
     on<OnUpdateProfileImage>(_onUpdateProfileImage);
@@ -75,24 +78,31 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   }
 
   Future<void> imagePickerPressed() async {
-    await NavigationService.showMyCupertinoModalPopup(
+    final result = await NavigationService.showMyCupertinoModalPopup(
       actions: [
         MyCupertinoActionSheetAction(
           label: 'strTakeImage'.tr(),
           onPressed: () async {
-            final file =
+            final imagePath =
                 await mediaService.pickImagePath(AppImageSource.camera);
+            final result = await imageCrop.cropImage(imagePath);
+            NavigationService.back(result: result);
           },
         ),
         MyCupertinoActionSheetAction(
           label: 'strSelectPhoto'.tr(),
           onPressed: () async {
-            final file =
+            final imagePath =
                 await mediaService.pickImagePath(AppImageSource.gallery);
+            final result = await imageCrop.cropImage(imagePath);
+            NavigationService.back(result: result);
           },
         ),
       ],
     );
+    if (result != null) {
+      add(OnUpdateProfileImage(file: result));
+    }
   }
 
   //* My Information

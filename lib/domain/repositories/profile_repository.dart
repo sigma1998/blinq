@@ -3,8 +3,8 @@ import 'dart:io';
 
 import 'package:blinq/data/datasource/local/profile_local_db.dart';
 import 'package:blinq/data/datasource/remote/profile_api.dart';
+import 'package:blinq/data/model/car/request/car_request_model.dart';
 import 'package:blinq/data/model/insurance/request/insurance_request_model.dart';
-import 'package:blinq/data/model/my_vehicle/request/my_vehicle_request_model.dart';
 import 'package:blinq/data/model/policy_holder/request/policy_holder_request_model.dart';
 import 'package:blinq/data/model/profile/request/profile_request_model.dart';
 import 'package:blinq/data/model/profile/response/profile_response_model.dart';
@@ -20,10 +20,12 @@ abstract class ProfileRepository {
 
   //
   Future<void> updatePolicyHolder(PolicyHolderRequestModel policyHolder);
-  Future<void> updateVehicle(VehicleRequestModel vehicle);
-  Future<void> updateMyVehicle(MyVehicleRequestModel myVehicle);
+  Future<void> updateCar(CarRequestModel vehicle);
+  Future<void> updateUserVehicle(UserVehicleRequestModel myVehicle);
   Future<void> updateInsurance(InsuranceRequestModel insurance);
+  Future<void> updateMyCar(UserVehicleRequestModel myVehicle);
 
+  //
   Future<void> updatePassword(String oldPassword, String newPassword);
   Future<void> updateEmail(String email);
   Future<void> verifyEmail(String code);
@@ -94,18 +96,18 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<void> updateVehicle(VehicleRequestModel vehicle) {
+  Future<void> updateCar(CarRequestModel vehicle) {
     try {
-      return api.updateVehicle(vehicle);
+      return api.updateCar(vehicle);
     } catch (e) {
       rethrow;
     }
   }
 
   @override
-  Future<void> updateMyVehicle(MyVehicleRequestModel myVehicle) {
+  Future<void> updateUserVehicle(UserVehicleRequestModel myVehicle) {
     try {
-      return api.updateMyVehicle(myVehicle);
+      return api.updateUserVehicle(myVehicle);
     } catch (e) {
       rethrow;
     }
@@ -115,6 +117,15 @@ class ProfileRepositoryImpl implements ProfileRepository {
   Future<void> updateInsurance(InsuranceRequestModel insurance) {
     try {
       return api.updateInsurance(insurance);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> updateMyCar(UserVehicleRequestModel myVehicle) {
+    try {
+      return api.updateUserVehicle(myVehicle);
     } catch (e) {
       rethrow;
     }

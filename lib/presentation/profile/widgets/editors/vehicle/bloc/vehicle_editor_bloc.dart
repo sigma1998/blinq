@@ -9,8 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:blinq/data/model/vehicle/request/vehicle_request_model.dart';
-import 'package:blinq/presentation/countries_dialog/countries_dialog.dart';
+import 'package:blinq/presentation/dialogs/countries_dialog/countries_dialog.dart';
+import 'package:blinq/data/model/car/request/car_request_model.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
@@ -38,7 +38,7 @@ class VehicleEditorBloc extends Bloc<VehicleEditorEvent, VehicleEditorState> {
   FutureOr<void> _onSubmitVehicle(
       OnSubmitVehicle event, Emitter<VehicleEditorState> emit) async {
     try {
-      final vehicle = VehicleRequestModel(
+      final vehicle = CarRequestModel(
         // carId: ,
         // colorId: ,
         makeType: makeTypeController.text,
@@ -51,7 +51,7 @@ class VehicleEditorBloc extends Bloc<VehicleEditorEvent, VehicleEditorState> {
       );
 
       emit(const VehicleEditorState(status: Status.loading));
-      await repository.updateVehicle(vehicle);
+      await repository.updateCar(vehicle);
       emit(const VehicleEditorState(status: Status.success));
       NavigationService.back();
     } catch (e) {

@@ -4,6 +4,7 @@ import 'package:blinq/data/model/profile/driver_license/driver_license_type.dart
 import 'package:blinq/data/model/profile/response/profile_response_model.dart';
 import 'package:blinq/presentation/main_screen/main_screen_bloc.dart';
 import 'package:blinq/presentation/success_video/success_video_bloc.dart';
+import 'package:blinq/utils/image_crop.dart';
 import 'package:blinq/utils/services/media/media_service.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -56,6 +57,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<ProfileBloc>(
           create: (context) => ProfileBloc(
+            imageCrop: getIt<ImageCropImpl>(),
             mediaService: getIt<MediaService>(),
             repository: getIt<ProfileRepositoryImpl>(),
           ),

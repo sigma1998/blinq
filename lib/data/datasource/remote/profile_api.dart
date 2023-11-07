@@ -3,8 +3,8 @@ import 'dart:io';
 
 import 'package:blinq/core/network/api_service.dart';
 import 'package:blinq/core/network/network_constants.dart';
+import 'package:blinq/data/model/car/request/car_request_model.dart';
 import 'package:blinq/data/model/insurance/request/insurance_request_model.dart';
-import 'package:blinq/data/model/my_vehicle/request/my_vehicle_request_model.dart';
 import 'package:blinq/data/model/policy_holder/request/policy_holder_request_model.dart';
 import 'package:blinq/data/model/profile/request/profile_request_model.dart';
 import 'package:blinq/data/model/profile/response/profile_response_model.dart';
@@ -18,9 +18,11 @@ abstract class ProfileApi {
   Future<void> updateProfileImage(File file);
 
   Future<void> updatePolicyHolder(PolicyHolderRequestModel policyHolder);
-  Future<void> updateVehicle(VehicleRequestModel vehicle);
-  Future<void> updateMyVehicle(MyVehicleRequestModel myVehicle);
+  Future<void> updateCar(CarRequestModel vehicle);
+  Future<void> updateUserVehicle(UserVehicleRequestModel myVehicle);
   Future<void> updateInsurance(InsuranceRequestModel vehicle);
+  //TODO: add MyCarModel
+  Future<void> updateMyCar(CarRequestModel myCar);
 
   //
 
@@ -43,7 +45,7 @@ class ProfileApiImpl implements ProfileApi {
   @override
   Future<ProfileResponseModel> fetch() async {
     try {
-      final res = await api.get(NetworkConstants.profile);
+      final res = await api.get(NetworkConstants.profileData);
       return ProfileResponseModel.fromJson(res);
     } catch (e) {
       rethrow;
@@ -68,7 +70,8 @@ class ProfileApiImpl implements ProfileApi {
     try {
       final image = await MultipartFile.fromFile(file.path,
           filename: file.path.split('/').last);
-      return api.patch(NetworkConstants.profile, data: {'image': image});
+      var formData = FormData.fromMap({'image': image});
+      return api.patch(NetworkConstants.profile, data: formData);
     } catch (e) {
       rethrow;
     }
@@ -89,18 +92,18 @@ class ProfileApiImpl implements ProfileApi {
   }
 
   @override
-  Future<void> updateVehicle(VehicleRequestModel vehicle) {
+  Future<void> updateCar(CarRequestModel vehicle) {
     try {
-      return api.patch(NetworkConstants.vehicle, data: vehicle.toJson());
+      return api.patch(NetworkConstants.car, data: vehicle.toJson());
     } catch (e) {
       rethrow;
     }
   }
 
   @override
-  Future<void> updateMyVehicle(MyVehicleRequestModel myVehicle) {
+  Future<void> updateUserVehicle(UserVehicleRequestModel myVehicle) {
     try {
-      return api.patch(NetworkConstants.myVehicle, data: myVehicle.toJson());
+      return api.patch(NetworkConstants.userVehicle, data: myVehicle.toJson());
     } catch (e) {
       rethrow;
     }
@@ -110,6 +113,16 @@ class ProfileApiImpl implements ProfileApi {
   Future<void> updateInsurance(InsuranceRequestModel vehicle) {
     try {
       return api.patch(NetworkConstants.insurance, data: vehicle.toJson());
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> updateMyCar(CarRequestModel myCar) {
+    try {
+      //TODO: add NetworkConstants
+      return api.patch(NetworkConstants.car, data: myCar.toJson());
     } catch (e) {
       rethrow;
     }

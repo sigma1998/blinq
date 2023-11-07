@@ -28,13 +28,17 @@ class ProfileResponseModelAdapter extends TypeAdapter<ProfileResponseModel> {
       driverLicense: fields[8] as DriverLicenseType?,
       driverLicenseNumber: fields[9] as String?,
       driverLicenseExpiredDate: fields[10] as String?,
+      car: fields[12] as CarResponseModel?,
+      policyHolder: fields[13] as PolicyHolderResponseModel?,
+      insurance: fields[14] as InsuranceResponseModel?,
+      userVehicle: fields[15] as UserVehicleResponseModel?,
     );
   }
 
   @override
   void write(BinaryWriter writer, ProfileResponseModel obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(15)
       ..writeByte(0)
       ..write(obj.firstName)
       ..writeByte(1)
@@ -56,7 +60,15 @@ class ProfileResponseModelAdapter extends TypeAdapter<ProfileResponseModel> {
       ..writeByte(9)
       ..write(obj.driverLicenseNumber)
       ..writeByte(10)
-      ..write(obj.driverLicenseExpiredDate);
+      ..write(obj.driverLicenseExpiredDate)
+      ..writeByte(12)
+      ..write(obj.car)
+      ..writeByte(13)
+      ..write(obj.policyHolder)
+      ..writeByte(14)
+      ..write(obj.insurance)
+      ..writeByte(15)
+      ..write(obj.userVehicle);
   }
 
   @override
@@ -91,6 +103,21 @@ _$ProfileResponseModelImpl _$$ProfileResponseModelImplFromJson(
           _$DriverLicenseTypeEnumMap, json['driver_license']),
       driverLicenseNumber: json['driver_license_number'] as String?,
       driverLicenseExpiredDate: json['driver_license_expired_date'] as String?,
+      car: json['car'] == null
+          ? null
+          : CarResponseModel.fromJson(json['car'] as Map<String, dynamic>),
+      policyHolder: json['policy_holder'] == null
+          ? null
+          : PolicyHolderResponseModel.fromJson(
+              json['policy_holder'] as Map<String, dynamic>),
+      insurance: json['insurance'] == null
+          ? null
+          : InsuranceResponseModel.fromJson(
+              json['insurance'] as Map<String, dynamic>),
+      userVehicle: json['usersvehicledatas'] == null
+          ? null
+          : UserVehicleResponseModel.fromJson(
+              json['usersvehicledatas'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ProfileResponseModelImplToJson(
@@ -109,6 +136,10 @@ Map<String, dynamic> _$$ProfileResponseModelImplToJson(
       'driver_license': _$DriverLicenseTypeEnumMap[instance.driverLicense],
       'driver_license_number': instance.driverLicenseNumber,
       'driver_license_expired_date': instance.driverLicenseExpiredDate,
+      'car': instance.car,
+      'policy_holder': instance.policyHolder,
+      'insurance': instance.insurance,
+      'usersvehicledatas': instance.userVehicle,
     };
 
 const _$DriverLicenseTypeEnumMap = {

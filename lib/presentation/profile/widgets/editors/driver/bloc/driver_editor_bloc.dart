@@ -2,9 +2,6 @@
 import 'dart:async';
 
 // Flutter imports:
-import 'package:blinq/presentation/countries_dialog/countries_dialog.dart';
-import 'package:blinq/presentation/license_category_dialog/license_category_dialog.dart';
-import 'package:blinq/utils/string_helper.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -12,11 +9,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
+import 'package:blinq/presentation/dialogs/license_category_dialog/license_category_dialog.dart';
+import 'package:blinq/presentation/dialogs/countries_dialog/countries_dialog.dart';
 import 'package:blinq/data/model/profile/driver_license/driver_license_type.dart';
 import 'package:blinq/data/model/profile/request/profile_request_model.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/string_helper.dart';
 import 'driver_editor_event.dart';
 
 part 'driver_editor_state.dart';

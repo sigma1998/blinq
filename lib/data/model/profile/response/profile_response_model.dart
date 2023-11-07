@@ -2,10 +2,14 @@
 
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive/hive.dart';
 
 // Project imports:
+import 'package:blinq/data/model/car/response/car_response_model.dart';
+import 'package:blinq/data/model/insurance/response/insurance_response_model.dart';
+import 'package:blinq/data/model/policy_holder/response/policy_holder_response_model.dart';
+import 'package:blinq/data/model/vehicle/response/vehicle_response_model.dart';
 import 'package:blinq/data/model/profile/driver_license/driver_license_type.dart';
-import 'package:hive/hive.dart';
 
 part 'profile_response_model.freezed.dart';
 part 'profile_response_model.g.dart';
@@ -14,6 +18,8 @@ part 'profile_response_model.g.dart';
 @HiveType(typeId: 3)
 class ProfileResponseModel with _$ProfileResponseModel {
   //
+  const ProfileResponseModel._();
+
   const factory ProfileResponseModel({
     int? id,
     String? image,
@@ -35,7 +41,17 @@ class ProfileResponseModel with _$ProfileResponseModel {
     @JsonKey(name: 'driver_license_expired_date')
     @HiveField(11)
     String? driverLicenseExpiredDate,
+    @HiveField(12) @JsonKey() CarResponseModel? car,
+    @HiveField(13)
+    @JsonKey(name: 'policy_holder')
+    PolicyHolderResponseModel? policyHolder,
+    @HiveField(14) @JsonKey() InsuranceResponseModel? insurance,
+    @HiveField(15)
+    @JsonKey(name: 'usersvehicledatas')
+    UserVehicleResponseModel? userVehicle,
   }) = _ProfileResponseModel;
+
+  String get fullName => '$firstName $lastName';
 
   factory ProfileResponseModel.fromJson(Map<String, dynamic> json) =>
       _$ProfileResponseModelFromJson(json);

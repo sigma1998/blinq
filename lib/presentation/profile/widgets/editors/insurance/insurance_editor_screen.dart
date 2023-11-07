@@ -80,10 +80,9 @@ class InsuranceEditorScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 NameTextField(
-                    labelText: 'strAddress'.tr(),
-                    controller: TextEditingController(
-                      text: '01.01.2022',
-                    )),
+                  labelText: 'strAddress'.tr(),
+                  controller: bloc.addressController,
+                ),
                 const SizedBox(height: 16),
                 PickerTextField(
                   labelText: 'strCountry'.tr(),
@@ -92,10 +91,9 @@ class InsuranceEditorScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 NameTextField(
-                    labelText: 'strTelEmail'.tr(),
-                    controller: TextEditingController(
-                      text: '01.01.2022',
-                    )),
+                  labelText: 'strTelEmail'.tr(),
+                  controller: bloc.emailController,
+                ),
                 const SizedBox(height: 16),
                 PickerTextField(
                   labelText: 'strPolicCover'.tr(),

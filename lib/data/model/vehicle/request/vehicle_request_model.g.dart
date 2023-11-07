@@ -6,29 +6,20 @@ part of 'vehicle_request_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VehicleRequestModelImpl _$$VehicleRequestModelImplFromJson(
+_$UserVehicleRequestModelImpl _$$UserVehicleRequestModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$VehicleRequestModelImpl(
-      carId: json['car_id'] as int?,
-      colorId: json['color_id'] as int?,
-      modelSeries: json['model_series'] as String?,
-      makeType: json['make_type'] as String?,
-      engineNumber: json['engine_number'] as String?,
-      countryOfRegistration: json['country_of_registration'] as String?,
-      trailerRegistrationNumber: json['trailer_registration_number'] as String?,
-      trailerCountryOfRegistration:
-          json['trailer_country_of_registration'] as String?,
+    _$UserVehicleRequestModelImpl(
+      traveledKm: json['traveled_km'] as String?,
+      nextTechnical: json['next_technical'] as String?,
+      oilReplacement: json['oil_replacement'] as String?,
+      batteryReplacementDate: json['battery_replacement_date'] as String?,
     );
 
-Map<String, dynamic> _$$VehicleRequestModelImplToJson(
-        _$VehicleRequestModelImpl instance) =>
+Map<String, dynamic> _$$UserVehicleRequestModelImplToJson(
+        _$UserVehicleRequestModelImpl instance) =>
     <String, dynamic>{
-      'car_id': instance.carId,
-      'color_id': instance.colorId,
-      'model_series': instance.modelSeries,
-      'make_type': instance.makeType,
-      'engine_number': instance.engineNumber,
-      'country_of_registration': instance.countryOfRegistration,
-      'trailer_registration_number': instance.trailerRegistrationNumber,
-      'trailer_country_of_registration': instance.trailerCountryOfRegistration,
+      'traveled_km': instance.traveledKm,
+      'next_technical': instance.nextTechnical,
+      'oil_replacement': instance.oilReplacement,
+      'battery_replacement_date': instance.batteryReplacementDate,
     };

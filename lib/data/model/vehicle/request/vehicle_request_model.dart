@@ -7,21 +7,15 @@ part 'vehicle_request_model.freezed.dart';
 part 'vehicle_request_model.g.dart';
 
 @freezed
-class VehicleRequestModel with _$VehicleRequestModel {
+class UserVehicleRequestModel with _$UserVehicleRequestModel {
   //
-  const factory VehicleRequestModel({
-    @JsonKey(name: 'car_id') int? carId,
-    @JsonKey(name: 'color_id') int? colorId,
-    @JsonKey(name: 'model_series') String? modelSeries,
-    @JsonKey(name: 'make_type') String? makeType,
-    @JsonKey(name: 'engine_number') String? engineNumber,
-    @JsonKey(name: 'country_of_registration') String? countryOfRegistration,
-    @JsonKey(name: 'trailer_registration_number')
-    String? trailerRegistrationNumber,
-    @JsonKey(name: 'trailer_country_of_registration')
-    String? trailerCountryOfRegistration,
-  }) = _VehicleRequestModel;
+  const factory UserVehicleRequestModel({
+    @JsonKey(name: 'traveled_km') String? traveledKm,
+    @JsonKey(name: 'next_technical') String? nextTechnical,
+    @JsonKey(name: 'oil_replacement') String? oilReplacement,
+    @JsonKey(name: 'battery_replacement_date') String? batteryReplacementDate,
+  }) = _UserVehicleRequestModel;
 
-  factory VehicleRequestModel.fromJson(Map<String, dynamic> json) =>
-      _$VehicleRequestModelFromJson(json);
+  factory UserVehicleRequestModel.fromJson(Map<String, dynamic> json) =>
+      _$UserVehicleRequestModelFromJson(json);
 }
