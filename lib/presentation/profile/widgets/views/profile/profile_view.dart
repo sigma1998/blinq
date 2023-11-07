@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:blinq/utils/custom_widgets/loading.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -21,46 +23,50 @@ class ProfileView extends StatelessWidget {
 
     return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
-        return ListView(
-          physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsets.all(16),
-          children: [
-            const SizedBox(height: 38),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                MyImage(
-                  state.profile?.image ?? '',
-                  width: 86,
-                  height: 86,
-                  onChangeImage: bloc.imagePickerPressed,
-                ),
-              ],
-            ),
-            const SizedBox(height: 6),
-            Text(
-              '${state.profile?.firstName} ${state.profile?.lastName}',
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 54),
+        final isLoading = state.status == Status.loading;
 
-            //& Info & Policy
+        return isLoading
+            ? const Loading()
+            : ListView(
+                physics: const BouncingScrollPhysics(),
+                padding: const EdgeInsets.all(16),
+                children: [
+                  const SizedBox(height: 38),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      MyImage(
+                        state.profile?.image ?? '',
+                        width: 86,
+                        height: 86,
+                        onChangeImage: bloc.imagePickerPressed,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    '${state.profile?.firstName} ${state.profile?.lastName}',
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 54),
 
-            const ProfileInfoWidget(),
-            const SizedBox(height: 94),
-            const ProfileVehicleWidget(),
-            const SizedBox(height: 20),
+                  //& Info & Policy
 
-            //* Reports & History
-            const ProfileReportCard(),
-            const SizedBox(height: 54),
+                  const ProfileInfoWidget(),
+                  const SizedBox(height: 94),
+                  const ProfileVehicleWidget(),
+                  const SizedBox(height: 20),
 
-            const SafeArea(
-              top: false,
-              child: SizedBox(height: 16),
-            ),
-          ],
-        );
+                  //* Reports & History
+                  const ProfileReportCard(),
+                  const SizedBox(height: 54),
+
+                  const SafeArea(
+                    top: false,
+                    child: SizedBox(height: 16),
+                  ),
+                ],
+              );
       },
     );
   }

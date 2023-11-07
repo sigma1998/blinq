@@ -1,13 +1,13 @@
 // Flutter imports:
-import 'package:blinq/app/locator.dart';
-import 'package:blinq/utils/generic_bloc_state.dart';
-import 'package:blinq/utils/services/permission/permission_service.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
+import 'package:blinq/app/locator.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/services/permission/permission_service.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/custom_widgets/toggle.dart';
 import 'package:blinq/utils/custom_widgets/app_btn.dart';
