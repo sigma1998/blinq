@@ -69,8 +69,8 @@ class ProfileInfoWidget extends StatelessWidget {
             const SizedBox(height: 10),
             ProfileImageCard(
               title: 'strMyCar'.tr(),
-              desc: 'adsfadfs',
               onTap: bloc.onMyCarPressed,
+              desc: '${state.profile?.car?.brand}',
               image: Align(
                 alignment: Alignment.centerRight,
                 child: Image.asset(

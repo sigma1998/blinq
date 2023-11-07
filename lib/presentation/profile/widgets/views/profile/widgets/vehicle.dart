@@ -20,76 +20,83 @@ class ProfileVehicleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = context.read<ProfileBloc>();
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
+    return BlocBuilder<ProfileBloc, ProfileState>(
+      builder: (context, state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: Text(
-                'strMyVehicle'.tr(),
-                style: Theme.of(context).textTheme.titleSmall,
-              ),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'strMyVehicle'.tr(),
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: bloc.onMyVehiclePressed,
+                  child: SvgPicture.asset(
+                    AppDrawables.edit,
+                  ),
+                ),
+              ],
             ),
-            GestureDetector(
-              onTap: bloc.onMyVehiclePressed,
-              child: SvgPicture.asset(
-                AppDrawables.edit,
-              ),
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                Expanded(
+                  child: ProfileVehicleCard(
+                    icon: AppDrawables.wheel,
+                    unit: 'km',
+                    desc: 'strAllTime'.tr(),
+                    title: 'strKMTravelled'.tr(),
+                    value: '${state.profile?.userVehicle?.traveledKm}',
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: ProfileVehicleCard(
+                    icon: AppDrawables.gear,
+                    unit: 'strDaysLeft'.tr(),
+                    title: 'strNextTechnicalins'.tr(),
+                    value: '${state.profile?.userVehicle?.nextTechnical}',
+                    desc:
+                        '${state.profile?.userVehicle?.nextTechnicalUpdatedDate}',
+                  ),
+                ),
+              ],
             ),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                Expanded(
+                  child: ProfileVehicleCard(
+                    icon: AppDrawables.oil,
+                    unit: 'strKmLeft'.tr(),
+                    title: 'strOilReplacement'.tr(),
+                    value: '${state.profile?.userVehicle?.oilReplacement}',
+                    desc:
+                        '${'strLastReplacement'.tr()} ${state.profile?.userVehicle?.oilReplacementUpdatedDate}',
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: ProfileVehicleCard(
+                    unit: 'strDaysLeft'.tr(),
+                    title: 'strBatteryReplacement'.tr(),
+                    icon: AppDrawables.batteryReplacement,
+                    value: '${state.profile?.userVehicle?.batteryReplacement}',
+                    desc:
+                        '${'strLastReplacement'.tr()} ${state.profile?.userVehicle?.batteryReplacementUpdatedDate}',
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            const ProfileReportCard(),
           ],
-        ),
-        const SizedBox(height: 20),
-        Row(
-          children: [
-            Expanded(
-              child: ProfileVehicleCard(
-                icon: AppDrawables.wheel,
-                title: 'strKMTravelled'.tr(),
-                desc: 'strAllTime'.tr(),
-                value: '',
-                unit: 'km',
-              ),
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: ProfileVehicleCard(
-                icon: AppDrawables.gear,
-                title: 'strNextTechnicalins'.tr(),
-                desc: 'View your vehicle details',
-                value: '',
-                unit: 'days left',
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 10),
-        Row(
-          children: [
-            Expanded(
-              child: ProfileVehicleCard(
-                icon: AppDrawables.oil,
-                title: 'strOilReplacement'.tr(),
-                desc: 'View your vehicle details',
-                value: '',
-                unit: 'km',
-              ),
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: ProfileVehicleCard(
-                icon: AppDrawables.batteryReplacement,
-                title: 'strBatteryReplacement'.tr(),
-                desc: 'View your vehicle details',
-                value: '',
-                unit: 'km',
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 20),
-        const ProfileReportCard(),
-      ],
+        );
+      },
     );
   }
 }

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:io';
 
 // Package imports:
+import 'package:blinq/presentation/dialogs/qr_dialog/qr_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -123,7 +124,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       NavigationService.pushNamed(routeName: MyCarEditorScreen.route);
 
   void onQrCodePressed() =>
-      NavigationService.pushNamed(routeName: DriverEditorScreen.route);
+      NavigationService.showDialog(dialog: const QrDialog());
 
   //& My Vehicle
 
