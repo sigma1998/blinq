@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:blinq/app/locator.dart';
+import 'package:blinq/domain/repositories/auth_repository.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/services/permission/permission_service.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,7 @@ class _SettingsViewState extends State<SettingsView> {
     bloc = SettingsBloc(
       profileBloc: profileBloc,
       permissionService: getIt<PermissionService>(),
+      authRepository: getIt<AuthRepositoryImpl>()
     );
     super.initState();
   }
