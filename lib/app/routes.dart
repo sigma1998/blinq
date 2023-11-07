@@ -33,7 +33,7 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
 
     //^ Settings
     EmailEditorScreen.route: (context) => EmailEditorScreen(),
-    LanguageScreen.route: (context) => LanguageScreen(),
+    LanguageScreen.route: (context) => const LanguageScreen(),
     PasswordEditorScreen.route: (context) => const PasswordEditorScreen(),
 
     //* Reports

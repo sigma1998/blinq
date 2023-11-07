@@ -1,6 +1,5 @@
 // Dart imports:
 import 'dart:async';
-import 'dart:ui';
 
 // Project imports:
 import 'package:blinq/domain/repositories/profile_repository.dart';
@@ -46,17 +45,20 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
 
   LanguageBloc({required this.repository}) : super(const LanguageState()) {
     on<OnLanguageChanged>(_onLanguageChanged);
+    on<Init>(_init);
   }
 
   FutureOr<void> _onLanguageChanged(
       OnLanguageChanged event, Emitter<LanguageState> emit) async {
     try {
-      emit(const LanguageState(status: Status.loading));
-      event.context.setLocale(Locale(event.lang.code));
+      emit(state.copyWith(lang: event.lang));
       await repository.updateLanguage(event.lang.code);
-      emit(LanguageState(lang: event.lang, status: Status.success));
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }
+  }
+
+  FutureOr<void> _init(Init event, Emitter<LanguageState> emit) {
+    emit(state.copyWith(lang: event.lang));
   }
 }
