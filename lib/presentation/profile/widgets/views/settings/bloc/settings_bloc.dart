@@ -2,6 +2,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
+import 'package:blinq/presentation/delete_account_sheet/delete_account_sheet.dart';
 import 'package:blinq/presentation/email_editor/email_editor_screen.dart';
 import 'package:blinq/presentation/language/language_screen.dart';
 import 'package:blinq/presentation/password_editor/password_editor_screen.dart';
@@ -39,7 +40,7 @@ class SettingsBloc extends Bloc<SettingsEvent, GenericBlocState<bool>> {
   }
 
   void onDeleteAccount() {
-    // TODO: implement method
+    NavigationService.showBottomSheet(sheet: const DeleteAccountSheet());
   }
 
   void onLogoutPressed() {

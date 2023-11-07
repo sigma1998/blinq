@@ -9,6 +9,8 @@ class NetworkConstants {
   static String getVerificationCode = '/send/code/for/reset/password/';
   static String resetPassword = 'reset/password/';
   static String deleteUser(String id) => 'user/$id/';
+  static String verifyDeleteUser(String code) =>
+      'user/accept/delete/request/$code/';
 
   ///
   /// Profile

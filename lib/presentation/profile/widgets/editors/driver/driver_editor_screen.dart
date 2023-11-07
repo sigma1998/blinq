@@ -114,8 +114,8 @@ class _DriverEditorScreenState extends State<DriverEditorScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SecondaryButton(
-                    onTap: () => bloc.add(OnSubmitDriver()),
                     label: 'strSave'.tr(),
+                    onTap: () => bloc.add(OnSubmitDriver()),
                     isLoading: state.status == Status.loading,
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,

@@ -7,7 +7,7 @@ class DioClient {
   static Dio? _myDio;
 
   static final myDioOptions = BaseOptions(
-      baseUrl: 'http://64.226.89.185/v1/api/',
+      baseUrl: 'http://testingblinq.urinboev.uz/v1/api/',
       connectTimeout: 2000000,
       receiveTimeout: 2000000,
       // queryParameters: {
@@ -35,30 +35,23 @@ class DioClient {
     if (isOn) {
       myDio.options.headers['Content-Type'] = 'multipart/form-data';
     } else {
-      myDio.options.headers['Content-Type'] =
-          'application/json; charset=utf-8';
+      myDio.options.headers['Content-Type'] = 'application/json; charset=utf-8';
     }
   }
 
-
-
-  static void setLanguage(String? languageCode){
+  static void setLanguage(String? languageCode) {
     if (languageCode == null) {
       myDio.options.headers.remove('Accept-Language');
     } else {
       myDio.options.headers['Accept-Language'] = languageCode;
     }
-
   }
 
-  static void setToken(String? token){
+  static void setToken(String? token) {
     if (token == null) {
       myDio.options.headers.remove('Authorization');
     } else {
       myDio.options.headers['Authorization'] = 'Bearer $token';
     }
-
   }
-
-  
 }

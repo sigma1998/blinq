@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
+import 'package:blinq/utils/custom_widgets/text_fields/number_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
@@ -62,7 +63,7 @@ class _VehicleEditorScreenState extends State<VehicleEditorScreen> {
                   controller: bloc.makeTypeController,
                 ),
                 const SizedBox(height: 16),
-                NameTextField(
+                NumberTextField(
                   labelText:
                       '${'strRegistrationNumber'.tr()} (${'strMotor'.tr()})',
                   controller: bloc.engineNumberController,
@@ -74,7 +75,7 @@ class _VehicleEditorScreenState extends State<VehicleEditorScreen> {
                   onTap: bloc.onSelectCountryOfRegistrationPressed,
                 ),
                 const SizedBox(height: 16),
-                NameTextField(
+                NumberTextField(
                   controller: bloc.trailerRegistrationNumberController,
                   labelText:
                       '${'strRegistrationNumber'.tr()} (${'strTrailer'.tr()})',

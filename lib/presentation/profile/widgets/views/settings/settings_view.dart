@@ -76,7 +76,7 @@ class _SettingsViewState extends State<SettingsView> {
             ),
             const Expanded(child: SizedBox(height: 24)),
             AppButton(
-              width: 104,
+              width: 120,
               text: 'strLogout'.tr(),
               onTap: bloc.onLogoutPressed,
               loading: state.status == Status.loading,
