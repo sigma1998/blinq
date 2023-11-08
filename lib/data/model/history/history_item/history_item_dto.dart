@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'history_item_dto.freezed.dart';
@@ -9,11 +11,10 @@ class HistoryItemModelDto with _$HistoryItemModelDto {
   const factory HistoryItemModelDto({
     int? id,
     String? type,
-    @JsonKey(name:'created_at') String? createdAt,
-    @JsonKey(name: 'accident_document_pdf') String? accidentDocumentPdf
+    @JsonKey(name: 'created_at') String? createdAt,
+    @JsonKey(name: 'accident_document_pdf') String? accidentDocumentPdf,
   }) = _HistoryItemModelDto;
 
   factory HistoryItemModelDto.fromJson(Map<String, dynamic> json) =>
       _$HistoryItemModelDtoFromJson(json);
 }
-

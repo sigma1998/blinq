@@ -51,7 +51,7 @@ class ProfileResponseModel with _$ProfileResponseModel {
     UserVehicleResponseModel? userVehicle,
   }) = _ProfileResponseModel;
 
-  String get fullName => '$firstName $lastName';
+  String get fullName => '${firstName ?? ''} ${lastName ?? ''}';
 
   factory ProfileResponseModel.fromJson(Map<String, dynamic> json) =>
       _$ProfileResponseModelFromJson(json);

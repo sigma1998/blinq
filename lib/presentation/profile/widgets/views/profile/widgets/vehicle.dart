@@ -61,7 +61,8 @@ class ProfileVehicleWidget extends StatelessWidget {
                     title: 'strNextTechnicalins'.tr(),
                     value: '${state.profile?.userVehicle?.nextTechnical}',
                     desc:
-                        '${state.profile?.userVehicle?.nextTechnicalUpdatedDate}',
+                        state.profile?.userVehicle?.nextTechnicalUpdatedDate ??
+                            '-',
                   ),
                 ),
               ],
@@ -76,7 +77,7 @@ class ProfileVehicleWidget extends StatelessWidget {
                     title: 'strOilReplacement'.tr(),
                     value: '${state.profile?.userVehicle?.oilReplacement}',
                     desc:
-                        '${'strLastReplacement'.tr()} ${state.profile?.userVehicle?.oilReplacementUpdatedDate}',
+                        '${'strLastReplacement'.tr()} ${state.profile?.userVehicle?.oilReplacementUpdatedDate ?? ''}',
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -87,7 +88,7 @@ class ProfileVehicleWidget extends StatelessWidget {
                     icon: AppDrawables.batteryReplacement,
                     value: '${state.profile?.userVehicle?.batteryReplacement}',
                     desc:
-                        '${'strLastReplacement'.tr()} ${state.profile?.userVehicle?.batteryReplacementUpdatedDate}',
+                        '${'strLastReplacement'.tr()} ${state.profile?.userVehicle?.batteryReplacementUpdatedDate ?? ''}',
                   ),
                 ),
               ],

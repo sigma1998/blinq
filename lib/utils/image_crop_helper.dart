@@ -6,14 +6,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:image_cropper/image_cropper.dart';
 
-abstract class ImageCrop {
-  Future<File> cropImage(String? imagePath);
-}
-
-class ImageCropImpl implements ImageCrop {
+class ImageCropHelper {
   //
-  @override
-  Future<File> cropImage(String? imagePath) async {
+  static Future<File> cropImage(String? imagePath) async {
     CroppedFile? croppedFile = await ImageCropper().cropImage(
       sourcePath: imagePath ?? '',
       aspectRatioPresets: [CropAspectRatioPreset.original],

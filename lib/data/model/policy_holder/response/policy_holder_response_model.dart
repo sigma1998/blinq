@@ -23,7 +23,7 @@ class PolicyHolderResponseModel with _$PolicyHolderResponseModel {
     @HiveField(6) @JsonKey(name: 'email') String? email,
   }) = _PolicyHolderResponseModel;
 
-  String get fullName => '$firstName $lastName';
+  String get fullName => '${firstName ?? '-'} ${lastName ?? ''}';
 
   factory PolicyHolderResponseModel.fromJson(Map<String, dynamic> json) =>
       _$PolicyHolderResponseModelFromJson(json);

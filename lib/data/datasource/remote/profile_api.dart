@@ -31,7 +31,6 @@ abstract class ProfileApi {
 
   Future<void> updateInsurance(InsuranceRequestModel vehicle);
 
-  //TODO: add MyCarModel
   Future<void> updateMyCar(CarRequestModel myCar);
 
   //

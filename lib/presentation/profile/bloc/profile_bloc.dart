@@ -23,7 +23,7 @@ import 'package:blinq/presentation/reports/reports_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/presentation/dialogs/qr_dialog/qr_dialog.dart';
-import 'package:blinq/utils/image_crop.dart';
+import 'package:blinq/utils/image_crop_helper.dart';
 import 'profile_event.dart';
 
 part 'profile_state.dart';
@@ -33,12 +33,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   //
   final ProfileRepository repository;
   final IMediaService mediaService;
-  final ImageCrop imageCrop;
 
   ProfileBloc({
     required this.repository,
     required this.mediaService,
-    required this.imageCrop,
   }) : super(const ProfileState()) {
     on<OnFetchProfile>(_onFetchProfile);
     on<OnUpdateProfileImage>(_onUpdateProfileImage);
@@ -86,7 +84,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           onPressed: () async {
             final imagePath =
                 await mediaService.pickImagePath(AppImageSource.camera);
-            final result = await imageCrop.cropImage(imagePath);
+            final result = await ImageCropHelper.cropImage(imagePath);
             NavigationService.back(result: result);
           },
         ),
@@ -95,7 +93,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           onPressed: () async {
             final imagePath =
                 await mediaService.pickImagePath(AppImageSource.gallery);
-            final result = await imageCrop.cropImage(imagePath);
+            final result = await ImageCropHelper.cropImage(imagePath);
             NavigationService.back(result: result);
           },
         ),
