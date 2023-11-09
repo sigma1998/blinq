@@ -10,4 +10,7 @@ class StorageConstants {
 
   static String profile = 'profile';
   static String language = 'language';
+
+  static String contacts = 'contacts';
+  static String premadeMessages = 'premadeMessages';
 }

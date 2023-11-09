@@ -15,6 +15,8 @@ import 'package:blinq/data/model/policy_holder/response/policy_holder_response_m
 import 'package:blinq/data/model/profile/driver_license/driver_license_type.dart';
 import 'package:blinq/data/model/profile/response/profile_response_model.dart';
 import 'package:blinq/data/model/vehicle/response/vehicle_response_model.dart';
+import 'package:blinq/data/model/contact/response/contact_response_model.dart';
+import 'package:blinq/data/model/premade_message/response/premade_message_response_model.dart';
 import 'package:blinq/localization.dart';
 import 'data/datasource/local/storage_constants.dart';
 import 'data/model/user/user_status.dart';
@@ -40,6 +42,9 @@ Future<void> _setUpHive() async {
   Hive.registerAdapter(PolicyHolderResponseModelAdapter());
   Hive.registerAdapter(InsuranceResponseModelAdapter());
   Hive.registerAdapter(UserVehicleResponseModelAdapter());
+
+  Hive.registerAdapter(ContactResponseModelAdapter());
+  Hive.registerAdapter(PremadeMessageResponseModelAdapter());
 
   Hive.registerAdapter(ProfileResponseModelAdapter());
 

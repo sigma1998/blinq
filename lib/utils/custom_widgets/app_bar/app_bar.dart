@@ -62,12 +62,8 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         children: [
           Text(
             title,
-            style: const TextStyle(
-              fontSize: 20,
-              color: Colors.white,
-              fontWeight: FontWeight.w700,
-            ),
             overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.titleSmall,
           ),
         ],
       ),

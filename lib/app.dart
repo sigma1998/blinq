@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/domain/repositories/premade_messages_repository.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -7,9 +8,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'core/theme/app_theme.dart';
+import 'domain/repositories/contacts_repository.dart';
 import 'domain/repositories/profile_repository.dart';
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/app/routes.dart';
+import 'presentation/contacts/views/contacts/bloc/contacts_bloc.dart';
+import 'presentation/contacts/views/premade_messages/bloc/premade_messages_bloc.dart';
 import 'presentation/main_screen/main_screen_bloc.dart';
 import 'presentation/profile/bloc/profile_bloc.dart';
 import 'presentation/success_video/success_video_bloc.dart';
@@ -57,6 +61,17 @@ class MyAppState extends State<MyApp> {
           create: (context) => ProfileBloc(
             mediaService: getIt<MediaService>(),
             repository: getIt<ProfileRepositoryImpl>(),
+          ),
+        ),
+        BlocProvider<ContactsBloc>(
+          create: (context) => ContactsBloc(
+            repository: getIt<ContactsRepositoryImpl>(),
+          ),
+        ),
+        // PremadeMessagesBloc(),
+        BlocProvider<PremadeMessagesBloc>(
+          create: (context) => PremadeMessagesBloc(
+            repository: getIt<PremadeMessagesRepositoryImpl>(),
           ),
         ),
       ],

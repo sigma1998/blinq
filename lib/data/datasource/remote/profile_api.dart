@@ -1,6 +1,13 @@
-// Project imports:
+// Dart imports:
 import 'dart:io';
 
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+
+// Package imports:
+import 'package:dio/dio.dart';
+
+// Project imports:
 import 'package:blinq/core/network/api_service.dart';
 import 'package:blinq/core/network/network_constants.dart';
 import 'package:blinq/data/model/car/request/car_request_model.dart';
@@ -12,16 +19,23 @@ import 'package:blinq/data/model/profile/response/profile_response_model.dart';
 import 'package:blinq/data/model/vehicle/request/vehicle_request_model.dart';
 import 'package:blinq/data/model/vehicle_info/brand_response.dart';
 import 'package:blinq/data/model/vehicle_info/color_response.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 
 abstract class ProfileApi {
   //
+
+  ///
+  /// Profile
+  ///
+
   Future<ProfileResponseModel> fetch();
 
   Future<ProfileResponseModel> update(ProfileRequestModel profile);
 
   Future<void> updateProfileImage(File file);
+
+  ///
+  /// Editors
+  ///
 
   Future<void> updatePolicyHolder(PolicyHolderRequestModel policyHolder);
 
@@ -33,7 +47,9 @@ abstract class ProfileApi {
 
   Future<void> updateMyCar(CarRequestModel myCar);
 
-  //
+  ///
+  /// Settings
+  ///
 
   Future<void> updatePassword(String oldPassword, String newPassword);
 
@@ -42,6 +58,10 @@ abstract class ProfileApi {
   Future<void> verifyEmail(String code);
 
   Future<void> updateLanguage(String language);
+
+  ///
+  /// Reports
+  ///
 
   Future<HistoryResponseDto> fetchHistory();
 
@@ -194,6 +214,10 @@ class ProfileApiImpl implements ProfileApi {
     }
   }
 
+  ///
+  /// Reports
+  ///
+
   @override
   Future<HistoryResponseDto> fetchHistory() async {
     try {
@@ -252,6 +276,4 @@ class ProfileApiImpl implements ProfileApi {
 
     return BrandResponseDto.fromJson(res);
   }
-
-//
 }

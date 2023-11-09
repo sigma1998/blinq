@@ -16,6 +16,7 @@ class SecondaryButton extends StatelessWidget {
   final EdgeInsets padding;
 
   final bool isLoading;
+  final bool isEnabled;
 
   final Color? color;
   final TextStyle textStyle;
@@ -32,6 +33,7 @@ class SecondaryButton extends StatelessWidget {
     this.padding = const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
     //
     this.isLoading = false,
+    this.isEnabled = true,
     //
     this.color,
     this.textStyle = const TextStyle(color: Colors.white),
@@ -42,7 +44,7 @@ class SecondaryButton extends StatelessWidget {
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 250),
       child: InkWell(
-        onTap: onTap,
+        onTap: isEnabled ? onTap : null,
         child: Container(
           margin: margin,
           height: 35,

@@ -14,6 +14,8 @@ class MyInfoContainer extends StatelessWidget {
   final void Function()? onTap;
   final void Function()? onClose;
 
+  final Color color;
+
   final double? width;
   final double? height;
 
@@ -30,6 +32,7 @@ class MyInfoContainer extends StatelessWidget {
     this.onTap,
     this.onClose,
     this.isEdit = false,
+    this.color = const Color(0xff1B1B1B),
     //
     this.width,
     this.height,
@@ -49,8 +52,8 @@ class MyInfoContainer extends StatelessWidget {
         margin: margin,
         padding: padding,
         decoration: BoxDecoration(
+          color: color,
           borderRadius: BorderRadius.circular(10),
-          color: Theme.of(context).colorScheme.onBackground,
         ),
         child: Column(
           children: [

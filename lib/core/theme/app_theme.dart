@@ -18,6 +18,7 @@ class AppTheme {
       onSurface: Colors.white,
       outline: AppColors.grey2,
       outlineVariant: AppColors.lightGrey,
+      tertiary: AppColors.lightGreyVarient,
     ),
     appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.darkGrey, centerTitle: true, elevation: 0

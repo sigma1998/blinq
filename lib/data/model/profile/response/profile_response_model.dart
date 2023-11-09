@@ -21,32 +21,32 @@ class ProfileResponseModel with _$ProfileResponseModel {
   const ProfileResponseModel._();
 
   const factory ProfileResponseModel({
-    int? id,
-    String? image,
-    @HiveField(0) @JsonKey(name: 'first_name') String? firstName,
-    @HiveField(1) @JsonKey(name: 'last_name') String? lastName,
-    @HiveField(2) @JsonKey(name: 'birth_date') String? birthDate,
-    @HiveField(3) @JsonKey(name: 'country') String? country,
-    @HiveField(4) @JsonKey(name: 'address') String? address,
-    @HiveField(5) @JsonKey(name: 'phone_number') String? phoneNumber,
-    @HiveField(6) @JsonKey(name: 'email') String? email,
-    @HiveField(7) @JsonKey(name: 'qr_code') String? qrCode,
-    @HiveField(8)
+    @HiveField(0) int? id,
+    @HiveField(1) String? image,
+    @HiveField(2) @JsonKey(name: 'first_name') String? firstName,
+    @HiveField(3) @JsonKey(name: 'last_name') String? lastName,
+    @HiveField(4) @JsonKey(name: 'birth_date') String? birthDate,
+    @HiveField(5) @JsonKey(name: 'country') String? country,
+    @HiveField(6) @JsonKey(name: 'address') String? address,
+    @HiveField(7) @JsonKey(name: 'phone_number') String? phoneNumber,
+    @HiveField(8) @JsonKey(name: 'email') String? email,
+    @HiveField(9) @JsonKey(name: 'qr_code') String? qrCode,
+    @HiveField(10)
     @JsonKey(name: 'driver_license')
     DriverLicenseType? driverLicense,
-    @HiveField(9)
+    @HiveField(11)
     @JsonKey(name: 'driver_license_number')
     String? driverLicenseNumber,
-    @HiveField(10)
+    @HiveField(12)
     @JsonKey(name: 'driver_license_expired_date')
-    @HiveField(11)
-    String? driverLicenseExpiredDate,
-    @HiveField(12) @JsonKey() CarResponseModel? car,
     @HiveField(13)
+    String? driverLicenseExpiredDate,
+    @HiveField(14) @JsonKey() CarResponseModel? car,
+    @HiveField(15)
     @JsonKey(name: 'policy_holder')
     PolicyHolderResponseModel? policyHolder,
-    @HiveField(14) @JsonKey() InsuranceResponseModel? insurance,
-    @HiveField(15)
+    @HiveField(16) @JsonKey() InsuranceResponseModel? insurance,
+    @HiveField(17)
     @JsonKey(name: 'usersvehicledatas')
     UserVehicleResponseModel? userVehicle,
   }) = _ProfileResponseModel;

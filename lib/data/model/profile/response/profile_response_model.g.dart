@@ -17,57 +17,63 @@ class ProfileResponseModelAdapter extends TypeAdapter<ProfileResponseModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return ProfileResponseModel(
-      firstName: fields[0] as String?,
-      lastName: fields[1] as String?,
-      birthDate: fields[2] as String?,
-      country: fields[3] as String?,
-      address: fields[4] as String?,
-      phoneNumber: fields[5] as String?,
-      email: fields[6] as String?,
-      qrCode: fields[7] as String?,
-      driverLicense: fields[8] as DriverLicenseType?,
-      driverLicenseNumber: fields[9] as String?,
-      driverLicenseExpiredDate: fields[10] as String?,
-      car: fields[12] as CarResponseModel?,
-      policyHolder: fields[13] as PolicyHolderResponseModel?,
-      insurance: fields[14] as InsuranceResponseModel?,
-      userVehicle: fields[15] as UserVehicleResponseModel?,
+      id: fields[0] as int?,
+      image: fields[1] as String?,
+      firstName: fields[2] as String?,
+      lastName: fields[3] as String?,
+      birthDate: fields[4] as String?,
+      country: fields[5] as String?,
+      address: fields[6] as String?,
+      phoneNumber: fields[7] as String?,
+      email: fields[8] as String?,
+      qrCode: fields[9] as String?,
+      driverLicense: fields[10] as DriverLicenseType?,
+      driverLicenseNumber: fields[11] as String?,
+      driverLicenseExpiredDate: fields[12] as String?,
+      car: fields[14] as CarResponseModel?,
+      policyHolder: fields[15] as PolicyHolderResponseModel?,
+      insurance: fields[16] as InsuranceResponseModel?,
+      userVehicle: fields[17] as UserVehicleResponseModel?,
     );
   }
 
   @override
   void write(BinaryWriter writer, ProfileResponseModel obj) {
     writer
-      ..writeByte(15)
+      ..writeByte(17)
       ..writeByte(0)
-      ..write(obj.firstName)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.lastName)
+      ..write(obj.image)
       ..writeByte(2)
-      ..write(obj.birthDate)
+      ..write(obj.firstName)
       ..writeByte(3)
-      ..write(obj.country)
+      ..write(obj.lastName)
       ..writeByte(4)
-      ..write(obj.address)
+      ..write(obj.birthDate)
       ..writeByte(5)
-      ..write(obj.phoneNumber)
+      ..write(obj.country)
       ..writeByte(6)
-      ..write(obj.email)
+      ..write(obj.address)
       ..writeByte(7)
-      ..write(obj.qrCode)
+      ..write(obj.phoneNumber)
       ..writeByte(8)
-      ..write(obj.driverLicense)
+      ..write(obj.email)
       ..writeByte(9)
-      ..write(obj.driverLicenseNumber)
+      ..write(obj.qrCode)
       ..writeByte(10)
-      ..write(obj.driverLicenseExpiredDate)
+      ..write(obj.driverLicense)
+      ..writeByte(11)
+      ..write(obj.driverLicenseNumber)
       ..writeByte(12)
-      ..write(obj.car)
-      ..writeByte(13)
-      ..write(obj.policyHolder)
+      ..write(obj.driverLicenseExpiredDate)
       ..writeByte(14)
-      ..write(obj.insurance)
+      ..write(obj.car)
       ..writeByte(15)
+      ..write(obj.policyHolder)
+      ..writeByte(16)
+      ..write(obj.insurance)
+      ..writeByte(17)
       ..write(obj.userVehicle);
   }
 
