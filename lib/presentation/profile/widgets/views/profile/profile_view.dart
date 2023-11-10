@@ -34,11 +34,14 @@ class ProfileView extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      MyImage(
-                        state.profile?.image ?? '',
-                        width: 86,
-                        height: 86,
-                        onChangeImage: bloc.imagePickerPressed,
+                      SizedBox(
+                        width: 96,
+                        child: MyImage(
+                          state.profile?.image ?? '',
+                          width: 86,
+                          height: 86,
+                          onChangeImage: bloc.imagePickerPressed,
+                        ),
                       ),
                     ],
                   ),

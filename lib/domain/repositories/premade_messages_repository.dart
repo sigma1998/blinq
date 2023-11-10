@@ -1,6 +1,7 @@
 // Project imports:
 import 'package:blinq/data/datasource/local/premade_messages_local_db.dart';
 import 'package:blinq/data/datasource/remote/premade_messages_api.dart';
+import 'package:blinq/data/model/premade_message/premade_message_response_dto.dart';
 import 'package:blinq/data/model/premade_message/request/premade_message_request_model.dart';
 import 'package:blinq/data/model/premade_message/response/premade_message_response_model.dart';
 
@@ -8,7 +9,7 @@ abstract class PremadeMessagesRepository {
   ///
   /// Remote API
   ///
-  Future<List<PremadeMessageResponseModel>> fetchList();
+  Future<PremadeMessageResponseDto> fetchList();
 
   Future<PremadeMessageResponseModel> add(
     PremadeMessageRequestModel premadeMessage,
@@ -25,9 +26,9 @@ abstract class PremadeMessagesRepository {
   /// Local storage
   ///
 
-  List<PremadeMessageResponseModel> getPremadeMessages();
+  PremadeMessageResponseDto getPremadeMessages();
 
-  void setPremadeMessages(List<PremadeMessageResponseModel> premadeMessage);
+  void setPremadeMessages(PremadeMessageResponseDto premadeMessage);
 }
 
 class PremadeMessagesRepositoryImpl implements PremadeMessagesRepository {
@@ -43,7 +44,7 @@ class PremadeMessagesRepositoryImpl implements PremadeMessagesRepository {
   ///
 
   @override
-  Future<List<PremadeMessageResponseModel>> fetchList() async {
+  Future<PremadeMessageResponseDto> fetchList() async {
     try {
       return await api.fetchList();
     } catch (e) {
@@ -55,7 +56,7 @@ class PremadeMessagesRepositoryImpl implements PremadeMessagesRepository {
   Future<PremadeMessageResponseModel> add(PremadeMessageRequestModel contact) {
     try {
       return api.add(contact).then((data) {
-        localStorage.setPremadeMessages([data]);
+        // localStorage.setPremadeMessages([data]);
         return data;
       });
     } catch (e) {
@@ -70,7 +71,7 @@ class PremadeMessagesRepositoryImpl implements PremadeMessagesRepository {
   }) {
     try {
       return api.update(id: id, premadeMessage: premadeMessage).then((data) {
-        localStorage.setPremadeMessages([data]);
+        // localStorage.setPremadeMessages([data]);
         return data;
       });
     } catch (e) {
@@ -92,10 +93,10 @@ class PremadeMessagesRepositoryImpl implements PremadeMessagesRepository {
   ///
 
   @override
-  List<PremadeMessageResponseModel> getPremadeMessages() =>
+  PremadeMessageResponseDto getPremadeMessages() =>
       localStorage.getPremadeMessages();
 
   @override
-  void setPremadeMessages(List<PremadeMessageResponseModel> contact) =>
+  void setPremadeMessages(PremadeMessageResponseDto contact) =>
       localStorage.setPremadeMessages(contact);
 }

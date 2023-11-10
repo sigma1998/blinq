@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$PremadeMessagesState {
   Status get status => throw _privateConstructorUsedError;
-  List<PremadeMessageResponseModel>? get premadeMessages =>
+  PremadeMessageResponseDto? get premadeMessages =>
       throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
@@ -34,8 +34,10 @@ abstract class $PremadeMessagesStateCopyWith<$Res> {
   @useResult
   $Res call(
       {Status status,
-      List<PremadeMessageResponseModel>? premadeMessages,
+      PremadeMessageResponseDto? premadeMessages,
       Error? error});
+
+  $PremadeMessageResponseDtoCopyWith<$Res>? get premadeMessages;
 }
 
 /// @nodoc
@@ -64,12 +66,25 @@ class _$PremadeMessagesStateCopyWithImpl<$Res,
       premadeMessages: freezed == premadeMessages
           ? _value.premadeMessages
           : premadeMessages // ignore: cast_nullable_to_non_nullable
-              as List<PremadeMessageResponseModel>?,
+              as PremadeMessageResponseDto?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as Error?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PremadeMessageResponseDtoCopyWith<$Res>? get premadeMessages {
+    if (_value.premadeMessages == null) {
+      return null;
+    }
+
+    return $PremadeMessageResponseDtoCopyWith<$Res>(_value.premadeMessages!,
+        (value) {
+      return _then(_value.copyWith(premadeMessages: value) as $Val);
+    });
   }
 }
 
@@ -83,8 +98,11 @@ abstract class _$$PremadeMessagesStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {Status status,
-      List<PremadeMessageResponseModel>? premadeMessages,
+      PremadeMessageResponseDto? premadeMessages,
       Error? error});
+
+  @override
+  $PremadeMessageResponseDtoCopyWith<$Res>? get premadeMessages;
 }
 
 /// @nodoc
@@ -108,9 +126,9 @@ class __$$PremadeMessagesStateImplCopyWithImpl<$Res>
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
       premadeMessages: freezed == premadeMessages
-          ? _value._premadeMessages
+          ? _value.premadeMessages
           : premadeMessages // ignore: cast_nullable_to_non_nullable
-              as List<PremadeMessageResponseModel>?,
+              as PremadeMessageResponseDto?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -123,24 +141,13 @@ class __$$PremadeMessagesStateImplCopyWithImpl<$Res>
 
 class _$PremadeMessagesStateImpl implements _PremadeMessagesState {
   const _$PremadeMessagesStateImpl(
-      {this.status = Status.initial,
-      final List<PremadeMessageResponseModel>? premadeMessages,
-      this.error})
-      : _premadeMessages = premadeMessages;
+      {this.status = Status.initial, this.premadeMessages, this.error});
 
   @override
   @JsonKey()
   final Status status;
-  final List<PremadeMessageResponseModel>? _premadeMessages;
   @override
-  List<PremadeMessageResponseModel>? get premadeMessages {
-    final value = _premadeMessages;
-    if (value == null) return null;
-    if (_premadeMessages is EqualUnmodifiableListView) return _premadeMessages;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+  final PremadeMessageResponseDto? premadeMessages;
   @override
   final Error? error;
 
@@ -155,14 +162,13 @@ class _$PremadeMessagesStateImpl implements _PremadeMessagesState {
         (other.runtimeType == runtimeType &&
             other is _$PremadeMessagesStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            const DeepCollectionEquality()
-                .equals(other._premadeMessages, _premadeMessages) &&
+            (identical(other.premadeMessages, premadeMessages) ||
+                other.premadeMessages == premadeMessages) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status,
-      const DeepCollectionEquality().hash(_premadeMessages), error);
+  int get hashCode => Object.hash(runtimeType, status, premadeMessages, error);
 
   @JsonKey(ignore: true)
   @override
@@ -176,13 +182,13 @@ class _$PremadeMessagesStateImpl implements _PremadeMessagesState {
 abstract class _PremadeMessagesState implements PremadeMessagesState {
   const factory _PremadeMessagesState(
       {final Status status,
-      final List<PremadeMessageResponseModel>? premadeMessages,
+      final PremadeMessageResponseDto? premadeMessages,
       final Error? error}) = _$PremadeMessagesStateImpl;
 
   @override
   Status get status;
   @override
-  List<PremadeMessageResponseModel>? get premadeMessages;
+  PremadeMessageResponseDto? get premadeMessages;
   @override
   Error? get error;
   @override

@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:blinq/data/model/contact/response/contact_response_model.dart';
+import 'package:blinq/data/model/contact/contact_response_dto.dart';
 import 'package:blinq/domain/repositories/contacts_repository.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'contacts_event.dart';

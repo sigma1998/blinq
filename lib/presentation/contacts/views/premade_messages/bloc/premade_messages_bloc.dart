@@ -2,11 +2,11 @@
 import 'dart:async';
 
 // Package imports:
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:blinq/data/model/premade_message/response/premade_message_response_model.dart';
+import 'package:blinq/data/model/premade_message/premade_message_response_dto.dart';
 import 'package:blinq/domain/repositories/premade_messages_repository.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 

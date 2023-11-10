@@ -9,7 +9,7 @@ part of 'premade_message_response_model.dart';
 class PremadeMessageResponseModelAdapter
     extends TypeAdapter<PremadeMessageResponseModel> {
   @override
-  final int typeId = 9;
+  final int typeId = 10;
 
   @override
   PremadeMessageResponseModel read(BinaryReader reader) {

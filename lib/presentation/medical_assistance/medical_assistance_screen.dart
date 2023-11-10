@@ -44,8 +44,8 @@ class MedicalAssistanceScreen extends StatelessWidget {
             itemCount: titles.length,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              final title = titles[index];
-              final subtitle = subtitles[index];
+              final title = titles.keys.toList()[index];
+              final subtitle = titles.values.toList()[index];
 
               return MedicalAssistanceItem(
                 title: title,
@@ -58,25 +58,14 @@ class MedicalAssistanceScreen extends StatelessWidget {
     );
   }
 
-  List<String> get titles => [
-        'strTitle1'.tr(),
-        'strTitle2'.tr(),
-        'strTitle3'.tr(),
-        'strTitle4'.tr(),
-        'strTitle5'.tr(),
-        'strTitle6'.tr(),
-        'strTitle7'.tr(),
-        'strTitle8'.tr()
-      ];
-
-  List<String> get subtitles => [
-        'strSubTitle1'.tr(),
-        'strSubTitle2'.tr(),
-        'strSubTitle3'.tr(),
-        'strSubTitle4'.tr(),
-        'strSubTitle5'.tr(),
-        'strSubTitle6'.tr(),
-        'strSubTitle7'.tr(),
-        'strSubTitle8'.tr()
-      ];
+  Map<String, String> get titles => {
+        'strTitle1'.tr(): 'strSubTitle1'.tr(),
+        'strTitle2'.tr(): 'strSubTitle2'.tr(),
+        'strTitle3'.tr(): 'strSubTitle3'.tr(),
+        'strTitle4'.tr(): 'strSubTitle4'.tr(),
+        'strTitle5'.tr(): 'strSubTitle5'.tr(),
+        'strTitle6'.tr(): 'strSubTitle6'.tr(),
+        'strTitle7'.tr(): 'strSubTitle7'.tr(),
+        'strTitle8'.tr(): 'strSubTitle8'.tr()
+      };
 }

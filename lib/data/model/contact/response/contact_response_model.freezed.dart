@@ -35,7 +35,7 @@ mixin _$ContactResponseModel {
   String? get phoneNumber => throw _privateConstructorUsedError;
   @HiveField(5)
   @JsonKey(name: 'is_emergency')
-  String? get isEmergency => throw _privateConstructorUsedError;
+  bool? get isEmergency => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +55,7 @@ abstract class $ContactResponseModelCopyWith<$Res> {
       @HiveField(2) @JsonKey(name: 'name') String? firstName,
       @HiveField(3) @JsonKey(name: 'last_name') String? lastName,
       @HiveField(4) @JsonKey(name: 'phone_number') String? phoneNumber,
-      @HiveField(5) @JsonKey(name: 'is_emergency') String? isEmergency});
+      @HiveField(5) @JsonKey(name: 'is_emergency') bool? isEmergency});
 }
 
 /// @nodoc
@@ -103,7 +103,7 @@ class _$ContactResponseModelCopyWithImpl<$Res,
       isEmergency: freezed == isEmergency
           ? _value.isEmergency
           : isEmergency // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
     ) as $Val);
   }
 }
@@ -122,7 +122,7 @@ abstract class _$$ContactResponseModelImplCopyWith<$Res>
       @HiveField(2) @JsonKey(name: 'name') String? firstName,
       @HiveField(3) @JsonKey(name: 'last_name') String? lastName,
       @HiveField(4) @JsonKey(name: 'phone_number') String? phoneNumber,
-      @HiveField(5) @JsonKey(name: 'is_emergency') String? isEmergency});
+      @HiveField(5) @JsonKey(name: 'is_emergency') bool? isEmergency});
 }
 
 /// @nodoc
@@ -167,7 +167,7 @@ class __$$ContactResponseModelImplCopyWithImpl<$Res>
       isEmergency: freezed == isEmergency
           ? _value.isEmergency
           : isEmergency // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
     ));
   }
 }
@@ -208,7 +208,7 @@ class _$ContactResponseModelImpl extends _ContactResponseModel {
   @override
   @HiveField(5)
   @JsonKey(name: 'is_emergency')
-  final String? isEmergency;
+  final bool? isEmergency;
 
   @override
   String toString() {
@@ -262,7 +262,7 @@ abstract class _ContactResponseModel extends ContactResponseModel {
       @HiveField(4) @JsonKey(name: 'phone_number') final String? phoneNumber,
       @HiveField(5)
       @JsonKey(name: 'is_emergency')
-      final String? isEmergency}) = _$ContactResponseModelImpl;
+      final bool? isEmergency}) = _$ContactResponseModelImpl;
   const _ContactResponseModel._() : super._();
 
   factory _ContactResponseModel.fromJson(Map<String, dynamic> json) =
@@ -289,7 +289,7 @@ abstract class _ContactResponseModel extends ContactResponseModel {
   @override
   @HiveField(5)
   @JsonKey(name: 'is_emergency')
-  String? get isEmergency;
+  bool? get isEmergency;
   @override
   @JsonKey(ignore: true)
   _$$ContactResponseModelImplCopyWith<_$ContactResponseModelImpl>

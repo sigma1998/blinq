@@ -5,7 +5,7 @@ class ContactsState with _$ContactsState {
   //
   const factory ContactsState({
     @Default(Status.initial) Status status,
-    List<ContactResponseModel>? contacts,
+    ContactResponseDto? contacts,
     Error? error,
   }) = _ContactsState;
 }

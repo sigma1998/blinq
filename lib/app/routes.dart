@@ -1,8 +1,12 @@
 // Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:blinq/presentation/create_report/create_report_screen.dart';
 import 'package:blinq/presentation/email_editor/email_editor_screen.dart';
 import 'package:blinq/presentation/emergency_services/emergency_services_screen.dart';
 import 'package:blinq/presentation/forgot_password/reset_password/reset_password_screen.dart';
+import 'package:blinq/presentation/inform_close_ones/inform_close_ones_screen.dart';
 import 'package:blinq/presentation/intro/first_intro_screen/first_intro_screen.dart';
 import 'package:blinq/presentation/intro/second_intro_screen/second_intro_screen.dart';
 import 'package:blinq/presentation/language/language_screen.dart';
@@ -17,9 +21,6 @@ import 'package:blinq/presentation/profile/widgets/editors/vehicle/vehicle_edito
 import 'package:blinq/presentation/reports/pdf_view/pdf_view.dart';
 import 'package:blinq/presentation/reports/reports_screen.dart';
 import 'package:blinq/presentation/success_video/success_video_screen.dart';
-import 'package:flutter/material.dart';
-
-// Project imports:
 import 'package:blinq/presentation/main_screen/main_screen.dart';
 import 'package:blinq/presentation/registration/email_screen/email_screen.dart';
 import 'package:blinq/presentation/registration/registration_screen/registration_screen.dart';
@@ -61,5 +62,6 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     CreateReportScreen.route: (context) => const CreateReportScreen(),
     MedicalAssistanceScreen.route: (context) => const MedicalAssistanceScreen(),
     EmergencyServicesScreen.route: (context) => const EmergencyServicesScreen(),
+    InformCloseOnesScreen.route: (context) => const InformCloseOnesScreen(),
   };
 }

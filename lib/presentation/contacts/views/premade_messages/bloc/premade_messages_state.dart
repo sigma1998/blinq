@@ -5,7 +5,7 @@ class PremadeMessagesState with _$PremadeMessagesState {
   //
   const factory PremadeMessagesState({
     @Default(Status.initial) Status status,
-    List<PremadeMessageResponseModel>? premadeMessages,
+    PremadeMessageResponseDto? premadeMessages,
     Error? error,
   }) = _PremadeMessagesState;
 }

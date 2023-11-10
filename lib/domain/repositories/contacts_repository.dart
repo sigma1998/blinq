@@ -4,6 +4,7 @@ import 'dart:io';
 // Project imports:
 import 'package:blinq/data/datasource/local/contacts_local_db.dart';
 import 'package:blinq/data/datasource/remote/contacts_api.dart';
+import 'package:blinq/data/model/contact/contact_response_dto.dart';
 import 'package:blinq/data/model/contact/request/contact_request_model.dart';
 import 'package:blinq/data/model/contact/response/contact_response_model.dart';
 
@@ -11,7 +12,7 @@ abstract class ContactsRepository {
   ///
   /// Remote API
   ///
-  Future<List<ContactResponseModel>> fetchList();
+  Future<ContactResponseDto> fetchList();
 
   Future<ContactResponseModel> add({
     required ContactRequestModel contact,
@@ -32,9 +33,9 @@ abstract class ContactsRepository {
   /// Local storage
   ///
 
-  List<ContactResponseModel> getContacts();
+  ContactResponseDto getContacts();
 
-  void setContacts(List<ContactResponseModel> contact);
+  void setContacts(ContactResponseDto contact);
 }
 
 class ContactsRepositoryImpl implements ContactsRepository {
@@ -49,7 +50,7 @@ class ContactsRepositoryImpl implements ContactsRepository {
   ///
 
   @override
-  Future<List<ContactResponseModel>> fetchList() async {
+  Future<ContactResponseDto> fetchList() async {
     try {
       return await api.fetchList();
     } catch (e) {
@@ -65,7 +66,7 @@ class ContactsRepositoryImpl implements ContactsRepository {
   }) {
     try {
       return api.add(contact: contact, file: file).then((data) {
-        localStorage.setContacts([data]);
+        // localStorage.setContacts(data);
         return data;
       });
     } catch (e) {
@@ -82,7 +83,7 @@ class ContactsRepositoryImpl implements ContactsRepository {
   }) {
     try {
       return api.update(id: id, contact: contact, file: file).then((data) {
-        localStorage.setContacts([data]);
+        // localStorage.setContacts(data);
         return data;
       });
     } catch (e) {
@@ -104,9 +105,9 @@ class ContactsRepositoryImpl implements ContactsRepository {
   ///
 
   @override
-  List<ContactResponseModel> getContacts() => localStorage.getContacts();
+  ContactResponseDto getContacts() => localStorage.getContacts();
 
   @override
-  void setContacts(List<ContactResponseModel> contact) =>
+  void setContacts(ContactResponseDto contact) =>
       localStorage.setContacts(contact);
 }

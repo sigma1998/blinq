@@ -22,7 +22,7 @@ class ContactResponseModelAdapter extends TypeAdapter<ContactResponseModel> {
       firstName: fields[2] as String?,
       lastName: fields[3] as String?,
       phoneNumber: fields[4] as String?,
-      isEmergency: fields[5] as String?,
+      isEmergency: fields[5] as bool?,
     );
   }
 
@@ -67,7 +67,7 @@ _$ContactResponseModelImpl _$$ContactResponseModelImplFromJson(
       firstName: json['name'] as String?,
       lastName: json['last_name'] as String?,
       phoneNumber: json['phone_number'] as String?,
-      isEmergency: json['is_emergency'] as String?,
+      isEmergency: json['is_emergency'] as bool?,
     );
 
 Map<String, dynamic> _$$ContactResponseModelImplToJson(

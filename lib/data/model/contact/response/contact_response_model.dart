@@ -19,11 +19,11 @@ class ContactResponseModel with _$ContactResponseModel {
     @HiveField(2) @JsonKey(name: 'name') String? firstName,
     @HiveField(3) @JsonKey(name: 'last_name') String? lastName,
     @HiveField(4) @JsonKey(name: 'phone_number') String? phoneNumber,
-    @HiveField(5) @JsonKey(name: 'is_emergency') String? isEmergency,
+    @HiveField(5) @JsonKey(name: 'is_emergency') bool? isEmergency,
   }) = _ContactResponseModel;
 
   String get fullName => '${firstName ?? ''} ${lastName ?? ''}';
 
   factory ContactResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$ContactResponseModelFromJson(json['results']);
+      _$ContactResponseModelFromJson(json);
 }

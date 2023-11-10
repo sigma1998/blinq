@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
-import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:hive/hive.dart';
 
 // Project imports:
 import 'package:blinq/app.dart';
@@ -19,6 +19,8 @@ import 'package:blinq/data/model/contact/response/contact_response_model.dart';
 import 'package:blinq/data/model/premade_message/response/premade_message_response_model.dart';
 import 'package:blinq/localization.dart';
 import 'data/datasource/local/storage_constants.dart';
+import 'data/model/contact/contact_response_dto.dart';
+import 'data/model/premade_message/premade_message_response_dto.dart';
 import 'data/model/user/user_status.dart';
 
 void main() async {
@@ -44,7 +46,10 @@ Future<void> _setUpHive() async {
   Hive.registerAdapter(UserVehicleResponseModelAdapter());
 
   Hive.registerAdapter(ContactResponseModelAdapter());
+  Hive.registerAdapter(ContactResponseDtoAdapter());
+
   Hive.registerAdapter(PremadeMessageResponseModelAdapter());
+  Hive.registerAdapter(PremadeMessageResponseDtoAdapter());
 
   Hive.registerAdapter(ProfileResponseModelAdapter());
 

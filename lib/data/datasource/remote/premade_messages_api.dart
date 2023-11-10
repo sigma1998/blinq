@@ -1,4 +1,5 @@
 // Project imports:
+import 'package:blinq/data/model/premade_message/premade_message_response_dto.dart';
 import 'package:blinq/data/model/premade_message/response/premade_message_response_model.dart';
 import 'package:blinq/data/model/premade_message/request/premade_message_request_model.dart';
 import 'package:blinq/core/network/network_constants.dart';
@@ -6,7 +7,7 @@ import 'package:blinq/core/network/api_service.dart';
 
 abstract class PremadeMessagesApi {
   //
-  Future<List<PremadeMessageResponseModel>> fetchList([int count]);
+  Future<PremadeMessageResponseDto> fetchList([int count]);
 
   Future<PremadeMessageResponseModel> add(
     PremadeMessageRequestModel premadeMessage,
@@ -27,13 +28,11 @@ class PremadeMessagesApiImpl implements PremadeMessagesApi {
   PremadeMessagesApiImpl({required this.api});
 
   @override
-  Future<List<PremadeMessageResponseModel>> fetchList([int count = 0]) async {
+  Future<PremadeMessageResponseDto> fetchList([int page = 1]) async {
     try {
-      int page = (count ~/ 10) + 1;
-
-      final res = await api.getList(NetworkConstants.premadeMessage,
+      final res = await api.get(NetworkConstants.premadeMessage,
           queryParameters: {'page': page});
-      return res.map((e) => PremadeMessageResponseModel.fromJson(e)).toList();
+      return PremadeMessageResponseDto.fromJson(res);
     } catch (e) {
       rethrow;
     }

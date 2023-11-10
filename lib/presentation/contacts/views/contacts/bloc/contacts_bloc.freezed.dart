@@ -17,8 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ContactsState {
   Status get status => throw _privateConstructorUsedError;
-  List<ContactResponseModel>? get contacts =>
-      throw _privateConstructorUsedError;
+  ContactResponseDto? get contacts => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -32,8 +31,9 @@ abstract class $ContactsStateCopyWith<$Res> {
           ContactsState value, $Res Function(ContactsState) then) =
       _$ContactsStateCopyWithImpl<$Res, ContactsState>;
   @useResult
-  $Res call(
-      {Status status, List<ContactResponseModel>? contacts, Error? error});
+  $Res call({Status status, ContactResponseDto? contacts, Error? error});
+
+  $ContactResponseDtoCopyWith<$Res>? get contacts;
 }
 
 /// @nodoc
@@ -61,12 +61,24 @@ class _$ContactsStateCopyWithImpl<$Res, $Val extends ContactsState>
       contacts: freezed == contacts
           ? _value.contacts
           : contacts // ignore: cast_nullable_to_non_nullable
-              as List<ContactResponseModel>?,
+              as ContactResponseDto?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as Error?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ContactResponseDtoCopyWith<$Res>? get contacts {
+    if (_value.contacts == null) {
+      return null;
+    }
+
+    return $ContactResponseDtoCopyWith<$Res>(_value.contacts!, (value) {
+      return _then(_value.copyWith(contacts: value) as $Val);
+    });
   }
 }
 
@@ -78,8 +90,10 @@ abstract class _$$ContactsStateImplCopyWith<$Res>
       __$$ContactsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {Status status, List<ContactResponseModel>? contacts, Error? error});
+  $Res call({Status status, ContactResponseDto? contacts, Error? error});
+
+  @override
+  $ContactResponseDtoCopyWith<$Res>? get contacts;
 }
 
 /// @nodoc
@@ -103,9 +117,9 @@ class __$$ContactsStateImplCopyWithImpl<$Res>
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
       contacts: freezed == contacts
-          ? _value._contacts
+          ? _value.contacts
           : contacts // ignore: cast_nullable_to_non_nullable
-              as List<ContactResponseModel>?,
+              as ContactResponseDto?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -118,24 +132,13 @@ class __$$ContactsStateImplCopyWithImpl<$Res>
 
 class _$ContactsStateImpl implements _ContactsState {
   const _$ContactsStateImpl(
-      {this.status = Status.initial,
-      final List<ContactResponseModel>? contacts,
-      this.error})
-      : _contacts = contacts;
+      {this.status = Status.initial, this.contacts, this.error});
 
   @override
   @JsonKey()
   final Status status;
-  final List<ContactResponseModel>? _contacts;
   @override
-  List<ContactResponseModel>? get contacts {
-    final value = _contacts;
-    if (value == null) return null;
-    if (_contacts is EqualUnmodifiableListView) return _contacts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+  final ContactResponseDto? contacts;
   @override
   final Error? error;
 
@@ -150,13 +153,13 @@ class _$ContactsStateImpl implements _ContactsState {
         (other.runtimeType == runtimeType &&
             other is _$ContactsStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            const DeepCollectionEquality().equals(other._contacts, _contacts) &&
+            (identical(other.contacts, contacts) ||
+                other.contacts == contacts) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status,
-      const DeepCollectionEquality().hash(_contacts), error);
+  int get hashCode => Object.hash(runtimeType, status, contacts, error);
 
   @JsonKey(ignore: true)
   @override
@@ -168,13 +171,13 @@ class _$ContactsStateImpl implements _ContactsState {
 abstract class _ContactsState implements ContactsState {
   const factory _ContactsState(
       {final Status status,
-      final List<ContactResponseModel>? contacts,
+      final ContactResponseDto? contacts,
       final Error? error}) = _$ContactsStateImpl;
 
   @override
   Status get status;
   @override
-  List<ContactResponseModel>? get contacts;
+  ContactResponseDto? get contacts;
   @override
   Error? get error;
   @override

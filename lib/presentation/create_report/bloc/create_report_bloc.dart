@@ -1,5 +1,6 @@
 // Project imports:
 import 'package:blinq/presentation/emergency_services/emergency_services_screen.dart';
+import 'package:blinq/presentation/inform_close_ones/inform_close_ones_screen.dart';
 import 'package:blinq/presentation/medical_assistance/medical_assistance_screen.dart';
 import 'package:blinq/utils/navigation_service.dart';
 
@@ -12,7 +13,7 @@ class CreateReportBloc {
       NavigationService.pushNamed(routeName: EmergencyServicesScreen.route);
 
   void onInformYourCloseOnesPressed() =>
-      NavigationService.pushNamed(routeName: EmergencyServicesScreen.route);
+      NavigationService.pushNamed(routeName: InformCloseOnesScreen.route);
 
   void onCreateReportPressed() =>
       NavigationService.pushNamed(routeName: MedicalAssistanceScreen.route);

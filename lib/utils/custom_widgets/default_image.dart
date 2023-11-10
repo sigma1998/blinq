@@ -43,49 +43,46 @@ class MyImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: onChangeImage == null ? 86 : 96,
-      child: Stack(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(100),
-            child: Container(
-              constraints: BoxConstraints(
-                maxHeight: maxHeight ?? double.infinity,
-              ),
-              child: CachedNetworkImage(
-                fit: fit,
-                width: width,
-                height: height,
-                imageUrl: imgUrl,
-                placeholder: (context, url, [_]) => getPlaceholder(),
-                errorWidget: (context, url, error) => getErrorImage(),
-              ),
+    return Stack(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(100),
+          child: Container(
+            constraints: BoxConstraints(
+              maxHeight: maxHeight ?? double.infinity,
+            ),
+            child: CachedNetworkImage(
+              fit: fit,
+              width: width,
+              height: height,
+              imageUrl: imgUrl,
+              placeholder: (context, url, [_]) => getPlaceholder(),
+              errorWidget: (context, url, error) => getErrorImage(),
             ),
           ),
-          if (onChangeImage != null)
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: GestureDetector(
-                onTap: onChangeImage,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(
-                        sigmaX: 30,
-                        sigmaY: 20,
-                      ),
-                      child: SvgPicture.asset(AppDrawables.gallery),
+        ),
+        if (onChangeImage != null)
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: GestureDetector(
+              onTap: onChangeImage,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(
+                      sigmaX: 30,
+                      sigmaY: 20,
                     ),
+                    child: SvgPicture.asset(AppDrawables.gallery),
                   ),
                 ),
               ),
             ),
-        ],
-      ),
+          ),
+      ],
     );
   }
 

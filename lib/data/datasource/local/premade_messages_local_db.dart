@@ -2,25 +2,25 @@
 import 'package:hive/hive.dart';
 
 // Project imports:
-import 'package:blinq/data/model/premade_message/response/premade_message_response_model.dart';
+import 'package:blinq/data/model/premade_message/premade_message_response_dto.dart';
 import 'storage_constants.dart';
 
 abstract class PremadeMessagesLocalStorage {
   //
-  void setPremadeMessages(List<PremadeMessageResponseModel> messages);
-  List<PremadeMessageResponseModel> getPremadeMessages();
+  void setPremadeMessages(PremadeMessageResponseDto messages);
+  PremadeMessageResponseDto getPremadeMessages();
 }
 
 class PremadeMessagesLocalStorageImpl implements PremadeMessagesLocalStorage {
   //
   @override
-  List<PremadeMessageResponseModel> getPremadeMessages() {
+  PremadeMessageResponseDto getPremadeMessages() {
     final box = Hive.box(StorageConstants.appBox);
     return box.get(StorageConstants.premadeMessages);
   }
 
   @override
-  void setPremadeMessages(List<PremadeMessageResponseModel> messages) {
+  void setPremadeMessages(PremadeMessageResponseDto messages) {
     final box = Hive.box(StorageConstants.appBox);
     box.put(StorageConstants.premadeMessages, messages);
   }

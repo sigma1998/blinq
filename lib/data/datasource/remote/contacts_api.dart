@@ -1,16 +1,19 @@
 // Dart imports:
 import 'dart:io';
 
+// Package imports:
+import 'package:dio/dio.dart';
+
 // Project imports:
+import 'package:blinq/data/model/contact/contact_response_dto.dart';
 import 'package:blinq/data/model/contact/response/contact_response_model.dart';
 import 'package:blinq/data/model/contact/request/contact_request_model.dart';
 import 'package:blinq/core/network/network_constants.dart';
 import 'package:blinq/core/network/api_service.dart';
-import 'package:dio/dio.dart';
 
 abstract class ContactsApi {
   //
-  Future<List<ContactResponseModel>> fetchList([int count]);
+  Future<ContactResponseDto> fetchList([int count]);
 
   Future<ContactResponseModel> add({
     required ContactRequestModel contact,
@@ -35,13 +38,11 @@ class ContactsApiImpl implements ContactsApi {
   ContactsApiImpl({required this.api});
 
   @override
-  Future<List<ContactResponseModel>> fetchList([int count = 0]) async {
+  Future<ContactResponseDto> fetchList([int page = 1]) async {
     try {
-      int page = (count ~/ 10) + 1;
-
       final res = await api
-          .getList(NetworkConstants.contact, queryParameters: {'page': page});
-      return res.map((e) => ContactResponseModel.fromJson(e)).toList();
+          .get(NetworkConstants.contact, queryParameters: {'page': page});
+      return ContactResponseDto.fromJson(res);
     } catch (e) {
       rethrow;
     }

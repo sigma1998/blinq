@@ -8,7 +8,7 @@ part 'premade_message_response_model.freezed.dart';
 part 'premade_message_response_model.g.dart';
 
 @freezed
-@HiveType(typeId: 9)
+@HiveType(typeId: 10)
 class PremadeMessageResponseModel with _$PremadeMessageResponseModel {
   //
   const factory PremadeMessageResponseModel({

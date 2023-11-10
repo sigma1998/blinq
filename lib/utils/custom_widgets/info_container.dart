@@ -46,7 +46,7 @@ class MyInfoContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
+      child: AnimatedContainer(
         width: width,
         height: height,
         margin: margin,
@@ -55,6 +55,7 @@ class MyInfoContainer extends StatelessWidget {
           color: color,
           borderRadius: BorderRadius.circular(10),
         ),
+        duration: const Duration(milliseconds: 300),
         child: Column(
           children: [
             if (isEdit) ...[
