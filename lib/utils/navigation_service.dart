@@ -10,6 +10,9 @@ import 'custom_widgets/cupertino_action/cupertino_action_sheet.dart';
 class NavigationService {
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
+  static final GlobalKey<NavigatorState> homeNavigatorKey = GlobalKey();
+  static final GlobalKey<NavigatorState> contactsNavigatorKey = GlobalKey();
+
   static bool isActiveDialog = false;
 
   static Future<dynamic> pushNamed(
@@ -21,9 +24,10 @@ class NavigationService {
     if (nestedKey != null) {
       return nestedKey.currentState!.pushNamed(routeName, arguments: arguments);
     }
-
-    return navigatorKey.currentState!
-        .pushNamed(routeName, arguments: arguments);
+    else{
+      return navigatorKey.currentState!
+          .pushNamed(routeName, arguments: arguments);
+    }
   }
 
   static Future<dynamic>? pushReplacement(

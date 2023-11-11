@@ -1,9 +1,14 @@
 // Flutter imports:
 import 'package:blinq/presentation/email_editor/email_editor_screen.dart';
 import 'package:blinq/presentation/forgot_password/reset_password/reset_password_screen.dart';
+import 'package:blinq/presentation/home/home_screen.dart';
 import 'package:blinq/presentation/intro/first_intro_screen/first_intro_screen.dart';
 import 'package:blinq/presentation/intro/second_intro_screen/second_intro_screen.dart';
 import 'package:blinq/presentation/language/language_screen.dart';
+
+// Project imports:
+import 'package:blinq/presentation/main_screen/main_screen.dart';
+import 'package:blinq/presentation/map/map_screen.dart';
 import 'package:blinq/presentation/password_editor/password_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/driver/driver_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/insurance/insurance_editor_screen.dart';
@@ -11,17 +16,16 @@ import 'package:blinq/presentation/profile/widgets/editors/my_car/my_car_editor_
 import 'package:blinq/presentation/profile/widgets/editors/my_vehicle/my_vehicle_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/policy_holder/policy_holder_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/vehicle/vehicle_editor_screen.dart';
-import 'package:blinq/presentation/reports/pdf_view/pdf_view.dart';
-import 'package:blinq/presentation/reports/reports_screen.dart';
-import 'package:blinq/presentation/success_video/success_video_screen.dart';
-import 'package:flutter/material.dart';
-
-// Project imports:
-import 'package:blinq/presentation/main_screen/main_screen.dart';
 import 'package:blinq/presentation/registration/email_screen/email_screen.dart';
 import 'package:blinq/presentation/registration/registration_screen/registration_screen.dart';
+import 'package:blinq/presentation/reports/pdf_view/pdf_view.dart';
+import 'package:blinq/presentation/reports/reports_screen.dart';
 import 'package:blinq/presentation/sign_in_screen/sign_in_screen.dart';
 import 'package:blinq/presentation/splash_screen/splash_screen.dart';
+import 'package:blinq/presentation/success_video/success_video_screen.dart';
+import 'package:blinq/presentation/test/test_screen1.dart';
+import 'package:blinq/presentation/test/test_screen2.dart';
+import 'package:flutter/material.dart';
 
 Map<String, WidgetBuilder> getRoutes(BuildContext context) {
   return {
@@ -54,4 +58,33 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     SuccessVideoScreen.route: (context) => const SuccessVideoScreen(),
     ResetPasswordScreen.route: (context) => const ResetPasswordScreen(),
   };
+}
+
+Map<String, WidgetBuilder> getHomeRoutes(context) {
+  return {
+    HomeScreen.route: (context) => const HomeScreen(),
+    TestScreen1.route: (context) => const TestScreen1(),
+    TestScreen2.route: (context) => const TestScreen2(),
+  };
+}
+
+Route onGenerateHomeRoutes(RouteSettings settings) {
+  late Widget page;
+  switch (settings.name) {
+    case HomeScreen.route:
+      page = const HomeScreen();
+    case TestScreen1.route:
+      page = const TestScreen1();
+    case TestScreen2.route:
+      page = const TestScreen2();
+    case MapScreen.route:
+      page = const MapScreen();
+  }
+
+  return MaterialPageRoute<dynamic>(
+    builder: (context) {
+      return page;
+    },
+    settings: settings,
+  );
 }

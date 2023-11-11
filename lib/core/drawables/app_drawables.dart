@@ -24,6 +24,16 @@ class AppDrawables {
   static const String oil = '$icons/oil.svg';
   static const String batteryReplacement = '$icons/battery_replacement.svg';
 
+  //home screen
+  static const String emergencyBook = '$icons/emergency_book.svg';
+  static const String blinqConnected = '$icons/blinq_connected.svg';
+  static const String accident = '$icons/accident.svg';
+  static const String breakdown = '$icons/breakdown.svg';
+
+  //map
+  static const String mapLocation = '$icons/map_location.svg';
+
+
   //^ Reports
   static const String cart = '$icons/cart.svg';
 
