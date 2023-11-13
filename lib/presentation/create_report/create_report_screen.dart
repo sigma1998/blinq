@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
+import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'bloc/create_report_bloc.dart';
 import 'widgets/item.dart';
@@ -54,6 +55,8 @@ class CreateReportScreen extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: const NavigationButton(height: 135),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

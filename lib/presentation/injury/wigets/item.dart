@@ -4,16 +4,27 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'option_button.dart';
 
-class InjuryItem extends StatelessWidget {
+class InjuryItem extends StatefulWidget {
   //
   final String title;
-  final bool isPositive;
+
+  final void Function(bool) onChanged;
 
   const InjuryItem({
     super.key,
     required this.title,
-    required this.isPositive,
+    required this.onChanged,
   });
+
+  @override
+  State<InjuryItem> createState() => _InjuryItemState();
+}
+
+class _InjuryItemState extends State<InjuryItem> {
+  //
+  bool isSelected = false;
+
+  void updateState() => {if (mounted) setState(() {})};
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +32,7 @@ class InjuryItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          title,
+          widget.title,
           style: const TextStyle(
             fontSize: 26,
             fontWeight: FontWeight.w700,
@@ -31,15 +42,23 @@ class InjuryItem extends StatelessWidget {
         Row(
           children: [
             InjuryOptionButton.no(
-              isSelected: !isPositive,
+              isSelected: !isSelected,
+              onTap: !isSelected ? () {} : onTap,
             ),
             const SizedBox(width: 18),
             InjuryOptionButton.yes(
-              isSelected: isPositive,
+              isSelected: isSelected,
+              onTap: isSelected ? () {} : onTap,
             ),
           ],
         )
       ],
     );
+  }
+
+  void onTap() {
+    isSelected = !isSelected;
+    widget.onChanged.call(isSelected);
+    updateState();
   }
 }

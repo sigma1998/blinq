@@ -12,18 +12,22 @@ import 'package:blinq/utils/navigation_service.dart';
 
 class NavigationButton extends StatelessWidget {
   //
-  final VoidCallback onNextTap;
+  final VoidCallback? onNextTap;
+
+  final double height;
 
   const NavigationButton({
     super.key,
-    required this.onNextTap,
+    this.onNextTap,
+    this.height = 0,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
+      padding: EdgeInsets.symmetric(
         horizontal: 32,
+        vertical: height,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -45,23 +49,24 @@ class NavigationButton extends StatelessWidget {
               ),
             ),
           ),
-          MyButton.primary(
-            onTap: onNextTap,
-            label: 'strNext'.tr(),
-            padding: const EdgeInsets.symmetric(
-              vertical: 12,
-              horizontal: 24,
-            ),
-            iconRight: SvgPicture.asset(
-              AppDrawables.arrowRight,
-              width: 24,
-              height: 24,
-              colorFilter: const ColorFilter.mode(
-                Colors.white,
-                BlendMode.srcIn,
+          if (onNextTap != null)
+            MyButton.primary(
+              onTap: onNextTap!,
+              label: 'strNext'.tr(),
+              padding: const EdgeInsets.symmetric(
+                vertical: 12,
+                horizontal: 24,
               ),
-            ),
-          )
+              iconRight: SvgPicture.asset(
+                AppDrawables.arrowRight,
+                width: 24,
+                height: 24,
+                colorFilter: const ColorFilter.mode(
+                  Colors.white,
+                  BlendMode.srcIn,
+                ),
+              ),
+            )
         ],
       ),
     );

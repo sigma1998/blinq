@@ -12,20 +12,24 @@ class InjuryOptionButton extends StatelessWidget {
   final bool _isPositve;
   final bool isSelected;
 
+  final void Function() onTap;
+
   const InjuryOptionButton.yes({
     super.key,
     required this.isSelected,
+    required this.onTap,
   }) : _isPositve = true;
 
   const InjuryOptionButton.no({
     super.key,
     required this.isSelected,
+    required this.onTap,
   }) : _isPositve = false;
 
   @override
   Widget build(BuildContext context) {
     return MyInkWell(
-      onTap: () {},
+      onTap: onTap,
       padding: const EdgeInsets.symmetric(
         vertical: 12,
         horizontal: 26,

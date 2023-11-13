@@ -25,18 +25,18 @@ class InjuryScreen extends StatelessWidget {
         physics: const ClampingScrollPhysics(),
         children: [
           InjuryItem(
-            isPositive: true,
             title: 'strMinorInjuries'.tr(),
+            onChanged: (v) {},
           ),
           const SizedBox(height: 50),
           InjuryItem(
-            isPositive: true,
             title: 'strDamagedVehicle'.tr(),
+            onChanged: (v) {},
           ),
           const SizedBox(height: 50),
           InjuryItem(
-            isPositive: false,
             title: 'strDamagedBesidesVehicle'.tr(),
+            onChanged: (v) {},
           ),
         ],
       ),

@@ -14,7 +14,7 @@ import 'rounded_text_field.dart';
 class RoundedTimePickerTextField extends StatefulWidget {
   //
   final String? labelText;
-  final TimeOfDay? initialDate;
+  final TimeOfDay? initialTime;
 
   final void Function(DateTime)? onDateChanged;
   final TextEditingController controller;
@@ -27,7 +27,7 @@ class RoundedTimePickerTextField extends StatefulWidget {
     this.labelText,
     this.onDateChanged,
     //
-    this.initialDate,
+    this.initialTime,
     //
     this.enabled = true,
     this.isRequired = false,
@@ -45,8 +45,8 @@ class _RoundedTimePickerTextFieldState
 
   @override
   void initState() {
-    time = widget.initialDate ?? TimeOfDay.now();
-    if (widget.initialDate != null) setText();
+    time = widget.initialTime ?? TimeOfDay.now();
+    if (widget.initialTime != null) setText();
 
     super.initState();
   }
@@ -57,7 +57,7 @@ class _RoundedTimePickerTextFieldState
       onTap: onTap,
       readOnly: true,
       enabled: widget.enabled,
-      hintText: 'strDate'.tr(),
+      hintText: 'strTime'.tr(),
       labelText: widget.labelText,
       controller: widget.controller,
       suffixIcon: Padding(

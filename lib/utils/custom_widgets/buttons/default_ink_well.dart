@@ -62,7 +62,7 @@ class MyInkWell extends StatelessWidget {
         boxShadow: boxShadow,
         borderRadius: borderRadius,
       ),
-      duration: const Duration(milliseconds: 250),
+      duration: const Duration(milliseconds: 300),
       child: Material(
         type: MaterialType.transparency,
         child: InkWell(
