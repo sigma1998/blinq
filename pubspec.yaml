@@ -38,6 +38,7 @@ dependencies:
   # for api
   dio: ^4.0.6
   logger: ^2.0.2+1
+  http: any
 
   shimmer: ^3.0.0
   cached_network_image: ^3.3.0
@@ -87,6 +88,7 @@ dependencies:
   google_maps_flutter: ^2.4.0
   # take user permission to location
   geolocator: ^10.0.0
+  location: ^5.0.3
   # for datetime and internationalization
   intl: ^0.18.0
   # for animation the widget
