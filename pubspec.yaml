@@ -154,6 +154,7 @@ flutter:
   assets:
     - assets/fonts/
     - assets/icons/
+    - assets/icons/arrows/
     - assets/images/
     - assets/locale/
     - assets/video/

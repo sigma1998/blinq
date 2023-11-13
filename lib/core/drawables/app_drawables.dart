@@ -1,6 +1,7 @@
 class AppDrawables {
   static const icons = 'assets/icons';
   static const images = 'assets/images';
+  static const arrows = '$icons/arrows';
 
   ///
   /// Icons
@@ -73,4 +74,18 @@ class AppDrawables {
   static const String policyHolder = '$images/policy_holder.png';
   static const String electricBolt = '$images/electric_bolt.png';
   static const String insurance = '$images/insurance.png';
+
+  //arrows
+  static const String topArrow = '$arrows/top.svg';
+  static const String topRightArrow = '$arrows/top_right.svg';
+  static const String topLeftArrow = '$arrows/top_left.svg';
+  static const String bottomArrow = '$arrows/bottom.svg';
+  static const String bottomRightArrow = '$arrows/bottom_right.svg';
+  static const String bottomLeftArrow = '$arrows/bottom_left.svg';
+
+
+  static const String defaultCard = '$icons/default_car.svg';
+
+
+
 }

@@ -10,6 +10,7 @@ import 'package:blinq/presentation/language/language_screen.dart';
 import 'package:blinq/presentation/main_screen/main_screen.dart';
 import 'package:blinq/presentation/map/map_screen.dart';
 import 'package:blinq/presentation/password_editor/password_editor_screen.dart';
+import 'package:blinq/presentation/points_of_impact/points_of_impact_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/driver/driver_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/insurance/insurance_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/my_car/my_car_editor_screen.dart';
@@ -79,6 +80,8 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
       page = const TestScreen2();
     case MapScreen.route:
       page = const MapScreen();
+    case PointsOfImpactScreen.route:
+      page = const PointsOfImpactScreen();
     default:
       page = const HomeScreen();
   }
