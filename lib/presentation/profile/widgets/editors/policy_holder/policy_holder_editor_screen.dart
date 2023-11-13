@@ -6,9 +6,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:blinq/utils/custom_widgets/secondary_button.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
+import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
@@ -98,13 +99,15 @@ class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SecondaryButton(
+                  MyButton.primary(
                     label: 'strSave'.tr(),
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,
                       horizontal: 60,
                     ),
+                    isLoading: state.status == Status.loading,
                     onTap: () => bloc.add(OnSubmitPolicyHolder()),
+                    labelStyle: const TextStyle(fontWeight: FontWeight.w500),
                   ),
                 ],
               ),

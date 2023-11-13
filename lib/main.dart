@@ -1,38 +1,38 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:hive/hive.dart';
+
+// Project imports:
+import 'package:blinq/app.dart';
 import 'package:blinq/app/locator.dart';
-import 'package:blinq/core/theme/app_theme.dart';
 import 'package:blinq/data/model/car/response/car_response_model.dart';
 import 'package:blinq/data/model/insurance/response/insurance_response_model.dart';
 import 'package:blinq/data/model/policy_holder/response/policy_holder_response_model.dart';
 import 'package:blinq/data/model/profile/driver_license/driver_license_type.dart';
 import 'package:blinq/data/model/profile/response/profile_response_model.dart';
 import 'package:blinq/data/model/vehicle/response/vehicle_response_model.dart';
-import 'package:blinq/presentation/main_screen/main_screen_bloc.dart';
-import 'package:blinq/presentation/success_video/success_video_bloc.dart';
-import 'package:blinq/utils/image_crop.dart';
-import 'package:blinq/utils/services/media/media_service.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
-
-import 'app/routes.dart';
+import 'package:blinq/data/model/contact/response/contact_response_model.dart';
+import 'package:blinq/data/model/premade_message/response/premade_message_response_model.dart';
+import 'package:blinq/localization.dart';
 import 'data/datasource/local/storage_constants.dart';
+import 'data/model/contact/contact_response_dto.dart';
+import 'data/model/premade_message/premade_message_response_dto.dart';
 import 'data/model/user/user_status.dart';
-import 'domain/repositories/profile_repository.dart';
-import 'presentation/profile/bloc/profile_bloc.dart';
-import 'utils/navigation_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await EasyLocalization.ensureInitialized();
+
   setUpLocator();
+
   await _setUpHive();
-  runApp(EasyLocalization(supportedLocales: const [
-    Locale('en'),
-    Locale('hu'),
-  ], path: 'assets/locale', child: const MyApp()));
+
+  runApp(const MyLocalization(child: MyApp()));
 }
 
 Future<void> _setUpHive() async {
@@ -45,42 +45,14 @@ Future<void> _setUpHive() async {
   Hive.registerAdapter(InsuranceResponseModelAdapter());
   Hive.registerAdapter(UserVehicleResponseModelAdapter());
 
+  Hive.registerAdapter(ContactResponseModelAdapter());
+  Hive.registerAdapter(ContactResponseDtoAdapter());
+
+  Hive.registerAdapter(PremadeMessageResponseModelAdapter());
+  Hive.registerAdapter(PremadeMessageResponseDtoAdapter());
+
   Hive.registerAdapter(ProfileResponseModelAdapter());
 
   await Hive.openBox(StorageConstants.appBox);
   await Hive.openBox(StorageConstants.userStatusBox);
-}
-
-class MyApp extends StatelessWidget {
-  //
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<MainScreenBloc>(
-          create: (context) => MainScreenBloc(),
-        ),
-        BlocProvider<SuccessVideoBloc>(
-          create: (context) => SuccessVideoBloc(),
-        ),
-        BlocProvider<ProfileBloc>(
-          create: (context) => ProfileBloc(
-            imageCrop: getIt<ImageCropImpl>(),
-            mediaService: getIt<MediaService>(),
-            repository: getIt<ProfileRepositoryImpl>(),
-          ),
-        ),
-      ],
-      child: MaterialApp(
-        theme: AppTheme.darkTheme,
-        navigatorKey: NavigationService.navigatorKey,
-        routes: getRoutes(context),
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-      ),
-    );
-  }
 }

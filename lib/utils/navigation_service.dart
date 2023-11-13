@@ -1,4 +1,5 @@
 import 'package:another_flushbar/flushbar.dart';
+import 'package:blinq/app.dart';
 import 'package:blinq/core/theme/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -57,6 +58,10 @@ class NavigationService {
 
   static void showSnackBar({required SnackBar snackBar}) {
     ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(snackBar);
+  }
+
+  static void updateLocale(String lang) {
+    MyApp.of(navigatorKey.currentContext!)!.updateLocale(lang);
   }
 
   static void showErrorSnackBar({required SnackBar snackBar}) {

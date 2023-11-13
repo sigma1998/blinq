@@ -1,64 +1,68 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
 
-class HomeScreenMeniItem extends StatelessWidget {
-  final VoidCallback onTap;
-  final String? icon;
+// Project imports:
+import 'package:blinq/utils/custom_widgets/info_container.dart';
+
+class HomeScreenMenuItem extends StatelessWidget {
+  //
   final String text;
+  final String? icon;
+
+  final VoidCallback onTap;
+
   final double padding;
   final String? background;
 
-  const HomeScreenMeniItem(
-      {Key? key,
-      required this.text,
-      this.padding = 24,
-      this.background,
-      this.icon,
-      required this.onTap})
-      : super(key: key);
+  const HomeScreenMenuItem({
+    super.key,
+    required this.text,
+    required this.onTap,
+    //
+    this.icon,
+    this.padding = 24,
+    this.background,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return MyInfoContainer(
       onTap: onTap,
-      child: Container(
-        height: 160,
-        width: double.maxFinite,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: Theme.of(context).colorScheme.secondary,
-        ),
-        child: Stack(
-          children: [
-            if (background != null)
-              SvgPicture.asset(
-                background!,
-                fit: BoxFit.cover,
-              ),
-            Padding(
-              padding: EdgeInsets.all(padding),
-              child: Column(
-                mainAxisAlignment: icon != null
-                    ? MainAxisAlignment.spaceBetween
-                    : MainAxisAlignment.end,
-                children: [
-                  if (icon != null)
-                    SvgPicture.asset(
-                      icon!,
-                      height: 55,
-                    ),
-                  Center(
-                    child: Text(
-                      text,
-                      style: Theme.of(context).textTheme.bodyLarge,
-                      textAlign: TextAlign.center,
-                    ),
-                  )
-                ],
-              ),
+      height: 160,
+      padding: EdgeInsets.zero,
+      child: Stack(
+        children: [
+          if (background != null)
+            SvgPicture.asset(
+              background!,
+              fit: BoxFit.cover,
             ),
-          ],
-        ),
+          Padding(
+            padding: EdgeInsets.all(padding),
+            child: Column(
+              mainAxisAlignment: icon != null
+                  ? MainAxisAlignment.spaceBetween
+                  : MainAxisAlignment.end,
+              children: [
+                if (icon != null)
+                  SvgPicture.asset(
+                    icon!,
+                    height: 55,
+                  ),
+                Center(
+                  child: Text(
+                    text,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

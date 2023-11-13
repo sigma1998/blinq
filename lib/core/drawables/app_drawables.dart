@@ -18,6 +18,14 @@ class AppDrawables {
   static const String tick = '$icons/tick.svg';
 
   static const String gallery = '$icons/gallery.svg';
+  static const String calendar = '$icons/calendar.svg';
+  static const String time = '$icons/time.svg';
+
+  //& Emergency
+  static const String policeCar = '$icons/police_car.svg';
+  static const String emergencyCar = '$icons/ambulance_car.svg';
+  static const String fireTruck = '$icons/fire_truck.svg';
+  static const String phone = '$icons/phone.svg';
 
   //~ My vehicle
   static const String wheel = '$icons/wheel.svg';
@@ -45,6 +53,11 @@ class AppDrawables {
   static const String pdf = '$icons/pdf.svg';
   static const String delete = '$icons/delete.svg';
   static const String download = '$icons/download.svg';
+
+  static const String heartPulse = '$icons/heart_pulse.svg';
+  static const String medicalKit = '$icons/medical_kit.svg';
+  static const String handShake = '$icons/hand_shake.svg';
+  static const String file = '$icons/file.svg';
 
   //* Arrows
   static const String arrowDown = '$icons/arrow_down.svg';

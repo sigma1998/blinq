@@ -656,5 +656,10 @@
   "strYesWantToDelete": "Igen, törölni szeretném",
   "strConfirmYourAccount": "Erősítse meg a fiókját",
   "strIfYouWantToDelete": "Ha törölni szeretné, adja meg a kódot, amelyet e-mailben küldtünk",
-  "strConfirmDeleteAccount": "Erősítse meg, hogy törli a fiókját"
+  "strConfirmDeleteAccount": "Erősítse meg, hogy törli a fiókját",
+  "strDateOfAccident": "Baleset dátuma",
+  "strDate": "Dátum",
+  "strTime": "Idő",
+  "strTimeOfAccident": "Baleset ideje",
+  "strPlace": "Hely"
 }

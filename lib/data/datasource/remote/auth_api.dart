@@ -140,7 +140,7 @@ class AuthApiImpl implements AuthApi {
   @override
   Future<void> verifyDeleteUser(String code) async {
     try {
-      await api.post(NetworkConstants.verifyDeleteUser(code));
+      await api.delete(NetworkConstants.verifyDeleteUser(code));
     } catch (e) {
       rethrow;
     }

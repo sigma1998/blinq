@@ -37,4 +37,13 @@ class NetworkConstants {
   static String brands = 'vehicle/brands/';
   static String models = 'vehicle/brand/models/';
   static String colors = 'vehicle/brand/colors/';
+
+  ///
+  ///  Contact
+  ///
+  static String contact = 'contact/';
+  static String editContact(int id) => '$contact$id/';
+
+  static String premadeMessage = 'pre/made/message/';
+  static String editpremadeMessage(int id) => '$premadeMessage$id/';
 }

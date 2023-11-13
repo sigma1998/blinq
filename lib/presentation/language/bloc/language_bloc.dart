@@ -4,6 +4,7 @@ import 'dart:async';
 // Project imports:
 import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/navigation_service.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
@@ -53,6 +54,7 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
     try {
       emit(state.copyWith(lang: event.lang));
       await repository.updateLanguage(event.lang.code);
+      NavigationService.updateLocale(event.lang.code);
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }

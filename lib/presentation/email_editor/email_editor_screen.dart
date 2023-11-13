@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
+import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
-import 'package:blinq/utils/custom_widgets/text_fields/base_text_field.dart';
+import 'package:blinq/utils/custom_widgets/text_fields/rounded/rounded_text_field.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/presentation/email_editor/bloc/email_editor_bloc.dart';
-import 'package:blinq/utils/custom_widgets/app_btn.dart';
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/custom_widgets/expanded_section.dart';
@@ -59,14 +59,14 @@ class _EmailEditorScreenState extends State<EmailEditorScreen> {
               return Column(
                 children: [
                   const SizedBox(height: 48),
-                  BaseTextField(
+                  RoundedTextField(
                     enabled: false,
                     labelText: 'strYourCurrentEmail'.tr(),
                     keyboardType: TextInputType.emailAddress,
                     initialValue: profileBloc.state.profile?.email,
                   ),
                   const SizedBox(height: 48),
-                  BaseTextField(
+                  RoundedTextField(
                     labelText: 'strYourNewEmail'.tr(),
                     controller: bloc.newEmailController,
                     keyboardType: TextInputType.emailAddress,
@@ -76,7 +76,7 @@ class _EmailEditorScreenState extends State<EmailEditorScreen> {
                     child: Column(
                       children: [
                         const SizedBox(height: 6),
-                        BaseTextField(
+                        RoundedTextField(
                           hintText: 'strEnterCode'.tr(),
                           controller: bloc.codeController,
                           keyboardType: TextInputType.emailAddress,
@@ -85,7 +85,7 @@ class _EmailEditorScreenState extends State<EmailEditorScreen> {
                     ),
                   ),
                   const SizedBox(height: 48),
-                  AppButton(
+                  MyButton.secondary(
                     onTap: () {
                       if (state.isCodeSent) {
                         bloc.add(OnVerifyEmail());
@@ -93,12 +93,14 @@ class _EmailEditorScreenState extends State<EmailEditorScreen> {
                         bloc.add(OnSendCode());
                       }
                     },
-                    text: state.isCodeSent
+                    label: state.isCodeSent
                         ? 'strConfirm'.tr()
                         : 'strSendCode'.tr(),
-                    btnColor: Colors.white,
-                    txtColor: Colors.black,
-                    loading: state.status == Status.loading,
+                    isLoading: state.status == Status.loading,
+                    labelStyle: const TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ],
               );

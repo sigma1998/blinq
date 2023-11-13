@@ -1,6 +1,7 @@
-// Project imports:
+// Dart imports:
 import 'dart:io';
 
+// Project imports:
 import 'package:blinq/data/datasource/local/profile_local_db.dart';
 import 'package:blinq/data/datasource/remote/profile_api.dart';
 import 'package:blinq/data/model/car/request/car_request_model.dart';
@@ -23,7 +24,9 @@ abstract class ProfileRepository {
 
   Future<void> updateProfileImage(File file);
 
-  //
+  ///
+  /// Editors
+  ///
   Future<void> updatePolicyHolder(PolicyHolderRequestModel policyHolder);
 
   Future<void> updateCar(CarRequestModel vehicle);
@@ -34,7 +37,9 @@ abstract class ProfileRepository {
 
   Future<void> updateMyCar(CarRequestModel carRequestModel);
 
-  //
+  ///
+  /// Settings
+  ///
   Future<void> updatePassword(String oldPassword, String newPassword);
 
   Future<void> updateEmail(String email);
@@ -43,11 +48,21 @@ abstract class ProfileRepository {
 
   Future<void> updateLanguage(String language);
 
+  ///
+  /// Reports
+  ///
+
   Future<HistoryResponseDto> fetchHistory();
 
   Future<void> deleteReport(int docId);
 
   Future<void> downloadReport({required String url, required String localPath});
+
+  Future<BrandResponseDto> fetchBrands(int page);
+
+  Future<BrandResponseDto> fetchModels(int page, int brandId);
+
+  Future<ColorResponseDto> fetchColors(int page, int brandId);
 
   ///
   /// Local storage
@@ -60,12 +75,6 @@ abstract class ProfileRepository {
   String getLanguage();
 
   void setLanguage(String language);
-
-  Future<BrandResponseDto> fetchBrands(int page);
-
-  Future<BrandResponseDto> fetchModels(int page, int brandId);
-
-  Future<ColorResponseDto> fetchColors(int page, int brandId);
 }
 
 class ProfileRepositoryImpl implements ProfileRepository {
@@ -198,6 +207,10 @@ class ProfileRepositoryImpl implements ProfileRepository {
       rethrow;
     }
   }
+
+  ///
+  /// Reports
+  ///
 
   @override
   Future<HistoryResponseDto> fetchHistory() async {

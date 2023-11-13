@@ -1,6 +1,4 @@
 // Flutter imports:
-import 'package:blinq/data/model/history/history_item/history_item_dto.dart';
-import 'package:blinq/utils/general_functions.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -8,10 +6,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_svg/svg.dart';
 
 // Project imports:
-import 'package:blinq/core/drawables/app_drawables.dart';
-import 'package:blinq/utils/custom_widgets/secondary_button.dart';
+import 'package:blinq/data/model/history/history_item/history_item_dto.dart';
+import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/expanded_section.dart';
 import 'package:blinq/utils/custom_widgets/info_container.dart';
+import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/utils/general_functions.dart';
 
 class ProfileReportItem extends StatefulWidget {
   //
@@ -80,15 +80,12 @@ class _ProfileReportItemState extends State<ProfileReportItem>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    SecondaryButton(
+                    MyButton.primary(
                       label: 'strOpenPdf'.tr(),
                       onTap: widget.onPdfOpen ?? () {},
                       padding: const EdgeInsets.symmetric(
                         vertical: 6,
                         horizontal: 16,
-                      ),
-                      textStyle: const TextStyle(
-                        fontSize: 11,
                       ),
                       iconLeft: SvgPicture.asset(
                         AppDrawables.pdf,
@@ -97,6 +94,7 @@ class _ProfileReportItemState extends State<ProfileReportItem>
                           BlendMode.srcIn,
                         ),
                       ),
+                      labelStyle: const TextStyle(fontSize: 11),
                     ),
                     const SizedBox(width: 44),
                     GestureDetector(

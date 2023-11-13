@@ -61,7 +61,7 @@ class ProfileInfoWidget extends StatelessWidget {
                     title: 'strInsurance'.tr(),
                     image: AppDrawables.insurance,
                     onTap: bloc.onInsurancePressed,
-                    desc: '${state.profile?.insurance?.name}',
+                    desc: state.profile?.insurance?.name ?? '-',
                   ),
                 ),
               ],

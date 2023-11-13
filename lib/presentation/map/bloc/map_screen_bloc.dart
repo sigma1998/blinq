@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapScreenBloc extends Cubit<MapState> {
+  //
   late GoogleMapController? mapController;
 
   final MapPickerController mapPickerController = MapPickerController();
@@ -63,5 +64,4 @@ class MapScreenBloc extends Cubit<MapState> {
   void _draggingStarted() {
     emit(MapLoading());
   }
-
 }

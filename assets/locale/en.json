@@ -615,5 +615,10 @@
   "strYesWantToDelete": "Yes, I want to delete",
   "strConfirmYourAccount": "Confirm your account",
   "strIfYouWantToDelete": "If you want to delete, please enter the code that we have sent to your email",
-  "strConfirmDeleteAccount": "Confirm, delete account"
+  "strConfirmDeleteAccount": "Confirm, delete account",
+  "strDateOfAccident": "Date of Accident",
+  "strDate": "Date",
+  "strTime": "Time",
+  "strTimeOfAccident": "Time of Accident",
+  "strPlace": "Place"
 }

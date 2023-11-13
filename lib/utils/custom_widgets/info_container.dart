@@ -1,10 +1,12 @@
 // Flutter imports:
+import 'package:blinq/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_svg/svg.dart';
 
 // Project imports:
+import 'package:blinq/utils/custom_widgets/buttons/default_ink_well.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
 
 class MyInfoContainer extends StatelessWidget {
@@ -13,6 +15,8 @@ class MyInfoContainer extends StatelessWidget {
 
   final void Function()? onTap;
   final void Function()? onClose;
+
+  final Color color;
 
   final double? width;
   final double? height;
@@ -30,6 +34,7 @@ class MyInfoContainer extends StatelessWidget {
     this.onTap,
     this.onClose,
     this.isEdit = false,
+    this.color = AppColors.darkGrey,
     //
     this.width,
     this.height,
@@ -41,39 +46,35 @@ class MyInfoContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return MyInkWell(
       onTap: onTap,
-      child: Container(
-        width: width,
-        height: height,
-        margin: margin,
-        padding: padding,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Theme.of(context).colorScheme.onBackground,
-        ),
-        child: Column(
-          children: [
-            if (isEdit) ...[
-              const SizedBox(height: 4),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  GestureDetector(
-                    onTap: onClose,
-                    child: SvgPicture.asset(
-                      AppDrawables.close,
-                      width: 20,
-                      height: 20,
-                    ),
+      color: color,
+      width: width,
+      height: height,
+      margin: margin,
+      padding: padding,
+      borderRadius: borderRadius,
+      child: Column(
+        children: [
+          if (isEdit) ...[
+            const SizedBox(height: 4),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                GestureDetector(
+                  onTap: onClose,
+                  child: SvgPicture.asset(
+                    AppDrawables.close,
+                    width: 20,
+                    height: 20,
                   ),
-                ],
-              ),
-              const SizedBox(height: 4),
-            ],
-            child,
+                ),
+              ],
+            ),
+            const SizedBox(height: 4),
           ],
-        ),
+          child,
+        ],
       ),
     );
   }
