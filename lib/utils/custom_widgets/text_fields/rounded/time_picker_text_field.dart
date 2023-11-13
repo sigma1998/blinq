@@ -11,47 +11,41 @@ import 'package:blinq/utils/date_formatter.dart';
 import 'package:blinq/utils/date_helper.dart';
 import 'rounded_text_field.dart';
 
-class RoundedDatePickerTextField extends StatefulWidget {
+class RoundedTimePickerTextField extends StatefulWidget {
   //
   final String? labelText;
-  final DateTime? initialDate;
+  final TimeOfDay? initialDate;
 
   final void Function(DateTime)? onDateChanged;
   final TextEditingController controller;
 
-  final DateTime? minDate;
-  final DateTime? maxDate;
-
   final bool enabled;
   final bool isRequired;
 
-  RoundedDatePickerTextField({
+  RoundedTimePickerTextField({
     required this.controller,
     this.labelText,
     this.onDateChanged,
     //
     this.initialDate,
     //
-    this.minDate,
-    this.maxDate,
-    //
     this.enabled = true,
     this.isRequired = false,
   }) : super(key: UniqueKey());
 
   @override
-  State<RoundedDatePickerTextField> createState() =>
-      _RoundedDatePickerTextFieldState();
+  State<RoundedTimePickerTextField> createState() =>
+      _RoundedTimePickerTextFieldState();
 }
 
-class _RoundedDatePickerTextFieldState
-    extends State<RoundedDatePickerTextField> {
+class _RoundedTimePickerTextFieldState
+    extends State<RoundedTimePickerTextField> {
   //
-  DateTime? dateTime;
+  TimeOfDay? time;
 
   @override
   void initState() {
-    dateTime = widget.initialDate ?? MyDateHelper.today;
+    time = widget.initialDate ?? TimeOfDay.now();
     if (widget.initialDate != null) setText();
 
     super.initState();
@@ -69,7 +63,7 @@ class _RoundedDatePickerTextFieldState
       suffixIcon: Padding(
         padding: const EdgeInsets.only(right: 12),
         child: SvgPicture.asset(
-          AppDrawables.calendar,
+          AppDrawables.time,
           width: 24,
           height: 24,
         ),
@@ -82,23 +76,21 @@ class _RoundedDatePickerTextFieldState
   }
 
   void onTap() async {
-    final today = MyDateHelper.today;
-
-    final newDate = await showDatePicker(
+    final newDate = await showTimePicker(
       context: context,
-      initialDate: dateTime!,
-      lastDate: widget.maxDate ?? DateTime(today.year + 20),
-      firstDate: widget.minDate ?? DateTime(today.year - 20),
+      initialTime: time!,
     );
 
     if (newDate != null) {
-      dateTime = newDate;
+      time = newDate;
       setText();
       // widget.onDateChanged(dateTime!);
     }
   }
 
   void setText() {
-    widget.controller.text = DateFormatter.fyyyyMMdd(dateTime);
+    widget.controller.text = DateFormatter.fhhmm(
+      MyDateHelper.timeOfDayToDateTime(time!),
+    );
   }
 }

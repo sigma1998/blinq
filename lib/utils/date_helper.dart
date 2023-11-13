@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:flutter/material.dart';
 import 'package:in_date_utils/in_date_utils.dart';
 
 class MyDateHelper {
@@ -11,6 +12,11 @@ class MyDateHelper {
   static DateTime get yesterday {
     final yesterday = DateTime.now().subtract(const Duration(days: 1));
     return DateTime(yesterday.year, yesterday.month, yesterday.day);
+  }
+
+  static DateTime get tommorow {
+    final tommorow = DateTime.now().add(const Duration(days: 1));
+    return DateTime(tommorow.year, tommorow.month, tommorow.day);
   }
 
   static DateTime get currentMonth {
@@ -45,6 +51,11 @@ class MyDateHelper {
 
   static bool isCurrentMonth(DateTime date) {
     return today.year == date.year && today.month == date.month;
+  }
+
+  static DateTime timeOfDayToDateTime(TimeOfDay time) {
+    final now = DateTime.now();
+    return DateTime(now.year, now.month, now.day, time.hour, time.minute);
   }
 
   static String daysBetween(DateTime from, DateTime to) {

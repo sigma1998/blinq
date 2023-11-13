@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:blinq/presentation/injury/injury_screen.dart';
 import 'package:blinq/presentation/location_info/location_info_screen.dart';
-import 'package:blinq/presentation/speech_to_voice/speech_to_voice_screen.dart';
+import 'package:blinq/presentation/speech_to_text/speech_to_text_screen.dart';
 import 'package:blinq/presentation/create_report/create_report_screen.dart';
 import 'package:blinq/presentation/email_editor/email_editor_screen.dart';
 import 'package:blinq/presentation/emergency_services/emergency_services_screen.dart';
@@ -73,7 +73,7 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     //^ Report
     LocationInfoScreen.route: (context) => const LocationInfoScreen(),
     InjuryScreen.route: (context) => const InjuryScreen(),
-    SpeechToVoiceScreen.route: (context) => const SpeechToVoiceScreen(),
+    SpeechToTextScreen.route: (context) => const SpeechToTextScreen(),
   };
 }
 

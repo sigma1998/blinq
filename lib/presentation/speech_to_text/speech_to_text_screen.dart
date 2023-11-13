@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class SpeechToVoiceScreen extends StatelessWidget {
+class SpeechToTextScreen extends StatelessWidget {
   //
   static const route = '/speech_to_voice';
 
-  const SpeechToVoiceScreen({super.key});
+  const SpeechToTextScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

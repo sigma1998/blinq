@@ -165,7 +165,7 @@ class _RoundedTextFieldState extends State<RoundedTextField> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (widget.labelText != null)
+        if (widget.labelText != null) ...[
           Row(
             children: [
               if (widget.isRequired) ...[
@@ -206,7 +206,8 @@ class _RoundedTextFieldState extends State<RoundedTextField> {
               ],
             ],
           ),
-        const SizedBox(height: 10),
+          const SizedBox(height: 10),
+        ],
         Stack(
           children: [
             TextFormField(

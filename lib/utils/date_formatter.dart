@@ -31,6 +31,10 @@ class DateFormatter {
   // eg. 2022-12-24
   static String fyyyyMMdd(DateTime? date) => format(date, DateFormats.yyyyMMdd);
   static DateTime? pyyyyMMdd(String date) => parse(date, DateFormats.yyyyMMdd);
+
+  // eg. 23:47
+  static String fhhmm(DateTime? date) => format(date, DateFormats.hhmm);
+  static DateTime? phhmm(String date) => parse(date, DateFormats.hhmm);
 }
 
 class DateFormats {
@@ -40,4 +44,5 @@ class DateFormats {
   static const String ddMMyyyySlash = 'dd/MM/yyyy';
   static const String ddMMMyyyyCommaHHmm = 'dd MMM yyyy, hh:mma';
   static const String yyyyMMdd = 'yyyy-MM-dd';
+  static const String hhmm = 'HH:mm';
 }
