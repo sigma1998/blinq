@@ -1,22 +1,27 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_svg/svg.dart';
+
+// Project imports:
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/presentation/home/bloc/home_screen_cubit.dart';
 import 'package:blinq/presentation/home/bloc/home_screen_state.dart';
 import 'package:blinq/utils/custom_widgets/app_btn.dart';
 import 'package:blinq/utils/map_pin.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class HomeMap extends StatelessWidget {
-  const HomeMap({
-    super.key,
-  });
+  //
+  const HomeMap({super.key});
 
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<HomeScreenCubit>();
+
     return BlocBuilder<HomeScreenCubit, HomeScreenState>(
         bloc: bloc,
         builder: (context, state) {

@@ -31,7 +31,7 @@ class CreateReportItem extends StatelessWidget {
       onTap: onTap,
       color: color,
       padding: const EdgeInsets.symmetric(
-        vertical: 35,
+        vertical: 32,
         horizontal: 20,
       ),
       child: Row(

@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -33,7 +34,7 @@ class MyInfoContainer extends StatelessWidget {
     this.onTap,
     this.onClose,
     this.isEdit = false,
-    this.color = const Color(0xff1B1B1B),
+    this.color = AppColors.darkGrey,
     //
     this.width,
     this.height,
