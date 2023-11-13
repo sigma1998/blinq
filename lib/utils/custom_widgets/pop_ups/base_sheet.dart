@@ -6,11 +6,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/utils/navigation_service.dart';
 
-class MyBaseSheet extends StatelessWidget {
+class BaseSheet extends StatelessWidget {
   //
   final List<Widget> children;
 
-  const MyBaseSheet({
+  const BaseSheet({
     super.key,
     required this.children,
   });

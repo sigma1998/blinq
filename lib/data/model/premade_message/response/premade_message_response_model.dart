@@ -13,8 +13,8 @@ class PremadeMessageResponseModel with _$PremadeMessageResponseModel {
   //
   const factory PremadeMessageResponseModel({
     @HiveField(0) int? id,
-    @HiveField(2) String? title,
-    @HiveField(3) String? message,
+    @HiveField(1) String? title,
+    @HiveField(2) String? message,
   }) = _PremadeMessageResponseModel;
 
   factory PremadeMessageResponseModel.fromJson(Map<String, dynamic> json) =>

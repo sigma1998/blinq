@@ -19,7 +19,6 @@ class MyCheckbox extends StatelessWidget {
       width: 26,
       height: 26,
       child: Checkbox.adaptive(
-        splashRadius: 0,
         value: isChecked,
         onChanged: onChanged,
         checkColor: Colors.white,

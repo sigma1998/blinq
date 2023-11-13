@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 // Project imports:
+import 'package:blinq/utils/custom_widgets/buttons/default_ink_well.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
 
 class MyInfoContainer extends StatelessWidget {
@@ -44,40 +45,35 @@ class MyInfoContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return MyInkWell(
       onTap: onTap,
-      child: AnimatedContainer(
-        width: width,
-        height: height,
-        margin: margin,
-        padding: padding,
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        duration: const Duration(milliseconds: 300),
-        child: Column(
-          children: [
-            if (isEdit) ...[
-              const SizedBox(height: 4),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  GestureDetector(
-                    onTap: onClose,
-                    child: SvgPicture.asset(
-                      AppDrawables.close,
-                      width: 20,
-                      height: 20,
-                    ),
+      color: color,
+      width: width,
+      height: height,
+      margin: margin,
+      padding: padding,
+      borderRadius: borderRadius,
+      child: Column(
+        children: [
+          if (isEdit) ...[
+            const SizedBox(height: 4),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                GestureDetector(
+                  onTap: onClose,
+                  child: SvgPicture.asset(
+                    AppDrawables.close,
+                    width: 20,
+                    height: 20,
                   ),
-                ],
-              ),
-              const SizedBox(height: 4),
-            ],
-            child,
+                ),
+              ],
+            ),
+            const SizedBox(height: 4),
           ],
-        ),
+          child,
+        ],
       ),
     );
   }

@@ -13,8 +13,8 @@ import 'package:blinq/utils/custom_widgets/text_fields/phone_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
+import 'package:blinq/utils/custom_widgets/buttons/secondary_button.dart';
 import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
-import 'package:blinq/utils/custom_widgets/secondary_button.dart';
 import 'bloc/driver_editor_bloc.dart';
 import 'bloc/driver_editor_event.dart';
 

@@ -28,7 +28,7 @@ mixin _$PremadeMessageResponseDto {
   @HiveField(2)
   String? get previous => throw _privateConstructorUsedError;
   @HiveField(3)
-  List<PremadeMessageResponseDto>? get results =>
+  List<PremadeMessageResponseModel>? get results =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,7 +47,7 @@ abstract class $PremadeMessageResponseDtoCopyWith<$Res> {
       {@HiveField(0) int? count,
       @HiveField(1) String? next,
       @HiveField(2) String? previous,
-      @HiveField(3) List<PremadeMessageResponseDto>? results});
+      @HiveField(3) List<PremadeMessageResponseModel>? results});
 }
 
 /// @nodoc
@@ -85,7 +85,7 @@ class _$PremadeMessageResponseDtoCopyWithImpl<$Res,
       results: freezed == results
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
-              as List<PremadeMessageResponseDto>?,
+              as List<PremadeMessageResponseModel>?,
     ) as $Val);
   }
 }
@@ -103,7 +103,7 @@ abstract class _$$PremadeMessageResponseDtoImplCopyWith<$Res>
       {@HiveField(0) int? count,
       @HiveField(1) String? next,
       @HiveField(2) String? previous,
-      @HiveField(3) List<PremadeMessageResponseDto>? results});
+      @HiveField(3) List<PremadeMessageResponseModel>? results});
 }
 
 /// @nodoc
@@ -140,7 +140,7 @@ class __$$PremadeMessageResponseDtoImplCopyWithImpl<$Res>
       results: freezed == results
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
-              as List<PremadeMessageResponseDto>?,
+              as List<PremadeMessageResponseModel>?,
     ));
   }
 }
@@ -152,7 +152,7 @@ class _$PremadeMessageResponseDtoImpl implements _PremadeMessageResponseDto {
       {@HiveField(0) this.count,
       @HiveField(1) this.next,
       @HiveField(2) this.previous,
-      @HiveField(3) final List<PremadeMessageResponseDto>? results})
+      @HiveField(3) final List<PremadeMessageResponseModel>? results})
       : _results = results;
 
   factory _$PremadeMessageResponseDtoImpl.fromJson(Map<String, dynamic> json) =>
@@ -167,10 +167,10 @@ class _$PremadeMessageResponseDtoImpl implements _PremadeMessageResponseDto {
   @override
   @HiveField(2)
   final String? previous;
-  final List<PremadeMessageResponseDto>? _results;
+  final List<PremadeMessageResponseModel>? _results;
   @override
   @HiveField(3)
-  List<PremadeMessageResponseDto>? get results {
+  List<PremadeMessageResponseModel>? get results {
     final value = _results;
     if (value == null) return null;
     if (_results is EqualUnmodifiableListView) return _results;
@@ -220,7 +220,7 @@ abstract class _PremadeMessageResponseDto implements PremadeMessageResponseDto {
           {@HiveField(0) final int? count,
           @HiveField(1) final String? next,
           @HiveField(2) final String? previous,
-          @HiveField(3) final List<PremadeMessageResponseDto>? results}) =
+          @HiveField(3) final List<PremadeMessageResponseModel>? results}) =
       _$PremadeMessageResponseDtoImpl;
 
   factory _PremadeMessageResponseDto.fromJson(Map<String, dynamic> json) =
@@ -237,7 +237,7 @@ abstract class _PremadeMessageResponseDto implements PremadeMessageResponseDto {
   String? get previous;
   @override
   @HiveField(3)
-  List<PremadeMessageResponseDto>? get results;
+  List<PremadeMessageResponseModel>? get results;
   @override
   @JsonKey(ignore: true)
   _$$PremadeMessageResponseDtoImplCopyWith<_$PremadeMessageResponseDtoImpl>

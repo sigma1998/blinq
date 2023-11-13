@@ -6,10 +6,10 @@ import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
 import 'package:blinq/utils/custom_widgets/text_fields/base_text_field.dart';
+import 'package:blinq/utils/custom_widgets/pop_ups/base_sheet.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 import 'package:blinq/domain/repositories/auth_repository.dart';
-import 'package:blinq/utils/custom_widgets/base_sheet.dart';
 import 'package:blinq/utils/custom_widgets/app_btn.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,7 +31,7 @@ class DeleteAccountConfirmSheet extends StatelessWidget {
       child: BlocBuilder<DeleteAccountBloc, DeleteAccountState>(
         bloc: bloc,
         builder: (context, state) {
-          return MyBaseSheet(
+          return BaseSheet(
             children: [
               Text(
                 'strConfirmYourAccount'.tr(),

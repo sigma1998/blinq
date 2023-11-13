@@ -8,7 +8,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:blinq/domain/repositories/auth_repository.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/utils/custom_widgets/app_btn.dart';
-import 'package:blinq/utils/custom_widgets/base_sheet.dart';
+import 'package:blinq/utils/custom_widgets/pop_ups/base_sheet.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,7 +26,7 @@ class DeleteAccountSheet extends StatelessWidget {
       repository: getIt<AuthRepositoryImpl>(),
     );
 
-    return MyBaseSheet(
+    return BaseSheet(
       children: [
         Text(
           'strYouAreDeletingYourAccount'.tr(),

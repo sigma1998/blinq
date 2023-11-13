@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 // Package imports:
+import 'package:blinq/data/model/premade_message/response/premade_message_response_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 
@@ -15,7 +16,7 @@ class PremadeMessageResponseDto with _$PremadeMessageResponseDto {
     @HiveField(0) int? count,
     @HiveField(1) String? next,
     @HiveField(2) String? previous,
-    @HiveField(3) List<PremadeMessageResponseDto>? results,
+    @HiveField(3) List<PremadeMessageResponseModel>? results,
   }) = _PremadeMessageResponseDto;
 
   factory PremadeMessageResponseDto.fromJson(Map<String, dynamic> json) =>

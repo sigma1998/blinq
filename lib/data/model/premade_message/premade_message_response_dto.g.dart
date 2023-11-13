@@ -21,7 +21,7 @@ class PremadeMessageResponseDtoAdapter
       count: fields[0] as int?,
       next: fields[1] as String?,
       previous: fields[2] as String?,
-      results: (fields[3] as List?)?.cast<PremadeMessageResponseDto>(),
+      results: (fields[3] as List?)?.cast<PremadeMessageResponseModel>(),
     );
   }
 
@@ -62,7 +62,7 @@ _$PremadeMessageResponseDtoImpl _$$PremadeMessageResponseDtoImplFromJson(
       previous: json['previous'] as String?,
       results: (json['results'] as List<dynamic>?)
           ?.map((e) =>
-              PremadeMessageResponseDto.fromJson(e as Map<String, dynamic>))
+              PremadeMessageResponseModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

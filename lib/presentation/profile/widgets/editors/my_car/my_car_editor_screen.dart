@@ -1,5 +1,14 @@
 // Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
+import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 import 'package:blinq/app/locator.dart';
+import 'package:blinq/utils/custom_widgets/buttons/secondary_button.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/presentation/profile/widgets/editors/my_car/bloc/edit_my_car_state.dart';
@@ -7,17 +16,8 @@ import 'package:blinq/presentation/profile/widgets/editors/my_car/bloc/my_car_ed
 import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 import 'package:blinq/utils/custom_widgets/loading.dart';
-
-// Project imports:
-import 'package:blinq/utils/custom_widgets/secondary_button.dart';
-import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
-
-// Package imports:
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EditorMyCarScreen extends StatefulWidget {
   //

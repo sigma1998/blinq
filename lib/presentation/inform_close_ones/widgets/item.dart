@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 // Project imports:
+import 'package:blinq/utils/custom_widgets/buttons/default_ink_well.dart';
 import 'package:blinq/utils/custom_widgets/default_checkbox.dart';
 import 'package:blinq/utils/custom_widgets/default_image.dart';
 import 'package:blinq/utils/custom_widgets/info_container.dart';
@@ -64,17 +65,15 @@ class InformCloseOnesItem extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   const Expanded(child: SizedBox(width: 16)),
-                  GestureDetector(
+                  MyInkWell(
                     onTap: onCall,
+                    padding: const EdgeInsets.all(8),
+                    borderRadius: BorderRadius.circular(100),
+                    color: isChecked
+                        ? Theme.of(context).colorScheme.primaryContainer
+                        : Theme.of(context).colorScheme.onSecondary,
                     child: AnimatedContainer(
-                      padding: const EdgeInsets.all(8),
                       duration: const Duration(milliseconds: 300),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: isChecked
-                            ? Theme.of(context).colorScheme.primaryContainer
-                            : Theme.of(context).colorScheme.onSecondary,
-                      ),
                       child: SvgPicture.asset(
                         AppDrawables.phone,
                         width: 21,

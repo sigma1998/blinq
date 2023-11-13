@@ -19,8 +19,8 @@ class PremadeMessageResponseModelAdapter
     };
     return PremadeMessageResponseModel(
       id: fields[0] as int?,
-      title: fields[2] as String?,
-      message: fields[3] as String?,
+      title: fields[1] as String?,
+      message: fields[2] as String?,
     );
   }
 
@@ -30,9 +30,9 @@ class PremadeMessageResponseModelAdapter
       ..writeByte(3)
       ..writeByte(0)
       ..write(obj.id)
-      ..writeByte(2)
+      ..writeByte(1)
       ..write(obj.title)
-      ..writeByte(3)
+      ..writeByte(2)
       ..write(obj.message);
   }
 

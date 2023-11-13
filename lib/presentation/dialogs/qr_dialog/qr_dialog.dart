@@ -8,9 +8,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 
 // Project imports:
+import 'package:blinq/utils/custom_widgets/buttons/secondary_button.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/custom_widgets/info_container.dart';
-import 'package:blinq/utils/custom_widgets/secondary_button.dart';
 import 'package:blinq/utils/navigation_service.dart';
 
 class QrDialog extends StatelessWidget {
