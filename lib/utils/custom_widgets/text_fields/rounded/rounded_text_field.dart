@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class BaseTextField extends StatefulWidget {
+class RoundedTextField extends StatefulWidget {
   //
   final String? labelText;
   final String? hintText;
@@ -53,7 +53,7 @@ class BaseTextField extends StatefulWidget {
   final void Function(String)? onChanged;
   final void Function()? onEditingComplete;
 
-  const BaseTextField({
+  const RoundedTextField({
     this.labelText,
     this.controller,
     this.validator,
@@ -123,10 +123,10 @@ class BaseTextField extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<BaseTextField> createState() => _BaseTextFieldState();
+  State<RoundedTextField> createState() => _RoundedTextFieldState();
 }
 
-class _BaseTextFieldState extends State<BaseTextField> {
+class _RoundedTextFieldState extends State<RoundedTextField> {
   //
   late FocusNode focusNode;
   late TextEditingController controller;

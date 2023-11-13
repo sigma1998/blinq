@@ -1,6 +1,4 @@
 // Flutter imports:
-import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
-import 'package:blinq/utils/custom_widgets/pop_ups/base_selector_sheet.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -9,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:blinq/presentation/contacts/views/premade_messages/bloc/premade_messages_bloc.dart';
+import 'package:blinq/utils/custom_widgets/pop_ups/base_selector_sheet.dart';
+import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'widgets/item.dart';
 
 class PremadeMessagesSelectorSheet extends StatelessWidget {
@@ -20,13 +20,17 @@ class PremadeMessagesSelectorSheet extends StatelessWidget {
     return MyBaseSelectorSheet(
       title: 'strChooseAndSendMessage'.tr(),
       bottomChild: MyButton.primary(
-        label: 'strSend'.tr(),
         onTap: () {},
+        label: 'strChooseTheContactToSendMessage'.tr(),
+        margin: const EdgeInsets.symmetric(
+          vertical: 12,
+          horizontal: 18,
+        ),
       ),
       children: [
         BlocBuilder<PremadeMessagesBloc, PremadeMessagesState>(
           builder: (context, state) {
-            // final list = state.premadeMessages?.results ?? [];
+            final list = state.premadeMessages?.results ?? [];
 
             return ListView.builder(
               shrinkWrap: true,
@@ -34,12 +38,12 @@ class PremadeMessagesSelectorSheet extends StatelessWidget {
               padding: EdgeInsets.zero,
               physics: const ClampingScrollPhysics(),
               itemBuilder: (context, index) {
-                // final message = list[index];
+                final message = list[index];
 
-                return const PremadeMessagesSelectorItem(
+                return PremadeMessagesSelectorItem(
                   isSelected: false,
-                  title: 'message.title!',
-                  desc: ' message.message!',
+                  title: message.title!,
+                  desc: message.message!,
                 );
               },
             );

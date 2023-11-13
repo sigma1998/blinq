@@ -17,6 +17,8 @@ class AppDrawables {
   static const String tick = '$icons/tick.svg';
 
   static const String gallery = '$icons/gallery.svg';
+  static const String calendar = '$icons/calendar.svg';
+  static const String time = '$icons/time.svg';
 
   //& Emergency
   static const String policeCar = '$icons/police_car.svg';

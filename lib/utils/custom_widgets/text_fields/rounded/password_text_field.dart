@@ -6,7 +6,7 @@ import 'package:flutter_svg/svg.dart';
 
 // Project imports:
 import 'package:blinq/core/drawables/app_drawables.dart';
-import 'base_text_field.dart';
+import 'rounded_text_field.dart';
 
 class PasswordTextField extends StatelessWidget {
   //
@@ -44,7 +44,7 @@ class PasswordTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseTextField(
+    return RoundedTextField(
       key: key,
       canClear: false,
       enabled: enabled,

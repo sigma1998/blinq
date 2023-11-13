@@ -55,20 +55,25 @@ class MyBaseSelectorSheet extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Expanded(
-            child: Stack(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.secondary,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(36),
-                      topRight: Radius.circular(36),
-                    ),
-                  ),
-                  child: Padding(
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black12,
+                  width: 1,
+                ),
+                color: Theme.of(context).colorScheme.secondary,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(36),
+                  topRight: Radius.circular(36),
+                ),
+              ),
+              child: Stack(
+                children: [
+                  Padding(
                     padding: padding,
                     child: ListView(
                       shrinkWrap: true,
+                      controller: controller,
                       children: [
                         if (title != null) ...[
                           Text(
@@ -92,20 +97,22 @@ class MyBaseSelectorSheet extends StatelessWidget {
                       ],
                     ),
                   ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  left: 0,
-                  child: bottomChild,
-                ),
-                if (isLoading)
-                  Container(
-                    color: Colors.black45,
-                    child: const Loading(),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    left: 0,
+                    child: bottomChild,
                   ),
-                isKeyboardVisible ? SizedBox(height: bottom) : const SizedBox(),
-              ],
+                  if (isLoading)
+                    Container(
+                      color: Colors.black45,
+                      child: const Loading(),
+                    ),
+                  isKeyboardVisible
+                      ? SizedBox(height: bottom)
+                      : const SizedBox(),
+                ],
+              ),
             ),
           ),
         ],

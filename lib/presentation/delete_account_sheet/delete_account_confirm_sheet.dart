@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
-import 'package:blinq/utils/custom_widgets/text_fields/base_text_field.dart';
+import 'package:blinq/utils/custom_widgets/text_fields/rounded/rounded_text_field.dart';
 import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/pop_ups/base_sheet.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
@@ -53,7 +53,7 @@ class DeleteAccountConfirmSheet extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 10),
-              BaseTextField(
+              RoundedTextField(
                 isOutlined: true,
                 hintText: 'strEnterCode'.tr(),
                 controller: bloc.codeController,
