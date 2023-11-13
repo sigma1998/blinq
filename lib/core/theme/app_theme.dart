@@ -10,6 +10,7 @@ class AppTheme {
       onPrimary: Colors.white,
       secondary: AppColors.darkGrey,
       onSecondary: AppColors.grey1,
+      onSecondaryContainer: AppColors.lightGrey2,
       error: Colors.red,
       onError: Colors.white,
       background: Colors.black,
@@ -18,6 +19,7 @@ class AppTheme {
       onSurface: Colors.white,
       outline: AppColors.grey2,
       outlineVariant: AppColors.lightGrey,
+      surfaceVariant: AppColors.messageBackgroundColor
     ),
     appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.darkGrey, centerTitle: true, elevation: 0
