@@ -79,6 +79,8 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
       page = const TestScreen2();
     case MapScreen.route:
       page = const MapScreen();
+    default:
+      page = const HomeScreen();
   }
 
   return MaterialPageRoute<dynamic>(
