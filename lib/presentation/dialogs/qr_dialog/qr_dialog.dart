@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 
 // Project imports:
-import 'package:blinq/utils/custom_widgets/buttons/secondary_button.dart';
+import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/custom_widgets/info_container.dart';
 import 'package:blinq/utils/navigation_service.dart';
@@ -35,13 +35,10 @@ class QrDialog extends StatelessWidget {
             errorWidget: (context, url, error) => const Icon(Icons.error),
           ),
           const SizedBox(height: 40),
-          SecondaryButton(
+          MyButton.secondary(
             label: 'strClose'.tr(),
             onTap: NavigationService.back,
-            textStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  color: Colors.black,
-                ),
-            color: Colors.white,
+            labelStyle: const TextStyle(fontWeight: FontWeight.w500),
           ),
         ],
       ),

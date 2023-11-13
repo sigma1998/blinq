@@ -7,7 +7,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
 import 'package:blinq/presentation/contacts/views/contacts/bloc/contacts_bloc.dart';
-import 'package:blinq/utils/custom_widgets/buttons/primary_button.dart';
+import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'widgets/item.dart';
@@ -72,7 +72,7 @@ class InformCloseOnesScreen extends StatelessWidget {
           vertical: 12,
           horizontal: 18,
         ),
-        child: PrimaryButton(
+        child: MyButton.primary(
           isLoading: false,
           onTap: bloc.onChoosePremadeMessage,
           label: 'strChoosethepremademessage'.tr(),

@@ -1,5 +1,5 @@
 // Flutter imports:
-import 'package:blinq/utils/custom_widgets/buttons/primary_button.dart';
+import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/pop_ups/base_selector_sheet.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +19,7 @@ class PremadeMessagesSelectorSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return MyBaseSelectorSheet(
       title: 'strChooseAndSendMessage'.tr(),
-      bottomChild: PrimaryButton(
+      bottomChild: MyButton.primary(
         label: 'strSend'.tr(),
         onTap: () {},
       ),

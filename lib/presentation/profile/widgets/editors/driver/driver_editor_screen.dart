@@ -6,15 +6,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/date_picker_text_field.dart';
+import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/phone_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
-import 'package:blinq/utils/custom_widgets/buttons/secondary_button.dart';
 import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'bloc/driver_editor_bloc.dart';
 import 'bloc/driver_editor_event.dart';
 
@@ -113,14 +113,15 @@ class _DriverEditorScreenState extends State<DriverEditorScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SecondaryButton(
+                  MyButton.primary(
                     label: 'strSave'.tr(),
                     onTap: () => bloc.add(OnSubmitDriver()),
-                    isLoading: state.status == Status.loading,
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,
                       horizontal: 60,
                     ),
+                    isLoading: state.status == Status.loading,
+                    labelStyle: const TextStyle(fontWeight: FontWeight.w500),
                   ),
                 ],
               ),

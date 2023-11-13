@@ -6,11 +6,11 @@ import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
 import 'package:blinq/utils/custom_widgets/text_fields/base_text_field.dart';
+import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/pop_ups/base_sheet.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 import 'package:blinq/domain/repositories/auth_repository.dart';
-import 'package:blinq/utils/custom_widgets/app_btn.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/delete_account_event.dart';
@@ -60,12 +60,11 @@ class DeleteAccountConfirmSheet extends StatelessWidget {
                 keyboardType: TextInputType.number,
               ),
               const Expanded(child: SizedBox(height: 4)),
-              AppButton(
-                text: 'strConfirm'.tr(),
-                btnColor: Colors.white,
-                txtColor: Colors.black,
-                loading: state.status == Status.loading,
+              MyButton.secondary(
+                label: 'strConfirm'.tr(),
+                isLoading: state.status == Status.loading,
                 onTap: () => bloc.add(OnVerifyDeleteAccount()),
+                labelStyle: const TextStyle(fontWeight: FontWeight.w500),
               ),
             ],
           );

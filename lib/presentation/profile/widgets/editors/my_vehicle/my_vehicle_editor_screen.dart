@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // Project imports:
 import 'package:blinq/utils/custom_widgets/text_fields/date_picker_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/number_text_field.dart';
-import 'package:blinq/utils/custom_widgets/buttons/secondary_button.dart';
+import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
@@ -83,7 +83,7 @@ class _MyVehicleEditorScreenState extends State<MyVehicleEditorScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SecondaryButton(
+                    MyButton.primary(
                       label: 'strSave'.tr(),
                       padding: const EdgeInsets.symmetric(
                         vertical: 8,
@@ -91,6 +91,7 @@ class _MyVehicleEditorScreenState extends State<MyVehicleEditorScreen> {
                       ),
                       isLoading: state.status == Status.loading,
                       onTap: () => bloc.add(OnSubmitMyVehicle()),
+                      labelStyle: const TextStyle(fontWeight: FontWeight.w500),
                     ),
                   ],
                 ),

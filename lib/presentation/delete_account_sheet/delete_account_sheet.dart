@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
+import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/domain/repositories/auth_repository.dart';
-import 'package:blinq/core/drawables/app_drawables.dart';
-import 'package:blinq/utils/custom_widgets/app_btn.dart';
 import 'package:blinq/utils/custom_widgets/pop_ups/base_sheet.dart';
+import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'bloc/delete_account_bloc.dart';
 import 'bloc/delete_account_event.dart';
 import 'package:blinq/app/locator.dart';
+import 'bloc/delete_account_bloc.dart';
 
 class DeleteAccountSheet extends StatelessWidget {
   //
@@ -42,22 +42,23 @@ class DeleteAccountSheet extends StatelessWidget {
           fit: BoxFit.cover,
         ),
         const Expanded(child: SizedBox(height: 4)),
-        AppButton(
-          btnColor: Colors.white,
-          txtColor: Colors.black,
-          text: 'strDoNotDelete'.tr(),
+        MyButton.secondary(
+          label: 'strDoNotDelete'.tr(),
           onTap: NavigationService.back,
+          labelStyle: const TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w500,
+          ),
         ),
         const SizedBox(height: 16),
         BlocBuilder<DeleteAccountBloc, DeleteAccountState>(
           bloc: bloc,
           builder: (context, state) {
-            return AppButton(
-              txtColor: Colors.white,
-              text: 'strYesWantToDelete'.tr(),
-              loading: state.status == Status.loading,
+            return MyButton.tertiary(
+              label: 'strYesWantToDelete'.tr(),
+              isLoading: state.status == Status.loading,
               onTap: () => bloc.add(OnSendCodeDeleteAccount()),
-              btnColor: Theme.of(context).colorScheme.onSecondary,
+              labelStyle: const TextStyle(fontWeight: FontWeight.w500),
             );
           },
         ),

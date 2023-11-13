@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -8,7 +9,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // Project imports:
 import 'package:blinq/utils/custom_widgets/text_fields/date_picker_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
-import 'package:blinq/utils/custom_widgets/buttons/secondary_button.dart';
 import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
@@ -130,7 +130,7 @@ class _InsuranceEditorScreenState extends State<InsuranceEditorScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SecondaryButton(
+                  MyButton.primary(
                     onTap: () => bloc.add(OnSubmitInsurance()),
                     label: 'strSave'.tr(),
                     padding: const EdgeInsets.symmetric(
@@ -138,6 +138,7 @@ class _InsuranceEditorScreenState extends State<InsuranceEditorScreen> {
                       horizontal: 60,
                     ),
                     isLoading: state.status == Status.loading,
+                    labelStyle: const TextStyle(fontWeight: FontWeight.w500),
                   ),
                 ],
               ),
