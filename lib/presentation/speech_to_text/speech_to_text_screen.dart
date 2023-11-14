@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/presentation/connect_to_driver/connect_to_driver_screen.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -12,7 +13,7 @@ import 'package:blinq/utils/navigation_service.dart';
 
 class SpeechToTextScreen extends StatelessWidget {
   //
-  static const route = '/speech_to_voice';
+  static const route = '/speech_to_text';
 
   const SpeechToTextScreen({super.key});
 
@@ -34,7 +35,7 @@ class SpeechToTextScreen extends StatelessWidget {
         ),
         floatingActionButton: NavigationButton(
           onNextTap: () => NavigationService.pushNamed(
-            routeName: SpeechToTextScreen.route,
+            routeName: ConnectToDriverScreen.route,
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

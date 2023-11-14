@@ -12,14 +12,24 @@ import 'package:blinq/utils/navigation_service.dart';
 
 class NavigationButton extends StatelessWidget {
   //
+
   final VoidCallback? onNextTap;
 
+  final String heroTag;
+
   final double height;
+
+  final bool canGoForward;
 
   const NavigationButton({
     super.key,
     this.onNextTap,
+    //
     this.height = 0,
+    //
+    this.heroTag = '',
+    //
+    this.canGoForward = true,
   });
 
   @override
@@ -36,6 +46,7 @@ class NavigationButton extends StatelessWidget {
             width: 45,
             height: 45,
             child: FloatingActionButton(
+              heroTag: heroTag,
               onPressed: NavigationService.back,
               backgroundColor: Theme.of(context).colorScheme.secondary,
               child: SvgPicture.asset(
@@ -52,6 +63,7 @@ class NavigationButton extends StatelessWidget {
           if (onNextTap != null)
             MyButton.primary(
               onTap: onNextTap!,
+              enable: canGoForward,
               label: 'strNext'.tr(),
               padding: const EdgeInsets.symmetric(
                 vertical: 12,

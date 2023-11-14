@@ -620,5 +620,6 @@
   "strDate": "Date",
   "strTime": "Time",
   "strTimeOfAccident": "Time of Accident",
-  "strPlace": "Place"
+  "strPlace": "Place",
+  "strIsSecondDriverAccount":  "Is this the second driver's BLINQ account?"
 }

@@ -1,9 +1,12 @@
 // Flutter imports:
+import 'package:blinq/presentation/second_driver/second_driver_screen.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:blinq/presentation/injury/injury_screen.dart';
 import 'package:blinq/presentation/location_info/location_info_screen.dart';
+import 'package:blinq/presentation/connect_to_driver/connect_to_driver_screen.dart';
+import 'package:blinq/presentation/qr_scan/qr_scan_screen.dart';
 import 'package:blinq/presentation/speech_to_text/speech_to_text_screen.dart';
 import 'package:blinq/presentation/create_report/create_report_screen.dart';
 import 'package:blinq/presentation/email_editor/email_editor_screen.dart';
@@ -74,6 +77,9 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     LocationInfoScreen.route: (context) => const LocationInfoScreen(),
     InjuryScreen.route: (context) => const InjuryScreen(),
     SpeechToTextScreen.route: (context) => const SpeechToTextScreen(),
+    ConnectToDriverScreen.route: (context) => const ConnectToDriverScreen(),
+    QrScanScreen.route: (context) => const QrScanScreen(),
+    SecondDriverScreen.route: (context) => const SecondDriverScreen(),
   };
 }
 

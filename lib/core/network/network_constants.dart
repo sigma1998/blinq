@@ -13,6 +13,17 @@ class NetworkConstants {
       'user/accept/delete/request/$code/';
 
   ///
+  /// Accident
+  ///
+
+  static String accident = 'accident/';
+
+  static String history = '${accident}breakdown/history/?page=1';
+  static String deleteReport = '${accident}breakdown/delete';
+
+  static String secondDriver = '${accident}connect/second/driver/to/accident/';
+
+  ///
   /// Profile
   ///
 
@@ -28,8 +39,6 @@ class NetworkConstants {
   static String policyHolder = '${profile}policy/holder/update/';
 
   static String vehicle = '${profile}vehicle/update/';
-  static String history = 'accident/breakdown/history/?page=1';
-  static String deleteReport = 'accident/breakdown/delete';
 
   static String car = '${profile}vehicle/update/';
   static String userVehicle = '${profile}vehicle/datas/update/';

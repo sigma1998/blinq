@@ -76,7 +76,7 @@ class DriverEditorBloc extends Bloc<DriverEditorEvent, DriverEditorState> {
 
       emit(state.copyWith(status: Status.loading));
       await profileBloc.onUpdateProfile(profile);
-      emit(const DriverEditorState(status: Status.success));
+      emit(state.copyWith(status: Status.success));
       NavigationService.back();
     } catch (e) {
       emit(state.copyWith(status: Status.initial));

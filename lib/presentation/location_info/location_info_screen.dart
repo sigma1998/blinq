@@ -40,6 +40,7 @@ class LocationInfoScreen extends StatelessWidget {
             RoundedDatePickerTextField(
               controller: TextEditingController(),
               onDateChanged: (date) {},
+              initialDate: DateTime.now(),
               maxDate: DateTime.now(),
             ),
             const SizedBox(height: 36),
@@ -54,6 +55,7 @@ class LocationInfoScreen extends StatelessWidget {
             RoundedTimePickerTextField(
               controller: TextEditingController(),
               onDateChanged: (date) {},
+              initialTime: TimeOfDay.now(),
             ),
             const SizedBox(height: 36),
             PickerTextField(
