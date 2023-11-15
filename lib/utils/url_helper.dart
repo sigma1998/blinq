@@ -27,6 +27,10 @@ abstract class MyUrlLauncher {
     return open('tel:$result');
   }
 
+  static Future<bool> message(String phone) {
+    return open('smsto:$phone');
+  }
+
   static Future<bool> email(String email, [String? subject]) {
     final extra = subject != null ? '?subject=$subject' : '';
     return open('mailto:$email$extra');

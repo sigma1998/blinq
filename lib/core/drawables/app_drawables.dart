@@ -21,6 +21,7 @@ class AppDrawables {
   static const String editLarge = '$icons/edit_large.svg';
   static const String close = '$icons/close.svg';
   static const String tick = '$icons/tick.svg';
+  static const String plus = '$icons/plus.svg';
 
   static const String gallery = '$icons/gallery.svg';
   static const String calendar = '$icons/calendar.svg';
@@ -31,12 +32,14 @@ class AppDrawables {
   static const String telegram = '$icons/telegram.svg';
   static const String whatsapp = '$icons/whatsapp.svg';
   static const String email = '$icons/email.svg';
+  static const String message = '$icons/message.svg';
 
   //& Emergency
   static const String policeCar = '$icons/police_car.svg';
   static const String emergencyCar = '$icons/ambulance_car.svg';
   static const String fireTruck = '$icons/fire_truck.svg';
   static const String phone = '$icons/phone.svg';
+  static const String phoneCircle = '$icons/phone_circle.svg';
 
   //~ My vehicle
   static const String wheel = '$icons/wheel.svg';
