@@ -28,6 +28,7 @@ class _QrScanScreenState extends State<QrScanScreen> {
   //
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   QRViewController? controller;
+  bool _isScanned = false;
 
   @override
   void reassemble() {
@@ -51,16 +52,16 @@ class _QrScanScreenState extends State<QrScanScreen> {
       body: Stack(
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
             child: QRView(
               key: qrKey,
               onQRViewCreated: _onQRViewCreated,
               overlay: QrScannerOverlayShape(
                 borderWidth: 8,
+                cutOutSize: 266,
                 borderLength: 30,
                 borderColor: Theme.of(context).colorScheme.primary,
-                cutOutSize: 266,
               ),
             ),
           ),
@@ -105,12 +106,14 @@ class _QrScanScreenState extends State<QrScanScreen> {
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen((data) {
+      if (_isScanned) return;
       final userJson = jsonDecode(data.code?.replaceAll('\'', '"') ?? '{}');
       debugPrint('userJson: $userJson');
       NavigationService.pushReplacement(
         routeName: SecondDriverScreen.route,
         arguments: userJson['user_id'],
       );
+      _isScanned = true;
     });
   }
 }

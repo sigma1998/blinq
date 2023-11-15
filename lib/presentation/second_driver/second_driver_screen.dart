@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:blinq/app/locator.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -12,6 +11,7 @@ import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/utils/custom_widgets/default_image.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:blinq/app/locator.dart';
 import 'bloc/second_driver_bloc.dart';
 import 'bloc/second_driver_event.dart';
 

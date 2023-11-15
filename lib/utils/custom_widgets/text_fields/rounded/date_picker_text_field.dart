@@ -66,6 +66,9 @@ class _RoundedDatePickerTextFieldState
       hintText: 'strDate'.tr(),
       labelText: widget.labelText,
       controller: widget.controller,
+      initialValue: widget.initialDate != null
+          ? DateFormatter.fyyyyMMdd(widget.initialDate!)
+          : null,
       suffixIcon: Padding(
         padding: const EdgeInsets.only(right: 12),
         child: SvgPicture.asset(

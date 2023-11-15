@@ -60,6 +60,9 @@ class _RoundedTimePickerTextFieldState
       hintText: 'strTime'.tr(),
       labelText: widget.labelText,
       controller: widget.controller,
+      initialValue: widget.initialTime != null
+          ? DateFormatter.fhhmm(MyDateHelper.timeOfDayToDateTime(time!))
+          : null,
       suffixIcon: Padding(
         padding: const EdgeInsets.only(right: 12),
         child: SvgPicture.asset(

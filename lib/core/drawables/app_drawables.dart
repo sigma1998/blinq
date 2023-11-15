@@ -1,6 +1,12 @@
 class AppDrawables {
   static const icons = 'assets/icons';
   static const images = 'assets/images';
+  static const animations = 'assets/animations';
+
+  ///
+  /// Animations
+  ///
+  static const String successAnim = '$animations/success.json';
 
   ///
   /// Icons
@@ -19,6 +25,12 @@ class AppDrawables {
   static const String gallery = '$icons/gallery.svg';
   static const String calendar = '$icons/calendar.svg';
   static const String time = '$icons/time.svg';
+  static const String share = '$icons/share.svg';
+
+  //~ Social Media
+  static const String telegram = '$icons/telegram.svg';
+  static const String whatsapp = '$icons/whatsapp.svg';
+  static const String email = '$icons/email.svg';
 
   //& Emergency
   static const String policeCar = '$icons/police_car.svg';
@@ -40,7 +52,6 @@ class AppDrawables {
 
   //map
   static const String mapLocation = '$icons/map_location.svg';
-
 
   //^ Reports
   static const String cart = '$icons/cart.svg';

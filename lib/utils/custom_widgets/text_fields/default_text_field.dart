@@ -127,6 +127,7 @@ class MyTextField extends StatelessWidget {
               textAlign: textAlign,
               obscuringCharacter: '*',
               obscureText: obscureText,
+              initialValue: initialValue,
               keyboardType: keyboardType,
               textInputAction: textInputAction,
               textCapitalization: textCapitalization,

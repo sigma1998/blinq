@@ -23,7 +23,7 @@ class QrDialog extends StatelessWidget {
 
     return MyInfoContainer(
       padding: const EdgeInsets.all(36),
-      height: MediaQuery.of(context).size.height * 0.42,
+      height: MediaQuery.of(context).size.height * 0.426,
       margin: const EdgeInsets.symmetric(horizontal: 51),
       child: Column(
         children: [
@@ -38,7 +38,10 @@ class QrDialog extends StatelessWidget {
           MyButton.secondary(
             label: 'strClose'.tr(),
             onTap: NavigationService.back,
-            labelStyle: const TextStyle(fontWeight: FontWeight.w500),
+            labelStyle: const TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ],
       ),

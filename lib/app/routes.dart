@@ -1,8 +1,9 @@
 // Flutter imports:
-import 'package:blinq/presentation/second_driver/second_driver_screen.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
+import 'package:blinq/presentation/finished/finished_screen.dart';
+import 'package:blinq/presentation/second_driver/second_driver_screen.dart';
 import 'package:blinq/presentation/injury/injury_screen.dart';
 import 'package:blinq/presentation/location_info/location_info_screen.dart';
 import 'package:blinq/presentation/connect_to_driver/connect_to_driver_screen.dart';
@@ -80,6 +81,8 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     ConnectToDriverScreen.route: (context) => const ConnectToDriverScreen(),
     QrScanScreen.route: (context) => const QrScanScreen(),
     SecondDriverScreen.route: (context) => const SecondDriverScreen(),
+
+    FinishedScreen.route: (context) => const FinishedScreen(),
   };
 }
 

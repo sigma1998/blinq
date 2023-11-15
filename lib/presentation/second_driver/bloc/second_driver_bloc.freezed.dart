@@ -32,6 +32,8 @@ abstract class $SecondDriverStateCopyWith<$Res> {
       _$SecondDriverStateCopyWithImpl<$Res, SecondDriverState>;
   @useResult
   $Res call({Status status, ProfileResponseModel? secondDriver, Error? error});
+
+  $ProfileResponseModelCopyWith<$Res>? get secondDriver;
 }
 
 /// @nodoc
@@ -66,6 +68,18 @@ class _$SecondDriverStateCopyWithImpl<$Res, $Val extends SecondDriverState>
               as Error?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProfileResponseModelCopyWith<$Res>? get secondDriver {
+    if (_value.secondDriver == null) {
+      return null;
+    }
+
+    return $ProfileResponseModelCopyWith<$Res>(_value.secondDriver!, (value) {
+      return _then(_value.copyWith(secondDriver: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -77,6 +91,9 @@ abstract class _$$SecondDriverStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call({Status status, ProfileResponseModel? secondDriver, Error? error});
+
+  @override
+  $ProfileResponseModelCopyWith<$Res>? get secondDriver;
 }
 
 /// @nodoc
@@ -136,14 +153,13 @@ class _$SecondDriverStateImpl implements _SecondDriverState {
         (other.runtimeType == runtimeType &&
             other is _$SecondDriverStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            const DeepCollectionEquality()
-                .equals(other.secondDriver, secondDriver) &&
+            (identical(other.secondDriver, secondDriver) ||
+                other.secondDriver == secondDriver) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status,
-      const DeepCollectionEquality().hash(secondDriver), error);
+  int get hashCode => Object.hash(runtimeType, status, secondDriver, error);
 
   @JsonKey(ignore: true)
   @override
