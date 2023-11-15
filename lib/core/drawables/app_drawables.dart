@@ -95,9 +95,11 @@ class AppDrawables {
   static const String bottomArrow = '$arrows/bottom.svg';
   static const String bottomRightArrow = '$arrows/bottom_right.svg';
   static const String bottomLeftArrow = '$arrows/bottom_left.svg';
+  static const String leftArrow = '$arrows/left.svg';
+  static const String rightArrow = '$arrows/right.svg';
 
 
-  static const String defaultCard = '$icons/default_car.svg';
+  static const String defaultCar = '$icons/default_car.svg';
 
 
 

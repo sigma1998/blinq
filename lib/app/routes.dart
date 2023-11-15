@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:blinq/presentation/circumstances/circumstances_screen.dart';
+import 'package:blinq/presentation/sketch/sketch_screen.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -75,6 +77,10 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     LocationInfoScreen.route: (context) => const LocationInfoScreen(),
     InjuryScreen.route: (context) => const InjuryScreen(),
     SpeechToTextScreen.route: (context) => const SpeechToTextScreen(),
+
+
+    SketchScreen.route: (context) => const SketchScreen(),
+
   };
 }
 
@@ -90,7 +96,11 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
     case MapScreen.route:
       page = const MapScreen();
     case PointsOfImpactScreen.route:
-      page = const PointsOfImpactScreen();
+      page = PointsOfImpactScreen();
+    case CircumstancesScreen.route:
+      page = CircumstancesScreen();
+    case SketchScreen.route:
+      page = const SketchScreen();
     default:
       page = const HomeScreen();
   }

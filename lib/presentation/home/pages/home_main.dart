@@ -1,9 +1,4 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:animate_do/animate_do.dart';
 
 // Project imports:
@@ -13,8 +8,12 @@ import 'package:blinq/presentation/home/bloc/home_screen_cubit.dart';
 import 'package:blinq/presentation/home/bloc/home_screen_state.dart';
 import 'package:blinq/presentation/home/widgets/map.dart';
 import 'package:blinq/presentation/home/widgets/menu_item.dart';
-import 'package:blinq/presentation/points_of_impact/points_of_impact_screen.dart';
 import 'package:blinq/utils/navigation_service.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeMain extends StatelessWidget {
   //
@@ -95,11 +94,7 @@ class HomeMain extends StatelessWidget {
                           padding: 10,
                           text: 'strAccident'.tr(),
                           background: AppDrawables.accident,
-                          onTap: () {
-                            NavigationService.pushNamed(
-                                routeName: PointsOfImpactScreen.route,
-                                nestedKey: NavigationService.homeNavigatorKey);
-                          },
+                          onTap: () {},
                         ),
                       ),
                     ),

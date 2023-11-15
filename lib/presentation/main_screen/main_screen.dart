@@ -34,75 +34,76 @@ class MainScreen extends StatelessWidget {
               ],
             ),
             bottomNavigationBar: Padding(
-                padding: const EdgeInsets.only(
-                  bottom: 38,
-                  right: 16,
-                  left: 16,
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(40),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(
-                      sigmaX: 10.0,
-                      sigmaY: 10.0,
+              padding: const EdgeInsets.only(
+                bottom: 38,
+                right: 16,
+                left: 16,
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(40),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(
+                    sigmaX: 10.0,
+                    sigmaY: 10.0,
+                  ),
+                  child: Container(
+                    height: 64,
+                    width: double.maxFinite,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondary
+                          .withOpacity(0.8),
                     ),
-                    child: Container(
-                      height: 64,
-                      width: double.maxFinite,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .secondary
-                            .withOpacity(0.8),
-                      ),
-                      padding: const EdgeInsets.symmetric(horizontal: 40),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          InkWell(
-                            onTap: () => context
-                                .read<MainScreenBloc>()
-                                .add(OnItemPressed(newIndex: 0)),
-                            child: SvgPicture.asset(
-                              AppDrawables.blinq,
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () => context
+                              .read<MainScreenBloc>()
+                              .add(OnItemPressed(newIndex: 0)),
+                          child: SvgPicture.asset(
+                            AppDrawables.blinq,
+                            colorFilter: ColorFilter.mode(
+                                state.data == 0
+                                    ? Theme.of(context).colorScheme.primary
+                                    : Theme.of(context).colorScheme.onSecondary,
+                                BlendMode.srcIn),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () => context
+                              .read<MainScreenBloc>()
+                              .add(OnItemPressed(newIndex: 1)),
+                          child: SvgPicture.asset(AppDrawables.contacts,
                               colorFilter: ColorFilter.mode(
-                                  state.data == 0
+                                  state.data == 1
                                       ? Theme.of(context).colorScheme.primary
-                                      : Theme.of(context).colorScheme.onSecondary,
-                                  BlendMode.srcIn),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () => context
-                                .read<MainScreenBloc>()
-                                .add(OnItemPressed(newIndex: 1)),
-                            child: SvgPicture.asset(AppDrawables.contacts,
-                                colorFilter: ColorFilter.mode(
-                                    state.data == 1
-                                        ? Theme.of(context).colorScheme.primary
-                                        : Theme.of(context)
-                                            .colorScheme
-                                            .onSecondary,
-                                    BlendMode.srcIn)),
-                          ),
-                          InkWell(
-                            onTap: () => context
-                                .read<MainScreenBloc>()
-                                .add(OnItemPressed(newIndex: 2)),
-                            child: SvgPicture.asset(AppDrawables.profile,
-                                colorFilter: ColorFilter.mode(
-                                    state.data == 2
-                                        ? Theme.of(context).colorScheme.primary
-                                        : Theme.of(context)
-                                            .colorScheme
-                                            .onSecondary,
-                                    BlendMode.srcIn)),
-                          ),
-                        ],
-                      ),
+                                      : Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary,
+                                  BlendMode.srcIn)),
+                        ),
+                        InkWell(
+                          onTap: () => context
+                              .read<MainScreenBloc>()
+                              .add(OnItemPressed(newIndex: 2)),
+                          child: SvgPicture.asset(AppDrawables.profile,
+                              colorFilter: ColorFilter.mode(
+                                  state.data == 2
+                                      ? Theme.of(context).colorScheme.primary
+                                      : Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary,
+                                  BlendMode.srcIn)),
+                        ),
+                      ],
                     ),
                   ),
-                )),
+                ),
+              ),
+            ),
           ),
         );
       },

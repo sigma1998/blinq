@@ -1,29 +1,29 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:blinq/core/drawables/app_drawables.dart';
 
 // Project imports:
 import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
-import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/utils/navigation_service.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class NavigationButton extends StatelessWidget {
   //
   final VoidCallback onNextTap;
+  final double padding;
+  final VoidCallback? onBack;
 
-  const NavigationButton({
-    super.key,
-    required this.onNextTap,
-  });
+  const NavigationButton(
+      {super.key, required this.onNextTap, this.padding = 32, this.onBack});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 32,
+      padding: EdgeInsets.symmetric(
+        horizontal: padding,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -32,7 +32,8 @@ class NavigationButton extends StatelessWidget {
             width: 45,
             height: 45,
             child: FloatingActionButton(
-              onPressed: NavigationService.back,
+              onPressed: onBack?? () =>
+                  NavigationService.homeNavigatorKey.currentState?.pop(),
               backgroundColor: Theme.of(context).colorScheme.secondary,
               child: SvgPicture.asset(
                 AppDrawables.arrowLeft,
