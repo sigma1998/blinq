@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/presentation/second_driver_editors/second_driver_editor_screen.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -83,6 +84,8 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     SecondDriverScreen.route: (context) => const SecondDriverScreen(),
 
     FinishedScreen.route: (context) => const FinishedScreen(),
+    SecondDriverEditorScreen.route: (context) =>
+        const SecondDriverEditorScreen(),
   };
 }
 

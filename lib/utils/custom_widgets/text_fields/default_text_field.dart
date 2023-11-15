@@ -107,6 +107,8 @@ class MyTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    controller?.text = initialValue ?? '';
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -127,7 +129,6 @@ class MyTextField extends StatelessWidget {
               textAlign: textAlign,
               obscuringCharacter: '*',
               obscureText: obscureText,
-              initialValue: initialValue,
               keyboardType: keyboardType,
               textInputAction: textInputAction,
               textCapitalization: textCapitalization,
