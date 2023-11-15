@@ -1,0 +1,137 @@
+// Dart imports:
+import 'dart:async';
+import 'dart:io';
+
+// Flutter imports:
+import 'package:blinq/domain/repositories/contacts_repository.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
+import 'package:blinq/presentation/contacts/views/contacts/bloc/contacts_bloc.dart';
+import 'package:blinq/utils/custom_widgets/cupertino_action/cupertino_action.dart';
+import 'package:blinq/data/model/contact/request/contact_request_model.dart';
+import 'package:blinq/utils/services/media/i_media_service.dart';
+import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/image_crop_helper.dart';
+import 'package:blinq/utils/string_helper.dart';
+import 'contact_editor_event.dart';
+
+part 'contact_editor_state.dart';
+part 'contact_editor_bloc.freezed.dart';
+
+class ContactEditorBloc extends Bloc<ContactEditorEvent, ContactEditorState> {
+  //
+
+  final ContactsBloc contactsBloc;
+  final ContactsRepository repository;
+  final IMediaService mediaService;
+
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final phoneNumberController = TextEditingController();
+
+  ContactEditorBloc({
+    required this.contactsBloc,
+    required this.repository,
+    required this.mediaService,
+  }) : super(const ContactEditorState()) {
+    on<OnAddContact>(_onAddContact);
+    on<OnUpdateContact>(_onUpdateContact);
+    on<OnDeleteContact>(_onDeleteContact);
+  }
+
+  void initializeFields(int id) {
+    final contact = contactsBloc.state.contacts?.results?.asMap() ?? {};
+
+    firstNameController.text = contact[id]?.fullName ?? '';
+    lastNameController.text = contact[id]?.lastName ?? '';
+    phoneNumberController.text =
+        MyStringHelper.phoneMask(contact[id]?.phoneNumber ?? '');
+  }
+  //
+
+  FutureOr<void> _onAddContact(
+      OnAddContact event, Emitter<ContactEditorState> emit) async {
+    try {
+      final contact = ContactRequestModel(
+        firstName: firstNameController.text,
+        lastName: lastNameController.text,
+        phoneNumber:
+            MyStringHelper.removeNonNumbers(phoneNumberController.text),
+      );
+
+      emit(state.copyWith(status: Status.loading));
+      await repository.add(contact: contact, file: state.image);
+      emit(state.copyWith(status: Status.success));
+      NavigationService.back();
+    } catch (e) {
+      emit(state.copyWith(status: Status.initial));
+    }
+  }
+
+  FutureOr<void> _onUpdateContact(
+      OnUpdateContact event, Emitter<ContactEditorState> emit) async {
+    try {
+      final contact = ContactRequestModel(
+        firstName: firstNameController.text,
+        lastName: lastNameController.text,
+        phoneNumber:
+            MyStringHelper.removeNonNumbers(phoneNumberController.text),
+      );
+
+      emit(state.copyWith(status: Status.loading));
+      await repository.update(
+          id: event.id, contact: contact, file: state.image);
+      emit(state.copyWith(status: Status.success));
+      NavigationService.back();
+    } catch (e) {
+      emit(state.copyWith(status: Status.initial));
+    }
+  }
+
+  FutureOr<void> _onDeleteContact(
+      OnDeleteContact event, Emitter<ContactEditorState> emit) async {
+    try {
+      emit(state.copyWith(status: Status.loading));
+      await repository.delete(event.id);
+      emit(state.copyWith(status: Status.success));
+      NavigationService.back();
+    } catch (e) {
+      emit(state.copyWith(status: Status.initial));
+    }
+  }
+
+  Future<void> imagePickerPressed() async {
+    final result = await NavigationService.showMyCupertinoModalPopup(
+      actions: [
+        MyCupertinoActionSheetAction(
+          label: 'strTakeImage'.tr(),
+          onPressed: () async {
+            final imagePath =
+                await mediaService.pickImagePath(AppImageSource.camera);
+            final result = await ImageCropHelper.cropImage(imagePath);
+            NavigationService.back(result: result);
+          },
+        ),
+        MyCupertinoActionSheetAction(
+          label: 'strSelectPhoto'.tr(),
+          onPressed: () async {
+            final imagePath =
+                await mediaService.pickImagePath(AppImageSource.gallery);
+            final result = await ImageCropHelper.cropImage(imagePath);
+            NavigationService.back(result: result);
+          },
+        ),
+      ],
+    );
+    if (result != null) {
+      add(OnUpdateContactImage(file: result));
+    }
+  }
+}
