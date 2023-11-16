@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:blinq/app/locator.dart';
+import 'package:blinq/utils/services/permission/permission_service.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -36,6 +38,7 @@ class _PremadeMessageSelectorSheetState
   void initState() {
     bloc = PremadeMessageSelectorBloc(
       premadeMessagesBloc: context.read<PremadeMessagesBloc>(),
+      permissionService: getIt<PermissionService>(),
     );
     bloc.add(OnLoadPremadeMessages());
     super.initState();
@@ -51,13 +54,13 @@ class _PremadeMessageSelectorSheetState
         return MyBaseSelectorSheet(
           title: 'strChooseAndSendMessage'.tr(),
           bottomChild: MyButton.primary(
-            onTap: () {},
             margin: const EdgeInsets.symmetric(
               vertical: 12,
               horizontal: 18,
             ),
             enable: state.selectedMessage != null,
             label: 'strChooseTheContactToSendMessage'.tr(),
+            onTap: () => bloc.sendMessage(widget.phoneNumbers),
           ),
           children: [
             ListView.builder(

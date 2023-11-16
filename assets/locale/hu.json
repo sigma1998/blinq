@@ -663,6 +663,6 @@
   "strTimeOfAccident": "Baleset ideje",
   "strPlace": "Hely",
   "strIsSecondDriverAccount":  "Van-e a második sofőrnek BLINQ-je?",
-  "strDamageReportSent": "A károkozási jelentés elküldve"
-
+  "strDamageReportSent": "A károkozási jelentés elküldve",
+  "strYourInformMessageSent": "Az Ön információs üzenete elküldve!"
 }

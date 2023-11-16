@@ -9,9 +9,3 @@ class OnSelectPremadeMessage extends PremadeMessageSelectorEvent {
 
   OnSelectPremadeMessage({required this.message});
 }
-
-class OnSendPremadeMessage extends PremadeMessageSelectorEvent {
-  final List<String> recepients;
-
-  OnSendPremadeMessage({required this.recepients});
-}
