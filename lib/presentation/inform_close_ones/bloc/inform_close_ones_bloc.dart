@@ -28,7 +28,7 @@ class InformCloseOnesBloc
       OnLoadContacts event, Emitter<InformCloseOnesState> emit) {
     emit(
       state.copyWith(
-        status: Status.initial,
+        status: contactsBloc.state.status,
         contacts: contactsBloc.state.contacts?.results ?? [],
       ),
     );

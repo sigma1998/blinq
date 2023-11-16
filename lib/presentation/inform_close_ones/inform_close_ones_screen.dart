@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:blinq/utils/custom_widgets/loading.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -39,6 +41,7 @@ class _InformCloseOnesScreenState extends State<InformCloseOnesScreen> {
     return BlocBuilder<InformCloseOnesBloc, InformCloseOnesState>(
       bloc: bloc,
       builder: (context, state) {
+        final isLoading = state.status == Status.loading;
         final list = state.contacts;
 
         return Scaffold(
@@ -46,51 +49,55 @@ class _InformCloseOnesScreenState extends State<InformCloseOnesScreen> {
           appBar: MyAppBar(
             title: 'strInformYourCloseOnes'.tr(),
           ),
-          body: ListView(
-            shrinkWrap: true,
-            padding: const EdgeInsets.symmetric(
-              vertical: 30,
-              horizontal: 18,
-            ).copyWith(bottom: 18),
-            physics: const BouncingScrollPhysics(),
-            children: [
-              Text(
-                'strSelectContactsThem'.tr(),
-                style: const TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              const SizedBox(height: 30),
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: list.length,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  final contact = list[index];
+          body: isLoading
+              ? const Loading()
+              : ListView(
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 30,
+                    horizontal: 18,
+                  ).copyWith(bottom: 18),
+                  physics: const BouncingScrollPhysics(),
+                  children: [
+                    Text(
+                      'strSelectContactsThem'.tr(),
+                      style: const TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: list.length,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        final contact = list[index];
 
-                  return InformCloseOnesItem(
-                    contact: contact,
-                    isChecked: state.selectedContacts.contains(contact),
-                    onChanged: (_) =>
-                        bloc.add(OnSelectContact(contact: contact)),
-                  );
-                },
-              ),
-            ],
-          ),
-          bottomNavigationBar: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 12,
-              horizontal: 18,
-            ),
-            child: MyButton.primary(
-              isLoading: false,
-              onTap: bloc.onChoosePremadeMessage,
-              label: 'strChoosethepremademessage'.tr(),
-              enable: state.selectedContacts.isNotEmpty,
-            ),
-          ),
+                        return InformCloseOnesItem(
+                          contact: contact,
+                          isChecked: state.selectedContacts.contains(contact),
+                          onChanged: (_) =>
+                              bloc.add(OnSelectContact(contact: contact)),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+          bottomNavigationBar: isLoading
+              ? null
+              : Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 12,
+                    horizontal: 18,
+                  ),
+                  child: MyButton.primary(
+                    isLoading: false,
+                    onTap: bloc.onChoosePremadeMessage,
+                    label: 'strChoosethepremademessage'.tr(),
+                    enable: state.selectedContacts.isNotEmpty,
+                  ),
+                ),
         );
       },
     );

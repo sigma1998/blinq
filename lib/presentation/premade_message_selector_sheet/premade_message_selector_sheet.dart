@@ -1,6 +1,4 @@
 // Flutter imports:
-import 'package:blinq/app/locator.dart';
-import 'package:blinq/utils/services/permission/permission_service.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -10,9 +8,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // Project imports:
 import 'package:blinq/presentation/contacts/views/premade_messages/bloc/premade_messages_bloc.dart';
 import 'package:blinq/utils/custom_widgets/pop_ups/base_selector_sheet.dart';
+import 'package:blinq/utils/services/permission/permission_service.dart';
 import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'bloc/premade_message_selector_event.dart';
 import 'bloc/premade_message_selector_bloc.dart';
+import 'package:blinq/app/locator.dart';
 import 'widgets/item.dart';
 
 class PremadeMessageSelectorSheet extends StatefulWidget {
@@ -49,9 +50,11 @@ class _PremadeMessageSelectorSheetState
     return BlocBuilder<PremadeMessageSelectorBloc, PremadeMessageSelectorState>(
       bloc: bloc,
       builder: (context, state) {
+        final isLoading = state.status == Status.loading;
         final list = state.premadeMessages;
 
         return MyBaseSelectorSheet(
+          isLoading: isLoading,
           title: 'strChooseAndSendMessage'.tr(),
           bottomChild: MyButton.primary(
             margin: const EdgeInsets.symmetric(

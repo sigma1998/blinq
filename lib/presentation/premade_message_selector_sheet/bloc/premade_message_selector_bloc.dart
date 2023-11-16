@@ -37,7 +37,7 @@ class PremadeMessageSelectorBloc
       OnLoadPremadeMessages event, Emitter<PremadeMessageSelectorState> emit) {
     emit(
       state.copyWith(
-        status: Status.initial,
+        status: premadeMessagesBloc.state.status,
         premadeMessages:
             premadeMessagesBloc.state.premadeMessages?.results ?? [],
       ),
@@ -66,6 +66,7 @@ class PremadeMessageSelectorBloc
     );
     debugPrint('result: $result');
     NavigationService.showErrorToast('strYourInformMessageSent'.tr());
+    await Future.delayed(const Duration(seconds: 2));
     NavigationService.pushReplacement(routeName: CreateReportScreen.route);
   }
 }
