@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 // Project imports:
+import 'package:blinq/data/model/contact/response/contact_response_model.dart';
 import 'package:blinq/utils/custom_widgets/expanded_section.dart';
 import 'package:blinq/utils/custom_widgets/info_container.dart';
 import 'package:blinq/utils/custom_widgets/default_image.dart';
@@ -13,16 +14,11 @@ import 'package:blinq/utils/url_helper.dart';
 
 class ContactItem extends StatefulWidget {
   //
-  final String imageUrl;
-  final String fullName;
-
-  final String phoneNumber;
+  final ContactResponseModel contact;
 
   const ContactItem({
     super.key,
-    required this.imageUrl,
-    required this.fullName,
-    required this.phoneNumber,
+    required this.contact,
   });
 
   @override
@@ -50,14 +46,14 @@ class _ContactItemState extends State<ContactItem> {
                 child: Row(
                   children: [
                     MyImage(
-                      widget.imageUrl,
+                      widget.contact.image ?? '',
                       width: 54,
                       height: 54,
                     ),
                     const SizedBox(width: 16),
                     Expanded(
                       child: Text(
-                        widget.fullName,
+                        widget.contact.fullName,
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
@@ -68,10 +64,12 @@ class _ContactItemState extends State<ContactItem> {
                 ),
               ),
               if (isExpanded)
-                SvgPicture.asset(
-                  AppDrawables.edit,
-                  width: 20,
-                  height: 20,
+                GestureDetector(
+                  child: SvgPicture.asset(
+                    AppDrawables.edit,
+                    width: 20,
+                    height: 20,
+                  ),
                 ),
             ],
           ),
@@ -116,7 +114,7 @@ class _ContactItemState extends State<ContactItem> {
     updateState();
   }
 
-  void onPhoneCall() => MyUrlLauncher.call(widget.phoneNumber);
+  void onPhoneCall() => MyUrlLauncher.call(widget.contact.phoneNumber ?? '');
 
-  void onMessage() => MyUrlLauncher.message(widget.phoneNumber);
+  void onMessage() => MyUrlLauncher.message(widget.contact.phoneNumber ?? '');
 }

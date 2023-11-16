@@ -34,4 +34,8 @@ class PremadeMessagesBloc extends Bloc<ContactsEvent, PremadeMessagesState> {
       emit(state.copyWith(status: Status.initial));
     }
   }
+
+  void onEditPressed(int id) {}
+
+  void onAddPressed() {}
 }

@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/data/model/contact/response/contact_response_model.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -14,18 +15,14 @@ import 'package:blinq/utils/url_helper.dart';
 
 class InformCloseOnesItem extends StatelessWidget {
   //
-  final String fullName;
-  final String imageUrl;
-  final String phoneNumber;
+  final ContactResponseModel contact;
 
   final bool isChecked;
   final void Function(bool?) onChanged;
 
   const InformCloseOnesItem({
     super.key,
-    required this.fullName,
-    required this.imageUrl,
-    required this.phoneNumber,
+    required this.contact,
     //
     required this.isChecked,
     required this.onChanged,
@@ -54,13 +51,13 @@ class InformCloseOnesItem extends StatelessWidget {
               child: Row(
                 children: [
                   MyImage(
-                    imageUrl,
+                    contact.image ?? '',
                     width: 54,
                     height: 54,
                   ),
                   const SizedBox(width: 16),
                   Text(
-                    fullName,
+                    contact.fullName,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
@@ -90,5 +87,5 @@ class InformCloseOnesItem extends StatelessWidget {
     );
   }
 
-  void onCall() => MyUrlLauncher.call(phoneNumber);
+  void onCall() => MyUrlLauncher.call(contact.phoneNumber ?? '');
 }

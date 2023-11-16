@@ -13,7 +13,7 @@ import 'package:blinq/core/network/api_service.dart';
 
 abstract class ContactsApi {
   //
-  Future<ContactResponseDto> fetchList([int count]);
+  Future<ContactResponseDto> fetchList([int page]);
 
   Future<ContactResponseModel> add({
     required ContactRequestModel contact,

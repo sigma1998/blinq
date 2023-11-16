@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/utils/step_indicator.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -29,6 +30,10 @@ class LocationInfoScreen extends StatelessWidget {
           padding: const EdgeInsets.all(32),
           physics: const ClampingScrollPhysics(),
           children: [
+            StepIndicator(
+              title: 'strBreakDown'.tr(),
+            ),
+            const SizedBox(height: 52),
             Text(
               'strDateOfAccident'.tr(),
               style: const TextStyle(

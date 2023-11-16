@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:blinq/presentation/connect_to_driver/connect_to_driver_screen.dart';
+import 'package:blinq/utils/step_indicator.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -24,6 +26,11 @@ class InjuryScreen extends StatelessWidget {
         padding: const EdgeInsets.all(32),
         physics: const ClampingScrollPhysics(),
         children: [
+          StepIndicator(
+            currentStep: 2,
+            title: 'strBreakDown'.tr(),
+          ),
+          const SizedBox(height: 52),
           InjuryItem(
             title: 'strMinorInjuries'.tr(),
             onChanged: (v) {},
@@ -43,6 +50,12 @@ class InjuryScreen extends StatelessWidget {
       floatingActionButton: NavigationButton(
         onNextTap: () => NavigationService.pushNamed(
           routeName: SpeechToTextScreen.route,
+          arguments: SpeechToTextArgs(
+            title: 'strAnyWitness'.tr(),
+            onNextTap: () => NavigationService.pushNamed(
+              routeName: ConnectToDriverScreen.route,
+            ),
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

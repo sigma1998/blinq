@@ -1,8 +1,14 @@
-import 'package:blinq/core/drawables/app_drawables.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
+// Project imports:
+import 'package:blinq/utils/custom_widgets/loading.dart';
+import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'bloc/premade_messages_bloc.dart';
 import 'widgets/item.dart';
 
@@ -12,44 +18,47 @@ class PremadeMessagesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<PremadeMessagesBloc>();
+
     return BlocBuilder<PremadeMessagesBloc, PremadeMessagesState>(
       builder: (context, state) {
+        final isLoading = state.status == Status.loading;
         final premadeMessages = state.premadeMessages?.results ?? [];
 
-        return Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: premadeMessages.length,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                ),
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) {
-                  final premadeMessage = premadeMessages[index];
+        return isLoading
+            ? const Loading()
+            : Column(
+                children: [
+                  Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: premadeMessages.length,
+                      physics: const BouncingScrollPhysics(),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      itemBuilder: (context, index) {
+                        final premadeMessage = premadeMessages[index];
 
-                  return PremadeMessageItem(
-                    title: premadeMessage.title ?? '',
-                    message: premadeMessage.message ?? '',
-                  );
-                },
-              ),
-            ),
-            const SizedBox(height: 4),
-            GestureDetector(
-              child: SvgPicture.asset(
-                AppDrawables.plus,
-                width: 54,
-                height: 54,
-              ),
-            ),
-            const SafeArea(
-              top: false,
-              child: SizedBox(height: 16),
-            ),
-          ],
-        );
+                        return PremadeMessageItem(
+                          premadeMessage: premadeMessage,
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  GestureDetector(
+                    onTap: bloc.onAddPressed,
+                    child: SvgPicture.asset(
+                      AppDrawables.plus,
+                      width: 54,
+                      height: 54,
+                    ),
+                  ),
+                  const SafeArea(
+                    top: false,
+                    child: SizedBox(height: 16),
+                  ),
+                ],
+              );
       },
     );
   }

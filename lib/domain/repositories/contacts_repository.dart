@@ -12,7 +12,7 @@ abstract class ContactsRepository {
   ///
   /// Remote API
   ///
-  Future<ContactResponseDto> fetchList();
+  Future<ContactResponseDto> fetchList([int page]);
 
   Future<ContactResponseModel> add({
     required ContactRequestModel contact,
@@ -50,9 +50,9 @@ class ContactsRepositoryImpl implements ContactsRepository {
   ///
 
   @override
-  Future<ContactResponseDto> fetchList() async {
+  Future<ContactResponseDto> fetchList([int page = 1]) async {
     try {
-      return await api.fetchList();
+      return await api.fetchList(page);
     } catch (e) {
       rethrow;
     }

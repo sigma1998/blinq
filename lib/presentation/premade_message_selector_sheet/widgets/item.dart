@@ -2,20 +2,19 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
+import 'package:blinq/data/model/premade_message/response/premade_message_response_model.dart';
 import 'package:blinq/utils/custom_widgets/info_container.dart';
 
-class PremadeMessagesSelectorItem extends StatelessWidget {
+class PremadeMessageSelectorItem extends StatelessWidget {
   //
-  final String title;
-  final String desc;
+  final PremadeMessageResponseModel premadeMessage;
 
   final bool isSelected;
   final void Function()? onTap;
 
-  const PremadeMessagesSelectorItem({
+  const PremadeMessageSelectorItem({
     super.key,
-    required this.title,
-    required this.desc,
+    required this.premadeMessage,
     //
     required this.isSelected,
     this.onTap,
@@ -36,7 +35,7 @@ class PremadeMessagesSelectorItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                title,
+                premadeMessage.title ?? '',
                 style: isSelected
                     ? Theme.of(context).textTheme.titleSmall!.copyWith(
                           color: Colors.white,
@@ -47,7 +46,7 @@ class PremadeMessagesSelectorItem extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               Text(
-                title,
+                premadeMessage.message ?? '',
                 style: isSelected
                     ? Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: Colors.white,
