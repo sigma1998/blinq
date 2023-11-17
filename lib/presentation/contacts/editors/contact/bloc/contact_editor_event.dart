@@ -21,8 +21,4 @@ class OnDeleteContact extends ContactEditorEvent {
   OnDeleteContact({required this.id});
 }
 
-class OnUpdateContactImage extends ContactEditorEvent {
-  final File file;
-
-  OnUpdateContactImage({required this.file});
-}
+class OnUpdateContactImage extends ContactEditorEvent {}

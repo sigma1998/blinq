@@ -42,13 +42,14 @@ class ContactsView extends StatelessWidget {
 
                         return ContactItem(
                           contact: contact,
+                          onEdit: (id) => bloc.onEditPressed(id: id),
                         );
                       },
                     ),
                   ),
                   const SizedBox(height: 4),
                   GestureDetector(
-                    onTap: bloc.onAddPressed,
+                    onTap: () => bloc.onEditPressed(),
                     child: SvgPicture.asset(
                       AppDrawables.plus,
                       width: 54,

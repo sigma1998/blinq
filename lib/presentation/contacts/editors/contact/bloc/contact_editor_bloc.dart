@@ -3,7 +3,6 @@ import 'dart:async';
 import 'dart:io';
 
 // Flutter imports:
-import 'package:blinq/domain/repositories/contacts_repository.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -12,9 +11,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
+import 'package:blinq/presentation/contacts/views/contacts/bloc/contacts_event.dart';
 import 'package:blinq/presentation/contacts/views/contacts/bloc/contacts_bloc.dart';
 import 'package:blinq/utils/custom_widgets/cupertino_action/cupertino_action.dart';
 import 'package:blinq/data/model/contact/request/contact_request_model.dart';
+import 'package:blinq/domain/repositories/contacts_repository.dart';
 import 'package:blinq/utils/services/media/i_media_service.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
@@ -27,7 +28,6 @@ part 'contact_editor_bloc.freezed.dart';
 
 class ContactEditorBloc extends Bloc<ContactEditorEvent, ContactEditorState> {
   //
-
   final ContactsBloc contactsBloc;
   final ContactsRepository repository;
   final IMediaService mediaService;
@@ -35,6 +35,7 @@ class ContactEditorBloc extends Bloc<ContactEditorEvent, ContactEditorState> {
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final phoneNumberController = TextEditingController();
+  String imageUrl = '';
 
   ContactEditorBloc({
     required this.contactsBloc,
@@ -44,18 +45,25 @@ class ContactEditorBloc extends Bloc<ContactEditorEvent, ContactEditorState> {
     on<OnAddContact>(_onAddContact);
     on<OnUpdateContact>(_onUpdateContact);
     on<OnDeleteContact>(_onDeleteContact);
+    on<OnUpdateContactImage>(_imagePickerPressed);
+  }
+
+  void onNavigateBack() {
+    NavigationService.contactsNavigatorKey.currentState?.pop();
   }
 
   void initializeFields(int id) {
-    final contact = contactsBloc.state.contacts?.results?.asMap() ?? {};
+    final contact = contactsBloc.state.contacts?.results
+        ?.firstWhere((element) => element.id == id);
 
-    firstNameController.text = contact[id]?.fullName ?? '';
-    lastNameController.text = contact[id]?.lastName ?? '';
+    imageUrl = contact?.image ?? '';
+    firstNameController.text = contact?.firstName ?? '';
+    lastNameController.text = contact?.lastName ?? '';
     phoneNumberController.text =
-        MyStringHelper.phoneMask(contact[id]?.phoneNumber ?? '');
+        MyStringHelper.phoneMask(contact?.phoneNumber ?? '');
   }
-  //
 
+  //
   FutureOr<void> _onAddContact(
       OnAddContact event, Emitter<ContactEditorState> emit) async {
     try {
@@ -69,7 +77,8 @@ class ContactEditorBloc extends Bloc<ContactEditorEvent, ContactEditorState> {
       emit(state.copyWith(status: Status.loading));
       await repository.add(contact: contact, file: state.image);
       emit(state.copyWith(status: Status.success));
-      NavigationService.back();
+      onNavigateBack();
+      contactsBloc.add(OnFetchContacts());
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }
@@ -89,7 +98,8 @@ class ContactEditorBloc extends Bloc<ContactEditorEvent, ContactEditorState> {
       await repository.update(
           id: event.id, contact: contact, file: state.image);
       emit(state.copyWith(status: Status.success));
-      NavigationService.back();
+      onNavigateBack();
+      contactsBloc.add(OnFetchContacts());
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }
@@ -101,13 +111,15 @@ class ContactEditorBloc extends Bloc<ContactEditorEvent, ContactEditorState> {
       emit(state.copyWith(status: Status.loading));
       await repository.delete(event.id);
       emit(state.copyWith(status: Status.success));
-      NavigationService.back();
+      onNavigateBack();
+      contactsBloc.add(OnFetchContacts());
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }
   }
 
-  Future<void> imagePickerPressed() async {
+  FutureOr<void> _imagePickerPressed(
+      OnUpdateContactImage event, Emitter<ContactEditorState> emit) async {
     final result = await NavigationService.showMyCupertinoModalPopup(
       actions: [
         MyCupertinoActionSheetAction(
@@ -131,7 +143,7 @@ class ContactEditorBloc extends Bloc<ContactEditorEvent, ContactEditorState> {
       ],
     );
     if (result != null) {
-      add(OnUpdateContactImage(file: result));
+      emit(state.copyWith(image: result));
     }
   }
 }

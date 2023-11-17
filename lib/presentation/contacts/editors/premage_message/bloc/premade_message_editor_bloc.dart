@@ -2,6 +2,7 @@
 import 'dart:async';
 
 // Flutter imports:
+import 'package:blinq/presentation/contacts/views/premade_messages/bloc/premade_messages_event.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -22,7 +23,6 @@ part 'premade_message_editor_bloc.freezed.dart';
 class PremadeMessageEditorBloc
     extends Bloc<PremadeMessageEditorEvent, PremadeMessageEditorState> {
   //
-
   final PremadeMessagesBloc premadeMessagesBloc;
   final PremadeMessagesRepository repository;
 
@@ -38,15 +38,19 @@ class PremadeMessageEditorBloc
     on<OnDeletePremadeMessage>(_onDeleteContact);
   }
 
-  void initializeFields(int id) {
-    final premadeMessage =
-        premadeMessagesBloc.state.premadeMessages?.results?.asMap() ?? {};
-
-    titleController.text = premadeMessage[id]?.title ?? '';
-    messageController.text = premadeMessage[id]?.message ?? '';
+  void onNavigateBack() {
+    NavigationService.contactsNavigatorKey.currentState?.pop();
   }
-  //
 
+  void initializeFields(int id) {
+    final premadeMessage = premadeMessagesBloc.state.premadeMessages?.results
+        ?.firstWhere((element) => element.id == id);
+
+    titleController.text = premadeMessage?.title ?? '';
+    messageController.text = premadeMessage?.message ?? '';
+  }
+
+  //
   FutureOr<void> _onAddContact(OnAddPremadeMessage event,
       Emitter<PremadeMessageEditorState> emit) async {
     try {
@@ -58,7 +62,8 @@ class PremadeMessageEditorBloc
       emit(state.copyWith(status: Status.loading));
       await repository.add(premadeMessage);
       emit(state.copyWith(status: Status.success));
-      NavigationService.back();
+      onNavigateBack();
+      premadeMessagesBloc.add(OnFetchPremadeMessages());
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }
@@ -75,7 +80,8 @@ class PremadeMessageEditorBloc
       emit(state.copyWith(status: Status.loading));
       await repository.update(id: event.id, premadeMessage: premadeMessage);
       emit(state.copyWith(status: Status.success));
-      NavigationService.back();
+      onNavigateBack();
+      premadeMessagesBloc.add(OnFetchPremadeMessages());
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }
@@ -87,7 +93,8 @@ class PremadeMessageEditorBloc
       emit(state.copyWith(status: Status.loading));
       await repository.delete(event.id);
       emit(state.copyWith(status: Status.success));
-      NavigationService.back();
+      onNavigateBack();
+      premadeMessagesBloc.add(OnFetchPremadeMessages());
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }

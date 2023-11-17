@@ -1,4 +1,5 @@
 // Dart imports:
+import 'dart:io';
 import 'dart:ui';
 
 // Flutter imports:
@@ -16,6 +17,8 @@ class MyImage extends StatelessWidget {
   //
   final String imgUrl;
 
+  final File? file;
+
   final double? maxHeight;
   final double? width, height;
   final double? minWidth, minHeight;
@@ -29,6 +32,7 @@ class MyImage extends StatelessWidget {
   MyImage(
     this.imgUrl, {
     //
+    this.file,
     this.width,
     this.height,
     //
@@ -51,14 +55,21 @@ class MyImage extends StatelessWidget {
             constraints: BoxConstraints(
               maxHeight: maxHeight ?? double.infinity,
             ),
-            child: CachedNetworkImage(
-              fit: fit,
-              width: width,
-              height: height,
-              imageUrl: imgUrl,
-              placeholder: (context, url, [_]) => getPlaceholder(),
-              errorWidget: (context, url, error) => getErrorImage(),
-            ),
+            child: file != null
+                ? Image.file(
+                    file!,
+                    fit: fit,
+                    width: width,
+                    height: height,
+                  )
+                : CachedNetworkImage(
+                    fit: fit,
+                    width: width,
+                    height: height,
+                    imageUrl: imgUrl,
+                    placeholder: (context, url, [_]) => getPlaceholder(),
+                    errorWidget: (context, url, error) => getErrorImage(),
+                  ),
           ),
         ),
         if (onChangeImage != null)

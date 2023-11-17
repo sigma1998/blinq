@@ -107,8 +107,6 @@ class MyTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller?.text = initialValue ?? '';
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

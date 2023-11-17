@@ -1,4 +1,7 @@
 // Flutter imports:
+import 'package:blinq/presentation/contacts/contacts_screen.dart';
+import 'package:blinq/presentation/contacts/editors/contact/contact_editor.dart';
+import 'package:blinq/presentation/contacts/editors/premage_message/premade_message_editor.dart';
 import 'package:blinq/presentation/second_driver_editors/second_driver_editor_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -86,6 +89,9 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     FinishedScreen.route: (context) => const FinishedScreen(),
     SecondDriverEditorScreen.route: (context) =>
         const SecondDriverEditorScreen(),
+
+    ContactEditor.route: (context) => const ContactEditor(),
+    PremadeMessageEditor.route: (context) => const PremadeMessageEditor(),
   };
 }
 
@@ -100,6 +106,25 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
       page = const TestScreen2();
     case MapScreen.route:
       page = const MapScreen();
+  }
+
+  return MaterialPageRoute<dynamic>(
+    builder: (context) {
+      return page;
+    },
+    settings: settings,
+  );
+}
+
+Route onGenerateContactRoutes(RouteSettings settings) {
+  late Widget page;
+  switch (settings.name) {
+    case ContactsScreen.route:
+      page = const ContactsScreen();
+    case ContactEditor.route:
+      page = const ContactEditor();
+    case PremadeMessageEditor.route:
+      page = const PremadeMessageEditor();
   }
 
   return MaterialPageRoute<dynamic>(

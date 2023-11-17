@@ -13,10 +13,12 @@ import 'package:blinq/core/drawables/app_drawables.dart';
 class PremadeMessageItem extends StatefulWidget {
   //
   final PremadeMessageResponseModel premadeMessage;
+  final void Function(int?) onEdit;
 
   const PremadeMessageItem({
     super.key,
     required this.premadeMessage,
+    required this.onEdit,
   });
 
   @override
@@ -53,6 +55,7 @@ class _PremadeMessageItemState extends State<PremadeMessageItem> {
               ),
               if (isExpanded)
                 GestureDetector(
+                  onTap: () => widget.onEdit(widget.premadeMessage.id),
                   child: SvgPicture.asset(
                     AppDrawables.edit,
                     width: 20,

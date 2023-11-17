@@ -67,9 +67,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   FutureOr<void> _onUpdateProfileImage(
       OnUpdateProfileImage event, Emitter<ProfileState> emit) async {
     try {
-      emit(const ProfileState(status: Status.loading));
+      emit(state.copyWith(status: Status.loading));
       await repository.updateProfileImage(event.file);
-      emit(const ProfileState(status: Status.success));
+      emit(state.copyWith(status: Status.success));
       add(OnFetchProfile());
     } catch (e) {
       emit(state.copyWith(status: Status.initial));

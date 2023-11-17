@@ -15,10 +15,12 @@ import 'package:blinq/utils/url_helper.dart';
 class ContactItem extends StatefulWidget {
   //
   final ContactResponseModel contact;
+  final void Function(int?) onEdit;
 
   const ContactItem({
     super.key,
     required this.contact,
+    required this.onEdit,
   });
 
   @override
@@ -65,6 +67,7 @@ class _ContactItemState extends State<ContactItem> {
               ),
               if (isExpanded)
                 GestureDetector(
+                  onTap: () => widget.onEdit(widget.contact.id),
                   child: SvgPicture.asset(
                     AppDrawables.edit,
                     width: 20,

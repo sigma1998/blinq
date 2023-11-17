@@ -6,8 +6,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
+import 'package:blinq/presentation/contacts/editors/premage_message/premade_message_editor.dart';
 import 'package:blinq/data/model/premade_message/premade_message_response_dto.dart';
 import 'package:blinq/domain/repositories/premade_messages_repository.dart';
+import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'premade_messages_event.dart';
 
@@ -35,7 +37,11 @@ class PremadeMessagesBloc extends Bloc<ContactsEvent, PremadeMessagesState> {
     }
   }
 
-  void onEditPressed(int id) {}
-
-  void onAddPressed() {}
+  void onEditPressed({int? id}) async {
+    NavigationService.pushNamed(
+      arguments: id,
+      routeName: PremadeMessageEditor.route,
+      nestedKey: NavigationService.contactsNavigatorKey,
+    );
+  }
 }
