@@ -3,6 +3,7 @@ abstract class IPermissionService {
   Future requestPhotosPermission();
   Future requestLocationPermission();
   Future requestNotificationPermission();
+  Future requestSendSmsPermission();
 
   //
 
@@ -10,4 +11,5 @@ abstract class IPermissionService {
   Future<bool> handlePhotosPermission();
   Future<bool> handleLocationPermission();
   Future<bool> handleNotificationPermission();
+  Future<bool> handleSendSmsPermission();
 }

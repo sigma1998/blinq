@@ -17,6 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$InformCloseOnesState {
   Status get status => throw _privateConstructorUsedError;
+  List<ContactResponseModel> get contacts => throw _privateConstructorUsedError;
+  List<ContactResponseModel> get selectedContacts =>
+      throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +33,11 @@ abstract class $InformCloseOnesStateCopyWith<$Res> {
           $Res Function(InformCloseOnesState) then) =
       _$InformCloseOnesStateCopyWithImpl<$Res, InformCloseOnesState>;
   @useResult
-  $Res call({Status status, Error? error});
+  $Res call(
+      {Status status,
+      List<ContactResponseModel> contacts,
+      List<ContactResponseModel> selectedContacts,
+      Error? error});
 }
 
 /// @nodoc
@@ -48,6 +55,8 @@ class _$InformCloseOnesStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? status = null,
+    Object? contacts = null,
+    Object? selectedContacts = null,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -55,6 +64,14 @@ class _$InformCloseOnesStateCopyWithImpl<$Res,
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
+      contacts: null == contacts
+          ? _value.contacts
+          : contacts // ignore: cast_nullable_to_non_nullable
+              as List<ContactResponseModel>,
+      selectedContacts: null == selectedContacts
+          ? _value.selectedContacts
+          : selectedContacts // ignore: cast_nullable_to_non_nullable
+              as List<ContactResponseModel>,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -71,7 +88,11 @@ abstract class _$$InformCloseOnesStateImplCopyWith<$Res>
       __$$InformCloseOnesStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Status status, Error? error});
+  $Res call(
+      {Status status,
+      List<ContactResponseModel> contacts,
+      List<ContactResponseModel> selectedContacts,
+      Error? error});
 }
 
 /// @nodoc
@@ -86,6 +107,8 @@ class __$$InformCloseOnesStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? contacts = null,
+    Object? selectedContacts = null,
     Object? error = freezed,
   }) {
     return _then(_$InformCloseOnesStateImpl(
@@ -93,6 +116,14 @@ class __$$InformCloseOnesStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
+      contacts: null == contacts
+          ? _value._contacts
+          : contacts // ignore: cast_nullable_to_non_nullable
+              as List<ContactResponseModel>,
+      selectedContacts: null == selectedContacts
+          ? _value._selectedContacts
+          : selectedContacts // ignore: cast_nullable_to_non_nullable
+              as List<ContactResponseModel>,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -104,17 +135,42 @@ class __$$InformCloseOnesStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InformCloseOnesStateImpl implements _InformCloseOnesState {
-  const _$InformCloseOnesStateImpl({this.status = Status.initial, this.error});
+  const _$InformCloseOnesStateImpl(
+      {this.status = Status.initial,
+      final List<ContactResponseModel> contacts = const [],
+      final List<ContactResponseModel> selectedContacts = const [],
+      this.error})
+      : _contacts = contacts,
+        _selectedContacts = selectedContacts;
 
   @override
   @JsonKey()
   final Status status;
+  final List<ContactResponseModel> _contacts;
+  @override
+  @JsonKey()
+  List<ContactResponseModel> get contacts {
+    if (_contacts is EqualUnmodifiableListView) return _contacts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_contacts);
+  }
+
+  final List<ContactResponseModel> _selectedContacts;
+  @override
+  @JsonKey()
+  List<ContactResponseModel> get selectedContacts {
+    if (_selectedContacts is EqualUnmodifiableListView)
+      return _selectedContacts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_selectedContacts);
+  }
+
   @override
   final Error? error;
 
   @override
   String toString() {
-    return 'InformCloseOnesState(status: $status, error: $error)';
+    return 'InformCloseOnesState(status: $status, contacts: $contacts, selectedContacts: $selectedContacts, error: $error)';
   }
 
   @override
@@ -123,11 +179,19 @@ class _$InformCloseOnesStateImpl implements _InformCloseOnesState {
         (other.runtimeType == runtimeType &&
             other is _$InformCloseOnesStateImpl &&
             (identical(other.status, status) || other.status == status) &&
+            const DeepCollectionEquality().equals(other._contacts, _contacts) &&
+            const DeepCollectionEquality()
+                .equals(other._selectedContacts, _selectedContacts) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, error);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      const DeepCollectionEquality().hash(_contacts),
+      const DeepCollectionEquality().hash(_selectedContacts),
+      error);
 
   @JsonKey(ignore: true)
   @override
@@ -140,10 +204,17 @@ class _$InformCloseOnesStateImpl implements _InformCloseOnesState {
 
 abstract class _InformCloseOnesState implements InformCloseOnesState {
   const factory _InformCloseOnesState(
-      {final Status status, final Error? error}) = _$InformCloseOnesStateImpl;
+      {final Status status,
+      final List<ContactResponseModel> contacts,
+      final List<ContactResponseModel> selectedContacts,
+      final Error? error}) = _$InformCloseOnesStateImpl;
 
   @override
   Status get status;
+  @override
+  List<ContactResponseModel> get contacts;
+  @override
+  List<ContactResponseModel> get selectedContacts;
   @override
   Error? get error;
   @override

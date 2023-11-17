@@ -620,5 +620,8 @@
   "strDate": "Date",
   "strTime": "Time",
   "strTimeOfAccident": "Time of Accident",
-  "strPlace": "Place"
+  "strPlace": "Place",
+  "strIsSecondDriverAccount":  "Is this the second driver's BLINQ account?",
+  "strDamageReportSent": "The damage report has been sent!",
+  "strYourInformMessageSent": "Your Inform message has been sent!"
 }

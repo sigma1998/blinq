@@ -1,41 +1,49 @@
 // Flutter imports:
-import 'package:blinq/presentation/circumstances/circumstances_screen.dart';
+import 'package:blinq/presentation/auth/registration/email_screen/email_screen.dart';
+import 'package:blinq/presentation/auth/registration/registration_screen/registration_screen.dart';
+import 'package:blinq/presentation/auth/sign_in_screen/sign_in_screen.dart';
+import 'package:blinq/presentation/contacts/contacts_screen.dart';
+import 'package:blinq/presentation/contacts/editors/contact/contact_editor.dart';
+import 'package:blinq/presentation/contacts/editors/premage_message/premade_message_editor.dart';
 import 'package:blinq/presentation/create_report/create_report_screen.dart';
-import 'package:blinq/presentation/demaged_parts/damaged_parts_screen.dart';
 import 'package:blinq/presentation/email_editor/email_editor_screen.dart';
 import 'package:blinq/presentation/emergency_services/emergency_services_screen.dart';
+
+// Project imports:
 import 'package:blinq/presentation/forgot_password/reset_password/reset_password_screen.dart';
 import 'package:blinq/presentation/home/home_screen.dart';
 import 'package:blinq/presentation/inform_close_ones/inform_close_ones_screen.dart';
-
-// Project imports:
-import 'package:blinq/presentation/injury/injury_screen.dart';
 import 'package:blinq/presentation/intro/first_intro_screen/first_intro_screen.dart';
 import 'package:blinq/presentation/intro/second_intro_screen/second_intro_screen.dart';
 import 'package:blinq/presentation/language/language_screen.dart';
-import 'package:blinq/presentation/location_info/location_info_screen.dart';
 import 'package:blinq/presentation/main_screen/main_screen.dart';
 import 'package:blinq/presentation/map/map_screen.dart';
 import 'package:blinq/presentation/medical_assistance/medical_assistance_screen.dart';
+import 'package:blinq/presentation/my_reports/pdf_view/pdf_view.dart';
+import 'package:blinq/presentation/my_reports/reports_screen.dart';
 import 'package:blinq/presentation/password_editor/password_editor_screen.dart';
-import 'package:blinq/presentation/points_of_impact/points_of_impact_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/driver/driver_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/insurance/insurance_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/my_car/my_car_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/my_vehicle/my_vehicle_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/policy_holder/policy_holder_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/vehicle/vehicle_editor_screen.dart';
-import 'package:blinq/presentation/registration/email_screen/email_screen.dart';
-import 'package:blinq/presentation/registration/registration_screen/registration_screen.dart';
-import 'package:blinq/presentation/reports/pdf_view/pdf_view.dart';
-import 'package:blinq/presentation/reports/reports_screen.dart';
-import 'package:blinq/presentation/sign_in_screen/sign_in_screen.dart';
-import 'package:blinq/presentation/sketch/sketch_screen.dart';
-import 'package:blinq/presentation/speech_to_text/speech_to_text_screen.dart';
+import 'package:blinq/presentation/report/circumstances/circumstances_screen.dart';
+import 'package:blinq/presentation/report/connect_to_driver/connect_to_driver_screen.dart';
+import 'package:blinq/presentation/report/demaged_parts/damaged_parts_screen.dart';
+import 'package:blinq/presentation/report/finished/finished_screen.dart';
+import 'package:blinq/presentation/report/injury/injury_screen.dart';
+import 'package:blinq/presentation/report/location_info/location_info_screen.dart';
+import 'package:blinq/presentation/report/points_of_impact/points_of_impact_screen.dart';
+import 'package:blinq/presentation/report/second_driver/second_driver_screen.dart';
+import 'package:blinq/presentation/report/second_driver_editors/second_driver_editor_screen.dart';
+import 'package:blinq/presentation/report/sketch/sketch_screen.dart';
+import 'package:blinq/presentation/report/speech_to_text/speech_to_text_screen.dart';
 import 'package:blinq/presentation/splash_screen/splash_screen.dart';
 import 'package:blinq/presentation/success_video/success_video_screen.dart';
-import 'package:blinq/presentation/test/test_screen2.dart';
 import 'package:flutter/material.dart';
+
+import '../presentation/report/qr_scan/qr_scan_screen.dart';
 
 Map<String, WidgetBuilder> getRoutes(BuildContext context) {
   return {
@@ -80,6 +88,16 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     SpeechToTextScreen.route: (context) => const SpeechToTextScreen(),
 
     SketchScreen.route: (context) => const SketchScreen(),
+    ConnectToDriverScreen.route: (context) => const ConnectToDriverScreen(),
+    QrScanScreen.route: (context) => const QrScanScreen(),
+    SecondDriverScreen.route: (context) => const SecondDriverScreen(),
+
+    FinishedScreen.route: (context) => const FinishedScreen(),
+    SecondDriverEditorScreen.route: (context) =>
+        const SecondDriverEditorScreen(),
+
+    ContactEditor.route: (context) => const ContactEditor(),
+    PremadeMessageEditor.route: (context) => const PremadeMessageEditor(),
   };
 }
 
@@ -90,8 +108,6 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
       page = const HomeScreen();
     case CreateReportScreen.route:
       page = const CreateReportScreen();
-    case TestScreen2.route:
-      page = const TestScreen2();
     case MapScreen.route:
       page = const MapScreen();
     case PointsOfImpactScreen.route:
@@ -104,6 +120,25 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
       page = const DamagedPartsScreen();
     default:
       page = const HomeScreen();
+  }
+
+  return MaterialPageRoute<dynamic>(
+    builder: (context) {
+      return page;
+    },
+    settings: settings,
+  );
+}
+
+Route onGenerateContactRoutes(RouteSettings settings) {
+  late Widget page;
+  switch (settings.name) {
+    case ContactsScreen.route:
+      page = const ContactsScreen();
+    case ContactEditor.route:
+      page = const ContactEditor();
+    case PremadeMessageEditor.route:
+      page = const PremadeMessageEditor();
   }
 
   return MaterialPageRoute<dynamic>(

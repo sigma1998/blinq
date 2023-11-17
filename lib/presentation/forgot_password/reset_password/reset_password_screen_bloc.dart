@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:blinq/domain/repositories/auth_repository.dart';
+import 'package:blinq/presentation/auth/sign_in_screen/sign_in_screen.dart';
 import 'package:blinq/presentation/forgot_password/reset_password/reset_password_screen_state.dart';
 import 'package:blinq/presentation/forgot_password/reset_password/reset_password_state_event.dart';
-import 'package:blinq/presentation/sign_in_screen/sign_in_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/validator.dart';

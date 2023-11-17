@@ -24,8 +24,7 @@ class NavigationService {
     FocusManager.instance.primaryFocus?.unfocus();
     if (nestedKey != null) {
       return nestedKey.currentState!.pushNamed(routeName, arguments: arguments);
-    }
-    else{
+    } else {
       return navigatorKey.currentState!
           .pushNamed(routeName, arguments: arguments);
     }

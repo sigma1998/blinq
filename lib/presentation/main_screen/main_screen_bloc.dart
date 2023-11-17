@@ -22,6 +22,12 @@ class MainScreenBloc extends Bloc<MainScreenEvent, GenericBlocState<int>> {
         return false;
       }
     }
+    else if(state.data == 1){
+      if (NavigationService.contactsNavigatorKey.currentState?.canPop() ?? false) {
+        NavigationService.contactsNavigatorKey.currentState?.pop();
+        return false;
+      }
+    }
 
     return true;
   }

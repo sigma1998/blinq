@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:blinq/core/drawables/app_drawables.dart';
-import 'package:blinq/presentation/sign_in_screen/sign_in_screen.dart';
+import 'package:blinq/presentation/auth/sign_in_screen/sign_in_screen.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

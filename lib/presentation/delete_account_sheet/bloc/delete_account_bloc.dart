@@ -2,6 +2,7 @@
 import 'dart:async';
 
 // Flutter imports:
+import 'package:blinq/presentation/auth/sign_in_screen/sign_in_screen.dart';
 import 'package:flutter/cupertino.dart';
 
 // Package imports:
@@ -10,7 +11,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'package:blinq/presentation/delete_account_sheet/delete_account_confirm_sheet.dart';
-import 'package:blinq/presentation/sign_in_screen/sign_in_screen.dart';
 import 'package:blinq/domain/repositories/auth_repository.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';

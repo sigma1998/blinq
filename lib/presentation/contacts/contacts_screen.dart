@@ -1,21 +1,23 @@
 // Flutter imports:
-import 'package:blinq/presentation/contacts/views/contacts/bloc/contacts_event.dart';
-import 'package:blinq/presentation/contacts/views/premade_messages/bloc/premade_messages_bloc.dart';
-import 'package:blinq/presentation/contacts/views/premade_messages/bloc/premade_messages_event.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
+import 'package:blinq/presentation/contacts/views/premade_messages/bloc/premade_messages_bloc.dart';
+import 'package:blinq/presentation/contacts/views/premade_messages/bloc/premade_messages_event.dart';
+import 'package:blinq/presentation/contacts/views/contacts/bloc/contacts_event.dart';
+import 'views/premade_messages/premade_messages_view.dart';
 import 'package:blinq/utils/custom_widgets/tab_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'views/contacts/bloc/contacts_bloc.dart';
 import 'views/contacts/contacts_view.dart';
-import 'views/premade_messages/premade_messages_view.dart';
 
 class ContactsScreen extends StatefulWidget {
   //
+  static const String route = '/contacts_screen';
+
   const ContactsScreen({super.key});
 
   @override

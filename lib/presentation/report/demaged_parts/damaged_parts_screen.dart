@@ -1,0 +1,95 @@
+import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'bloc/damaged_parts_bloc.dart';
+import 'bloc/damaged_parts_state.dart';
+import 'widgets/arrows.dart';
+import 'widgets/selected_parts_list.dart';
+import 'widgets/vehicles.dart';
+
+class DamagedPartsScreen extends StatefulWidget {
+  static const String route = 'damaged_parts_screen';
+
+  const DamagedPartsScreen({Key? key}) : super(key: key);
+
+  @override
+  State<DamagedPartsScreen> createState() => _DamagedPartsScreenState();
+}
+
+class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
+  late final DamagedPartsBloc bloc;
+
+  @override
+  void initState() {
+    bloc = DamagedPartsBloc();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    return BlocProvider(
+      create: (_) {
+        return bloc;
+      },
+      child: BlocBuilder<DamagedPartsBloc, DamagedPartsState>(
+        builder: (context, state) {
+
+          return Scaffold(
+            body: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 48,
+                    ),
+                    Text(
+                      'strSelectDamage'.tr(),
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    const SelectedPartsList(),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    Expanded(
+                      child: Stack(
+                        children: [
+
+                          const VehiclesList(),
+
+                          if (state.pageIndex < bloc.carsSelect.length - 1)
+                            Arrow(
+                              icon: AppDrawables.leftArrow,
+                              onTap: () =>
+                                  bloc.setPageIndex(state.pageIndex + 1, width),
+                            ),
+                          if (state.pageIndex > 0)
+                            Arrow(
+                              icon: AppDrawables.rightArrow,
+                              onTap: () =>
+                                  bloc.setPageIndex(state.pageIndex - 1, width),
+                            ),
+                        ],
+                      ),
+                    ),
+                    NavigationButton(
+                      padding: 0,
+                      onNextTap: () => bloc.onNextTap(context),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}

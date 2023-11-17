@@ -2,6 +2,8 @@
 import 'dart:async';
 
 // Flutter imports:
+import 'package:blinq/utils/smart_widgets/dialogs/countries_dialog/countries_dialog.dart';
+import 'package:blinq/utils/smart_widgets/dialogs/license_category_dialog/license_category_dialog.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -9,8 +11,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:blinq/presentation/dialogs/license_category_dialog/license_category_dialog.dart';
-import 'package:blinq/presentation/dialogs/countries_dialog/countries_dialog.dart';
 import 'package:blinq/data/model/profile/driver_license/driver_license_type.dart';
 import 'package:blinq/data/model/profile/request/profile_request_model.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
@@ -76,7 +76,7 @@ class DriverEditorBloc extends Bloc<DriverEditorEvent, DriverEditorState> {
 
       emit(state.copyWith(status: Status.loading));
       await profileBloc.onUpdateProfile(profile);
-      emit(const DriverEditorState(status: Status.success));
+      emit(state.copyWith(status: Status.success));
       NavigationService.back();
     } catch (e) {
       emit(state.copyWith(status: Status.initial));

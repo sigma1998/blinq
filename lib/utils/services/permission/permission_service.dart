@@ -22,6 +22,10 @@ class PermissionService extends IPermissionService {
   Future<PermissionStatus> requestNotificationPermission() async =>
       await Permission.notification.request();
 
+  @override
+  Future<PermissionStatus> requestSendSmsPermission() async =>
+      await Permission.sms.request();
+
   //
 
   @override
@@ -59,6 +63,16 @@ class PermissionService extends IPermissionService {
     final notificationPermissionStatus = await requestNotificationPermission();
 
     if (notificationPermissionStatus != PermissionStatus.granted) {
+      return openAppSettings();
+    }
+    return true;
+  }
+
+  @override
+  Future<bool> handleSendSmsPermission() async {
+    final sendSmsPermissionStatus = await requestSendSmsPermission();
+
+    if (sendSmsPermissionStatus != PermissionStatus.granted) {
       return openAppSettings();
     }
     return true;

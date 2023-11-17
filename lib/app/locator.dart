@@ -2,6 +2,8 @@
 import 'package:get_it/get_it.dart';
 
 // Project imports:
+import 'package:blinq/data/datasource/remote/accident_api.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/core/network/api_service.dart';
 import 'package:blinq/domain/repositories/premade_messages_repository.dart';
 import 'package:blinq/data/datasource/local/auth_local_db.dart';
@@ -42,6 +44,8 @@ void setUpLocator() {
       () => ContactsApiImpl(api: getIt()));
   getIt.registerLazySingleton<PremadeMessagesApiImpl>(
       () => PremadeMessagesApiImpl(api: getIt()));
+  getIt.registerLazySingleton<AccidentApiImpl>(
+      () => AccidentApiImpl(api: getIt()));
 
   ///
   /// Repositories
@@ -60,6 +64,8 @@ void setUpLocator() {
       PremadeMessagesRepositoryImpl(
           api: getIt<PremadeMessagesApiImpl>(),
           localStorage: getIt<PremadeMessagesLocalStorageImpl>()));
+  getIt.registerLazySingleton<AccidentRepositoryImpl>(
+      () => AccidentRepositoryImpl(api: getIt<AccidentApiImpl>()));
 
   ///
   /// Permission

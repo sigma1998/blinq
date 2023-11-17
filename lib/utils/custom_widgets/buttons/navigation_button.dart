@@ -11,19 +11,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class NavigationButton extends StatelessWidget {
-  //
-  final VoidCallback onNextTap;
   final double padding;
+
   final VoidCallback? onBack;
 
+  final VoidCallback? onNextTap;
+
+  final String heroTag;
+
+  final double height;
+
+  final bool canGoForward;
+
   const NavigationButton(
-      {super.key, required this.onNextTap, this.padding = 32, this.onBack});
+      {super.key,
+      this.onNextTap,
+      //
+      this.height = 0,
+      //
+      this.heroTag = '',
+      //
+      this.canGoForward = true,
+      this.padding = 32,
+      this.onBack});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: padding,
+        vertical: height,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -32,8 +49,10 @@ class NavigationButton extends StatelessWidget {
             width: 45,
             height: 45,
             child: FloatingActionButton(
-              onPressed: onBack?? () =>
-                  NavigationService.homeNavigatorKey.currentState?.pop(),
+              onPressed: onBack ??
+                  () => NavigationService.homeNavigatorKey.currentState?.pop(),
+              heroTag: heroTag,
+              // onPressed: NavigationService.back,
               backgroundColor: Theme.of(context).colorScheme.secondary,
               child: SvgPicture.asset(
                 AppDrawables.arrowLeft,
@@ -46,23 +65,25 @@ class NavigationButton extends StatelessWidget {
               ),
             ),
           ),
-          MyButton.primary(
-            onTap: onNextTap,
-            label: 'strNext'.tr(),
-            padding: const EdgeInsets.symmetric(
-              vertical: 12,
-              horizontal: 24,
-            ),
-            iconRight: SvgPicture.asset(
-              AppDrawables.arrowRight,
-              width: 24,
-              height: 24,
-              colorFilter: const ColorFilter.mode(
-                Colors.white,
-                BlendMode.srcIn,
+          if (onNextTap != null)
+            MyButton.primary(
+              onTap: onNextTap!,
+              enable: canGoForward,
+              label: 'strNext'.tr(),
+              padding: const EdgeInsets.symmetric(
+                vertical: 12,
+                horizontal: 24,
               ),
-            ),
-          )
+              iconRight: SvgPicture.asset(
+                AppDrawables.arrowRight,
+                width: 24,
+                height: 24,
+                colorFilter: const ColorFilter.mode(
+                  Colors.white,
+                  BlendMode.srcIn,
+                ),
+              ),
+            )
         ],
       ),
     );

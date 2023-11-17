@@ -2,6 +2,7 @@
 import 'dart:async';
 
 // Flutter imports:
+import 'package:blinq/utils/smart_widgets/dialogs/countries_dialog/countries_dialog.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -9,7 +10,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:blinq/presentation/dialogs/countries_dialog/countries_dialog.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/presentation/profile/bloc/profile_event.dart';
 import 'package:blinq/data/model/car/request/car_request_model.dart';
