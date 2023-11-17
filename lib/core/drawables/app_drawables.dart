@@ -2,6 +2,7 @@ class AppDrawables {
   static const icons = 'assets/icons';
   static const images = 'assets/images';
   static const arrows = '$icons/arrows';
+  static const cars = '$images/car';
 
   ///
   /// Icons
@@ -99,8 +100,13 @@ class AppDrawables {
   static const String rightArrow = '$arrows/right.svg';
 
 
+  //cars
   static const String defaultCar = '$icons/default_car.svg';
-
+  static const String carBack = '$cars/ic_cars_back.png';
+  static const String carFront = '$cars/ic_cars_front.png';
+  static const String carLeft = '$cars/ic_cars_left.png';
+  static const String carRight= '$cars/ic_cars_right.png';
+  static const String carTop = '$cars/ic_cars_top.png';
 
 
 }

@@ -43,6 +43,7 @@ dependencies:
   shimmer: ^3.0.0
   cached_network_image: ^3.3.0
   lottie: ^2.2.0
+  image: 3.2.0
   image_picker: ^1.0.4
   speech_to_text: ^6.3.0
   flutter_painter_v2: ^2.0.1
@@ -157,6 +158,7 @@ flutter:
     - assets/icons/
     - assets/icons/arrows/
     - assets/images/
+    - assets/images/car/
     - assets/locale/
     - assets/video/
   # To add assets to your application, add an assets section, like this:
