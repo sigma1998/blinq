@@ -57,6 +57,7 @@ class MyInfoContainer extends StatelessWidget {
       margin: margin,
       borderRadius: borderRadius,
       child: Stack(
+        alignment: Alignment.center,
         children: [
           Padding(
             padding: padding,
