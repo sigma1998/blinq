@@ -1,4 +1,4 @@
-import 'package:blinq/presentation/report/circumstances/bloc/circumstances_bloc.dart';
+import 'package:blinq/presentation/report/pages/circumstances/bloc/circumstances_bloc.dart';
 import 'package:flutter/material.dart';
 
 class CircumstanceItem extends StatelessWidget {

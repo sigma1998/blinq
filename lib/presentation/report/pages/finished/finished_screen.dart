@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:blinq/presentation/report/finished/widgets/share_item.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -10,6 +9,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:lottie/lottie.dart';
+
+import 'widgets/share_item.dart';
 
 class FinishedScreen extends StatefulWidget {
   //

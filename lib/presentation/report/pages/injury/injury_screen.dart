@@ -1,6 +1,6 @@
 // Flutter imports:
-import 'package:blinq/presentation/report/connect_to_driver/connect_to_driver_screen.dart';
-import 'package:blinq/presentation/report/speech_to_text/speech_to_text_screen.dart';
+import 'package:blinq/presentation/report/pages/connect_to_driver/connect_to_driver_screen.dart';
+import 'package:blinq/presentation/report/pages/speech_to_text/speech_to_text_screen.dart';
 import 'package:blinq/utils/step_indicator.dart';
 import 'package:flutter/material.dart';
 

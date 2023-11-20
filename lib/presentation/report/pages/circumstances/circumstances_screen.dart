@@ -1,9 +1,9 @@
-import 'package:blinq/presentation/report/circumstances/widgets/item.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import 'bloc/circumstances_bloc.dart';
+import 'widgets/item.dart';
 
 class CircumstancesScreen extends StatelessWidget {
   static const String route = 'circumstances_screen';

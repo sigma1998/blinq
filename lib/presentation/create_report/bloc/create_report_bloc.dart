@@ -2,7 +2,7 @@
 import 'package:blinq/presentation/emergency_services/emergency_services_screen.dart';
 import 'package:blinq/presentation/medical_assistance/medical_assistance_screen.dart';
 import 'package:blinq/presentation/inform_close_ones/inform_close_ones_screen.dart';
-import 'package:blinq/presentation/report/location_info/location_info_screen.dart';
+import 'package:blinq/presentation/report/pages/location_info/location_info_screen.dart';
 import 'package:blinq/utils/navigation_service.dart';
 
 class CreateReportBloc {
