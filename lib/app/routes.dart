@@ -28,22 +28,23 @@ import 'package:blinq/presentation/profile/widgets/editors/my_car/my_car_editor_
 import 'package:blinq/presentation/profile/widgets/editors/my_vehicle/my_vehicle_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/policy_holder/policy_holder_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/vehicle/vehicle_editor_screen.dart';
-import 'package:blinq/presentation/report/circumstances/circumstances_screen.dart';
-import 'package:blinq/presentation/report/connect_to_driver/connect_to_driver_screen.dart';
-import 'package:blinq/presentation/report/demaged_parts/damaged_parts_screen.dart';
-import 'package:blinq/presentation/report/finished/finished_screen.dart';
-import 'package:blinq/presentation/report/injury/injury_screen.dart';
-import 'package:blinq/presentation/report/location_info/location_info_screen.dart';
-import 'package:blinq/presentation/report/points_of_impact/points_of_impact_screen.dart';
-import 'package:blinq/presentation/report/second_driver/second_driver_screen.dart';
-import 'package:blinq/presentation/report/second_driver_editors/second_driver_editor_screen.dart';
-import 'package:blinq/presentation/report/sketch/sketch_screen.dart';
-import 'package:blinq/presentation/report/speech_to_text/speech_to_text_screen.dart';
+import 'package:blinq/presentation/report/pages/circumstances/circumstances_screen.dart';
+import 'package:blinq/presentation/report/pages/connect_to_driver/connect_to_driver_screen.dart';
+import 'package:blinq/presentation/report/pages/demaged_parts/damaged_parts_screen.dart';
+import 'package:blinq/presentation/report/pages/finished/finished_screen.dart';
+import 'package:blinq/presentation/report/pages/injury/injury_screen.dart';
+import 'package:blinq/presentation/report/pages/location_info/location_info_screen.dart';
+import 'package:blinq/presentation/report/pages/points_of_impact/points_of_impact_screen.dart';
+import 'package:blinq/presentation/report/pages/qr_scan/qr_scan_screen.dart';
+import 'package:blinq/presentation/report/pages/second_driver/second_driver_screen.dart';
+import 'package:blinq/presentation/report/pages/second_driver_editors/second_driver_editor_screen.dart';
+import 'package:blinq/presentation/report/pages/sign/sign_screen.dart';
+import 'package:blinq/presentation/report/pages/sketch/sketch_screen.dart';
+import 'package:blinq/presentation/report/pages/speech_to_text/speech_to_text_screen.dart';
 import 'package:blinq/presentation/splash_screen/splash_screen.dart';
 import 'package:blinq/presentation/success_video/success_video_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../presentation/report/qr_scan/qr_scan_screen.dart';
 
 Map<String, WidgetBuilder> getRoutes(BuildContext context) {
   return {
@@ -118,6 +119,8 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
       page = const SketchScreen();
     case DamagedPartsScreen.route:
       page = const DamagedPartsScreen();
+    case SignScreen.route:
+      page = SignScreen();
     default:
       page = const HomeScreen();
   }

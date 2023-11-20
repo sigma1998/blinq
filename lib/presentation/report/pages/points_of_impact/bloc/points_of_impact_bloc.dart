@@ -1,5 +1,6 @@
-import 'package:blinq/presentation/report/points_of_impact/bloc/points_of_impact_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'points_of_impact_state.dart';
 
 class PointsOfImpactBloc extends Cubit<PointsOfImpactScreenState> {
   PointsOfImpactBloc() : super(const PointsOfImpactScreenState());

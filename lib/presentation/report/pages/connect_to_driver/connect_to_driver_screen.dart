@@ -1,5 +1,5 @@
 // Flutter imports:
-import 'package:blinq/presentation/report/qr_scan/qr_scan_screen.dart';
+import 'package:blinq/presentation/report/pages/qr_scan/qr_scan_screen.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:

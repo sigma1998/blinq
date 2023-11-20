@@ -1,5 +1,5 @@
 // Flutter imports:
-import 'package:blinq/presentation/report/injury/injury_screen.dart';
+import 'package:blinq/presentation/report/pages/injury/injury_screen.dart';
 import 'package:blinq/utils/step_indicator.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +27,7 @@ class LocationInfoScreen extends StatelessWidget {
       child: Scaffold(
         extendBody: true,
         body: ListView(
-          padding: const EdgeInsets.all(32),
+          padding: const EdgeInsets.all(32).copyWith(bottom: 120),
           physics: const ClampingScrollPhysics(),
           children: [
             StepIndicator(
@@ -73,7 +73,7 @@ class LocationInfoScreen extends StatelessWidget {
             ),
           ],
         ),
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         floatingActionButton: NavigationButton(
           onNextTap: () => NavigationService.pushNamed(
             routeName: InjuryScreen.route,
