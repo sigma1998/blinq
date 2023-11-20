@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'views/insurance_company_view.dart';
-import 'views/policy_holder_view.dart';
-import 'views/driver_view.dart';
-import 'views/car_view.dart';
+import 'pages/insurance_company_page.dart';
+import 'pages/policy_holder_page.dart';
+import 'pages/driver_page.dart';
+import 'pages/car_page.dart';
 
 class SecondDriverEditorScreen extends StatelessWidget {
   //
@@ -24,10 +24,10 @@ class SecondDriverEditorScreen extends StatelessWidget {
         body: const IndexedStack(
           index: 0,
           children: [
-            SecondDriverEditorPolicyHolderView(),
-            SecondDriverEditorCarView(),
-            SecondDriverEditorInsuranceView(),
-            SecondDriverEditorView(),
+            SecondDriverEditorPolicyHolderPage(),
+            SecondDriverEditorCarPage(),
+            SecondDriverEditorInsurancePage(),
+            SecondDriverEditorPage(),
           ],
         ),
         bottomNavigationBar: NavigationButton(

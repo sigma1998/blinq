@@ -2,11 +2,12 @@
 import 'dart:async';
 
 // Package imports:
+import 'package:blinq/utils/url_helper.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:blinq/presentation/contacts/editors/contact/contact_editor.dart';
+import 'package:blinq/presentation/contacts/editors/contact/contact_edit_screen.dart';
 import 'package:blinq/data/model/contact/contact_response_dto.dart';
 import 'package:blinq/domain/repositories/contacts_repository.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
@@ -39,8 +40,12 @@ class ContactsBloc extends Bloc<ContactsEvent, ContactsState> {
   void onEditPressed({int? id}) async {
     NavigationService.pushNamed(
       arguments: id,
-      routeName: ContactEditor.route,
+      routeName: ContactEditScreen.route,
       nestedKey: NavigationService.contactsNavigatorKey,
     );
   }
+
+  void onPhoneCall(String phoneNumber) => MyUrlLauncher.call(phoneNumber);
+
+  void onMessage(String phoneNumber) => MyUrlLauncher.message(phoneNumber);
 }

@@ -7,7 +7,7 @@ import 'package:blinq/utils/custom_widgets/info_container.dart';
 
 class PremadeMessageSelectorItem extends StatelessWidget {
   //
-  final PremadeMessageResponseModel premadeMessage;
+  final PreMadeMessageResponseModel premadeMessage;
 
   final bool isSelected;
   final void Function()? onTap;

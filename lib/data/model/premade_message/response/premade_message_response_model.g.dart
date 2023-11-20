@@ -6,18 +6,18 @@ part of 'premade_message_response_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class PremadeMessageResponseModelAdapter
-    extends TypeAdapter<PremadeMessageResponseModel> {
+class PreMadeMessageResponseModelAdapter
+    extends TypeAdapter<PreMadeMessageResponseModel> {
   @override
   final int typeId = 10;
 
   @override
-  PremadeMessageResponseModel read(BinaryReader reader) {
+  PreMadeMessageResponseModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return PremadeMessageResponseModel(
+    return PreMadeMessageResponseModel(
       id: fields[0] as int?,
       title: fields[1] as String?,
       message: fields[2] as String?,
@@ -25,7 +25,7 @@ class PremadeMessageResponseModelAdapter
   }
 
   @override
-  void write(BinaryWriter writer, PremadeMessageResponseModel obj) {
+  void write(BinaryWriter writer, PreMadeMessageResponseModel obj) {
     writer
       ..writeByte(3)
       ..writeByte(0)
@@ -42,7 +42,7 @@ class PremadeMessageResponseModelAdapter
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is PremadeMessageResponseModelAdapter &&
+      other is PreMadeMessageResponseModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
@@ -51,16 +51,16 @@ class PremadeMessageResponseModelAdapter
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PremadeMessageResponseModelImpl _$$PremadeMessageResponseModelImplFromJson(
+_$PreMadeMessageResponseModelImpl _$$PreMadeMessageResponseModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$PremadeMessageResponseModelImpl(
+    _$PreMadeMessageResponseModelImpl(
       id: json['id'] as int?,
       title: json['title'] as String?,
       message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$$PremadeMessageResponseModelImplToJson(
-        _$PremadeMessageResponseModelImpl instance) =>
+Map<String, dynamic> _$$PreMadeMessageResponseModelImplToJson(
+        _$PreMadeMessageResponseModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,

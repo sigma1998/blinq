@@ -6,27 +6,27 @@ part of 'premade_message_response_dto.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class PremadeMessageResponseDtoAdapter
-    extends TypeAdapter<PremadeMessageResponseDto> {
+class PreMadeMessageResponseDtoAdapter
+    extends TypeAdapter<PreMadeMessageResponseDto> {
   @override
   final int typeId = 11;
 
   @override
-  PremadeMessageResponseDto read(BinaryReader reader) {
+  PreMadeMessageResponseDto read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return PremadeMessageResponseDto(
+    return PreMadeMessageResponseDto(
       count: fields[0] as int?,
       next: fields[1] as String?,
       previous: fields[2] as String?,
-      results: (fields[3] as List?)?.cast<PremadeMessageResponseModel>(),
+      results: (fields[3] as List?)?.cast<PreMadeMessageResponseModel>(),
     );
   }
 
   @override
-  void write(BinaryWriter writer, PremadeMessageResponseDto obj) {
+  void write(BinaryWriter writer, PreMadeMessageResponseDto obj) {
     writer
       ..writeByte(4)
       ..writeByte(0)
@@ -45,7 +45,7 @@ class PremadeMessageResponseDtoAdapter
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is PremadeMessageResponseDtoAdapter &&
+      other is PreMadeMessageResponseDtoAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
@@ -62,7 +62,7 @@ _$PremadeMessageResponseDtoImpl _$$PremadeMessageResponseDtoImplFromJson(
       previous: json['previous'] as String?,
       results: (json['results'] as List<dynamic>?)
           ?.map((e) =>
-              PremadeMessageResponseModel.fromJson(e as Map<String, dynamic>))
+              PreMadeMessageResponseModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

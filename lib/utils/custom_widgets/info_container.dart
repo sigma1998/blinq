@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:blinq/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -8,6 +7,8 @@ import 'package:flutter_svg/svg.dart';
 // Project imports:
 import 'package:blinq/utils/custom_widgets/buttons/default_ink_well.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/core/theme/app_colors.dart';
+import 'loading.dart';
 
 class MyInfoContainer extends StatelessWidget {
   //
@@ -22,6 +23,7 @@ class MyInfoContainer extends StatelessWidget {
   final double? height;
 
   final bool isEdit;
+  final bool isLoading;
 
   final BorderRadius borderRadius;
   final EdgeInsetsGeometry margin;
@@ -34,6 +36,7 @@ class MyInfoContainer extends StatelessWidget {
     this.onTap,
     this.onClose,
     this.isEdit = false,
+    this.isLoading = false,
     this.color = AppColors.darkGrey,
     //
     this.width,
@@ -52,28 +55,42 @@ class MyInfoContainer extends StatelessWidget {
       width: width,
       height: height,
       margin: margin,
-      padding: padding,
       borderRadius: borderRadius,
-      child: Column(
+      child: Stack(
         children: [
-          if (isEdit) ...[
-            const SizedBox(height: 4),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+          Padding(
+            padding: padding,
+            child: Column(
               children: [
-                GestureDetector(
-                  onTap: onClose,
-                  child: SvgPicture.asset(
-                    AppDrawables.close,
-                    width: 20,
-                    height: 20,
+                if (isEdit) ...[
+                  const SizedBox(height: 4),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: onClose,
+                        child: SvgPicture.asset(
+                          AppDrawables.close,
+                          width: 20,
+                          height: 20,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
+                  const SizedBox(height: 4),
+                ],
+                child,
               ],
             ),
-            const SizedBox(height: 4),
-          ],
-          child,
+          ),
+          if (isLoading)
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.black26,
+                borderRadius: borderRadius,
+              ),
+              child: const Loading(),
+            ),
         ],
       ),
     );

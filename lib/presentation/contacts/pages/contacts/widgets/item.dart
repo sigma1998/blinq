@@ -10,17 +10,21 @@ import 'package:blinq/utils/custom_widgets/expanded_section.dart';
 import 'package:blinq/utils/custom_widgets/info_container.dart';
 import 'package:blinq/utils/custom_widgets/default_image.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
-import 'package:blinq/utils/url_helper.dart';
 
 class ContactItem extends StatefulWidget {
   //
   final ContactResponseModel contact;
   final void Function(int?) onEdit;
 
+  final void Function(String) onPhoneCall;
+  final void Function(String) onMessage;
+
   const ContactItem({
     super.key,
     required this.contact,
     required this.onEdit,
+    required this.onPhoneCall,
+    required this.onMessage,
   });
 
   @override
@@ -85,7 +89,8 @@ class _ContactItemState extends State<ContactItem> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     GestureDetector(
-                      onTap: onPhoneCall,
+                      onTap: () =>
+                          widget.onPhoneCall(widget.contact.phoneNumber ?? ''),
                       child: SvgPicture.asset(
                         AppDrawables.phoneCircle,
                         width: 36,
@@ -94,7 +99,8 @@ class _ContactItemState extends State<ContactItem> {
                     ),
                     const SizedBox(width: 20),
                     GestureDetector(
-                      onTap: onMessage,
+                      onTap: () =>
+                          widget.onMessage(widget.contact.phoneNumber ?? ''),
                       child: SvgPicture.asset(
                         AppDrawables.message,
                         width: 36,
@@ -116,8 +122,4 @@ class _ContactItemState extends State<ContactItem> {
     isExpanded = !isExpanded;
     updateState();
   }
-
-  void onPhoneCall() => MyUrlLauncher.call(widget.contact.phoneNumber ?? '');
-
-  void onMessage() => MyUrlLauncher.message(widget.contact.phoneNumber ?? '');
 }

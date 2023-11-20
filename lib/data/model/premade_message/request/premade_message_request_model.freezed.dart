@@ -14,37 +14,37 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PremadeMessageRequestModel _$PremadeMessageRequestModelFromJson(
+PreMadeMessageRequestModel _$PreMadeMessageRequestModelFromJson(
     Map<String, dynamic> json) {
-  return _PremadeMessageRequestModel.fromJson(json);
+  return _PreMadeMessageRequestModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PremadeMessageRequestModel {
+mixin _$PreMadeMessageRequestModel {
   String? get title => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PremadeMessageRequestModelCopyWith<PremadeMessageRequestModel>
+  $PreMadeMessageRequestModelCopyWith<PreMadeMessageRequestModel>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PremadeMessageRequestModelCopyWith<$Res> {
-  factory $PremadeMessageRequestModelCopyWith(PremadeMessageRequestModel value,
-          $Res Function(PremadeMessageRequestModel) then) =
-      _$PremadeMessageRequestModelCopyWithImpl<$Res,
-          PremadeMessageRequestModel>;
+abstract class $PreMadeMessageRequestModelCopyWith<$Res> {
+  factory $PreMadeMessageRequestModelCopyWith(PreMadeMessageRequestModel value,
+          $Res Function(PreMadeMessageRequestModel) then) =
+      _$PreMadeMessageRequestModelCopyWithImpl<$Res,
+          PreMadeMessageRequestModel>;
   @useResult
   $Res call({String? title, String? message});
 }
 
 /// @nodoc
-class _$PremadeMessageRequestModelCopyWithImpl<$Res,
-        $Val extends PremadeMessageRequestModel>
-    implements $PremadeMessageRequestModelCopyWith<$Res> {
-  _$PremadeMessageRequestModelCopyWithImpl(this._value, this._then);
+class _$PreMadeMessageRequestModelCopyWithImpl<$Res,
+        $Val extends PreMadeMessageRequestModel>
+    implements $PreMadeMessageRequestModelCopyWith<$Res> {
+  _$PreMadeMessageRequestModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -71,25 +71,25 @@ class _$PremadeMessageRequestModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$PremadeMessageRequestModelImplCopyWith<$Res>
-    implements $PremadeMessageRequestModelCopyWith<$Res> {
-  factory _$$PremadeMessageRequestModelImplCopyWith(
-          _$PremadeMessageRequestModelImpl value,
-          $Res Function(_$PremadeMessageRequestModelImpl) then) =
-      __$$PremadeMessageRequestModelImplCopyWithImpl<$Res>;
+abstract class _$$PreMadeMessageRequestModelImplCopyWith<$Res>
+    implements $PreMadeMessageRequestModelCopyWith<$Res> {
+  factory _$$PreMadeMessageRequestModelImplCopyWith(
+          _$PreMadeMessageRequestModelImpl value,
+          $Res Function(_$PreMadeMessageRequestModelImpl) then) =
+      __$$PreMadeMessageRequestModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? title, String? message});
 }
 
 /// @nodoc
-class __$$PremadeMessageRequestModelImplCopyWithImpl<$Res>
-    extends _$PremadeMessageRequestModelCopyWithImpl<$Res,
-        _$PremadeMessageRequestModelImpl>
-    implements _$$PremadeMessageRequestModelImplCopyWith<$Res> {
-  __$$PremadeMessageRequestModelImplCopyWithImpl(
-      _$PremadeMessageRequestModelImpl _value,
-      $Res Function(_$PremadeMessageRequestModelImpl) _then)
+class __$$PreMadeMessageRequestModelImplCopyWithImpl<$Res>
+    extends _$PreMadeMessageRequestModelCopyWithImpl<$Res,
+        _$PreMadeMessageRequestModelImpl>
+    implements _$$PreMadeMessageRequestModelImplCopyWith<$Res> {
+  __$$PreMadeMessageRequestModelImplCopyWithImpl(
+      _$PreMadeMessageRequestModelImpl _value,
+      $Res Function(_$PreMadeMessageRequestModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -98,7 +98,7 @@ class __$$PremadeMessageRequestModelImplCopyWithImpl<$Res>
     Object? title = freezed,
     Object? message = freezed,
   }) {
-    return _then(_$PremadeMessageRequestModelImpl(
+    return _then(_$PreMadeMessageRequestModelImpl(
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -113,13 +113,13 @@ class __$$PremadeMessageRequestModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PremadeMessageRequestModelImpl implements _PremadeMessageRequestModel {
-  const _$PremadeMessageRequestModelImpl(
+class _$PreMadeMessageRequestModelImpl implements _PreMadeMessageRequestModel {
+  const _$PreMadeMessageRequestModelImpl(
       {required this.title, required this.message});
 
-  factory _$PremadeMessageRequestModelImpl.fromJson(
+  factory _$PreMadeMessageRequestModelImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$PremadeMessageRequestModelImplFromJson(json);
+      _$$PreMadeMessageRequestModelImplFromJson(json);
 
   @override
   final String? title;
@@ -128,14 +128,14 @@ class _$PremadeMessageRequestModelImpl implements _PremadeMessageRequestModel {
 
   @override
   String toString() {
-    return 'PremadeMessageRequestModel(title: $title, message: $message)';
+    return 'PreMadeMessageRequestModel(title: $title, message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PremadeMessageRequestModelImpl &&
+            other is _$PreMadeMessageRequestModelImpl &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.message, message) || other.message == message));
   }
@@ -147,26 +147,26 @@ class _$PremadeMessageRequestModelImpl implements _PremadeMessageRequestModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PremadeMessageRequestModelImplCopyWith<_$PremadeMessageRequestModelImpl>
-      get copyWith => __$$PremadeMessageRequestModelImplCopyWithImpl<
-          _$PremadeMessageRequestModelImpl>(this, _$identity);
+  _$$PreMadeMessageRequestModelImplCopyWith<_$PreMadeMessageRequestModelImpl>
+      get copyWith => __$$PreMadeMessageRequestModelImplCopyWithImpl<
+          _$PreMadeMessageRequestModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PremadeMessageRequestModelImplToJson(
+    return _$$PreMadeMessageRequestModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _PremadeMessageRequestModel
-    implements PremadeMessageRequestModel {
-  const factory _PremadeMessageRequestModel(
+abstract class _PreMadeMessageRequestModel
+    implements PreMadeMessageRequestModel {
+  const factory _PreMadeMessageRequestModel(
       {required final String? title,
-      required final String? message}) = _$PremadeMessageRequestModelImpl;
+      required final String? message}) = _$PreMadeMessageRequestModelImpl;
 
-  factory _PremadeMessageRequestModel.fromJson(Map<String, dynamic> json) =
-      _$PremadeMessageRequestModelImpl.fromJson;
+  factory _PreMadeMessageRequestModel.fromJson(Map<String, dynamic> json) =
+      _$PreMadeMessageRequestModelImpl.fromJson;
 
   @override
   String? get title;
@@ -174,6 +174,6 @@ abstract class _PremadeMessageRequestModel
   String? get message;
   @override
   @JsonKey(ignore: true)
-  _$$PremadeMessageRequestModelImplCopyWith<_$PremadeMessageRequestModelImpl>
+  _$$PreMadeMessageRequestModelImplCopyWith<_$PreMadeMessageRequestModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

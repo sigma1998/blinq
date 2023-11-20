@@ -7,15 +7,15 @@ import 'package:blinq/core/network/api_service.dart';
 
 abstract class PremadeMessagesApi {
   //
-  Future<PremadeMessageResponseDto> fetchList([int count]);
+  Future<PreMadeMessageResponseDto> fetchList([int count]);
 
-  Future<PremadeMessageResponseModel> add(
-    PremadeMessageRequestModel premadeMessage,
+  Future<PreMadeMessageResponseModel> add(
+    PreMadeMessageRequestModel premadeMessage,
   );
 
-  Future<PremadeMessageResponseModel> update({
+  Future<PreMadeMessageResponseModel> update({
     required int id,
-    required PremadeMessageRequestModel premadeMessage,
+    required PreMadeMessageRequestModel premadeMessage,
   });
 
   Future<void> delete(int id);
@@ -28,25 +28,25 @@ class PremadeMessagesApiImpl implements PremadeMessagesApi {
   PremadeMessagesApiImpl({required this.api});
 
   @override
-  Future<PremadeMessageResponseDto> fetchList([int page = 1]) async {
+  Future<PreMadeMessageResponseDto> fetchList([int page = 1]) async {
     try {
       final res = await api.get(NetworkConstants.premadeMessage,
           queryParameters: {'page': page});
-      return PremadeMessageResponseDto.fromJson(res);
+      return PreMadeMessageResponseDto.fromJson(res);
     } catch (e) {
       rethrow;
     }
   }
 
   @override
-  Future<PremadeMessageResponseModel> add(
-    PremadeMessageRequestModel premadeMessage,
+  Future<PreMadeMessageResponseModel> add(
+    PreMadeMessageRequestModel premadeMessage,
   ) {
     try {
       return api
           .post(NetworkConstants.premadeMessage, data: premadeMessage.toJson())
           .then((data) {
-        return PremadeMessageResponseModel.fromJson(data);
+        return PreMadeMessageResponseModel.fromJson(data);
       });
     } catch (e) {
       rethrow;
@@ -54,16 +54,16 @@ class PremadeMessagesApiImpl implements PremadeMessagesApi {
   }
 
   @override
-  Future<PremadeMessageResponseModel> update({
+  Future<PreMadeMessageResponseModel> update({
     required int id,
-    required PremadeMessageRequestModel premadeMessage,
+    required PreMadeMessageRequestModel premadeMessage,
   }) {
     try {
       return api
           .put(NetworkConstants.editpremadeMessage(id),
               data: premadeMessage.toJson())
           .then((data) {
-        return PremadeMessageResponseModel.fromJson(data);
+        return PreMadeMessageResponseModel.fromJson(data);
       });
     } catch (e) {
       rethrow;

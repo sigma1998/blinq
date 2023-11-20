@@ -3,8 +3,8 @@ import 'package:blinq/presentation/auth/registration/email_screen/email_screen.d
 import 'package:blinq/presentation/auth/registration/registration_screen/registration_screen.dart';
 import 'package:blinq/presentation/auth/sign_in_screen/sign_in_screen.dart';
 import 'package:blinq/presentation/contacts/contacts_screen.dart';
-import 'package:blinq/presentation/contacts/editors/contact/contact_editor.dart';
-import 'package:blinq/presentation/contacts/editors/premage_message/premade_message_editor.dart';
+import 'package:blinq/presentation/contacts/editors/contact/contact_edit_screen.dart';
+import 'package:blinq/presentation/contacts/editors/premage_message/premade_message_edit_screen.dart';
 import 'package:blinq/presentation/create_report/create_report_screen.dart';
 import 'package:blinq/presentation/email_editor/email_editor_screen.dart';
 import 'package:blinq/presentation/emergency_services/emergency_services_screen.dart';
@@ -96,8 +96,9 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     SecondDriverEditorScreen.route: (context) =>
         const SecondDriverEditorScreen(),
 
-    ContactEditor.route: (context) => const ContactEditor(),
-    PremadeMessageEditor.route: (context) => const PremadeMessageEditor(),
+    ContactEditScreen.route: (context) => const ContactEditScreen(),
+    PremadeMessageEditScreen.route: (context) =>
+        const PremadeMessageEditScreen(),
   };
 }
 
@@ -135,10 +136,10 @@ Route onGenerateContactRoutes(RouteSettings settings) {
   switch (settings.name) {
     case ContactsScreen.route:
       page = const ContactsScreen();
-    case ContactEditor.route:
-      page = const ContactEditor();
-    case PremadeMessageEditor.route:
-      page = const PremadeMessageEditor();
+    case ContactEditScreen.route:
+      page = const ContactEditScreen();
+    case PremadeMessageEditScreen.route:
+      page = const PremadeMessageEditScreen();
   }
 
   return MaterialPageRoute<dynamic>(

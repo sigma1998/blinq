@@ -8,9 +8,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 
-class SecondDriverEditorPolicyHolderView extends StatelessWidget {
+class SecondDriverEditorPolicyHolderPage extends StatelessWidget {
   //
-  const SecondDriverEditorPolicyHolderView({super.key});
+  const SecondDriverEditorPolicyHolderPage({super.key});
 
   @override
   Widget build(BuildContext context) {

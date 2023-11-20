@@ -12,15 +12,15 @@ import 'package:blinq/utils/generic_bloc_state.dart';
 import 'bloc/premade_messages_bloc.dart';
 import 'widgets/item.dart';
 
-class PremadeMessagesView extends StatelessWidget {
+class PreMadeMessagesPage extends StatelessWidget {
   //
-  const PremadeMessagesView({super.key});
+  const PreMadeMessagesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.read<PremadeMessagesBloc>();
+    final bloc = context.read<PreMadeMessagesBloc>();
 
-    return BlocBuilder<PremadeMessagesBloc, PremadeMessagesState>(
+    return BlocBuilder<PreMadeMessagesBloc, PreMadeMessagesState>(
       builder: (context, state) {
         final isLoading = state.status == Status.loading;
         final premadeMessages = state.premadeMessages?.results ?? [];

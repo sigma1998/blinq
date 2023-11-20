@@ -9,15 +9,15 @@ abstract class PremadeMessagesRepository {
   ///
   /// Remote API
   ///
-  Future<PremadeMessageResponseDto> fetchList();
+  Future<PreMadeMessageResponseDto> fetchList();
 
-  Future<PremadeMessageResponseModel> add(
-    PremadeMessageRequestModel premadeMessage,
+  Future<PreMadeMessageResponseModel> add(
+    PreMadeMessageRequestModel premadeMessage,
   );
 
-  Future<PremadeMessageResponseModel> update({
+  Future<PreMadeMessageResponseModel> update({
     required int id,
-    required PremadeMessageRequestModel premadeMessage,
+    required PreMadeMessageRequestModel premadeMessage,
   });
 
   Future<void> delete(int id);
@@ -26,9 +26,9 @@ abstract class PremadeMessagesRepository {
   /// Local storage
   ///
 
-  PremadeMessageResponseDto getPremadeMessages();
+  PreMadeMessageResponseDto getPremadeMessages();
 
-  void setPremadeMessages(PremadeMessageResponseDto premadeMessage);
+  void setPremadeMessages(PreMadeMessageResponseDto premadeMessage);
 }
 
 class PremadeMessagesRepositoryImpl implements PremadeMessagesRepository {
@@ -44,7 +44,7 @@ class PremadeMessagesRepositoryImpl implements PremadeMessagesRepository {
   ///
 
   @override
-  Future<PremadeMessageResponseDto> fetchList() async {
+  Future<PreMadeMessageResponseDto> fetchList() async {
     try {
       return await api.fetchList();
     } catch (e) {
@@ -53,7 +53,7 @@ class PremadeMessagesRepositoryImpl implements PremadeMessagesRepository {
   }
 
   @override
-  Future<PremadeMessageResponseModel> add(PremadeMessageRequestModel contact) {
+  Future<PreMadeMessageResponseModel> add(PreMadeMessageRequestModel contact) {
     try {
       return api.add(contact).then((data) {
         // localStorage.setPremadeMessages([data]);
@@ -65,9 +65,9 @@ class PremadeMessagesRepositoryImpl implements PremadeMessagesRepository {
   }
 
   @override
-  Future<PremadeMessageResponseModel> update({
+  Future<PreMadeMessageResponseModel> update({
     required int id,
-    required PremadeMessageRequestModel premadeMessage,
+    required PreMadeMessageRequestModel premadeMessage,
   }) {
     try {
       return api.update(id: id, premadeMessage: premadeMessage).then((data) {
@@ -93,10 +93,10 @@ class PremadeMessagesRepositoryImpl implements PremadeMessagesRepository {
   ///
 
   @override
-  PremadeMessageResponseDto getPremadeMessages() =>
+  PreMadeMessageResponseDto getPremadeMessages() =>
       localStorage.getPremadeMessages();
 
   @override
-  void setPremadeMessages(PremadeMessageResponseDto contact) =>
+  void setPremadeMessages(PreMadeMessageResponseDto contact) =>
       localStorage.setPremadeMessages(contact);
 }

@@ -12,7 +12,7 @@ import 'package:blinq/core/drawables/app_drawables.dart';
 
 class PremadeMessageItem extends StatefulWidget {
   //
-  final PremadeMessageResponseModel premadeMessage;
+  final PreMadeMessageResponseModel premadeMessage;
   final void Function(int?) onEdit;
 
   const PremadeMessageItem({

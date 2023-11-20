@@ -48,8 +48,8 @@ Future<void> _setUpHive() async {
   Hive.registerAdapter(ContactResponseModelAdapter());
   Hive.registerAdapter(ContactResponseDtoAdapter());
 
-  Hive.registerAdapter(PremadeMessageResponseModelAdapter());
-  Hive.registerAdapter(PremadeMessageResponseDtoAdapter());
+  Hive.registerAdapter(PreMadeMessageResponseModelAdapter());
+  Hive.registerAdapter(PreMadeMessageResponseDtoAdapter());
 
   Hive.registerAdapter(ProfileResponseModelAdapter());
 

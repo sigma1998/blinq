@@ -1,6 +1,4 @@
 // Flutter imports:
-import 'package:blinq/utils/custom_widgets/loading.dart';
-import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -8,9 +6,11 @@ import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
 import 'package:blinq/presentation/inform_close_ones/bloc/inform_close_ones_bloc.dart';
-import 'package:blinq/presentation/contacts/views/contacts/bloc/contacts_bloc.dart';
+import 'package:blinq/presentation/contacts/pages/contacts/bloc/contacts_bloc.dart';
 import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
+import 'package:blinq/utils/custom_widgets/loading.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/inform_close_ones_event.dart';
 import 'widgets/item.dart';
@@ -75,6 +75,7 @@ class _InformCloseOnesScreenState extends State<InformCloseOnesScreen> {
 
                         return InformCloseOnesItem(
                           contact: contact,
+                          onPhoneCall: bloc.onPhoneCall,
                           isChecked: state.selectedContacts.contains(contact),
                           onChanged: (_) =>
                               bloc.add(OnSelectContact(contact: contact)),

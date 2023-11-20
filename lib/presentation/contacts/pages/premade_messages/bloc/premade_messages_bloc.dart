@@ -6,7 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:blinq/presentation/contacts/editors/premage_message/premade_message_editor.dart';
+import 'package:blinq/presentation/contacts/editors/premage_message/premade_message_edit_screen.dart';
 import 'package:blinq/data/model/premade_message/premade_message_response_dto.dart';
 import 'package:blinq/domain/repositories/premade_messages_repository.dart';
 import 'package:blinq/utils/navigation_service.dart';
@@ -16,22 +16,23 @@ import 'premade_messages_event.dart';
 part 'premade_messages_state.dart';
 part 'premade_messages_bloc.freezed.dart';
 
-class PremadeMessagesBloc extends Bloc<ContactsEvent, PremadeMessagesState> {
+class PreMadeMessagesBloc
+    extends Bloc<PreMadeMessagesEvent, PreMadeMessagesState> {
   //
   final PremadeMessagesRepository repository;
 
-  PremadeMessagesBloc({required this.repository})
-      : super(const PremadeMessagesState()) {
-    on<OnFetchPremadeMessages>(_onFetchPremadeMessages);
+  PreMadeMessagesBloc({required this.repository})
+      : super(const PreMadeMessagesState()) {
+    on<OnFetchPreMadeMessages>(_onFetchPremadeMessages);
   }
 
   FutureOr<void> _onFetchPremadeMessages(
-      OnFetchPremadeMessages event, Emitter<PremadeMessagesState> emit) async {
+      OnFetchPreMadeMessages event, Emitter<PreMadeMessagesState> emit) async {
     try {
-      emit(const PremadeMessagesState(status: Status.loading));
+      emit(const PreMadeMessagesState(status: Status.loading));
       final data = await repository.fetchList();
       repository.setPremadeMessages(data);
-      emit(PremadeMessagesState(premadeMessages: data, status: Status.success));
+      emit(PreMadeMessagesState(premadeMessages: data, status: Status.success));
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }
@@ -40,7 +41,7 @@ class PremadeMessagesBloc extends Bloc<ContactsEvent, PremadeMessagesState> {
   void onEditPressed({int? id}) async {
     NavigationService.pushNamed(
       arguments: id,
-      routeName: PremadeMessageEditor.route,
+      routeName: PremadeMessageEditScreen.route,
       nestedKey: NavigationService.contactsNavigatorKey,
     );
   }

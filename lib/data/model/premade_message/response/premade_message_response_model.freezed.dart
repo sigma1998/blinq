@@ -14,13 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PremadeMessageResponseModel _$PremadeMessageResponseModelFromJson(
+PreMadeMessageResponseModel _$PreMadeMessageResponseModelFromJson(
     Map<String, dynamic> json) {
-  return _PremadeMessageResponseModel.fromJson(json);
+  return _PreMadeMessageResponseModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PremadeMessageResponseModel {
+mixin _$PreMadeMessageResponseModel {
   @HiveField(0)
   int? get id => throw _privateConstructorUsedError;
   @HiveField(1)
@@ -30,17 +30,17 @@ mixin _$PremadeMessageResponseModel {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PremadeMessageResponseModelCopyWith<PremadeMessageResponseModel>
+  $PreMadeMessageResponseModelCopyWith<PreMadeMessageResponseModel>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PremadeMessageResponseModelCopyWith<$Res> {
-  factory $PremadeMessageResponseModelCopyWith(
-          PremadeMessageResponseModel value,
-          $Res Function(PremadeMessageResponseModel) then) =
-      _$PremadeMessageResponseModelCopyWithImpl<$Res,
-          PremadeMessageResponseModel>;
+abstract class $PreMadeMessageResponseModelCopyWith<$Res> {
+  factory $PreMadeMessageResponseModelCopyWith(
+          PreMadeMessageResponseModel value,
+          $Res Function(PreMadeMessageResponseModel) then) =
+      _$PreMadeMessageResponseModelCopyWithImpl<$Res,
+          PreMadeMessageResponseModel>;
   @useResult
   $Res call(
       {@HiveField(0) int? id,
@@ -49,10 +49,10 @@ abstract class $PremadeMessageResponseModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PremadeMessageResponseModelCopyWithImpl<$Res,
-        $Val extends PremadeMessageResponseModel>
-    implements $PremadeMessageResponseModelCopyWith<$Res> {
-  _$PremadeMessageResponseModelCopyWithImpl(this._value, this._then);
+class _$PreMadeMessageResponseModelCopyWithImpl<$Res,
+        $Val extends PreMadeMessageResponseModel>
+    implements $PreMadeMessageResponseModelCopyWith<$Res> {
+  _$PreMadeMessageResponseModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -84,12 +84,12 @@ class _$PremadeMessageResponseModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$PremadeMessageResponseModelImplCopyWith<$Res>
-    implements $PremadeMessageResponseModelCopyWith<$Res> {
-  factory _$$PremadeMessageResponseModelImplCopyWith(
-          _$PremadeMessageResponseModelImpl value,
-          $Res Function(_$PremadeMessageResponseModelImpl) then) =
-      __$$PremadeMessageResponseModelImplCopyWithImpl<$Res>;
+abstract class _$$PreMadeMessageResponseModelImplCopyWith<$Res>
+    implements $PreMadeMessageResponseModelCopyWith<$Res> {
+  factory _$$PreMadeMessageResponseModelImplCopyWith(
+          _$PreMadeMessageResponseModelImpl value,
+          $Res Function(_$PreMadeMessageResponseModelImpl) then) =
+      __$$PreMadeMessageResponseModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -99,13 +99,13 @@ abstract class _$$PremadeMessageResponseModelImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$PremadeMessageResponseModelImplCopyWithImpl<$Res>
-    extends _$PremadeMessageResponseModelCopyWithImpl<$Res,
-        _$PremadeMessageResponseModelImpl>
-    implements _$$PremadeMessageResponseModelImplCopyWith<$Res> {
-  __$$PremadeMessageResponseModelImplCopyWithImpl(
-      _$PremadeMessageResponseModelImpl _value,
-      $Res Function(_$PremadeMessageResponseModelImpl) _then)
+class __$$PreMadeMessageResponseModelImplCopyWithImpl<$Res>
+    extends _$PreMadeMessageResponseModelCopyWithImpl<$Res,
+        _$PreMadeMessageResponseModelImpl>
+    implements _$$PreMadeMessageResponseModelImplCopyWith<$Res> {
+  __$$PreMadeMessageResponseModelImplCopyWithImpl(
+      _$PreMadeMessageResponseModelImpl _value,
+      $Res Function(_$PreMadeMessageResponseModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -115,7 +115,7 @@ class __$$PremadeMessageResponseModelImplCopyWithImpl<$Res>
     Object? title = freezed,
     Object? message = freezed,
   }) {
-    return _then(_$PremadeMessageResponseModelImpl(
+    return _then(_$PreMadeMessageResponseModelImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -134,16 +134,16 @@ class __$$PremadeMessageResponseModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PremadeMessageResponseModelImpl
-    implements _PremadeMessageResponseModel {
-  const _$PremadeMessageResponseModelImpl(
+class _$PreMadeMessageResponseModelImpl
+    implements _PreMadeMessageResponseModel {
+  const _$PreMadeMessageResponseModelImpl(
       {@HiveField(0) this.id,
       @HiveField(1) this.title,
       @HiveField(2) this.message});
 
-  factory _$PremadeMessageResponseModelImpl.fromJson(
+  factory _$PreMadeMessageResponseModelImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$PremadeMessageResponseModelImplFromJson(json);
+      _$$PreMadeMessageResponseModelImplFromJson(json);
 
   @override
   @HiveField(0)
@@ -157,14 +157,14 @@ class _$PremadeMessageResponseModelImpl
 
   @override
   String toString() {
-    return 'PremadeMessageResponseModel(id: $id, title: $title, message: $message)';
+    return 'PreMadeMessageResponseModel(id: $id, title: $title, message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PremadeMessageResponseModelImpl &&
+            other is _$PreMadeMessageResponseModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.message, message) || other.message == message));
@@ -177,27 +177,27 @@ class _$PremadeMessageResponseModelImpl
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PremadeMessageResponseModelImplCopyWith<_$PremadeMessageResponseModelImpl>
-      get copyWith => __$$PremadeMessageResponseModelImplCopyWithImpl<
-          _$PremadeMessageResponseModelImpl>(this, _$identity);
+  _$$PreMadeMessageResponseModelImplCopyWith<_$PreMadeMessageResponseModelImpl>
+      get copyWith => __$$PreMadeMessageResponseModelImplCopyWithImpl<
+          _$PreMadeMessageResponseModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PremadeMessageResponseModelImplToJson(
+    return _$$PreMadeMessageResponseModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _PremadeMessageResponseModel
-    implements PremadeMessageResponseModel {
-  const factory _PremadeMessageResponseModel(
+abstract class _PreMadeMessageResponseModel
+    implements PreMadeMessageResponseModel {
+  const factory _PreMadeMessageResponseModel(
       {@HiveField(0) final int? id,
       @HiveField(1) final String? title,
-      @HiveField(2) final String? message}) = _$PremadeMessageResponseModelImpl;
+      @HiveField(2) final String? message}) = _$PreMadeMessageResponseModelImpl;
 
-  factory _PremadeMessageResponseModel.fromJson(Map<String, dynamic> json) =
-      _$PremadeMessageResponseModelImpl.fromJson;
+  factory _PreMadeMessageResponseModel.fromJson(Map<String, dynamic> json) =
+      _$PreMadeMessageResponseModelImpl.fromJson;
 
   @override
   @HiveField(0)
@@ -210,6 +210,6 @@ abstract class _PremadeMessageResponseModel
   String? get message;
   @override
   @JsonKey(ignore: true)
-  _$$PremadeMessageResponseModelImplCopyWith<_$PremadeMessageResponseModelImpl>
+  _$$PreMadeMessageResponseModelImplCopyWith<_$PreMadeMessageResponseModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

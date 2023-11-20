@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sms/flutter_sms.dart';
 
 // Project imports:
-import 'package:blinq/presentation/contacts/views/premade_messages/bloc/premade_messages_bloc.dart';
+import 'package:blinq/presentation/contacts/pages/premade_messages/bloc/premade_messages_bloc.dart';
 import 'package:blinq/data/model/premade_message/response/premade_message_response_model.dart';
 import 'package:blinq/presentation/create_report/create_report_screen.dart';
 import 'package:blinq/utils/services/permission/i_permission_service.dart';
@@ -22,7 +22,7 @@ part 'premade_message_selector_bloc.freezed.dart';
 class PremadeMessageSelectorBloc
     extends Bloc<PremadeMessageSelectorEvent, PremadeMessageSelectorState> {
   //
-  final PremadeMessagesBloc premadeMessagesBloc;
+  final PreMadeMessagesBloc premadeMessagesBloc;
   final IPermissionService permissionService;
 
   PremadeMessageSelectorBloc({

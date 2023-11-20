@@ -1,11 +1,11 @@
 part of 'premade_messages_bloc.dart';
 
 @freezed
-class PremadeMessagesState with _$PremadeMessagesState {
+class PreMadeMessagesState with _$PreMadeMessagesState {
   //
-  const factory PremadeMessagesState({
+  const factory PreMadeMessagesState({
     @Default(Status.initial) Status status,
-    PremadeMessageResponseDto? premadeMessages,
+    PreMadeMessageResponseDto? premadeMessages,
     Error? error,
   }) = _PremadeMessagesState;
 }

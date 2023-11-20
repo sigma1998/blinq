@@ -11,8 +11,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:blinq/presentation/contacts/views/contacts/bloc/contacts_event.dart';
-import 'package:blinq/presentation/contacts/views/contacts/bloc/contacts_bloc.dart';
+import 'package:blinq/presentation/contacts/pages/contacts/bloc/contacts_event.dart';
+import 'package:blinq/presentation/contacts/pages/contacts/bloc/contacts_bloc.dart';
 import 'package:blinq/utils/custom_widgets/cupertino_action/cupertino_action.dart';
 import 'package:blinq/data/model/contact/request/contact_request_model.dart';
 import 'package:blinq/domain/repositories/contacts_repository.dart';
@@ -21,12 +21,12 @@ import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/image_crop_helper.dart';
 import 'package:blinq/utils/string_helper.dart';
-import 'contact_editor_event.dart';
+import 'contact_edit_event.dart';
 
-part 'contact_editor_state.dart';
-part 'contact_editor_bloc.freezed.dart';
+part 'contact_edit_state.dart';
+part 'contact_edit_bloc.freezed.dart';
 
-class ContactEditorBloc extends Bloc<ContactEditorEvent, ContactEditorState> {
+class ContactEditBloc extends Bloc<ContactEditEvent, ContactEditState> {
   //
   final ContactsBloc contactsBloc;
   final ContactsRepository repository;
@@ -37,11 +37,11 @@ class ContactEditorBloc extends Bloc<ContactEditorEvent, ContactEditorState> {
   final phoneNumberController = TextEditingController();
   String imageUrl = '';
 
-  ContactEditorBloc({
+  ContactEditBloc({
     required this.contactsBloc,
     required this.repository,
     required this.mediaService,
-  }) : super(const ContactEditorState()) {
+  }) : super(const ContactEditState()) {
     on<OnAddContact>(_onAddContact);
     on<OnUpdateContact>(_onUpdateContact);
     on<OnDeleteContact>(_onDeleteContact);
@@ -65,7 +65,7 @@ class ContactEditorBloc extends Bloc<ContactEditorEvent, ContactEditorState> {
 
   //
   FutureOr<void> _onAddContact(
-      OnAddContact event, Emitter<ContactEditorState> emit) async {
+      OnAddContact event, Emitter<ContactEditState> emit) async {
     try {
       final contact = ContactRequestModel(
         firstName: firstNameController.text,
@@ -85,7 +85,7 @@ class ContactEditorBloc extends Bloc<ContactEditorEvent, ContactEditorState> {
   }
 
   FutureOr<void> _onUpdateContact(
-      OnUpdateContact event, Emitter<ContactEditorState> emit) async {
+      OnUpdateContact event, Emitter<ContactEditState> emit) async {
     try {
       final contact = ContactRequestModel(
         firstName: firstNameController.text,
@@ -106,7 +106,7 @@ class ContactEditorBloc extends Bloc<ContactEditorEvent, ContactEditorState> {
   }
 
   FutureOr<void> _onDeleteContact(
-      OnDeleteContact event, Emitter<ContactEditorState> emit) async {
+      OnDeleteContact event, Emitter<ContactEditState> emit) async {
     try {
       emit(state.copyWith(status: Status.loading));
       await repository.delete(event.id);
@@ -119,7 +119,7 @@ class ContactEditorBloc extends Bloc<ContactEditorEvent, ContactEditorState> {
   }
 
   FutureOr<void> _imagePickerPressed(
-      OnUpdateContactImage event, Emitter<ContactEditorState> emit) async {
+      OnUpdateContactImage event, Emitter<ContactEditState> emit) async {
     final result = await NavigationService.showMyCupertinoModalPopup(
       actions: [
         MyCupertinoActionSheetAction(

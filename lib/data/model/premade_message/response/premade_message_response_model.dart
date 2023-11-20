@@ -9,14 +9,14 @@ part 'premade_message_response_model.g.dart';
 
 @freezed
 @HiveType(typeId: 10)
-class PremadeMessageResponseModel with _$PremadeMessageResponseModel {
+class PreMadeMessageResponseModel with _$PreMadeMessageResponseModel {
   //
-  const factory PremadeMessageResponseModel({
+  const factory PreMadeMessageResponseModel({
     @HiveField(0) int? id,
     @HiveField(1) String? title,
     @HiveField(2) String? message,
-  }) = _PremadeMessageResponseModel;
+  }) = _PreMadeMessageResponseModel;
 
-  factory PremadeMessageResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$PremadeMessageResponseModelFromJson(json);
+  factory PreMadeMessageResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$PreMadeMessageResponseModelFromJson(json);
 }

@@ -10,9 +10,9 @@ import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 import 'package:blinq/utils/custom_widgets/loading.dart';
 
-class SecondDriverEditorCarView extends StatelessWidget {
+class SecondDriverEditorCarPage extends StatelessWidget {
   //
-  const SecondDriverEditorCarView({super.key});
+  const SecondDriverEditorCarPage({super.key});
 
   @override
   Widget build(BuildContext context) {

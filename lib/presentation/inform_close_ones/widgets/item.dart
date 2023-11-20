@@ -1,17 +1,16 @@
 // Flutter imports:
-import 'package:blinq/data/model/contact/response/contact_response_model.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_svg/svg.dart';
 
 // Project imports:
+import 'package:blinq/data/model/contact/response/contact_response_model.dart';
 import 'package:blinq/utils/custom_widgets/buttons/default_ink_well.dart';
 import 'package:blinq/utils/custom_widgets/default_checkbox.dart';
 import 'package:blinq/utils/custom_widgets/default_image.dart';
 import 'package:blinq/utils/custom_widgets/info_container.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
-import 'package:blinq/utils/url_helper.dart';
 
 class InformCloseOnesItem extends StatelessWidget {
   //
@@ -19,6 +18,7 @@ class InformCloseOnesItem extends StatelessWidget {
 
   final bool isChecked;
   final void Function(bool?) onChanged;
+  final void Function(String) onPhoneCall;
 
   const InformCloseOnesItem({
     super.key,
@@ -26,6 +26,7 @@ class InformCloseOnesItem extends StatelessWidget {
     //
     required this.isChecked,
     required this.onChanged,
+    required this.onPhoneCall,
   });
 
   @override
@@ -63,9 +64,9 @@ class InformCloseOnesItem extends StatelessWidget {
                   ),
                   const Expanded(child: SizedBox(width: 16)),
                   MyInkWell(
-                    onTap: onCall,
                     padding: const EdgeInsets.all(8),
                     borderRadius: BorderRadius.circular(100),
+                    onTap: () => onPhoneCall(contact.phoneNumber ?? ''),
                     color: isChecked
                         ? Theme.of(context).colorScheme.primaryContainer
                         : Theme.of(context).colorScheme.onSecondary,
@@ -86,6 +87,4 @@ class InformCloseOnesItem extends StatelessWidget {
       ),
     );
   }
-
-  void onCall() => MyUrlLauncher.call(contact.phoneNumber ?? '');
 }

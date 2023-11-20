@@ -9,9 +9,9 @@ import 'package:blinq/utils/custom_widgets/text_fields/date_picker_text_field.da
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 
-class SecondDriverEditorInsuranceView extends StatelessWidget {
+class SecondDriverEditorInsurancePage extends StatelessWidget {
   //
-  const SecondDriverEditorInsuranceView({super.key});
+  const SecondDriverEditorInsurancePage({super.key});
 
   @override
   Widget build(BuildContext context) {

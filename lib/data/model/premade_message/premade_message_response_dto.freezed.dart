@@ -14,13 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PremadeMessageResponseDto _$PremadeMessageResponseDtoFromJson(
+PreMadeMessageResponseDto _$PreMadeMessageResponseDtoFromJson(
     Map<String, dynamic> json) {
   return _PremadeMessageResponseDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PremadeMessageResponseDto {
+mixin _$PreMadeMessageResponseDto {
   @HiveField(0)
   int? get count => throw _privateConstructorUsedError;
   @HiveField(1)
@@ -28,33 +28,33 @@ mixin _$PremadeMessageResponseDto {
   @HiveField(2)
   String? get previous => throw _privateConstructorUsedError;
   @HiveField(3)
-  List<PremadeMessageResponseModel>? get results =>
+  List<PreMadeMessageResponseModel>? get results =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PremadeMessageResponseDtoCopyWith<PremadeMessageResponseDto> get copyWith =>
+  $PreMadeMessageResponseDtoCopyWith<PreMadeMessageResponseDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PremadeMessageResponseDtoCopyWith<$Res> {
-  factory $PremadeMessageResponseDtoCopyWith(PremadeMessageResponseDto value,
-          $Res Function(PremadeMessageResponseDto) then) =
-      _$PremadeMessageResponseDtoCopyWithImpl<$Res, PremadeMessageResponseDto>;
+abstract class $PreMadeMessageResponseDtoCopyWith<$Res> {
+  factory $PreMadeMessageResponseDtoCopyWith(PreMadeMessageResponseDto value,
+          $Res Function(PreMadeMessageResponseDto) then) =
+      _$PreMadeMessageResponseDtoCopyWithImpl<$Res, PreMadeMessageResponseDto>;
   @useResult
   $Res call(
       {@HiveField(0) int? count,
       @HiveField(1) String? next,
       @HiveField(2) String? previous,
-      @HiveField(3) List<PremadeMessageResponseModel>? results});
+      @HiveField(3) List<PreMadeMessageResponseModel>? results});
 }
 
 /// @nodoc
-class _$PremadeMessageResponseDtoCopyWithImpl<$Res,
-        $Val extends PremadeMessageResponseDto>
-    implements $PremadeMessageResponseDtoCopyWith<$Res> {
-  _$PremadeMessageResponseDtoCopyWithImpl(this._value, this._then);
+class _$PreMadeMessageResponseDtoCopyWithImpl<$Res,
+        $Val extends PreMadeMessageResponseDto>
+    implements $PreMadeMessageResponseDtoCopyWith<$Res> {
+  _$PreMadeMessageResponseDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -85,14 +85,14 @@ class _$PremadeMessageResponseDtoCopyWithImpl<$Res,
       results: freezed == results
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
-              as List<PremadeMessageResponseModel>?,
+              as List<PreMadeMessageResponseModel>?,
     ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$PremadeMessageResponseDtoImplCopyWith<$Res>
-    implements $PremadeMessageResponseDtoCopyWith<$Res> {
+    implements $PreMadeMessageResponseDtoCopyWith<$Res> {
   factory _$$PremadeMessageResponseDtoImplCopyWith(
           _$PremadeMessageResponseDtoImpl value,
           $Res Function(_$PremadeMessageResponseDtoImpl) then) =
@@ -103,12 +103,12 @@ abstract class _$$PremadeMessageResponseDtoImplCopyWith<$Res>
       {@HiveField(0) int? count,
       @HiveField(1) String? next,
       @HiveField(2) String? previous,
-      @HiveField(3) List<PremadeMessageResponseModel>? results});
+      @HiveField(3) List<PreMadeMessageResponseModel>? results});
 }
 
 /// @nodoc
 class __$$PremadeMessageResponseDtoImplCopyWithImpl<$Res>
-    extends _$PremadeMessageResponseDtoCopyWithImpl<$Res,
+    extends _$PreMadeMessageResponseDtoCopyWithImpl<$Res,
         _$PremadeMessageResponseDtoImpl>
     implements _$$PremadeMessageResponseDtoImplCopyWith<$Res> {
   __$$PremadeMessageResponseDtoImplCopyWithImpl(
@@ -140,7 +140,7 @@ class __$$PremadeMessageResponseDtoImplCopyWithImpl<$Res>
       results: freezed == results
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
-              as List<PremadeMessageResponseModel>?,
+              as List<PreMadeMessageResponseModel>?,
     ));
   }
 }
@@ -152,7 +152,7 @@ class _$PremadeMessageResponseDtoImpl implements _PremadeMessageResponseDto {
       {@HiveField(0) this.count,
       @HiveField(1) this.next,
       @HiveField(2) this.previous,
-      @HiveField(3) final List<PremadeMessageResponseModel>? results})
+      @HiveField(3) final List<PreMadeMessageResponseModel>? results})
       : _results = results;
 
   factory _$PremadeMessageResponseDtoImpl.fromJson(Map<String, dynamic> json) =>
@@ -167,10 +167,10 @@ class _$PremadeMessageResponseDtoImpl implements _PremadeMessageResponseDto {
   @override
   @HiveField(2)
   final String? previous;
-  final List<PremadeMessageResponseModel>? _results;
+  final List<PreMadeMessageResponseModel>? _results;
   @override
   @HiveField(3)
-  List<PremadeMessageResponseModel>? get results {
+  List<PreMadeMessageResponseModel>? get results {
     final value = _results;
     if (value == null) return null;
     if (_results is EqualUnmodifiableListView) return _results;
@@ -180,7 +180,7 @@ class _$PremadeMessageResponseDtoImpl implements _PremadeMessageResponseDto {
 
   @override
   String toString() {
-    return 'PremadeMessageResponseDto(count: $count, next: $next, previous: $previous, results: $results)';
+    return 'PreMadeMessageResponseDto(count: $count, next: $next, previous: $previous, results: $results)';
   }
 
   @override
@@ -215,12 +215,12 @@ class _$PremadeMessageResponseDtoImpl implements _PremadeMessageResponseDto {
   }
 }
 
-abstract class _PremadeMessageResponseDto implements PremadeMessageResponseDto {
+abstract class _PremadeMessageResponseDto implements PreMadeMessageResponseDto {
   const factory _PremadeMessageResponseDto(
           {@HiveField(0) final int? count,
           @HiveField(1) final String? next,
           @HiveField(2) final String? previous,
-          @HiveField(3) final List<PremadeMessageResponseModel>? results}) =
+          @HiveField(3) final List<PreMadeMessageResponseModel>? results}) =
       _$PremadeMessageResponseDtoImpl;
 
   factory _PremadeMessageResponseDto.fromJson(Map<String, dynamic> json) =
@@ -237,7 +237,7 @@ abstract class _PremadeMessageResponseDto implements PremadeMessageResponseDto {
   String? get previous;
   @override
   @HiveField(3)
-  List<PremadeMessageResponseModel>? get results;
+  List<PreMadeMessageResponseModel>? get results;
   @override
   @JsonKey(ignore: true)
   _$$PremadeMessageResponseDtoImplCopyWith<_$PremadeMessageResponseDtoImpl>

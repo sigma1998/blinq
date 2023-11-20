@@ -15,36 +15,36 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$PremadeMessagesState {
+mixin _$PreMadeMessagesState {
   Status get status => throw _privateConstructorUsedError;
-  PremadeMessageResponseDto? get premadeMessages =>
+  PreMadeMessageResponseDto? get premadeMessages =>
       throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $PremadeMessagesStateCopyWith<PremadeMessagesState> get copyWith =>
+  $PreMadeMessagesStateCopyWith<PreMadeMessagesState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PremadeMessagesStateCopyWith<$Res> {
-  factory $PremadeMessagesStateCopyWith(PremadeMessagesState value,
-          $Res Function(PremadeMessagesState) then) =
-      _$PremadeMessagesStateCopyWithImpl<$Res, PremadeMessagesState>;
+abstract class $PreMadeMessagesStateCopyWith<$Res> {
+  factory $PreMadeMessagesStateCopyWith(PreMadeMessagesState value,
+          $Res Function(PreMadeMessagesState) then) =
+      _$PreMadeMessagesStateCopyWithImpl<$Res, PreMadeMessagesState>;
   @useResult
   $Res call(
       {Status status,
-      PremadeMessageResponseDto? premadeMessages,
+      PreMadeMessageResponseDto? premadeMessages,
       Error? error});
 
-  $PremadeMessageResponseDtoCopyWith<$Res>? get premadeMessages;
+  $PreMadeMessageResponseDtoCopyWith<$Res>? get premadeMessages;
 }
 
 /// @nodoc
-class _$PremadeMessagesStateCopyWithImpl<$Res,
-        $Val extends PremadeMessagesState>
-    implements $PremadeMessagesStateCopyWith<$Res> {
-  _$PremadeMessagesStateCopyWithImpl(this._value, this._then);
+class _$PreMadeMessagesStateCopyWithImpl<$Res,
+        $Val extends PreMadeMessagesState>
+    implements $PreMadeMessagesStateCopyWith<$Res> {
+  _$PreMadeMessagesStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -66,7 +66,7 @@ class _$PremadeMessagesStateCopyWithImpl<$Res,
       premadeMessages: freezed == premadeMessages
           ? _value.premadeMessages
           : premadeMessages // ignore: cast_nullable_to_non_nullable
-              as PremadeMessageResponseDto?,
+              as PreMadeMessageResponseDto?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -76,12 +76,12 @@ class _$PremadeMessagesStateCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $PremadeMessageResponseDtoCopyWith<$Res>? get premadeMessages {
+  $PreMadeMessageResponseDtoCopyWith<$Res>? get premadeMessages {
     if (_value.premadeMessages == null) {
       return null;
     }
 
-    return $PremadeMessageResponseDtoCopyWith<$Res>(_value.premadeMessages!,
+    return $PreMadeMessageResponseDtoCopyWith<$Res>(_value.premadeMessages!,
         (value) {
       return _then(_value.copyWith(premadeMessages: value) as $Val);
     });
@@ -90,7 +90,7 @@ class _$PremadeMessagesStateCopyWithImpl<$Res,
 
 /// @nodoc
 abstract class _$$PremadeMessagesStateImplCopyWith<$Res>
-    implements $PremadeMessagesStateCopyWith<$Res> {
+    implements $PreMadeMessagesStateCopyWith<$Res> {
   factory _$$PremadeMessagesStateImplCopyWith(_$PremadeMessagesStateImpl value,
           $Res Function(_$PremadeMessagesStateImpl) then) =
       __$$PremadeMessagesStateImplCopyWithImpl<$Res>;
@@ -98,16 +98,16 @@ abstract class _$$PremadeMessagesStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {Status status,
-      PremadeMessageResponseDto? premadeMessages,
+      PreMadeMessageResponseDto? premadeMessages,
       Error? error});
 
   @override
-  $PremadeMessageResponseDtoCopyWith<$Res>? get premadeMessages;
+  $PreMadeMessageResponseDtoCopyWith<$Res>? get premadeMessages;
 }
 
 /// @nodoc
 class __$$PremadeMessagesStateImplCopyWithImpl<$Res>
-    extends _$PremadeMessagesStateCopyWithImpl<$Res, _$PremadeMessagesStateImpl>
+    extends _$PreMadeMessagesStateCopyWithImpl<$Res, _$PremadeMessagesStateImpl>
     implements _$$PremadeMessagesStateImplCopyWith<$Res> {
   __$$PremadeMessagesStateImplCopyWithImpl(_$PremadeMessagesStateImpl _value,
       $Res Function(_$PremadeMessagesStateImpl) _then)
@@ -128,7 +128,7 @@ class __$$PremadeMessagesStateImplCopyWithImpl<$Res>
       premadeMessages: freezed == premadeMessages
           ? _value.premadeMessages
           : premadeMessages // ignore: cast_nullable_to_non_nullable
-              as PremadeMessageResponseDto?,
+              as PreMadeMessageResponseDto?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -147,13 +147,13 @@ class _$PremadeMessagesStateImpl implements _PremadeMessagesState {
   @JsonKey()
   final Status status;
   @override
-  final PremadeMessageResponseDto? premadeMessages;
+  final PreMadeMessageResponseDto? premadeMessages;
   @override
   final Error? error;
 
   @override
   String toString() {
-    return 'PremadeMessagesState(status: $status, premadeMessages: $premadeMessages, error: $error)';
+    return 'PreMadeMessagesState(status: $status, premadeMessages: $premadeMessages, error: $error)';
   }
 
   @override
@@ -179,16 +179,16 @@ class _$PremadeMessagesStateImpl implements _PremadeMessagesState {
               this, _$identity);
 }
 
-abstract class _PremadeMessagesState implements PremadeMessagesState {
+abstract class _PremadeMessagesState implements PreMadeMessagesState {
   const factory _PremadeMessagesState(
       {final Status status,
-      final PremadeMessageResponseDto? premadeMessages,
+      final PreMadeMessageResponseDto? premadeMessages,
       final Error? error}) = _$PremadeMessagesStateImpl;
 
   @override
   Status get status;
   @override
-  PremadeMessageResponseDto? get premadeMessages;
+  PreMadeMessageResponseDto? get premadeMessages;
   @override
   Error? get error;
   @override

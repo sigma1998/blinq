@@ -12,9 +12,9 @@ import 'package:blinq/utils/generic_bloc_state.dart';
 import 'bloc/contacts_bloc.dart';
 import 'widgets/item.dart';
 
-class ContactsView extends StatelessWidget {
+class ContactsPage extends StatelessWidget {
   //
-  const ContactsView({super.key});
+  const ContactsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +42,8 @@ class ContactsView extends StatelessWidget {
 
                         return ContactItem(
                           contact: contact,
+                          onMessage: bloc.onMessage,
+                          onPhoneCall: bloc.onPhoneCall,
                           onEdit: (id) => bloc.onEditPressed(id: id),
                         );
                       },
