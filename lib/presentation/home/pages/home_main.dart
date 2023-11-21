@@ -8,7 +8,7 @@ import 'package:blinq/presentation/home/bloc/home_screen_cubit.dart';
 import 'package:blinq/presentation/home/bloc/home_screen_state.dart';
 import 'package:blinq/presentation/home/widgets/map.dart';
 import 'package:blinq/presentation/home/widgets/menu_item.dart';
-import 'package:blinq/presentation/report/pages/sign/sign_screen.dart';
+import 'package:blinq/presentation/report/pages/damaged_media/damaged_media_screen.dart';
 import 'package:blinq/utils/navigation_service.dart';
 
 // Package imports:
@@ -97,8 +97,8 @@ class HomeMain extends StatelessWidget {
                           background: AppDrawables.accident,
                           onTap: () {
                             NavigationService.pushNamed(
-                              routeName: SignScreen.route,
-                              nestedKey: NavigationService.homeNavigatorKey,
+                              routeName: DamagedMediaScreen.route,
+                              // nestedKey: NavigationService.homeNavigatorKey,
                             );
                           },
                         ),

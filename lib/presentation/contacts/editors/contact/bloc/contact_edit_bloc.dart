@@ -16,7 +16,7 @@ import 'package:blinq/presentation/contacts/pages/contacts/bloc/contacts_bloc.da
 import 'package:blinq/utils/custom_widgets/cupertino_action/cupertino_action.dart';
 import 'package:blinq/data/model/contact/request/contact_request_model.dart';
 import 'package:blinq/domain/repositories/contacts_repository.dart';
-import 'package:blinq/utils/services/media/i_media_service.dart';
+import 'package:blinq/utils/services/media/media_service.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/image_crop_helper.dart';
@@ -30,7 +30,7 @@ class ContactEditBloc extends Bloc<ContactEditEvent, ContactEditState> {
   //
   final ContactsBloc contactsBloc;
   final ContactsRepository repository;
-  final IMediaService mediaService;
+  final MediaService mediaService;
 
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();

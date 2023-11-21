@@ -623,5 +623,8 @@
   "strPlace": "Place",
   "strIsSecondDriverAccount":  "Is this the second driver's BLINQ account?",
   "strDamageReportSent": "The damage report has been sent!",
-  "strYourInformMessageSent": "Your Inform message has been sent!"
+  "strYourInformMessageSent": "Your Inform message has been sent!",
+  "strSelectFromGallery": "Select from Gallery",
+  "strRecordVideo": "Record Video",
+  "strMaxMediaFiles": "Maximum 2 video and 6 image media files can be uploaded"
 }

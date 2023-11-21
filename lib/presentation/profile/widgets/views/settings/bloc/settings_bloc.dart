@@ -1,26 +1,26 @@
 // Package imports:
-import 'package:blinq/core/network/dio_client.dart';
-import 'package:blinq/data/model/user/user_status.dart';
-import 'package:blinq/domain/repositories/auth_repository.dart';
-import 'package:blinq/presentation/auth/sign_in_screen/sign_in_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:blinq/presentation/delete_account_sheet/delete_account_sheet.dart';
 import 'package:blinq/presentation/email_editor/email_editor_screen.dart';
+import 'package:blinq/core/network/dio_client.dart';
+import 'package:blinq/data/model/user/user_status.dart';
+import 'package:blinq/domain/repositories/auth_repository.dart';
+import 'package:blinq/presentation/auth/sign_in_screen/sign_in_screen.dart';
 import 'package:blinq/presentation/language/language_screen.dart';
 import 'package:blinq/presentation/password_editor/password_editor_screen.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:blinq/utils/services/permission/i_permission_service.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:blinq/utils/services/permission/permission_service.dart';
 
 import 'settings_event.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, GenericBlocState<bool>> {
   //
   final ProfileBloc profileBloc;
-  final IPermissionService permissionService;
+  final PermissionService permissionService;
   final AuthRepository authRepository;
 
   SettingsBloc(

@@ -664,5 +664,8 @@
   "strPlace": "Hely",
   "strIsSecondDriverAccount":  "Van-e a második sofőrnek BLINQ-je?",
   "strDamageReportSent": "A károkozási jelentés elküldve",
-  "strYourInformMessageSent": "Az Ön információs üzenete elküldve!"
+  "strYourInformMessageSent": "Az Ön információs üzenete elküldve!",
+  "strSelectFromGallery": "Válasszon a galériából",
+  "strRecordVideo": "Videó felvétele",
+  "strMaxMediaFiles": "Maximum 6 kép és 2 videó médiafájl tölthető fel"
 }

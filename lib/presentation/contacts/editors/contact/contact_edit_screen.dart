@@ -40,7 +40,7 @@ class _ContactEditScreenState extends State<ContactEditScreen> {
     super.didChangeDependencies();
 
     bloc = ContactEditBloc(
-      mediaService: getIt<MediaService>(),
+      mediaService: getIt<MediaServiceImpl>(),
       contactsBloc: context.read<ContactsBloc>(),
       repository: getIt<ContactsRepositoryImpl>(),
     );

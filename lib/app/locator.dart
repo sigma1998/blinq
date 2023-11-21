@@ -70,7 +70,8 @@ void setUpLocator() {
   ///
   /// Permission
   ///
-  getIt.registerLazySingleton<PermissionService>(() => PermissionService());
-  getIt.registerLazySingleton<MediaService>(
-      () => MediaService(permissionService: getIt<PermissionService>()));
+  getIt.registerLazySingleton<PermissionServiceImpl>(
+      () => PermissionServiceImpl());
+  getIt.registerLazySingleton<MediaServiceImpl>(() =>
+      MediaServiceImpl(permissionService: getIt<PermissionServiceImpl>()));
 }

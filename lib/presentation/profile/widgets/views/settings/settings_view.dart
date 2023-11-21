@@ -33,7 +33,7 @@ class _SettingsViewState extends State<SettingsView> {
   void initState() {
     bloc = SettingsBloc(
         profileBloc: context.read<ProfileBloc>(),
-        permissionService: getIt<PermissionService>(),
+        permissionService: getIt<PermissionServiceImpl>(),
         authRepository: getIt<AuthRepositoryImpl>());
     super.initState();
   }

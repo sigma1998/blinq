@@ -39,7 +39,7 @@ class _PremadeMessageSelectorSheetState
   void initState() {
     bloc = PremadeMessageSelectorBloc(
       premadeMessagesBloc: context.read<PreMadeMessagesBloc>(),
-      permissionService: getIt<PermissionService>(),
+      permissionService: getIt<PermissionServiceImpl>(),
     );
     bloc.add(OnLoadPremadeMessages());
     super.initState();

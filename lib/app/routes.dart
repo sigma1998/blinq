@@ -1,4 +1,7 @@
 // Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:blinq/presentation/auth/registration/email_screen/email_screen.dart';
 import 'package:blinq/presentation/auth/registration/registration_screen/registration_screen.dart';
 import 'package:blinq/presentation/auth/sign_in_screen/sign_in_screen.dart';
@@ -8,8 +11,6 @@ import 'package:blinq/presentation/contacts/editors/premage_message/premade_mess
 import 'package:blinq/presentation/create_report/create_report_screen.dart';
 import 'package:blinq/presentation/email_editor/email_editor_screen.dart';
 import 'package:blinq/presentation/emergency_services/emergency_services_screen.dart';
-
-// Project imports:
 import 'package:blinq/presentation/forgot_password/reset_password/reset_password_screen.dart';
 import 'package:blinq/presentation/home/home_screen.dart';
 import 'package:blinq/presentation/inform_close_ones/inform_close_ones_screen.dart';
@@ -30,6 +31,7 @@ import 'package:blinq/presentation/profile/widgets/editors/policy_holder/policy_
 import 'package:blinq/presentation/profile/widgets/editors/vehicle/vehicle_editor_screen.dart';
 import 'package:blinq/presentation/report/pages/circumstances/circumstances_screen.dart';
 import 'package:blinq/presentation/report/pages/connect_to_driver/connect_to_driver_screen.dart';
+import 'package:blinq/presentation/report/pages/damaged_media/damaged_media_screen.dart';
 import 'package:blinq/presentation/report/pages/demaged_parts/damaged_parts_screen.dart';
 import 'package:blinq/presentation/report/pages/finished/finished_screen.dart';
 import 'package:blinq/presentation/report/pages/injury/injury_screen.dart';
@@ -43,8 +45,6 @@ import 'package:blinq/presentation/report/pages/sketch/sketch_screen.dart';
 import 'package:blinq/presentation/report/pages/speech_to_text/speech_to_text_screen.dart';
 import 'package:blinq/presentation/splash_screen/splash_screen.dart';
 import 'package:blinq/presentation/success_video/success_video_screen.dart';
-import 'package:flutter/material.dart';
-
 
 Map<String, WidgetBuilder> getRoutes(BuildContext context) {
   return {
@@ -100,6 +100,8 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     ContactEditScreen.route: (context) => const ContactEditScreen(),
     PremadeMessageEditScreen.route: (context) =>
         const PremadeMessageEditScreen(),
+
+    DamagedMediaScreen.route: (context) => const DamagedMediaScreen(),
   };
 }
 

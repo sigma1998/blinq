@@ -59,7 +59,7 @@ class MyAppState extends State<MyApp> {
         ),
         BlocProvider<ProfileBloc>(
           create: (context) => ProfileBloc(
-            mediaService: getIt<MediaService>(),
+            mediaService: getIt<MediaServiceImpl>(),
             repository: getIt<ProfileRepositoryImpl>(),
           ),
         ),

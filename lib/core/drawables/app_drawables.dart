@@ -4,11 +4,20 @@ class AppDrawables {
   static const arrows = '$icons/arrows';
   static const cars = '$images/car';
   static const animations = 'assets/animations';
+  static const info = '$images/info';
 
   ///
   /// Animations
   ///
   static const String successAnim = '$animations/success.json';
+
+  ///
+  /// Info
+  ///
+  static const String faq = '$info/faq.png';
+  static const String masthead = '$info/masthead.png';
+  static const String registration = '$info/registration.png';
+  static const String technicalData = '$info/technical_data.png';
 
   ///
   /// Icons
@@ -26,9 +35,11 @@ class AppDrawables {
   static const String plus = '$icons/plus.svg';
 
   static const String gallery = '$icons/gallery.svg';
+  static const String camera = '$icons/camera.svg';
   static const String calendar = '$icons/calendar.svg';
   static const String time = '$icons/time.svg';
   static const String share = '$icons/share.svg';
+  static const String comingSoon = '$icons/coming_soon.svg';
 
   //~ Social Media
   static const String telegram = '$icons/telegram.svg';
@@ -113,14 +124,11 @@ class AppDrawables {
   static const String leftArrow = '$arrows/left.svg';
   static const String rightArrow = '$arrows/right.svg';
 
-
   //cars
   static const String defaultCar = '$icons/default_car.svg';
   static const String carBack = '$cars/ic_cars_back.png';
   static const String carFront = '$cars/ic_cars_front.png';
   static const String carLeft = '$cars/ic_cars_left.png';
-  static const String carRight= '$cars/ic_cars_right.png';
+  static const String carRight = '$cars/ic_cars_right.png';
   static const String carTop = '$cars/ic_cars_top.png';
-
-
 }

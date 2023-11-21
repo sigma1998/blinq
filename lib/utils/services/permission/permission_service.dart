@@ -1,10 +1,23 @@
 // Package imports:
 import 'package:permission_handler/permission_handler.dart';
 
-// Project imports:
-import 'i_permission_service.dart';
+abstract class PermissionService {
+  Future requestCameraPermission();
+  Future requestPhotosPermission();
+  Future requestLocationPermission();
+  Future requestNotificationPermission();
+  Future requestSendSmsPermission();
 
-class PermissionService extends IPermissionService {
+  //
+
+  Future<bool> handleCameraPermission();
+  Future<bool> handlePhotosPermission();
+  Future<bool> handleLocationPermission();
+  Future<bool> handleNotificationPermission();
+  Future<bool> handleSendSmsPermission();
+}
+
+class PermissionServiceImpl extends PermissionService {
   //
   @override
   Future<PermissionStatus> requestCameraPermission() async =>
