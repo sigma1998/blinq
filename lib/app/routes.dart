@@ -2,6 +2,11 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
+import 'package:blinq/presentation/home/pages/info/info_screen.dart';
+import 'package:blinq/presentation/home/pages/info/screens/faq/faq_screen.dart';
+import 'package:blinq/presentation/home/pages/info/screens/mast_head_screen.dart';
+import 'package:blinq/presentation/home/pages/info/screens/registration_screen.dart';
+import 'package:blinq/presentation/home/pages/info/screens/technical_data_screen.dart';
 import 'package:blinq/presentation/auth/registration/email_screen/email_screen.dart';
 import 'package:blinq/presentation/auth/registration/registration_screen/registration_screen.dart';
 import 'package:blinq/presentation/auth/sign_in_screen/sign_in_screen.dart';
@@ -145,6 +150,29 @@ Route onGenerateContactRoutes(RouteSettings settings) {
       page = const ContactEditScreen();
     case PremadeMessageEditScreen.route:
       page = const PremadeMessageEditScreen();
+  }
+
+  return MaterialPageRoute<dynamic>(
+    builder: (context) {
+      return page;
+    },
+    settings: settings,
+  );
+}
+
+Route onGenerateInfoRoutes(RouteSettings settings) {
+  late Widget page;
+  switch (settings.name) {
+    case HomeInfoScreen.route:
+      page = const HomeInfoScreen();
+    case HomeInfoTechnicalDataScreen.route:
+      page = const HomeInfoTechnicalDataScreen();
+    case HomeInfoRegistrationScreen.route:
+      page = const HomeInfoRegistrationScreen();
+    case HomeInfoMastHeadScreen.route:
+      page = const HomeInfoMastHeadScreen();
+    case HomeInfoFaqScreen.route:
+      page = const HomeInfoFaqScreen();
   }
 
   return MaterialPageRoute<dynamic>(

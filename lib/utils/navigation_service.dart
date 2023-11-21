@@ -12,6 +12,7 @@ class NavigationService {
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   static final GlobalKey<NavigatorState> homeNavigatorKey = GlobalKey();
+  static final GlobalKey<NavigatorState> homeInfoNavigatorKey = GlobalKey();
   static final GlobalKey<NavigatorState> contactsNavigatorKey = GlobalKey();
 
   static bool isActiveDialog = false;

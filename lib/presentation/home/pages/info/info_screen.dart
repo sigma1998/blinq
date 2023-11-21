@@ -5,15 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
+import 'package:blinq/presentation/home/pages/info/info_bloc.dart';
 import 'package:blinq/presentation/home/widgets/info_item.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
 
-class HomeInfo extends StatelessWidget {
+class HomeInfoScreen extends StatelessWidget {
   //
-  const HomeInfo({super.key});
+  static const String route = '/home_info_screen';
+
+  const HomeInfoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final bloc = HomeInfoBloc();
+
     return SafeArea(
       child: ListView(
         physics: const BouncingScrollPhysics(),
@@ -23,8 +28,8 @@ class HomeInfo extends StatelessWidget {
             child: Column(
               children: [
                 HomeInfoItem(
-                  onTap: () {},
                   title: 'strTechnicalData'.tr(),
+                  onTap: bloc.onTechnicalDataPressed,
                   backgroundImage: AppDrawables.technicalData,
                 ),
                 const SizedBox(height: 12),
@@ -32,16 +37,16 @@ class HomeInfo extends StatelessWidget {
                   children: [
                     Expanded(
                       child: HomeInfoItem(
-                        onTap: () {},
                         title: 'strRegistration'.tr(),
+                        onTap: bloc.onRegistrationPressed,
                         backgroundImage: AppDrawables.registration,
                       ),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
                       child: HomeInfoItem(
-                        onTap: () {},
                         title: 'strMastHead'.tr(),
+                        onTap: bloc.onMastHeadPressed,
                         backgroundImage: AppDrawables.masthead,
                       ),
                     ),
@@ -49,7 +54,7 @@ class HomeInfo extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 HomeInfoItem(
-                  onTap: () {},
+                  onTap: bloc.onFaqPressed,
                   backgroundImage: AppDrawables.faq,
                   title: 'strFrequentlyAskedQuestions'.tr(),
                 ),

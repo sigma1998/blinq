@@ -32,7 +32,7 @@ class DamagedMediaBloc extends Bloc<DamagedMediaEvent, DamagedMediaState> {
       OnAddDamagedMediaFiles event, Emitter<DamagedMediaState> emit) async {
     final result = await NavigationService.showMyCupertinoModalPopup(
       actions: [
-        if (state.files.where((file) => _isVideoFile(file)).length < 2)
+        if (_checkMaxVideoFiles(state.files))
           MyCupertinoActionSheetAction(
             label: 'strRecordVideo'.tr(),
             onPressed: () async {
@@ -42,7 +42,7 @@ class DamagedMediaBloc extends Bloc<DamagedMediaEvent, DamagedMediaState> {
               NavigationService.back(result: result);
             },
           ),
-        if (state.files.where((file) => !_isVideoFile(file)).length < 6)
+        if (_checkMaxImageFiles(state.files))
           MyCupertinoActionSheetAction(
             label: 'strTakeImage'.tr(),
             onPressed: () async {
@@ -66,15 +66,22 @@ class DamagedMediaBloc extends Bloc<DamagedMediaEvent, DamagedMediaState> {
     if (result != null) {
       final files = result is File ? [result] : result;
       final updatedFiles = List<File>.from(state.files)..addAll(files);
-      // check if updated files have max 2 videos and max 6 photos
-      if (updatedFiles.where((file) => _isVideoFile(file)).length > 2 ||
-          updatedFiles.where((file) => !_isVideoFile(file)).length > 6) {
+      if (_checkMaxVideoFiles(updatedFiles) ||
+          _checkMaxImageFiles(updatedFiles)) {
         NavigationService.showErrorToast('strMaxMediaFiles'.tr());
         return;
       }
 
       emit(state.copyWith(status: Status.success, files: updatedFiles));
     }
+  }
+
+  bool _checkMaxVideoFiles(List<File> files) {
+    return files.where((file) => _isVideoFile(file)).length > 2;
+  }
+
+  bool _checkMaxImageFiles(List<File> files) {
+    return files.where((file) => !_isVideoFile(file)).length > 6;
   }
 
   bool _isVideoFile(File file) {

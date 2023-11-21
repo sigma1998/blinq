@@ -14,10 +14,13 @@ class MyInfoContainer extends StatelessWidget {
   //
   final Widget child;
 
+  final String title;
+
   final void Function()? onTap;
   final void Function()? onClose;
 
   final Color color;
+  final Color closeButtonColor;
 
   final double? width;
   final double? height;
@@ -33,11 +36,13 @@ class MyInfoContainer extends StatelessWidget {
     super.key,
     required this.child,
     //
+    this.title = '',
     this.onTap,
     this.onClose,
     this.isEdit = false,
     this.isLoading = false,
     this.color = AppColors.darkGrey,
+    this.closeButtonColor = AppColors.grey2,
     //
     this.width,
     this.height,
@@ -67,13 +72,25 @@ class MyInfoContainer extends StatelessWidget {
                   const SizedBox(height: 4),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      if (title.isNotEmpty)
+                        Expanded(
+                          child: Text(
+                            title,
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                        ),
                       GestureDetector(
                         onTap: onClose,
                         child: SvgPicture.asset(
                           AppDrawables.close,
                           width: 20,
                           height: 20,
+                          colorFilter: ColorFilter.mode(
+                            closeButtonColor,
+                            BlendMode.srcIn,
+                          ),
                         ),
                       ),
                     ],

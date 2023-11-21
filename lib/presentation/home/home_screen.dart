@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:blinq/presentation/home/bloc/home_screen_cubit.dart';
 import 'package:blinq/utils/custom_widgets/tab_bar.dart';
 import 'pages/home_main.dart';
-import 'pages/info.dart';
+import 'pages/info/info.dart';
 
 class HomeScreen extends StatefulWidget {
   //
