@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 
 // Project imports:
 import 'package:blinq/presentation/contacts/pages/widgets/empty_state.dart';
+import 'package:blinq/utils/custom_widgets/buttons/add_button.dart';
 import 'package:blinq/utils/custom_widgets/loading.dart';
-import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'bloc/premade_messages_bloc.dart';
 import 'widgets/item.dart';
@@ -57,13 +56,8 @@ class PreMadeMessagesPage extends StatelessWidget {
                     ),
                   const SizedBox(height: 4),
                   if (premadeMessages.isNotEmpty)
-                    GestureDetector(
-                      onTap: () => bloc.onEditPressed(),
-                      child: SvgPicture.asset(
-                        AppDrawables.plus,
-                        width: 54,
-                        height: 54,
-                      ),
+                    AddButton(
+                      onTap: bloc.onEditPressed,
                     ),
                   const SafeArea(
                     top: false,

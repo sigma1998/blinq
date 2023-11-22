@@ -1,3 +1,4 @@
+import 'package:blinq/presentation/connect_to_blinq/connect_to_blinq_screen.dart';
 import 'package:blinq/presentation/home/bloc/home_screen_state.dart';
 import 'package:blinq/presentation/map/map_screen.dart';
 import 'package:blinq/utils/map_pin.dart';
@@ -47,8 +48,13 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     NavigationService.pushNamed(
         routeName: MapScreen.route,
         nestedKey: NavigationService.homeNavigatorKey,
-        arguments: MapScreenArgs(
-          initialPosition: position
-        ));
+        arguments: MapScreenArgs(initialPosition: position));
+  }
+
+  void onConnectToBlinqPressed() {
+    NavigationService.pushNamed(
+      routeName: ConnectToBlinqScreen.route,
+      nestedKey: NavigationService.homeNavigatorKey,
+    );
   }
 }

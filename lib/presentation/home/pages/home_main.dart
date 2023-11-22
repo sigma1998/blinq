@@ -8,6 +8,8 @@ import 'package:blinq/presentation/home/bloc/home_screen_cubit.dart';
 import 'package:blinq/presentation/home/bloc/home_screen_state.dart';
 import 'package:blinq/presentation/home/widgets/map.dart';
 import 'package:blinq/presentation/home/widgets/menu_item.dart';
+import 'package:blinq/presentation/main_screen/main_screen_bloc.dart';
+import 'package:blinq/presentation/main_screen/main_screen_event.dart';
 import 'package:blinq/presentation/report/pages/damaged_media/damaged_media_screen.dart';
 import 'package:blinq/utils/navigation_service.dart';
 
@@ -40,7 +42,8 @@ class HomeMain extends StatelessWidget {
                         child: HomeScreenMenuItem(
                           text: 'strEmergencyContacts'.tr(),
                           icon: AppDrawables.emergencyBook,
-                          onTap: () {},
+                          onTap: () => context.read<MainScreenBloc>()
+                            ..add(OnItemPressed(newIndex: 1)),
                         ),
                       ),
                     ),
@@ -57,7 +60,7 @@ class HomeMain extends StatelessWidget {
                           icon: state.isBlinqConnected
                               ? AppDrawables.blinqConnected
                               : AppDrawables.blinq,
-                          onTap: () {},
+                          onTap: bloc.onConnectToBlinqPressed,
                         ),
                       ),
                     ),

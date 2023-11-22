@@ -10,6 +10,7 @@ class AppDrawables {
   /// Animations
   ///
   static const String successAnim = '$animations/success.json';
+  static const String scanAnim = '$animations/scan.json';
 
   ///
   /// Info
@@ -40,6 +41,11 @@ class AppDrawables {
   static const String time = '$icons/time.svg';
   static const String share = '$icons/share.svg';
   static const String comingSoon = '$icons/coming_soon.svg';
+
+  static const String blinqBreakdown = '$icons/blinq_breakdown.svg';
+  static const String blinqAccident = '$icons/blinq_accident.svg';
+  static const String blinqBloothooth = '$icons/blinq_bluetooth.svg';
+  static const String mobilePhone = '$icons/mobile_phone.svg';
 
   //~ Social Media
   static const String telegram = '$icons/telegram.svg';

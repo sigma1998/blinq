@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/presentation/connect_to_blinq/connect_to_blinq_screen.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -117,6 +118,8 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
       page = const HomeScreen();
     case CreateReportScreen.route:
       page = const CreateReportScreen();
+    case ConnectToBlinqScreen.route:
+      page = const ConnectToBlinqScreen();
     case MapScreen.route:
       page = const MapScreen();
     case PointsOfImpactScreen.route:
@@ -144,12 +147,12 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
 Route onGenerateContactRoutes(RouteSettings settings) {
   late Widget page;
   switch (settings.name) {
-    case ContactsScreen.route:
-      page = const ContactsScreen();
     case ContactEditScreen.route:
       page = const ContactEditScreen();
     case PremadeMessageEditScreen.route:
       page = const PremadeMessageEditScreen();
+    default:
+      page = const ContactsScreen();
   }
 
   return MaterialPageRoute<dynamic>(
@@ -163,8 +166,6 @@ Route onGenerateContactRoutes(RouteSettings settings) {
 Route onGenerateInfoRoutes(RouteSettings settings) {
   late Widget page;
   switch (settings.name) {
-    case HomeInfoScreen.route:
-      page = const HomeInfoScreen();
     case HomeInfoTechnicalDataScreen.route:
       page = const HomeInfoTechnicalDataScreen();
     case HomeInfoRegistrationScreen.route:
@@ -173,6 +174,8 @@ Route onGenerateInfoRoutes(RouteSettings settings) {
       page = const HomeInfoMastHeadScreen();
     case HomeInfoFaqScreen.route:
       page = const HomeInfoFaqScreen();
+    default:
+      page = const HomeInfoScreen();
   }
 
   return MaterialPageRoute<dynamic>(
