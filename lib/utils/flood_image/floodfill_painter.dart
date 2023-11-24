@@ -12,7 +12,6 @@ class FloodFillPainter extends CustomPainter {
   double? _width;
   double? _height;
   bool? _isFillActive;
-  List<Color>? _avoidColor;
 
   ValueNotifier<String>? notifier;
   ui.Image image;
@@ -56,39 +55,18 @@ class FloodFillPainter extends CustomPainter {
     _isFillActive = isActive;
   }
 
-  void setAvoidColor(List<Color>? color) {
-    if (color != null) _avoidColor = color;
-  }
 
   void setTolerance(int? tolerance) {
     if (tolerance != null) _filler?.setTolerance(tolerance);
   }
 
   bool _checkAvoidColor(int touchColor) {
-    if (_avoidColor == null) return false;
 
-    return _avoidColor!.any((element) => _isAvoidColor(element, touchColor));
-  }
 
-  bool _isAvoidColor(Color avoidColor, int touchColor) {
-    int touchR = img.getRed(touchColor);
-    int touchG = img.getGreen(touchColor);
-    int touchB = img.getBlue(touchColor);
-    int touchA = img.getAlpha(touchColor);
+    if (touchColor == 4278190080) return true;
+    if (touchColor == 0) return true;
 
-    int red = avoidColor.red;
-    int green = avoidColor.green;
-    int blue = avoidColor.blue;
-    int alpha = avoidColor.alpha;
-
-    return red >= (touchR - 100) &&
-        red <= (touchR + 100) &&
-        green >= (touchG - 100) &&
-        green <= (touchG + 100) &&
-        blue >= (touchB - 100) &&
-        blue <= (touchB + 100) &&
-        alpha >= (touchA - 100) &&
-        alpha <= (touchA + 100);
+    return false;
   }
 
   void fill(Offset position) async {

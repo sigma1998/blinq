@@ -23,7 +23,7 @@ class SignScreen extends StatelessWidget {
         return SafeArea(
           child: Scaffold(
             body: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 52),
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

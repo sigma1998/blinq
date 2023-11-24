@@ -41,10 +41,10 @@ import 'package:blinq/presentation/report/pages/second_driver_editors/second_dri
 import 'package:blinq/presentation/report/pages/sign/sign_screen.dart';
 import 'package:blinq/presentation/report/pages/sketch/sketch_screen.dart';
 import 'package:blinq/presentation/report/pages/speech_to_text/speech_to_text_screen.dart';
+import 'package:blinq/presentation/report/pages/vehicle_type/vehicle_type_screen.dart';
 import 'package:blinq/presentation/splash_screen/splash_screen.dart';
 import 'package:blinq/presentation/success_video/success_video_screen.dart';
 import 'package:flutter/material.dart';
-
 
 Map<String, WidgetBuilder> getRoutes(BuildContext context) {
   return {
@@ -121,6 +121,9 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
       page = const DamagedPartsScreen();
     case SignScreen.route:
       page = SignScreen();
+    case VehicleTypeScreen.route:
+      page = const VehicleTypeScreen();
+
     default:
       page = const HomeScreen();
   }

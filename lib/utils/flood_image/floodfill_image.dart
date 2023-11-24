@@ -138,7 +138,6 @@ class _FloodFillImageState extends State<FloodFillImage> {
   @override
   Widget build(BuildContext context) {
     if (_painter != null) {
-      _painter?.setAvoidColor(widget.avoidColor!);
       _painter?.setTolerance(widget.tolerance);
       _painter?.setIsFillActive(widget.isFillActive);
     }

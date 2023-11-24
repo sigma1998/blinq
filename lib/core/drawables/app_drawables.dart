@@ -3,6 +3,8 @@ class AppDrawables {
   static const images = 'assets/images';
   static const arrows = '$icons/arrows';
   static const cars = '$images/car';
+  static const moto = '$images/moto';
+  static const van = '$images/van';
   static const animations = 'assets/animations';
 
   ///
@@ -113,14 +115,28 @@ class AppDrawables {
   static const String leftArrow = '$arrows/left.svg';
   static const String rightArrow = '$arrows/right.svg';
 
-
-  //cars
+  //car
   static const String defaultCar = '$icons/default_car.svg';
-  static const String carBack = '$cars/ic_cars_back.png';
-  static const String carFront = '$cars/ic_cars_front.png';
-  static const String carLeft = '$cars/ic_cars_left.png';
-  static const String carRight= '$cars/ic_cars_right.png';
-  static const String carTop = '$cars/ic_cars_top.png';
+  static const String carBack = '$cars/back.png';
+  static const String carFront = '$cars/front.png';
+  static const String carLeft = '$cars/left.png';
+  static const String carRight = '$cars/right.png';
+  static const String carTop = '$cars/top.png';
 
+  //van
+  static const String vanBack = '$van/back.png';
+  static const String vanFront = '$van/front.png';
+  static const String vanLeft = '$van/left.png';
+  static const String vanRight = '$van/right.png';
+  static const String vanTop = '$van/top.png';
 
+  //byke
+  static const String motoFront = '$moto/front.png';
+  static const String motoLeft = '$moto/left.png';
+  static const String motoRight = '$moto/right.png';
+
+  //vehicle types
+  static const String carSvg = '$icons/car.svg';
+  static const String bykeSvg = '$icons/byke.svg';
+  static const String bigCarSvg = '$icons/big_car.svg';
 }

@@ -162,6 +162,8 @@ flutter:
     - assets/icons/arrows/
     - assets/images/
     - assets/images/car/
+    - assets/images/moto/
+    - assets/images/van/
     - assets/locale/
     - assets/video/
   # To add assets to your application, add an assets section, like this:

@@ -23,9 +23,13 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
   late final DamagedPartsBloc bloc;
 
   @override
-  void initState() {
-    bloc = DamagedPartsBloc();
-    super.initState();
+  void didChangeDependencies() {
+    final args =
+        ModalRoute.of(context)?.settings.arguments as DamagedPartsScreenArgs;
+
+    bloc = DamagedPartsBloc(vehicleType: args.vehicleType);
+
+    super.didChangeDependencies();
   }
 
   @override
@@ -37,7 +41,6 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
       },
       child: BlocBuilder<DamagedPartsBloc, DamagedPartsState>(
         builder: (context, state) {
-
           return Scaffold(
             body: SafeArea(
               child: Padding(
@@ -61,17 +64,19 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
                     Expanded(
                       child: Stack(
                         children: [
-
                           const VehiclesList(),
-
-                          if (state.pageIndex < bloc.carsSelect.length - 1)
+                          if (state.pageIndex < bloc.vehicleSelect.length - 1)
                             Arrow(
+                              alignment: Alignment.centerRight ,
                               icon: AppDrawables.leftArrow,
+
                               onTap: () =>
                                   bloc.setPageIndex(state.pageIndex + 1, width),
+
                             ),
                           if (state.pageIndex > 0)
                             Arrow(
+                              alignment:Alignment.centerLeft,
                               icon: AppDrawables.rightArrow,
                               onTap: () =>
                                   bloc.setPageIndex(state.pageIndex - 1, width),
@@ -93,3 +98,11 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
     );
   }
 }
+
+class DamagedPartsScreenArgs {
+  final VehicleType vehicleType;
+
+  DamagedPartsScreenArgs({required this.vehicleType});
+}
+
+enum VehicleType { auto, van, moto }

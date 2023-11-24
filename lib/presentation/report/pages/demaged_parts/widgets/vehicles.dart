@@ -22,7 +22,7 @@ class VehiclesList extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           cacheExtent: 6 * width,
           children: List.generate(
-            bloc.carsSelect.length,
+            bloc.vehicleSelect.length,
             (index) {
               return SizedBox(
                 width: width - 48,
@@ -30,10 +30,10 @@ class VehiclesList extends StatelessWidget {
                   child: RepaintBoundary(
                     key: bloc.getKey(index),
                     child: FloodFillImage(
-                      imageProvider: AssetImage(bloc.carsSelect[index]),
+                      imageProvider: AssetImage(bloc.vehicleSelect[index]),
                       fColor: (position) {
-                        final inActive =
-                            Theme.of(context).colorScheme.inversePrimary;
+                        const inActive =
+                             Color(0xff2d2d2d);
 
                         if (position == null) {
                           return active;
@@ -45,11 +45,6 @@ class VehiclesList extends StatelessWidget {
                             index: index);
                       },
                       tolerance: 8,
-                      avoidColor: const [
-                        Colors.white,
-                        Colors.transparent,
-                        Colors.grey
-                      ],
                     ),
                   ),
                 ),
