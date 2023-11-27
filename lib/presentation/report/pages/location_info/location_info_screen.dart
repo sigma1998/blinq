@@ -24,62 +24,65 @@ class LocationInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return KeyboardEscape(
-      child: Scaffold(
-        extendBody: true,
-        body: ListView(
-          padding: const EdgeInsets.all(32).copyWith(bottom: 120),
-          physics: const ClampingScrollPhysics(),
-          children: [
-            StepIndicator(
-              title: 'strBreakDown'.tr(),
-            ),
-            const SizedBox(height: 52),
-            Text(
-              'strDateOfAccident'.tr(),
-              style: const TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.w700,
+      child: SafeArea(
+        child: Scaffold(
+          extendBody: true,
+          body: ListView(
+            padding: const EdgeInsets.all(32).copyWith(bottom: 120),
+            physics: const ClampingScrollPhysics(),
+            children: [
+              StepIndicator(
+                title: 'strBreakDown'.tr(),
               ),
-            ),
-            const SizedBox(height: 12),
-            RoundedDatePickerTextField(
-              maxDate: DateTime.now(),
-              initialDate: DateTime.now(),
-              controller: TextEditingController(),
-            ),
-            const SizedBox(height: 36),
-            Text(
-              'strTimeOfAccident'.tr(),
-              style: const TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.w700,
+              const SizedBox(height: 52),
+              Text(
+                'strDateOfAccident'.tr(),
+                style: const TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
-            ),
-            const SizedBox(height: 12),
-            RoundedTimePickerTextField(
-              initialTime: TimeOfDay.now(),
-              controller: TextEditingController(),
-            ),
-            const SizedBox(height: 36),
-            PickerTextField(
-              onTap: () {},
-              labelText: 'strCountry'.tr(),
-              controller: TextEditingController(),
-            ),
-            const SizedBox(height: 36),
-            NameTextField(
-              labelText: 'strPlace'.tr(),
-              controller: TextEditingController(),
-            ),
-          ],
-        ),
-        resizeToAvoidBottomInset: true,
-        floatingActionButton: NavigationButton(
-          onNextTap: () => NavigationService.pushNamed(
-            routeName: InjuryScreen.route,
+              const SizedBox(height: 12),
+              RoundedDatePickerTextField(
+                maxDate: DateTime.now(),
+                initialDate: DateTime.now(),
+                controller: TextEditingController(),
+              ),
+              const SizedBox(height: 36),
+              Text(
+                'strTimeOfAccident'.tr(),
+                style: const TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(height: 12),
+              RoundedTimePickerTextField(
+                initialTime: TimeOfDay.now(),
+                controller: TextEditingController(),
+              ),
+              const SizedBox(height: 36),
+              PickerTextField(
+                onTap: () {},
+                labelText: 'strCountry'.tr(),
+                controller: TextEditingController(),
+              ),
+              const SizedBox(height: 36),
+              NameTextField(
+                labelText: 'strPlace'.tr(),
+                controller: TextEditingController(),
+              ),
+            ],
           ),
+          resizeToAvoidBottomInset: true,
+          floatingActionButton: NavigationButton(
+            onNextTap: () => NavigationService.pushNamed(
+              routeName: InjuryScreen.route,
+              nestedKey: NavigationService.homeNavigatorKey
+            ),
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
     );
   }

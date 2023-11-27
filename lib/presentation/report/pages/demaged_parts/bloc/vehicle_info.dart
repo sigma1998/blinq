@@ -19,7 +19,7 @@ List<String> _vanSelect = [
 List<String> _motoSelect = [
   AppDrawables.motoFront,
   AppDrawables.motoLeft,
-  AppDrawables.motoRight,
+  // AppDrawables.motoRight,
 ];
 
 

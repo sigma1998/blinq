@@ -123,6 +123,15 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
       page = SignScreen();
     case VehicleTypeScreen.route:
       page = const VehicleTypeScreen();
+    case LocationInfoScreen.route:
+      page = const LocationInfoScreen();
+    case InjuryScreen.route:
+      page = const InjuryScreen();
+    case ConnectToDriverScreen.route:
+      page = const ConnectToDriverScreen();
+    case SpeechToTextScreen.route:
+      page = const SpeechToTextScreen();
+
 
     default:
       page = const HomeScreen();

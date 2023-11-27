@@ -114,7 +114,7 @@ class _SpeechToTextFieldState extends State<SpeechToTextField> {
                 child: Text(
                   widget.labelText!,
                   maxLines: 3,
-                  style: widget.labelTextstyle,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
               if (widget.isLoading) ...[

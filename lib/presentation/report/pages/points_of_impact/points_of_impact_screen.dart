@@ -1,7 +1,7 @@
 import 'package:blinq/core/drawables/app_drawables.dart';
-
 import 'package:blinq/utils/custom_widgets/arrow_button.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
+import 'package:blinq/utils/step_indicator.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,8 +29,12 @@ class PointsOfImpactScreen extends StatelessWidget {
               padding: const EdgeInsets.all(24.0),
               child: Column(
                 children: [
+                  StepIndicator(
+                    currentStep: 4,
+                    title: 'strBreakDown'.tr(),
+                  ),
                   const SizedBox(
-                    height: 48,
+                    height: 32,
                   ),
                   Text(
                     'strIndicateDescription'.tr(),
@@ -119,7 +123,7 @@ class PointsOfImpactScreen extends StatelessWidget {
                   ),
                   NavigationButton(
                     padding: 0,
-                    onNextTap: () {},
+                    onNextTap: bloc.onNextPressed,
                   ),
                 ],
               ),

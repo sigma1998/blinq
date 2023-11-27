@@ -17,5 +17,7 @@ class CreateReportBloc {
       NavigationService.pushNamed(routeName: InformCloseOnesScreen.route);
 
   void onCreateReportPressed() =>
-      NavigationService.pushNamed(routeName: LocationInfoScreen.route);
+      NavigationService.pushNamed(routeName: LocationInfoScreen.route,
+      nestedKey: NavigationService.homeNavigatorKey
+      );
 }
