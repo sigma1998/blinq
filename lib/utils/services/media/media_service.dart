@@ -84,7 +84,6 @@ class MediaServiceImpl extends MediaService {
     AppImageSource appImageSource, {
     Duration? maxDuration,
     double? maxWidth,
-    int? imageQuality,
   }) async {
     bool canProceed = await _handleImagePickPermissions(appImageSource);
 

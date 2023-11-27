@@ -74,6 +74,10 @@ class _DamagedMediaItemState extends State<DamagedMediaItem> {
             return const SizedBox();
           }
           final controller = snapshot.data as VideoPlayerController;
+          debugPrint('aspect ratio ' +
+              controller.value.size.toString() +
+              ' ' +
+              controller.value.size.toString());
 
           return Stack(
             children: [

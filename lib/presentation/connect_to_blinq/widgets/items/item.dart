@@ -6,7 +6,12 @@ import 'package:flutter/material.dart';
 
 class ConnectToBlinqItem extends StatefulWidget {
   //
-  const ConnectToBlinqItem({super.key});
+  final Color? color;
+
+  const ConnectToBlinqItem({
+    super.key,
+    this.color,
+  });
 
   @override
   State<ConnectToBlinqItem> createState() => _ConnectToBlinqItemState();
@@ -55,8 +60,12 @@ class _ConnectToBlinqItemState extends State<ConnectToBlinqItem> {
             duration: const Duration(milliseconds: 600),
             decoration: BoxDecoration(
               color: shouldChangeColor
-                  ? Theme.of(context).colorScheme.onSecondary
-                  : Theme.of(context).colorScheme.onSecondary.withOpacity(0.5),
+                  ? widget.color ?? Theme.of(context).colorScheme.onSecondary
+                  : widget.color?.withOpacity(0.5) ??
+                      Theme.of(context)
+                          .colorScheme
+                          .onSecondary
+                          .withOpacity(0.5),
               borderRadius: BorderRadius.circular(100),
             ),
           );

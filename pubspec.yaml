@@ -43,6 +43,7 @@ dependencies:
   shimmer: ^3.0.0
   cached_network_image: ^3.3.0
   location_permissions: ^4.0.1
+  shared_preferences: ^2.2.2
   lottie: ^2.2.0
   image: 3.2.0
   image_picker: ^1.0.4
@@ -80,6 +81,7 @@ dependencies:
   flutter_reactive_ble: ^5.2.0
   reactive_ble_mobile: ^5.2.0
   step_progress_indicator: ^1.0.2
+  sprintf: ^7.0.0
   convert: ^3.1.1
   crypto: ^3.0.3
   device_info: ^2.0.3

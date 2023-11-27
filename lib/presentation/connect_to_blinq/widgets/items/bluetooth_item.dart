@@ -13,6 +13,9 @@ class ConnectToBlinqBluetoothItem extends StatelessWidget {
   final double fontSize;
   final Color? color;
 
+  final double? width;
+  final double? height;
+
   final VoidCallback? onTap;
 
   const ConnectToBlinqBluetoothItem({
@@ -20,6 +23,9 @@ class ConnectToBlinqBluetoothItem extends StatelessWidget {
     this.title = '',
     this.fontSize = 16,
     this.color,
+    //
+    this.width,
+    this.height,
     //
     this.onTap,
   });
@@ -32,6 +38,8 @@ class ConnectToBlinqBluetoothItem extends StatelessWidget {
         children: [
           SvgPicture.asset(
             AppDrawables.blinqBloothooth,
+            width: width,
+            height: height,
             colorFilter: ColorFilter.mode(
               color ?? Theme.of(context).colorScheme.onSecondary,
               BlendMode.srcIn,

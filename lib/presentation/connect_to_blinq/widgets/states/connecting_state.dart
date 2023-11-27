@@ -10,11 +10,10 @@ import 'package:blinq/presentation/connect_to_blinq/widgets/items/bluetooth_item
 import 'package:blinq/presentation/connect_to_blinq/cubit/connect_to_blinq_cubit.dart';
 import 'package:blinq/presentation/connect_to_blinq/widgets/items/scan_item.dart';
 import 'package:blinq/presentation/connect_to_blinq/widgets/items/item.dart';
-import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 
-class ConnectToBlinqInitialStateWidget extends StatelessWidget {
+class ConnectingToBlinqStateWidget extends StatelessWidget {
   //
-  const ConnectToBlinqInitialStateWidget({super.key});
+  const ConnectingToBlinqStateWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +21,22 @@ class ConnectToBlinqInitialStateWidget extends StatelessWidget {
 
     return Column(
       children: [
-        const ConnectToBlinqBluetoothItem(),
+        BlocBuilder<ConnectToBlinqCubit, ConnectToBlinqState>(
+          builder: (context, state) {
+            return ConnectToBlinqBluetoothItem(
+              title: state.recentlyConnected?.name ?? '',
+            );
+          },
+        ),
         const SizedBox(height: 52),
         const ConnectToBlinqItem(),
         const ConnectToBlinqScanItem(),
-        const SizedBox(height: 52),
+        const SizedBox(height: 64),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            MyButton.tertiary(
-              label: 'strScan'.tr(),
-              onTap: cubit.restartScanning,
+            Text(
+              'strConnecting'.tr(),
             ),
           ],
         ),

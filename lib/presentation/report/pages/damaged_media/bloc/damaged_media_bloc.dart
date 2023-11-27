@@ -38,7 +38,7 @@ class DamagedMediaBloc extends Bloc<DamagedMediaEvent, DamagedMediaState> {
             onPressed: () async {
               final videoPath =
                   await mediaService.pickVideoPath(AppImageSource.camera);
-              final result = File(videoPath!);
+              final result = File(videoPath ?? '');
               NavigationService.back(result: result);
             },
           ),
@@ -77,11 +77,11 @@ class DamagedMediaBloc extends Bloc<DamagedMediaEvent, DamagedMediaState> {
   }
 
   bool _checkMaxVideoFiles(List<File> files) {
-    return files.where((file) => _isVideoFile(file)).length > 2;
+    return files.where((file) => _isVideoFile(file)).length < 2;
   }
 
   bool _checkMaxImageFiles(List<File> files) {
-    return files.where((file) => !_isVideoFile(file)).length > 6;
+    return files.where((file) => !_isVideoFile(file)).length < 6;
   }
 
   bool _isVideoFile(File file) {

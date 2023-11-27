@@ -1,5 +1,7 @@
 // Flutter imports:
 import 'package:blinq/domain/repositories/premade_messages_repository.dart';
+import 'package:blinq/presentation/connect_to_blinq/cubit/connect_to_blinq_cubit.dart';
+import 'package:blinq/utils/services/permission/permission_service.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -68,12 +70,16 @@ class MyAppState extends State<MyApp> {
             repository: getIt<ContactsRepositoryImpl>(),
           ),
         ),
-        // PremadeMessagesBloc(),
         BlocProvider<PreMadeMessagesBloc>(
           create: (context) => PreMadeMessagesBloc(
             repository: getIt<PremadeMessagesRepositoryImpl>(),
           ),
         ),
+        BlocProvider<ConnectToBlinqCubit>(
+          create: (context) => ConnectToBlinqCubit(
+            permissionService: getIt<PermissionServiceImpl>(),
+          )..checkBluetoothStatus(),
+        )
       ],
       child: MaterialApp(
         locale: context.locale,

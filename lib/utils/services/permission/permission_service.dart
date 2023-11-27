@@ -8,6 +8,9 @@ abstract class PermissionService {
   Future requestNotificationPermission();
   Future requestSendSmsPermission();
 
+  Future requrestBluetoothScanPermission();
+  Future requrestBluetoothConnectPermission();
+
   //
 
   Future<bool> handleCameraPermission();
@@ -15,6 +18,9 @@ abstract class PermissionService {
   Future<bool> handleLocationPermission();
   Future<bool> handleNotificationPermission();
   Future<bool> handleSendSmsPermission();
+
+  Future<bool> handleBluetoothScanPermission();
+  Future<bool> handleBluetoothConnectPermission();
 }
 
 class PermissionServiceImpl extends PermissionService {
@@ -38,6 +44,14 @@ class PermissionServiceImpl extends PermissionService {
   @override
   Future<PermissionStatus> requestSendSmsPermission() async =>
       await Permission.sms.request();
+
+  @override
+  Future<PermissionStatus> requrestBluetoothScanPermission() async =>
+      await Permission.bluetoothScan.request();
+
+  @override
+  Future<PermissionStatus> requrestBluetoothConnectPermission() async =>
+      await Permission.bluetoothConnect.request();
 
   //
 
@@ -86,6 +100,28 @@ class PermissionServiceImpl extends PermissionService {
     final sendSmsPermissionStatus = await requestSendSmsPermission();
 
     if (sendSmsPermissionStatus != PermissionStatus.granted) {
+      return openAppSettings();
+    }
+    return true;
+  }
+
+  @override
+  Future<bool> handleBluetoothScanPermission() async {
+    final bluetoothScanPermissionStatus =
+        await requrestBluetoothScanPermission();
+
+    if (bluetoothScanPermissionStatus != PermissionStatus.granted) {
+      return openAppSettings();
+    }
+    return true;
+  }
+
+  @override
+  Future<bool> handleBluetoothConnectPermission() async {
+    final bluetoothConnectPermissionStatus =
+        await requrestBluetoothConnectPermission();
+
+    if (bluetoothConnectPermissionStatus != PermissionStatus.granted) {
       return openAppSettings();
     }
     return true;
