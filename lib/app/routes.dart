@@ -78,7 +78,7 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     ResetPasswordScreen.route: (context) => const ResetPasswordScreen(),
 
     //& Home
-    CreateReportScreen.route: (context) => const CreateReportScreen(),
+    CreateReportScreen.route: (context) => CreateReportScreen(),
     MedicalAssistanceScreen.route: (context) => const MedicalAssistanceScreen(),
     EmergencyServicesScreen.route: (context) => const EmergencyServicesScreen(),
     InformCloseOnesScreen.route: (context) => const InformCloseOnesScreen(),
@@ -108,7 +108,7 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
     case HomeScreen.route:
       page = const HomeScreen();
     case CreateReportScreen.route:
-      page = const CreateReportScreen();
+      page =  CreateReportScreen();
     case MapScreen.route:
       page = const MapScreen();
     case PointsOfImpactScreen.route:

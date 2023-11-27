@@ -1,16 +1,13 @@
 // Dart imports:
 import 'dart:io';
 
-// Flutter imports:
-import 'package:flutter/foundation.dart';
-
-// Package imports:
-import 'package:dio/dio.dart';
-
 // Project imports:
 import 'package:blinq/core/network/api_service.dart';
 import 'package:blinq/core/network/network_constants.dart';
 import 'package:blinq/data/model/car/request/car_request_model.dart';
+
+// Flutter imports:
+import 'package:blinq/data/model/cheack_account_datas/cheack_account_datas_response.dart';
 import 'package:blinq/data/model/history/history_response_dto.dart';
 import 'package:blinq/data/model/insurance/request/insurance_request_model.dart';
 import 'package:blinq/data/model/policy_holder/request/policy_holder_request_model.dart';
@@ -19,6 +16,10 @@ import 'package:blinq/data/model/profile/response/profile_response_model.dart';
 import 'package:blinq/data/model/vehicle/request/vehicle_request_model.dart';
 import 'package:blinq/data/model/vehicle_info/brand_response.dart';
 import 'package:blinq/data/model/vehicle_info/color_response.dart';
+
+// Package imports:
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 abstract class ProfileApi {
   //
@@ -74,6 +75,9 @@ abstract class ProfileApi {
   Future<BrandResponseDto> fetchModels(int page, int brandId);
 
   Future<ColorResponseDto> fetchColors(int page, int brandId);
+
+  /// chech profile data
+  Future<CheckAccountResponse> checkAccountData();
 }
 
 class ProfileApiImpl implements ProfileApi {
@@ -275,5 +279,14 @@ class ProfileApiImpl implements ProfileApi {
         queryParameters: {'page': page, 'brand_id': brandId});
 
     return BrandResponseDto.fromJson(res);
+  }
+
+  @override
+  Future<CheckAccountResponse> checkAccountData() async {
+    final res = await api.get(
+      NetworkConstants.checkAccountData,
+    );
+
+    return CheckAccountResponse.fromJson(res);
   }
 }

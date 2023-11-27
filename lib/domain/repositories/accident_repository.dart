@@ -7,6 +7,8 @@ abstract class AccidentRepository {
   /// Remote API
   ///
   Future<ProfileResponseModel> fetchUserById(int id);
+
+  Future createAccident(String long, String lat);
 }
 
 class AccidentRepositoryImpl implements AccidentRepository {
@@ -20,6 +22,16 @@ class AccidentRepositoryImpl implements AccidentRepository {
     try {
       return await api.fetchUserById(id);
     } catch (e) {
+      rethrow;
+    }
+  }
+
+
+  @override
+  Future createAccident(String long, String lat) async{
+    try{
+      await api.createAccident(long, lat);
+    }catch(e){
       rethrow;
     }
   }
