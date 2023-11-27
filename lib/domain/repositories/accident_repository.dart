@@ -8,7 +8,7 @@ abstract class AccidentRepository {
   ///
   Future<ProfileResponseModel> fetchUserById(int id);
 
-  Future createAccident(String long, String lat);
+  Future<int> createAccident(String long, String lat);
 }
 
 class AccidentRepositoryImpl implements AccidentRepository {
@@ -28,9 +28,9 @@ class AccidentRepositoryImpl implements AccidentRepository {
 
 
   @override
-  Future createAccident(String long, String lat) async{
+  Future<int> createAccident(String long, String lat) async{
     try{
-      await api.createAccident(long, lat);
+      return await api.createAccident(long, lat);
     }catch(e){
       rethrow;
     }

@@ -8,7 +8,7 @@ abstract class AccidentApi {
   //
   Future<ProfileResponseModel> fetchUserById(int id);
 
-  Future<void> createAccident(String long, String lat);
+  Future<int> createAccident(String long, String lat);
 
   Future<void> adAccidentLocationAndTime(
       int accidentId,
@@ -32,9 +32,11 @@ class AccidentApiImpl implements AccidentApi {
   }
 
   @override
-  Future createAccident(String long, String lat) async {
+  Future<int> createAccident(String long, String lat) async {
     try {
-      await api.post(NetworkConstants.createReport);
+      final res = await api.post(NetworkConstants.createReport);
+
+      return res['accident_id'];
     } catch (e) {
       rethrow;
     }

@@ -11,12 +11,17 @@ class CustomInterceptor extends Interceptor {
       NavigationService.showErrorToast('common.low_internet_connection'.tr());
       return handler.next(err);
     }
-    // int statusCode = (err.response?.statusCode ?? 0);
-    // if (statusCode >= 400 && statusCode <= 500) {
-    //   final text =
-    //       err.response!.data?['message'] ?? err.response!.data['detail'];
-    //   NavigationService.showErrorToast((text).toString());
-    // }
+    int statusCode = (err.response?.statusCode ?? 0);
+    if(statusCode == 400){
+      print(err.requestOptions.uri);
+      print(err.requestOptions.path);
+      print(err.requestOptions.baseUrl);
+    }
+    if (statusCode > 400 && statusCode <= 500) {
+      final text =
+          err.response!.data?['message'] ?? err.response!.data['detail'];
+      NavigationService.showErrorToast((text).toString());
+    }
 
     return handler.next(err);
   }
