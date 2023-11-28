@@ -626,5 +626,8 @@
   "strYourInformMessageSent": "Your Inform message has been sent!",
   "strSelectFromGallery": "Select from Gallery",
   "strRecordVideo": "Record Video",
-  "strMaxMediaFiles": "Maximum 2 video and 6 image media files can be uploaded"
+  "strMaxMediaFiles": "Maximum 2 video and 6 image media files can be uploaded",
+  "strRenameYourBlinq": "Rename your BLINQ",
+  "strEnterBlinqName": "Enter BLINQ Name",
+  "strRename": "Rename"
 }

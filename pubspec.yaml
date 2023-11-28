@@ -78,8 +78,8 @@ dependencies:
   # country code
   country_code_picker: ^3.0.0
   # for bluetooth modules
-  flutter_reactive_ble: ^5.2.0
-  reactive_ble_mobile: ^5.2.0
+  flutter_reactive_ble: ^5.1.1
+  reactive_ble_mobile: ^5.1.1  
   step_progress_indicator: ^1.0.2
   sprintf: ^7.0.0
   convert: ^3.1.1

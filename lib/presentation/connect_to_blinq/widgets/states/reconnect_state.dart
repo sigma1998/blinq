@@ -22,8 +22,12 @@ class ReconnectToBlinqStateWidget extends StatelessWidget {
 
     return Column(
       children: [
-        ConnectToBlinqBluetoothItem(
-          title: cubit.toString(),
+        BlocBuilder<ConnectToBlinqCubit, ConnectToBlinqState>(
+          builder: (context, state) {
+            return ConnectToBlinqBluetoothItem(
+              title: state.recentlyConnected?.name ?? '',
+            );
+          },
         ),
         const SizedBox(height: 52),
         const ConnectToBlinqItem(),

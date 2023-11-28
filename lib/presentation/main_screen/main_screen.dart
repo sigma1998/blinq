@@ -1,11 +1,15 @@
+// Dart imports:
 import 'dart:ui';
 
-import 'package:blinq/presentation/connect_to_blinq/cubit/connect_to_blinq_cubit.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 // Project imports:
+import 'package:blinq/presentation/connect_to_blinq/cubit/connect_to_blinq_cubit.dart';
 import 'package:blinq/presentation/main_screen/main_screen_event.dart';
 import 'package:blinq/presentation/profile/profile_screen.dart';
 import 'package:blinq/presentation/contacts/contacts.dart';
@@ -30,7 +34,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<ConnectToBlinqCubit>().connectPreviousDevices(context);
+    context.read<ConnectToBlinqCubit>().connectPreviousDevices();
   }
 
   @override

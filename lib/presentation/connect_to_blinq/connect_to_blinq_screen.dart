@@ -35,21 +35,25 @@ class ConnectToBlinqScreen extends StatelessWidget {
             ),
             child: Stack(
               children: [
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: ListView(
+                    shrinkWrap: true,
+                    physics: const BouncingScrollPhysics(),
+                    children: [
+                      _buildStateWidget(state),
+                      const SizedBox(height: 50),
+                      if (!state.scanning &&
+                          state.boardConnectionState !=
+                              DeviceConnectionState.connected &&
+                          state.savedBleDevices.isNotEmpty) ...[
+                        const PreviouslyConnectedToBlinqCard(),
+                      ],
+                    ],
+                  ),
+                ),
                 MyCloseButton(
                   onTap: cubit.onNavigateBack,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    _buildStateWidget(state),
-                    const SizedBox(height: 72),
-                    if (!state.scanning &&
-                        state.boardConnectionState !=
-                            DeviceConnectionState.connected &&
-                        state.savedBleDevices.isNotEmpty) ...[
-                      const PreviouslyConnectedToBlinqCard(),
-                    ],
-                  ],
                 ),
               ],
             ),
@@ -64,11 +68,17 @@ class ConnectToBlinqScreen extends StatelessWidget {
       case DeviceConnectionState.connecting:
         return const ConnectingToBlinqStateWidget();
       case DeviceConnectionState.connected:
-        return const ConnectedToBlinqStateWidget();
+        if (state.bleConnectionState == BleConnectionState.paired) {
+          return const ConnectedToBlinqStateWidget();
+        } else {
+          return const ConnectingToBlinqStateWidget();
+        }
       case DeviceConnectionState.disconnected:
         if (state.scanning) {
           return const ConnectToBlinqScanningStateWidget();
-        } else if (state.scannedBleDevices.isNotEmpty && !state.scanning) {
+        } else if (state.scannedBleDevices.isNotEmpty &&
+            !state.scanning &&
+            state.savedBleDevices.isEmpty) {
           return const ConnectToBlinqSelectStateWidget();
         } else {
           return const ConnectToBlinqInitialStateWidget();

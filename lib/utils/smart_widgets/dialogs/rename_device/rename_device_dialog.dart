@@ -65,12 +65,14 @@ class _RenameDeviceDialogState extends State<RenameDeviceDialog> {
           ),
           const SizedBox(height: 24),
           Text(
-            'strRenameDevice'.tr(),
+            'strRenameYourBlinq'.tr(),
             style: Theme.of(context).textTheme.titleSmall,
           ),
           const SizedBox(height: 24),
           RoundedTextField(
+            isOutlined: true,
             controller: controller,
+            hintText: 'strEnterBlinqName'.tr(),
           ),
           const SizedBox(height: 16),
           MyButton.secondary(
