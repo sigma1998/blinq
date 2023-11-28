@@ -1,6 +1,10 @@
 // Project imports:
-import 'package:blinq/data/model/profile/response/profile_response_model.dart';
+import 'dart:io';
+
 import 'package:blinq/data/datasource/remote/accident_api.dart';
+import 'package:blinq/data/model/accident/accident_time_and_location/accident_time_and_location.dart';
+import 'package:blinq/data/model/accident/injury/injury.dart';
+import 'package:blinq/data/model/profile/response/profile_response_model.dart';
 
 abstract class AccidentRepository {
   ///
@@ -9,6 +13,49 @@ abstract class AccidentRepository {
   Future<ProfileResponseModel> fetchUserById(int id);
 
   Future<int> createAccident(String long, String lat);
+
+  Future<void> adAccidentLocationAndTime(
+      int accidentId, AccidentTimeAndLocationDto accidentTimeAndLocationDto);
+
+  ///for driver a
+  Future<void> accidentInjury(int accidentId, InjuryDto injuryDto);
+
+  Future<void> accidentWitnesses(int accidentId, String witnesses);
+
+  Future<void> accidentInitialImpactPoint(int accidentId, File image);
+
+  Future<void> visibleDamage(int accidentId, String visibleDamage);
+
+  Future<void> myRemarks(int accidentId, String visibleDamage);
+
+  Future<void> damagedPoints(
+      {required File top,
+      required File front,
+      required File back,
+      required File left,
+      required File right,
+      required int accidentId,
+      required String damageParts});
+
+  ///for driver b
+  Future<void> accidentInjuryB(int accidentId, InjuryDto injuryDto);
+
+  Future<void> accidentWitnessesB(int accidentId, String witnesses);
+
+  Future<void> accidentInitialImpactPointB(int accidentId, File image);
+
+  Future<void> visibleDamageB(int accidentId, String visibleDamage);
+
+  Future<void> myRemarksB(int accidentId, String visibleDamage);
+
+  Future<void> damagedPointsB(
+      {required File top,
+      required File front,
+      required File back,
+      required File left,
+      required File right,
+      required int accidentId,
+      required String damageParts});
 }
 
 class AccidentRepositoryImpl implements AccidentRepository {
@@ -26,12 +73,158 @@ class AccidentRepositoryImpl implements AccidentRepository {
     }
   }
 
+  @override
+  Future<int> createAccident(String long, String lat) async {
+    try {
+      return await api.createAccident(long, lat);
+    } catch (e) {
+      rethrow;
+    }
+  }
 
   @override
-  Future<int> createAccident(String long, String lat) async{
-    try{
-      return await api.createAccident(long, lat);
-    }catch(e){
+  Future<void> accidentInitialImpactPoint(int accidentId, File image) async {
+    try {
+      return await api.accidentInitialImpactPoint(accidentId, image);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> accidentInitialImpactPointB(int accidentId, File image) async {
+    try {
+      return await api.accidentInitialImpactPointB(accidentId, image);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> accidentInjury(int accidentId, InjuryDto injuryDto) async {
+    try {
+      return await api.accidentInjury(accidentId, injuryDto);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> accidentInjuryB(int accidentId, InjuryDto injuryDto) async {
+    try {
+      return await api.accidentInjuryB(accidentId, injuryDto);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> accidentWitnesses(int accidentId, String witnesses) async {
+    try {
+      return await api.accidentWitnesses(accidentId, witnesses);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> accidentWitnessesB(int accidentId, String witnesses) async {
+    try {
+      return await api.accidentWitnesses(accidentId, witnesses);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> adAccidentLocationAndTime(int accidentId,
+      AccidentTimeAndLocationDto accidentTimeAndLocationDto) async {
+    try {
+      return await api.adAccidentLocationAndTime(
+          accidentId, accidentTimeAndLocationDto);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> damagedPoints(
+      {required File top,
+      required File front,
+      required File back,
+      required File left,
+      required File right,
+      required int accidentId,
+      required String damageParts}) async {
+    try {
+      return await api.damagedPoints(
+          accidentId: accidentId,
+          top: top,
+          front: front,
+          back: back,
+          left: left,
+          right: right,
+          damageParts: damageParts);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> damagedPointsB(
+      {required File top,
+      required File front,
+      required File back,
+      required File left,
+      required File right,
+      required int accidentId,
+      required String damageParts}) async {
+    try {
+      return await api.damagedPointsB(
+          accidentId: accidentId,
+          top: top,
+          front: front,
+          back: back,
+          left: left,
+          right: right,
+          damageParts: damageParts);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> myRemarks(int accidentId, String visibleDamage) async {
+    try {
+      return await api.myRemarks(accidentId, visibleDamage);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> myRemarksB(int accidentId, String visibleDamage) async {
+    try {
+      return await api.myRemarksB(accidentId, visibleDamage);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> visibleDamage(int accidentId, String visibleDamage) async {
+    try {
+      return await api.visibleDamage(accidentId, visibleDamage);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> visibleDamageB(int accidentId, String visibleDamage) async {
+    try {
+      return await api.visibleDamageB(accidentId, visibleDamage);
+    } catch (e) {
       rethrow;
     }
   }

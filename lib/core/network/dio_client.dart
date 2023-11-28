@@ -15,7 +15,8 @@ class DioClient {
       //           .navigatorKey.currentContext?.locale.languageCode ??
       //       'ru'
       // },
-      headers: {'Content-Type': 'application/json; charset=utf-8'},
+      // headers: {'Content-Type': 'application/json; charset=utf-8'},
+      // headers: {'Content-Type': 'charset=utf-8'},
       responseType: ResponseType.json);
 
   static final logInterceptor = LogInterceptor(

@@ -1,7 +1,10 @@
 // Project imports:
+import 'dart:io';
+
 import 'package:blinq/core/network/api_service.dart';
 import 'package:blinq/core/network/network_constants.dart';
 import 'package:blinq/data/model/accident/accident_time_and_location/accident_time_and_location.dart';
+import 'package:blinq/data/model/accident/injury/injury.dart';
 import 'package:blinq/data/model/profile/response/profile_response_model.dart';
 
 abstract class AccidentApi {
@@ -11,8 +14,47 @@ abstract class AccidentApi {
   Future<int> createAccident(String long, String lat);
 
   Future<void> adAccidentLocationAndTime(
-      int accidentId,
-      AccidentTimeAndLocationDto accidentTimeAndLocationDto);
+      int accidentId, AccidentTimeAndLocationDto accidentTimeAndLocationDto);
+
+  ///for driver a
+  Future<void> accidentInjury(int accidentId, InjuryDto injuryDto);
+
+  Future<void> accidentWitnesses(int accidentId, String witnesses);
+
+  Future<void> accidentInitialImpactPoint(int accidentId, File image);
+
+  Future<void> visibleDamage(int accidentId, String visibleDamage);
+
+  Future<void> myRemarks(int accidentId, String visibleDamage);
+
+  Future<void> damagedPoints(
+      {required File top,
+      required File front,
+      required File back,
+      required File left,
+      required File right,
+      required int accidentId,
+      required String damageParts});
+
+  ///for driver b
+  Future<void> accidentInjuryB(int accidentId, InjuryDto injuryDto);
+
+  Future<void> accidentWitnessesB(int accidentId, String witnesses);
+
+  Future<void> accidentInitialImpactPointB(int accidentId, File image);
+
+  Future<void> visibleDamageB(int accidentId, String visibleDamage);
+
+  Future<void> myRemarksB(int accidentId, String visibleDamage);
+
+  Future<void> damagedPointsB(
+      {required File top,
+      required File front,
+      required File back,
+      required File left,
+      required File right,
+      required int accidentId,
+      required String damageParts});
 }
 
 class AccidentApiImpl implements AccidentApi {
@@ -43,11 +85,158 @@ class AccidentApiImpl implements AccidentApi {
   }
 
   @override
-  Future<void> adAccidentLocationAndTime(
-      int accidentId,
-      AccidentTimeAndLocationDto accidentTimeAndLocationDto) async{
+  Future<void> adAccidentLocationAndTime(int accidentId,
+      AccidentTimeAndLocationDto accidentTimeAndLocationDto) async {
     try {
       await api.post(NetworkConstants.createReport);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// for driver A
+  @override
+  Future<void> accidentInitialImpactPoint(int accidentId, File image) async {
+    try {
+      await api.patch(NetworkConstants.initialImpactPoint(accidentId),
+          data: {'file': image});
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> accidentInjury(int accidentId, InjuryDto injuryDto) async {
+    try {
+      await api.patch(NetworkConstants.injury(accidentId),
+          data: injuryDto.toJson());
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> accidentWitnesses(int accidentId, String witnesses) async {
+    try {
+      await api.patch(NetworkConstants.witnesses(accidentId),
+          data: {'witness': witnesses});
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> visibleDamage(int accidentId, String visibleDamage) async {
+    try {
+      await api.patch(NetworkConstants.visibleDamage(accidentId),
+          data: {'visible_damage': visibleDamage});
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> myRemarks(int accidentId, String myRemarks) async {
+    try {
+      await api.patch(NetworkConstants.myRemarks(accidentId),
+          data: {'remarks': myRemarks});
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> damagedPoints(
+      {required File top,
+      required File front,
+      required File back,
+      required File left,
+      required File right,
+      required int accidentId,
+      required String damageParts}) async {
+    try {
+      await api.patch(NetworkConstants.damagePoints(accidentId), data: {
+        'top': top,
+        'font': front,
+        'back': back,
+        'left': left,
+        'right': right,
+        'damage_parts': damageParts
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// for driver B
+  @override
+  Future<void> accidentInitialImpactPointB(int accidentId, File image) async {
+    try {
+      await api.patch(NetworkConstants.initialImpactPointB(accidentId),
+          data: {'file': image});
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> accidentInjuryB(int accidentId, InjuryDto injuryDto) async {
+    try {
+      await api.patch(NetworkConstants.injuryB(accidentId),
+          data: injuryDto.toJson());
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> accidentWitnessesB(int accidentId, String witnesses) async {
+    try {
+      await api.patch(NetworkConstants.witnessesB(accidentId),
+          data: {'witness': witnesses});
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> visibleDamageB(int accidentId, String visibleDamage) async {
+    try {
+      await api.patch(NetworkConstants.visibleDamageB(accidentId),
+          data: {'visible_damage': visibleDamage});
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> myRemarksB(int accidentId, String myRemarks) async {
+    try {
+      await api.patch(NetworkConstants.myRemarksB(accidentId),
+          data: {'remarks': myRemarks});
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> damagedPointsB(
+      {required File top,
+      required File front,
+      required File back,
+      required File left,
+      required File right,
+      required int accidentId,
+      required String damageParts}) async {
+    try {
+      await api.patch(NetworkConstants.damagePointsB(accidentId), data: {
+        'top': top,
+        'font': front,
+        'back': back,
+        'left': left,
+        'right': right,
+        'damage_parts': damageParts
+      });
     } catch (e) {
       rethrow;
     }

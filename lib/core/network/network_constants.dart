@@ -52,7 +52,7 @@ class NetworkConstants {
   ///
   ///  Contact
   ///
-  static String contact = 'contact/';
+  static String contact = 'v1/api/contact/';
   static String editContact(int id) => '$contact$id/';
 
   static String premadeMessage = 'v1/api/pre/made/message/';
@@ -64,4 +64,21 @@ class NetworkConstants {
   ///
   static String createReport = 'v2/api/create/accident/adriver/';
   static String accidentTimeAndPlace (accidentId)=> '/v2/api/adriver/accident/$accidentId/date_time_country_place/';
+
+  ///driver a
+  static String injury (accidentId)=> '/v2/api/adriver/accident/$accidentId/injury/';
+  static String witnesses (accidentId)=> '/v2/api/adriver/accident/$accidentId/witnesses/';
+  static String visibleDamage (accidentId)=> '/v2/api/adriver/accident/$accidentId/visible_damage/';
+  static String initialImpactPoint (accidentId)=> '/v2/api/adriver/accident/$accidentId/initial_impact_point/';
+  static String myRemarks (accidentId)=> '/v2/api/adriver/accident/$accidentId/my_remarks/';
+  static String damagePoints (accidentId)=> '/v2/api/adriver/accident/$accidentId/damage_points/';
+
+
+  ///driver b
+  static String injuryB (accidentId)=> '/v2/api/bdriver/accident/$accidentId/injury/';
+  static String witnessesB (accidentId)=> '/v2/api/bdriver/accident/$accidentId/witnesses/';
+  static String visibleDamageB (accidentId)=> '/v2/api/bdriver/accident/$accidentId/visible_damage/';
+  static String initialImpactPointB (accidentId)=> '/v2/api/bdriver/accident/$accidentId/initial_impact_point/';
+  static String myRemarksB (accidentId)=> '/v2/api/bdriver/accident/$accidentId/my_remarks/';
+  static String damagePointsB (accidentId)=> '/v2/api/bdriver/accident/$accidentId/damage_points/';
 }
