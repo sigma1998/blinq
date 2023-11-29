@@ -5,6 +5,7 @@ import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/domain/repositories/premade_messages_repository.dart';
 import 'package:blinq/presentation/connect_to_blinq/cubit/connect_to_blinq_cubit.dart';
+import 'package:blinq/presentation/connect_to_blinq/logger/logger_cubit.dart';
 import 'package:blinq/utils/services/permission/permission_service.dart';
 
 // Package imports:
@@ -12,7 +13,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-// Project imports:
 import 'core/theme/app_theme.dart';
 import 'domain/repositories/contacts_repository.dart';
 import 'domain/repositories/profile_repository.dart';
@@ -80,11 +80,14 @@ class MyAppState extends State<MyApp> {
         BlocProvider<ConnectToBlinqCubit>(
           create: (context) => ConnectToBlinqCubit(
             permissionService: getIt<PermissionServiceImpl>(),
-          )..checkBluetoothStatus(),
+          )..checkBLEStatus(),
         ),
         BlocProvider<ReportBloc>(
           create: (context) =>
               ReportBloc(accidentRepository: getIt<AccidentRepositoryImpl>()),
+        ),
+        BlocProvider<LoggerCubit>(
+          create: (context) => LoggerCubit(),
         ),
       ],
       child: MaterialApp(

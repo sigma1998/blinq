@@ -17,8 +17,6 @@ class ConnectingToBlinqStateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<ConnectToBlinqCubit>();
-
     return Column(
       children: [
         BlocBuilder<ConnectToBlinqCubit, ConnectToBlinqState>(

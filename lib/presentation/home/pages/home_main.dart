@@ -3,6 +3,7 @@ import 'package:animate_do/animate_do.dart';
 
 // Project imports:
 import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/presentation/connect_to_blinq/cubit/connect_to_blinq_cubit.dart';
 import 'package:blinq/presentation/create_report/create_report_screen.dart';
 import 'package:blinq/presentation/home/bloc/home_screen_cubit.dart';
 import 'package:blinq/presentation/home/bloc/home_screen_state.dart';
@@ -52,14 +53,22 @@ class HomeMain extends StatelessWidget {
                     Expanded(
                       child: FadeInRight(
                         duration: const Duration(milliseconds: 400),
-                        child: HomeScreenMenuItem(
-                          text: state.isBlinqConnected
-                              ? 'strConnectBLINQ'.tr()
-                              : 'strDisconnectBLINQ'.tr(),
-                          icon: state.isBlinqConnected
-                              ? AppDrawables.blinqConnected
-                              : AppDrawables.blinq,
-                          onTap: bloc.onConnectToBlinqPressed,
+                        child: BlocBuilder<ConnectToBlinqCubit,
+                            ConnectToBlinqState>(
+                          builder: (context, state) {
+                            final paired = state.bleConnectionState ==
+                                BleConnectionState.paired;
+
+                            return HomeScreenMenuItem(
+                              text: paired
+                                  ? 'strConnectBLINQ'.tr()
+                                  : 'strDisconnectBLINQ'.tr(),
+                              icon: paired
+                                  ? AppDrawables.blinqConnected
+                                  : AppDrawables.blinq,
+                              onTap: bloc.onConnectToBlinqPressed,
+                            );
+                          },
                         ),
                       ),
                     ),

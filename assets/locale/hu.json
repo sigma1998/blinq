@@ -626,6 +626,9 @@
   "strSelectFromGallery": "Válasszon a galériából",
   "strRecordVideo": "Videó felvétele",
   "strMaxMediaFiles": "Maximum 6 kép és 2 videó médiafájl tölthető fel",
+  "strRenameYourBlinq": "Nevezze el a BLINQ-et",
+  "strEnterBlinqName": "Adja meg a BLINQ nevét",
+  "strRename": "Átnevezés",
   "strVehicleType": "Válassza ki járműve típusát",
   "byke": {
     "windshield": "szélvédő",
