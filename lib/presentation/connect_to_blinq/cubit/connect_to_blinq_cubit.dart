@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
-import 'package:location_permissions/location_permissions.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:location/location.dart';
 import 'package:sprintf/sprintf.dart';
 
 // Project imports:
@@ -19,6 +19,7 @@ import 'package:blinq/presentation/connect_to_blinq/logger/logger_cubit.dart';
 import 'package:blinq/utils/services/local_storage/shared_preferences.dart';
 import 'package:blinq/presentation/connect_to_blinq/cubit/constants.dart';
 import 'package:blinq/utils/services/permission/permission_service.dart';
+import 'package:blinq/utils/services/location/location_service.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/bluetooth_helper.dart';
 
@@ -431,17 +432,16 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
   }
 
   Future<bool> checkAndroidPermissionsCode() async {
-    final permissions = await LocationPermissions().requestPermissions();
-    final location = await permissionService.handleLocationPermission();
+    await LocationService.requestPermission();
+    await LocationService.requestService();
+    final location =
+        LocationService.locationPermission == PermissionStatus.granted;
 
     final bleScan = await permissionService.handleBluetoothScanPermission();
     final bleConnect =
         await permissionService.handleBluetoothConnectPermission();
 
-    if (permissions == PermissionStatus.granted &&
-        location &&
-        bleScan &&
-        bleConnect) {
+    if (location && bleScan && bleConnect) {
       return true;
     } else {
       await showNoPermissionDialog();
