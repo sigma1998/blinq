@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
-import 'package:blinq/presentation/contacts/views/premade_messages/bloc/premade_messages_bloc.dart';
-import 'package:blinq/presentation/contacts/views/premade_messages/bloc/premade_messages_event.dart';
-import 'package:blinq/presentation/contacts/views/contacts/bloc/contacts_event.dart';
-import 'views/premade_messages/premade_messages_view.dart';
+import 'pages/contacts/bloc/contacts_bloc.dart';
+import 'pages/contacts/bloc/contacts_event.dart';
+import 'pages/contacts/contacts_page.dart';
+import 'pages/premade_messages/bloc/premade_messages_bloc.dart';
+import 'pages/premade_messages/bloc/premade_messages_event.dart';
+import 'pages/premade_messages/premade_messages_page.dart';
 import 'package:blinq/utils/custom_widgets/tab_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'views/contacts/bloc/contacts_bloc.dart';
-import 'views/contacts/contacts_view.dart';
 
 class ContactsScreen extends StatefulWidget {
   //
@@ -32,7 +32,7 @@ class _ContactsScreenState extends State<ContactsScreen>
   @override
   void initState() {
     context.read<ContactsBloc>().add(OnFetchContacts());
-    context.read<PremadeMessagesBloc>().add(OnFetchPremadeMessages());
+    context.read<PreMadeMessagesBloc>().add(OnFetchPreMadeMessages());
 
     _tabController = TabController(length: 2, vsync: this);
     super.initState();
@@ -67,8 +67,8 @@ class _ContactsScreenState extends State<ContactsScreen>
               controller: _tabController,
               physics: const NeverScrollableScrollPhysics(),
               children: const [
-                ContactsView(),
-                PremadeMessagesView(),
+                ContactsPage(),
+                PreMadeMessagesPage(),
               ],
             ),
           ),

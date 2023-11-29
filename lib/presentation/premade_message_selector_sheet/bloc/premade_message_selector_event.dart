@@ -5,7 +5,7 @@ sealed class PremadeMessageSelectorEvent {}
 class OnLoadPremadeMessages extends PremadeMessageSelectorEvent {}
 
 class OnSelectPremadeMessage extends PremadeMessageSelectorEvent {
-  final PremadeMessageResponseModel message;
+  final PreMadeMessageResponseModel message;
 
   OnSelectPremadeMessage({required this.message});
 }

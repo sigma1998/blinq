@@ -1,0 +1,125 @@
+// Flutter imports:x
+import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:flutter_svg/svg.dart';
+
+// Project imports:
+import 'package:blinq/data/model/contact/response/contact_response_model.dart';
+import 'package:blinq/utils/custom_widgets/expanded_section.dart';
+import 'package:blinq/utils/custom_widgets/info_container.dart';
+import 'package:blinq/utils/custom_widgets/default_image.dart';
+import 'package:blinq/core/drawables/app_drawables.dart';
+
+class ContactItem extends StatefulWidget {
+  //
+  final ContactResponseModel contact;
+  final void Function(int?) onEdit;
+
+  final void Function(String) onPhoneCall;
+  final void Function(String) onMessage;
+
+  const ContactItem({
+    super.key,
+    required this.contact,
+    required this.onEdit,
+    required this.onPhoneCall,
+    required this.onMessage,
+  });
+
+  @override
+  State<ContactItem> createState() => _ContactItemState();
+}
+
+class _ContactItemState extends State<ContactItem> {
+  //
+  bool isExpanded = false;
+
+  void updateState() => {if (mounted) setState(() {})};
+
+  @override
+  Widget build(BuildContext context) {
+    return MyInfoContainer(
+      onTap: onExpand,
+      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.only(bottom: 10),
+      child: Column(
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Row(
+                  children: [
+                    MyImage(
+                      widget.contact.image ?? '',
+                      width: 54,
+                      height: 54,
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Text(
+                        widget.contact.fullName,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              if (isExpanded)
+                GestureDetector(
+                  onTap: () => widget.onEdit(widget.contact.id),
+                  child: SvgPicture.asset(
+                    AppDrawables.edit,
+                    width: 20,
+                    height: 20,
+                  ),
+                ),
+            ],
+          ),
+          ExpandedSection(
+            expand: isExpanded,
+            child: Column(
+              children: [
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () =>
+                          widget.onPhoneCall(widget.contact.phoneNumber ?? ''),
+                      child: SvgPicture.asset(
+                        AppDrawables.phoneCircle,
+                        width: 36,
+                        height: 36,
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    GestureDetector(
+                      onTap: () =>
+                          widget.onMessage(widget.contact.phoneNumber ?? ''),
+                      child: SvgPicture.asset(
+                        AppDrawables.message,
+                        width: 36,
+                        height: 36,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void onExpand() {
+    isExpanded = !isExpanded;
+    updateState();
+  }
+}

@@ -7,20 +7,20 @@ import 'storage_constants.dart';
 
 abstract class PremadeMessagesLocalStorage {
   //
-  void setPremadeMessages(PremadeMessageResponseDto messages);
-  PremadeMessageResponseDto getPremadeMessages();
+  void setPremadeMessages(PreMadeMessageResponseDto messages);
+  PreMadeMessageResponseDto getPremadeMessages();
 }
 
 class PremadeMessagesLocalStorageImpl implements PremadeMessagesLocalStorage {
   //
   @override
-  PremadeMessageResponseDto getPremadeMessages() {
+  PreMadeMessageResponseDto getPremadeMessages() {
     final box = Hive.box(StorageConstants.appBox);
     return box.get(StorageConstants.premadeMessages);
   }
 
   @override
-  void setPremadeMessages(PremadeMessageResponseDto messages) {
+  void setPremadeMessages(PreMadeMessageResponseDto messages) {
     final box = Hive.box(StorageConstants.appBox);
     box.put(StorageConstants.premadeMessages, messages);
   }

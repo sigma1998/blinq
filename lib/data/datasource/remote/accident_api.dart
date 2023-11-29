@@ -16,6 +16,12 @@ abstract class AccidentApi {
   Future<void> adAccidentLocationAndTime(
       int accidentId, AccidentTimeAndLocationDto accidentTimeAndLocationDto);
 
+  Future<int> uploadFile(
+      {required File file,
+      required int accidentId,
+      required String format,
+      required String name});
+
   ///for driver a
   Future<void> accidentInjury(int accidentId, InjuryDto injuryDto);
 
@@ -36,6 +42,8 @@ abstract class AccidentApi {
       required int accidentId,
       required String damageParts});
 
+  Future<void> uploadMedia(int accidentId, List<int> uploadedFilesId);
+
   ///for driver b
   Future<void> accidentInjuryB(int accidentId, InjuryDto injuryDto);
 
@@ -55,6 +63,8 @@ abstract class AccidentApi {
       required File right,
       required int accidentId,
       required String damageParts});
+
+  Future<void> uploadMediaB(int accidentId, List<int> uploadedFilesId);
 }
 
 class AccidentApiImpl implements AccidentApi {
@@ -76,7 +86,8 @@ class AccidentApiImpl implements AccidentApi {
   @override
   Future<int> createAccident(String long, String lat) async {
     try {
-      final res = await api.post(NetworkConstants.createReport);
+      final res = await api.post(NetworkConstants.createReport,
+          data: {'long': long, 'lat': lat});
 
       return res['accident_id'];
     } catch (e) {
@@ -236,6 +247,46 @@ class AccidentApiImpl implements AccidentApi {
         'left': left,
         'right': right,
         'damage_parts': damageParts
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<int> uploadFile(
+      {required File file,
+      required int accidentId,
+      required String format,
+      required String name}) async {
+    try {
+      final res = await api.post(NetworkConstants.uploadFile, data: {
+        'file': file,
+        'format': format,
+        'name': name,
+      });
+      return res['id'] as int;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> uploadMedia(int accidentId, List<int> uploadedFilesId) async {
+    try {
+      await api.patch(NetworkConstants.uploadMedia(accidentId), data: {
+        'file_ids': uploadedFilesId,
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> uploadMediaB(int accidentId, List<int> uploadedFilesId) async {
+    try {
+      await api.patch(NetworkConstants.uploadMediaB(accidentId), data: {
+        'file_ids': uploadedFilesId,
       });
     } catch (e) {
       rethrow;

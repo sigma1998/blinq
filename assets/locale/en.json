@@ -625,6 +625,9 @@
   "strDamageReportSent": "The damage report has been sent!",
   "strYourInformMessageSent": "Your Inform message has been sent!",
   "strVehicleType": "Choose the type of your vehicle",
+  "strSelectFromGallery": "Select from Gallery",
+  "strRecordVideo": "Record Video",
+  "strMaxMediaFiles": "Maximum 2 video and 6 image media files can be uploaded",
   "byke": {
     "windshield": "windshield",
     "handlebars": "handlebars",
@@ -724,9 +727,3 @@
     "rear left wheel":  "rear left wheel"
   }
 }
-
-
-
-
-
-

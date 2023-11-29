@@ -1,19 +1,23 @@
 // Flutter imports:
+import 'package:blinq/app/locator.dart';
+import 'package:blinq/app/routes.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/domain/repositories/premade_messages_repository.dart';
-import 'package:flutter/material.dart';
+import 'package:blinq/presentation/connect_to_blinq/cubit/connect_to_blinq_cubit.dart';
+import 'package:blinq/utils/services/permission/permission_service.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'core/theme/app_theme.dart';
 import 'domain/repositories/contacts_repository.dart';
 import 'domain/repositories/profile_repository.dart';
-import 'package:blinq/app/locator.dart';
-import 'package:blinq/app/routes.dart';
-import 'presentation/contacts/views/contacts/bloc/contacts_bloc.dart';
-import 'presentation/contacts/views/premade_messages/bloc/premade_messages_bloc.dart';
+import 'presentation/contacts/pages/contacts/bloc/contacts_bloc.dart';
+import 'presentation/contacts/pages/premade_messages/bloc/premade_messages_bloc.dart';
 import 'presentation/main_screen/main_screen_bloc.dart';
 import 'presentation/profile/bloc/profile_bloc.dart';
 import 'presentation/success_video/success_video_bloc.dart';
@@ -59,7 +63,7 @@ class MyAppState extends State<MyApp> {
         ),
         BlocProvider<ProfileBloc>(
           create: (context) => ProfileBloc(
-            mediaService: getIt<MediaService>(),
+            mediaService: getIt<MediaServiceImpl>(),
             repository: getIt<ProfileRepositoryImpl>(),
           ),
         ),
@@ -68,11 +72,19 @@ class MyAppState extends State<MyApp> {
             repository: getIt<ContactsRepositoryImpl>(),
           ),
         ),
-        // PremadeMessagesBloc(),
-        BlocProvider<PremadeMessagesBloc>(
-          create: (context) => PremadeMessagesBloc(
+        BlocProvider<PreMadeMessagesBloc>(
+          create: (context) => PreMadeMessagesBloc(
             repository: getIt<PremadeMessagesRepositoryImpl>(),
           ),
+        ),
+        BlocProvider<ConnectToBlinqCubit>(
+          create: (context) => ConnectToBlinqCubit(
+            permissionService: getIt<PermissionServiceImpl>(),
+          )..checkBluetoothStatus(),
+        ),
+        BlocProvider<ReportBloc>(
+          create: (context) =>
+              ReportBloc(accidentRepository: getIt<AccidentRepositoryImpl>()),
         ),
       ],
       child: MaterialApp(

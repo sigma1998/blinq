@@ -6,11 +6,21 @@ class AppDrawables {
   static const moto = '$images/moto';
   static const van = '$images/van';
   static const animations = 'assets/animations';
+  static const info = '$images/info';
 
   ///
   /// Animations
   ///
   static const String successAnim = '$animations/success.json';
+  static const String scanAnim = '$animations/scan.json';
+
+  ///
+  /// Info
+  ///
+  static const String faq = '$info/faq.png';
+  static const String masthead = '$info/masthead.png';
+  static const String registration = '$info/registration.png';
+  static const String technicalData = '$info/technical_data.png';
 
   ///
   /// Icons
@@ -28,9 +38,16 @@ class AppDrawables {
   static const String plus = '$icons/plus.svg';
 
   static const String gallery = '$icons/gallery.svg';
+  static const String camera = '$icons/camera.svg';
   static const String calendar = '$icons/calendar.svg';
   static const String time = '$icons/time.svg';
   static const String share = '$icons/share.svg';
+  static const String comingSoon = '$icons/coming_soon.svg';
+
+  static const String blinqBreakdown = '$icons/blinq_breakdown.svg';
+  static const String blinqAccident = '$icons/blinq_accident.svg';
+  static const String blinqBloothooth = '$icons/blinq_bluetooth.svg';
+  static const String mobilePhone = '$icons/mobile_phone.svg';
 
   //~ Social Media
   static const String telegram = '$icons/telegram.svg';

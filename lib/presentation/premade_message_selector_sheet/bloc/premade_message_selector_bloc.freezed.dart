@@ -17,9 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$PremadeMessageSelectorState {
   Status get status => throw _privateConstructorUsedError;
-  List<PremadeMessageResponseModel> get premadeMessages =>
+  List<PreMadeMessageResponseModel> get premadeMessages =>
       throw _privateConstructorUsedError;
-  PremadeMessageResponseModel? get selectedMessage =>
+  PreMadeMessageResponseModel? get selectedMessage =>
       throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
@@ -38,11 +38,11 @@ abstract class $PremadeMessageSelectorStateCopyWith<$Res> {
   @useResult
   $Res call(
       {Status status,
-      List<PremadeMessageResponseModel> premadeMessages,
-      PremadeMessageResponseModel? selectedMessage,
+      List<PreMadeMessageResponseModel> premadeMessages,
+      PreMadeMessageResponseModel? selectedMessage,
       Error? error});
 
-  $PremadeMessageResponseModelCopyWith<$Res>? get selectedMessage;
+  $PreMadeMessageResponseModelCopyWith<$Res>? get selectedMessage;
 }
 
 /// @nodoc
@@ -72,11 +72,11 @@ class _$PremadeMessageSelectorStateCopyWithImpl<$Res,
       premadeMessages: null == premadeMessages
           ? _value.premadeMessages
           : premadeMessages // ignore: cast_nullable_to_non_nullable
-              as List<PremadeMessageResponseModel>,
+              as List<PreMadeMessageResponseModel>,
       selectedMessage: freezed == selectedMessage
           ? _value.selectedMessage
           : selectedMessage // ignore: cast_nullable_to_non_nullable
-              as PremadeMessageResponseModel?,
+              as PreMadeMessageResponseModel?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -86,12 +86,12 @@ class _$PremadeMessageSelectorStateCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $PremadeMessageResponseModelCopyWith<$Res>? get selectedMessage {
+  $PreMadeMessageResponseModelCopyWith<$Res>? get selectedMessage {
     if (_value.selectedMessage == null) {
       return null;
     }
 
-    return $PremadeMessageResponseModelCopyWith<$Res>(_value.selectedMessage!,
+    return $PreMadeMessageResponseModelCopyWith<$Res>(_value.selectedMessage!,
         (value) {
       return _then(_value.copyWith(selectedMessage: value) as $Val);
     });
@@ -109,12 +109,12 @@ abstract class _$$PremadeMessageSelectorStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {Status status,
-      List<PremadeMessageResponseModel> premadeMessages,
-      PremadeMessageResponseModel? selectedMessage,
+      List<PreMadeMessageResponseModel> premadeMessages,
+      PreMadeMessageResponseModel? selectedMessage,
       Error? error});
 
   @override
-  $PremadeMessageResponseModelCopyWith<$Res>? get selectedMessage;
+  $PreMadeMessageResponseModelCopyWith<$Res>? get selectedMessage;
 }
 
 /// @nodoc
@@ -143,11 +143,11 @@ class __$$PremadeMessageSelectorStateImplCopyWithImpl<$Res>
       premadeMessages: null == premadeMessages
           ? _value._premadeMessages
           : premadeMessages // ignore: cast_nullable_to_non_nullable
-              as List<PremadeMessageResponseModel>,
+              as List<PreMadeMessageResponseModel>,
       selectedMessage: freezed == selectedMessage
           ? _value.selectedMessage
           : selectedMessage // ignore: cast_nullable_to_non_nullable
-              as PremadeMessageResponseModel?,
+              as PreMadeMessageResponseModel?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -162,7 +162,7 @@ class _$PremadeMessageSelectorStateImpl
     implements _PremadeMessageSelectorState {
   const _$PremadeMessageSelectorStateImpl(
       {this.status = Status.initial,
-      final List<PremadeMessageResponseModel> premadeMessages = const [],
+      final List<PreMadeMessageResponseModel> premadeMessages = const [],
       this.selectedMessage,
       this.error})
       : _premadeMessages = premadeMessages;
@@ -170,17 +170,17 @@ class _$PremadeMessageSelectorStateImpl
   @override
   @JsonKey()
   final Status status;
-  final List<PremadeMessageResponseModel> _premadeMessages;
+  final List<PreMadeMessageResponseModel> _premadeMessages;
   @override
   @JsonKey()
-  List<PremadeMessageResponseModel> get premadeMessages {
+  List<PreMadeMessageResponseModel> get premadeMessages {
     if (_premadeMessages is EqualUnmodifiableListView) return _premadeMessages;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_premadeMessages);
   }
 
   @override
-  final PremadeMessageResponseModel? selectedMessage;
+  final PreMadeMessageResponseModel? selectedMessage;
   @override
   final Error? error;
 
@@ -222,16 +222,16 @@ abstract class _PremadeMessageSelectorState
     implements PremadeMessageSelectorState {
   const factory _PremadeMessageSelectorState(
       {final Status status,
-      final List<PremadeMessageResponseModel> premadeMessages,
-      final PremadeMessageResponseModel? selectedMessage,
+      final List<PreMadeMessageResponseModel> premadeMessages,
+      final PreMadeMessageResponseModel? selectedMessage,
       final Error? error}) = _$PremadeMessageSelectorStateImpl;
 
   @override
   Status get status;
   @override
-  List<PremadeMessageResponseModel> get premadeMessages;
+  List<PreMadeMessageResponseModel> get premadeMessages;
   @override
-  PremadeMessageResponseModel? get selectedMessage;
+  PreMadeMessageResponseModel? get selectedMessage;
   @override
   Error? get error;
   @override

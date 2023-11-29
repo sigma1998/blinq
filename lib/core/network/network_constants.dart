@@ -64,6 +64,7 @@ class NetworkConstants {
   ///
   static String createReport = 'v2/api/create/accident/adriver/';
   static String accidentTimeAndPlace (accidentId)=> '/v2/api/adriver/accident/$accidentId/date_time_country_place/';
+  static String uploadFile = 'v2/api/files';
 
   ///driver a
   static String injury (accidentId)=> '/v2/api/adriver/accident/$accidentId/injury/';
@@ -72,6 +73,7 @@ class NetworkConstants {
   static String initialImpactPoint (accidentId)=> '/v2/api/adriver/accident/$accidentId/initial_impact_point/';
   static String myRemarks (accidentId)=> '/v2/api/adriver/accident/$accidentId/my_remarks/';
   static String damagePoints (accidentId)=> '/v2/api/adriver/accident/$accidentId/damage_points/';
+  static String uploadMedia (accidentId)=> '/v2/api/adriver/accident/$accidentId/upload_media/';
 
 
   ///driver b
@@ -81,4 +83,6 @@ class NetworkConstants {
   static String initialImpactPointB (accidentId)=> '/v2/api/bdriver/accident/$accidentId/initial_impact_point/';
   static String myRemarksB (accidentId)=> '/v2/api/bdriver/accident/$accidentId/my_remarks/';
   static String damagePointsB (accidentId)=> '/v2/api/bdriver/accident/$accidentId/damage_points/';
+  static String uploadMediaB (accidentId)=> '/v2/api/bdriver/accident/$accidentId/upload_media/';
+
 }

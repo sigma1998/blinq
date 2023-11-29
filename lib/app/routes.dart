@@ -2,16 +2,22 @@
 import 'package:blinq/presentation/auth/registration/email_screen/email_screen.dart';
 import 'package:blinq/presentation/auth/registration/registration_screen/registration_screen.dart';
 import 'package:blinq/presentation/auth/sign_in_screen/sign_in_screen.dart';
+import 'package:blinq/presentation/connect_to_blinq/connect_to_blinq_screen.dart';
 import 'package:blinq/presentation/contacts/contacts_screen.dart';
-import 'package:blinq/presentation/contacts/editors/contact/contact_editor.dart';
-import 'package:blinq/presentation/contacts/editors/premage_message/premade_message_editor.dart';
+import 'package:blinq/presentation/contacts/editors/contact/contact_edit_screen.dart';
+import 'package:blinq/presentation/contacts/editors/premage_message/premade_message_edit_screen.dart';
 import 'package:blinq/presentation/create_report/create_report_screen.dart';
 import 'package:blinq/presentation/email_editor/email_editor_screen.dart';
 import 'package:blinq/presentation/emergency_services/emergency_services_screen.dart';
-
-// Project imports:
 import 'package:blinq/presentation/forgot_password/reset_password/reset_password_screen.dart';
 import 'package:blinq/presentation/home/home_screen.dart';
+
+// Project imports:
+import 'package:blinq/presentation/home/pages/info/info_screen.dart';
+import 'package:blinq/presentation/home/pages/info/screens/faq/faq_screen.dart';
+import 'package:blinq/presentation/home/pages/info/screens/mast_head_screen.dart';
+import 'package:blinq/presentation/home/pages/info/screens/registration_screen.dart';
+import 'package:blinq/presentation/home/pages/info/screens/technical_data_screen.dart';
 import 'package:blinq/presentation/inform_close_ones/inform_close_ones_screen.dart';
 import 'package:blinq/presentation/intro/first_intro_screen/first_intro_screen.dart';
 import 'package:blinq/presentation/intro/second_intro_screen/second_intro_screen.dart';
@@ -30,6 +36,7 @@ import 'package:blinq/presentation/profile/widgets/editors/policy_holder/policy_
 import 'package:blinq/presentation/profile/widgets/editors/vehicle/vehicle_editor_screen.dart';
 import 'package:blinq/presentation/report/pages/circumstances/circumstances_screen.dart';
 import 'package:blinq/presentation/report/pages/connect_to_driver/connect_to_driver_screen.dart';
+import 'package:blinq/presentation/report/pages/damaged_media/damaged_media_screen.dart';
 import 'package:blinq/presentation/report/pages/demaged_parts/damaged_parts_screen.dart';
 import 'package:blinq/presentation/report/pages/finished/finished_screen.dart';
 import 'package:blinq/presentation/report/pages/injury/injury_screen.dart';
@@ -78,7 +85,7 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     ResetPasswordScreen.route: (context) => const ResetPasswordScreen(),
 
     //& Home
-    CreateReportScreen.route: (context) => CreateReportScreen(),
+    CreateReportScreen.route: (context) => const CreateReportScreen(),
     MedicalAssistanceScreen.route: (context) => const MedicalAssistanceScreen(),
     EmergencyServicesScreen.route: (context) => const EmergencyServicesScreen(),
     InformCloseOnesScreen.route: (context) => const InformCloseOnesScreen(),
@@ -97,8 +104,11 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     SecondDriverEditorScreen.route: (context) =>
         const SecondDriverEditorScreen(),
 
-    ContactEditor.route: (context) => const ContactEditor(),
-    PremadeMessageEditor.route: (context) => const PremadeMessageEditor(),
+    ContactEditScreen.route: (context) => const ContactEditScreen(),
+    PremadeMessageEditScreen.route: (context) =>
+        const PremadeMessageEditScreen(),
+
+    DamagedMediaScreen.route: (context) => const DamagedMediaScreen(),
   };
 }
 
@@ -108,13 +118,15 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
     case HomeScreen.route:
       page = const HomeScreen();
     case CreateReportScreen.route:
-      page =  CreateReportScreen();
+      page = const CreateReportScreen();
+    case ConnectToBlinqScreen.route:
+      page = const ConnectToBlinqScreen();
     case MapScreen.route:
       page = const MapScreen();
     case PointsOfImpactScreen.route:
       page = PointsOfImpactScreen();
     case CircumstancesScreen.route:
-      page = CircumstancesScreen();
+      page = const CircumstancesScreen();
     case SketchScreen.route:
       page = const SketchScreen();
     case DamagedPartsScreen.route:
@@ -132,7 +144,6 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
     case SpeechToTextScreen.route:
       page = const SpeechToTextScreen();
 
-
     default:
       page = const HomeScreen();
   }
@@ -148,12 +159,35 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
 Route onGenerateContactRoutes(RouteSettings settings) {
   late Widget page;
   switch (settings.name) {
-    case ContactsScreen.route:
+    case ContactEditScreen.route:
+      page = const ContactEditScreen();
+    case PremadeMessageEditScreen.route:
+      page = const PremadeMessageEditScreen();
+    default:
       page = const ContactsScreen();
-    case ContactEditor.route:
-      page = const ContactEditor();
-    case PremadeMessageEditor.route:
-      page = const PremadeMessageEditor();
+  }
+
+  return MaterialPageRoute<dynamic>(
+    builder: (context) {
+      return page;
+    },
+    settings: settings,
+  );
+}
+
+Route onGenerateInfoRoutes(RouteSettings settings) {
+  late Widget page;
+  switch (settings.name) {
+    case HomeInfoTechnicalDataScreen.route:
+      page = const HomeInfoTechnicalDataScreen();
+    case HomeInfoRegistrationScreen.route:
+      page = const HomeInfoRegistrationScreen();
+    case HomeInfoMastHeadScreen.route:
+      page = const HomeInfoMastHeadScreen();
+    case HomeInfoFaqScreen.route:
+      page = const HomeInfoFaqScreen();
+    default:
+      page = const HomeInfoScreen();
   }
 
   return MaterialPageRoute<dynamic>(

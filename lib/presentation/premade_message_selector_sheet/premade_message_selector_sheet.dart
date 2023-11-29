@@ -6,7 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:blinq/presentation/contacts/views/premade_messages/bloc/premade_messages_bloc.dart';
+import 'package:blinq/presentation/contacts/pages/premade_messages/bloc/premade_messages_bloc.dart';
 import 'package:blinq/utils/custom_widgets/pop_ups/base_selector_sheet.dart';
 import 'package:blinq/utils/services/permission/permission_service.dart';
 import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
@@ -38,8 +38,8 @@ class _PremadeMessageSelectorSheetState
   @override
   void initState() {
     bloc = PremadeMessageSelectorBloc(
-      premadeMessagesBloc: context.read<PremadeMessagesBloc>(),
-      permissionService: getIt<PermissionService>(),
+      premadeMessagesBloc: context.read<PreMadeMessagesBloc>(),
+      permissionService: getIt<PermissionServiceImpl>(),
     );
     bloc.add(OnLoadPremadeMessages());
     super.initState();

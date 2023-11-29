@@ -1,3 +1,7 @@
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
+import 'package:blinq/presentation/connect_to_blinq/connect_to_blinq_screen.dart';
+import 'package:blinq/presentation/create_report/create_report_screen.dart';
 import 'package:blinq/presentation/home/bloc/home_screen_state.dart';
 import 'package:blinq/presentation/map/map_screen.dart';
 import 'package:blinq/utils/map_pin.dart';
@@ -8,13 +12,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class HomeScreenCubit extends Cubit<HomeScreenState> {
-  late GoogleMapController? mapController;
+  final ReportBloc reportBloc;
 
+  late GoogleMapController? mapController;
   final MapPickerController mapPickerController = MapPickerController();
 
   CameraPosition? position;
 
-  HomeScreenCubit() : super(const HomeScreenState()) {
+  HomeScreenCubit({required this.reportBloc}) : super(const HomeScreenState()) {
     _getLocation();
   }
 
@@ -47,8 +52,29 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     NavigationService.pushNamed(
         routeName: MapScreen.route,
         nestedKey: NavigationService.homeNavigatorKey,
-        arguments: MapScreenArgs(
-          initialPosition: position
-        ));
+        arguments: MapScreenArgs(initialPosition: position));
+  }
+
+  void onConnectToBlinqPressed() {
+    NavigationService.pushNamed(
+      routeName: ConnectToBlinqScreen.route,
+      nestedKey: NavigationService.homeNavigatorKey,
+    );
+  }
+
+  void onAccidentPressed() {
+    reportBloc.setReportType(ReportType.accident);
+    NavigationService.pushNamed(
+      routeName: CreateReportScreen.route,
+      nestedKey: NavigationService.homeNavigatorKey,
+    );
+  }
+
+  void onBreakDownPressed() {
+    reportBloc.setReportType(ReportType.breakdown);
+    NavigationService.pushNamed(
+      routeName: CreateReportScreen.route,
+      nestedKey: NavigationService.homeNavigatorKey,
+    );
   }
 }

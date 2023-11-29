@@ -4,10 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:blinq/presentation/premade_message_selector_sheet/premade_message_selector_sheet.dart';
-import 'package:blinq/presentation/contacts/views/contacts/bloc/contacts_bloc.dart';
+import 'package:blinq/presentation/contacts/pages/contacts/bloc/contacts_bloc.dart';
 import 'package:blinq/data/model/contact/response/contact_response_model.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/url_helper.dart';
 import 'inform_close_ones_event.dart';
 
 part 'inform_close_ones_state.dart';
@@ -26,7 +27,7 @@ class InformCloseOnesBloc
 
   void onChoosePremadeMessage() {
     final phoneNumbers =
-    state.selectedContacts.map((e) => e.phoneNumber ?? '').toList();
+        state.selectedContacts.map((e) => e.phoneNumber ?? '').toList();
 
     NavigationService.showBottomSheet(
       isScrollable: false,
@@ -35,6 +36,8 @@ class InformCloseOnesBloc
       ),
     );
   }
+
+  void onPhoneCall(String phoneNumber) => MyUrlLauncher.call(phoneNumber);
 
   void _onLoadContacts(
       OnLoadContacts event, Emitter<InformCloseOnesState> emit) {
@@ -56,5 +59,4 @@ class InformCloseOnesBloc
     }
     emit(state.copyWith(selectedContacts: list));
   }
-
 }

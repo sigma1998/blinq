@@ -1,10 +1,29 @@
 // Package imports:
 import 'package:permission_handler/permission_handler.dart';
 
-// Project imports:
-import 'i_permission_service.dart';
+abstract class PermissionService {
+  Future requestCameraPermission();
+  Future requestPhotosPermission();
+  Future requestLocationPermission();
+  Future requestNotificationPermission();
+  Future requestSendSmsPermission();
 
-class PermissionService extends IPermissionService {
+  Future requrestBluetoothScanPermission();
+  Future requrestBluetoothConnectPermission();
+
+  //
+
+  Future<bool> handleCameraPermission();
+  Future<bool> handlePhotosPermission();
+  Future<bool> handleLocationPermission();
+  Future<bool> handleNotificationPermission();
+  Future<bool> handleSendSmsPermission();
+
+  Future<bool> handleBluetoothScanPermission();
+  Future<bool> handleBluetoothConnectPermission();
+}
+
+class PermissionServiceImpl extends PermissionService {
   //
   @override
   Future<PermissionStatus> requestCameraPermission() async =>
@@ -25,6 +44,14 @@ class PermissionService extends IPermissionService {
   @override
   Future<PermissionStatus> requestSendSmsPermission() async =>
       await Permission.sms.request();
+
+  @override
+  Future<PermissionStatus> requrestBluetoothScanPermission() async =>
+      await Permission.bluetoothScan.request();
+
+  @override
+  Future<PermissionStatus> requrestBluetoothConnectPermission() async =>
+      await Permission.bluetoothConnect.request();
 
   //
 
@@ -73,6 +100,28 @@ class PermissionService extends IPermissionService {
     final sendSmsPermissionStatus = await requestSendSmsPermission();
 
     if (sendSmsPermissionStatus != PermissionStatus.granted) {
+      return openAppSettings();
+    }
+    return true;
+  }
+
+  @override
+  Future<bool> handleBluetoothScanPermission() async {
+    final bluetoothScanPermissionStatus =
+        await requrestBluetoothScanPermission();
+
+    if (bluetoothScanPermissionStatus != PermissionStatus.granted) {
+      return openAppSettings();
+    }
+    return true;
+  }
+
+  @override
+  Future<bool> handleBluetoothConnectPermission() async {
+    final bluetoothConnectPermissionStatus =
+        await requrestBluetoothConnectPermission();
+
+    if (bluetoothConnectPermissionStatus != PermissionStatus.granted) {
       return openAppSettings();
     }
     return true;

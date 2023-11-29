@@ -4,8 +4,8 @@ part of 'premade_message_selector_bloc.dart';
 class PremadeMessageSelectorState with _$PremadeMessageSelectorState {
   const factory PremadeMessageSelectorState({
     @Default(Status.initial) Status status,
-    @Default([]) List<PremadeMessageResponseModel> premadeMessages,
-    PremadeMessageResponseModel? selectedMessage,
+    @Default([]) List<PreMadeMessageResponseModel> premadeMessages,
+    PreMadeMessageResponseModel? selectedMessage,
     Error? error,
   }) = _PremadeMessageSelectorState;
 }

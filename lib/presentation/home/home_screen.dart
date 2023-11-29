@@ -1,15 +1,15 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 // Project improts:
 import 'package:blinq/presentation/home/bloc/home_screen_cubit.dart';
 import 'package:blinq/utils/custom_widgets/tab_bar.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'pages/home_main.dart';
-import 'pages/info.dart';
+import 'pages/info/info.dart';
 
 class HomeScreen extends StatefulWidget {
   //
@@ -30,8 +30,15 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
-    homeScreenCubit = HomeScreenCubit();
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    homeScreenCubit = HomeScreenCubit(
+      reportBloc: context.read(),
+    );
+    super.didChangeDependencies();
   }
 
   @override

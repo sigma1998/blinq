@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
 
@@ -17,16 +18,28 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/create_report_bloc.dart';
 import 'widgets/item.dart';
 
-class CreateReportScreen extends StatelessWidget {
+class CreateReportScreen extends StatefulWidget {
   //
   static const route = '/create_report';
 
-  CreateReportScreen({super.key});
+  const CreateReportScreen({super.key});
 
-  final bloc = CreateReportBloc(
-    profileRepository: getIt<ProfileRepositoryImpl>(),
-    accidentRepository: getIt<AccidentRepositoryImpl>(),
-  );
+  @override
+  State<CreateReportScreen> createState() => _CreateReportScreenState();
+}
+
+class _CreateReportScreenState extends State<CreateReportScreen> {
+  late final CreateReportBloc bloc;
+
+  @override
+  void didChangeDependencies() {
+    bloc = CreateReportBloc(
+      profileRepository: getIt<ProfileRepositoryImpl>(),
+      accidentRepository: getIt<AccidentRepositoryImpl>(),
+      reportBloc: context.read<ReportBloc>(),
+    );
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {

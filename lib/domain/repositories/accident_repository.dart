@@ -17,6 +17,12 @@ abstract class AccidentRepository {
   Future<void> adAccidentLocationAndTime(
       int accidentId, AccidentTimeAndLocationDto accidentTimeAndLocationDto);
 
+  Future<int> uploadFile(
+      {required File file,
+      required int accidentId,
+      required String format,
+      required String name});
+
   ///for driver a
   Future<void> accidentInjury(int accidentId, InjuryDto injuryDto);
 
@@ -37,6 +43,8 @@ abstract class AccidentRepository {
       required int accidentId,
       required String damageParts});
 
+  Future<void> uploadMedia(int accidentId, List<int> uploadedFilesId);
+
   ///for driver b
   Future<void> accidentInjuryB(int accidentId, InjuryDto injuryDto);
 
@@ -56,6 +64,8 @@ abstract class AccidentRepository {
       required File right,
       required int accidentId,
       required String damageParts});
+
+  Future<void> uploadMediaB(int accidentId, List<int> uploadedFilesId);
 }
 
 class AccidentRepositoryImpl implements AccidentRepository {
@@ -224,6 +234,38 @@ class AccidentRepositoryImpl implements AccidentRepository {
   Future<void> visibleDamageB(int accidentId, String visibleDamage) async {
     try {
       return await api.visibleDamageB(accidentId, visibleDamage);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<int> uploadFile(
+      {required File file,
+      required int accidentId,
+      required String format,
+      required String name}) async {
+    try {
+      return await api.uploadFile(
+          file: file, accidentId: accidentId, format: format, name: name);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> uploadMedia(int accidentId, List<int> uploadedFilesId) async {
+    try {
+      return await api.uploadMedia(accidentId, uploadedFilesId);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> uploadMediaB(int accidentId, List<int> uploadedFilesId) async {
+    try {
+      return await api.uploadMediaB(accidentId, uploadedFilesId);
     } catch (e) {
       rethrow;
     }

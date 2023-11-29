@@ -8,6 +8,8 @@ import 'package:blinq/presentation/home/bloc/home_screen_cubit.dart';
 import 'package:blinq/presentation/home/bloc/home_screen_state.dart';
 import 'package:blinq/presentation/home/widgets/map.dart';
 import 'package:blinq/presentation/home/widgets/menu_item.dart';
+import 'package:blinq/presentation/main_screen/main_screen_bloc.dart';
+import 'package:blinq/presentation/main_screen/main_screen_event.dart';
 import 'package:blinq/utils/navigation_service.dart';
 
 // Package imports:
@@ -39,7 +41,8 @@ class HomeMain extends StatelessWidget {
                         child: HomeScreenMenuItem(
                           text: 'strEmergencyContacts'.tr(),
                           icon: AppDrawables.emergencyBook,
-                          onTap: () {},
+                          onTap: () => context.read<MainScreenBloc>()
+                            ..add(OnItemPressed(newIndex: 1)),
                         ),
                       ),
                     ),
@@ -56,7 +59,7 @@ class HomeMain extends StatelessWidget {
                           icon: state.isBlinqConnected
                               ? AppDrawables.blinqConnected
                               : AppDrawables.blinq,
-                          onTap: () {},
+                          onTap: bloc.onConnectToBlinqPressed,
                         ),
                       ),
                     ),
@@ -80,7 +83,7 @@ class HomeMain extends StatelessWidget {
                           padding: 10,
                           background: AppDrawables.breakdown,
                           text: 'strBreakDown'.tr(),
-                          onTap: () {},
+                          onTap: bloc.onBreakDownPressed,
                         ),
                       ),
                     ),
@@ -94,12 +97,7 @@ class HomeMain extends StatelessWidget {
                           padding: 10,
                           text: 'strAccident'.tr(),
                           background: AppDrawables.accident,
-                          onTap: () {
-                            NavigationService.pushNamed(
-                              routeName: CreateReportScreen.route,
-                              nestedKey: NavigationService.homeNavigatorKey,
-                            );
-                          },
+                          onTap: bloc.onAccidentPressed,
                         ),
                       ),
                     ),

@@ -1,9 +1,7 @@
 {
-  "strIndicateDescription":
-  "Jelölje nyíllal azt a pontot, ahol az első ütközés pont a járművel történt",
+  "strIndicateDescription": "Jelölje nyíllal azt a pontot, ahol az első ütközés pont a járművel történt",
   "strPleaseSignBreakdown": "Kérem írja alá",
-  "strBigTxt2":
-  "Tegyen egy keresztet a megfelelő négyzetekbe, hogy segítse a rajz magyarázatát",
+  "strBigTxt2": "Tegyen egy keresztet a megfelelő négyzetekbe, hogy segítse a rajz magyarázatát",
   "strBlinqActivatedQuestions": "Hé! Jól vagy? \n Hogyan segíthetünk?",
   "strUnpair": "Párosítás megszüntetése",
   "strStartScan": "Indítsa el a szkennelést",
@@ -28,8 +26,7 @@
   "strEnterYourNewEmail": "Írja be az új e-mail címét",
   "strEnterThePassword": "Írja be a jelszót",
   "strEnterNewPassword": "Adjon meg egy új jelszót",
-  "strEnterNewEmailIfYouWantChange":
-  "Ha módosítani szeretne, írjon be egy új e-mail címet",
+  "strEnterNewEmailIfYouWantChange": "Ha módosítani szeretne, írjon be egy új e-mail címet",
   "strChangeEmail": "E-mailt változtatni",
   "strEditPolicyHolder": "Szerkessze a kötvénytulajdonost",
   "strEditInsuranceCompany": "Biztosító társaság szerkesztése",
@@ -56,35 +53,22 @@
   "strTitle6": "A személy nem lélegzik",
   "strTitle7": "Égési sérülések",
   "strTitle8": "Sokk",
-  "strSubTitle1":
-  "A tűz és a további ütközések jelentik a legnagyobb veszélyt egy balesetet követően. Legyen óvatos, amikor ütközésbe ütköző járműhöz közeledik, állítsa le a motort, és ha lehetséges, próbálja meg figyelmeztetni a többi járművezetőt. Adjon el minden cigarettát.",
-  "strSubTitle2":
-  "Ha van jelenlévő, kérje meg őket, hogy hívják a 999-es vagy a 112-es segélyszolgálatot, közöljék az ütközés pontos helyét és az érintett járművek számát. Adjon meg minél több információt a sérült állapotáról (ha például nem reagálnak vagy erősen vérzik).",
-  "strSubTitle3":
-  "• Ne mozgassa a sérülteket, hacsak nem áll fenn további veszély\n• Ne vegye le a motoros sisakját, hacsak nem feltétlenül szükséges\nA sérültek sokkot kaphatnak, így:\n• Ne adjon nekik enni vagy inni\n• Ne hagyja őket magukra, és ne hagyja, hogy más forgalom útjába tévedjenek\n• A lehető legmelegebbé és kényelmesebbé tegye őket, védve őket az esőtől vagy hótól, de kerülve a szükségtelen mozgást\n• Nyugtassa meg őket magabiztosan",
-  "strSubTitle4":
-  "Memorizálja a betűket D R A B C Veszély: ellenőrizze, hogy nincs veszélyben. Válasz: tegyen fel kérdéseket, és finoman rázza meg a sérült vállát, hogy megpróbálja megkapni a Response Airwayt: ha a személy nem beszél, és a légút korlátozható, tegye az egyik kezét az álla alá és emelje fel és előre. Ha továbbra is nehezen lélegzik, óvatosan döntse hátra a fejét. Légzés: Normál légzést kell kialakítani. Ha a légutak nyitva vannak, ellenőrizze a légzést legfeljebb 10 másodpercig. Kompressziók: ha nincs életjel és pulzus, adjon mellkasi kompressziót. Helyezze 2 kezét a mellkas közepére, és nyomja le erősen (5-6 cm) és gyorsan (másodpercenként kétszer). Lehet, hogy csak az egyik kezére van szüksége egy gyereknek, és ne nyomja le annyira. Csecsemőknél használja 2 ujját a mellkas közepén, amikor kompressziót ad, de ne nyomja le túlságosan.",
-  "strSubTitle5":
-  "Ellenőrizze, hogy van-e valami a sebben, például üveg vagy törmelék. Ha semmi nincs beágyazva, erős nyomást gyakoroljon a sebre. Ha a sebbe valami beágyazódott, ne nyomja meg a tárgyat – építsen fel párnázást annak mindkét oldalán. Rögzítse a betétet a sebhez kötéssel vagy hosszúságú ruhával. Használja a rendelkezésre álló legtisztább anyagot. Ha egy végtag vérzik, de nem törik el, emelje a szív szintje fölé, hogy csökkentse a véráramlást. A vérkeringés rövidebbnél hosszabb ideig tartó korlátozása hosszú távú sérüléseket okozhat.",
-  "strSubTitle6":
-  "Ha a sérült nem lélegzik, érdemes lehet szájból szájba lélegezni. Ellenőrizze, és szükség esetén tisztítsa meg a szájukat és a légutakat. Finoman döntse hátra a fejét, amennyire csak lehetséges. Csípje össze az orrlyukakat. Tedd a szád az övék fölé. Vegyünk két lélegzetet, mindegyik két másodpercig tart. Folytassa a 30 mellkaskompresszióból és két légzésből álló ciklusokat, amíg a segítség meg nem érkezik.",
-  "strSubTitle7":
-  "Hűtse le az égési sérülést tiszta, hideg vízzel vagy hasonló, nem mérgező folyadékkal legalább 10 percig. Ne próbáljon meg eltávolítani semmit, ami az égési helyre tapadt.",
-  "strSubTitle8":
-  "Az elsősegélynyújtás szempontjából a sokk nem érzelem, hanem egészségügyi állapot, és nagyon súlyos is lehet.\n\nA tünetek közé tartozik\n• A bőr sápadtsága\n• A bőr nyirkossága\n• Gyors, felületes légzés\n• Gyors, gyenge pulzus\n• Ásítás vagy sóhajtozás\n• Zavartság\nEszméletvesztés (extrém esetekben).\nEzzel segíthetsz egy sokktól szenvedő személynek\nNe adjon nekik enni vagy inni. Később műtétre lehet szükségük, így jobb lesz, ha üres a gyomruk.\nFektesse le őket felemelt lábbal, hogy fokozza a fej vérellátását.\nHívj segítséget. Magyarázza el, hogy Ön szerint a személy sokkos állapotban van, és miért (szívroham, sérülés stb.)\nLazítsa meg a szűk ruházatot a személy nyaka, mellkasa vagy dereka körül.\nTartsa őket melegen, kényelmesen és nyugodtan.\nFolyamatosan ellenőrizze légzésüket, pulzusukat és reakciószintjüket.\nHa elveszítik az eszméletüket vagy leállnak a légzésük, készüljön fel a mellkasi kompresszióra vagy szájról szájra.",
-  "strQuession1":
-  "1. Hogyan tekinthetem meg a korábban elkészült jelentéseimet?",
+  "strSubTitle1": "A tűz és a további ütközések jelentik a legnagyobb veszélyt egy balesetet követően. Legyen óvatos, amikor ütközésbe ütköző járműhöz közeledik, állítsa le a motort, és ha lehetséges, próbálja meg figyelmeztetni a többi járművezetőt. Adjon el minden cigarettát.",
+  "strSubTitle2": "Ha van jelenlévő, kérje meg őket, hogy hívják a 999-es vagy a 112-es segélyszolgálatot, közöljék az ütközés pontos helyét és az érintett járművek számát. Adjon meg minél több információt a sérült állapotáról (ha például nem reagálnak vagy erősen vérzik).",
+  "strSubTitle3": "• Ne mozgassa a sérülteket, hacsak nem áll fenn további veszély\n• Ne vegye le a motoros sisakját, hacsak nem feltétlenül szükséges\nA sérültek sokkot kaphatnak, így:\n• Ne adjon nekik enni vagy inni\n• Ne hagyja őket magukra, és ne hagyja, hogy más forgalom útjába tévedjenek\n• A lehető legmelegebbé és kényelmesebbé tegye őket, védve őket az esőtől vagy hótól, de kerülve a szükségtelen mozgást\n• Nyugtassa meg őket magabiztosan",
+  "strSubTitle4": "Memorizálja a betűket D R A B C Veszély: ellenőrizze, hogy nincs veszélyben. Válasz: tegyen fel kérdéseket, és finoman rázza meg a sérült vállát, hogy megpróbálja megkapni a Response Airwayt: ha a személy nem beszél, és a légút korlátozható, tegye az egyik kezét az álla alá és emelje fel és előre. Ha továbbra is nehezen lélegzik, óvatosan döntse hátra a fejét. Légzés: Normál légzést kell kialakítani. Ha a légutak nyitva vannak, ellenőrizze a légzést legfeljebb 10 másodpercig. Kompressziók: ha nincs életjel és pulzus, adjon mellkasi kompressziót. Helyezze 2 kezét a mellkas közepére, és nyomja le erősen (5-6 cm) és gyorsan (másodpercenként kétszer). Lehet, hogy csak az egyik kezére van szüksége egy gyereknek, és ne nyomja le annyira. Csecsemőknél használja 2 ujját a mellkas közepén, amikor kompressziót ad, de ne nyomja le túlságosan.",
+  "strSubTitle5": "Ellenőrizze, hogy van-e valami a sebben, például üveg vagy törmelék. Ha semmi nincs beágyazva, erős nyomást gyakoroljon a sebre. Ha a sebbe valami beágyazódott, ne nyomja meg a tárgyat – építsen fel párnázást annak mindkét oldalán. Rögzítse a betétet a sebhez kötéssel vagy hosszúságú ruhával. Használja a rendelkezésre álló legtisztább anyagot. Ha egy végtag vérzik, de nem törik el, emelje a szív szintje fölé, hogy csökkentse a véráramlást. A vérkeringés rövidebbnél hosszabb ideig tartó korlátozása hosszú távú sérüléseket okozhat.",
+  "strSubTitle6": "Ha a sérült nem lélegzik, érdemes lehet szájból szájba lélegezni. Ellenőrizze, és szükség esetén tisztítsa meg a szájukat és a légutakat. Finoman döntse hátra a fejét, amennyire csak lehetséges. Csípje össze az orrlyukakat. Tedd a szád az övék fölé. Vegyünk két lélegzetet, mindegyik két másodpercig tart. Folytassa a 30 mellkaskompresszióból és két légzésből álló ciklusokat, amíg a segítség meg nem érkezik.",
+  "strSubTitle7": "Hűtse le az égési sérülést tiszta, hideg vízzel vagy hasonló, nem mérgező folyadékkal legalább 10 percig. Ne próbáljon meg eltávolítani semmit, ami az égési helyre tapadt.",
+  "strSubTitle8": "Az elsősegélynyújtás szempontjából a sokk nem érzelem, hanem egészségügyi állapot, és nagyon súlyos is lehet.\n\nA tünetek közé tartozik\n• A bőr sápadtsága\n• A bőr nyirkossága\n• Gyors, felületes légzés\n• Gyors, gyenge pulzus\n• Ásítás vagy sóhajtozás\n• Zavartság\nEszméletvesztés (extrém esetekben).\nEzzel segíthetsz egy sokktól szenvedő személynek\nNe adjon nekik enni vagy inni. Később műtétre lehet szükségük, így jobb lesz, ha üres a gyomruk.\nFektesse le őket felemelt lábbal, hogy fokozza a fej vérellátását.\nHívj segítséget. Magyarázza el, hogy Ön szerint a személy sokkos állapotban van, és miért (szívroham, sérülés stb.)\nLazítsa meg a szűk ruházatot a személy nyaka, mellkasa vagy dereka körül.\nTartsa őket melegen, kényelmesen és nyugodtan.\nFolyamatosan ellenőrizze légzésüket, pulzusukat és reakciószintjüket.\nHa elveszítik az eszméletüket vagy leállnak a légzésük, készüljön fel a mellkasi kompresszióra vagy szájról szájra.",
+  "strQuession1": "1. Hogyan tekinthetem meg a korábban elkészült jelentéseimet?",
   "strQuession2": "2.Mire valók az előre elkészített üzenetek?",
   "strQuession3": "3.Hogyan párosíthatom a telefonomat a BLINQ-val?",
   "strQuession4": "4. Mi a teendő, ha nem emlékszem a jelszavamra?",
-  "strAnswear1":
-  "A múltban elkészült jelentések megtekintéséhez egyszerűen nyissa meg a „Profil” menü „Saját jelentések” részét. Ez a dedikált terület leegyszerűsíti az előzményjelentések lekérését, és könnyű hozzáférést biztosít a véglegesített dokumentumokhoz. Innen hatékonyan áttekintheti, elemezheti a korábbi jelentéseket, és szükség szerint hivatkozhat rájuk.",
-  "strAnswear2":
-  "Az előre elkészített üzenetek egyszerűsített funkcióként szolgálnak, amely felgyorsítja az üzenetküldési folyamatot, amikor baleseteket vagy üzemzavarokat jelentenek egy kijelölt személynek. Ez a funkció lehetővé teszi az előre meghatározott üzenetek gyors kiválasztását és elküldését a kiválasztott címzettnek, megkönnyítve a hatékony kommunikációt kritikus helyzetekben.",
-  "strAnswear3":
-  "A főmenüben keresse meg és kattintson a 'Csatlakozás a BLINQ-hoz' mezőre. Miután rákattintott, válassza a 'Csatlakozás' lehetőséget. Ez egy új menühöz vezet; ott kattintson a 'Beolvasás' gombra az eszköz megtekintéséhez. Válassza ki eszközét a listából, és kész – az eszköz most csatlakozik a BLINQ-hoz.",
-  "strAnswear4":
-  "Ha elfelejtette jelszavát, ne aggódjon. Könnyen visszaállíthatja a bejelentkezési szakaszból. ahol új jelszót hozhat létre.",
+  "strAnswear1": "A múltban elkészült jelentések megtekintéséhez egyszerűen nyissa meg a „Profil” menü „Saját jelentések” részét. Ez a dedikált terület leegyszerűsíti az előzményjelentések lekérését, és könnyű hozzáférést biztosít a véglegesített dokumentumokhoz. Innen hatékonyan áttekintheti, elemezheti a korábbi jelentéseket, és szükség szerint hivatkozhat rájuk.",
+  "strAnswear2": "Az előre elkészített üzenetek egyszerűsített funkcióként szolgálnak, amely felgyorsítja az üzenetküldési folyamatot, amikor baleseteket vagy üzemzavarokat jelentenek egy kijelölt személynek. Ez a funkció lehetővé teszi az előre meghatározott üzenetek gyors kiválasztását és elküldését a kiválasztott címzettnek, megkönnyítve a hatékony kommunikációt kritikus helyzetekben.",
+  "strAnswear3": "A főmenüben keresse meg és kattintson a 'Csatlakozás a BLINQ-hoz' mezőre. Miután rákattintott, válassza a 'Csatlakozás' lehetőséget. Ez egy új menühöz vezet; ott kattintson a 'Beolvasás' gombra az eszköz megtekintéséhez. Válassza ki eszközét a listából, és kész – az eszköz most csatlakozik a BLINQ-hoz.",
+  "strAnswear4": "Ha elfelejtette jelszavát, ne aggódjon. Könnyen visszaállíthatja a bejelentkezési szakaszból. ahol új jelszót hozhat létre.",
   "strComingSoon": "Hamarosan...",
   "strError": "Hiba",
   "strSuccess": "Siker",
@@ -97,8 +81,7 @@
   "strApplicationName": "Mint Ékszerek",
   "strDemoExpired": "A demó lejárt",
   "strExitApp": "Az alkalmazás bezárásához nyomja meg újra",
-  "strDemoExpiredDescrption":
-  "Az alkalmazás demója már nem érhető el. Kérjük, lépjen kapcsolatba a fejlesztőcsapattal a legfrissebb verzióért.",
+  "strDemoExpiredDescrption": "Az alkalmazás demója már nem érhető el. Kérjük, lépjen kapcsolatba a fejlesztőcsapattal a legfrissebb verzióért.",
   "strDownloading": "Letöltés...",
   "strSkip": "Átugrás",
   "strSelectDamagedPart": "Válassza ki a sérült részt",
@@ -138,8 +121,7 @@
   "strRegister": "Regisztráció",
   "strRepresendtedBy": "Képviseli",
   "strTechnicalData": "Műszaki adatok",
-  "strDummyInfo":
-  "1. Szálljon ki a járműből\n2. Segítsen a többi utasnak is elhagyni a járművet\n3. Hívja a segélyszolgálatot",
+  "strDummyInfo": "1. Szálljon ki a járműből\n2. Segítsen a többi utasnak is elhagyni a járművet\n3. Hívja a segélyszolgálatot",
   "strInstructions": "Utasítások",
   "strIfVehicleCatches": "Ha a jármű bepárásodik vagy tüzet fog",
   "strMyBLINQ": "Saját BLINQ",
@@ -150,18 +132,13 @@
   "strPressScanDevices": "Nyomja meg a Keresés gombot az eszközök kereséséhez",
   "strAvailableDevices": "Elérhető eszközök",
   "strScan": "Keresés",
-  "strgatherIOnfo":
-  "Most információt fogunk összegyűjteni a későbbi kényelem érdekében! Ez időbe telhet.",
+  "strgatherIOnfo": "Most információt fogunk összegyűjteni a későbbi kényelem érdekében! Ez időbe telhet.",
   "strSignSuccessful": "A regisztráció sikeres volt!",
   "strManually": "Kézi beállítás",
-  "strNotificationPermission":
-  "Engedélyezze az értesítéseket, és iratkozzon fel hírlevelünkre a legfrissebb BLINQ-frissítések és egyedi ajánlatok érdekében.",
-  "strLocationPermission":
-  "Kérjük, engedélyezze a helyzet hozzáférést, hogy mindig tudjuk, hol tartózkodik, és bármikor segíthessünk!",
-  "strBluetoothPermission":
-  "Végül, Bluetooth segítségével csatlakozhat a BLINQ-eszközhöz!",
-  "strScanAutomatically":
-  "A vezetői engedély szkennelése az adatok automatikus kitöltéséhez",
+  "strNotificationPermission": "Engedélyezze az értesítéseket, és iratkozzon fel hírlevelünkre a legfrissebb BLINQ-frissítések és egyedi ajánlatok érdekében.",
+  "strLocationPermission": "Kérjük, engedélyezze a helyzet hozzáférést, hogy mindig tudjuk, hol tartózkodik, és bármikor segíthessünk!",
+  "strBluetoothPermission": "Végül, Bluetooth segítségével csatlakozhat a BLINQ-eszközhöz!",
+  "strScanAutomatically": "A vezetői engedély szkennelése az adatok automatikus kitöltéséhez",
   "strYourEmail": "Az e-mail címed",
   "strYourPassword": "A jelszavad",
   "strInformationDriver": "Információk a sofőrről B",
@@ -188,15 +165,14 @@
   "strSignUp": "Regisztráció",
   "strHello": "Helló!",
   "strThanksForUsingBlinq": "Köszönjük, hogy a BLINQ-t használja. Gondoskodunk az Ön biztonságáról.",
-  "strIAmPersonalAssistant":"Én vagyok a személyes biztonsági asszisztense...",
-  "strReports":  "Jelentések",
+  "strIAmPersonalAssistant": "Én vagyok a személyes biztonsági asszisztense...",
+  "strReports": "Jelentések",
   "strSendAcciendtsReports": "Küldje el a\nbalesetijelentéseket",
   "strConnectFriends": "Kapcsolódjon barátaival",
   "strHelpBreakdownAccidents": "Segít a lerobbanások és balesetek esetén",
   "strConnectBlinqx": "Kapcsolódjon a BLINQ-hez",
   "strPersonalAssistant": "Én vagyok a személyes\nbiztonsági asszisztens...",
-  "strThanksBlinq":
-  "Köszönjük, hogy használja a BLINQ-et.\nVigyázunk a biztonságára",
+  "strThanksBlinq": "Köszönjük, hogy használja a BLINQ-et.\nVigyázunk a biztonságára",
   "strBlinqX": "BLINQ",
   "strCreateYourProfile": "Hozza létre a profilját",
   "strWelcomeBack": "Üdvözöljük ismét",
@@ -218,17 +194,14 @@
   "strPassword": "Jelszó",
   "strEmailHint": "E-mail megadása",
   "strPasswordHint": "Jelszó megadása",
-  "strStrongPassword":
-  "A jelszónak tartalmaznia kell 8 karaktert és (A-Z), (!@#), (0-9)",
+  "strStrongPassword": "A jelszónak tartalmaznia kell 8 karaktert és (A-Z), (!@#), (0-9)",
   "strSend": "Küldés",
-  "strBigTxt":
-  "Helyezzen keresztet az összes releváns négyzetbe, hogy segítsen a rajzon való magyarázathoz (\"A\" ön, \"B\" a másik vezetőt ábrázolja)",
+  "strBigTxt": "Helyezzen keresztet az összes releváns négyzetbe, hogy segítsen a rajzon való magyarázathoz (\"A\" ön, \"B\" a másik vezetőt ábrázolja)",
   "strCircumstance": "Körülmény",
   "strRemmeberMe": "Emlékezz rám",
   "strForgotPassword": "Elfelejtett jelszó?",
   "strForgotPasswords": "Elfelejtett jelszó",
-  "strForgotPasswordHint":
-  "A jelszó visszaállításához egy hivatkozás kerül elküldésre az adott e-mail címre.",
+  "strForgotPasswordHint": "A jelszó visszaállításához egy hivatkozás kerül elküldésre az adott e-mail címre.",
   "strDontAccount": "Még nincs fiókja?",
   "strFullName": "Teljes név",
   "strName": "Név",
@@ -239,8 +212,7 @@
   "strAddress": "Cím",
   "strEnterAgency": "Ügynökség megadása",
   "strEnterDate": "Dátum megadása",
-  "strInsuranceCertificateGreenCardValid":
-  "Az biztosítási igazolás vagy\na Zöld Kártya érvényes",
+  "strInsuranceCertificateGreenCardValid": "Az biztosítási igazolás vagy\na Zöld Kártya érvényes",
   "strPolicyNumber": "Szerződési szám",
   "strGreenCardNumber": "Zöld Kártya szám",
   "strEnterGreenCardNumber": "Zöld Kártya szám megadása",
@@ -412,8 +384,7 @@
   "strPaymentStatus": "Fizetési állapot",
   "strMessage": "Üzenet...",
   "strSearchHere": "Keresés itt...",
-  "strDummyText":
-  "Lorem Ipsum csak egy egyszerű szöveg a nyomtatás és tördelés iparágból. Azóta a 1500-as évek óta az ipar szabványos dummiszövege volt, amikor ismeretlen nyomtató egy teljes betűkészletet vett és összekeverte, hogy egy betűtípus példányt készítsen.",
+  "strDummyText": "Lorem Ipsum csak egy egyszerű szöveg a nyomtatás és tördelés iparágból. Azóta a 1500-as évek óta az ipar szabványos dummiszövege volt, amikor ismeretlen nyomtató egy teljes betűkészletet vett és összekeverte, hogy egy betűtípus példányt készítsen.",
   "strRequestCancelled": "Kérés megszakítva",
   "strNotSubType": "nem altypusa",
   "strUnableToProcessData": "Az adatok feldolgozása nem lehetséges",
@@ -432,8 +403,7 @@
   "strFormetException": "Formátum kivétel",
   "strConnectionRefused": "Kapcsolat visszautasítva",
   "strNetworkUnReachable": "A hálózat elérhetetlen",
-  "strServerUnderMaintance":
-  "Valami hiba történt. Kérjük, próbálja újra később",
+  "strServerUnderMaintance": "Valami hiba történt. Kérjük, próbálja újra később",
   "strPleaseTryAgain": "Kérjük, próbálja újra később",
   "strTryAgain": "Próbálja újra",
   "strFalidToHostLookup": "Sikertelen gazda keresés",
@@ -444,10 +414,8 @@
   "strCPasswordEmpty": "A jelszó megerősítése nem lehet üres!",
   "strInvalidPassword": "A jelszónak legalább 8 karaktert kell tartalmaznia.",
   "strPasswordMatc": "A jelszó és a megerősítésnek egyezniük kell.",
-  "strPhoneNumberInvalid":
-  "Kérjük, adjon meg egy 8-15 számjegyű telefonszámot.",
-  "strSpecialCharacter":
-  "Kérjük, csak számot adjon meg, ne tartalmazzon speciális karaktereket.",
+  "strPhoneNumberInvalid": "Kérjük, adjon meg egy 8-15 számjegyű telefonszámot.",
+  "strSpecialCharacter": "Kérjük, csak számot adjon meg, ne tartalmazzon speciális karaktereket.",
   "strInvalidAddress": "Kérjük, adjon meg érvényes címet.",
   "strCannotBeEmpty": "nem lehet üres",
   "strInvalidFullName": "Kérjük, adjon meg érvényes nevet.",
@@ -461,8 +429,7 @@
   "strProfileImage": "Profilkép kiválasztása",
   "strDeleteAddressDescription": "Biztosan törölni szeretné a címet?",
   "strRemoveFromCart": "Biztosan eltávolítja a terméket a kosárból?",
-  "strAcceptTnc":
-  "Kérjük, olvassa el és fogadja el az általános szerződési feltételeket.",
+  "strAcceptTnc": "Kérjük, olvassa el és fogadja el az általános szerződési feltételeket.",
   "strFirstName": "Keresztnév",
   "strEnterFirstName": "Adja meg a keresztnévét",
   "strLastName": "Vezetéknév",
@@ -509,8 +476,7 @@
   "strRegistrationNumbers": "Bejegyzési szám",
   "str2RStV": "2RStV",
   "strLetsQuickelyHelpYouNed": "Gyorsan segítünk,\namire szüksége van!",
-  "strPleaseFillRegisterFuture":
-  "Kérjük, töltse ki a regisztrációt a végéig, mivel ezre a jövőben szükség lesz.",
+  "strPleaseFillRegisterFuture": "Kérjük, töltse ki a regisztrációt a végéig, mivel ezre a jövőben szükség lesz.",
   "strYouhaveNotFinishedRegistering": "Még nem fejezte be a regisztrációt",
   "strBusinessAddress": "Auto 700GmbH",
   "strSearch": "Keresés",
@@ -536,8 +502,7 @@
   "strGetOutCar": "Szálj ki az autóból",
   "strHelpOtherOccupants": "Segíts a többi utasnak is elhagyni az autót",
   "strContactEmergencyService": "Hívd a segélyszolgálatot",
-  "strConnectFillReportTogether":
-  "Kapcsolódj össze a jelentés együtt kitöltéséhez",
+  "strConnectFillReportTogether": "Kapcsolódj össze a jelentés együtt kitöltéséhez",
   "strEmergencyCalls": "Segélyhívások",
   "strTapToCall": "Érintse meg a híváshoz",
   "strTapOnContactToCall": "Érintse meg a híváshoz a kapcsolatot",
@@ -548,8 +513,7 @@
   "strDamagedVehicle": "Van-e sérült jármű A és B-n kívül?",
   "strDamagedBesidesVehicle": "Vannak-e más károk járműveken kívül?",
   "strMinorInjuries": "Vannak-e sérülések, még ha kisebbek is?",
-  "strProvidePeopleFirstKit":
-  "Ha vannak emberek a közelben, kérdezze meg tőlük, tudnak-e segíteni az elsősegély-készlet használatával a járművénél.",
+  "strProvidePeopleFirstKit": "Ha vannak emberek a közelben, kérdezze meg tőlük, tudnak-e segíteni az elsősegély-készlet használatával a járművénél.",
   "strTelefon": "Telefon",
   "strEnterTelefon": "Adja meg a telefonszámot",
   "strMyContacts": "Az én kapcsolataim",
@@ -564,18 +528,14 @@
   "strMilesTravelled": "Megtett kilométerek",
   "strEnterMilesTravelled": "Adja meg a megtett kilométereket",
   "strNextTechnicalInspection": "Következő műszaki vizsgálat a napokban",
-  "strEnterNextTechnicalInspection":
-  "Lépjen be a következő műszaki ellenőrzés napokon belül",
+  "strEnterNextTechnicalInspection": "Lépjen be a következő műszaki ellenőrzés napokon belül",
   "strLastOilReplacementDate": "Utolsó olajcsere dátuma kilométerben",
-  "strEnterLastOilReplacementDate":
-  "Írja be az utolsó olajcsere dátumát kilométerben",
+  "strEnterLastOilReplacementDate": "Írja be az utolsó olajcsere dátumát kilométerben",
   "strLastBatteryReplacementDate": "Utolsó akkucsere dátuma",
   "strEnterLastBatteryReplacementDate": "Adja meg az utolsó akkucsere dátumát",
-  "strPasswordmustbegreaterthan8characters":
-  "A jelszónak legalább 8 karakter hosszúnak kell lennie",
+  "strPasswordmustbegreaterthan8characters": "A jelszónak legalább 8 karakter hosszúnak kell lennie",
   "strEnterConfirmPassword": "Adja meg a jelszó megerősítését",
-  "strPasswordConfirmPassworddoesnmatch":
-  "A jelszó és a megerősítés nem egyezik",
+  "strPasswordConfirmPassworddoesnmatch": "A jelszó és a megerősítés nem egyezik",
   "strSketchAccident": "Baleset vázlata",
   "strAddshape": "Alakzat hozzáadása",
   "strLine": "Vonal",
@@ -587,8 +547,7 @@
   "strNotComplete": "Még nem fejezte be\na regisztrációt",
   "strPendingBreakdown": "Már van egy hibaelhárítási űrlap folyamatban.",
   "strWantContinue": "Folytatja?",
-  "strNotCompleteForm":
-  "Kérjük, töltse ki a regisztrációt a végéig, mivel ezt a jövőben be kell jelenteni.",
+  "strNotCompleteForm": "Kérjük, töltse ki a regisztrációt a végéig, mivel ezt a jövőben be kell jelenteni.",
   "strMyLocation": "Az én helyzetem",
   "strTelephone": "Telefon",
   "strEnterTelephone": "Adja meg a telefonszámot",
@@ -614,8 +573,7 @@
   "strChoose": "Választás",
   "strSelectMessage": "Válasszon egy üzenetet",
   "strSendToAll": "Mindenkinek elküldése",
-  "strAreyousurewanttoplacethisorder":
-  "Biztosan szeretné leadni ezt a rendelést?",
+  "strAreyousurewanttoplacethisorder": "Biztosan szeretné leadni ezt a rendelést?",
   "strNoCarItemAvailable": "Nincs elérhető autóalkatrész",
   "strOrder": "Rendelés",
   "strSelectCarItemService": "Válasszon autóalkatrészt vagy szolgáltatást",
@@ -662,9 +620,12 @@
   "strTime": "Idő",
   "strTimeOfAccident": "Baleset ideje",
   "strPlace": "Hely",
-  "strIsSecondDriverAccount":  "Van-e a második sofőrnek BLINQ-je?",
+  "strIsSecondDriverAccount": "Van-e a második sofőrnek BLINQ-je?",
   "strDamageReportSent": "A károkozási jelentés elküldve",
   "strYourInformMessageSent": "Az Ön információs üzenete elküldve!",
+  "strSelectFromGallery": "Válasszon a galériából",
+  "strRecordVideo": "Videó felvétele",
+  "strMaxMediaFiles": "Maximum 6 kép és 2 videó médiafájl tölthető fel",
   "strVehicleType": "Válassza ki járműve típusát",
   "byke": {
     "windshield": "szélvédő",
@@ -672,7 +633,7 @@
     "headlight": "első lámpa",
     "fuel tank": "üzemanyagtartály",
     "seat": "ülés",
-    "tail light":"hátsó lámpa",
+    "tail light": "hátsó lámpa",
     "rear fender": "hátsó sárvédő",
     "exhaust pipe": "kipufogócső",
     "left rear view mirror": "bal visszapillantó tükör",
@@ -729,44 +690,40 @@
     "cargo door right": "jobb oldali ajtó"
   },
   "auto": {
-    "capot": "motorháztető"  ,
+    "capot": "motorháztető",
     "windscreen": "szélvédő",
-    "roof":"tető",
-    "rear window":  "hátsó ablak",
-    "car trunk":  "csomagtartó",
-    "rear left headlight":  "hátsó bal fényszóró",
-    "rear right headlight":  "hátsó jobb fényszóró",
-    "Rear bumpers":  "hátsó lökhárítók",
-    "right side view mirror":  "jobb oldali tükör",
-    "left side view mirror":  "bal oldali tükör",
-    "front right headlight":  "elülső jobb fényszóró",
-    "front left headlight":  "elülső bal fényszóró",
-    "front grille":  "elülső hűtőrács",
-    "front bumpers":  "elülső lökhárítók",
-    "rear right window":  "hátsó jobb ablak",
-    "front right window":  "elülső jobb ablak",
-    "front right door":  "elülső jobb ajtó",
-    "rear right door":  "hátsó jobb ajtó",
-    "rear right wing":  "hátsó jobb sárvédő",
-    "front right wing":  "elülső jobb sárvédő",
-    "front right tire":  "elülső jobb gumiabroncs",
-    "rear right tire":  "hátsó jobb gumiabroncs",
-    "front left window":  "elülső bal ablak",
-    "rear left window":  "hátsó bal ablak",
-    "front left door":  "elülső bal ajtó",
-    "rear left door":  "hátsó bal ajtó",
-    "front left wing":  "elülső bal sárvédő",
-    "rear left wing":  "hátsó bal sárvédő",
-    "front left tire":  "elülső bal gumiabroncs",
-    "rear left tire":  "hátsó bal gumiabroncs",
-    "front right wheel":  "elülső jobb kerék",
-    "ear right wheel":  "hátsó jobb kerék",
-    "front left wheel":  "elülső bal kerék",
-    "rear left wheel":  "hátsó bal kerék"
+    "roof": "tető",
+    "rear window": "hátsó ablak",
+    "car trunk": "csomagtartó",
+    "rear left headlight": "hátsó bal fényszóró",
+    "rear right headlight": "hátsó jobb fényszóró",
+    "Rear bumpers": "hátsó lökhárítók",
+    "right side view mirror": "jobb oldali tükör",
+    "left side view mirror": "bal oldali tükör",
+    "front right headlight": "elülső jobb fényszóró",
+    "front left headlight": "elülső bal fényszóró",
+    "front grille": "elülső hűtőrács",
+    "front bumpers": "elülső lökhárítók",
+    "rear right window": "hátsó jobb ablak",
+    "front right window": "elülső jobb ablak",
+    "front right door": "elülső jobb ajtó",
+    "rear right door": "hátsó jobb ajtó",
+    "rear right wing": "hátsó jobb sárvédő",
+    "front right wing": "elülső jobb sárvédő",
+    "front right tire": "elülső jobb gumiabroncs",
+    "rear right tire": "hátsó jobb gumiabroncs",
+    "front left window": "elülső bal ablak",
+    "rear left window": "hátsó bal ablak",
+    "front left door": "elülső bal ajtó",
+    "rear left door": "hátsó bal ajtó",
+    "front left wing": "elülső bal sárvédő",
+    "rear left wing": "hátsó bal sárvédő",
+    "front left tire": "elülső bal gumiabroncs",
+    "rear left tire": "hátsó bal gumiabroncs",
+    "front right wheel": "elülső jobb kerék",
+    "ear right wheel": "hátsó jobb kerék",
+    "front left wheel": "elülső bal kerék",
+    "rear left wheel": "hátsó bal kerék"
   }
-
-
-
 }
-
 

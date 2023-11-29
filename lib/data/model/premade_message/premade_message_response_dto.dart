@@ -10,15 +10,15 @@ part 'premade_message_response_dto.g.dart';
 
 @freezed
 @HiveType(typeId: 11)
-class PremadeMessageResponseDto with _$PremadeMessageResponseDto {
+class PreMadeMessageResponseDto with _$PreMadeMessageResponseDto {
   //
-  const factory PremadeMessageResponseDto({
+  const factory PreMadeMessageResponseDto({
     @HiveField(0) int? count,
     @HiveField(1) String? next,
     @HiveField(2) String? previous,
-    @HiveField(3) List<PremadeMessageResponseModel>? results,
+    @HiveField(3) List<PreMadeMessageResponseModel>? results,
   }) = _PremadeMessageResponseDto;
 
-  factory PremadeMessageResponseDto.fromJson(Map<String, dynamic> json) =>
-      _$PremadeMessageResponseDtoFromJson(json);
+  factory PreMadeMessageResponseDto.fromJson(Map<String, dynamic> json) =>
+      _$PreMadeMessageResponseDtoFromJson(json);
 }

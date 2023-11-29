@@ -6,15 +6,15 @@ part of 'premade_message_request_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PremadeMessageRequestModelImpl _$$PremadeMessageRequestModelImplFromJson(
+_$PreMadeMessageRequestModelImpl _$$PreMadeMessageRequestModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$PremadeMessageRequestModelImpl(
+    _$PreMadeMessageRequestModelImpl(
       title: json['title'] as String?,
       message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$$PremadeMessageRequestModelImplToJson(
-        _$PremadeMessageRequestModelImpl instance) =>
+Map<String, dynamic> _$$PreMadeMessageRequestModelImplToJson(
+        _$PreMadeMessageRequestModelImpl instance) =>
     <String, dynamic>{
       'title': instance.title,
       'message': instance.message,
