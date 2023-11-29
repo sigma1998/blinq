@@ -1,4 +1,5 @@
 // Dart imports:
+import 'dart:async';
 import 'dart:io';
 
 // Package imports:
@@ -6,9 +7,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path/path.dart' as p;
+import 'package:dio/dio.dart';
 
 // Project imports:
 import 'package:blinq/utils/custom_widgets/cupertino_action/cupertino_action.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/utils/services/media/media_service.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
@@ -20,12 +24,48 @@ part 'damaged_media_bloc.freezed.dart';
 
 class DamagedMediaBloc extends Bloc<DamagedMediaEvent, DamagedMediaState> {
   //
+  final ReportBloc reportBloc;
+
+  final AccidentRepository accidentRepository;
+
   final MediaService mediaService;
 
-  DamagedMediaBloc({required this.mediaService})
-      : super(const DamagedMediaState()) {
+  DamagedMediaBloc({
+    required this.reportBloc,
+    required this.accidentRepository,
+    required this.mediaService,
+  }) : super(const DamagedMediaState()) {
     on<OnAddDamagedMediaFiles>(_imagePickerPressed);
     on<OnRemoveDamagedMediaFile>(_removeDamagedMediaPressed);
+    on<OnUploadDamagedMediaFiles>(_onUploadDamagedMediaFiles);
+  }
+
+  Future<void> _onUploadDamagedMediaFiles(
+      OnUploadDamagedMediaFiles event, Emitter<DamagedMediaState> emit) async {
+    try {
+      emit(state.copyWith(status: Status.loading));
+      final files = state.files;
+      final uploadedFilesId = <int>[];
+      for (final file in files) {
+        final multipartFile = MultipartFile.fromFileSync(file.path);
+        final uploadedFileId = await accidentRepository.uploadFile(
+          file: multipartFile,
+        );
+        uploadedFilesId.add(uploadedFileId);
+      }
+      emit(state.copyWith(uploadedFilesId: uploadedFilesId));
+      await _uploadMedia();
+      emit(state.copyWith(status: Status.success));
+    } catch (e) {
+      emit(state.copyWith(status: Status.initial));
+    }
+  }
+
+  Future<void> _uploadMedia() async {
+    await accidentRepository.uploadMedia(
+      reportBloc.accidentId,
+      state.uploadedFilesId,
+    );
   }
 
   Future<void> _imagePickerPressed(

@@ -1,18 +1,21 @@
 // Flutter imports:
-import 'package:blinq/app/locator.dart';
-import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
-import 'package:blinq/utils/services/media/media_service.dart';
-import 'package:blinq/utils/step_indicator.dart';
+import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'bloc/damaged_media_bloc.dart';
+// Project imports:
+import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/utils/services/media/media_service.dart';
+import 'package:blinq/utils/step_indicator.dart';
+import 'package:blinq/app/locator.dart';
 import 'bloc/damaged_media_event.dart';
-import 'widgets/button.dart';
+import 'bloc/damaged_media_bloc.dart';
 import 'widgets/empty_state.dart';
+import 'widgets/button.dart';
 import 'widgets/item.dart';
 
 class DamagedMediaScreen extends StatefulWidget {
@@ -34,6 +37,8 @@ class _DamagedMediaScreenState extends State<DamagedMediaScreen> {
     super.initState();
 
     bloc = DamagedMediaBloc(
+      reportBloc: context.read<ReportBloc>(),
+      accidentRepository: getIt<AccidentRepositoryImpl>(),
       mediaService: getIt<MediaServiceImpl>(),
     );
   }
@@ -94,7 +99,9 @@ class _DamagedMediaScreenState extends State<DamagedMediaScreen> {
                 ],
               ),
             ),
-            floatingActionButton: NavigationButton(onNextTap: () {}),
+            floatingActionButton: NavigationButton(
+              onNextTap: () => bloc.add(OnUploadDamagedMediaFiles()),
+            ),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
           );

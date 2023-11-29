@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DamagedMediaState {
   Status get status => throw _privateConstructorUsedError;
   List<File> get files => throw _privateConstructorUsedError;
+  List<int> get uploadedFilesId => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +32,11 @@ abstract class $DamagedMediaStateCopyWith<$Res> {
           DamagedMediaState value, $Res Function(DamagedMediaState) then) =
       _$DamagedMediaStateCopyWithImpl<$Res, DamagedMediaState>;
   @useResult
-  $Res call({Status status, List<File> files, Error? error});
+  $Res call(
+      {Status status,
+      List<File> files,
+      List<int> uploadedFilesId,
+      Error? error});
 }
 
 /// @nodoc
@@ -49,6 +54,7 @@ class _$DamagedMediaStateCopyWithImpl<$Res, $Val extends DamagedMediaState>
   $Res call({
     Object? status = null,
     Object? files = null,
+    Object? uploadedFilesId = null,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -60,6 +66,10 @@ class _$DamagedMediaStateCopyWithImpl<$Res, $Val extends DamagedMediaState>
           ? _value.files
           : files // ignore: cast_nullable_to_non_nullable
               as List<File>,
+      uploadedFilesId: null == uploadedFilesId
+          ? _value.uploadedFilesId
+          : uploadedFilesId // ignore: cast_nullable_to_non_nullable
+              as List<int>,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -76,7 +86,11 @@ abstract class _$$DamagedMediaStateImplCopyWith<$Res>
       __$$DamagedMediaStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Status status, List<File> files, Error? error});
+  $Res call(
+      {Status status,
+      List<File> files,
+      List<int> uploadedFilesId,
+      Error? error});
 }
 
 /// @nodoc
@@ -92,6 +106,7 @@ class __$$DamagedMediaStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? files = null,
+    Object? uploadedFilesId = null,
     Object? error = freezed,
   }) {
     return _then(_$DamagedMediaStateImpl(
@@ -103,6 +118,10 @@ class __$$DamagedMediaStateImplCopyWithImpl<$Res>
           ? _value._files
           : files // ignore: cast_nullable_to_non_nullable
               as List<File>,
+      uploadedFilesId: null == uploadedFilesId
+          ? _value._uploadedFilesId
+          : uploadedFilesId // ignore: cast_nullable_to_non_nullable
+              as List<int>,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -117,8 +136,10 @@ class _$DamagedMediaStateImpl implements _DamagedMediaState {
   const _$DamagedMediaStateImpl(
       {this.status = Status.initial,
       final List<File> files = const [],
+      final List<int> uploadedFilesId = const [],
       this.error})
-      : _files = files;
+      : _files = files,
+        _uploadedFilesId = uploadedFilesId;
 
   @override
   @JsonKey()
@@ -132,12 +153,21 @@ class _$DamagedMediaStateImpl implements _DamagedMediaState {
     return EqualUnmodifiableListView(_files);
   }
 
+  final List<int> _uploadedFilesId;
+  @override
+  @JsonKey()
+  List<int> get uploadedFilesId {
+    if (_uploadedFilesId is EqualUnmodifiableListView) return _uploadedFilesId;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_uploadedFilesId);
+  }
+
   @override
   final Error? error;
 
   @override
   String toString() {
-    return 'DamagedMediaState(status: $status, files: $files, error: $error)';
+    return 'DamagedMediaState(status: $status, files: $files, uploadedFilesId: $uploadedFilesId, error: $error)';
   }
 
   @override
@@ -147,12 +177,18 @@ class _$DamagedMediaStateImpl implements _DamagedMediaState {
             other is _$DamagedMediaStateImpl &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other._files, _files) &&
+            const DeepCollectionEquality()
+                .equals(other._uploadedFilesId, _uploadedFilesId) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, status, const DeepCollectionEquality().hash(_files), error);
+      runtimeType,
+      status,
+      const DeepCollectionEquality().hash(_files),
+      const DeepCollectionEquality().hash(_uploadedFilesId),
+      error);
 
   @JsonKey(ignore: true)
   @override
@@ -166,12 +202,15 @@ abstract class _DamagedMediaState implements DamagedMediaState {
   const factory _DamagedMediaState(
       {final Status status,
       final List<File> files,
+      final List<int> uploadedFilesId,
       final Error? error}) = _$DamagedMediaStateImpl;
 
   @override
   Status get status;
   @override
   List<File> get files;
+  @override
+  List<int> get uploadedFilesId;
   @override
   Error? get error;
   @override

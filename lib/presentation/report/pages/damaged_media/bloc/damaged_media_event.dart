@@ -9,3 +9,5 @@ class OnRemoveDamagedMediaFile extends DamagedMediaEvent {
 
   OnRemoveDamagedMediaFile(this.file);
 }
+
+class OnUploadDamagedMediaFiles extends DamagedMediaEvent {}
