@@ -631,6 +631,11 @@
   "strRenameYourBlinq": "Rename your BLINQ",
   "strEnterBlinqName": "Enter BLINQ Name",
   "strRename": "Rename",
+  "strVideoSizeExceeds": "Your video size exceeds our maximum size capacity\n(80 MB per video)",
+  "strTryToReduceVideoSize": "Please try reducing the video's quality or length and try again",
+  "strVideoQualityReducedTo720" : "Your video quality has been reduced to 720p and successfully uploaded !",
+  "strVideoUploadedSuccessfully": "Your video has been uploaded successfully !",
+  "strGotIt": "Got it",
   "byke": {
     "windshield": "windshield",
     "handlebars": "handlebars",

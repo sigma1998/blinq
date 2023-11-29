@@ -11,29 +11,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class NavigationButton extends StatelessWidget {
-  final double padding;
-
-  final VoidCallback? onBack;
-
-  final VoidCallback? onNextTap;
-
+  //
+  final String? label;
   final String heroTag;
 
-  final double height;
-
+  final VoidCallback? onBack;
+  final VoidCallback? onNextTap;
   final bool canGoForward;
 
-  const NavigationButton(
-      {super.key,
-      this.onNextTap,
-      //
-      this.height = 0,
-      //
-      this.heroTag = '',
-      //
-      this.canGoForward = true,
-      this.padding = 32,
-      this.onBack});
+  final double padding;
+  final double height;
+
+  const NavigationButton({
+    super.key,
+    this.label,
+    this.heroTag = '',
+    //
+    this.onNextTap,
+    this.onBack,
+    this.canGoForward = true,
+    //
+    this.height = 0,
+    this.padding = 32,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,6 @@ class NavigationButton extends StatelessWidget {
               onPressed: onBack ??
                   () => NavigationService.homeNavigatorKey.currentState?.pop(),
               heroTag: heroTag,
-              // onPressed: NavigationService.back,
               backgroundColor: Theme.of(context).colorScheme.secondary,
               child: SvgPicture.asset(
                 AppDrawables.arrowLeft,
@@ -69,7 +68,7 @@ class NavigationButton extends StatelessWidget {
             MyButton.primary(
               onTap: onNextTap!,
               enable: canGoForward,
-              label: 'strNext'.tr(),
+              label: label ?? 'strNext'.tr(),
               padding: const EdgeInsets.symmetric(
                 vertical: 12,
                 horizontal: 24,

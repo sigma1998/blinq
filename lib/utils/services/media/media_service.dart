@@ -14,6 +14,12 @@ abstract class MediaService {
   Future<List<String>?> pickMultipleImagesPaths();
 
   Future<String?> pickVideoPath(AppImageSource appImageSource);
+  Future<String?> pickMediaPath({
+    double? maxWidth,
+    double? maxHeight,
+    int? imageQuality,
+  });
+
   Future<List<String>?> pickMultipleMediaPaths({
     double? maxHeight,
     double? maxWidth,
@@ -103,6 +109,30 @@ class MediaServiceImpl extends MediaService {
   }
 
   @override
+  Future<String?> pickMediaPath({
+    double? maxWidth,
+    double? maxHeight,
+    int? imageQuality,
+  }) async {
+    bool canProceed = await _handleImagePickPermissions(AppImageSource.gallery);
+
+    if (canProceed) {
+      final imagePicker = ImagePicker();
+
+      final file = await imagePicker.pickMedia(
+        maxWidth: maxWidth,
+        maxHeight: maxHeight,
+        imageQuality: imageQuality,
+      );
+
+      if (file != null) {
+        return file.path;
+      }
+    }
+    return null;
+  }
+
+  @override
   Future<List<String>?> pickMultipleMediaPaths({
     double? maxHeight,
     double? maxWidth,
@@ -125,6 +155,8 @@ class MediaServiceImpl extends MediaService {
     }
     return null;
   }
+
+  //
 
   Future<bool> _handleImagePickPermissions(AppImageSource imageSource) async {
     if (imageSource == AppImageSource.camera) {

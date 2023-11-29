@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:blinq/utils/custom_widgets/loading.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -49,61 +51,72 @@ class _DamagedMediaScreenState extends State<DamagedMediaScreen> {
       create: (_) => bloc,
       child: BlocBuilder<DamagedMediaBloc, DamagedMediaState>(
         builder: (context, state) {
+          final isLoading = state.status == Status.loading;
           final list = state.files;
 
-          return Scaffold(
-            extendBody: true,
-            body: Padding(
-              padding: const EdgeInsets.all(32),
-              child: Column(
-                children: [
-                  StepIndicator(
-                    currentStep: 2,
-                    title: 'strAccident'.tr(),
-                  ),
-                  const SizedBox(height: 20),
-                  if (list.isEmpty)
-                    const Expanded(
-                      flex: 2,
-                      child: DamagedMediaEmptyStateWidget(),
-                    )
-                  else
-                    Expanded(
-                      flex: 7,
-                      child: GridView.builder(
-                        shrinkWrap: true,
-                        itemCount: list.length,
-                        physics: const ClampingScrollPhysics(),
-                        itemBuilder: (_, index) {
-                          final file = list[index];
+          if (isLoading) {
+            return Container(
+              color: Colors.black45,
+              child: const Loading(),
+            );
+          }
 
-                          return DamagedMediaItem(
-                            file: file,
-                            onRemove: (file) => bloc.add(
-                              OnRemoveDamagedMediaFile(file),
-                            ),
-                          );
-                        },
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          childAspectRatio: 126 / 170,
+          return SafeArea(
+            child: Scaffold(
+              extendBody: true,
+              body: Padding(
+                padding: const EdgeInsets.all(32),
+                child: Column(
+                  children: [
+                    StepIndicator(
+                      currentStep: 2,
+                      title: 'strAccident'.tr(),
+                    ),
+                    const SizedBox(height: 20),
+                    if (list.isEmpty)
+                      const Expanded(
+                        flex: 2,
+                        child: DamagedMediaEmptyStateWidget(),
+                      )
+                    else
+                      Expanded(
+                        flex: 7,
+                        child: GridView.builder(
+                          shrinkWrap: true,
+                          itemCount: list.length,
+                          physics: const ClampingScrollPhysics(),
+                          itemBuilder: (_, index) {
+                            final file = list[index];
+
+                            return DamagedMediaItem(
+                              file: file,
+                              onRemove: (file) => bloc.add(
+                                OnRemoveDamagedMediaFile(file),
+                              ),
+                            );
+                          },
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            childAspectRatio: 126 / 170,
+                          ),
                         ),
                       ),
-                    ),
-                  if (state.files.length < 8)
-                    DamagedMediaButton(
-                      onTap: () => bloc.add(OnAddDamagedMediaFiles()),
-                    ),
-                  const Expanded(flex: 1, child: SizedBox(height: 20)),
-                ],
+                    if (state.files.length < 8)
+                      DamagedMediaButton(
+                        onTap: () => bloc.add(OnAddDamagedMediaFiles()),
+                      ),
+                    const Expanded(flex: 1, child: SizedBox(height: 20)),
+                  ],
+                ),
               ),
+              floatingActionButton: NavigationButton(
+                onNextTap: () => bloc.add(OnUploadDamagedMediaFiles()),
+                label: state.files.isEmpty ? 'strNo'.tr() : 'strNext'.tr(),
+              ),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerFloat,
             ),
-            floatingActionButton: NavigationButton(
-              onNextTap: () => bloc.add(OnUploadDamagedMediaFiles()),
-            ),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerFloat,
           );
         },
       ),

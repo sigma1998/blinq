@@ -630,6 +630,11 @@
   "strEnterBlinqName": "Adja meg a BLINQ nevét",
   "strRename": "Átnevezés",
   "strVehicleType": "Válassza ki járműve típusát",
+  "strVideoSizeExceeds": "A videó mérete meghaladja a maximális méretet\n(80 MB videónként)",
+  "strTryToReduceVideoSize": "Próbálja meg csökkenteni a videó minőségét vagy hosszát, és próbálja újra",
+  "strVideoQualityReducedTo720": "A videó minősége 720p-ra csökkent, és sikeresen feltöltve!",
+  "strVideoUploadedSuccessfully": "A videót sikeresen feltöltöttük!",
+  "strGotIt": "Értem",
   "byke": {
     "windshield": "szélvédő",
     "handlebars": "kormány",

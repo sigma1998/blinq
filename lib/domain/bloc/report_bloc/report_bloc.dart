@@ -1,6 +1,7 @@
 import 'package:blinq/core/network/custom_error.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/presentation/report/pages/damaged_media/damaged_media_screen.dart';
 import 'package:blinq/presentation/report/pages/location_info/location_info_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/services/location/location_service.dart';
@@ -38,7 +39,7 @@ class ReportBloc extends Cubit<GenericBlocState> {
       final accidentId = await accidentRepository.createAccident(
           position.longitude.toString(), position.latitude.toString());
       setAccidentId(accidentId);
-      return LocationInfoScreen.route;
+      return DamagedMediaScreen.route;
     } catch (e) {
       if (e is HaveActiveReportException) {
         ///one more api to get step
@@ -46,12 +47,10 @@ class ReportBloc extends Cubit<GenericBlocState> {
         ///return route
 
         print('id is ${e.accidentId}');
-        return LocationInfoScreen.route;
+        return DamagedMediaScreen.route;
       }
     }
 
     return null;
   }
 }
-
-
