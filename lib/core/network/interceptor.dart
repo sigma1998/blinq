@@ -1,6 +1,9 @@
+import 'package:blinq/core/network/network_constants.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
+
+import 'custom_error.dart';
 
 class CustomInterceptor extends Interceptor {
   @override
@@ -12,12 +15,17 @@ class CustomInterceptor extends Interceptor {
       return handler.next(err);
     }
     int statusCode = (err.response?.statusCode ?? 0);
-    if(statusCode == 400){
-      print(err.requestOptions.uri);
-      print(err.requestOptions.path);
-      print(err.requestOptions.baseUrl);
-    }
-    if (statusCode > 400 && statusCode <= 500) {
+    if (statusCode == 400 &&
+        err.requestOptions.path == NetworkConstants.createReport) {
+      final data = err.response!.data;
+      final list = data['active_accidents'];
+
+
+      return handler.next(HaveActiveReportException(
+        accidentId: list[0],
+        requestOptions: err.requestOptions
+      ));
+    } else if (statusCode >= 400 && statusCode <= 500) {
       final text =
           err.response!.data?['message'] ?? err.response!.data['detail'];
       NavigationService.showErrorToast((text).toString());
