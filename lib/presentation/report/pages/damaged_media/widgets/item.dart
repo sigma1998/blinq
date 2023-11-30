@@ -74,10 +74,8 @@ class _DamagedMediaItemState extends State<DamagedMediaItem> {
             return const SizedBox();
           }
           final controller = snapshot.data as VideoPlayerController;
-          debugPrint('aspect ratio ' +
-              controller.value.size.toString() +
-              ' ' +
-              controller.value.size.toString());
+
+          // TODO: Controller is null after taking compressed video
 
           return Stack(
             children: [
@@ -108,9 +106,11 @@ class _DamagedMediaItemState extends State<DamagedMediaItem> {
     if (_controller != null) return _controller!;
 
     _controller = VideoPlayerController.file(file);
-    await _controller!.initialize();
-    return _controller!;
+    await _controller?.initialize();
+    return _controller as VideoPlayerController;
   }
+
+  // TODO: sometimes it shows 00:00
 
   String _formatDuration(Duration duration) {
     String twoDigits(int n) => n >= 10 ? '$n' : '0$n';

@@ -632,8 +632,8 @@
   "strVehicleType": "Válassza ki járműve típusát",
   "strVideoSizeExceeds": "A videó mérete meghaladja a maximális méretet\n(80 MB videónként)",
   "strTryToReduceVideoSize": "Próbálja meg csökkenteni a videó minőségét vagy hosszát, és próbálja újra",
-  "strVideoQualityReducedTo720": "A videó minősége 720p-ra csökkent, és sikeresen feltöltve!",
-  "strVideoUploadedSuccessfully": "A videót sikeresen feltöltöttük!",
+  "strVideoQualityReducedTo720": "A videó minősége 720p-ra csökkent",
+  "strMediaUploadedSuccessfully": "A médiafájlok sikeresen feltöltve!",
   "strGotIt": "Értem",
   "byke": {
     "windshield": "szélvédő",

@@ -114,21 +114,18 @@ class MediaServiceImpl extends MediaService {
     double? maxHeight,
     int? imageQuality,
   }) async {
-    bool canProceed = await _handleImagePickPermissions(AppImageSource.gallery);
+    final imagePicker = ImagePicker();
 
-    if (canProceed) {
-      final imagePicker = ImagePicker();
+    final file = await imagePicker.pickMedia(
+      maxWidth: maxWidth,
+      maxHeight: maxHeight,
+      imageQuality: imageQuality,
+    );
 
-      final file = await imagePicker.pickMedia(
-        maxWidth: maxWidth,
-        maxHeight: maxHeight,
-        imageQuality: imageQuality,
-      );
-
-      if (file != null) {
-        return file.path;
-      }
+    if (file != null) {
+      return file.path;
     }
+
     return null;
   }
 

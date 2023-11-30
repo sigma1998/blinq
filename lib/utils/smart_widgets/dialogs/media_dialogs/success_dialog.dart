@@ -31,7 +31,7 @@ class FileUploadedSuccessfullyDialog extends StatelessWidget {
           ),
           const SizedBox(height: 40),
           Text(
-            'strVideoUploadedSuccessfully'.tr(),
+            'strMediaUploadedSuccessfully'.tr(),
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 26,

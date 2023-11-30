@@ -1,4 +1,4 @@
-part of 'damaged_media_bloc.dart';
+part of 'damaged_media_cubit.dart';
 
 @freezed
 class DamagedMediaState with _$DamagedMediaState {

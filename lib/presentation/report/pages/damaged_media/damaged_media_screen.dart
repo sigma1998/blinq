@@ -1,6 +1,4 @@
 // Flutter imports:
-import 'package:blinq/utils/custom_widgets/loading.dart';
-import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -12,10 +10,11 @@ import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/utils/services/media/media_service.dart';
+import 'package:blinq/utils/custom_widgets/loading.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/step_indicator.dart';
 import 'package:blinq/app/locator.dart';
-import 'bloc/damaged_media_event.dart';
-import 'bloc/damaged_media_bloc.dart';
+import 'cubit/damaged_media_cubit.dart';
 import 'widgets/empty_state.dart';
 import 'widgets/button.dart';
 import 'widgets/item.dart';
@@ -32,13 +31,13 @@ class DamagedMediaScreen extends StatefulWidget {
 
 class _DamagedMediaScreenState extends State<DamagedMediaScreen> {
   //
-  late DamagedMediaBloc bloc;
+  late DamagedMediaCubit cubit;
 
   @override
   void initState() {
     super.initState();
 
-    bloc = DamagedMediaBloc(
+    cubit = DamagedMediaCubit(
       reportBloc: context.read<ReportBloc>(),
       accidentRepository: getIt<AccidentRepositoryImpl>(),
       mediaService: getIt<MediaServiceImpl>(),
@@ -48,18 +47,13 @@ class _DamagedMediaScreenState extends State<DamagedMediaScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => bloc,
-      child: BlocBuilder<DamagedMediaBloc, DamagedMediaState>(
+      create: (_) => cubit,
+      child: BlocBuilder<DamagedMediaCubit, DamagedMediaState>(
         builder: (context, state) {
           final isLoading = state.status == Status.loading;
           final list = state.files;
 
-          if (isLoading) {
-            return Container(
-              color: Colors.black45,
-              child: const Loading(),
-            );
-          }
+          if (isLoading) return const Loading();
 
           return SafeArea(
             child: Scaffold(
@@ -90,9 +84,7 @@ class _DamagedMediaScreenState extends State<DamagedMediaScreen> {
 
                             return DamagedMediaItem(
                               file: file,
-                              onRemove: (file) => bloc.add(
-                                OnRemoveDamagedMediaFile(file),
-                              ),
+                              onRemove: cubit.removeDamagedMediaPressed,
                             );
                           },
                           gridDelegate:
@@ -104,14 +96,14 @@ class _DamagedMediaScreenState extends State<DamagedMediaScreen> {
                       ),
                     if (state.files.length < 8)
                       DamagedMediaButton(
-                        onTap: () => bloc.add(OnAddDamagedMediaFiles()),
+                        onTap: cubit.imagePickerPressed,
                       ),
                     const Expanded(flex: 1, child: SizedBox(height: 20)),
                   ],
                 ),
               ),
               floatingActionButton: NavigationButton(
-                onNextTap: () => bloc.add(OnUploadDamagedMediaFiles()),
+                onNextTap: cubit.onUploadDamagedMediaFiles,
                 label: state.files.isEmpty ? 'strNo'.tr() : 'strNext'.tr(),
               ),
               floatingActionButtonLocation:
