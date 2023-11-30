@@ -26,7 +26,10 @@ abstract class AuthApi {
   Future<void> resetPassword(String newPassword);
 
   Future<void> deleteUser();
+
   Future<void> verifyDeleteUser(String code);
+
+  Future<LoginResponseModel> refreshToken(String refresh);
 }
 
 class AuthApiImpl implements AuthApi {
@@ -141,6 +144,18 @@ class AuthApiImpl implements AuthApi {
   Future<void> verifyDeleteUser(String code) async {
     try {
       await api.delete(NetworkConstants.verifyDeleteUser(code));
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<LoginResponseModel> refreshToken(String refresh) async {
+    try {
+      final res = await api.post(NetworkConstants.refreshToken, data: {
+        'refresh': refresh,
+      });
+      return LoginResponseModel.fromJson(res);
     } catch (e) {
       rethrow;
     }

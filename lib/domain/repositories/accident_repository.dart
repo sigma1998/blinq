@@ -5,6 +5,7 @@ import 'package:blinq/data/datasource/remote/accident_api.dart';
 import 'package:blinq/data/model/accident/accident_time_and_location/accident_time_and_location.dart';
 import 'package:blinq/data/model/accident/injury/injury.dart';
 import 'package:blinq/data/model/profile/response/profile_response_model.dart';
+import 'package:dio/dio.dart';
 
 abstract class AccidentRepository {
   ///
@@ -17,6 +18,8 @@ abstract class AccidentRepository {
   Future<void> adAccidentLocationAndTime(
       int accidentId, AccidentTimeAndLocationDto accidentTimeAndLocationDto);
 
+  Future<void> accidentSketch(int accidentId, MultipartFile sketch);
+
   Future<int> uploadFile(
       {required File file,
       required int accidentId,
@@ -28,18 +31,18 @@ abstract class AccidentRepository {
 
   Future<void> accidentWitnesses(int accidentId, String witnesses);
 
-  Future<void> accidentInitialImpactPoint(int accidentId, File image);
+  Future<void> accidentInitialImpactPoint(int accidentId, MultipartFile image);
 
   Future<void> visibleDamage(int accidentId, String visibleDamage);
 
   Future<void> myRemarks(int accidentId, String visibleDamage);
 
   Future<void> damagedPoints(
-      {required File top,
-      required File front,
-      required File back,
-      required File left,
-      required File right,
+      {required MultipartFile? top,
+      required MultipartFile? front,
+      required MultipartFile? back,
+      required MultipartFile? left,
+      required MultipartFile? right,
       required int accidentId,
       required String damageParts});
 
@@ -50,18 +53,18 @@ abstract class AccidentRepository {
 
   Future<void> accidentWitnessesB(int accidentId, String witnesses);
 
-  Future<void> accidentInitialImpactPointB(int accidentId, File image);
+  Future<void> accidentInitialImpactPointB(int accidentId, MultipartFile image);
 
   Future<void> visibleDamageB(int accidentId, String visibleDamage);
 
   Future<void> myRemarksB(int accidentId, String visibleDamage);
 
   Future<void> damagedPointsB(
-      {required File top,
-      required File front,
-      required File back,
-      required File left,
-      required File right,
+      {required MultipartFile? top,
+      required MultipartFile? front,
+      required MultipartFile? back,
+      required MultipartFile? left,
+      required MultipartFile? right,
       required int accidentId,
       required String damageParts});
 
@@ -93,7 +96,8 @@ class AccidentRepositoryImpl implements AccidentRepository {
   }
 
   @override
-  Future<void> accidentInitialImpactPoint(int accidentId, File image) async {
+  Future<void> accidentInitialImpactPoint(
+      int accidentId, MultipartFile image) async {
     try {
       return await api.accidentInitialImpactPoint(accidentId, image);
     } catch (e) {
@@ -102,7 +106,8 @@ class AccidentRepositoryImpl implements AccidentRepository {
   }
 
   @override
-  Future<void> accidentInitialImpactPointB(int accidentId, File image) async {
+  Future<void> accidentInitialImpactPointB(
+      int accidentId, MultipartFile image) async {
     try {
       return await api.accidentInitialImpactPointB(accidentId, image);
     } catch (e) {
@@ -158,12 +163,22 @@ class AccidentRepositoryImpl implements AccidentRepository {
   }
 
   @override
+  Future<void> accidentSketch(int accidentId, MultipartFile sketch) async {
+    try {
+      return await api.uploadAccidentSketch(
+          accidentId: accidentId, sketch: sketch);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
   Future<void> damagedPoints(
-      {required File top,
-      required File front,
-      required File back,
-      required File left,
-      required File right,
+      {required MultipartFile? top,
+      required MultipartFile? front,
+      required MultipartFile? back,
+      required MultipartFile? left,
+      required MultipartFile? right,
       required int accidentId,
       required String damageParts}) async {
     try {
@@ -182,11 +197,11 @@ class AccidentRepositoryImpl implements AccidentRepository {
 
   @override
   Future<void> damagedPointsB(
-      {required File top,
-      required File front,
-      required File back,
-      required File left,
-      required File right,
+      {required MultipartFile? top,
+      required MultipartFile? front,
+      required MultipartFile? back,
+      required MultipartFile? left,
+      required MultipartFile? right,
       required int accidentId,
       required String damageParts}) async {
     try {

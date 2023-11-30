@@ -22,6 +22,7 @@ class NavigationButton extends StatelessWidget {
   final double height;
 
   final bool canGoForward;
+  final bool loading;
 
   const NavigationButton(
       {super.key,
@@ -33,6 +34,7 @@ class NavigationButton extends StatelessWidget {
       //
       this.canGoForward = true,
       this.padding = 32,
+      this.loading = false,
       this.onBack});
 
   @override
@@ -68,6 +70,7 @@ class NavigationButton extends StatelessWidget {
           if (onNextTap != null)
             MyButton.primary(
               onTap: onNextTap!,
+              isLoading: loading,
               enable: canGoForward,
               label: 'strNext'.tr(),
               padding: const EdgeInsets.symmetric(

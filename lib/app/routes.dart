@@ -143,6 +143,8 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
       page = const ConnectToDriverScreen();
     case SpeechToTextScreen.route:
       page = const SpeechToTextScreen();
+    case DamagedMediaScreen.route:
+      page = const DamagedMediaScreen();
 
     default:
       page = const HomeScreen();

@@ -45,7 +45,7 @@ class ReportBloc extends Cubit<GenericBlocState> {
         ///switch
         ///return route
 
-        print('id is ${e.accidentId}');
+        setAccidentId(e.accidentId);
         return LocationInfoScreen.route;
       }
     }

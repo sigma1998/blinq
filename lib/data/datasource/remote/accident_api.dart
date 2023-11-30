@@ -6,6 +6,7 @@ import 'package:blinq/core/network/network_constants.dart';
 import 'package:blinq/data/model/accident/accident_time_and_location/accident_time_and_location.dart';
 import 'package:blinq/data/model/accident/injury/injury.dart';
 import 'package:blinq/data/model/profile/response/profile_response_model.dart';
+import 'package:dio/dio.dart';
 
 abstract class AccidentApi {
   //
@@ -22,23 +23,26 @@ abstract class AccidentApi {
       required String format,
       required String name});
 
+  Future<void> uploadAccidentSketch(
+      {required int accidentId, required MultipartFile sketch});
+
   ///for driver a
   Future<void> accidentInjury(int accidentId, InjuryDto injuryDto);
 
   Future<void> accidentWitnesses(int accidentId, String witnesses);
 
-  Future<void> accidentInitialImpactPoint(int accidentId, File image);
+  Future<void> accidentInitialImpactPoint(int accidentId, MultipartFile image);
 
   Future<void> visibleDamage(int accidentId, String visibleDamage);
 
   Future<void> myRemarks(int accidentId, String visibleDamage);
 
   Future<void> damagedPoints(
-      {required File top,
-      required File front,
-      required File back,
-      required File left,
-      required File right,
+      {required MultipartFile? top,
+      required MultipartFile? front,
+      required MultipartFile? back,
+      required MultipartFile? left,
+      required MultipartFile? right,
       required int accidentId,
       required String damageParts});
 
@@ -49,18 +53,18 @@ abstract class AccidentApi {
 
   Future<void> accidentWitnessesB(int accidentId, String witnesses);
 
-  Future<void> accidentInitialImpactPointB(int accidentId, File image);
+  Future<void> accidentInitialImpactPointB(int accidentId, MultipartFile image);
 
   Future<void> visibleDamageB(int accidentId, String visibleDamage);
 
   Future<void> myRemarksB(int accidentId, String visibleDamage);
 
   Future<void> damagedPointsB(
-      {required File top,
-      required File front,
-      required File back,
-      required File left,
-      required File right,
+      {required MultipartFile? top,
+      required MultipartFile? front,
+      required MultipartFile? back,
+      required MultipartFile? left,
+      required MultipartFile? right,
       required int accidentId,
       required String damageParts});
 
@@ -99,7 +103,19 @@ class AccidentApiImpl implements AccidentApi {
   Future<void> adAccidentLocationAndTime(int accidentId,
       AccidentTimeAndLocationDto accidentTimeAndLocationDto) async {
     try {
-      await api.post(NetworkConstants.createReport);
+      await api.patch(NetworkConstants.accidentTimeAndPlace(accidentId),
+          data: accidentTimeAndLocationDto.toJson());
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> uploadAccidentSketch(
+      {required int accidentId, required MultipartFile sketch}) async {
+    try {
+      await api.patch(NetworkConstants.accidentSketch(accidentId),
+          data: FormData.fromMap({'sketch': sketch}));
     } catch (e) {
       rethrow;
     }
@@ -107,10 +123,11 @@ class AccidentApiImpl implements AccidentApi {
 
   /// for driver A
   @override
-  Future<void> accidentInitialImpactPoint(int accidentId, File image) async {
+  Future<void> accidentInitialImpactPoint(
+      int accidentId, MultipartFile image) async {
     try {
       await api.patch(NetworkConstants.initialImpactPoint(accidentId),
-          data: {'file': image});
+          data: FormData.fromMap({'impact_to_vehicle': image}));
     } catch (e) {
       rethrow;
     }
@@ -158,22 +175,24 @@ class AccidentApiImpl implements AccidentApi {
 
   @override
   Future<void> damagedPoints(
-      {required File top,
-      required File front,
-      required File back,
-      required File left,
-      required File right,
+      {required MultipartFile? top,
+      required MultipartFile? front,
+      required MultipartFile? back,
+      required MultipartFile? left,
+      required MultipartFile? right,
       required int accidentId,
       required String damageParts}) async {
     try {
-      await api.patch(NetworkConstants.damagePoints(accidentId), data: {
+      final data = FormData.fromMap({
         'top': top,
-        'font': front,
         'back': back,
         'left': left,
         'right': right,
-        'damage_parts': damageParts
+        'front': front
+        // 'damage_parts': damageParts
       });
+
+      await api.patch(NetworkConstants.damagePoints(accidentId), data: data);
     } catch (e) {
       rethrow;
     }
@@ -181,10 +200,11 @@ class AccidentApiImpl implements AccidentApi {
 
   /// for driver B
   @override
-  Future<void> accidentInitialImpactPointB(int accidentId, File image) async {
+  Future<void> accidentInitialImpactPointB(
+      int accidentId, MultipartFile image) async {
     try {
       await api.patch(NetworkConstants.initialImpactPointB(accidentId),
-          data: {'file': image});
+          data: FormData.fromMap({'impact_to_vehicle': image}));
     } catch (e) {
       rethrow;
     }
@@ -232,22 +252,23 @@ class AccidentApiImpl implements AccidentApi {
 
   @override
   Future<void> damagedPointsB(
-      {required File top,
-      required File front,
-      required File back,
-      required File left,
-      required File right,
+      {required MultipartFile? top,
+      required MultipartFile? front,
+      required MultipartFile? back,
+      required MultipartFile? left,
+      required MultipartFile? right,
       required int accidentId,
       required String damageParts}) async {
     try {
-      await api.patch(NetworkConstants.damagePointsB(accidentId), data: {
+      final data = FormData.fromMap({
         'top': top,
-        'font': front,
+        'front': front,
         'back': back,
         'left': left,
         'right': right,
-        'damage_parts': damageParts
+        // 'damage_parts': damageParts
       });
+      await api.patch(NetworkConstants.damagePointsB(accidentId), data: data);
     } catch (e) {
       rethrow;
     }

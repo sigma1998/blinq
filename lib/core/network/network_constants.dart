@@ -1,5 +1,7 @@
 class NetworkConstants {
-  //
+  ///
+  ///auth
+  ///
   static String login = 'v1/api/login/';
   static String sendVerificationCode = 'v1/api/send/verification/code/';
   static String registration = 'v1/api/user/register/second/version/';
@@ -9,6 +11,7 @@ class NetworkConstants {
   static String getVerificationCode = 'v1/api/send/code/for/reset/password/';
   static String resetPassword = 'v1/api/reset/password/';
   static String deleteUser = 'v1/api/user/delete/request/';
+  static String refreshToken = '/v1/api/token/refresh/';
   static String verifyDeleteUser(String code) =>
       'v1/api/user/accept/delete/request/$code/';
 
@@ -64,6 +67,8 @@ class NetworkConstants {
   ///
   static String createReport = 'v2/api/create/accident/adriver/';
   static String accidentTimeAndPlace (accidentId)=> '/v2/api/adriver/accident/$accidentId/date_time_country_place/';
+  static String accidentSketch (accidentId)=> '/v2/api/abdriver/accident/$accidentId/sketch/';
+  static String accidentCircumstances (accidentId)=> '/v2/api/abdriver/accident/$accidentId/circumstances/';
   static String uploadFile = 'v2/api/files';
 
   ///driver a

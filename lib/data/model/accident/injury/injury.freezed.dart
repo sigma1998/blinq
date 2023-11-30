@@ -20,10 +20,11 @@ InjuryDto _$InjuryDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$InjuryDto {
-  String get country => throw _privateConstructorUsedError;
-  String get location => throw _privateConstructorUsedError;
-  @JsonKey(name: "created_at")
-  String get createdAt => throw _privateConstructorUsedError;
+  bool get injury => throw _privateConstructorUsedError;
+  @JsonKey(name: "other_damaged_vehicles")
+  bool get otherDamagedVehicles => throw _privateConstructorUsedError;
+  @JsonKey(name: "other_damaged_items")
+  bool get otherDamagedItems => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,9 +38,9 @@ abstract class $InjuryDtoCopyWith<$Res> {
       _$InjuryDtoCopyWithImpl<$Res, InjuryDto>;
   @useResult
   $Res call(
-      {String country,
-      String location,
-      @JsonKey(name: "created_at") String createdAt});
+      {bool injury,
+      @JsonKey(name: "other_damaged_vehicles") bool otherDamagedVehicles,
+      @JsonKey(name: "other_damaged_items") bool otherDamagedItems});
 }
 
 /// @nodoc
@@ -55,23 +56,23 @@ class _$InjuryDtoCopyWithImpl<$Res, $Val extends InjuryDto>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? country = null,
-    Object? location = null,
-    Object? createdAt = null,
+    Object? injury = null,
+    Object? otherDamagedVehicles = null,
+    Object? otherDamagedItems = null,
   }) {
     return _then(_value.copyWith(
-      country: null == country
-          ? _value.country
-          : country // ignore: cast_nullable_to_non_nullable
-              as String,
-      location: null == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
+      injury: null == injury
+          ? _value.injury
+          : injury // ignore: cast_nullable_to_non_nullable
+              as bool,
+      otherDamagedVehicles: null == otherDamagedVehicles
+          ? _value.otherDamagedVehicles
+          : otherDamagedVehicles // ignore: cast_nullable_to_non_nullable
+              as bool,
+      otherDamagedItems: null == otherDamagedItems
+          ? _value.otherDamagedItems
+          : otherDamagedItems // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -85,9 +86,9 @@ abstract class _$$InjuryDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String country,
-      String location,
-      @JsonKey(name: "created_at") String createdAt});
+      {bool injury,
+      @JsonKey(name: "other_damaged_vehicles") bool otherDamagedVehicles,
+      @JsonKey(name: "other_damaged_items") bool otherDamagedItems});
 }
 
 /// @nodoc
@@ -101,23 +102,23 @@ class __$$InjuryDtoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? country = null,
-    Object? location = null,
-    Object? createdAt = null,
+    Object? injury = null,
+    Object? otherDamagedVehicles = null,
+    Object? otherDamagedItems = null,
   }) {
     return _then(_$InjuryDtoImpl(
-      country: null == country
-          ? _value.country
-          : country // ignore: cast_nullable_to_non_nullable
-              as String,
-      location: null == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
+      injury: null == injury
+          ? _value.injury
+          : injury // ignore: cast_nullable_to_non_nullable
+              as bool,
+      otherDamagedVehicles: null == otherDamagedVehicles
+          ? _value.otherDamagedVehicles
+          : otherDamagedVehicles // ignore: cast_nullable_to_non_nullable
+              as bool,
+      otherDamagedItems: null == otherDamagedItems
+          ? _value.otherDamagedItems
+          : otherDamagedItems // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -126,24 +127,26 @@ class __$$InjuryDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InjuryDtoImpl implements _InjuryDto {
   const _$InjuryDtoImpl(
-      {required this.country,
-      required this.location,
-      @JsonKey(name: "created_at") required this.createdAt});
+      {required this.injury,
+      @JsonKey(name: "other_damaged_vehicles")
+      required this.otherDamagedVehicles,
+      @JsonKey(name: "other_damaged_items") required this.otherDamagedItems});
 
   factory _$InjuryDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$InjuryDtoImplFromJson(json);
 
   @override
-  final String country;
+  final bool injury;
   @override
-  final String location;
+  @JsonKey(name: "other_damaged_vehicles")
+  final bool otherDamagedVehicles;
   @override
-  @JsonKey(name: "created_at")
-  final String createdAt;
+  @JsonKey(name: "other_damaged_items")
+  final bool otherDamagedItems;
 
   @override
   String toString() {
-    return 'InjuryDto(country: $country, location: $location, createdAt: $createdAt)';
+    return 'InjuryDto(injury: $injury, otherDamagedVehicles: $otherDamagedVehicles, otherDamagedItems: $otherDamagedItems)';
   }
 
   @override
@@ -151,16 +154,17 @@ class _$InjuryDtoImpl implements _InjuryDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InjuryDtoImpl &&
-            (identical(other.country, country) || other.country == country) &&
-            (identical(other.location, location) ||
-                other.location == location) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+            (identical(other.injury, injury) || other.injury == injury) &&
+            (identical(other.otherDamagedVehicles, otherDamagedVehicles) ||
+                other.otherDamagedVehicles == otherDamagedVehicles) &&
+            (identical(other.otherDamagedItems, otherDamagedItems) ||
+                other.otherDamagedItems == otherDamagedItems));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, country, location, createdAt);
+  int get hashCode =>
+      Object.hash(runtimeType, injury, otherDamagedVehicles, otherDamagedItems);
 
   @JsonKey(ignore: true)
   @override
@@ -178,21 +182,23 @@ class _$InjuryDtoImpl implements _InjuryDto {
 
 abstract class _InjuryDto implements InjuryDto {
   const factory _InjuryDto(
-          {required final String country,
-          required final String location,
-          @JsonKey(name: "created_at") required final String createdAt}) =
-      _$InjuryDtoImpl;
+      {required final bool injury,
+      @JsonKey(name: "other_damaged_vehicles")
+      required final bool otherDamagedVehicles,
+      @JsonKey(name: "other_damaged_items")
+      required final bool otherDamagedItems}) = _$InjuryDtoImpl;
 
   factory _InjuryDto.fromJson(Map<String, dynamic> json) =
       _$InjuryDtoImpl.fromJson;
 
   @override
-  String get country;
+  bool get injury;
   @override
-  String get location;
+  @JsonKey(name: "other_damaged_vehicles")
+  bool get otherDamagedVehicles;
   @override
-  @JsonKey(name: "created_at")
-  String get createdAt;
+  @JsonKey(name: "other_damaged_items")
+  bool get otherDamagedItems;
   @override
   @JsonKey(ignore: true)
   _$$InjuryDtoImplCopyWith<_$InjuryDtoImpl> get copyWith =>

@@ -1,18 +1,18 @@
 // Flutter imports:
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
-import 'package:blinq/presentation/report/pages/injury/injury_screen.dart';
 import 'package:blinq/presentation/report/pages/location_info/bloc/location_info_screen_bloc.dart';
 import 'package:blinq/presentation/report/pages/location_info/bloc/location_info_screen_state.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
+import 'package:blinq/utils/custom_widgets/modal_progress_hud.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 
 // Project imports:
 import 'package:blinq/utils/custom_widgets/text_fields/rounded/date_picker_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/rounded/time_picker_text_field.dart';
-import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/step_indicator.dart';
 
 // Package imports:
@@ -36,7 +36,9 @@ class _LocationInfoScreenState extends State<LocationInfoScreen> {
   @override
   void didChangeDependencies() {
     bloc = LocationInfoScreenBloc(
-        accidentRepository: getIt<AccidentRepositoryImpl>());
+      accidentRepository: getIt<AccidentRepositoryImpl>(),
+      reportBloc: context.read(),
+    );
 
     super.didChangeDependencies();
   }
@@ -48,63 +50,65 @@ class _LocationInfoScreenState extends State<LocationInfoScreen> {
         builder: (context, state) {
           return KeyboardEscape(
             child: SafeArea(
-              child: Scaffold(
-                extendBody: true,
-                body: ListView(
-                  padding: const EdgeInsets.all(32).copyWith(bottom: 120),
-                  physics: const ClampingScrollPhysics(),
-                  children: [
-                    StepIndicator(
-                      title: 'strBreakDown'.tr(),
-                    ),
-                    const SizedBox(height: 52),
-                    Text(
-                      'strDateOfAccident'.tr(),
-                      style: const TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.w700,
+              child: ModalProgressHud(
+                isLoading: state.status == Status.loading,
+                child: Scaffold(
+                  extendBody: true,
+                  body: ListView(
+                    padding: const EdgeInsets.all(32).copyWith(bottom: 120),
+                    physics: const ClampingScrollPhysics(),
+                    children: [
+                      StepIndicator(
+                        title: 'strBreakDown'.tr(),
                       ),
-                    ),
-                    const SizedBox(height: 12),
-                    RoundedDatePickerTextField(
-                      maxDate: DateTime.now(),
-                      initialDate: DateTime.now(),
-                      controller: bloc.dateController,
-                    ),
-                    const SizedBox(height: 36),
-                    Text(
-                      'strTimeOfAccident'.tr(),
-                      style: const TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.w700,
+                      const SizedBox(height: 52),
+                      Text(
+                        'strDateOfAccident'.tr(),
+                        style: const TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 12),
-                    RoundedTimePickerTextField(
-                      initialTime: TimeOfDay.now(),
-                      controller: bloc.timeController,
-                    ),
-                    const SizedBox(height: 36),
-                    PickerTextField(
-                      onTap: () {},
-                      labelText: 'strCountry'.tr(),
-                      controller: bloc.countryController,
-                    ),
-                    const SizedBox(height: 36),
-                    NameTextField(
-                      labelText: 'strPlace'.tr(),
-                      controller: bloc.placeController,
-                    ),
-                  ],
+                      const SizedBox(height: 12),
+                      RoundedDatePickerTextField(
+                        maxDate: DateTime.now(),
+                        initialDate: DateTime.now(),
+                        controller: bloc.dateController,
+                      ),
+                      const SizedBox(height: 36),
+                      Text(
+                        'strTimeOfAccident'.tr(),
+                        style: const TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      RoundedTimePickerTextField(
+                        initialTime: TimeOfDay.now(),
+                        controller: bloc.timeController,
+                      ),
+                      const SizedBox(height: 36),
+                      PickerTextField(
+                        onTap: bloc.onCountryPressed,
+                        labelText: 'strCountry'.tr(),
+                        controller: bloc.countryController,
+                      ),
+                      const SizedBox(height: 36),
+                      NameTextField(
+                        labelText: 'strPlace'.tr(),
+                        controller: bloc.placeController,
+                      ),
+                    ],
+                  ),
+                  resizeToAvoidBottomInset: true,
+                  floatingActionButton:
+                      NavigationButton(
+
+                          onNextTap: bloc.onSubmit),
+                  floatingActionButtonLocation:
+                      FloatingActionButtonLocation.centerFloat,
                 ),
-                resizeToAvoidBottomInset: true,
-                floatingActionButton: NavigationButton(
-                  onNextTap: () => NavigationService.pushNamed(
-                      routeName: InjuryScreen.route,
-                      nestedKey: NavigationService.homeNavigatorKey),
-                ),
-                floatingActionButtonLocation:
-                    FloatingActionButtonLocation.centerFloat,
               ),
             ),
           );

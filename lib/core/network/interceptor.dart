@@ -6,6 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'custom_error.dart';
 
 class CustomInterceptor extends Interceptor {
+  // CustomInterceptor({required this.dio});
   @override
   Future onError(DioError err, ErrorInterceptorHandler handler) async {
     if (err.type == DioErrorType.connectTimeout ||
@@ -20,11 +21,8 @@ class CustomInterceptor extends Interceptor {
       final data = err.response!.data;
       final list = data['active_accidents'];
 
-
       return handler.next(HaveActiveReportException(
-        accidentId: list[0],
-        requestOptions: err.requestOptions
-      ));
+          accidentId: list[0], requestOptions: err.requestOptions));
     } else if (statusCode >= 400 && statusCode <= 500) {
       final text =
           err.response!.data?['message'] ?? err.response!.data['detail'];
