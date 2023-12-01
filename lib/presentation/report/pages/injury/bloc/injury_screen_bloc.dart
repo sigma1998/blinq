@@ -23,7 +23,7 @@ class InjuryScreenBloc extends Cubit<InjuryScreenState> {
     emit(state.copyWith(status: Status.loading));
     try {
       await accidentRepository.accidentInjury(
-          reportBloc.accidentId,
+          reportBloc.reportId,
           InjuryDto(
               injury: anyInjuries,
               otherDamagedVehicles: damagedVehicles,

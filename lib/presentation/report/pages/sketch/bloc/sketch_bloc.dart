@@ -86,7 +86,7 @@ class SketchBloc extends Cubit<GenericBlocState<bool>> {
         filename: file.path.split('/').last,
       );
 
-      await accidentRepository.accidentSketch(reportBloc.accidentId, multipartFile);
+      await accidentRepository.accidentSketch(reportBloc.reportId, multipartFile);
 
       emit(const GenericBlocState(status: Status.initial, data: true));
       NavigationService.back(result: true);

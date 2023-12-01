@@ -144,7 +144,7 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
           back: back,
           left: left,
           right: right,
-          accidentId: reportBloc.accidentId,
+          accidentId: reportBloc.reportId,
           damageParts: damagedParts.toList());
 
       emit(state.copyWith(status: Status.initial));

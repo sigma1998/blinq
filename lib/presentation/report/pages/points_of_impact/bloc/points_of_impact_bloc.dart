@@ -60,7 +60,7 @@ class PointsOfImpactBloc extends Cubit<PointsOfImpactScreenState> {
       );
 
       await accidentRepository.accidentInitialImpactPoint(
-          reportBloc.accidentId, multipartFile);
+          reportBloc.reportId, multipartFile);
       emit(state.copyWith(
         status: Status.initial,
       ));

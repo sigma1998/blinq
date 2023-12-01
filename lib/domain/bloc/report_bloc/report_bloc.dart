@@ -10,8 +10,10 @@ class ReportBloc extends Cubit<GenericBlocState> {
   final AccidentRepository accidentRepository;
 
   ReportType _reportType = ReportType.accident;
+  User _user = User.A;
+
   int _progress = 0;
-  int _accidentId = 0;
+  int _reportId = 0;
 
   ReportBloc({
     required this.accidentRepository,
@@ -25,9 +27,14 @@ class ReportBloc extends Cubit<GenericBlocState> {
 
   int get progress => _progress;
 
-  setAccidentId(int accidentId) => _accidentId = accidentId;
+  setReportId(int reportId) => _reportId = reportId;
 
-  int get accidentId => _accidentId;
+  int get reportId => _reportId;
+
+  setUser(User user) => _user = user;
+
+  User get user => _user;
+
 
   Future<String?> onCreateReport() async {
     final position = await LocationService.determinePosition();
@@ -35,9 +42,10 @@ class ReportBloc extends Cubit<GenericBlocState> {
     if (position == null) return null;
 
     try {
+      _user = User.A;
       final accidentId = await accidentRepository.createAccident(
           position.longitude.toString(), position.latitude.toString());
-      setAccidentId(accidentId);
+      setReportId(accidentId);
       return LocationInfoScreen.route;
     } catch (e) {
       if (e is HaveActiveReportException) {
@@ -45,7 +53,7 @@ class ReportBloc extends Cubit<GenericBlocState> {
         ///switch
         ///return route
 
-        setAccidentId(e.accidentId);
+        setReportId(e.accidentId);
         return LocationInfoScreen.route;
       }
     }

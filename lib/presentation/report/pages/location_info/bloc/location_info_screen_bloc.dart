@@ -35,7 +35,7 @@ class LocationInfoScreenBloc extends Cubit<LocationInfoScreenState> {
     emit(state.copyWith(status: Status.loading));
     try {
       await accidentRepository.adAccidentLocationAndTime(
-        reportBloc.accidentId,
+        reportBloc.reportId,
         AccidentTimeAndLocationDto(
             country: countryController.text,
             location: placeController.text,

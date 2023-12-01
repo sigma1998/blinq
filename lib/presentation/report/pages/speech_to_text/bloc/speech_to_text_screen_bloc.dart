@@ -57,7 +57,7 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
       emit(const GenericBlocState(status: Status.loading));
 
       await accidentRepository.visibleDamage(
-          reportBloc.accidentId, textController.text);
+          reportBloc.reportId, textController.text);
       emit(const GenericBlocState(status: Status.initial));
 
       NavigationService.pushNamed(
@@ -76,7 +76,7 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
     try {
       emit(const GenericBlocState(status: Status.loading));
       await accidentRepository.accidentWitnesses(
-          reportBloc.accidentId, textController.text);
+          reportBloc.reportId, textController.text);
 
       NavigationService.pushNamed(
         routeName: PointsOfImpactScreen.route,
@@ -94,7 +94,7 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
       emit(const GenericBlocState(status: Status.loading));
 
       await accidentRepository.myRemarks(
-          reportBloc.accidentId, textController.text);
+          reportBloc.reportId, textController.text);
       emit(const GenericBlocState(status: Status.initial));
 
       NavigationService.pushNamed(
