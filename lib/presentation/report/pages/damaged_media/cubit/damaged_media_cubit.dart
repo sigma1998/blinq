@@ -40,8 +40,8 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
   final _maxVideoFiles = 2;
   final _maxImageFiles = 6;
 
-  final _maxVideoSize = 1;
-  final _maxImageSize = 1;
+  final _maxVideoSize = 80;
+  final _maxImageSize = 10;
 
   DamagedMediaCubit({
     required this.reportBloc,
@@ -92,8 +92,12 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
   Future<void> imagePickerPressed() async {
     await NavigationService.showMyCupertinoModalPopup(
       actions: [
-        if (_isMaxVideoFiles(state.files)) _recordVideoActionWidget,
-        if (_isMaxImageFiles(state.files)) _pickImageActionWidget,
+        if (_isMaxVideoFiles(
+            state.files.where((file) => _isVideoFile(file)).length + 1))
+          _recordVideoActionWidget,
+        if (_isMaxImageFiles(
+            state.files.where((file) => !_isVideoFile(file)).length + 1))
+          _pickImageActionWidget,
         _pickFromGalleryActionWidget,
       ],
     );
@@ -157,11 +161,16 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
     }
 
     final file = croppedImage ?? File(mediaPath ?? '');
-    final bool isFileValid = await _isFileValid(file) != null;
+    bool isFileValid = _isVideoFile(file)
+        ? await _isVideoValid(file) != null
+        : await _isImageValid(file) != null;
 
     if (isFileValid) {
       final updatedFiles = List<File>.from(state.files)..add(file);
-      if (!_isMaxVideoFiles(updatedFiles) || !_isMaxImageFiles(updatedFiles)) {
+      if (!_isMaxVideoFiles(
+              updatedFiles.where((file) => _isVideoFile(file)).length) ||
+          !_isMaxImageFiles(
+              updatedFiles.where((file) => !_isVideoFile(file)).length)) {
         NavigationService.showErrorToast('strMaxMediaFiles'.tr());
         return;
       }
@@ -173,24 +182,38 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
   ///
   /// Validation
   ///
-  Future<File?> _isFileValid(File file) async {
+  Future<File?> _isVideoValid(File file) async {
     File compressedFile = file;
 
     if (!_isFileSizeValid(file)) {
       emit(state.copyWith(status: Status.loading));
-      compressedFile = _isVideoFile(file)
-          ? await _compressVideo(file)
-          : await _compressImageFile(file);
+      compressedFile = await _compressVideo(file);
       emit(state.copyWith(status: Status.initial));
 
       if (_isFileSizeValid(compressedFile)) {
-        // TODO: make it for image and video
         await NavigationService.showDialog(
           dialog: const FileQualityReducedDialog(),
         );
       } else {
+        await NavigationService.showDialog(dialog: MaxFileSizeDialog.video());
+        return null;
+      }
+    }
+
+    return compressedFile;
+  }
+
+  Future<File?> _isImageValid(File file) async {
+    File compressedFile = file;
+
+    if (!_isFileSizeValid(file)) {
+      emit(state.copyWith(status: Status.loading));
+      compressedFile = await _compressImageFile(file);
+      emit(state.copyWith(status: Status.initial));
+
+      if (!_isFileSizeValid(compressedFile)) {
         await NavigationService.showDialog(
-          dialog: const MaxFileSizeDialog(),
+          dialog: MaxFileSizeDialog.image(),
         );
         return null;
       }
@@ -199,15 +222,8 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
     return compressedFile;
   }
 
-  // TODO: fix: It works for only uploading for max 2 videos and 6 images and the buttons still appear
-
-  bool _isMaxVideoFiles(List<File> files) {
-    return files.where((file) => _isVideoFile(file)).length <= _maxVideoFiles;
-  }
-
-  bool _isMaxImageFiles(List<File> files) {
-    return files.where((file) => !_isVideoFile(file)).length <= _maxImageFiles;
-  }
+  bool _isMaxVideoFiles(int length) => length <= _maxVideoFiles;
+  bool _isMaxImageFiles(int length) => length <= _maxImageFiles;
 
   bool _isFileSizeValid(File file) {
     final sizeInBytes = file.lengthSync();

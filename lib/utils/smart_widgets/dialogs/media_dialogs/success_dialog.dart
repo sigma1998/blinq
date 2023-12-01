@@ -18,8 +18,11 @@ class FileUploadedSuccessfullyDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyInfoContainer(
-      padding: const EdgeInsets.all(36),
-      height: MediaQuery.of(context).size.height * 0.5,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 18,
+        vertical: 32,
+      ),
+      height: MediaQuery.of(context).size.height * 0.48,
       margin: const EdgeInsets.symmetric(horizontal: 51),
       child: Column(
         children: [
@@ -29,9 +32,9 @@ class FileUploadedSuccessfullyDialog extends StatelessWidget {
             height: 84,
             width: 84,
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 36),
           Text(
-            'strMediaUploadedSuccessfully'.tr(),
+            'strVideoUploadedSuccessfully'.tr(),
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 26,

@@ -634,6 +634,8 @@
   "strTryToReduceVideoSize": "Próbálja meg csökkenteni a videó minőségét vagy hosszát, és próbálja újra",
   "strVideoQualityReducedTo720": "A videó minősége 720p-ra csökkent",
   "strMediaUploadedSuccessfully": "A médiafájlok sikeresen feltöltve!",
+  "strImageSizeExceeds": "A kép mérete meghaladja a maximális méretet\n(10 MB képenként)",
+  "strTryToReduceImageSize": "Próbálja meg csökkenteni a kép minőségét, és próbálja újra",
   "strGotIt": "Értem",
   "byke": {
     "windshield": "szélvédő",

@@ -635,6 +635,8 @@
   "strTryToReduceVideoSize": "Please try reducing the video's quality or length and try again",
   "strVideoQualityReducedTo720" : "Your video quality has been reduced to 720p",
   "strVideoUploadedSuccessfully": "Your media files have been uploaded successfully!",
+  "strImageSizeExceeds": "Your image size exceeds our maximum size capacity\n(10 MB per image)",
+  "strTryToReduceImageSize": "Please try reducing the image's quality and try again",
   "strGotIt": "Got it",
   "byke": {
     "windshield": "windshield",
