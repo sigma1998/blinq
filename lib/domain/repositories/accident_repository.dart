@@ -44,7 +44,7 @@ abstract class AccidentRepository {
       required MultipartFile? left,
       required MultipartFile? right,
       required int accidentId,
-      required String damageParts});
+      required List<String> damageParts});
 
   Future<void> uploadMedia(int accidentId, List<int> uploadedFilesId);
 
@@ -66,7 +66,7 @@ abstract class AccidentRepository {
       required MultipartFile? left,
       required MultipartFile? right,
       required int accidentId,
-      required String damageParts});
+      required List<String> damageParts});
 
   Future<void> uploadMediaB(int accidentId, List<int> uploadedFilesId);
 }
@@ -180,7 +180,7 @@ class AccidentRepositoryImpl implements AccidentRepository {
       required MultipartFile? left,
       required MultipartFile? right,
       required int accidentId,
-      required String damageParts}) async {
+      required List<String> damageParts}) async {
     try {
       return await api.damagedPoints(
           accidentId: accidentId,
@@ -203,7 +203,7 @@ class AccidentRepositoryImpl implements AccidentRepository {
       required MultipartFile? left,
       required MultipartFile? right,
       required int accidentId,
-      required String damageParts}) async {
+      required List<String> damageParts}) async {
     try {
       return await api.damagedPointsB(
           accidentId: accidentId,

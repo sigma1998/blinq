@@ -44,7 +44,7 @@ abstract class AccidentApi {
       required MultipartFile? left,
       required MultipartFile? right,
       required int accidentId,
-      required String damageParts});
+      required List<String> damageParts});
 
   Future<void> uploadMedia(int accidentId, List<int> uploadedFilesId);
 
@@ -66,7 +66,7 @@ abstract class AccidentApi {
       required MultipartFile? left,
       required MultipartFile? right,
       required int accidentId,
-      required String damageParts});
+      required List<String> damageParts});
 
   Future<void> uploadMediaB(int accidentId, List<int> uploadedFilesId);
 }
@@ -181,15 +181,15 @@ class AccidentApiImpl implements AccidentApi {
       required MultipartFile? left,
       required MultipartFile? right,
       required int accidentId,
-      required String damageParts}) async {
+      required List<String> damageParts}) async {
     try {
       final data = FormData.fromMap({
         'top': top,
         'back': back,
         'left': left,
         'right': right,
-        'front': front
-        // 'damage_parts': damageParts
+        'front': front,
+        'damage_parts': {'list':damageParts}
       });
 
       await api.patch(NetworkConstants.damagePoints(accidentId), data: data);
@@ -258,7 +258,7 @@ class AccidentApiImpl implements AccidentApi {
       required MultipartFile? left,
       required MultipartFile? right,
       required int accidentId,
-      required String damageParts}) async {
+      required List<String> damageParts}) async {
     try {
       final data = FormData.fromMap({
         'top': top,
@@ -266,7 +266,7 @@ class AccidentApiImpl implements AccidentApi {
         'back': back,
         'left': left,
         'right': right,
-        // 'damage_parts': damageParts
+        'damage_parts': {'list':damageParts}
       });
       await api.patch(NetworkConstants.damagePointsB(accidentId), data: data);
     } catch (e) {

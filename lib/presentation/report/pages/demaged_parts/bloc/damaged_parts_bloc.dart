@@ -138,12 +138,6 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
         );
       }
 
-      String damageParts = '';
-
-      for (var element in damagedParts) {
-        damageParts += '$element\t';
-      }
-
       await accidentRepository.damagedPoints(
           top: top,
           front: front,
@@ -151,7 +145,7 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
           left: left,
           right: right,
           accidentId: reportBloc.accidentId,
-          damageParts: damageParts);
+          damageParts: damagedParts.toList());
 
       emit(state.copyWith(status: Status.initial));
 

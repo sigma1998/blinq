@@ -36,8 +36,8 @@ class _SketchScreenState extends State<SketchScreen> {
   }
 
   @override
-  void dispose() {
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  void dispose() async{
+    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     super.dispose();
   }
 
