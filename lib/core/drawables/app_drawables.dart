@@ -115,6 +115,10 @@ class AppDrawables {
 
   static const String deleteAccount = '$images/delete_account.png';
 
+  static const String imageSize10 = '$images/image_size_10.png';
+  static const String videoSize80 = '$images/video_size_80.png';
+  static const String quality720 = '$images/quality_720.png';
+
   //! My information
   static const String qr = '$images/qr.png';
   static const String car = '$images/car.png';

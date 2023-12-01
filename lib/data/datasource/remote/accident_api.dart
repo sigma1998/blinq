@@ -1,5 +1,4 @@
 // Project imports:
-import 'dart:io';
 
 import 'package:blinq/core/network/api_service.dart';
 import 'package:blinq/core/network/network_constants.dart';
@@ -17,11 +16,7 @@ abstract class AccidentApi {
   Future<void> adAccidentLocationAndTime(
       int accidentId, AccidentTimeAndLocationDto accidentTimeAndLocationDto);
 
-  Future<int> uploadFile(
-      {required File file,
-      required int accidentId,
-      required String format,
-      required String name});
+  Future<int> uploadFile({required MultipartFile file});
 
   Future<void> uploadAccidentSketch(
       {required int accidentId, required MultipartFile sketch});
@@ -275,17 +270,10 @@ class AccidentApiImpl implements AccidentApi {
   }
 
   @override
-  Future<int> uploadFile(
-      {required File file,
-      required int accidentId,
-      required String format,
-      required String name}) async {
+  Future<int> uploadFile({required MultipartFile file}) async {
     try {
-      final res = await api.post(NetworkConstants.uploadFile, data: {
-        'file': file,
-        'format': format,
-        'name': name,
-      });
+      final formData = FormData.fromMap({'file': file});
+      final res = await api.post(NetworkConstants.uploadFile, data: formData);
       return res['id'] as int;
     } catch (e) {
       rethrow;

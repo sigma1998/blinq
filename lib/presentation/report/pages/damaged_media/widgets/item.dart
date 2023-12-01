@@ -2,6 +2,7 @@
 import 'dart:io';
 
 // Flutter imports:
+import 'package:blinq/utils/custom_widgets/loading.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -29,6 +30,14 @@ class DamagedMediaItem extends StatefulWidget {
 class _DamagedMediaItemState extends State<DamagedMediaItem> {
   //
   VideoPlayerController? _controller;
+
+  void updateState() => {if (mounted) setState(() {})};
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeVideoController(widget.file);
+  }
 
   @override
   void dispose() {
@@ -67,32 +76,22 @@ class _DamagedMediaItemState extends State<DamagedMediaItem> {
     final fileExtension = p.extension(file.path).toLowerCase();
 
     if (fileExtension == '.mp4' || fileExtension == '.mov') {
-      return FutureBuilder(
-        future: _initializeVideoController(file),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState != ConnectionState.done) {
-            return const SizedBox();
-          }
-          final controller = snapshot.data as VideoPlayerController;
-          debugPrint('aspect ratio ' +
-              controller.value.size.toString() +
-              ' ' +
-              controller.value.size.toString());
-
-          return Stack(
-            children: [
-              VideoPlayer(controller),
-              Positioned(
-                bottom: 10,
-                right: 10,
-                child: Text(
-                  _formatDuration(controller.value.duration),
-                  style: const TextStyle(fontWeight: FontWeight.w700),
-                ),
+      return Stack(
+        children: [
+          if (_controller != null) ...[
+            VideoPlayer(_controller!),
+            Positioned(
+              bottom: 10,
+              right: 10,
+              child: Text(
+                _formatDuration(_controller!.value.duration),
+                style: const TextStyle(fontWeight: FontWeight.w700),
               ),
-            ],
-          );
-        },
+            ),
+          ] else ...[
+            const Loading(),
+          ],
+        ],
       );
     } else {
       return Image.file(
@@ -104,12 +103,11 @@ class _DamagedMediaItemState extends State<DamagedMediaItem> {
     }
   }
 
-  Future<VideoPlayerController> _initializeVideoController(File file) async {
-    if (_controller != null) return _controller!;
-
+  Future<void> _initializeVideoController(File file) async {
     _controller = VideoPlayerController.file(file);
     await _controller!.initialize();
-    return _controller!;
+    _controller!.play();
+    updateState();
   }
 
   String _formatDuration(Duration duration) {

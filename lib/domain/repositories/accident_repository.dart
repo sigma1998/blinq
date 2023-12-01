@@ -1,5 +1,4 @@
 // Project imports:
-import 'dart:io';
 
 import 'package:blinq/data/datasource/remote/accident_api.dart';
 import 'package:blinq/data/model/accident/accident_time_and_location/accident_time_and_location.dart';
@@ -20,11 +19,8 @@ abstract class AccidentRepository {
 
   Future<void> accidentSketch(int accidentId, MultipartFile sketch);
 
-  Future<int> uploadFile(
-      {required File file,
-      required int accidentId,
-      required String format,
-      required String name});
+
+  Future<int> uploadFile({required MultipartFile file});
 
   ///for driver a
   Future<void> accidentInjury(int accidentId, InjuryDto injuryDto);
@@ -255,14 +251,9 @@ class AccidentRepositoryImpl implements AccidentRepository {
   }
 
   @override
-  Future<int> uploadFile(
-      {required File file,
-      required int accidentId,
-      required String format,
-      required String name}) async {
+  Future<int> uploadFile({required MultipartFile file}) async {
     try {
-      return await api.uploadFile(
-          file: file, accidentId: accidentId, format: format, name: name);
+      return await api.uploadFile(file: file);
     } catch (e) {
       rethrow;
     }

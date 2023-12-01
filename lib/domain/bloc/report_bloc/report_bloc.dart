@@ -35,7 +35,6 @@ class ReportBloc extends Cubit<GenericBlocState> {
 
   User get user => _user;
 
-
   Future<String?> onCreateReport() async {
     final position = await LocationService.determinePosition();
 
@@ -61,5 +60,3 @@ class ReportBloc extends Cubit<GenericBlocState> {
     return null;
   }
 }
-
-

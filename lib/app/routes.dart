@@ -107,8 +107,6 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     ContactEditScreen.route: (context) => const ContactEditScreen(),
     PremadeMessageEditScreen.route: (context) =>
         const PremadeMessageEditScreen(),
-
-    DamagedMediaScreen.route: (context) => const DamagedMediaScreen(),
   };
 }
 
@@ -131,6 +129,8 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
       page = const SketchScreen();
     case DamagedPartsScreen.route:
       page = const DamagedPartsScreen();
+    case DamagedMediaScreen.route:
+      page = const DamagedMediaScreen();
     case SignScreen.route:
       page = SignScreen();
     case VehicleTypeScreen.route:
