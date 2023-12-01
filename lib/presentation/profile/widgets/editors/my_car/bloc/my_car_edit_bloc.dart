@@ -127,7 +127,6 @@ class EditMyCarBloc extends Cubit<EditMyCarState> {
       profileBloc.add(OnFetchProfile());
 
       NavigationService.back();
-
     } catch (e) {
       debugPrint(e.toString());
       NavigationService.showErrorToast('strTryAgain');

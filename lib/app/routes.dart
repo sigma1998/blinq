@@ -1,4 +1,7 @@
 // Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:blinq/presentation/auth/registration/email_screen/email_screen.dart';
 import 'package:blinq/presentation/auth/registration/registration_screen/registration_screen.dart';
 import 'package:blinq/presentation/auth/sign_in_screen/sign_in_screen.dart';
@@ -11,8 +14,6 @@ import 'package:blinq/presentation/email_editor/email_editor_screen.dart';
 import 'package:blinq/presentation/emergency_services/emergency_services_screen.dart';
 import 'package:blinq/presentation/forgot_password/reset_password/reset_password_screen.dart';
 import 'package:blinq/presentation/home/home_screen.dart';
-
-// Project imports:
 import 'package:blinq/presentation/home/pages/info/info_screen.dart';
 import 'package:blinq/presentation/home/pages/info/screens/faq/faq_screen.dart';
 import 'package:blinq/presentation/home/pages/info/screens/mast_head_screen.dart';
@@ -49,9 +50,11 @@ import 'package:blinq/presentation/report/pages/sign/sign_screen.dart';
 import 'package:blinq/presentation/report/pages/sketch/sketch_screen.dart';
 import 'package:blinq/presentation/report/pages/speech_to_text/speech_to_text_screen.dart';
 import 'package:blinq/presentation/report/pages/vehicle_type/vehicle_type_screen.dart';
+import 'package:blinq/presentation/report/second_driver_editors/screens/car/car_screen.dart';
+import 'package:blinq/presentation/report/second_driver_editors/screens/insurance_company/insurance_company_screen.dart';
+import 'package:blinq/presentation/report/second_driver_editors/screens/policy_holder/policy_holder_screen.dart';
 import 'package:blinq/presentation/splash_screen/splash_screen.dart';
 import 'package:blinq/presentation/success_video/success_video_screen.dart';
-import 'package:flutter/material.dart';
 
 Map<String, WidgetBuilder> getRoutes(BuildContext context) {
   return {
@@ -143,6 +146,16 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
       page = const ConnectToDriverScreen();
     case SpeechToTextScreen.route:
       page = const SpeechToTextScreen();
+
+    //~ Second Driver Editors
+    case SecondDriverEditorScreen.route:
+      page = const SecondDriverEditorScreen();
+    case SecondDriverEditorCarScreen.route:
+      page = const SecondDriverEditorCarScreen();
+    case SecondDriverEditorPolicyHolderScreen.route:
+      page = const SecondDriverEditorPolicyHolderScreen();
+    case SecondDriverEditorInsuranceScreen.route:
+      page = const SecondDriverEditorInsuranceScreen();
 
     default:
       page = const HomeScreen();
