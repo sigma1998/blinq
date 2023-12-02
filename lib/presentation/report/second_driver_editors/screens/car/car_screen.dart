@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -7,17 +6,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:blinq/app/locator.dart';
-import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
-import 'package:blinq/domain/repositories/accident_repository.dart';
-import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/presentation/report/second_driver_editors/screens/car/cubit/second_driver_car_cubit.dart';
-import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
-import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/number_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
-import 'package:blinq/utils/custom_widgets/loading.dart';
+import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/repositories/profile_repository.dart';
+import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/app/locator.dart';
 
 class SecondDriverEditorCarScreen extends StatefulWidget {
   //
@@ -54,107 +53,93 @@ class _SecondDriverEditorCarScreenState
         return SafeArea(
           child: KeyboardEscape(
             child: Scaffold(
-              body: Stack(
-                children: [
-                  SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 40,
-                      horizontal: 32,
+              body: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 40,
+                  horizontal: 32,
+                ),
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'strInformationCar'.tr(),
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
-                    physics: const BouncingScrollPhysics(),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'strInformationCar'.tr(),
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        const SizedBox(height: 40),
-                        PickerTextField(
-                          labelText: 'strMark'.tr(),
-                          onTap: cubit.onBrandTap,
-                          controller: cubit.brandController,
-                        ),
-                        const SizedBox(height: 16),
-                        PickerTextField(
-                          labelText: 'strModel'.tr(),
-                          onTap: cubit.onModelTap,
-                          controller: cubit.modelController,
-                        ),
-                        const SizedBox(height: 16),
-                        NameTextField(
-                          labelText: 'strModelSeries'.tr(),
-                          controller: cubit.modelSeriesController,
-                        ),
-                        const SizedBox(height: 16),
-                        PickerTextField(
-                          labelText: 'strColour'.tr(),
-                          onTap: cubit.onColorTap,
-                          controller: cubit.colorController,
-                        ),
-                        const SizedBox(height: 90),
-
-                        //~ Motor
-
-                        Text(
-                          'strMotor'.tr(),
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        const SizedBox(height: 40),
-                        NameTextField(
-                          labelText: 'strMakeType'.tr(),
-                          controller: cubit.makeTypeController,
-                        ),
-                        const SizedBox(height: 16),
-                        NumberTextField(
-                          labelText:
-                              '${'strRegistrationNumber'.tr()} (${'strMotor'.tr()})',
-                          controller: cubit.engineNumberController,
-                        ),
-                        const SizedBox(height: 16),
-                        PickerTextField(
-                          labelText: 'strCountryRegistration'.tr(),
-                          onTap: cubit.onSelectCountryOfRegistrationPressed,
-                          controller: cubit.countryOfRegistrationController,
-                        ),
-                        const SizedBox(height: 90),
-
-                        //& Trailer
-
-                        Text(
-                          'strTrailer'.tr(),
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        const SizedBox(height: 40),
-                        NumberTextField(
-                          labelText: 'strRegistrationNumber'.tr(),
-                          controller: cubit.trailerRegistrationNumberController,
-                        ),
-                        const SizedBox(height: 16),
-                        PickerTextField(
-                          labelText: 'strCountryRegistration'.tr(),
-                          onTap:
-                              cubit.onSelectTrailerCountryOfRegistrationPressed,
-                          controller:
-                              cubit.trailerCountryOfRegistrationController,
-                        ),
-                        const SizedBox(height: 36),
-                      ],
+                    const SizedBox(height: 40),
+                    PickerTextField(
+                      labelText: 'strMark'.tr(),
+                      onTap: cubit.onBrandTap,
+                      controller: cubit.brandController,
                     ),
-                  ),
-                  Visibility(
-                    visible: state.status == Status.loading,
-                    child: Container(
-                      height: MediaQuery.of(context).size.height,
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.black26,
-                      child: const Loading(),
+                    const SizedBox(height: 16),
+                    PickerTextField(
+                      labelText: 'strModel'.tr(),
+                      onTap: cubit.onModelTap,
+                      controller: cubit.modelController,
                     ),
-                  )
-                ],
+                    const SizedBox(height: 16),
+                    NameTextField(
+                      labelText: 'strModelSeries'.tr(),
+                      controller: cubit.modelSeriesController,
+                    ),
+                    const SizedBox(height: 16),
+                    PickerTextField(
+                      labelText: 'strColour'.tr(),
+                      onTap: cubit.onColorTap,
+                      controller: cubit.colorController,
+                    ),
+                    const SizedBox(height: 90),
+
+                    //~ Motor
+
+                    Text(
+                      'strMotor'.tr(),
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const SizedBox(height: 40),
+                    NameTextField(
+                      labelText: 'strMakeType'.tr(),
+                      controller: cubit.makeTypeController,
+                    ),
+                    const SizedBox(height: 16),
+                    NumberTextField(
+                      labelText:
+                          '${'strRegistrationNumber'.tr()} (${'strMotor'.tr()})',
+                      controller: cubit.engineNumberController,
+                    ),
+                    const SizedBox(height: 16),
+                    PickerTextField(
+                      labelText: 'strCountryRegistration'.tr(),
+                      onTap: cubit.onSelectCountryOfRegistrationPressed,
+                      controller: cubit.countryOfRegistrationController,
+                    ),
+                    const SizedBox(height: 90),
+
+                    //& Trailer
+
+                    Text(
+                      'strTrailer'.tr(),
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const SizedBox(height: 40),
+                    NumberTextField(
+                      labelText: 'strRegistrationNumber'.tr(),
+                      controller: cubit.trailerRegistrationNumberController,
+                    ),
+                    const SizedBox(height: 16),
+                    PickerTextField(
+                      labelText: 'strCountryRegistration'.tr(),
+                      onTap: cubit.onSelectTrailerCountryOfRegistrationPressed,
+                      controller: cubit.trailerCountryOfRegistrationController,
+                    ),
+                    const SizedBox(height: 36),
+                  ],
+                ),
               ),
               floatingActionButton: NavigationButton(
                 onNextTap: cubit.onSubmit,
+                loading: state.status == Status.loading,
               ),
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerFloat,

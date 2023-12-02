@@ -15,10 +15,11 @@ _$InsuranceRequestModelImpl _$$InsuranceRequestModelImplFromJson(
       certificateValidFrom: json['certificate_valid_from'] as String?,
       certificateValidTo: json['certificate_valid_to'] as String?,
       agency: json['agency'] as String?,
-      country: json['country'] as String?,
       address: json['address'] as String?,
+      phoneNumber: json['phone_number'] as String?,
       email: json['email'] as String?,
       policyCover: json['policy_cover'] as String?,
+      country: json['country'] as String?,
     );
 
 Map<String, dynamic> _$$InsuranceRequestModelImplToJson(
@@ -30,8 +31,9 @@ Map<String, dynamic> _$$InsuranceRequestModelImplToJson(
       'certificate_valid_from': instance.certificateValidFrom,
       'certificate_valid_to': instance.certificateValidTo,
       'agency': instance.agency,
-      'country': instance.country,
       'address': instance.address,
+      'phone_number': instance.phoneNumber,
       'email': instance.email,
       'policy_cover': instance.policyCover,
+      'country': instance.country,
     };

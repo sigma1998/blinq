@@ -47,7 +47,11 @@ abstract class AccidentRepository {
 
   Future<void> uploadMedia(int accidentId, List<int> uploadedFilesId);
 
-  ///for driver b
+  ///
+  /// Driver b
+  ///
+  Future<void> connectToNoBlinqDriver(int accidentId);
+
   Future<void> accidentInjuryB(int accidentId, InjuryDto injuryDto);
 
   Future<void> accidentWitnessesB(int accidentId, String witnesses);
@@ -135,6 +139,19 @@ class AccidentRepositoryImpl implements AccidentRepository {
   Future<void> accidentInjury(int accidentId, InjuryDto injuryDto) async {
     try {
       return await api.accidentInjury(accidentId, injuryDto);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  ///
+  /// Driver b
+  ///
+
+  @override
+  Future<void> connectToNoBlinqDriver(int accidentId) async {
+    try {
+      return await api.connectToNoBlinqDriver(accidentId);
     } catch (e) {
       rethrow;
     }

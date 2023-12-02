@@ -15,6 +15,7 @@ _$ProfileRequestModelImpl _$$ProfileRequestModelImplFromJson(
       country: json['country'] as String?,
       address: json['address'] as String?,
       phoneNumber: json['phone_number'] as String?,
+      postalCode: json['postal_code'] as String?,
       driverLicense: $enumDecodeNullable(
           _$DriverLicenseTypeEnumMap, json['driver_license']),
       driverLicenseNumber: json['driver_license_number'] as String?,
@@ -30,6 +31,7 @@ Map<String, dynamic> _$$ProfileRequestModelImplToJson(
       'country': instance.country,
       'address': instance.address,
       'phone_number': instance.phoneNumber,
+      'postal_code': instance.postalCode,
       'driver_license': _$DriverLicenseTypeEnumMap[instance.driverLicense],
       'driver_license_number': instance.driverLicenseNumber,
       'driver_license_expired_date': instance.driverLicenseExpiredDate,

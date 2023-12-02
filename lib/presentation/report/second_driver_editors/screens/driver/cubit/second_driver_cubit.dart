@@ -6,15 +6,16 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
+import 'package:blinq/utils/smart_widgets/dialogs/license_category_dialog/license_category_dialog.dart';
+import 'package:blinq/presentation/report/pages/points_of_impact/points_of_impact_screen.dart';
+import 'package:blinq/utils/smart_widgets/dialogs/countries_dialog/countries_dialog.dart';
 import 'package:blinq/data/model/profile/driver_license/driver_license_type.dart';
 import 'package:blinq/data/model/profile/request/profile_request_model.dart';
-import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
-import 'package:blinq/utils/navigation_service.dart';
-import 'package:blinq/utils/smart_widgets/dialogs/countries_dialog/countries_dialog.dart';
-import 'package:blinq/utils/smart_widgets/dialogs/license_category_dialog/license_category_dialog.dart';
-import 'package:blinq/utils/string_helper.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/string_helper.dart';
 
 part 'second_driver_state.dart';
 part 'second_driver_cubit.freezed.dart';
@@ -31,6 +32,7 @@ class SecondDriverCubit extends Cubit<SecondDriverState> {
   final addressController = TextEditingController();
   final countryController = TextEditingController();
   final phoneNumberController = TextEditingController();
+  final postalCodeController = TextEditingController();
   final drivingLicenseNumberController = TextEditingController();
   final categoryController = TextEditingController();
   final licenseDateOfExpiryController = TextEditingController();
@@ -53,14 +55,22 @@ class SecondDriverCubit extends Cubit<SecondDriverState> {
         address: addressController.text,
         phoneNumber:
             MyStringHelper.removeNonNumbers(phoneNumberController.text),
+        postalCode: postalCodeController.text,
         driverLicense: DriverLicenseType.values
             .firstWhere((type) => type.name == categoryController.text),
         driverLicenseNumber: drivingLicenseNumberController.text,
         driverLicenseExpiredDate: licenseDateOfExpiryController.text,
       );
 
-      await accidentRepository.updateDriverB(reportBloc.reportId, driverB);
+      await accidentRepository.updateDriverB(
+        reportBloc.reportId,
+        driverB,
+      );
       emit(state.copyWith(status: Status.success));
+      NavigationService.pushNamed(
+        routeName: PointsOfImpactScreen.route,
+        nestedKey: NavigationService.homeNavigatorKey,
+      );
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }

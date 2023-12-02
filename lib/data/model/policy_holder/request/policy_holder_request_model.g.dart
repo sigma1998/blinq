@@ -15,6 +15,7 @@ _$PolicyHolderRequestModelImpl _$$PolicyHolderRequestModelImplFromJson(
       address: json['address'] as String?,
       postalCode: json['postal_code'] as String?,
       phoneNumber: json['phone_number'] as String?,
+      email: json['email'] as String?,
     );
 
 Map<String, dynamic> _$$PolicyHolderRequestModelImplToJson(
@@ -26,4 +27,5 @@ Map<String, dynamic> _$$PolicyHolderRequestModelImplToJson(
       'address': instance.address,
       'postal_code': instance.postalCode,
       'phone_number': instance.phoneNumber,
+      'email': instance.email,
     };

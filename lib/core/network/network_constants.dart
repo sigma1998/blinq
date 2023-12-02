@@ -90,7 +90,10 @@ class NetworkConstants {
   static String uploadMedia(accidentId) =>
       '/v2/api/adriver/accident/$accidentId/upload_media/';
 
-  ///driver b
+  /// Driver b
+
+  static String connectToNoBlinqDriver(accidentId) =>
+      '/v2/api/bdriver/accident/$accidentId/no_blinq_user_connect/';
   static String injuryB(accidentId) =>
       '/v2/api/bdriver/accident/$accidentId/injury/';
   static String witnessesB(accidentId) =>

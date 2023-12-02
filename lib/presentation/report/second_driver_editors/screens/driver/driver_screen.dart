@@ -6,15 +6,16 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:blinq/app/locator.dart';
-import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
-import 'package:blinq/domain/repositories/accident_repository.dart';
-import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
-import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/date_picker_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/phone_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
+import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/app/locator.dart';
 import 'cubit/second_driver_cubit.dart';
 
 class SecondDriverEditorScreen extends StatefulWidget {
@@ -95,6 +96,11 @@ class _SecondDriverEditorScreenState extends State<SecondDriverEditorScreen> {
                   ),
                   const SizedBox(height: 16),
                   NameTextField(
+                    labelText: 'strPostalCode'.tr(),
+                    controller: cubit.postalCodeController,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
                     labelText: 'strDrivingLicenseNumber'.tr(),
                     controller: cubit.drivingLicenseNumberController,
                   ),
@@ -115,6 +121,7 @@ class _SecondDriverEditorScreenState extends State<SecondDriverEditorScreen> {
               ),
               floatingActionButton: NavigationButton(
                 onNextTap: cubit.onSubmit,
+                loading: state.status == Status.loading,
               ),
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerFloat,

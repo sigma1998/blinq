@@ -33,6 +33,7 @@ mixin _$PolicyHolderRequestModel {
   String? get postalCode => throw _privateConstructorUsedError;
   @JsonKey(name: 'phone_number')
   String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,7 +53,8 @@ abstract class $PolicyHolderRequestModelCopyWith<$Res> {
       @JsonKey(name: 'country') String? country,
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'postal_code') String? postalCode,
-      @JsonKey(name: 'phone_number') String? phoneNumber});
+      @JsonKey(name: 'phone_number') String? phoneNumber,
+      String? email});
 }
 
 /// @nodoc
@@ -75,6 +77,7 @@ class _$PolicyHolderRequestModelCopyWithImpl<$Res,
     Object? address = freezed,
     Object? postalCode = freezed,
     Object? phoneNumber = freezed,
+    Object? email = freezed,
   }) {
     return _then(_value.copyWith(
       firstName: freezed == firstName
@@ -101,6 +104,10 @@ class _$PolicyHolderRequestModelCopyWithImpl<$Res,
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -120,7 +127,8 @@ abstract class _$$PolicyHolderRequestModelImplCopyWith<$Res>
       @JsonKey(name: 'country') String? country,
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'postal_code') String? postalCode,
-      @JsonKey(name: 'phone_number') String? phoneNumber});
+      @JsonKey(name: 'phone_number') String? phoneNumber,
+      String? email});
 }
 
 /// @nodoc
@@ -142,6 +150,7 @@ class __$$PolicyHolderRequestModelImplCopyWithImpl<$Res>
     Object? address = freezed,
     Object? postalCode = freezed,
     Object? phoneNumber = freezed,
+    Object? email = freezed,
   }) {
     return _then(_$PolicyHolderRequestModelImpl(
       firstName: freezed == firstName
@@ -168,6 +177,10 @@ class __$$PolicyHolderRequestModelImplCopyWithImpl<$Res>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -181,7 +194,8 @@ class _$PolicyHolderRequestModelImpl implements _PolicyHolderRequestModel {
       @JsonKey(name: 'country') this.country,
       @JsonKey(name: 'address') this.address,
       @JsonKey(name: 'postal_code') this.postalCode,
-      @JsonKey(name: 'phone_number') this.phoneNumber});
+      @JsonKey(name: 'phone_number') this.phoneNumber,
+      this.email});
 
   factory _$PolicyHolderRequestModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PolicyHolderRequestModelImplFromJson(json);
@@ -204,10 +218,12 @@ class _$PolicyHolderRequestModelImpl implements _PolicyHolderRequestModel {
   @override
   @JsonKey(name: 'phone_number')
   final String? phoneNumber;
+  @override
+  final String? email;
 
   @override
   String toString() {
-    return 'PolicyHolderRequestModel(firstName: $firstName, lastName: $lastName, country: $country, address: $address, postalCode: $postalCode, phoneNumber: $phoneNumber)';
+    return 'PolicyHolderRequestModel(firstName: $firstName, lastName: $lastName, country: $country, address: $address, postalCode: $postalCode, phoneNumber: $phoneNumber, email: $email)';
   }
 
   @override
@@ -224,13 +240,14 @@ class _$PolicyHolderRequestModelImpl implements _PolicyHolderRequestModel {
             (identical(other.postalCode, postalCode) ||
                 other.postalCode == postalCode) &&
             (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber));
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.email, email) || other.email == email));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, firstName, lastName, country,
-      address, postalCode, phoneNumber);
+      address, postalCode, phoneNumber, email);
 
   @JsonKey(ignore: true)
   @override
@@ -249,13 +266,13 @@ class _$PolicyHolderRequestModelImpl implements _PolicyHolderRequestModel {
 
 abstract class _PolicyHolderRequestModel implements PolicyHolderRequestModel {
   const factory _PolicyHolderRequestModel(
-          {@JsonKey(name: 'first_name') final String? firstName,
-          @JsonKey(name: 'last_name') final String? lastName,
-          @JsonKey(name: 'country') final String? country,
-          @JsonKey(name: 'address') final String? address,
-          @JsonKey(name: 'postal_code') final String? postalCode,
-          @JsonKey(name: 'phone_number') final String? phoneNumber}) =
-      _$PolicyHolderRequestModelImpl;
+      {@JsonKey(name: 'first_name') final String? firstName,
+      @JsonKey(name: 'last_name') final String? lastName,
+      @JsonKey(name: 'country') final String? country,
+      @JsonKey(name: 'address') final String? address,
+      @JsonKey(name: 'postal_code') final String? postalCode,
+      @JsonKey(name: 'phone_number') final String? phoneNumber,
+      final String? email}) = _$PolicyHolderRequestModelImpl;
 
   factory _PolicyHolderRequestModel.fromJson(Map<String, dynamic> json) =
       _$PolicyHolderRequestModelImpl.fromJson;
@@ -278,6 +295,8 @@ abstract class _PolicyHolderRequestModel implements PolicyHolderRequestModel {
   @override
   @JsonKey(name: 'phone_number')
   String? get phoneNumber;
+  @override
+  String? get email;
   @override
   @JsonKey(ignore: true)
   _$$PolicyHolderRequestModelImplCopyWith<_$PolicyHolderRequestModelImpl>

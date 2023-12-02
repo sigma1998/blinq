@@ -100,7 +100,6 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
 
     SketchScreen.route: (context) => const SketchScreen(),
     ConnectToDriverScreen.route: (context) => const ConnectToDriverScreen(),
-    QrScanScreen.route: (context) => const QrScanScreen(),
     SecondDriverScreen.route: (context) => const SecondDriverScreen(),
 
     FinishedScreen.route: (context) => const FinishedScreen(),
@@ -142,6 +141,8 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
       page = const InjuryScreen();
     case ConnectToDriverScreen.route:
       page = const ConnectToDriverScreen();
+    case QrScanScreen.route:
+      page = const QrScanScreen();
     case SpeechToTextScreen.route:
       page = const SpeechToTextScreen();
 

@@ -1,31 +1,33 @@
-// Project imports:
-import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
-import 'package:blinq/domain/repositories/accident_repository.dart';
-import 'package:blinq/domain/repositories/profile_repository.dart';
-import 'package:blinq/presentation/emergency_services/emergency_services_screen.dart';
-import 'package:blinq/presentation/inform_close_ones/inform_close_ones_screen.dart';
-import 'package:blinq/presentation/medical_assistance/medical_assistance_screen.dart';
-import 'package:blinq/presentation/profile/widgets/editors/driver/driver_editor_screen.dart';
-import 'package:blinq/presentation/profile/widgets/editors/insurance/insurance_editor_screen.dart';
-import 'package:blinq/presentation/profile/widgets/editors/policy_holder/policy_holder_editor_screen.dart';
-import 'package:blinq/presentation/profile/widgets/editors/vehicle/vehicle_editor_screen.dart';
-import 'package:blinq/presentation/report/pages/damaged_media/damaged_media_screen.dart';
-import 'package:blinq/utils/generic_bloc_state.dart';
-import 'package:blinq/utils/navigation_service.dart';
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+// Project imports:
+import 'package:blinq/presentation/profile/widgets/editors/policy_holder/policy_holder_editor_screen.dart';
+import 'package:blinq/presentation/profile/widgets/editors/insurance/insurance_editor_screen.dart';
+import 'package:blinq/presentation/profile/widgets/editors/vehicle/vehicle_editor_screen.dart';
+import 'package:blinq/presentation/profile/widgets/editors/driver/driver_editor_screen.dart';
+import 'package:blinq/presentation/emergency_services/emergency_services_screen.dart';
+import 'package:blinq/presentation/medical_assistance/medical_assistance_screen.dart';
+import 'package:blinq/presentation/inform_close_ones/inform_close_ones_screen.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/repositories/profile_repository.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/navigation_service.dart';
+
 class CreateReportBloc extends Cubit<GenericBlocState> {
+  //
   final ProfileRepository profileRepository;
   final AccidentRepository accidentRepository;
   final ReportBloc reportBloc;
 
-  CreateReportBloc(
-      {required this.profileRepository,
-      required this.accidentRepository,
-      required this.reportBloc})
-      : super(const GenericBlocState(status: Status.initial));
+  CreateReportBloc({
+    required this.profileRepository,
+    required this.accidentRepository,
+    required this.reportBloc,
+  }) : super(const GenericBlocState(status: Status.initial));
 
-//
+  //
   void onMedicalAssistancePressed() =>
       NavigationService.pushNamed(routeName: MedicalAssistanceScreen.route);
 
@@ -34,6 +36,8 @@ class CreateReportBloc extends Cubit<GenericBlocState> {
 
   void onInformYourCloseOnesPressed() =>
       NavigationService.pushNamed(routeName: InformCloseOnesScreen.route);
+
+  //
 
   void onCreateReportPressed() async {
     emit(const GenericBlocState(status: Status.loading));
@@ -57,8 +61,7 @@ class CreateReportBloc extends Cubit<GenericBlocState> {
       NavigationService.showErrorToast('Location permission is needed');
     } else {
       NavigationService.pushNamed(
-          routeName: DamagedMediaScreen.route,
-          nestedKey: NavigationService.homeNavigatorKey);
+          routeName: route, nestedKey: NavigationService.homeNavigatorKey);
     }
   }
 }

@@ -32,6 +32,8 @@ mixin _$ProfileRequestModel {
   String? get address => throw _privateConstructorUsedError;
   @JsonKey(name: 'phone_number')
   String? get phoneNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'postal_code')
+  String? get postalCode => throw _privateConstructorUsedError;
   @JsonKey(name: 'driver_license')
   DriverLicenseType? get driverLicense => throw _privateConstructorUsedError;
   @JsonKey(name: 'driver_license_number')
@@ -58,6 +60,7 @@ abstract class $ProfileRequestModelCopyWith<$Res> {
       @JsonKey(name: 'country') String? country,
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'phone_number') String? phoneNumber,
+      @JsonKey(name: 'postal_code') String? postalCode,
       @JsonKey(name: 'driver_license') DriverLicenseType? driverLicense,
       @JsonKey(name: 'driver_license_number') String? driverLicenseNumber,
       @JsonKey(name: 'driver_license_expired_date')
@@ -83,6 +86,7 @@ class _$ProfileRequestModelCopyWithImpl<$Res, $Val extends ProfileRequestModel>
     Object? country = freezed,
     Object? address = freezed,
     Object? phoneNumber = freezed,
+    Object? postalCode = freezed,
     Object? driverLicense = freezed,
     Object? driverLicenseNumber = freezed,
     Object? driverLicenseExpiredDate = freezed,
@@ -111,6 +115,10 @@ class _$ProfileRequestModelCopyWithImpl<$Res, $Val extends ProfileRequestModel>
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      postalCode: freezed == postalCode
+          ? _value.postalCode
+          : postalCode // ignore: cast_nullable_to_non_nullable
               as String?,
       driverLicense: freezed == driverLicense
           ? _value.driverLicense
@@ -143,6 +151,7 @@ abstract class _$$ProfileRequestModelImplCopyWith<$Res>
       @JsonKey(name: 'country') String? country,
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'phone_number') String? phoneNumber,
+      @JsonKey(name: 'postal_code') String? postalCode,
       @JsonKey(name: 'driver_license') DriverLicenseType? driverLicense,
       @JsonKey(name: 'driver_license_number') String? driverLicenseNumber,
       @JsonKey(name: 'driver_license_expired_date')
@@ -166,6 +175,7 @@ class __$$ProfileRequestModelImplCopyWithImpl<$Res>
     Object? country = freezed,
     Object? address = freezed,
     Object? phoneNumber = freezed,
+    Object? postalCode = freezed,
     Object? driverLicense = freezed,
     Object? driverLicenseNumber = freezed,
     Object? driverLicenseExpiredDate = freezed,
@@ -195,6 +205,10 @@ class __$$ProfileRequestModelImplCopyWithImpl<$Res>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      postalCode: freezed == postalCode
+          ? _value.postalCode
+          : postalCode // ignore: cast_nullable_to_non_nullable
+              as String?,
       driverLicense: freezed == driverLicense
           ? _value.driverLicense
           : driverLicense // ignore: cast_nullable_to_non_nullable
@@ -221,6 +235,7 @@ class _$ProfileRequestModelImpl implements _ProfileRequestModel {
       @JsonKey(name: 'country') this.country,
       @JsonKey(name: 'address') this.address,
       @JsonKey(name: 'phone_number') this.phoneNumber,
+      @JsonKey(name: 'postal_code') this.postalCode,
       @JsonKey(name: 'driver_license') this.driverLicense,
       @JsonKey(name: 'driver_license_number') this.driverLicenseNumber,
       @JsonKey(name: 'driver_license_expired_date')
@@ -248,6 +263,9 @@ class _$ProfileRequestModelImpl implements _ProfileRequestModel {
   @JsonKey(name: 'phone_number')
   final String? phoneNumber;
   @override
+  @JsonKey(name: 'postal_code')
+  final String? postalCode;
+  @override
   @JsonKey(name: 'driver_license')
   final DriverLicenseType? driverLicense;
   @override
@@ -259,7 +277,7 @@ class _$ProfileRequestModelImpl implements _ProfileRequestModel {
 
   @override
   String toString() {
-    return 'ProfileRequestModel(firstName: $firstName, lastName: $lastName, birthDate: $birthDate, country: $country, address: $address, phoneNumber: $phoneNumber, driverLicense: $driverLicense, driverLicenseNumber: $driverLicenseNumber, driverLicenseExpiredDate: $driverLicenseExpiredDate)';
+    return 'ProfileRequestModel(firstName: $firstName, lastName: $lastName, birthDate: $birthDate, country: $country, address: $address, phoneNumber: $phoneNumber, postalCode: $postalCode, driverLicense: $driverLicense, driverLicenseNumber: $driverLicenseNumber, driverLicenseExpiredDate: $driverLicenseExpiredDate)';
   }
 
   @override
@@ -277,6 +295,8 @@ class _$ProfileRequestModelImpl implements _ProfileRequestModel {
             (identical(other.address, address) || other.address == address) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
+            (identical(other.postalCode, postalCode) ||
+                other.postalCode == postalCode) &&
             (identical(other.driverLicense, driverLicense) ||
                 other.driverLicense == driverLicense) &&
             (identical(other.driverLicenseNumber, driverLicenseNumber) ||
@@ -296,6 +316,7 @@ class _$ProfileRequestModelImpl implements _ProfileRequestModel {
       country,
       address,
       phoneNumber,
+      postalCode,
       driverLicense,
       driverLicenseNumber,
       driverLicenseExpiredDate);
@@ -323,6 +344,7 @@ abstract class _ProfileRequestModel implements ProfileRequestModel {
       @JsonKey(name: 'country') final String? country,
       @JsonKey(name: 'address') final String? address,
       @JsonKey(name: 'phone_number') final String? phoneNumber,
+      @JsonKey(name: 'postal_code') final String? postalCode,
       @JsonKey(name: 'driver_license') final DriverLicenseType? driverLicense,
       @JsonKey(name: 'driver_license_number') final String? driverLicenseNumber,
       @JsonKey(name: 'driver_license_expired_date')
@@ -349,6 +371,9 @@ abstract class _ProfileRequestModel implements ProfileRequestModel {
   @override
   @JsonKey(name: 'phone_number')
   String? get phoneNumber;
+  @override
+  @JsonKey(name: 'postal_code')
+  String? get postalCode;
   @override
   @JsonKey(name: 'driver_license')
   DriverLicenseType? get driverLicense;

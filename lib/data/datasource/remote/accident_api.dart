@@ -47,7 +47,11 @@ abstract class AccidentApi {
 
   Future<void> uploadMedia(int accidentId, List<int> uploadedFilesId);
 
-  ///for driver b
+  ///
+  /// Driver b
+  ///
+  Future<void> connectToNoBlinqDriver(int accidentId);
+
   Future<void> accidentInjuryB(int accidentId, InjuryDto injuryDto);
 
   Future<void> accidentWitnessesB(int accidentId, String witnesses);
@@ -214,7 +218,19 @@ class AccidentApiImpl implements AccidentApi {
     }
   }
 
-  /// for driver B
+  ///
+  /// Driver B
+  ///
+
+  @override
+  Future<void> connectToNoBlinqDriver(int accidentId) async {
+    try {
+      await api.post(NetworkConstants.connectToNoBlinqDriver(accidentId));
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   @override
   Future<void> accidentInitialImpactPointB(
       int accidentId, MultipartFile image) async {

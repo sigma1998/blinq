@@ -19,6 +19,7 @@ class ProfileRequestModel with _$ProfileRequestModel {
     @JsonKey(name: 'country') String? country,
     @JsonKey(name: 'address') String? address,
     @JsonKey(name: 'phone_number') String? phoneNumber,
+    @JsonKey(name: 'postal_code') String? postalCode,
     @JsonKey(name: 'driver_license') DriverLicenseType? driverLicense,
     @JsonKey(name: 'driver_license_number') String? driverLicenseNumber,
     @JsonKey(name: 'driver_license_expired_date')

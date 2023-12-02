@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:blinq/presentation/report/second_driver_editors/screens/insurance_company/insurance_company_screen.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -82,11 +83,13 @@ class SecondDriverCarCubit extends Cubit<SecondDriverCarState> {
         reportBloc.reportId,
         carB,
       );
-
-      NavigationService.back();
+      emit(state.copyWith(status: Status.success));
+      NavigationService.pushNamed(
+        routeName: SecondDriverEditorInsuranceScreen.route,
+        nestedKey: NavigationService.homeNavigatorKey,
+      );
     } catch (e) {
-      debugPrint(e.toString());
-      NavigationService.showErrorToast('strTryAgain');
+      emit(state.copyWith(status: Status.initial));
     }
   }
 
