@@ -19,6 +19,8 @@ abstract class AuthRepository {
 
   Future<LoginResponseModel> loginWithGoogle(LoginGoogleRequest request);
 
+  Future<LoginResponseModel> refreshToken(String refresh);
+
   String getToken();
 
   void setToken(String token);
@@ -39,6 +41,7 @@ abstract class AuthRepository {
   Future<void> resetPassword(String newPassword);
 
   Future<void> deleteUser();
+
   Future<void> verifyDeleteUser(String code);
 }
 
@@ -166,6 +169,15 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<void> verifyDeleteUser(String code) async {
     try {
       await api.verifyDeleteUser(code);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<LoginResponseModel> refreshToken(String refresh) async {
+    try {
+      return await api.refreshToken(refresh);
     } catch (e) {
       rethrow;
     }

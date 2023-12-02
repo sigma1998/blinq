@@ -70,8 +70,14 @@ class AppApi {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
+      print('0ri09t8409583-4059-3405930-495-03495-034');
+      print(response.data);
+      print('0ri09t8409583-4059-3405930-495-03495-034');
+
       return response.data;
     } catch (e) {
+      print('0ri09t8409583-4059werfdggvdfe-3405930-495-03495-034');
+
       rethrow;
     }
   }

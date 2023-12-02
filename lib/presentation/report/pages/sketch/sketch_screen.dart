@@ -1,3 +1,6 @@
+import 'package:blinq/app/locator.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
@@ -22,16 +25,19 @@ class SketchScreen extends StatefulWidget {
 class _SketchScreenState extends State<SketchScreen> {
   late SketchBloc bloc;
 
+
   @override
-  void initState() {
-    bloc = SketchBloc();
+  void didChangeDependencies() {
+    bloc = SketchBloc(
+        accidentRepository: getIt<AccidentRepositoryImpl>(),
+        reportBloc: context.read<ReportBloc>());
     SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
-    super.initState();
+    super.didChangeDependencies();
   }
 
   @override
-  void dispose() {
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  void dispose() async{
+    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     super.dispose();
   }
 
@@ -46,136 +52,153 @@ class _SketchScreenState extends State<SketchScreen> {
             body: Stack(
               children: [
                 Center(
-                  child: FlutterPainter(
-                    controller: bloc.painterController,
-                  ),
-                ),
-                visible ? Positioned(
-                  bottom: 54,
-                  right: 0,
-                  left: 0,
-                  child: ValueListenableBuilder(
-                    valueListenable: bloc.painterController,
-                    builder: (context, _, __) => Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Flexible(
-                          child: Container(
-                            constraints: const BoxConstraints(maxWidth: 400),
-                            padding: const EdgeInsets.symmetric(horizontal: 15),
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(20)),
-                              color: Colors.white54,
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                if (bloc.painterController.freeStyleMode ==
-                                    FreeStyleMode.draw)
-                                  Row(
-                                    children: [
-                                      const Expanded(
-                                          flex: 1, child: Text("Color")),
-                                      // Control free style color hue
-                                      Expanded(
-                                        flex: 3,
-                                        child: Slider.adaptive(
-                                            min: 0,
-                                            max: 359.99,
-                                            value: HSVColor.fromColor(bloc
-                                                    .painterController
-                                                    .freeStyleColor)
-                                                .hue,
-                                            activeColor: bloc.painterController
-                                                .freeStyleColor,
-                                            onChanged: bloc.setFreeStyleColor),
-                                      ),
-                                    ],
-                                  ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+                  child: RepaintBoundary(
+                    key: bloc.key,
+                    child: FlutterPainter(
+                      controller: bloc.painterController,
                     ),
                   ),
-                ):const SizedBox(),
-                visible ? Positioned(
-                  bottom: 10,
-                  left: 1,
-                  right: 1,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      ValueListenableBuilder<PainterControllerValue>(
+                ),
+                visible
+                    ? Positioned(
+                        bottom: 54,
+                        right: 0,
+                        left: 0,
+                        child: ValueListenableBuilder(
                           valueListenable: bloc.painterController,
-                          builder: (context, _, child) {
-                            return IconButton(
-                              icon: Icon(
-                                  PhosphorIcons.fill.arrowCounterClockwise),
-                              onPressed: bloc.painterController.canUndo
-                                  ? bloc.undo
-                                  : null,
-                            );
-                          }),
-                      ValueListenableBuilder(
-                        valueListenable: bloc.painterController,
-                        builder: (context, _, __) => Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            // Free-style eraser
-                            IconButton(
-                              icon: Icon(PhosphorIcons.fill.eraser,
-                                  color: bloc.painterController.freeStyleMode ==
-                                          FreeStyleMode.erase
-                                      ? Theme.of(context).secondaryHeaderColor
-                                      : null),
-                              onPressed: bloc.toggleFreeStyleErase,
-                            ),
-                            const SizedBox(
-                              width: 24,
-                            ),
-                            // Free-style drawing
-                            IconButton(
-                                icon: Icon(
-                                  PhosphorIcons.fill.scribbleLoop,
-                                  color: bloc.painterController.freeStyleMode ==
-                                          FreeStyleMode.draw
-                                      ? Theme.of(context)
-                                          .toggleButtonsTheme
-                                          .color
-                                      : null,
+                          builder: (context, _, __) => Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Flexible(
+                                child: Container(
+                                  constraints:
+                                      const BoxConstraints(maxWidth: 400),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15),
+                                  decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.vertical(
+                                        top: Radius.circular(20)),
+                                    color: Colors.white54,
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      if (bloc.painterController
+                                              .freeStyleMode ==
+                                          FreeStyleMode.draw)
+                                        Row(
+                                          children: [
+                                            const Expanded(
+                                                flex: 1, child: Text("Color")),
+                                            // Control free style color hue
+                                            Expanded(
+                                              flex: 3,
+                                              child: Slider.adaptive(
+                                                  min: 0,
+                                                  max: 359.99,
+                                                  value: HSVColor.fromColor(bloc
+                                                          .painterController
+                                                          .freeStyleColor)
+                                                      .hue,
+                                                  activeColor: bloc
+                                                      .painterController
+                                                      .freeStyleColor,
+                                                  onChanged:
+                                                      bloc.setFreeStyleColor),
+                                            ),
+                                          ],
+                                        ),
+                                    ],
+                                  ),
                                 ),
-                                onPressed: bloc.toggleFreeStyleDraw),
-                            // Add text
-                            const SizedBox(
-                              width: 24,
-                            ),
-
-                            IconButton(
-                              icon: Icon(
-                                PhosphorIcons.fill.textT,
-                                color: bloc.textFocusNode.hasFocus
-                                    ? Theme.of(context).secondaryHeaderColor
-                                    : null,
                               ),
-                              onPressed: bloc.addText,
+                            ],
+                          ),
+                        ),
+                      )
+                    : const SizedBox(),
+                visible
+                    ? Positioned(
+                        bottom: 10,
+                        left: 1,
+                        right: 1,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            ValueListenableBuilder<PainterControllerValue>(
+                                valueListenable: bloc.painterController,
+                                builder: (context, _, child) {
+                                  return IconButton(
+                                    icon: Icon(PhosphorIcons
+                                        .fill.arrowCounterClockwise),
+                                    onPressed: bloc.painterController.canUndo
+                                        ? bloc.undo
+                                        : null,
+                                  );
+                                }),
+                            ValueListenableBuilder(
+                              valueListenable: bloc.painterController,
+                              builder: (context, _, __) => Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  // Free-style eraser
+                                  IconButton(
+                                    icon: Icon(PhosphorIcons.fill.eraser,
+                                        color: bloc.painterController
+                                                    .freeStyleMode ==
+                                                FreeStyleMode.erase
+                                            ? Theme.of(context)
+                                                .secondaryHeaderColor
+                                            : null),
+                                    onPressed: bloc.toggleFreeStyleErase,
+                                  ),
+                                  const SizedBox(
+                                    width: 24,
+                                  ),
+                                  // Free-style drawing
+                                  IconButton(
+                                      icon: Icon(
+                                        PhosphorIcons.fill.scribbleLoop,
+                                        color: bloc.painterController
+                                                    .freeStyleMode ==
+                                                FreeStyleMode.draw
+                                            ? Theme.of(context)
+                                                .toggleButtonsTheme
+                                                .color
+                                            : null,
+                                      ),
+                                      onPressed: bloc.toggleFreeStyleDraw),
+                                  // Add text
+                                  const SizedBox(
+                                    width: 24,
+                                  ),
+
+                                  IconButton(
+                                    icon: Icon(
+                                      PhosphorIcons.fill.textT,
+                                      color: bloc.textFocusNode.hasFocus
+                                          ? Theme.of(context)
+                                              .secondaryHeaderColor
+                                          : null,
+                                    ),
+                                    onPressed: bloc.addText,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
-                      ),
-                    ],
-                  ),
-                ):const SizedBox(),
-                visible ? Align(
-                  alignment: Alignment.bottomCenter,
-
-                  child:  NavigationButton(
-                    onNextTap: bloc.onSubmitted,
-                    onBack: () => NavigationService.back(),
-                  ),
-                ): const SizedBox()
+                      )
+                    : const SizedBox(),
+                visible
+                    ? Align(
+                        alignment: Alignment.bottomCenter,
+                        child: NavigationButton(
+                          onNextTap: ()=>bloc.onSubmitted(context),
+                          onBack: () => NavigationService.back(),
+                        ),
+                      )
+                    : const SizedBox()
               ],
             ),
           ),

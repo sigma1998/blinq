@@ -1,5 +1,8 @@
+import 'package:blinq/app/locator.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,16 +28,25 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
   @override
   void didChangeDependencies() {
     final args =
-        ModalRoute.of(context)?.settings.arguments as DamagedPartsScreenArgs;
+    ModalRoute
+        .of(context)
+        ?.settings
+        .arguments as DamagedPartsScreenArgs?;
 
-    bloc = DamagedPartsBloc(vehicleType: args.vehicleType);
+    bloc = DamagedPartsBloc(vehicleType: args?.vehicleType ?? VehicleType.auto,
+        accidentRepository: getIt<AccidentRepositoryImpl>(),
+        reportBloc: context.read(),
+    );
 
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
+    final width = MediaQuery
+        .of(context)
+        .size
+        .width;
     return BlocProvider(
       create: (_) {
         return bloc;
@@ -52,7 +64,10 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
                     ),
                     Text(
                       'strSelectDamage'.tr(),
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .titleMedium,
                     ),
                     const SizedBox(
                       height: 24,
@@ -67,16 +82,14 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
                           const VehiclesList(),
                           if (state.pageIndex < bloc.vehicleSelect.length - 1)
                             Arrow(
-                              alignment: Alignment.centerRight ,
+                              alignment: Alignment.centerRight,
                               icon: AppDrawables.leftArrow,
-
                               onTap: () =>
                                   bloc.setPageIndex(state.pageIndex + 1, width),
-
                             ),
                           if (state.pageIndex > 0)
                             Arrow(
-                              alignment:Alignment.centerLeft,
+                              alignment: Alignment.centerLeft,
                               icon: AppDrawables.rightArrow,
                               onTap: () =>
                                   bloc.setPageIndex(state.pageIndex - 1, width),
@@ -86,6 +99,7 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
                     ),
                     NavigationButton(
                       padding: 0,
+                      loading: state.status == Status.loading,
                       onNextTap: () => bloc.onNextTap(context),
                     ),
                   ],

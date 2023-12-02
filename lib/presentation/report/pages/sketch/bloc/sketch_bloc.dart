@@ -1,11 +1,18 @@
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/screenshot_util.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_painter_v2/flutter_painter.dart';
 
 class SketchBloc extends Cubit<GenericBlocState<bool>> {
-  SketchBloc()
+  final AccidentRepository accidentRepository;
+  final ReportBloc reportBloc;
+
+  SketchBloc({required this.reportBloc, required this.accidentRepository})
       : super(
             const GenericBlocState<bool>(status: Status.initial, data: true)) {
     onInit();
@@ -13,6 +20,8 @@ class SketchBloc extends Cubit<GenericBlocState<bool>> {
 
   late PainterController painterController;
   FocusNode textFocusNode = FocusNode();
+
+  final GlobalKey key = GlobalKey();
 
   void onInit() {
     painterController = PainterController(
@@ -66,14 +75,24 @@ class SketchBloc extends Cubit<GenericBlocState<bool>> {
     painterController.addText();
   }
 
-  void onSubmitted()async {
-
+  void onSubmitted(BuildContext context) async {
     emit(const GenericBlocState(status: Status.initial, data: false));
-    await Future.delayed(const Duration(seconds: 3));
-    emit(const GenericBlocState(status: Status.initial, data: true));
-    NavigationService.back();
 
+    try{
+      final file =  await captureSocialPng(key, context);
 
+      final multipartFile = MultipartFile.fromBytes(
+        file!.readAsBytesSync(),
+        filename: file.path.split('/').last,
+      );
+
+      await accidentRepository.accidentSketch(reportBloc.reportId, multipartFile);
+
+      emit(const GenericBlocState(status: Status.initial, data: true));
+      NavigationService.back(result: true);
+    }catch(e){
+      emit(const GenericBlocState(status: Status.initial, data: true));
+    }
 
   }
 }

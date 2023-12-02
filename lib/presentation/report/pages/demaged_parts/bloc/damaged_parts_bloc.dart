@@ -1,15 +1,16 @@
-import 'dart:async';
-import 'dart:io';
-import 'dart:typed_data';
-import 'dart:ui' as ui;
+// ignore_for_file: use_build_context_synchronously
 
 import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/presentation/report/pages/damaged_media/damaged_media_screen.dart';
 import 'package:blinq/presentation/report/pages/demaged_parts/damaged_parts_screen.dart';
-import 'package:blinq/utils/cache_folder.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/screenshot_util.dart';
+import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'damaged_parts_state.dart';
@@ -17,6 +18,9 @@ import 'damaged_parts_state.dart';
 part 'vehicle_info.dart';
 
 class DamagedPartsBloc extends Cubit<DamagedPartsState> {
+  final AccidentRepository accidentRepository;
+  final ReportBloc reportBloc;
+
   final scrollController = ScrollController();
   final VehicleType vehicleType;
 
@@ -24,7 +28,10 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
 
   List<String> vehicleSelect = [];
 
-  DamagedPartsBloc({required this.vehicleType})
+  DamagedPartsBloc(
+      {required this.vehicleType,
+      required this.accidentRepository,
+      required this.reportBloc})
       : super(const DamagedPartsState()) {
     switch (vehicleType) {
       case VehicleType.moto:
@@ -53,21 +60,20 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
   getKey(int index) {
     switch (index) {
       case 0:
-        return previewCarTop;
-      case 1:
         return previewCarFront;
-      case 2:
-        return previewCarBack;
-      case 3:
+      case 1:
         return previewCarLeft;
-      case 4:
+      case 2:
         return previewCarRight;
+
+      case 3:
+        return previewCarTop;
+      case 4:
+        return previewCarBack;
     }
   }
 
   void setPageIndex(int index, double width) {
-    // tabController.animateTo(index);
-
     scrollController.animateTo((width - 48) * index,
         duration: const Duration(milliseconds: 300), curve: Curves.linear);
 
@@ -92,7 +98,63 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
   }
 
   void onNextTap(BuildContext context) async {
-    await _captureSocialPng(previewCarTop, context);
+    emit(state.copyWith(status: Status.loading));
+
+    try {
+      MultipartFile? front;
+      MultipartFile? left;
+      MultipartFile? right;
+      MultipartFile? top;
+      MultipartFile? back;
+
+      var file = await captureSocialPng(previewCarFront, context);
+
+      front = MultipartFile.fromBytes(
+        file!.readAsBytesSync(),
+        filename: file.path.split('/').last,
+      );
+
+      file = await captureSocialPng(previewCarLeft, context);
+      left = MultipartFile.fromBytes(
+        file!.readAsBytesSync(),
+        filename: file.path.split('/').last,
+      );
+
+      if (vehicleType != VehicleType.moto) {
+        file = await captureSocialPng(previewCarRight, context);
+        right = MultipartFile.fromBytes(
+          file!.readAsBytesSync(),
+          filename: file.path.split('/').last,
+        );
+        file = await captureSocialPng(previewCarTop, context);
+        top = MultipartFile.fromBytes(
+          file!.readAsBytesSync(),
+          filename: file.path.split('/').last,
+        );
+        file = await captureSocialPng(previewCarBack, context);
+        back = MultipartFile.fromBytes(
+          file!.readAsBytesSync(),
+          filename: file.path.split('/').last,
+        );
+      }
+
+      await accidentRepository.damagedPoints(
+          top: top,
+          front: front,
+          back: back,
+          left: left,
+          right: right,
+          accidentId: reportBloc.reportId,
+          damageParts: damagedParts.toList());
+
+      emit(state.copyWith(status: Status.initial));
+
+      NavigationService.pushNamed(
+          routeName: DamagedMediaScreen.route,
+          nestedKey: NavigationService.homeNavigatorKey);
+    } catch (e) {
+      emit(state.copyWith(status: Status.initial));
+    }
   }
 
   Color onFColor(
@@ -103,28 +165,32 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
     if (vehicleType == VehicleType.auto) {
       switch (index) {
         case 0:
-          return _onFColorTopViewCar(position, active, inActive);
-        case 1:
           return _onFColorFrontViewCar(position, active, inActive);
-        case 2:
-          return _onFColorBackViewCar(position, active, inActive);
-        case 3:
+
+        case 1:
           return _onFColorLeftViewCar(position, active, inActive);
-        case 4:
+        case 2:
           return _onFColorRightViewCar(position, active, inActive);
+        case 3:
+          return _onFColorTopViewCar(position, active, inActive);
+
+        case 4:
+          return _onFColorBackViewCar(position, active, inActive);
       }
     } else if (vehicleType == VehicleType.van) {
       switch (index) {
         case 0:
-          return _onFColorTopViewVan(position, active, inActive);
-        case 1:
           return _onFColorFrontViewVan(position, active, inActive);
-        case 2:
-          return _onFColorBackViewVan(position, active, inActive);
-        case 3:
+
+        case 1:
           return _onFColorLeftViewVan(position, active, inActive);
-        case 4:
+        case 2:
           return _onFColorRightViewVan(position, active, inActive);
+        case 3:
+          return _onFColorTopViewVan(position, active, inActive);
+
+        case 4:
+          return _onFColorBackViewVan(position, active, inActive);
       }
     } else if (vehicleType == VehicleType.moto) {
       switch (index) {
@@ -247,8 +313,6 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
     } else if (y > 64.75 && y < 90.75 && x > 235.0 && x < 262.33) {
       color = damagedParts.contains(vehiclePartList[29]) ? inActive : active;
       selectPartFunc(vehiclePartList[29]);
-    } else {
-      print('NOT FOUND');
     }
     return color ?? active;
   }
@@ -290,9 +354,6 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
   ///getActiveColorForCar for VAN
   Color _onFColorTopViewVan(Offset position, Color active, Color inActive) {
     Color? color;
-
-    print('y: ${double.parse(position.dy.toStringAsFixed(2))}');
-    print('x: ${double.parse(position.dx.toStringAsFixed(2))}');
 
     final x = double.parse(position.dx.toStringAsFixed(2));
     final y = double.parse(position.dy.toStringAsFixed(2));
@@ -435,7 +496,7 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
     } else if (x > 166 && x < 212 && y > 69 && y < 107) {
       color = damagedParts.contains(vehiclePartList[14]) ? inActive : active;
       selectPartFunc(vehiclePartList[14]);
-    } else if (x > 120 && x < 154 && y > 64 && y < 106) {
+    } else if (x > 102 && x < 157 && y > 64 && y < 107) {
       color = damagedParts.contains(vehiclePartList[15]) ? inActive : active;
       selectPartFunc(vehiclePartList[15]);
     } else if (x > 18 && x < 92 && y > 64 && y < 106) {
@@ -474,13 +535,6 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
       color = damagedParts.contains(vehiclePartList[2]) ? inActive : active;
       selectPartFunc(vehiclePartList[2]);
     }
-    // else if (x > 87 && x < 138 && y > 104 && y < 148) {
-    //   color = damagedParts.contains(vehiclePartList[2]) ? inActive : active;
-    //   selectPartFunc(vehiclePartList[2]);
-    // } else if (x > 87 && x < 138 && y > 104 && y < 148) {
-    //   color = damagedParts.contains(vehiclePartList[2]) ? inActive : active;
-    //   selectPartFunc(vehiclePartList[2]);
-    // }
 
     return color ?? active;
   }
@@ -490,11 +544,6 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
 
     final x = double.parse(position.dx.toStringAsFixed(2));
     final y = double.parse(position.dy.toStringAsFixed(2));
-
-    print('x: $x');
-    print('y: $y');
-
-    print(vehiclePartList.indexOf('seat'));
 
     if (x > 12 && x < 69 && y > 91 && y < 140) {
       color = damagedParts.contains(vehiclePartList[19]) ? inActive : active;
@@ -536,37 +585,5 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
     }
 
     return color ?? active;
-  }
-
-  Future<File?> _captureSocialPng(GlobalKey container, BuildContext context) {
-    return Future.delayed(const Duration(milliseconds: 20), () async {
-      RenderRepaintBoundary? boundary = container.currentContext!
-          .findRenderObject() as RenderRepaintBoundary?;
-
-      if (boundary?.debugNeedsLayout == true) {
-        NavigationService.showErrorToast('Debug Needs Layout');
-        return null;
-      }
-
-      /// if it needs repaint, we paint it.
-      /// it appears only in debug mode
-      /// in profile/release mode should work fine
-      if (boundary?.debugNeedsPaint ?? true) {
-        await Future.delayed(const Duration(milliseconds: 500));
-        // ignore: use_build_context_synchronously
-        return await _captureSocialPng(container, context);
-      }
-
-      ui.Image image = await boundary!.toImage();
-      final directory = await FileUtil.createFolderInAppDocDir();
-      ByteData? byteData =
-          await image.toByteData(format: ui.ImageByteFormat.png);
-      Uint8List pngBytes = byteData!.buffer.asUint8List();
-      File imgFile =
-          File('$directory/${DateTime.now().millisecondsSinceEpoch}.png');
-      imgFile.writeAsBytes(pngBytes);
-      print(imgFile.path);
-      return imgFile;
-    });
   }
 }

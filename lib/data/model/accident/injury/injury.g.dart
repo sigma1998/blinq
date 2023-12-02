@@ -8,14 +8,14 @@ part of 'injury.dart';
 
 _$InjuryDtoImpl _$$InjuryDtoImplFromJson(Map<String, dynamic> json) =>
     _$InjuryDtoImpl(
-      country: json['country'] as String,
-      location: json['location'] as String,
-      createdAt: json['created_at'] as String,
+      injury: json['injury'] as bool,
+      otherDamagedVehicles: json['other_damaged_vehicles'] as bool,
+      otherDamagedItems: json['other_damaged_items'] as bool,
     );
 
 Map<String, dynamic> _$$InjuryDtoImplToJson(_$InjuryDtoImpl instance) =>
     <String, dynamic>{
-      'country': instance.country,
-      'location': instance.location,
-      'created_at': instance.createdAt,
+      'injury': instance.injury,
+      'other_damaged_vehicles': instance.otherDamagedVehicles,
+      'other_damaged_items': instance.otherDamagedItems,
     };
