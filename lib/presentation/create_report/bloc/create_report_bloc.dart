@@ -9,6 +9,7 @@ import 'package:blinq/presentation/profile/widgets/editors/driver/driver_editor_
 import 'package:blinq/presentation/profile/widgets/editors/insurance/insurance_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/policy_holder/policy_holder_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/vehicle/vehicle_editor_screen.dart';
+import 'package:blinq/presentation/report/pages/damaged_media/damaged_media_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,7 +57,8 @@ class CreateReportBloc extends Cubit<GenericBlocState> {
       NavigationService.showErrorToast('Location permission is needed');
     } else {
       NavigationService.pushNamed(
-          routeName: route, nestedKey: NavigationService.homeNavigatorKey);
+          routeName: DamagedMediaScreen.route,
+          nestedKey: NavigationService.homeNavigatorKey);
     }
   }
 }
