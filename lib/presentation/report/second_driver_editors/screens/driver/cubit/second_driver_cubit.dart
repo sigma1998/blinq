@@ -59,7 +59,7 @@ class SecondDriverCubit extends Cubit<SecondDriverState> {
         driverLicenseExpiredDate: licenseDateOfExpiryController.text,
       );
 
-      await accidentRepository.updateDriverB(reportBloc.accidentId, driverB);
+      await accidentRepository.updateDriverB(reportBloc.reportId, driverB);
       emit(state.copyWith(status: Status.success));
     } catch (e) {
       emit(state.copyWith(status: Status.initial));

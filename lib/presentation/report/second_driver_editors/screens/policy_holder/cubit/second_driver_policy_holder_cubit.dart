@@ -48,7 +48,7 @@ class SecondDriverPolicyHolderCubit
       );
 
       accidentRepository.updatePolicyHolderB(
-          reportBloc.accidentId, policyHolderB);
+          reportBloc.reportId, policyHolderB);
       emit(state.copyWith(status: Status.success));
     } catch (e) {
       emit(state.copyWith(status: Status.initial));

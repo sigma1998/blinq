@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/presentation/report/second_driver_editors/screens/driver/driver_screen.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -45,7 +46,6 @@ import 'package:blinq/presentation/report/pages/location_info/location_info_scre
 import 'package:blinq/presentation/report/pages/points_of_impact/points_of_impact_screen.dart';
 import 'package:blinq/presentation/report/pages/qr_scan/qr_scan_screen.dart';
 import 'package:blinq/presentation/report/pages/second_driver/second_driver_screen.dart';
-import 'package:blinq/presentation/report/pages/second_driver_editors/second_driver_editor_screen.dart';
 import 'package:blinq/presentation/report/pages/sign/sign_screen.dart';
 import 'package:blinq/presentation/report/pages/sketch/sketch_screen.dart';
 import 'package:blinq/presentation/report/pages/speech_to_text/speech_to_text_screen.dart';
@@ -104,8 +104,6 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     SecondDriverScreen.route: (context) => const SecondDriverScreen(),
 
     FinishedScreen.route: (context) => const FinishedScreen(),
-    SecondDriverEditorScreen.route: (context) =>
-        const SecondDriverEditorScreen(),
 
     ContactEditScreen.route: (context) => const ContactEditScreen(),
     PremadeMessageEditScreen.route: (context) =>
@@ -125,7 +123,7 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
     case MapScreen.route:
       page = const MapScreen();
     case PointsOfImpactScreen.route:
-      page = PointsOfImpactScreen();
+      page = const PointsOfImpactScreen();
     case CircumstancesScreen.route:
       page = const CircumstancesScreen();
     case SketchScreen.route:
@@ -146,8 +144,6 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
       page = const ConnectToDriverScreen();
     case SpeechToTextScreen.route:
       page = const SpeechToTextScreen();
-    case DamagedMediaScreen.route:
-      page = const DamagedMediaScreen();
 
     //~ Second Driver Editors
     case SecondDriverEditorScreen.route:

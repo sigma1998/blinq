@@ -57,7 +57,7 @@ class SecondDriverInsuranceCubit extends Cubit<SecondDriverInsuranceState> {
       );
 
       accidentRepository.updateInsuranceCompanyB(
-          reportBloc.accidentId, insuranceB);
+          reportBloc.reportId, insuranceB);
       emit(state.copyWith(status: Status.success));
     } catch (e) {
       emit(state.copyWith(status: Status.initial));

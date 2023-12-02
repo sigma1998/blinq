@@ -47,88 +47,90 @@ class _SecondDriverEditorInsuranceScreenState
     return BlocBuilder<SecondDriverInsuranceCubit, SecondDriverInsuranceState>(
       bloc: cubit,
       builder: (context, state) {
-        return KeyboardEscape(
-          child: Scaffold(
-            body: ListView(
-              padding: const EdgeInsets.symmetric(
-                vertical: 40,
-                horizontal: 32,
-              ),
-              physics: const BouncingScrollPhysics(),
-              children: [
-                Text(
-                  'strInformationAboutInsuranceCompany'.tr(),
-                  style: Theme.of(context).textTheme.titleMedium,
+        return SafeArea(
+          child: KeyboardEscape(
+            child: Scaffold(
+              body: ListView(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 40,
+                  horizontal: 32,
                 ),
-                const SizedBox(height: 40),
-                NameTextField(
-                  labelText: 'strName'.tr(),
-                  controller: cubit.nameController,
-                ),
-                const SizedBox(height: 16),
-                NameTextField(
-                  labelText: 'strPolicyNumber'.tr(),
-                  controller: cubit.policyNumberController,
-                ),
-                const SizedBox(height: 16),
-                NameTextField(
-                  labelText: 'strGreenCardNumber'.tr(),
-                  controller: cubit.greenCardNumberController,
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  'strInsuranceCertificateGreenCardValid'.tr(),
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                    color: Theme.of(context).colorScheme.onSecondary,
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  Text(
+                    'strInformationAboutInsuranceCompany'.tr(),
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
-                ),
-                const SizedBox(height: 16),
-                DatePickerTextField(
-                  labelText: 'strFrom'.tr(),
-                  controller: cubit.certificateValidFromController,
-                ),
-                const SizedBox(height: 16),
-                DatePickerTextField(
-                  labelText: 'strTo'.tr(),
-                  controller: cubit.certificateValidToController,
-                ),
-                const SizedBox(height: 16),
-                NameTextField(
-                  labelText: 'strAgency'.tr(),
-                  controller: cubit.agencyController,
-                ),
-                const SizedBox(height: 16),
-                NameTextField(
-                  labelText: 'strAddress'.tr(),
-                  controller: cubit.addressController,
-                ),
-                const SizedBox(height: 16),
-                PickerTextField(
-                  labelText: 'strCountry'.tr(),
-                  controller: cubit.countryController,
-                  onTap: cubit.onSelectCountriesPressed,
-                ),
-                const SizedBox(height: 16),
-                NameTextField(
-                  labelText: 'strTelEmail'.tr(),
-                  controller: cubit.emailController,
-                ),
-                const SizedBox(height: 16),
-                PickerTextField(
-                  labelText: 'strPolicCover'.tr(),
-                  onTap: cubit.onPolicyCoverPressed,
-                  controller: cubit.policyCoverController,
-                ),
-                const SizedBox(height: 36),
-              ],
+                  const SizedBox(height: 40),
+                  NameTextField(
+                    labelText: 'strName'.tr(),
+                    controller: cubit.nameController,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: 'strPolicyNumber'.tr(),
+                    controller: cubit.policyNumberController,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: 'strGreenCardNumber'.tr(),
+                    controller: cubit.greenCardNumberController,
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'strInsuranceCertificateGreenCardValid'.tr(),
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      color: Theme.of(context).colorScheme.onSecondary,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  DatePickerTextField(
+                    labelText: 'strFrom'.tr(),
+                    controller: cubit.certificateValidFromController,
+                  ),
+                  const SizedBox(height: 16),
+                  DatePickerTextField(
+                    labelText: 'strTo'.tr(),
+                    controller: cubit.certificateValidToController,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: 'strAgency'.tr(),
+                    controller: cubit.agencyController,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: 'strAddress'.tr(),
+                    controller: cubit.addressController,
+                  ),
+                  const SizedBox(height: 16),
+                  PickerTextField(
+                    labelText: 'strCountry'.tr(),
+                    controller: cubit.countryController,
+                    onTap: cubit.onSelectCountriesPressed,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: 'strTelEmail'.tr(),
+                    controller: cubit.emailController,
+                  ),
+                  const SizedBox(height: 16),
+                  PickerTextField(
+                    labelText: 'strPolicCover'.tr(),
+                    onTap: cubit.onPolicyCoverPressed,
+                    controller: cubit.policyCoverController,
+                  ),
+                  const SizedBox(height: 36),
+                ],
+              ),
+              floatingActionButton: NavigationButton(
+                onNextTap: cubit.onSubmit,
+              ),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerFloat,
             ),
-            floatingActionButton: NavigationButton(
-              onNextTap: cubit.onSubmit,
-            ),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerFloat,
           ),
         );
       },

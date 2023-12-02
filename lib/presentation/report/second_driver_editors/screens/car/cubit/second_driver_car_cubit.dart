@@ -79,7 +79,7 @@ class SecondDriverCarCubit extends Cubit<SecondDriverCarState> {
       );
 
       await accidentRepository.updateCarB(
-        reportBloc.accidentId,
+        reportBloc.reportId,
         carB,
       );
 
@@ -119,9 +119,13 @@ class SecondDriverCarCubit extends Cubit<SecondDriverCarState> {
 
   void onModelTap() async {
     final res = await NavigationService.showDialog(
-        dialog: MyDialog(
-            items:
-                List.generate(models.length, (index) => models[index].name!)));
+      dialog: MyDialog(
+        items: List.generate(
+          models.length,
+          (index) => models[index].name!,
+        ),
+      ),
+    );
     if (res != null) {
       modelController.text = res;
       for (var element in models) {
