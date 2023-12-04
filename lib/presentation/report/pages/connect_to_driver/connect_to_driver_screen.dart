@@ -18,34 +18,37 @@ class ConnectToDriverScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView(
-        padding: const EdgeInsets.all(32),
-        physics: const ClampingScrollPhysics(),
-        children: [
-          const SizedBox(height: 50),
-          Text(
-            'strSecondDriverBlinq'.tr(),
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          const SizedBox(height: 118),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              YesNoButton(
-                onChanged: (v) {},
-              ),
-            ],
-          ),
-        ],
-      ),
-      resizeToAvoidBottomInset: false,
-      floatingActionButton: NavigationButton(
-        onNextTap: () => NavigationService.pushNamed(
-          routeName: QrScanScreen.route,
+    return SafeArea(
+      child: Scaffold(
+        body: ListView(
+          padding: const EdgeInsets.all(32),
+          physics: const ClampingScrollPhysics(),
+          children: [
+            const SizedBox(height: 50),
+            Text(
+              'strSecondDriverBlinq'.tr(),
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(height: 118),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                YesNoButton(
+                  onChanged: (v) {},
+                ),
+              ],
+            ),
+          ],
         ),
+        resizeToAvoidBottomInset: false,
+        floatingActionButton: NavigationButton(
+          onNextTap: () => NavigationService.pushNamed(
+            routeName: QrScanScreen.route,
+            nestedKey: NavigationService.homeNavigatorKey
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

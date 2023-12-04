@@ -12,7 +12,6 @@ import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/step_indicator.dart';
 
 // Package imports:
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -34,11 +33,14 @@ class _SpeechToTextScreenState extends State<SpeechToTextScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final args = ModalRoute.of(context)!.settings.arguments as SpeechToTextArgs;
+    final args = ModalRoute
+        .of(context)!
+        .settings
+        .arguments as SpeechToTextArgs;
     bloc = SpeechToTextScreenBloc(
-        speechToTextScreenMode: args.mode,
-        accidentRepository: getIt<AccidentRepositoryImpl>(),
-        reportBloc: context.read<ReportBloc>(),
+      speechToTextScreenMode: args.mode,
+      accidentRepository: getIt<AccidentRepositoryImpl>(),
+      reportBloc: context.read<ReportBloc>(),
     );
   }
 
@@ -54,8 +56,8 @@ class _SpeechToTextScreenState extends State<SpeechToTextScreen> {
                 padding: const EdgeInsets.all(32),
                 children: [
                   StepIndicator(
-                    currentStep: 3,
-                    title: 'strBreakDown'.tr(),
+                    currentStep: bloc.getStep(),
+                    showTrailingTitle: true,
                   ),
                   const SizedBox(height: 52),
                   SpeechToTextField(
@@ -71,7 +73,7 @@ class _SpeechToTextScreenState extends State<SpeechToTextScreen> {
                 onNextTap: bloc.onNextTap,
               ),
               floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerFloat,
+              FloatingActionButtonLocation.centerFloat,
             ),
           ),
         );

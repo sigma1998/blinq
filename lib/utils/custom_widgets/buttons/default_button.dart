@@ -13,6 +13,7 @@ class MyButton extends StatelessWidget {
 
   final Color enabledColor;
   final Color disabledColor;
+  final Color? color;
 
   final void Function() onTap;
   final void Function()? onLongPress;
@@ -54,7 +55,7 @@ class MyButton extends StatelessWidget {
     this.isLoading = false,
     this.enable = true,
     //
-    this.width,
+    this.width, this.color,
   })  : enabledColor = AppColors.primaryColor,
         disabledColor = AppColors.grey1;
 
@@ -81,7 +82,7 @@ class MyButton extends StatelessWidget {
     this.isLoading = false,
     this.enable = true,
     //
-    this.width,
+    this.width, this.color,
   })  : enabledColor = Colors.white,
         disabledColor = AppColors.grey1;
 
@@ -107,7 +108,7 @@ class MyButton extends StatelessWidget {
     this.isLoading = false,
     this.enable = true,
     //
-    this.width,
+    this.width, this.color,
   })  : enabledColor = AppColors.grey1,
         disabledColor = AppColors.grey1;
 
@@ -123,7 +124,7 @@ class MyButton extends StatelessWidget {
         padding: padding,
         borderRadius: BorderRadius.circular(50),
         onTap: enable && !isLoading ? onTap : null,
-        color: enable || isLoading ? enabledColor : disabledColor,
+        color: color ?? (enable || isLoading ? enabledColor : disabledColor),
         child: Stack(
           children: [
             if (!isLoading)

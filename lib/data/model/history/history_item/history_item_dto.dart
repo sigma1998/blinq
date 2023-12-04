@@ -11,6 +11,7 @@ class HistoryItemModelDto with _$HistoryItemModelDto {
   const factory HistoryItemModelDto({
     int? id,
     String? type,
+    String? status,
     @JsonKey(name: 'created_at') String? createdAt,
     @JsonKey(name: 'accident_document_pdf') String? accidentDocumentPdf,
   }) = _HistoryItemModelDto;

@@ -624,7 +624,7 @@
   "strIsSecondDriverAccount":  "Is this the second driver's BLINQ account?",
   "strDamageReportSent": "The damage report has been sent!",
   "strYourInformMessageSent": "Your Inform message has been sent!",
-  "strVehicleType": "Choose the type of your vehicle",
+  "strVehicleType": "Choose the type of vehicle",
   "strSelectFromGallery": "Select from Gallery",
   "strRecordVideo": "Record Video",
   "strMaxMediaFiles": "Maximum 2 video and 6 image media files can be uploaded",
@@ -735,5 +735,7 @@
     "ear right wheel":  "ear right wheel",
     "front left wheel":  "front left wheel",
     "rear left wheel":  "rear left wheel"
-  }
+  },
+  "strABCompleted": "Part of drivers A and B\nare completed",
+  "strPartsCommon": "The following part is common to both drivers"
 }

@@ -48,58 +48,60 @@ class _QrScanScreenState extends State<QrScanScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            child: QRView(
-              key: qrKey,
-              onQRViewCreated: _onQRViewCreated,
-              overlay: QrScannerOverlayShape(
-                borderWidth: 8,
-                cutOutSize: 266,
-                borderLength: 30,
-                borderColor: Theme.of(context).colorScheme.primary,
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: QRView(
+                key: qrKey,
+                onQRViewCreated: _onQRViewCreated,
+                overlay: QrScannerOverlayShape(
+                  borderWidth: 8,
+                  cutOutSize: 266,
+                  borderLength: 30,
+                  borderColor: Theme.of(context).colorScheme.primary,
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 32,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 60),
-                Text(
-                  'strUseScan'.tr(),
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  'strConnectTogether'.tr(),
-                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        color: Theme.of(context).colorScheme.outline,
-                      ),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-      floatingActionButton: MyButton.tertiary(
-        width: 100,
-        label: 'strCancel'.tr(),
-        onTap: NavigationService.back,
-        padding: const EdgeInsets.symmetric(
-          vertical: 12,
-          horizontal: 24,
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 32,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 60),
+                  Text(
+                    'strUseScan'.tr(),
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    'strConnectTogether'.tr(),
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          color: Theme.of(context).colorScheme.outline,
+                        ),
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
-        margin: const EdgeInsets.only(bottom: 50),
+        floatingActionButton: MyButton.tertiary(
+          width: 100,
+          label: 'strCancel'.tr(),
+          onTap: ()=>NavigationService.homeNavigatorKey.currentState?.pop(),
+          padding: const EdgeInsets.symmetric(
+            vertical: 12,
+            horizontal: 24,
+          ),
+          margin: const EdgeInsets.only(bottom: 50),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
@@ -112,6 +114,7 @@ class _QrScanScreenState extends State<QrScanScreen> {
       NavigationService.pushReplacement(
         routeName: SecondDriverScreen.route,
         arguments: userJson['user_id'],
+        nestedKey: NavigationService.homeNavigatorKey
       );
       _isScanned = true;
     });

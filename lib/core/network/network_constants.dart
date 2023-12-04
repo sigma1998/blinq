@@ -8,7 +8,7 @@ class NetworkConstants {
   static String loginApple = 'v1/api/social/auth/apple/jwt/';
   static String loginGoogle = 'v1/api/social/auth/google/';
   static String confirmMailVerification =
-      'cv1/api/onfirm/email/for/reset/password';
+      'v1/api/onfirm/email/for/reset/password';
   static String getVerificationCode = 'v1/api/send/code/for/reset/password/';
   static String resetPassword = 'v1/api/reset/password/';
   static String deleteUser = 'v1/api/user/delete/request/';
@@ -20,12 +20,15 @@ class NetworkConstants {
   /// Accident
   ///
 
-  static String accident = 'v1/api/accident/';
+  static const String accident = 'v2/api/accident/';
 
-  static String history = '${accident}breakdown/history/?page=1';
+  static String history = 'v1/api/accident/breakdown/history/?page=1';
   static String deleteReport = '${accident}breakdown/delete';
 
-  static String secondDriver = '${accident}connect/second/driver/to/accident/';
+  static String getDriverB (int id) => 'v1/api/user/$id/mini/';
+
+  static String connectBDriver (int accidentId) => '/v2/api/adriver/accident/$accidentId/connect_bdriver_with_qr_code/';
+
 
   ///
   /// Profile
@@ -69,7 +72,9 @@ class NetworkConstants {
   static String accidentTimeAndPlace (accidentId)=> '/v2/api/adriver/accident/$accidentId/date_time_country_place/';
   static String accidentSketch (accidentId)=> '/v2/api/abdriver/accident/$accidentId/sketch/';
   static String accidentCircumstances (accidentId)=> '/v2/api/abdriver/accident/$accidentId/circumstances/';
-  static String uploadFile = 'v2/api/files';
+  static String uploadFile = 'v2/api/files/';
+
+  static String accidentStatus(accidentId)=> 'v2/api/get/accident/$accidentId/status/';
 
   ///driver a
   static String injury(accidentId) =>
@@ -86,6 +91,8 @@ class NetworkConstants {
       '/v2/api/adriver/accident/$accidentId/damage_points/';
   static String uploadMedia(accidentId) =>
       '/v2/api/adriver/accident/$accidentId/upload_media/';
+  static String sign(accidentId) =>
+      '/v2/api/adriver/accident/$accidentId/sign/';
 
   ///driver b
   static String injuryB(accidentId) =>
@@ -102,4 +109,10 @@ class NetworkConstants {
       '/v2/api/bdriver/accident/$accidentId/damage_points/';
   static String uploadMediaB(accidentId) =>
       '/v2/api/bdriver/accident/$accidentId/upload_media/';
+  static String signB(accidentId) =>
+      '/v2/api/bdriver/accident/$accidentId/sign/';
+
+  static String getPdf(int accidentId) => '/v2/api/accident/$accidentId/get_pdf/';
+
+  static String sendToInsurance = 'v1/api/accident/send/breakdown/report/to/insurance/';
 }

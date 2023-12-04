@@ -3,6 +3,7 @@ import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/step_indicator.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,8 +60,12 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
                 padding: const EdgeInsets.all(24.0),
                 child: Column(
                   children: [
+                    StepIndicator(
+                      currentStep: bloc.getStep(),
+                      showTrailingTitle: true,
+                    ),
                     const SizedBox(
-                      height: 48,
+                      height: 24,
                     ),
                     Text(
                       'strSelectDamage'.tr(),

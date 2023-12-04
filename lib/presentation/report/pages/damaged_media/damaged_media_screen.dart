@@ -1,22 +1,23 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:blinq/app/locator.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
 
 // Project imports:
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
-import 'package:blinq/domain/repositories/accident_repository.dart';
-import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
-import 'package:blinq/utils/services/media/media_service.dart';
 import 'package:blinq/utils/custom_widgets/loading.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/services/media/media_service.dart';
 import 'package:blinq/utils/step_indicator.dart';
-import 'package:blinq/app/locator.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'cubit/damaged_media_cubit.dart';
-import 'widgets/empty_state.dart';
 import 'widgets/button.dart';
+import 'widgets/empty_state.dart';
 import 'widgets/item.dart';
 
 class DamagedMediaScreen extends StatefulWidget {
@@ -62,10 +63,7 @@ class _DamagedMediaScreenState extends State<DamagedMediaScreen> {
                 padding: const EdgeInsets.all(32),
                 child: Column(
                   children: [
-                    StepIndicator(
-                      currentStep: 2,
-                      title: 'strAccident'.tr(),
-                    ),
+                    StepIndicator(currentStep: cubit.step(), showTrailingTitle: true,),
                     const SizedBox(height: 20),
                     if (list.isEmpty)
                       const Expanded(
@@ -88,7 +86,7 @@ class _DamagedMediaScreenState extends State<DamagedMediaScreen> {
                             );
                           },
                           gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3,
                             childAspectRatio: 126 / 170,
                           ),
@@ -107,7 +105,7 @@ class _DamagedMediaScreenState extends State<DamagedMediaScreen> {
                 label: state.files.isEmpty ? 'strNo'.tr() : 'strNext'.tr(),
               ),
               floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerFloat,
+                  FloatingActionButtonLocation.centerFloat,
             ),
           );
         },

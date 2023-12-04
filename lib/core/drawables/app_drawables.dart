@@ -61,6 +61,8 @@ class AppDrawables {
   static const String fireTruck = '$icons/fire_truck.svg';
   static const String phone = '$icons/phone.svg';
   static const String phoneCircle = '$icons/phone_circle.svg';
+  static const String stop = '$icons/stop.svg';
+  static const String retry = '$icons/retry.svg';
 
   //~ My vehicle
   static const String wheel = '$icons/wheel.svg';

@@ -1,16 +1,86 @@
-
-
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/presentation/report/pages/sign/sign_screen.dart';
+import 'package:blinq/presentation/report/pages/sketch/sketch_screen.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/navigation_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'circumstance_state.dart';
 
-class CircumstancesBloc extends Cubit<CircumstanceState>{
+class CircumstancesBloc extends Cubit<CircumstanceState> {
+  final ReportBloc reportBloc;
+  final AccidentRepository accidentRepository;
 
-  CircumstancesBloc(): super(const CircumstanceState());
+  late final bool isAccident;
 
+  CircumstancesBloc(
+      {required this.accidentRepository, required this.reportBloc})
+      : super(const CircumstanceState()) {
+    isAccident = reportBloc.reportType == ReportType.accident;
+  }
 
+  driverAActive(int index) {
+    return state.driverA.contains(Circumstances.values[index].key);
+  }
+
+  driverBActive(int index) {
+    return state.driverB.contains(Circumstances.values[index].key);
+  }
+
+  onCheckedA(int index) {
+    if (state.driverA.contains(Circumstances.values[index].key)) {
+      Set<String> set = {};
+      set.addAll(state.driverA);
+      set.remove(Circumstances.values[index].key);
+      emit(state.copyWith(driverA: set));
+    } else {
+      Set<String> set = {};
+      set.addAll(state.driverA);
+      set.add(Circumstances.values[index].key);
+      emit(state.copyWith(driverA: set));
+    }
+  }
+
+  onCheckedB(int index) {
+    if (state.driverB.contains(Circumstances.values[index].key)) {
+
+      Set<String> set = {};
+      set.addAll(state.driverB);
+      set.remove(Circumstances.values[index].key);
+      emit(state.copyWith(driverB: set));
+    } else {
+      Set<String> set = {};
+      set.addAll(state.driverB);
+      set.add(Circumstances.values[index].key);
+      emit(state.copyWith(driverB: set));
+    }
+  }
+
+  Future<void> onSubmit() async {
+    emit(state.copyWith(status: Status.loading));
+
+    try {
+      await accidentRepository.sendCircumstances(
+          accidentId: reportBloc.reportId,
+          a: state.driverA.toList(),
+          b: state.driverB.toList());
+
+      emit(state.copyWith(status: Status.initial));
+
+      final bool? res =
+          await NavigationService.pushNamed(routeName: SketchScreen.route);
+      if (res ?? false) {
+        NavigationService.pushNamed(
+            routeName: SignScreen.route,
+            nestedKey: NavigationService.homeNavigatorKey);
+      }
+    } catch (e) {
+      emit(state.copyWith(status: Status.initial));
+    }
+  }
 }
-
 
 enum Circumstances {
   parkedStopped(

@@ -13,4 +13,5 @@ class AppColors {
   static const Color lightGrey3 = Color(0xFF969696);
   static const Color messageBackgroundColor = Color(0xFF1D1D1D);
   static const Color darkRedColor = Color(0xFF510D09);
+  static const Color activeReportColor = Color(0xffFFF200);
 }

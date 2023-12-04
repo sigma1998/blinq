@@ -11,6 +11,7 @@ _$HistoryItemModelDtoImpl _$$HistoryItemModelDtoImplFromJson(
     _$HistoryItemModelDtoImpl(
       id: json['id'] as int?,
       type: json['type'] as String?,
+      status: json['status'] as String?,
       createdAt: json['created_at'] as String?,
       accidentDocumentPdf: json['accident_document_pdf'] as String?,
     );
@@ -20,6 +21,7 @@ Map<String, dynamic> _$$HistoryItemModelDtoImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'type': instance.type,
+      'status': instance.status,
       'created_at': instance.createdAt,
       'accident_document_pdf': instance.accidentDocumentPdf,
     };

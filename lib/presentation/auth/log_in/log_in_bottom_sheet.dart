@@ -127,6 +127,7 @@ class _LogInBottomSheetState extends State<LogInBottomSheet> {
                       ),
                       TextFieldRoundedWidget(
                         hint: 'strYourEmail'.tr(),
+                        inputType: TextInputType.emailAddress,
                         textController: bloc.mailController,
                         validate: (value) => Validator.validateEmail(value),
                       ),

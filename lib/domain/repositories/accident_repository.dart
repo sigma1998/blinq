@@ -12,6 +12,9 @@ abstract class AccidentRepository {
   ///
   Future<ProfileResponseModel> fetchUserById(int id);
 
+  Future<void> addDriverB(
+      {required int accidentId, required int secondDriverId});
+
   Future<int> createAccident(String long, String lat);
 
   Future<void> adAccidentLocationAndTime(
@@ -19,8 +22,12 @@ abstract class AccidentRepository {
 
   Future<void> accidentSketch(int accidentId, MultipartFile sketch);
 
-
   Future<int> uploadFile({required MultipartFile file});
+
+  Future<void> sendCircumstances(
+      {required int accidentId,
+      required List<String> a,
+      required List<String> b});
 
   ///for driver a
   Future<void> accidentInjury(int accidentId, InjuryDto injuryDto);
@@ -44,6 +51,8 @@ abstract class AccidentRepository {
 
   Future<void> uploadMedia(int accidentId, List<int> uploadedFilesId);
 
+  Future<void> sign(int accidentId, MultipartFile sign);
+
   ///for driver b
   Future<void> accidentInjuryB(int accidentId, InjuryDto injuryDto);
 
@@ -65,6 +74,17 @@ abstract class AccidentRepository {
       required List<String> damageParts});
 
   Future<void> uploadMediaB(int accidentId, List<int> uploadedFilesId);
+
+  Future<void> signB(int accidentId, MultipartFile sign);
+
+  Future<String> getPdf(int accidentId);
+
+  Future<void> downloadFile({required String path, required String url});
+
+  Future<void> sendToInsurance(int accidentId);
+
+  Future<String> getAccidentStep(int accidentId);
+
 }
 
 class AccidentRepositoryImpl implements AccidentRepository {
@@ -77,6 +97,17 @@ class AccidentRepositoryImpl implements AccidentRepository {
   Future<ProfileResponseModel> fetchUserById(int id) async {
     try {
       return await api.fetchUserById(id);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> addDriverB(
+      {required int accidentId, required int secondDriverId}) async {
+    try {
+      await api.addDriverB(
+          accidentId: accidentId, secondDriverId: secondDriverId);
     } catch (e) {
       rethrow;
     }
@@ -163,6 +194,18 @@ class AccidentRepositoryImpl implements AccidentRepository {
     try {
       return await api.uploadAccidentSketch(
           accidentId: accidentId, sketch: sketch);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> sendCircumstances(
+      {required int accidentId,
+      required List<String> a,
+      required List<String> b}) async {
+    try {
+      await api.sendCircumstances(accidentId: accidentId, a: a, b: b);
     } catch (e) {
       rethrow;
     }
@@ -275,5 +318,57 @@ class AccidentRepositoryImpl implements AccidentRepository {
     } catch (e) {
       rethrow;
     }
+  }
+
+  @override
+  Future<void> sign(int accidentId, MultipartFile sign) async {
+    try {
+      await api.sign(accidentId, sign);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> signB(int accidentId, MultipartFile sign) async {
+    try {
+      await api.signB(accidentId, sign);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> downloadFile({required String path, required String url}) async {
+    try {
+      await api.downloadFile(path: path, url: url);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<String> getPdf(int accidentId) async {
+    try {
+      return await api.getPdf(accidentId);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> sendToInsurance(int accidentId) async {
+    try {
+      await api.sendToInsurance(accidentId,);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<String> getAccidentStep(int accidentId) async{
+   try{
+     return await api.getAccidentStep(accidentId);
+   }catch(e){rethrow;}
   }
 }

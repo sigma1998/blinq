@@ -6,12 +6,16 @@ class CircumstanceItem extends StatelessWidget {
   final VoidCallback onCheckedA;
   final VoidCallback onCheckedB;
   final bool isAccident;
+  final bool driverAActive;
+  final bool driverBActive;
 
   const CircumstanceItem(
       {Key? key,
       required this.isAccident,
       required this.index,
       required this.onCheckedA,
+      required this.driverAActive,
+      required this.driverBActive,
       required this.onCheckedB})
       : super(key: key);
 
@@ -28,14 +32,14 @@ class CircumstanceItem extends StatelessWidget {
         children: [
           isAccident
               ? Checkbox(
-                  value: false,
+                  value: driverAActive,
                   checkColor: Colors.white,
                   activeColor: Theme.of(context).colorScheme.primary,
                   side: BorderSide(
                       color: Theme.of(context).colorScheme.primary, width: 2),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(3)),
-                  onChanged: (value) {})
+                  onChanged: (value) => onCheckedA())
               : const SizedBox.shrink(),
           Expanded(
             child: Text(
@@ -45,7 +49,7 @@ class CircumstanceItem extends StatelessWidget {
             ),
           ),
           Checkbox(
-            value: isAccident,
+            value: driverBActive,
             // ? bloc.state.b.contains(Circumstances.values[index].key)
             //     : bloc.state.a.contains(Circumstances.values[index].key),
             checkColor: Colors.white,
@@ -54,7 +58,7 @@ class CircumstanceItem extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primary, width: 2),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
-            onChanged: (value) {},
+            onChanged: (value) => onCheckedB() ,
           ),
         ],
       ),

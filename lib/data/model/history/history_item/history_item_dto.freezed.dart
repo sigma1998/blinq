@@ -22,6 +22,7 @@ HistoryItemModelDto _$HistoryItemModelDtoFromJson(Map<String, dynamic> json) {
 mixin _$HistoryItemModelDto {
   int? get id => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   String? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'accident_document_pdf')
@@ -42,6 +43,7 @@ abstract class $HistoryItemModelDtoCopyWith<$Res> {
   $Res call(
       {int? id,
       String? type,
+      String? status,
       @JsonKey(name: 'created_at') String? createdAt,
       @JsonKey(name: 'accident_document_pdf') String? accidentDocumentPdf});
 }
@@ -61,6 +63,7 @@ class _$HistoryItemModelDtoCopyWithImpl<$Res, $Val extends HistoryItemModelDto>
   $Res call({
     Object? id = freezed,
     Object? type = freezed,
+    Object? status = freezed,
     Object? createdAt = freezed,
     Object? accidentDocumentPdf = freezed,
   }) {
@@ -72,6 +75,10 @@ class _$HistoryItemModelDtoCopyWithImpl<$Res, $Val extends HistoryItemModelDto>
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
@@ -96,6 +103,7 @@ abstract class _$$HistoryItemModelDtoImplCopyWith<$Res>
   $Res call(
       {int? id,
       String? type,
+      String? status,
       @JsonKey(name: 'created_at') String? createdAt,
       @JsonKey(name: 'accident_document_pdf') String? accidentDocumentPdf});
 }
@@ -113,6 +121,7 @@ class __$$HistoryItemModelDtoImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? type = freezed,
+    Object? status = freezed,
     Object? createdAt = freezed,
     Object? accidentDocumentPdf = freezed,
   }) {
@@ -124,6 +133,10 @@ class __$$HistoryItemModelDtoImplCopyWithImpl<$Res>
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
@@ -143,6 +156,7 @@ class _$HistoryItemModelDtoImpl implements _HistoryItemModelDto {
   const _$HistoryItemModelDtoImpl(
       {this.id,
       this.type,
+      this.status,
       @JsonKey(name: 'created_at') this.createdAt,
       @JsonKey(name: 'accident_document_pdf') this.accidentDocumentPdf});
 
@@ -154,6 +168,8 @@ class _$HistoryItemModelDtoImpl implements _HistoryItemModelDto {
   @override
   final String? type;
   @override
+  final String? status;
+  @override
   @JsonKey(name: 'created_at')
   final String? createdAt;
   @override
@@ -162,7 +178,7 @@ class _$HistoryItemModelDtoImpl implements _HistoryItemModelDto {
 
   @override
   String toString() {
-    return 'HistoryItemModelDto(id: $id, type: $type, createdAt: $createdAt, accidentDocumentPdf: $accidentDocumentPdf)';
+    return 'HistoryItemModelDto(id: $id, type: $type, status: $status, createdAt: $createdAt, accidentDocumentPdf: $accidentDocumentPdf)';
   }
 
   @override
@@ -172,6 +188,7 @@ class _$HistoryItemModelDtoImpl implements _HistoryItemModelDto {
             other is _$HistoryItemModelDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.type, type) || other.type == type) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.accidentDocumentPdf, accidentDocumentPdf) ||
@@ -180,8 +197,8 @@ class _$HistoryItemModelDtoImpl implements _HistoryItemModelDto {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, type, createdAt, accidentDocumentPdf);
+  int get hashCode => Object.hash(
+      runtimeType, id, type, status, createdAt, accidentDocumentPdf);
 
   @JsonKey(ignore: true)
   @override
@@ -202,6 +219,7 @@ abstract class _HistoryItemModelDto implements HistoryItemModelDto {
   const factory _HistoryItemModelDto(
       {final int? id,
       final String? type,
+      final String? status,
       @JsonKey(name: 'created_at') final String? createdAt,
       @JsonKey(name: 'accident_document_pdf')
       final String? accidentDocumentPdf}) = _$HistoryItemModelDtoImpl;
@@ -213,6 +231,8 @@ abstract class _HistoryItemModelDto implements HistoryItemModelDto {
   int? get id;
   @override
   String? get type;
+  @override
+  String? get status;
   @override
   @JsonKey(name: 'created_at')
   String? get createdAt;

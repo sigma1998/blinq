@@ -34,6 +34,7 @@ import 'package:blinq/presentation/profile/widgets/editors/my_car/my_car_editor_
 import 'package:blinq/presentation/profile/widgets/editors/my_vehicle/my_vehicle_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/policy_holder/policy_holder_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/vehicle/vehicle_editor_screen.dart';
+import 'package:blinq/presentation/report/pages/a_b_users_completed/a_b_users_completed_screen.dart';
 import 'package:blinq/presentation/report/pages/circumstances/circumstances_screen.dart';
 import 'package:blinq/presentation/report/pages/connect_to_driver/connect_to_driver_screen.dart';
 import 'package:blinq/presentation/report/pages/damaged_media/damaged_media_screen.dart';
@@ -132,7 +133,7 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
     case DamagedMediaScreen.route:
       page = const DamagedMediaScreen();
     case SignScreen.route:
-      page = SignScreen();
+      page = const SignScreen();
     case VehicleTypeScreen.route:
       page = const VehicleTypeScreen();
     case LocationInfoScreen.route:
@@ -143,8 +144,16 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
       page = const ConnectToDriverScreen();
     case SpeechToTextScreen.route:
       page = const SpeechToTextScreen();
-    case DamagedMediaScreen.route:
-      page = const DamagedMediaScreen();
+    case SecondDriverScreen.route:
+      page = const SecondDriverScreen();
+    case QrScanScreen.route:
+      page = const QrScanScreen();
+    case ABUsersCompletedScreen.route:
+      page = const ABUsersCompletedScreen();
+    case FinishedScreen.route:
+      page = const FinishedScreen();
+
+
 
     default:
       page = const HomeScreen();

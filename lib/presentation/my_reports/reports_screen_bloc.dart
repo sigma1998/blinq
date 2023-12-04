@@ -25,6 +25,7 @@ class ReportsScreenBloc extends Bloc<ReportsScreenEvent, ReportsScreenState> {
     on<OnItemDelete>(_onDeleteItem);
     on<OnOpenItem>(_onOpenItem);
     on<OnDownloadItem>(_onDownloadItem);
+    on<OnContinueItem>(_onContinueItem);
   }
 
   FutureOr<void> _onInit(OnInit event, Emitter<ReportsScreenState> emit) async {
@@ -113,4 +114,7 @@ class ReportsScreenBloc extends Bloc<ReportsScreenEvent, ReportsScreenState> {
     NavigationService.showToast(
         text: 'strPdfSaved'.tr(), title: 'strSuccess'.tr());
   }
+
+  FutureOr<void> _onContinueItem(
+      OnContinueItem event, Emitter<ReportsScreenState> emit) async {}
 }

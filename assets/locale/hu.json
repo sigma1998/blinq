@@ -734,6 +734,8 @@
     "ear right wheel": "hátsó jobb kerék",
     "front left wheel": "elülső bal kerék",
     "rear left wheel": "hátsó bal kerék"
-  }
+  },
+  "strABCompleted": "Az A és B vezetők egy része\nelkészülnek",
+  "strPartsCommon": "The following part is common to both drivers"
 }
 

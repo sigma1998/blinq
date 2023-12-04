@@ -58,9 +58,7 @@ class _LocationInfoScreenState extends State<LocationInfoScreen> {
                     padding: const EdgeInsets.all(32).copyWith(bottom: 120),
                     physics: const ClampingScrollPhysics(),
                     children: [
-                      StepIndicator(
-                        title: 'strBreakDown'.tr(),
-                      ),
+                      const StepIndicator(currentStep: 1),
                       const SizedBox(height: 52),
                       Text(
                         'strDateOfAccident'.tr(),
@@ -103,9 +101,7 @@ class _LocationInfoScreenState extends State<LocationInfoScreen> {
                   ),
                   resizeToAvoidBottomInset: true,
                   floatingActionButton:
-                      NavigationButton(
-
-                          onNextTap: bloc.onSubmit),
+                      NavigationButton(onNextTap: bloc.onSubmit),
                   floatingActionButtonLocation:
                       FloatingActionButtonLocation.centerFloat,
                 ),

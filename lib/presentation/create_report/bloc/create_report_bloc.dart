@@ -36,27 +36,32 @@ class CreateReportBloc extends Cubit<GenericBlocState> {
 
   void onCreateReportPressed() async {
     emit(const GenericBlocState(status: Status.loading));
-    final data = await profileRepository.checkAccountData();
+    try{
+      final data = await profileRepository.checkAccountData();
 
-    if (data.account == false) {
-      NavigationService.pushNamed(routeName: DriverEditorScreen.route);
-    } else if (data.car == false) {
-      NavigationService.pushNamed(routeName: VehicleEditorScreen.route);
-    } else if (data.policyHolder == false) {
-      NavigationService.pushNamed(routeName: PolicyHolderEditorScreen.route);
-    } else if (data.insurance == false) {
-      NavigationService.pushNamed(routeName: InsuranceEditorScreen.route);
-    }
+      if (data.account == false) {
+        NavigationService.pushNamed(routeName: DriverEditorScreen.route);
+      } else if (data.car == false) {
+        NavigationService.pushNamed(routeName: VehicleEditorScreen.route);
+      } else if (data.policyHolder == false) {
+        NavigationService.pushNamed(routeName: PolicyHolderEditorScreen.route);
+      } else if (data.insurance == false) {
+        NavigationService.pushNamed(routeName: InsuranceEditorScreen.route);
+      }
 
-    final String? route = await reportBloc.onCreateReport();
+      final RouteAndArgs? routeAndArgs = await reportBloc.onCreateReport();
 
-    emit(const GenericBlocState(status: Status.initial));
+      emit(const GenericBlocState(status: Status.initial));
 
-    if (route == null) {
-      NavigationService.showErrorToast('Location permission is needed');
-    } else {
-      NavigationService.pushNamed(
-          routeName: route, nestedKey: NavigationService.homeNavigatorKey);
+      if (routeAndArgs == null) {
+        NavigationService.showErrorToast('Location permission is needed');
+      } else {
+        NavigationService.pushNamed(
+            routeName: routeAndArgs.route, nestedKey: NavigationService.homeNavigatorKey,arguments: routeAndArgs.args);
+      }
+    }catch(e){
+      emit(const GenericBlocState(status: Status.initial));
+
     }
   }
 }

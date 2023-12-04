@@ -6,10 +6,14 @@ import 'package:blinq/data/model/accident/accident_time_and_location/accident_ti
 import 'package:blinq/data/model/accident/injury/injury.dart';
 import 'package:blinq/data/model/profile/response/profile_response_model.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
 abstract class AccidentApi {
   //
   Future<ProfileResponseModel> fetchUserById(int id);
+
+  Future<void> addDriverB(
+      {required int accidentId, required int secondDriverId});
 
   Future<int> createAccident(String long, String lat);
 
@@ -43,6 +47,8 @@ abstract class AccidentApi {
 
   Future<void> uploadMedia(int accidentId, List<int> uploadedFilesId);
 
+  Future<void> sign(int accidentId, MultipartFile sign);
+
   ///for driver b
   Future<void> accidentInjuryB(int accidentId, InjuryDto injuryDto);
 
@@ -64,6 +70,21 @@ abstract class AccidentApi {
       required List<String> damageParts});
 
   Future<void> uploadMediaB(int accidentId, List<int> uploadedFilesId);
+
+  Future<void> signB(int accidentId, MultipartFile sign);
+
+  Future<void> sendCircumstances(
+      {required int accidentId,
+      required List<String> a,
+      required List<String> b});
+
+  Future<String> getPdf(int accidentId);
+
+  Future<void> downloadFile({required String path, required String url});
+
+  Future<void> sendToInsurance(int accidentId);
+
+  Future<String> getAccidentStep(int accidentId);
 }
 
 class AccidentApiImpl implements AccidentApi {
@@ -75,8 +96,19 @@ class AccidentApiImpl implements AccidentApi {
   @override
   Future<ProfileResponseModel> fetchUserById(int id) async {
     try {
-      final res = await api.get('${NetworkConstants.secondDriver}$id/');
+      final res = await api.get(NetworkConstants.getDriverB(id));
       return ProfileResponseModel.fromJson(res);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> addDriverB(
+      {required int accidentId, required int secondDriverId}) async {
+    try {
+      await api.patch(NetworkConstants.connectBDriver(accidentId),
+          data: {'user': secondDriverId});
     } catch (e) {
       rethrow;
     }
@@ -111,6 +143,21 @@ class AccidentApiImpl implements AccidentApi {
     try {
       await api.patch(NetworkConstants.accidentSketch(accidentId),
           data: FormData.fromMap({'sketch': sketch}));
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> sendCircumstances(
+      {required int accidentId,
+      required List<String> a,
+      required List<String> b}) async {
+    try {
+      await api
+          .patch(NetworkConstants.accidentCircumstances(accidentId), data: {
+        'circumstance': {'A': a, 'B': b}
+      });
     } catch (e) {
       rethrow;
     }
@@ -178,13 +225,20 @@ class AccidentApiImpl implements AccidentApi {
       required int accidentId,
       required List<String> damageParts}) async {
     try {
+      String s = '[';
+      for (var element in damageParts) {
+        s += '"$element",';
+      }
+      s = s.reverse().replaceFirst(',', '').reverse();
+      s += ']';
+
       final data = FormData.fromMap({
         'top': top,
         'back': back,
         'left': left,
         'right': right,
         'front': front,
-        'damage_parts': {'list':damageParts}
+        'damage_parts': '{"list": $s}'
       });
 
       await api.patch(NetworkConstants.damagePoints(accidentId), data: data);
@@ -255,13 +309,20 @@ class AccidentApiImpl implements AccidentApi {
       required int accidentId,
       required List<String> damageParts}) async {
     try {
+      String s = '[';
+      for (var element in damageParts) {
+        s += '"$element",';
+      }
+      s = s.reverse().replaceFirst(',', '').reverse();
+      s += ']';
+
       final data = FormData.fromMap({
         'top': top,
         'front': front,
         'back': back,
         'left': left,
         'right': right,
-        'damage_parts': {'list':damageParts}
+        'damage_parts': '{"list": $s}'
       });
       await api.patch(NetworkConstants.damagePointsB(accidentId), data: data);
     } catch (e) {
@@ -297,6 +358,65 @@ class AccidentApiImpl implements AccidentApi {
       await api.patch(NetworkConstants.uploadMediaB(accidentId), data: {
         'file_ids': uploadedFilesId,
       });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> sign(int accidentId, MultipartFile sign) async {
+    try {
+      await api.patch(NetworkConstants.sign(accidentId),
+          data: FormData.fromMap({'sign': sign}));
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> signB(int accidentId, MultipartFile sign) async {
+    try {
+      await api.patch(NetworkConstants.signB(accidentId),
+          data: FormData.fromMap({'sign': sign}));
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> downloadFile({required String path, required String url}) async {
+    try {
+      await api.download(url, path);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<String> getPdf(int accidentId) async {
+    try {
+      final res = await api.get(NetworkConstants.getPdf(accidentId));
+      return res['accident_document_pdf'];
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> sendToInsurance(int accidentId) async {
+    try {
+      await api.get(NetworkConstants.sendToInsurance,
+          queryParameters: {'id': accidentId});
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<String> getAccidentStep(int accidentId) async {
+    try {
+      final res = await api.get(NetworkConstants.accidentStatus(accidentId));
+      return res['endpoint'];
     } catch (e) {
       rethrow;
     }

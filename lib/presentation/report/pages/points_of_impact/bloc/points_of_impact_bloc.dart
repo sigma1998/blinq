@@ -1,4 +1,5 @@
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/presentation/report/pages/speech_to_text/bloc/speech_to_text_screen_mode.dart';
 import 'package:blinq/presentation/report/pages/speech_to_text/speech_to_text_screen.dart';
@@ -59,8 +60,9 @@ class PointsOfImpactBloc extends Cubit<PointsOfImpactScreenState> {
         filename: file.path.split('/').last,
       );
 
-      await accidentRepository.accidentInitialImpactPoint(
-          reportBloc.reportId, multipartFile);
+     await _sendData(multipartFile );
+
+
       emit(state.copyWith(
         status: Status.initial,
       ));
@@ -75,6 +77,34 @@ class PointsOfImpactBloc extends Cubit<PointsOfImpactScreenState> {
       ));
     }
   }
+
+  Future<void> _sendData(MultipartFile multipartFile) async{
+    if(reportBloc.reportType == ReportType.accident){
+      if(reportBloc.user == User.A){
+        await accidentRepository.accidentInitialImpactPoint(
+            reportBloc.reportId, multipartFile);
+      }
+      else{
+        await accidentRepository.accidentInitialImpactPointB(
+            reportBloc.reportId, multipartFile);
+      }
+    }
+    else{
+      //TODO
+    }
+
+  }
+
+  int getStep() {
+    if(reportBloc.user == User.A){
+     return 4;
+    }
+    else{
+      return 9;
+    }
+  }
+
+
 }
 
 enum PointOfImpact {

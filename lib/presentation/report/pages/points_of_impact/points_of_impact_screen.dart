@@ -33,35 +33,25 @@ class _PointsOfImpactScreenState extends State<PointsOfImpactScreen> {
     super.didChangeDependencies();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PointsOfImpactBloc, PointsOfImpactScreenState>(
       bloc: bloc,
       builder: (context, state) {
-        final primary = Theme
-            .of(context)
-            .colorScheme
-            .primary;
+        final primary = Theme.of(context).colorScheme.primary;
         return Scaffold(
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(24.0),
               child: Column(
                 children: [
-                  StepIndicator(
-                    currentStep: 4,
-                    title: 'strBreakDown'.tr(),
-                  ),
+                  StepIndicator(currentStep: bloc.getStep(), showTrailingTitle: true,),
                   const SizedBox(
                     height: 32,
                   ),
                   Text(
                     'strIndicateDescription'.tr(),
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .titleMedium,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(
                     height: 24,
@@ -79,25 +69,22 @@ class _PointsOfImpactScreenState extends State<PointsOfImpactScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 ArrowButtonWidget(
-                                    color: state.isTopLeftActive ? primary : null,
-                                    onTap: () =>
-                                        bloc.onArrowPressed(
-                                            pointOfImpact: PointOfImpact.topLeft),
+                                    color:
+                                        state.isTopLeftActive ? primary : null,
+                                    onTap: () => bloc.onArrowPressed(
+                                        pointOfImpact: PointOfImpact.topLeft),
                                     icon: AppDrawables.topLeftArrow),
                                 ArrowButtonWidget(
                                   color: state.isTopActive ? primary : null,
-                                  onTap: () =>
-                                      bloc.onArrowPressed(
-                                          pointOfImpact: PointOfImpact.top),
+                                  onTap: () => bloc.onArrowPressed(
+                                      pointOfImpact: PointOfImpact.top),
                                   icon: AppDrawables.topArrow,
                                 ),
                                 ArrowButtonWidget(
                                     color:
-                                    state.isTopRightActive ? primary : null,
-                                    onTap: () =>
-                                        bloc.onArrowPressed(
-                                            pointOfImpact: PointOfImpact
-                                                .topRight),
+                                        state.isTopRightActive ? primary : null,
+                                    onTap: () => bloc.onArrowPressed(
+                                        pointOfImpact: PointOfImpact.topRight),
                                     icon: AppDrawables.topRightArrow),
                               ],
                             ),
@@ -109,16 +96,14 @@ class _PointsOfImpactScreenState extends State<PointsOfImpactScreen> {
                               children: [
                                 ArrowButtonWidget(
                                     color: state.isLeftActive ? primary : null,
-                                    onTap: () =>
-                                        bloc.onArrowPressed(
-                                            pointOfImpact: PointOfImpact.left),
+                                    onTap: () => bloc.onArrowPressed(
+                                        pointOfImpact: PointOfImpact.left),
                                     icon: AppDrawables.leftArrow),
                                 SvgPicture.asset(AppDrawables.defaultCar),
                                 ArrowButtonWidget(
                                     color: state.isRightActive ? primary : null,
-                                    onTap: () =>
-                                        bloc.onArrowPressed(
-                                            pointOfImpact: PointOfImpact.right),
+                                    onTap: () => bloc.onArrowPressed(
+                                        pointOfImpact: PointOfImpact.right),
                                     icon: AppDrawables.rightArrow),
                               ],
                             ),
@@ -130,27 +115,26 @@ class _PointsOfImpactScreenState extends State<PointsOfImpactScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 ArrowButtonWidget(
-                                    color:
-                                    state.isBottomLeftActive ? primary : null,
-                                    onTap: () =>
-                                        bloc.onArrowPressed(
-                                            pointOfImpact: PointOfImpact
-                                                .bottomLeft),
+                                    color: state.isBottomLeftActive
+                                        ? primary
+                                        : null,
+                                    onTap: () => bloc.onArrowPressed(
+                                        pointOfImpact:
+                                            PointOfImpact.bottomLeft),
                                     icon: AppDrawables.bottomLeftArrow),
                                 ArrowButtonWidget(
-                                    color: state.isBottomActive ? primary : null,
-                                    onTap: () =>
-                                        bloc.onArrowPressed(
-                                            pointOfImpact: PointOfImpact.bottom),
+                                    color:
+                                        state.isBottomActive ? primary : null,
+                                    onTap: () => bloc.onArrowPressed(
+                                        pointOfImpact: PointOfImpact.bottom),
                                     icon: AppDrawables.bottomArrow),
                                 ArrowButtonWidget(
                                     color: state.isBottomRightActive
                                         ? primary
                                         : null,
-                                    onTap: () =>
-                                        bloc.onArrowPressed(
-                                            pointOfImpact: PointOfImpact
-                                                .bottomRight),
+                                    onTap: () => bloc.onArrowPressed(
+                                        pointOfImpact:
+                                            PointOfImpact.bottomRight),
                                     icon: AppDrawables.bottomRightArrow),
                               ],
                             ),

@@ -23,6 +23,10 @@ class OnDownloadItem extends ReportsScreenEvent{
   final HistoryItemModelDto itemModelDto;
   OnDownloadItem({required this.itemModelDto});
 }
+class OnContinueItem extends ReportsScreenEvent{
+  final HistoryItemModelDto itemModelDto;
+  OnContinueItem({required this.itemModelDto});
+}
 
 
 

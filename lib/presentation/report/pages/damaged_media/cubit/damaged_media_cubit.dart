@@ -2,37 +2,41 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+
 // Flutter imports:
+import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/presentation/report/pages/a_b_users_completed/a_b_users_completed_screen.dart';
+import 'package:blinq/presentation/report/pages/connect_to_driver/connect_to_driver_screen.dart';
+import 'package:blinq/utils/custom_widgets/cupertino_action/cupertino_action.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/image_crop_helper.dart';
+import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/services/media/media_service.dart';
+import 'package:blinq/utils/smart_widgets/dialogs/media_dialogs/file_quality_reduced_dialog.dart';
+
+// Project imports:
+import 'package:blinq/utils/smart_widgets/dialogs/media_dialogs/max_file_size_dialog.dart';
+import 'package:blinq/utils/smart_widgets/dialogs/media_dialogs/success_dialog.dart';
+import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Package imports:
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:video_compress/video_compress.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path/path.dart' as p;
-import 'package:dio/dio.dart';
+import 'package:video_compress/video_compress.dart';
 
-// Project imports:
-import 'package:blinq/utils/smart_widgets/dialogs/media_dialogs/max_file_size_dialog.dart';
-import 'package:blinq/utils/smart_widgets/dialogs/media_dialogs/file_quality_reduced_dialog.dart';
-import 'package:blinq/utils/smart_widgets/dialogs/media_dialogs/success_dialog.dart';
-import 'package:blinq/utils/custom_widgets/cupertino_action/cupertino_action.dart';
-import 'package:blinq/domain/repositories/accident_repository.dart';
-import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
-import 'package:blinq/utils/services/media/media_service.dart';
-import 'package:blinq/utils/generic_bloc_state.dart';
-import 'package:blinq/utils/navigation_service.dart';
-import 'package:blinq/utils/image_crop_helper.dart';
+part 'damaged_media_cubit.freezed.dart';
 
 part 'damaged_media_state.dart';
-part 'damaged_media_cubit.freezed.dart';
 
 class DamagedMediaCubit extends Cubit<DamagedMediaState> {
   //
   final ReportBloc reportBloc;
-
   final AccidentRepository accidentRepository;
 
   final MediaService mediaService;
@@ -55,6 +59,11 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
 
   Future<void> onUploadDamagedMediaFiles() async {
     try {
+      if(state.files.isEmpty){
+        _navigate();
+        return;
+      }
+
       emit(state.copyWith(status: Status.loading));
       final files = state.files;
       final uploadedFilesId = <int>[];
@@ -68,6 +77,9 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
       }
       emit(state.copyWith(uploadedFilesId: uploadedFilesId));
       await _uploadMedia();
+
+      _navigate();
+
       emit(state.copyWith(status: Status.success));
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
@@ -75,10 +87,21 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
   }
 
   Future<void> _uploadMedia() async {
-    await accidentRepository.uploadMedia(
-      reportBloc.reportId,
-      state.uploadedFilesId,
-    );
+    if(reportBloc.reportType == ReportType.accident){
+      if(reportBloc.user == User.A){
+        await accidentRepository.uploadMedia(
+          reportBloc.reportId,
+          state.uploadedFilesId,
+        );
+      } else{
+        await accidentRepository.uploadMediaB(
+          reportBloc.reportId,
+          state.uploadedFilesId,
+        );
+      }
+    }else{
+      //TODO
+    }
 
     await NavigationService.showDialog(
       dialog: const FileUploadedSuccessfullyDialog(),
@@ -223,6 +246,7 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
   }
 
   bool _isMaxVideoFiles(int length) => length <= _maxVideoFiles;
+
   bool _isMaxImageFiles(int length) => length <= _maxImageFiles;
 
   bool _isFileSizeValid(File file) {
@@ -282,5 +306,30 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
     } catch (e) {
       return file;
     }
+  }
+
+  void _navigate() {
+    if (reportBloc.reportType == ReportType.accident) {
+      if (reportBloc.user == User.A) {
+        NavigationService.pushNamed(
+          routeName: ConnectToDriverScreen.route,
+          nestedKey: NavigationService.homeNavigatorKey,
+        );
+      } else {
+        NavigationService.pushNamed(
+          routeName: ABUsersCompletedScreen.route,
+          nestedKey: NavigationService.homeNavigatorKey,
+        );
+      }
+    } else {
+      //TODO
+    }
+  }
+
+  int step() {
+    if(reportBloc.user == User.A){
+      return 8;
+    }
+    return 13;
   }
 }

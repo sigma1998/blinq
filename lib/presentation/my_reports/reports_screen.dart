@@ -70,10 +70,19 @@ class _ReportsScreenState extends State<ReportsScreen> {
                                             id: state.accidents[index].id!),
                                       ),
                                       onPdfOpen: () => bloc.add(
-                                        OnOpenItem(itemModelDto: state.accidents[index]),
+                                        OnOpenItem(
+                                            itemModelDto:
+                                                state.accidents[index]),
                                       ),
                                       onDownload: () => bloc.add(
-                                        OnDownloadItem(itemModelDto: state.accidents[index]),
+                                        OnDownloadItem(
+                                            itemModelDto:
+                                                state.accidents[index]),
+                                      ),
+                                      onContinue: () => bloc.add(
+                                        OnContinueItem(
+                                            itemModelDto:
+                                                state.accidents[index]),
                                       ),
                                     );
                                   },
@@ -95,10 +104,19 @@ class _ReportsScreenState extends State<ReportsScreen> {
                                             id: state.accidents[index].id!),
                                       ),
                                       onPdfOpen: () => bloc.add(
-                                        OnOpenItem(itemModelDto: state.accidents[index]),
+                                        OnOpenItem(
+                                            itemModelDto:
+                                                state.accidents[index]),
                                       ),
                                       onDownload: () => bloc.add(
-                                        OnDownloadItem(itemModelDto: state.accidents[index]),
+                                        OnDownloadItem(
+                                            itemModelDto:
+                                                state.accidents[index]),
+                                      ),
+                                      onContinue: () => bloc.add(
+                                        OnContinueItem(
+                                            itemModelDto:
+                                                state.accidents[index]),
                                       ),
                                     );
                                   },

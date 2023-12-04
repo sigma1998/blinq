@@ -32,9 +32,16 @@ class NavigationService {
   }
 
   static Future<dynamic>? pushReplacement(
-      {required String routeName, Object? arguments}) async {
-    return navigatorKey.currentState!
-        .pushReplacementNamed(routeName, arguments: arguments);
+      {required String routeName,
+      Object? arguments,
+      GlobalKey<NavigatorState>? nestedKey}) async {
+    if (nestedKey != null) {
+      return nestedKey.currentState!
+          .pushReplacementNamed(routeName, arguments: arguments);
+    } else {
+      return navigatorKey.currentState!
+          .pushReplacementNamed(routeName, arguments: arguments);
+    }
   }
 
   static Future<dynamic>? newRootScreen(
@@ -43,12 +50,21 @@ class NavigationService {
     dynamic arguments,
     int? id,
     Map<String, String>? parameters,
+    GlobalKey<NavigatorState>? nestedKey,
   }) {
-    return navigatorKey.currentState!.pushNamedAndRemoveUntil(
-      newRouteName,
-      predicate ?? (_) => false,
-      arguments: arguments,
-    );
+    if (nestedKey != null) {
+      return nestedKey.currentState!.pushNamedAndRemoveUntil(
+        newRouteName,
+        predicate ?? (_) => false,
+        arguments: arguments,
+      );
+    } else {
+      return navigatorKey.currentState!.pushNamedAndRemoveUntil(
+        newRouteName,
+        predicate ?? (_) => false,
+        arguments: arguments,
+      );
+    }
   }
 
   static void back<T extends Object?>({T? result}) {

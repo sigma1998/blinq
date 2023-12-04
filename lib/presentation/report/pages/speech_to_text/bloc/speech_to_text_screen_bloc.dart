@@ -1,8 +1,9 @@
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/presentation/report/pages/demaged_parts/damaged_parts_screen.dart';
 import 'package:blinq/presentation/report/pages/points_of_impact/points_of_impact_screen.dart';
 import 'package:blinq/presentation/report/pages/speech_to_text/speech_to_text_screen.dart';
-import 'package:blinq/presentation/report/pages/vehicle_type/vehicle_type_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -52,26 +53,6 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
     }
   }
 
-  void _onVisibleDamageSubmitted() async {
-    try {
-      emit(const GenericBlocState(status: Status.loading));
-
-      await accidentRepository.visibleDamage(
-          reportBloc.reportId, textController.text);
-      emit(const GenericBlocState(status: Status.initial));
-
-      NavigationService.pushNamed(
-        routeName: SpeechToTextScreen.route,
-        nestedKey: NavigationService.homeNavigatorKey,
-        arguments: SpeechToTextArgs(mode: SpeechToTextScreenMode.remarks),
-      );
-
-      emit(const GenericBlocState(status: Status.initial));
-    } catch (e) {
-      emit(const GenericBlocState(status: Status.initial));
-    }
-  }
-
   void _onWitnessesSubmitted() async {
     try {
       emit(const GenericBlocState(status: Status.loading));
@@ -89,16 +70,50 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
     }
   }
 
+  void _onVisibleDamageSubmitted() async {
+    try {
+      emit(const GenericBlocState(status: Status.loading));
+
+      await _sendVisibleDamage();
+
+      emit(const GenericBlocState(status: Status.initial));
+
+      NavigationService.pushNamed(
+        routeName: SpeechToTextScreen.route,
+        nestedKey: NavigationService.homeNavigatorKey,
+        arguments: SpeechToTextArgs(mode: SpeechToTextScreenMode.remarks),
+      );
+
+      emit(const GenericBlocState(status: Status.initial));
+    } catch (e) {
+      emit(const GenericBlocState(status: Status.initial));
+    }
+  }
+
+  Future<void> _sendVisibleDamage() async {
+    if (reportBloc.reportType == ReportType.accident) {
+      if (reportBloc.user == User.A) {
+        await accidentRepository.visibleDamage(
+            reportBloc.reportId, textController.text);
+      } else {
+        await accidentRepository.visibleDamageB(
+            reportBloc.reportId, textController.text);
+      }
+    } else {
+      //TODo
+    }
+  }
+
   void _onRemarksSubmitted() async {
     try {
       emit(const GenericBlocState(status: Status.loading));
 
-      await accidentRepository.myRemarks(
-          reportBloc.reportId, textController.text);
+      await _sendRemarks();
+
       emit(const GenericBlocState(status: Status.initial));
 
       NavigationService.pushNamed(
-        routeName: VehicleTypeScreen.route,
+        routeName: DamagedPartsScreen.route,
         nestedKey: NavigationService.homeNavigatorKey,
       );
 
@@ -107,4 +122,42 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
       emit(const GenericBlocState(status: Status.initial));
     }
   }
+
+  int getStep() {
+    if(speechToTextScreenMode == SpeechToTextScreenMode.witnesses){
+      return 3;
+    }
+    if(speechToTextScreenMode == SpeechToTextScreenMode.visibleDamage){
+      if(reportBloc.user == User.A ){
+        return 5;
+      }
+      else{
+        return 10;
+      }
+    }
+    else{
+      if(reportBloc.user == User.A ){
+        return 6;
+      }
+      else{
+        return 11;
+      }
+    }
+  }
+
+
+  Future<void> _sendRemarks() async {
+    if (reportBloc.reportType == ReportType.accident) {
+      if (reportBloc.user == User.A) {
+        await accidentRepository.myRemarks(
+            reportBloc.reportId, textController.text);
+      } else {
+        await accidentRepository.myRemarksB(
+            reportBloc.reportId, textController.text);
+      }
+    } else {
+      //TODo
+    }
+  }
+
 }

@@ -53,10 +53,7 @@ class _InjuryScreenState extends State<InjuryScreen> {
                   padding: const EdgeInsets.all(32),
                   physics: const ClampingScrollPhysics(),
                   children: [
-                    StepIndicator(
-                      currentStep: 2,
-                      title: 'strBreakDown'.tr(),
-                    ),
+                    const StepIndicator(currentStep: 2),
                     const SizedBox(height: 52),
                     InjuryItem(
                       title: 'strMinorInjuries'.tr(),

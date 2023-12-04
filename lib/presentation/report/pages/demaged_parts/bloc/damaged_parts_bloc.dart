@@ -2,6 +2,7 @@
 
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/presentation/report/pages/damaged_media/damaged_media_screen.dart';
 import 'package:blinq/presentation/report/pages/demaged_parts/damaged_parts_screen.dart';
@@ -138,14 +139,8 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
         );
       }
 
-      await accidentRepository.damagedPoints(
-          top: top,
-          front: front,
-          back: back,
-          left: left,
-          right: right,
-          accidentId: reportBloc.reportId,
-          damageParts: damagedParts.toList());
+      await _sendData(
+          top: top, front: front, left: left, right: right, back: back);
 
       emit(state.copyWith(status: Status.initial));
 
@@ -154,6 +149,47 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
           nestedKey: NavigationService.homeNavigatorKey);
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
+    }
+  }
+
+  int getStep() {
+    if(reportBloc.user == User.A){
+      return 7;
+    }
+    return 12;
+  }
+
+
+  Future<void> _sendData(
+      {required MultipartFile? top,
+        required MultipartFile? front,
+        required MultipartFile? back,
+        required MultipartFile? left,
+        required MultipartFile? right}) async {
+    if (reportBloc.reportType == ReportType.accident) {
+      if (reportBloc.user == User.A) {
+
+        await accidentRepository.damagedPoints(
+            top: top,
+            front: front,
+            back: back,
+            left: left,
+            right: right,
+            accidentId: reportBloc.reportId,
+            damageParts: state.carParts.toList());
+      }
+      else{
+        await accidentRepository.damagedPointsB(
+            top: top,
+            front: front,
+            back: back,
+            left: left,
+            right: right,
+            accidentId: reportBloc.reportId,
+            damageParts: state.carParts.toList());
+      }
+    }else{
+      //TODO
     }
   }
 

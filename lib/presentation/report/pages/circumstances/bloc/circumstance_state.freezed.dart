@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CircumstanceState {
+  Status get status => throw _privateConstructorUsedError;
   Set<String> get driverA => throw _privateConstructorUsedError;
   Set<String> get driverB => throw _privateConstructorUsedError;
 
@@ -30,7 +31,7 @@ abstract class $CircumstanceStateCopyWith<$Res> {
           CircumstanceState value, $Res Function(CircumstanceState) then) =
       _$CircumstanceStateCopyWithImpl<$Res, CircumstanceState>;
   @useResult
-  $Res call({Set<String> driverA, Set<String> driverB});
+  $Res call({Status status, Set<String> driverA, Set<String> driverB});
 }
 
 /// @nodoc
@@ -46,10 +47,15 @@ class _$CircumstanceStateCopyWithImpl<$Res, $Val extends CircumstanceState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? status = null,
     Object? driverA = null,
     Object? driverB = null,
   }) {
     return _then(_value.copyWith(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as Status,
       driverA: null == driverA
           ? _value.driverA
           : driverA // ignore: cast_nullable_to_non_nullable
@@ -70,7 +76,7 @@ abstract class _$$CircumstanceStateImplCopyWith<$Res>
       __$$CircumstanceStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Set<String> driverA, Set<String> driverB});
+  $Res call({Status status, Set<String> driverA, Set<String> driverB});
 }
 
 /// @nodoc
@@ -84,10 +90,15 @@ class __$$CircumstanceStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? status = null,
     Object? driverA = null,
     Object? driverB = null,
   }) {
     return _then(_$CircumstanceStateImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as Status,
       driverA: null == driverA
           ? _value._driverA
           : driverA // ignore: cast_nullable_to_non_nullable
@@ -104,11 +115,15 @@ class __$$CircumstanceStateImplCopyWithImpl<$Res>
 
 class _$CircumstanceStateImpl implements _CircumstanceState {
   const _$CircumstanceStateImpl(
-      {final Set<String> driverA = const {},
+      {this.status = Status.initial,
+      final Set<String> driverA = const {},
       final Set<String> driverB = const {}})
       : _driverA = driverA,
         _driverB = driverB;
 
+  @override
+  @JsonKey()
+  final Status status;
   final Set<String> _driverA;
   @override
   @JsonKey()
@@ -129,7 +144,7 @@ class _$CircumstanceStateImpl implements _CircumstanceState {
 
   @override
   String toString() {
-    return 'CircumstanceState(driverA: $driverA, driverB: $driverB)';
+    return 'CircumstanceState(status: $status, driverA: $driverA, driverB: $driverB)';
   }
 
   @override
@@ -137,6 +152,7 @@ class _$CircumstanceStateImpl implements _CircumstanceState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CircumstanceStateImpl &&
+            (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other._driverA, _driverA) &&
             const DeepCollectionEquality().equals(other._driverB, _driverB));
   }
@@ -144,6 +160,7 @@ class _$CircumstanceStateImpl implements _CircumstanceState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      status,
       const DeepCollectionEquality().hash(_driverA),
       const DeepCollectionEquality().hash(_driverB));
 
@@ -157,9 +174,12 @@ class _$CircumstanceStateImpl implements _CircumstanceState {
 
 abstract class _CircumstanceState implements CircumstanceState {
   const factory _CircumstanceState(
-      {final Set<String> driverA,
+      {final Status status,
+      final Set<String> driverA,
       final Set<String> driverB}) = _$CircumstanceStateImpl;
 
+  @override
+  Status get status;
   @override
   Set<String> get driverA;
   @override
