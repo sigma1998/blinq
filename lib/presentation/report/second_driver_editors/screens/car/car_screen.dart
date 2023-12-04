@@ -68,6 +68,12 @@ class _SecondDriverEditorCarScreenState
                     ),
                     const SizedBox(height: 40),
                     PickerTextField(
+                      labelText: 'strVehicleType'.tr(),
+                      onTap: cubit.onVehicleTypeTap,
+                      controller: cubit.vehicleTypeController,
+                    ),
+                    const SizedBox(height: 16),
+                    PickerTextField(
                       labelText: 'strMark'.tr(),
                       onTap: cubit.onBrandTap,
                       controller: cubit.brandController,

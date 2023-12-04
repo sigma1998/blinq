@@ -1,4 +1,5 @@
 import 'package:blinq/data/model/car/request/car_request_model.dart';
+import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/data/model/vehicle_info/brand/vehicle_info_dto.dart';
 import 'package:blinq/data/model/vehicle_info/color/vehicle_color_dto.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
@@ -8,6 +9,7 @@ import 'package:blinq/presentation/profile/widgets/editors/my_car/bloc/edit_my_c
 import 'package:blinq/utils/custom_widgets/dialogs/default_dialog.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/smart_widgets/dialogs/vehicle_type_dialog/vehicle_type_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,6 +17,7 @@ class EditMyCarBloc extends Cubit<EditMyCarState> {
   final ProfileRepository profileRepository;
   final ProfileBloc profileBloc;
 
+  final TextEditingController vehicleTypeController = TextEditingController();
   final TextEditingController brandController = TextEditingController();
   final TextEditingController modelController = TextEditingController();
   final TextEditingController colorController = TextEditingController();
@@ -30,6 +33,8 @@ class EditMyCarBloc extends Cubit<EditMyCarState> {
 
   EditMyCarBloc({required this.profileRepository, required this.profileBloc})
       : super(const EditMyCarState(status: Status.loading)) {
+    vehicleTypeController.text =
+        profileBloc.state.profile?.car?.vehicleType?.name ?? '';
     brandController.text = profileBloc.state.profile?.car?.brand ?? '';
     modelController.text = profileBloc.state.profile?.car?.car ?? '';
     colorController.text = profileBloc.state.profile?.car?.color ?? '';
@@ -55,6 +60,15 @@ class EditMyCarBloc extends Cubit<EditMyCarState> {
 
   Future<void> init() async {
     await _fetchBrands();
+  }
+
+  void onVehicleTypeTap() async {
+    NavigationService.showDialog(dialog: const VehicleTypeDialog())!
+        .then((type) {
+      if (type != null) {
+        vehicleTypeController.text = type ?? '';
+      }
+    });
   }
 
   void onBrandTap() async {
@@ -114,6 +128,8 @@ class EditMyCarBloc extends Cubit<EditMyCarState> {
     try {
       await profileRepository.updateMyCar(
         CarRequestModel(
+          vehicleType: VehicleType.values
+              .firstWhere((type) => type.name == vehicleTypeController.text),
           brandId: selectedBrand?.id,
           brand: selectedBrand?.name,
           carId: selectedModel?.id,

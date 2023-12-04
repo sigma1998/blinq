@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/utils/custom_widgets/buttons/default_ink_well.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -15,29 +16,37 @@ class DialogItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onSelect,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: Text(
-              title,
-              style: const TextStyle(
-                fontWeight: FontWeight.w700,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        MyInkWell(
+          onTap: onSelect,
+          padding: const EdgeInsets.symmetric(
+            vertical: 16,
+            horizontal: 14,
+          ),
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 8),
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
-          const SizedBox(height: 16),
-          Divider(
-            height: 1,
-            thickness: 1,
-            color: Theme.of(context).colorScheme.onSecondary,
-          ),
-          const SizedBox(height: 16),
-        ],
-      ),
+        ),
+        Divider(
+          height: 1,
+          indent: 14,
+          thickness: 1,
+          endIndent: 14,
+          color: Theme.of(context).colorScheme.onSecondary,
+        ),
+      ],
     );
   }
 

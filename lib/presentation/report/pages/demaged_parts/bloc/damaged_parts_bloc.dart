@@ -1,10 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/presentation/report/pages/damaged_media/damaged_media_screen.dart';
-import 'package:blinq/presentation/report/pages/demaged_parts/damaged_parts_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/screenshot_util.dart';

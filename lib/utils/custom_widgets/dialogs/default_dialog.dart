@@ -58,12 +58,16 @@ class _MyDialogState extends State<MyDialog> {
     return MyInfoContainer(
       height: MediaQuery.of(context).size.height * 0.6,
       margin: const EdgeInsets.symmetric(horizontal: 12),
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 14),
+      padding: EdgeInsets.zero,
       child: Column(
         children: [
-          SearchTextField(
-            controller: _controller,
-            hintText: 'strSearch'.tr(),
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14),
+            child: SearchTextField(
+              controller: _controller,
+              hintText: 'strSearch'.tr(),
+            ),
           ),
           const SizedBox(height: 20),
           SizedBox(

@@ -1,4 +1,5 @@
 import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/presentation/report/pages/demaged_parts/damaged_parts_screen.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/navigation_service.dart';

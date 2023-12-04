@@ -29,6 +29,8 @@ mixin _$SecondDriverCarRequestModel {
   String? get mark => throw _privateConstructorUsedError;
   @JsonKey(name: 'make_type')
   String? get makeType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'vehicle_type')
+  VehicleType? get vehicleType => throw _privateConstructorUsedError;
   @JsonKey(name: 'engine_number')
   String? get engineNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'country_of_registration')
@@ -59,6 +61,7 @@ abstract class $SecondDriverCarRequestModelCopyWith<$Res> {
       @JsonKey(name: 'model_series') String? modelSeries,
       String? mark,
       @JsonKey(name: 'make_type') String? makeType,
+      @JsonKey(name: 'vehicle_type') VehicleType? vehicleType,
       @JsonKey(name: 'engine_number') String? engineNumber,
       @JsonKey(name: 'country_of_registration') String? countryOfRegistration,
       @JsonKey(name: 'trailer_registration_number')
@@ -86,6 +89,7 @@ class _$SecondDriverCarRequestModelCopyWithImpl<$Res,
     Object? modelSeries = freezed,
     Object? mark = freezed,
     Object? makeType = freezed,
+    Object? vehicleType = freezed,
     Object? engineNumber = freezed,
     Object? countryOfRegistration = freezed,
     Object? trailerRegistrationNumber = freezed,
@@ -112,6 +116,10 @@ class _$SecondDriverCarRequestModelCopyWithImpl<$Res,
           ? _value.makeType
           : makeType // ignore: cast_nullable_to_non_nullable
               as String?,
+      vehicleType: freezed == vehicleType
+          ? _value.vehicleType
+          : vehicleType // ignore: cast_nullable_to_non_nullable
+              as VehicleType?,
       engineNumber: freezed == engineNumber
           ? _value.engineNumber
           : engineNumber // ignore: cast_nullable_to_non_nullable
@@ -147,6 +155,7 @@ abstract class _$$SecondDriverCarRequestModelImplCopyWith<$Res>
       @JsonKey(name: 'model_series') String? modelSeries,
       String? mark,
       @JsonKey(name: 'make_type') String? makeType,
+      @JsonKey(name: 'vehicle_type') VehicleType? vehicleType,
       @JsonKey(name: 'engine_number') String? engineNumber,
       @JsonKey(name: 'country_of_registration') String? countryOfRegistration,
       @JsonKey(name: 'trailer_registration_number')
@@ -173,6 +182,7 @@ class __$$SecondDriverCarRequestModelImplCopyWithImpl<$Res>
     Object? modelSeries = freezed,
     Object? mark = freezed,
     Object? makeType = freezed,
+    Object? vehicleType = freezed,
     Object? engineNumber = freezed,
     Object? countryOfRegistration = freezed,
     Object? trailerRegistrationNumber = freezed,
@@ -199,6 +209,10 @@ class __$$SecondDriverCarRequestModelImplCopyWithImpl<$Res>
           ? _value.makeType
           : makeType // ignore: cast_nullable_to_non_nullable
               as String?,
+      vehicleType: freezed == vehicleType
+          ? _value.vehicleType
+          : vehicleType // ignore: cast_nullable_to_non_nullable
+              as VehicleType?,
       engineNumber: freezed == engineNumber
           ? _value.engineNumber
           : engineNumber // ignore: cast_nullable_to_non_nullable
@@ -229,6 +243,7 @@ class _$SecondDriverCarRequestModelImpl
       @JsonKey(name: 'model_series') this.modelSeries,
       this.mark,
       @JsonKey(name: 'make_type') this.makeType,
+      @JsonKey(name: 'vehicle_type') this.vehicleType,
       @JsonKey(name: 'engine_number') this.engineNumber,
       @JsonKey(name: 'country_of_registration') this.countryOfRegistration,
       @JsonKey(name: 'trailer_registration_number')
@@ -254,6 +269,9 @@ class _$SecondDriverCarRequestModelImpl
   @JsonKey(name: 'make_type')
   final String? makeType;
   @override
+  @JsonKey(name: 'vehicle_type')
+  final VehicleType? vehicleType;
+  @override
   @JsonKey(name: 'engine_number')
   final String? engineNumber;
   @override
@@ -268,7 +286,7 @@ class _$SecondDriverCarRequestModelImpl
 
   @override
   String toString() {
-    return 'SecondDriverCarRequestModel(car: $car, color: $color, modelSeries: $modelSeries, mark: $mark, makeType: $makeType, engineNumber: $engineNumber, countryOfRegistration: $countryOfRegistration, trailerRegistrationNumber: $trailerRegistrationNumber, trailerCountryOfRegistration: $trailerCountryOfRegistration)';
+    return 'SecondDriverCarRequestModel(car: $car, color: $color, modelSeries: $modelSeries, mark: $mark, makeType: $makeType, vehicleType: $vehicleType, engineNumber: $engineNumber, countryOfRegistration: $countryOfRegistration, trailerRegistrationNumber: $trailerRegistrationNumber, trailerCountryOfRegistration: $trailerCountryOfRegistration)';
   }
 
   @override
@@ -283,6 +301,8 @@ class _$SecondDriverCarRequestModelImpl
             (identical(other.mark, mark) || other.mark == mark) &&
             (identical(other.makeType, makeType) ||
                 other.makeType == makeType) &&
+            (identical(other.vehicleType, vehicleType) ||
+                other.vehicleType == vehicleType) &&
             (identical(other.engineNumber, engineNumber) ||
                 other.engineNumber == engineNumber) &&
             (identical(other.countryOfRegistration, countryOfRegistration) ||
@@ -305,6 +325,7 @@ class _$SecondDriverCarRequestModelImpl
       modelSeries,
       mark,
       makeType,
+      vehicleType,
       engineNumber,
       countryOfRegistration,
       trailerRegistrationNumber,
@@ -333,6 +354,7 @@ abstract class _SecondDriverCarRequestModel
           @JsonKey(name: 'model_series') final String? modelSeries,
           final String? mark,
           @JsonKey(name: 'make_type') final String? makeType,
+          @JsonKey(name: 'vehicle_type') final VehicleType? vehicleType,
           @JsonKey(name: 'engine_number') final String? engineNumber,
           @JsonKey(name: 'country_of_registration')
           final String? countryOfRegistration,
@@ -358,6 +380,9 @@ abstract class _SecondDriverCarRequestModel
   @override
   @JsonKey(name: 'make_type')
   String? get makeType;
+  @override
+  @JsonKey(name: 'vehicle_type')
+  VehicleType? get vehicleType;
   @override
   @JsonKey(name: 'engine_number')
   String? get engineNumber;

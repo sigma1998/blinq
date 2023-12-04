@@ -28,6 +28,8 @@ mixin _$CarRequestModel {
   String? get modelSeries => throw _privateConstructorUsedError;
   @JsonKey(name: 'make_type')
   String? get makeType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'vehicle_type')
+  VehicleType? get vehicleType => throw _privateConstructorUsedError;
   @JsonKey(name: 'engine_number')
   String? get engineNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'country_of_registration')
@@ -60,6 +62,7 @@ abstract class $CarRequestModelCopyWith<$Res> {
       @JsonKey(name: 'color_id') int? colorId,
       @JsonKey(name: 'model_series') String? modelSeries,
       @JsonKey(name: 'make_type') String? makeType,
+      @JsonKey(name: 'vehicle_type') VehicleType? vehicleType,
       @JsonKey(name: 'engine_number') String? engineNumber,
       @JsonKey(name: 'country_of_registration') String? countryOfRegistration,
       @JsonKey(name: 'brand_id') int? brandId,
@@ -89,6 +92,7 @@ class _$CarRequestModelCopyWithImpl<$Res, $Val extends CarRequestModel>
     Object? colorId = freezed,
     Object? modelSeries = freezed,
     Object? makeType = freezed,
+    Object? vehicleType = freezed,
     Object? engineNumber = freezed,
     Object? countryOfRegistration = freezed,
     Object? brandId = freezed,
@@ -115,6 +119,10 @@ class _$CarRequestModelCopyWithImpl<$Res, $Val extends CarRequestModel>
           ? _value.makeType
           : makeType // ignore: cast_nullable_to_non_nullable
               as String?,
+      vehicleType: freezed == vehicleType
+          ? _value.vehicleType
+          : vehicleType // ignore: cast_nullable_to_non_nullable
+              as VehicleType?,
       engineNumber: freezed == engineNumber
           ? _value.engineNumber
           : engineNumber // ignore: cast_nullable_to_non_nullable
@@ -164,6 +172,7 @@ abstract class _$$CarRequestModelImplCopyWith<$Res>
       @JsonKey(name: 'color_id') int? colorId,
       @JsonKey(name: 'model_series') String? modelSeries,
       @JsonKey(name: 'make_type') String? makeType,
+      @JsonKey(name: 'vehicle_type') VehicleType? vehicleType,
       @JsonKey(name: 'engine_number') String? engineNumber,
       @JsonKey(name: 'country_of_registration') String? countryOfRegistration,
       @JsonKey(name: 'brand_id') int? brandId,
@@ -191,6 +200,7 @@ class __$$CarRequestModelImplCopyWithImpl<$Res>
     Object? colorId = freezed,
     Object? modelSeries = freezed,
     Object? makeType = freezed,
+    Object? vehicleType = freezed,
     Object? engineNumber = freezed,
     Object? countryOfRegistration = freezed,
     Object? brandId = freezed,
@@ -217,6 +227,10 @@ class __$$CarRequestModelImplCopyWithImpl<$Res>
           ? _value.makeType
           : makeType // ignore: cast_nullable_to_non_nullable
               as String?,
+      vehicleType: freezed == vehicleType
+          ? _value.vehicleType
+          : vehicleType // ignore: cast_nullable_to_non_nullable
+              as VehicleType?,
       engineNumber: freezed == engineNumber
           ? _value.engineNumber
           : engineNumber // ignore: cast_nullable_to_non_nullable
@@ -261,6 +275,7 @@ class _$CarRequestModelImpl implements _CarRequestModel {
       @JsonKey(name: 'color_id') this.colorId,
       @JsonKey(name: 'model_series') this.modelSeries,
       @JsonKey(name: 'make_type') this.makeType,
+      @JsonKey(name: 'vehicle_type') this.vehicleType,
       @JsonKey(name: 'engine_number') this.engineNumber,
       @JsonKey(name: 'country_of_registration') this.countryOfRegistration,
       @JsonKey(name: 'brand_id') this.brandId,
@@ -288,6 +303,9 @@ class _$CarRequestModelImpl implements _CarRequestModel {
   @JsonKey(name: 'make_type')
   final String? makeType;
   @override
+  @JsonKey(name: 'vehicle_type')
+  final VehicleType? vehicleType;
+  @override
   @JsonKey(name: 'engine_number')
   final String? engineNumber;
   @override
@@ -311,7 +329,7 @@ class _$CarRequestModelImpl implements _CarRequestModel {
 
   @override
   String toString() {
-    return 'CarRequestModel(carId: $carId, colorId: $colorId, modelSeries: $modelSeries, makeType: $makeType, engineNumber: $engineNumber, countryOfRegistration: $countryOfRegistration, brandId: $brandId, trailerRegistrationNumber: $trailerRegistrationNumber, trailerCountryOfRegistration: $trailerCountryOfRegistration, car: $car, color: $color, brand: $brand)';
+    return 'CarRequestModel(carId: $carId, colorId: $colorId, modelSeries: $modelSeries, makeType: $makeType, vehicleType: $vehicleType, engineNumber: $engineNumber, countryOfRegistration: $countryOfRegistration, brandId: $brandId, trailerRegistrationNumber: $trailerRegistrationNumber, trailerCountryOfRegistration: $trailerCountryOfRegistration, car: $car, color: $color, brand: $brand)';
   }
 
   @override
@@ -325,6 +343,8 @@ class _$CarRequestModelImpl implements _CarRequestModel {
                 other.modelSeries == modelSeries) &&
             (identical(other.makeType, makeType) ||
                 other.makeType == makeType) &&
+            (identical(other.vehicleType, vehicleType) ||
+                other.vehicleType == vehicleType) &&
             (identical(other.engineNumber, engineNumber) ||
                 other.engineNumber == engineNumber) &&
             (identical(other.countryOfRegistration, countryOfRegistration) ||
@@ -350,6 +370,7 @@ class _$CarRequestModelImpl implements _CarRequestModel {
       colorId,
       modelSeries,
       makeType,
+      vehicleType,
       engineNumber,
       countryOfRegistration,
       brandId,
@@ -380,6 +401,7 @@ abstract class _CarRequestModel implements CarRequestModel {
       @JsonKey(name: 'color_id') final int? colorId,
       @JsonKey(name: 'model_series') final String? modelSeries,
       @JsonKey(name: 'make_type') final String? makeType,
+      @JsonKey(name: 'vehicle_type') final VehicleType? vehicleType,
       @JsonKey(name: 'engine_number') final String? engineNumber,
       @JsonKey(name: 'country_of_registration')
       final String? countryOfRegistration,
@@ -407,6 +429,9 @@ abstract class _CarRequestModel implements CarRequestModel {
   @override
   @JsonKey(name: 'make_type')
   String? get makeType;
+  @override
+  @JsonKey(name: 'vehicle_type')
+  VehicleType? get vehicleType;
   @override
   @JsonKey(name: 'engine_number')
   String? get engineNumber;

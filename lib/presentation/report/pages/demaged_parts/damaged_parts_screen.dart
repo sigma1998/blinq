@@ -1,5 +1,6 @@
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
@@ -28,14 +29,12 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
   @override
   void didChangeDependencies() {
     final args =
-    ModalRoute
-        .of(context)
-        ?.settings
-        .arguments as DamagedPartsScreenArgs?;
+        ModalRoute.of(context)?.settings.arguments as DamagedPartsScreenArgs?;
 
-    bloc = DamagedPartsBloc(vehicleType: args?.vehicleType ?? VehicleType.auto,
-        accidentRepository: getIt<AccidentRepositoryImpl>(),
-        reportBloc: context.read(),
+    bloc = DamagedPartsBloc(
+      vehicleType: args?.vehicleType ?? VehicleType.auto,
+      accidentRepository: getIt<AccidentRepositoryImpl>(),
+      reportBloc: context.read(),
     );
 
     super.didChangeDependencies();
@@ -43,10 +42,7 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    final width = MediaQuery.of(context).size.width;
     return BlocProvider(
       create: (_) {
         return bloc;
@@ -64,10 +60,7 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
                     ),
                     Text(
                       'strSelectDamage'.tr(),
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .titleMedium,
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                     const SizedBox(
                       height: 24,
@@ -118,5 +111,3 @@ class DamagedPartsScreenArgs {
 
   DamagedPartsScreenArgs({required this.vehicleType});
 }
-
-enum VehicleType { auto, van, moto }

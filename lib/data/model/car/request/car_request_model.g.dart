@@ -13,6 +13,8 @@ _$CarRequestModelImpl _$$CarRequestModelImplFromJson(
       colorId: json['color_id'] as int?,
       modelSeries: json['model_series'] as String?,
       makeType: json['make_type'] as String?,
+      vehicleType:
+          $enumDecodeNullable(_$VehicleTypeEnumMap, json['vehicle_type']),
       engineNumber: json['engine_number'] as String?,
       countryOfRegistration: json['country_of_registration'] as String?,
       brandId: json['brand_id'] as int?,
@@ -31,6 +33,7 @@ Map<String, dynamic> _$$CarRequestModelImplToJson(
       'color_id': instance.colorId,
       'model_series': instance.modelSeries,
       'make_type': instance.makeType,
+      'vehicle_type': _$VehicleTypeEnumMap[instance.vehicleType],
       'engine_number': instance.engineNumber,
       'country_of_registration': instance.countryOfRegistration,
       'brand_id': instance.brandId,
@@ -40,3 +43,9 @@ Map<String, dynamic> _$$CarRequestModelImplToJson(
       'color': instance.color,
       'brand': instance.brand,
     };
+
+const _$VehicleTypeEnumMap = {
+  VehicleType.auto: 'sedan',
+  VehicleType.van: 'van',
+  VehicleType.moto: 'bike',
+};

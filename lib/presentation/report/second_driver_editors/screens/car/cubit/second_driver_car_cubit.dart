@@ -1,5 +1,4 @@
 // Package imports:
-import 'package:blinq/presentation/report/second_driver_editors/screens/insurance_company/insurance_company_screen.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -7,6 +6,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
+import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
+import 'package:blinq/presentation/report/second_driver_editors/screens/insurance_company/insurance_company_screen.dart';
+import 'package:blinq/utils/smart_widgets/dialogs/vehicle_type_dialog/vehicle_type_dialog.dart';
 import 'package:blinq/data/model/second_driver/car/request/second_driver_car_request_model.dart';
 import 'package:blinq/utils/custom_widgets/dialogs/default_dialog.dart';
 import 'package:blinq/utils/navigation_service.dart';
@@ -28,6 +30,7 @@ class SecondDriverCarCubit extends Cubit<SecondDriverCarState> {
   final AccidentRepository accidentRepository;
   final ProfileRepository profileRepository;
 
+  final vehicleTypeController = TextEditingController();
   final brandController = TextEditingController();
   final modelController = TextEditingController();
   final colorController = TextEditingController();
@@ -64,6 +67,8 @@ class SecondDriverCarCubit extends Cubit<SecondDriverCarState> {
     try {
       final carB = SecondDriverCarRequestModel(
         //~ Car
+        vehicleType: VehicleType.values
+            .firstWhere((type) => type.name == vehicleTypeController.text),
         mark: brandController.text,
         car: selectedModel?.id,
         modelSeries: modelSeriesController.text,
@@ -94,6 +99,15 @@ class SecondDriverCarCubit extends Cubit<SecondDriverCarState> {
   }
 
   //
+
+  void onVehicleTypeTap() async {
+    NavigationService.showDialog(dialog: const VehicleTypeDialog())!
+        .then((type) {
+      if (type != null) {
+        vehicleTypeController.text = type ?? '';
+      }
+    });
+  }
 
   void onBrandTap() async {
     final res = await NavigationService.showDialog(
