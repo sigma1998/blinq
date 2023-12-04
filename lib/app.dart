@@ -83,8 +83,9 @@ class MyAppState extends State<MyApp> {
           )..checkBLEStatus(),
         ),
         BlocProvider<ReportBloc>(
-          create: (context) =>
-              ReportBloc(accidentRepository: getIt<AccidentRepositoryImpl>()),
+          create: (context) => ReportBloc(
+            accidentRepository: getIt<AccidentRepositoryImpl>(),
+          ),
         ),
         BlocProvider<LoggerCubit>(
           create: (context) => LoggerCubit(),

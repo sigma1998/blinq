@@ -13,11 +13,12 @@ class SplashScreenBloc {
 
   void checkStatus() async {
     final UserStatus status = authRepository.getUserStatus();
-    Future.delayed(const Duration(seconds: 3)).then((_) {
+    Future.delayed(const Duration(seconds: 3)).then((_) async {
       switch (status) {
         case UserStatus.signed:
-
-          DioClient.setToken(authRepository.getToken());
+          final token = await authRepository
+              .refreshToken(authRepository.getRefreshToken());
+          DioClient.setToken(token.access);
 
           NavigationService.newRootScreen(MainScreen.route);
           break;
