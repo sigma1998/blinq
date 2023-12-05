@@ -20,44 +20,31 @@ CarResponseModel _$CarResponseModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CarResponseModel {
-  @HiveField(0)
   @JsonKey(name: 'car_id')
   int? get carId => throw _privateConstructorUsedError;
-  @HiveField(1)
   @JsonKey(name: 'color_id')
   int? get colorId => throw _privateConstructorUsedError;
-  @HiveField(2)
   @JsonKey(name: 'model_series')
   String? get modelSeries => throw _privateConstructorUsedError;
-  @HiveField(3)
   @JsonKey(name: 'make_type')
   String? get makeType => throw _privateConstructorUsedError;
-  @HiveField(4)
   @JsonKey(name: 'engine_number')
   String? get engineNumber => throw _privateConstructorUsedError;
-  @HiveField(5)
   @JsonKey(name: 'country_of_registration')
   String? get countryOfRegistration => throw _privateConstructorUsedError;
-  @HiveField(6)
   @JsonKey(name: 'trailer_registration_number')
   String? get trailerRegistrationNumber => throw _privateConstructorUsedError;
-  @HiveField(7)
   @JsonKey(name: 'trailer_country_of_registration')
   String? get trailerCountryOfRegistration =>
       throw _privateConstructorUsedError;
-  @HiveField(8)
   @JsonKey(name: 'car')
   String? get car => throw _privateConstructorUsedError;
-  @HiveField(9)
   @JsonKey(name: 'color')
   String? get color => throw _privateConstructorUsedError;
-  @HiveField(10)
   @JsonKey(name: 'brand_id')
   int? get brandId => throw _privateConstructorUsedError;
-  @HiveField(11)
   @JsonKey(name: 'brand')
   String? get brand => throw _privateConstructorUsedError;
-  @HiveField(12)
   @JsonKey(name: 'vehicle_type')
   VehicleType? get vehicleType => throw _privateConstructorUsedError;
 
@@ -74,25 +61,21 @@ abstract class $CarResponseModelCopyWith<$Res> {
       _$CarResponseModelCopyWithImpl<$Res, CarResponseModel>;
   @useResult
   $Res call(
-      {@HiveField(0) @JsonKey(name: 'car_id') int? carId,
-      @HiveField(1) @JsonKey(name: 'color_id') int? colorId,
-      @HiveField(2) @JsonKey(name: 'model_series') String? modelSeries,
-      @HiveField(3) @JsonKey(name: 'make_type') String? makeType,
-      @HiveField(4) @JsonKey(name: 'engine_number') String? engineNumber,
-      @HiveField(5)
-      @JsonKey(name: 'country_of_registration')
-      String? countryOfRegistration,
-      @HiveField(6)
+      {@JsonKey(name: 'car_id') int? carId,
+      @JsonKey(name: 'color_id') int? colorId,
+      @JsonKey(name: 'model_series') String? modelSeries,
+      @JsonKey(name: 'make_type') String? makeType,
+      @JsonKey(name: 'engine_number') String? engineNumber,
+      @JsonKey(name: 'country_of_registration') String? countryOfRegistration,
       @JsonKey(name: 'trailer_registration_number')
       String? trailerRegistrationNumber,
-      @HiveField(7)
       @JsonKey(name: 'trailer_country_of_registration')
       String? trailerCountryOfRegistration,
-      @HiveField(8) @JsonKey(name: 'car') String? car,
-      @HiveField(9) @JsonKey(name: 'color') String? color,
-      @HiveField(10) @JsonKey(name: 'brand_id') int? brandId,
-      @HiveField(11) @JsonKey(name: 'brand') String? brand,
-      @HiveField(12) @JsonKey(name: 'vehicle_type') VehicleType? vehicleType});
+      @JsonKey(name: 'car') String? car,
+      @JsonKey(name: 'color') String? color,
+      @JsonKey(name: 'brand_id') int? brandId,
+      @JsonKey(name: 'brand') String? brand,
+      @JsonKey(name: 'vehicle_type') VehicleType? vehicleType});
 }
 
 /// @nodoc
@@ -188,25 +171,21 @@ abstract class _$$CarResponseModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@HiveField(0) @JsonKey(name: 'car_id') int? carId,
-      @HiveField(1) @JsonKey(name: 'color_id') int? colorId,
-      @HiveField(2) @JsonKey(name: 'model_series') String? modelSeries,
-      @HiveField(3) @JsonKey(name: 'make_type') String? makeType,
-      @HiveField(4) @JsonKey(name: 'engine_number') String? engineNumber,
-      @HiveField(5)
-      @JsonKey(name: 'country_of_registration')
-      String? countryOfRegistration,
-      @HiveField(6)
+      {@JsonKey(name: 'car_id') int? carId,
+      @JsonKey(name: 'color_id') int? colorId,
+      @JsonKey(name: 'model_series') String? modelSeries,
+      @JsonKey(name: 'make_type') String? makeType,
+      @JsonKey(name: 'engine_number') String? engineNumber,
+      @JsonKey(name: 'country_of_registration') String? countryOfRegistration,
       @JsonKey(name: 'trailer_registration_number')
       String? trailerRegistrationNumber,
-      @HiveField(7)
       @JsonKey(name: 'trailer_country_of_registration')
       String? trailerCountryOfRegistration,
-      @HiveField(8) @JsonKey(name: 'car') String? car,
-      @HiveField(9) @JsonKey(name: 'color') String? color,
-      @HiveField(10) @JsonKey(name: 'brand_id') int? brandId,
-      @HiveField(11) @JsonKey(name: 'brand') String? brand,
-      @HiveField(12) @JsonKey(name: 'vehicle_type') VehicleType? vehicleType});
+      @JsonKey(name: 'car') String? car,
+      @JsonKey(name: 'color') String? color,
+      @JsonKey(name: 'brand_id') int? brandId,
+      @JsonKey(name: 'brand') String? brand,
+      @JsonKey(name: 'vehicle_type') VehicleType? vehicleType});
 }
 
 /// @nodoc
@@ -295,81 +274,62 @@ class __$$CarResponseModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CarResponseModelImpl implements _CarResponseModel {
   const _$CarResponseModelImpl(
-      {@HiveField(0) @JsonKey(name: 'car_id') this.carId,
-      @HiveField(1) @JsonKey(name: 'color_id') this.colorId,
-      @HiveField(2) @JsonKey(name: 'model_series') this.modelSeries,
-      @HiveField(3) @JsonKey(name: 'make_type') this.makeType,
-      @HiveField(4) @JsonKey(name: 'engine_number') this.engineNumber,
-      @HiveField(5)
-      @JsonKey(name: 'country_of_registration')
-      this.countryOfRegistration,
-      @HiveField(6)
+      {@JsonKey(name: 'car_id') this.carId,
+      @JsonKey(name: 'color_id') this.colorId,
+      @JsonKey(name: 'model_series') this.modelSeries,
+      @JsonKey(name: 'make_type') this.makeType,
+      @JsonKey(name: 'engine_number') this.engineNumber,
+      @JsonKey(name: 'country_of_registration') this.countryOfRegistration,
       @JsonKey(name: 'trailer_registration_number')
       this.trailerRegistrationNumber,
-      @HiveField(7)
       @JsonKey(name: 'trailer_country_of_registration')
       this.trailerCountryOfRegistration,
-      @HiveField(8) @JsonKey(name: 'car') this.car,
-      @HiveField(9) @JsonKey(name: 'color') this.color,
-      @HiveField(10) @JsonKey(name: 'brand_id') this.brandId,
-      @HiveField(11) @JsonKey(name: 'brand') this.brand,
-      @HiveField(12)
-      @JsonKey(name: 'vehicle_type')
-      this.vehicleType = VehicleType.auto});
+      @JsonKey(name: 'car') this.car,
+      @JsonKey(name: 'color') this.color,
+      @JsonKey(name: 'brand_id') this.brandId,
+      @JsonKey(name: 'brand') this.brand,
+      @JsonKey(name: 'vehicle_type') this.vehicleType = VehicleType.auto});
 
   factory _$CarResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CarResponseModelImplFromJson(json);
 
   @override
-  @HiveField(0)
   @JsonKey(name: 'car_id')
   final int? carId;
   @override
-  @HiveField(1)
   @JsonKey(name: 'color_id')
   final int? colorId;
   @override
-  @HiveField(2)
   @JsonKey(name: 'model_series')
   final String? modelSeries;
   @override
-  @HiveField(3)
   @JsonKey(name: 'make_type')
   final String? makeType;
   @override
-  @HiveField(4)
   @JsonKey(name: 'engine_number')
   final String? engineNumber;
   @override
-  @HiveField(5)
   @JsonKey(name: 'country_of_registration')
   final String? countryOfRegistration;
   @override
-  @HiveField(6)
   @JsonKey(name: 'trailer_registration_number')
   final String? trailerRegistrationNumber;
   @override
-  @HiveField(7)
   @JsonKey(name: 'trailer_country_of_registration')
   final String? trailerCountryOfRegistration;
   @override
-  @HiveField(8)
   @JsonKey(name: 'car')
   final String? car;
   @override
-  @HiveField(9)
   @JsonKey(name: 'color')
   final String? color;
   @override
-  @HiveField(10)
   @JsonKey(name: 'brand_id')
   final int? brandId;
   @override
-  @HiveField(11)
   @JsonKey(name: 'brand')
   final String? brand;
   @override
-  @HiveField(12)
   @JsonKey(name: 'vehicle_type')
   final VehicleType? vehicleType;
 
@@ -443,81 +403,64 @@ class _$CarResponseModelImpl implements _CarResponseModel {
 
 abstract class _CarResponseModel implements CarResponseModel {
   const factory _CarResponseModel(
-      {@HiveField(0) @JsonKey(name: 'car_id') final int? carId,
-      @HiveField(1) @JsonKey(name: 'color_id') final int? colorId,
-      @HiveField(2) @JsonKey(name: 'model_series') final String? modelSeries,
-      @HiveField(3) @JsonKey(name: 'make_type') final String? makeType,
-      @HiveField(4) @JsonKey(name: 'engine_number') final String? engineNumber,
-      @HiveField(5)
-      @JsonKey(name: 'country_of_registration')
-      final String? countryOfRegistration,
-      @HiveField(6)
-      @JsonKey(name: 'trailer_registration_number')
-      final String? trailerRegistrationNumber,
-      @HiveField(7)
-      @JsonKey(name: 'trailer_country_of_registration')
-      final String? trailerCountryOfRegistration,
-      @HiveField(8) @JsonKey(name: 'car') final String? car,
-      @HiveField(9) @JsonKey(name: 'color') final String? color,
-      @HiveField(10) @JsonKey(name: 'brand_id') final int? brandId,
-      @HiveField(11) @JsonKey(name: 'brand') final String? brand,
-      @HiveField(12)
-      @JsonKey(name: 'vehicle_type')
-      final VehicleType? vehicleType}) = _$CarResponseModelImpl;
+          {@JsonKey(name: 'car_id') final int? carId,
+          @JsonKey(name: 'color_id') final int? colorId,
+          @JsonKey(name: 'model_series') final String? modelSeries,
+          @JsonKey(name: 'make_type') final String? makeType,
+          @JsonKey(name: 'engine_number') final String? engineNumber,
+          @JsonKey(name: 'country_of_registration')
+          final String? countryOfRegistration,
+          @JsonKey(name: 'trailer_registration_number')
+          final String? trailerRegistrationNumber,
+          @JsonKey(name: 'trailer_country_of_registration')
+          final String? trailerCountryOfRegistration,
+          @JsonKey(name: 'car') final String? car,
+          @JsonKey(name: 'color') final String? color,
+          @JsonKey(name: 'brand_id') final int? brandId,
+          @JsonKey(name: 'brand') final String? brand,
+          @JsonKey(name: 'vehicle_type') final VehicleType? vehicleType}) =
+      _$CarResponseModelImpl;
 
   factory _CarResponseModel.fromJson(Map<String, dynamic> json) =
       _$CarResponseModelImpl.fromJson;
 
   @override
-  @HiveField(0)
   @JsonKey(name: 'car_id')
   int? get carId;
   @override
-  @HiveField(1)
   @JsonKey(name: 'color_id')
   int? get colorId;
   @override
-  @HiveField(2)
   @JsonKey(name: 'model_series')
   String? get modelSeries;
   @override
-  @HiveField(3)
   @JsonKey(name: 'make_type')
   String? get makeType;
   @override
-  @HiveField(4)
   @JsonKey(name: 'engine_number')
   String? get engineNumber;
   @override
-  @HiveField(5)
   @JsonKey(name: 'country_of_registration')
   String? get countryOfRegistration;
   @override
-  @HiveField(6)
   @JsonKey(name: 'trailer_registration_number')
   String? get trailerRegistrationNumber;
   @override
-  @HiveField(7)
   @JsonKey(name: 'trailer_country_of_registration')
   String? get trailerCountryOfRegistration;
   @override
-  @HiveField(8)
   @JsonKey(name: 'car')
   String? get car;
   @override
-  @HiveField(9)
   @JsonKey(name: 'color')
   String? get color;
   @override
-  @HiveField(10)
   @JsonKey(name: 'brand_id')
   int? get brandId;
   @override
-  @HiveField(11)
   @JsonKey(name: 'brand')
   String? get brand;
   @override
-  @HiveField(12)
   @JsonKey(name: 'vehicle_type')
   VehicleType? get vehicleType;
   @override

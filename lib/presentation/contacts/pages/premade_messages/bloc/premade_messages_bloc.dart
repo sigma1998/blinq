@@ -31,7 +31,6 @@ class PreMadeMessagesBloc
     try {
       emit(const PreMadeMessagesState(status: Status.loading));
       final data = await repository.fetchList();
-      repository.setPremadeMessages(data);
       emit(PreMadeMessagesState(premadeMessages: data, status: Status.success));
     } catch (e) {
       emit(state.copyWith(status: Status.initial));

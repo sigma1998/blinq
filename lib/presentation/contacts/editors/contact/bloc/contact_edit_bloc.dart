@@ -21,6 +21,7 @@ import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/image_crop_helper.dart';
 import 'package:blinq/utils/string_helper.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'contact_edit_event.dart';
 
 part 'contact_edit_state.dart';
@@ -127,7 +128,10 @@ class ContactEditBloc extends Bloc<ContactEditEvent, ContactEditState> {
           onPressed: () async {
             final imagePath =
                 await mediaService.pickImagePath(AppImageSource.camera);
-            final result = await ImageCropHelper.cropImage(imagePath);
+            final result = await ImageCropHelper.cropImage(
+              imagePath,
+              cropStyle: CropStyle.circle,
+            );
             NavigationService.back(result: result);
           },
         ),
@@ -136,7 +140,10 @@ class ContactEditBloc extends Bloc<ContactEditEvent, ContactEditState> {
           onPressed: () async {
             final imagePath =
                 await mediaService.pickImagePath(AppImageSource.gallery);
-            final result = await ImageCropHelper.cropImage(imagePath);
+            final result = await ImageCropHelper.cropImage(
+              imagePath,
+              cropStyle: CropStyle.circle,
+            );
             NavigationService.back(result: result);
           },
         ),

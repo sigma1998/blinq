@@ -20,20 +20,14 @@ ContactResponseModel _$ContactResponseModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ContactResponseModel {
-  @HiveField(0)
   int? get id => throw _privateConstructorUsedError;
-  @HiveField(1)
   String? get image => throw _privateConstructorUsedError;
-  @HiveField(2)
   @JsonKey(name: 'name')
   String? get firstName => throw _privateConstructorUsedError;
-  @HiveField(3)
   @JsonKey(name: 'last_name')
   String? get lastName => throw _privateConstructorUsedError;
-  @HiveField(4)
   @JsonKey(name: 'phone_number')
   String? get phoneNumber => throw _privateConstructorUsedError;
-  @HiveField(5)
   @JsonKey(name: 'is_emergency')
   bool? get isEmergency => throw _privateConstructorUsedError;
 
@@ -50,12 +44,12 @@ abstract class $ContactResponseModelCopyWith<$Res> {
       _$ContactResponseModelCopyWithImpl<$Res, ContactResponseModel>;
   @useResult
   $Res call(
-      {@HiveField(0) int? id,
-      @HiveField(1) String? image,
-      @HiveField(2) @JsonKey(name: 'name') String? firstName,
-      @HiveField(3) @JsonKey(name: 'last_name') String? lastName,
-      @HiveField(4) @JsonKey(name: 'phone_number') String? phoneNumber,
-      @HiveField(5) @JsonKey(name: 'is_emergency') bool? isEmergency});
+      {int? id,
+      String? image,
+      @JsonKey(name: 'name') String? firstName,
+      @JsonKey(name: 'last_name') String? lastName,
+      @JsonKey(name: 'phone_number') String? phoneNumber,
+      @JsonKey(name: 'is_emergency') bool? isEmergency});
 }
 
 /// @nodoc
@@ -117,12 +111,12 @@ abstract class _$$ContactResponseModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@HiveField(0) int? id,
-      @HiveField(1) String? image,
-      @HiveField(2) @JsonKey(name: 'name') String? firstName,
-      @HiveField(3) @JsonKey(name: 'last_name') String? lastName,
-      @HiveField(4) @JsonKey(name: 'phone_number') String? phoneNumber,
-      @HiveField(5) @JsonKey(name: 'is_emergency') bool? isEmergency});
+      {int? id,
+      String? image,
+      @JsonKey(name: 'name') String? firstName,
+      @JsonKey(name: 'last_name') String? lastName,
+      @JsonKey(name: 'phone_number') String? phoneNumber,
+      @JsonKey(name: 'is_emergency') bool? isEmergency});
 }
 
 /// @nodoc
@@ -176,37 +170,31 @@ class __$$ContactResponseModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ContactResponseModelImpl extends _ContactResponseModel {
   const _$ContactResponseModelImpl(
-      {@HiveField(0) this.id,
-      @HiveField(1) this.image,
-      @HiveField(2) @JsonKey(name: 'name') this.firstName,
-      @HiveField(3) @JsonKey(name: 'last_name') this.lastName,
-      @HiveField(4) @JsonKey(name: 'phone_number') this.phoneNumber,
-      @HiveField(5) @JsonKey(name: 'is_emergency') this.isEmergency})
+      {this.id,
+      this.image,
+      @JsonKey(name: 'name') this.firstName,
+      @JsonKey(name: 'last_name') this.lastName,
+      @JsonKey(name: 'phone_number') this.phoneNumber,
+      @JsonKey(name: 'is_emergency') this.isEmergency})
       : super._();
 
   factory _$ContactResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ContactResponseModelImplFromJson(json);
 
   @override
-  @HiveField(0)
   final int? id;
   @override
-  @HiveField(1)
   final String? image;
   @override
-  @HiveField(2)
   @JsonKey(name: 'name')
   final String? firstName;
   @override
-  @HiveField(3)
   @JsonKey(name: 'last_name')
   final String? lastName;
   @override
-  @HiveField(4)
   @JsonKey(name: 'phone_number')
   final String? phoneNumber;
   @override
-  @HiveField(5)
   @JsonKey(name: 'is_emergency')
   final bool? isEmergency;
 
@@ -255,39 +243,32 @@ class _$ContactResponseModelImpl extends _ContactResponseModel {
 
 abstract class _ContactResponseModel extends ContactResponseModel {
   const factory _ContactResponseModel(
-      {@HiveField(0) final int? id,
-      @HiveField(1) final String? image,
-      @HiveField(2) @JsonKey(name: 'name') final String? firstName,
-      @HiveField(3) @JsonKey(name: 'last_name') final String? lastName,
-      @HiveField(4) @JsonKey(name: 'phone_number') final String? phoneNumber,
-      @HiveField(5)
-      @JsonKey(name: 'is_emergency')
-      final bool? isEmergency}) = _$ContactResponseModelImpl;
+          {final int? id,
+          final String? image,
+          @JsonKey(name: 'name') final String? firstName,
+          @JsonKey(name: 'last_name') final String? lastName,
+          @JsonKey(name: 'phone_number') final String? phoneNumber,
+          @JsonKey(name: 'is_emergency') final bool? isEmergency}) =
+      _$ContactResponseModelImpl;
   const _ContactResponseModel._() : super._();
 
   factory _ContactResponseModel.fromJson(Map<String, dynamic> json) =
       _$ContactResponseModelImpl.fromJson;
 
   @override
-  @HiveField(0)
   int? get id;
   @override
-  @HiveField(1)
   String? get image;
   @override
-  @HiveField(2)
   @JsonKey(name: 'name')
   String? get firstName;
   @override
-  @HiveField(3)
   @JsonKey(name: 'last_name')
   String? get lastName;
   @override
-  @HiveField(4)
   @JsonKey(name: 'phone_number')
   String? get phoneNumber;
   @override
-  @HiveField(5)
   @JsonKey(name: 'is_emergency')
   bool? get isEmergency;
   @override

@@ -2,7 +2,6 @@
 import 'dart:io';
 
 // Project imports:
-import 'package:blinq/data/datasource/local/profile_local_db.dart';
 import 'package:blinq/data/datasource/remote/profile_api.dart';
 import 'package:blinq/data/model/car/request/car_request_model.dart';
 import 'package:blinq/data/model/cheack_account_datas/cheack_account_datas_response.dart';
@@ -66,26 +65,13 @@ abstract class ProfileRepository {
   Future<ColorResponseDto> fetchColors(int page, int brandId);
 
   Future<CheckAccountResponse> checkAccountData();
-
-  ///
-  /// Local storage
-  ///
-
-  ProfileResponseModel getProfile();
-
-  void setProfile(ProfileResponseModel profile);
-
-  String getLanguage();
-
-  void setLanguage(String language);
 }
 
 class ProfileRepositoryImpl implements ProfileRepository {
   //
   final ProfileApi api;
-  final ProfileLocalStorage localStorage;
 
-  ProfileRepositoryImpl({required this.api, required this.localStorage});
+  ProfileRepositoryImpl({required this.api});
 
   ///
   /// Profile
@@ -101,10 +87,9 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<ProfileResponseModel> update(ProfileRequestModel profile) async{
+  Future<ProfileResponseModel> update(ProfileRequestModel profile) async {
     try {
       return await api.update(profile).then((data) {
-        localStorage.setProfile(data);
         return data;
       });
     } catch (e) {
@@ -113,7 +98,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<void> updateProfileImage(File file) async{
+  Future<void> updateProfileImage(File file) async {
     try {
       return await api.updateProfileImage(file);
     } catch (e) {
@@ -125,7 +110,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   /// Editors
   ///
   @override
-  Future<void> updatePolicyHolder(PolicyHolderRequestModel policyHolder) async{
+  Future<void> updatePolicyHolder(PolicyHolderRequestModel policyHolder) async {
     try {
       return await api.updatePolicyHolder(policyHolder);
     } catch (e) {
@@ -134,7 +119,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<void> updateCar(CarRequestModel vehicle) async{
+  Future<void> updateCar(CarRequestModel vehicle) async {
     try {
       return await api.updateCar(vehicle);
     } catch (e) {
@@ -143,7 +128,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<void> updateUserVehicle(UserVehicleRequestModel myVehicle) async{
+  Future<void> updateUserVehicle(UserVehicleRequestModel myVehicle) async {
     try {
       return await api.updateUserVehicle(myVehicle);
     } catch (e) {
@@ -152,7 +137,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<void> updateInsurance(InsuranceRequestModel insurance)async {
+  Future<void> updateInsurance(InsuranceRequestModel insurance) async {
     try {
       return await api.updateInsurance(insurance);
     } catch (e) {
@@ -161,7 +146,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<void> updateMyCar(CarRequestModel carRequestModel) async{
+  Future<void> updateMyCar(CarRequestModel carRequestModel) async {
     try {
       return await api.updateMyCar(carRequestModel);
     } catch (e) {
@@ -174,7 +159,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   ///
 
   @override
-  Future<void> updateEmail(String email)async {
+  Future<void> updateEmail(String email) async {
     try {
       return await api.updateEmail(email);
     } catch (e) {
@@ -183,27 +168,25 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<void> updateLanguage(String language) async{
+  Future<void> updateLanguage(String language) async {
     try {
-      return await api
-          .updateLanguage(language)
-          .then((_) => localStorage.setLanguage(language));
+      return await api.updateLanguage(language);
     } catch (e) {
       rethrow;
     }
   }
 
   @override
-  Future<void> updatePassword(String oldPassword, String newPassword) async{
+  Future<void> updatePassword(String oldPassword, String newPassword) async {
     try {
-      return await  api.updatePassword(oldPassword, newPassword);
+      return await api.updatePassword(oldPassword, newPassword);
     } catch (e) {
       rethrow;
     }
   }
 
   @override
-  Future<void> verifyEmail(String code)async {
+  Future<void> verifyEmail(String code) async {
     try {
       return await api.verifyEmail(code);
     } catch (e) {
@@ -271,28 +254,11 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<CheckAccountResponse> checkAccountData() async{
+  Future<CheckAccountResponse> checkAccountData() async {
     try {
       return await api.checkAccountData();
     } catch (e) {
       rethrow;
     }
   }
-
-  ///
-  /// Local storage
-  ///
-
-  @override
-  ProfileResponseModel getProfile() => localStorage.getProfile();
-
-  @override
-  void setProfile(ProfileResponseModel profile) =>
-      localStorage.setProfile(profile);
-
-  @override
-  String getLanguage() => localStorage.getLanguage();
-
-  @override
-  void setLanguage(String language) => localStorage.setLanguage(language);
 }

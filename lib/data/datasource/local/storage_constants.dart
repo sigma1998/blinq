@@ -7,10 +7,4 @@ class StorageConstants {
   static String userId = 'userId';
   static String userName = 'userName';
   static String userPhone = 'userPhone';
-
-  static String profile = 'profile';
-  static String language = 'language';
-
-  static String contacts = 'contacts';
-  static String premadeMessages = 'premadeMessages';
 }

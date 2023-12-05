@@ -20,55 +20,37 @@ ProfileResponseModel _$ProfileResponseModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProfileResponseModel {
-  @HiveField(0)
   int? get id => throw _privateConstructorUsedError;
-  @HiveField(1)
   String? get image => throw _privateConstructorUsedError;
-  @HiveField(2)
   @JsonKey(name: 'first_name')
   String? get firstName => throw _privateConstructorUsedError;
-  @HiveField(3)
   @JsonKey(name: 'last_name')
   String? get lastName => throw _privateConstructorUsedError;
-  @HiveField(4)
   @JsonKey(name: 'birth_date')
   String? get birthDate => throw _privateConstructorUsedError;
-  @HiveField(5)
   @JsonKey(name: 'country')
   String? get country => throw _privateConstructorUsedError;
-  @HiveField(6)
   @JsonKey(name: 'address')
   String? get address => throw _privateConstructorUsedError;
-  @HiveField(7)
   @JsonKey(name: 'phone_number')
   String? get phoneNumber => throw _privateConstructorUsedError;
-  @HiveField(8)
   @JsonKey(name: 'email')
   String? get email => throw _privateConstructorUsedError;
-  @HiveField(9)
   @JsonKey(name: 'qr_code')
   String? get qrCode => throw _privateConstructorUsedError;
-  @HiveField(10)
   @JsonKey(name: 'driver_license')
   DriverLicenseType? get driverLicense => throw _privateConstructorUsedError;
-  @HiveField(11)
   @JsonKey(name: 'driver_license_number')
   String? get driverLicenseNumber => throw _privateConstructorUsedError;
-  @HiveField(12)
   @JsonKey(name: 'driver_license_expired_date')
-  @HiveField(13)
   String? get driverLicenseExpiredDate => throw _privateConstructorUsedError;
-  @HiveField(14)
   @JsonKey()
   CarResponseModel? get car => throw _privateConstructorUsedError;
-  @HiveField(15)
   @JsonKey(name: 'policy_holder')
   PolicyHolderResponseModel? get policyHolder =>
       throw _privateConstructorUsedError;
-  @HiveField(16)
   @JsonKey()
   InsuranceResponseModel? get insurance => throw _privateConstructorUsedError;
-  @HiveField(17)
   @JsonKey(name: 'usersvehicledatas')
   UserVehicleResponseModel? get userVehicle =>
       throw _privateConstructorUsedError;
@@ -86,32 +68,23 @@ abstract class $ProfileResponseModelCopyWith<$Res> {
       _$ProfileResponseModelCopyWithImpl<$Res, ProfileResponseModel>;
   @useResult
   $Res call(
-      {@HiveField(0) int? id,
-      @HiveField(1) String? image,
-      @HiveField(2) @JsonKey(name: 'first_name') String? firstName,
-      @HiveField(3) @JsonKey(name: 'last_name') String? lastName,
-      @HiveField(4) @JsonKey(name: 'birth_date') String? birthDate,
-      @HiveField(5) @JsonKey(name: 'country') String? country,
-      @HiveField(6) @JsonKey(name: 'address') String? address,
-      @HiveField(7) @JsonKey(name: 'phone_number') String? phoneNumber,
-      @HiveField(8) @JsonKey(name: 'email') String? email,
-      @HiveField(9) @JsonKey(name: 'qr_code') String? qrCode,
-      @HiveField(10)
-      @JsonKey(name: 'driver_license')
-      DriverLicenseType? driverLicense,
-      @HiveField(11)
-      @JsonKey(name: 'driver_license_number')
-      String? driverLicenseNumber,
-      @HiveField(12)
+      {int? id,
+      String? image,
+      @JsonKey(name: 'first_name') String? firstName,
+      @JsonKey(name: 'last_name') String? lastName,
+      @JsonKey(name: 'birth_date') String? birthDate,
+      @JsonKey(name: 'country') String? country,
+      @JsonKey(name: 'address') String? address,
+      @JsonKey(name: 'phone_number') String? phoneNumber,
+      @JsonKey(name: 'email') String? email,
+      @JsonKey(name: 'qr_code') String? qrCode,
+      @JsonKey(name: 'driver_license') DriverLicenseType? driverLicense,
+      @JsonKey(name: 'driver_license_number') String? driverLicenseNumber,
       @JsonKey(name: 'driver_license_expired_date')
-      @HiveField(13)
       String? driverLicenseExpiredDate,
-      @HiveField(14) @JsonKey() CarResponseModel? car,
-      @HiveField(15)
-      @JsonKey(name: 'policy_holder')
-      PolicyHolderResponseModel? policyHolder,
-      @HiveField(16) @JsonKey() InsuranceResponseModel? insurance,
-      @HiveField(17)
+      @JsonKey() CarResponseModel? car,
+      @JsonKey(name: 'policy_holder') PolicyHolderResponseModel? policyHolder,
+      @JsonKey() InsuranceResponseModel? insurance,
       @JsonKey(name: 'usersvehicledatas')
       UserVehicleResponseModel? userVehicle});
 
@@ -285,32 +258,23 @@ abstract class _$$ProfileResponseModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@HiveField(0) int? id,
-      @HiveField(1) String? image,
-      @HiveField(2) @JsonKey(name: 'first_name') String? firstName,
-      @HiveField(3) @JsonKey(name: 'last_name') String? lastName,
-      @HiveField(4) @JsonKey(name: 'birth_date') String? birthDate,
-      @HiveField(5) @JsonKey(name: 'country') String? country,
-      @HiveField(6) @JsonKey(name: 'address') String? address,
-      @HiveField(7) @JsonKey(name: 'phone_number') String? phoneNumber,
-      @HiveField(8) @JsonKey(name: 'email') String? email,
-      @HiveField(9) @JsonKey(name: 'qr_code') String? qrCode,
-      @HiveField(10)
-      @JsonKey(name: 'driver_license')
-      DriverLicenseType? driverLicense,
-      @HiveField(11)
-      @JsonKey(name: 'driver_license_number')
-      String? driverLicenseNumber,
-      @HiveField(12)
+      {int? id,
+      String? image,
+      @JsonKey(name: 'first_name') String? firstName,
+      @JsonKey(name: 'last_name') String? lastName,
+      @JsonKey(name: 'birth_date') String? birthDate,
+      @JsonKey(name: 'country') String? country,
+      @JsonKey(name: 'address') String? address,
+      @JsonKey(name: 'phone_number') String? phoneNumber,
+      @JsonKey(name: 'email') String? email,
+      @JsonKey(name: 'qr_code') String? qrCode,
+      @JsonKey(name: 'driver_license') DriverLicenseType? driverLicense,
+      @JsonKey(name: 'driver_license_number') String? driverLicenseNumber,
       @JsonKey(name: 'driver_license_expired_date')
-      @HiveField(13)
       String? driverLicenseExpiredDate,
-      @HiveField(14) @JsonKey() CarResponseModel? car,
-      @HiveField(15)
-      @JsonKey(name: 'policy_holder')
-      PolicyHolderResponseModel? policyHolder,
-      @HiveField(16) @JsonKey() InsuranceResponseModel? insurance,
-      @HiveField(17)
+      @JsonKey() CarResponseModel? car,
+      @JsonKey(name: 'policy_holder') PolicyHolderResponseModel? policyHolder,
+      @JsonKey() InsuranceResponseModel? insurance,
       @JsonKey(name: 'usersvehicledatas')
       UserVehicleResponseModel? userVehicle});
 
@@ -430,98 +394,76 @@ class __$$ProfileResponseModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProfileResponseModelImpl extends _ProfileResponseModel {
   const _$ProfileResponseModelImpl(
-      {@HiveField(0) this.id,
-      @HiveField(1) this.image,
-      @HiveField(2) @JsonKey(name: 'first_name') this.firstName,
-      @HiveField(3) @JsonKey(name: 'last_name') this.lastName,
-      @HiveField(4) @JsonKey(name: 'birth_date') this.birthDate,
-      @HiveField(5) @JsonKey(name: 'country') this.country,
-      @HiveField(6) @JsonKey(name: 'address') this.address,
-      @HiveField(7) @JsonKey(name: 'phone_number') this.phoneNumber,
-      @HiveField(8) @JsonKey(name: 'email') this.email,
-      @HiveField(9) @JsonKey(name: 'qr_code') this.qrCode,
-      @HiveField(10) @JsonKey(name: 'driver_license') this.driverLicense,
-      @HiveField(11)
-      @JsonKey(name: 'driver_license_number')
-      this.driverLicenseNumber,
-      @HiveField(12)
+      {this.id,
+      this.image,
+      @JsonKey(name: 'first_name') this.firstName,
+      @JsonKey(name: 'last_name') this.lastName,
+      @JsonKey(name: 'birth_date') this.birthDate,
+      @JsonKey(name: 'country') this.country,
+      @JsonKey(name: 'address') this.address,
+      @JsonKey(name: 'phone_number') this.phoneNumber,
+      @JsonKey(name: 'email') this.email,
+      @JsonKey(name: 'qr_code') this.qrCode,
+      @JsonKey(name: 'driver_license') this.driverLicense,
+      @JsonKey(name: 'driver_license_number') this.driverLicenseNumber,
       @JsonKey(name: 'driver_license_expired_date')
-      @HiveField(13)
       this.driverLicenseExpiredDate,
-      @HiveField(14) @JsonKey() this.car,
-      @HiveField(15) @JsonKey(name: 'policy_holder') this.policyHolder,
-      @HiveField(16) @JsonKey() this.insurance,
-      @HiveField(17) @JsonKey(name: 'usersvehicledatas') this.userVehicle})
+      @JsonKey() this.car,
+      @JsonKey(name: 'policy_holder') this.policyHolder,
+      @JsonKey() this.insurance,
+      @JsonKey(name: 'usersvehicledatas') this.userVehicle})
       : super._();
 
   factory _$ProfileResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProfileResponseModelImplFromJson(json);
 
   @override
-  @HiveField(0)
   final int? id;
   @override
-  @HiveField(1)
   final String? image;
   @override
-  @HiveField(2)
   @JsonKey(name: 'first_name')
   final String? firstName;
   @override
-  @HiveField(3)
   @JsonKey(name: 'last_name')
   final String? lastName;
   @override
-  @HiveField(4)
   @JsonKey(name: 'birth_date')
   final String? birthDate;
   @override
-  @HiveField(5)
   @JsonKey(name: 'country')
   final String? country;
   @override
-  @HiveField(6)
   @JsonKey(name: 'address')
   final String? address;
   @override
-  @HiveField(7)
   @JsonKey(name: 'phone_number')
   final String? phoneNumber;
   @override
-  @HiveField(8)
   @JsonKey(name: 'email')
   final String? email;
   @override
-  @HiveField(9)
   @JsonKey(name: 'qr_code')
   final String? qrCode;
   @override
-  @HiveField(10)
   @JsonKey(name: 'driver_license')
   final DriverLicenseType? driverLicense;
   @override
-  @HiveField(11)
   @JsonKey(name: 'driver_license_number')
   final String? driverLicenseNumber;
   @override
-  @HiveField(12)
   @JsonKey(name: 'driver_license_expired_date')
-  @HiveField(13)
   final String? driverLicenseExpiredDate;
   @override
-  @HiveField(14)
   @JsonKey()
   final CarResponseModel? car;
   @override
-  @HiveField(15)
   @JsonKey(name: 'policy_holder')
   final PolicyHolderResponseModel? policyHolder;
   @override
-  @HiveField(16)
   @JsonKey()
   final InsuranceResponseModel? insurance;
   @override
-  @HiveField(17)
   @JsonKey(name: 'usersvehicledatas')
   final UserVehicleResponseModel? userVehicle;
 
@@ -605,32 +547,24 @@ class _$ProfileResponseModelImpl extends _ProfileResponseModel {
 
 abstract class _ProfileResponseModel extends ProfileResponseModel {
   const factory _ProfileResponseModel(
-      {@HiveField(0) final int? id,
-      @HiveField(1) final String? image,
-      @HiveField(2) @JsonKey(name: 'first_name') final String? firstName,
-      @HiveField(3) @JsonKey(name: 'last_name') final String? lastName,
-      @HiveField(4) @JsonKey(name: 'birth_date') final String? birthDate,
-      @HiveField(5) @JsonKey(name: 'country') final String? country,
-      @HiveField(6) @JsonKey(name: 'address') final String? address,
-      @HiveField(7) @JsonKey(name: 'phone_number') final String? phoneNumber,
-      @HiveField(8) @JsonKey(name: 'email') final String? email,
-      @HiveField(9) @JsonKey(name: 'qr_code') final String? qrCode,
-      @HiveField(10)
-      @JsonKey(name: 'driver_license')
-      final DriverLicenseType? driverLicense,
-      @HiveField(11)
-      @JsonKey(name: 'driver_license_number')
-      final String? driverLicenseNumber,
-      @HiveField(12)
+      {final int? id,
+      final String? image,
+      @JsonKey(name: 'first_name') final String? firstName,
+      @JsonKey(name: 'last_name') final String? lastName,
+      @JsonKey(name: 'birth_date') final String? birthDate,
+      @JsonKey(name: 'country') final String? country,
+      @JsonKey(name: 'address') final String? address,
+      @JsonKey(name: 'phone_number') final String? phoneNumber,
+      @JsonKey(name: 'email') final String? email,
+      @JsonKey(name: 'qr_code') final String? qrCode,
+      @JsonKey(name: 'driver_license') final DriverLicenseType? driverLicense,
+      @JsonKey(name: 'driver_license_number') final String? driverLicenseNumber,
       @JsonKey(name: 'driver_license_expired_date')
-      @HiveField(13)
       final String? driverLicenseExpiredDate,
-      @HiveField(14) @JsonKey() final CarResponseModel? car,
-      @HiveField(15)
+      @JsonKey() final CarResponseModel? car,
       @JsonKey(name: 'policy_holder')
       final PolicyHolderResponseModel? policyHolder,
-      @HiveField(16) @JsonKey() final InsuranceResponseModel? insurance,
-      @HiveField(17)
+      @JsonKey() final InsuranceResponseModel? insurance,
       @JsonKey(name: 'usersvehicledatas')
       final UserVehicleResponseModel?
           userVehicle}) = _$ProfileResponseModelImpl;
@@ -640,70 +574,52 @@ abstract class _ProfileResponseModel extends ProfileResponseModel {
       _$ProfileResponseModelImpl.fromJson;
 
   @override
-  @HiveField(0)
   int? get id;
   @override
-  @HiveField(1)
   String? get image;
   @override
-  @HiveField(2)
   @JsonKey(name: 'first_name')
   String? get firstName;
   @override
-  @HiveField(3)
   @JsonKey(name: 'last_name')
   String? get lastName;
   @override
-  @HiveField(4)
   @JsonKey(name: 'birth_date')
   String? get birthDate;
   @override
-  @HiveField(5)
   @JsonKey(name: 'country')
   String? get country;
   @override
-  @HiveField(6)
   @JsonKey(name: 'address')
   String? get address;
   @override
-  @HiveField(7)
   @JsonKey(name: 'phone_number')
   String? get phoneNumber;
   @override
-  @HiveField(8)
   @JsonKey(name: 'email')
   String? get email;
   @override
-  @HiveField(9)
   @JsonKey(name: 'qr_code')
   String? get qrCode;
   @override
-  @HiveField(10)
   @JsonKey(name: 'driver_license')
   DriverLicenseType? get driverLicense;
   @override
-  @HiveField(11)
   @JsonKey(name: 'driver_license_number')
   String? get driverLicenseNumber;
   @override
-  @HiveField(12)
   @JsonKey(name: 'driver_license_expired_date')
-  @HiveField(13)
   String? get driverLicenseExpiredDate;
   @override
-  @HiveField(14)
   @JsonKey()
   CarResponseModel? get car;
   @override
-  @HiveField(15)
   @JsonKey(name: 'policy_holder')
   PolicyHolderResponseModel? get policyHolder;
   @override
-  @HiveField(16)
   @JsonKey()
   InsuranceResponseModel? get insurance;
   @override
-  @HiveField(17)
   @JsonKey(name: 'usersvehicledatas')
   UserVehicleResponseModel? get userVehicle;
   @override

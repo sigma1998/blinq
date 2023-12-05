@@ -3,20 +3,18 @@
 // Package imports:
 import 'package:blinq/data/model/premade_message/response/premade_message_response_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hive/hive.dart';
 
 part 'premade_message_response_dto.freezed.dart';
 part 'premade_message_response_dto.g.dart';
 
 @freezed
-@HiveType(typeId: 11)
 class PreMadeMessageResponseDto with _$PreMadeMessageResponseDto {
   //
   const factory PreMadeMessageResponseDto({
-    @HiveField(0) int? count,
-    @HiveField(1) String? next,
-    @HiveField(2) String? previous,
-    @HiveField(3) List<PreMadeMessageResponseModel>? results,
+    int? count,
+    String? next,
+    String? previous,
+    List<PreMadeMessageResponseModel>? results,
   }) = _PremadeMessageResponseDto;
 
   factory PreMadeMessageResponseDto.fromJson(Map<String, dynamic> json) =>

@@ -21,11 +21,8 @@ PreMadeMessageResponseModel _$PreMadeMessageResponseModelFromJson(
 
 /// @nodoc
 mixin _$PreMadeMessageResponseModel {
-  @HiveField(0)
   int? get id => throw _privateConstructorUsedError;
-  @HiveField(1)
   String? get title => throw _privateConstructorUsedError;
-  @HiveField(2)
   String? get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,10 +39,7 @@ abstract class $PreMadeMessageResponseModelCopyWith<$Res> {
       _$PreMadeMessageResponseModelCopyWithImpl<$Res,
           PreMadeMessageResponseModel>;
   @useResult
-  $Res call(
-      {@HiveField(0) int? id,
-      @HiveField(1) String? title,
-      @HiveField(2) String? message});
+  $Res call({int? id, String? title, String? message});
 }
 
 /// @nodoc
@@ -92,10 +86,7 @@ abstract class _$$PreMadeMessageResponseModelImplCopyWith<$Res>
       __$$PreMadeMessageResponseModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@HiveField(0) int? id,
-      @HiveField(1) String? title,
-      @HiveField(2) String? message});
+  $Res call({int? id, String? title, String? message});
 }
 
 /// @nodoc
@@ -136,23 +127,17 @@ class __$$PreMadeMessageResponseModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PreMadeMessageResponseModelImpl
     implements _PreMadeMessageResponseModel {
-  const _$PreMadeMessageResponseModelImpl(
-      {@HiveField(0) this.id,
-      @HiveField(1) this.title,
-      @HiveField(2) this.message});
+  const _$PreMadeMessageResponseModelImpl({this.id, this.title, this.message});
 
   factory _$PreMadeMessageResponseModelImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$PreMadeMessageResponseModelImplFromJson(json);
 
   @override
-  @HiveField(0)
   final int? id;
   @override
-  @HiveField(1)
   final String? title;
   @override
-  @HiveField(2)
   final String? message;
 
   @override
@@ -192,21 +177,18 @@ class _$PreMadeMessageResponseModelImpl
 abstract class _PreMadeMessageResponseModel
     implements PreMadeMessageResponseModel {
   const factory _PreMadeMessageResponseModel(
-      {@HiveField(0) final int? id,
-      @HiveField(1) final String? title,
-      @HiveField(2) final String? message}) = _$PreMadeMessageResponseModelImpl;
+      {final int? id,
+      final String? title,
+      final String? message}) = _$PreMadeMessageResponseModelImpl;
 
   factory _PreMadeMessageResponseModel.fromJson(Map<String, dynamic> json) =
       _$PreMadeMessageResponseModelImpl.fromJson;
 
   @override
-  @HiveField(0)
   int? get id;
   @override
-  @HiveField(1)
   String? get title;
   @override
-  @HiveField(2)
   String? get message;
   @override
   @JsonKey(ignore: true)

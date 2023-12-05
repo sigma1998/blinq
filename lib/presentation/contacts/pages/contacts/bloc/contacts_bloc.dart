@@ -30,7 +30,6 @@ class ContactsBloc extends Bloc<ContactsEvent, ContactsState> {
     try {
       emit(state.copyWith(status: Status.loading));
       final data = await repository.fetchList();
-      repository.setContacts(data);
       emit(state.copyWith(contacts: data, status: Status.success));
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
