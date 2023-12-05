@@ -1,7 +1,9 @@
 import 'package:blinq/core/network/custom_error.dart';
 import 'package:blinq/core/network/network_constants.dart';
+import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/presentation/report/pages/circumstances/circumstances_screen.dart';
 import 'package:blinq/presentation/report/pages/connect_to_driver/connect_to_driver_screen.dart';
 import 'package:blinq/presentation/report/pages/damaged_media/damaged_media_screen.dart';
@@ -18,6 +20,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ReportBloc extends Cubit<GenericBlocState> {
   final AccidentRepository accidentRepository;
+  final ProfileBloc profileBloc;
 
   ReportType _reportType = ReportType.accident;
   User _user = User.A;
@@ -25,9 +28,8 @@ class ReportBloc extends Cubit<GenericBlocState> {
   int _progress = 0;
   int _reportId = 0;
 
-  ReportBloc({
-    required this.accidentRepository,
-  }) : super(const GenericBlocState(status: Status.initial));
+  ReportBloc({required this.accidentRepository, required this.profileBloc})
+      : super(const GenericBlocState(status: Status.initial));
 
   setReportType(ReportType type) => _reportType = type;
 
@@ -44,6 +46,9 @@ class ReportBloc extends Cubit<GenericBlocState> {
   setUser(User user) => _user = user;
 
   User get user => _user;
+
+  VehicleType get aDriverVehicleType =>
+      profileBloc.vehicleType ?? VehicleType.auto;
 
   Future<RouteAndArgs?> onCreateReport() async {
     final position = await LocationService.determinePosition();
@@ -101,13 +106,15 @@ class ReportBloc extends Cubit<GenericBlocState> {
               route: SpeechToTextScreen.route,
               args: SpeechToTextArgs(mode: SpeechToTextScreenMode.remarks));
         } else if (step == NetworkConstants.damagePoints(reportId)) {
-          //TODO get vehicle type
-
-          return RouteAndArgs(route: DamagedPartsScreen.route);
+          return RouteAndArgs(
+              route: DamagedPartsScreen.route,
+              args: DamagedPartsScreenArgs(vehicleType: aDriverVehicleType));
         } else if (step == NetworkConstants.damagePointsB(reportId)) {
-          //TODO get vehicle type
-
-          return RouteAndArgs(route: DamagedPartsScreen.route);
+          final vehicleType =
+              await accidentRepository.getSecondDriverVehicleType(reportId);
+          return RouteAndArgs(
+              route: DamagedPartsScreen.route,
+              args: DamagedPartsScreenArgs(vehicleType: vehicleType));
         } else if (step == NetworkConstants.uploadMedia(reportId) ||
             step == NetworkConstants.uploadMediaB(reportId)) {
           return RouteAndArgs(route: DamagedMediaScreen.route);
@@ -116,19 +123,20 @@ class ReportBloc extends Cubit<GenericBlocState> {
         } else if (step == NetworkConstants.accidentCircumstances(reportId) ||
             step == NetworkConstants.accidentStatus(reportId)) {
           return RouteAndArgs(route: CircumstancesScreen.route);
-        }
-        else if (step == NetworkConstants.sign(reportId)) {
+        } else if (step == NetworkConstants.sign(reportId)) {
           return RouteAndArgs(
-              route: SignScreen.route,
-              args: SignScreenArgs(user: User.A));
-        }
-        else if (step == NetworkConstants.signB(reportId)) {
+              route: SignScreen.route, args: SignScreenArgs(user: User.A));
+        } else if (step == NetworkConstants.signB(reportId)) {
           return RouteAndArgs(
-              route: SignScreen.route,
-              args: SignScreenArgs(user: User.B));
+              route: SignScreen.route, args: SignScreenArgs(user: User.B));
+        } else if (step == NetworkConstants.updateCarB(reportId) ||
+            step == NetworkConstants.updateDriverB(reportId) ||
+            step == NetworkConstants.updateInsuranceCompanyB(reportId) ||
+            step == NetworkConstants.updatePolicyHolderB(reportId)) {
+          return RouteAndArgs(
+            route: ConnectToDriverScreen.route,
+          );
         }
-
-
 
         return RouteAndArgs(route: LocationInfoScreen.route);
       }

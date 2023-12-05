@@ -75,10 +75,15 @@ class ProfileInfoWidget extends StatelessWidget {
                 height: 163,
                 child: Align(
                   alignment: Alignment.bottomRight,
-                  child: Image.asset(
-                    AppDrawables.vehicle,
-                    width: 305,
-                    height: 137,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      bottomRight: Radius.circular(20),
+                    ),
+                    child: Image.asset(
+                      AppDrawables.vehicle,
+                      width: 305,
+                      height: 137,
+                    ),
                   ),
                 ),
               ),
@@ -90,9 +95,14 @@ class ProfileInfoWidget extends StatelessWidget {
               onTap: bloc.onQrCodePressed,
               image: Align(
                 alignment: Alignment.centerRight,
-                child: Image.asset(
-                  AppDrawables.scanningQr,
-                  height: 163,
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    bottomRight: Radius.circular(20),
+                  ),
+                  child: Image.asset(
+                    AppDrawables.scanningQr,
+                    height: 163,
+                  ),
                 ),
               ),
             ),

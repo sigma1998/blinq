@@ -53,6 +53,11 @@ class MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+
+    final profileBloc =  ProfileBloc(
+      mediaService: getIt<MediaServiceImpl>(),
+      repository: getIt<ProfileRepositoryImpl>(),
+    );
     return MultiBlocProvider(
       providers: [
         BlocProvider<MainScreenBloc>(
@@ -62,10 +67,7 @@ class MyAppState extends State<MyApp> {
           create: (context) => SuccessVideoBloc(),
         ),
         BlocProvider<ProfileBloc>(
-          create: (context) => ProfileBloc(
-            mediaService: getIt<MediaServiceImpl>(),
-            repository: getIt<ProfileRepositoryImpl>(),
-          ),
+          create: (context) =>profileBloc,
         ),
         BlocProvider<ContactsBloc>(
           create: (context) => ContactsBloc(
@@ -83,8 +85,10 @@ class MyAppState extends State<MyApp> {
           )..checkBLEStatus(),
         ),
         BlocProvider<ReportBloc>(
-          create: (context) =>
-              ReportBloc(accidentRepository: getIt<AccidentRepositoryImpl>()),
+          create: (context) => ReportBloc(
+            accidentRepository: getIt<AccidentRepositoryImpl>(),
+            profileBloc: profileBloc
+          ),
         ),
         BlocProvider<LoggerCubit>(
           create: (context) => LoggerCubit(),

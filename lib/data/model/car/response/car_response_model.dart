@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 // Package imports:
+import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 
@@ -30,6 +31,7 @@ class CarResponseModel with _$CarResponseModel {
     @HiveField(9) @JsonKey(name: 'color') String? color,
     @HiveField(10) @JsonKey(name: 'brand_id') int? brandId,
     @HiveField(11) @JsonKey(name: 'brand') String? brand,
+    @HiveField(12) @JsonKey(name: 'vehicle_type') @Default(VehicleType.auto) VehicleType? vehicleType,
   }) = _CarResponseModel;
 
   factory CarResponseModel.fromJson(Map<String, dynamic> json) =>

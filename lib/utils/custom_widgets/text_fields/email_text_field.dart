@@ -1,8 +1,11 @@
 // Flutter imports:
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+
 // Project imports:
+import 'package:blinq/utils/validator.dart';
 import 'default_text_field.dart';
 
 class EmailTextField extends StatelessWidget {
@@ -41,6 +44,7 @@ class EmailTextField extends StatelessWidget {
       initialValue: initialValue,
       keyboardType: TextInputType.emailAddress,
       textCapitalization: TextCapitalization.none,
+      validator: (value) => Validator.validateEmail(value),
     );
   }
 }

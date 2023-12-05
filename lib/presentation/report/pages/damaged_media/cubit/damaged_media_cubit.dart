@@ -309,8 +309,11 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
   }
 
   void _navigate() {
+    print('askdjoadfjodjasm');
     if (reportBloc.reportType == ReportType.accident) {
       if (reportBloc.user == User.A) {
+        print('askdjoadfjodjasdsadasdsam');
+
         NavigationService.pushNamed(
           routeName: ConnectToDriverScreen.route,
           nestedKey: NavigationService.homeNavigatorKey,

@@ -94,7 +94,10 @@ class NetworkConstants {
   static String sign(accidentId) =>
       '/v2/api/adriver/accident/$accidentId/sign/';
 
-  ///driver b
+  /// Driver b
+
+  static String connectToNoBlinqDriver(accidentId) =>
+      '/v2/api/bdriver/accident/$accidentId/no_blinq_user_connect/';
   static String injuryB(accidentId) =>
       '/v2/api/bdriver/accident/$accidentId/injury/';
   static String witnessesB(accidentId) =>
@@ -115,4 +118,18 @@ class NetworkConstants {
   static String getPdf(int accidentId) => '/v2/api/accident/$accidentId/get_pdf/';
 
   static String sendToInsurance = 'v1/api/accident/send/breakdown/report/to/insurance/';
+
+  static String updateCarB(accidentId) =>
+      '/v2/api/bdriver/accident/$accidentId/about_car/';
+  static String updateDriverB(accidentId) =>
+      '/v2/api/bdriver/accident/$accidentId/about_driver/';
+  static String updateInsuranceCompanyB(accidentId) =>
+      '/v2/api/bdriver/accident/$accidentId/insurance_company/';
+  static String updatePolicyHolderB(accidentId) =>
+      '/v2/api/bdriver/accident/$accidentId/policy_holder/';
+
+  static String secondDriverVehicleType(accidentId) =>
+      '/v2/api/bdriver/accident/$accidentId/vehicle_type/';
+
+
 }

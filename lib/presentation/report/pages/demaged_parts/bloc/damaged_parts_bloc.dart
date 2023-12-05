@@ -1,11 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/presentation/report/pages/damaged_media/damaged_media_screen.dart';
-import 'package:blinq/presentation/report/pages/demaged_parts/damaged_parts_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/screenshot_util.dart';
@@ -153,22 +153,20 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
   }
 
   int getStep() {
-    if(reportBloc.user == User.A){
+    if (reportBloc.user == User.A) {
       return 7;
     }
     return 12;
   }
 
-
   Future<void> _sendData(
       {required MultipartFile? top,
-        required MultipartFile? front,
-        required MultipartFile? back,
-        required MultipartFile? left,
-        required MultipartFile? right}) async {
+      required MultipartFile? front,
+      required MultipartFile? back,
+      required MultipartFile? left,
+      required MultipartFile? right}) async {
     if (reportBloc.reportType == ReportType.accident) {
       if (reportBloc.user == User.A) {
-
         await accidentRepository.damagedPoints(
             top: top,
             front: front,
@@ -177,8 +175,7 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
             right: right,
             accidentId: reportBloc.reportId,
             damageParts: state.carParts.toList());
-      }
-      else{
+      } else {
         await accidentRepository.damagedPointsB(
             top: top,
             front: front,
@@ -188,7 +185,7 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
             accidentId: reportBloc.reportId,
             damageParts: state.carParts.toList());
       }
-    }else{
+    } else {
       //TODO
     }
   }

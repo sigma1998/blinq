@@ -637,6 +637,7 @@
   "strImageSizeExceeds": "A kép mérete meghaladja a maximális méretet\n(10 MB képenként)",
   "strTryToReduceImageSize": "Próbálja meg csökkenteni a kép minőségét, és próbálja újra",
   "strGotIt": "Értem",
+  "strVehicleTypeShort": "Járműtípus",
   "byke": {
     "windshield": "szélvédő",
     "handlebars": "kormány",

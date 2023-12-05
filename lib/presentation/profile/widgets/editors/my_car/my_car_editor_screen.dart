@@ -59,6 +59,12 @@ class _EditorMyCarScreenState extends State<EditorMyCarScreen> {
                 child: Column(
                   children: [
                     PickerTextField(
+                      labelText: 'strVehicleType'.tr(),
+                      onTap: bloc.onVehicleTypeTap,
+                      controller: bloc.vehicleTypeController,
+                    ),
+                    const SizedBox(height: 16),
+                    PickerTextField(
                       labelText: 'strMark'.tr(),
                       onTap: bloc.onBrandTap,
                       controller: bloc.brandController,

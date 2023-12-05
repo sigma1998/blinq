@@ -16,6 +16,7 @@ class PolicyHolderRequestModel with _$PolicyHolderRequestModel {
     @JsonKey(name: 'address') String? address,
     @JsonKey(name: 'postal_code') String? postalCode,
     @JsonKey(name: 'phone_number') String? phoneNumber,
+    String? email,
   }) = _PolicyHolderRequestModel;
 
   factory PolicyHolderRequestModel.fromJson(Map<String, dynamic> json) =>

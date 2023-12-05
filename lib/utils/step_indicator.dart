@@ -41,9 +41,9 @@ class StepIndicator extends StatelessWidget {
             TextSpan(
               children: [
                 TextSpan(
-                  text: currentStep.toString() + (reportBloc.reportType == ReportType.accident
+                  text: reportBloc.reportType == ReportType.accident
                       ? 'strAccident'.tr()
-                      : 'strBreakdown'.tr()),
+                      : 'strBreakdown'.tr(),
                 ),
                 if (showTrailingTitle && reportBloc.reportType == ReportType.accident)
                   TextSpan(

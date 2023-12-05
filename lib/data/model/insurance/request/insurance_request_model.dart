@@ -16,10 +16,11 @@ class InsuranceRequestModel with _$InsuranceRequestModel {
     @JsonKey(name: 'certificate_valid_from') String? certificateValidFrom,
     @JsonKey(name: 'certificate_valid_to') String? certificateValidTo,
     @JsonKey(name: 'agency') String? agency,
-    @JsonKey(name: 'country') String? country,
     @JsonKey(name: 'address') String? address,
+    @JsonKey(name: 'phone_number') String? phoneNumber,
     @JsonKey(name: 'email') String? email,
     @JsonKey(name: 'policy_cover') String? policyCover,
+    @JsonKey(name: 'country') String? country,
   }) = _InsuranceRequestModel;
 
   factory InsuranceRequestModel.fromJson(Map<String, dynamic> json) =>

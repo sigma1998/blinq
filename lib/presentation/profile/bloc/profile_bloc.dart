@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:io';
 
 // Package imports:
+import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,6 +35,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final ProfileRepository repository;
   final MediaService mediaService;
 
+  VehicleType? vehicleType;
+
   ProfileBloc({
     required this.repository,
     required this.mediaService,
@@ -47,6 +50,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     try {
       emit(const ProfileState(status: Status.loading));
       final data = await repository.fetch();
+      vehicleType = data.car?.vehicleType;
       repository.setProfile(data);
       emit(ProfileState(profile: data, status: Status.success));
     } catch (e) {

@@ -1,4 +1,4 @@
-package com.example.blinq
+package com.blinqx
 
 import io.flutter.embedding.android.FlutterActivity
 

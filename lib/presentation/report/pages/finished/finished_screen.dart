@@ -98,7 +98,7 @@ class _FinishedScreenState extends State<FinishedScreen>
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'strDamageReportSent'.tr(),
+                        'strYouhavefinishedthedamagereport'.tr(),
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
@@ -156,7 +156,7 @@ class _FinishedScreenState extends State<FinishedScreen>
                       FinishedShareItem.email(
                         onTap: bloc.onSendEmail,
                       ),
-                      const SizedBox(height: 72),
+                      const Spacer(),
                       MyButton.primary(
                         label: 'strComplete'.tr(),
                         onTap: () {

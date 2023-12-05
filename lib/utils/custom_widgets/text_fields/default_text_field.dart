@@ -44,6 +44,7 @@ class MyTextField extends StatelessWidget {
   final void Function()? onTap;
   final void Function(String)? onChanged;
   final void Function()? onEditingComplete;
+  final String? Function(String?)? validator;
 
   const MyTextField({
     super.key,
@@ -103,6 +104,7 @@ class MyTextField extends StatelessWidget {
     this.onTap,
     this.onChanged,
     this.onEditingComplete,
+    this.validator,
   });
 
   @override
@@ -118,6 +120,7 @@ class MyTextField extends StatelessWidget {
         Stack(
           children: [
             TextFormField(
+              validator: validator,
               controller: controller,
               //
               enabled: enabled,

@@ -305,7 +305,7 @@ SPEC CHECKSUMS:
   flutter_image_compress_common: ec1d45c362c9d30a3f6a0426c297f47c52007e3e
   flutter_secure_storage: 23fc622d89d073675f2eaa109381aefbcf5a49be
   flutter_sms: 91ce41530f55c85d6524d82307a5d555844c086a
-  fluttertoast: fafc4fa4d01a6a9e4f772ecd190ffa525e9e2d9c
+  fluttertoast: 31b00dabfa7fb7bacd9e7dbee580d7a2ff4bf265
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   geolocator_apple: cc556e6844d508c95df1e87e3ea6fa4e58c50401
   google_maps_flutter_ios: abdac20d6ce8931f6ebc5f46616df241bfaa2cfd
@@ -345,6 +345,6 @@ SPEC CHECKSUMS:
   video_player_avfoundation: 81e49bb3d9fb63dccf9fa0f6d877dc3ddbeac126
   video_thumbnail: c4e2a3c539e247d4de13cd545344fd2d26ffafd1
 
-PODFILE CHECKSUM: eaab1fbaeedf263be209e044202c9eaa52141877
+PODFILE CHECKSUM: 2b554439e9d09d549acf038f35d289f20689aba4
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.14.3

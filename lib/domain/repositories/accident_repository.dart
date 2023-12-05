@@ -3,7 +3,12 @@
 import 'package:blinq/data/datasource/remote/accident_api.dart';
 import 'package:blinq/data/model/accident/accident_time_and_location/accident_time_and_location.dart';
 import 'package:blinq/data/model/accident/injury/injury.dart';
+import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
+import 'package:blinq/data/model/insurance/request/insurance_request_model.dart';
+import 'package:blinq/data/model/policy_holder/request/policy_holder_request_model.dart';
+import 'package:blinq/data/model/profile/request/profile_request_model.dart';
 import 'package:blinq/data/model/profile/response/profile_response_model.dart';
+import 'package:blinq/data/model/second_driver/car/request/second_driver_car_request_model.dart';
 import 'package:dio/dio.dart';
 
 abstract class AccidentRepository {
@@ -53,7 +58,11 @@ abstract class AccidentRepository {
 
   Future<void> sign(int accidentId, MultipartFile sign);
 
-  ///for driver b
+  ///
+  /// Driver b
+  ///
+  Future<void> connectToNoBlinqDriver(int accidentId);
+
   Future<void> accidentInjuryB(int accidentId, InjuryDto injuryDto);
 
   Future<void> accidentWitnessesB(int accidentId, String witnesses);
@@ -85,6 +94,27 @@ abstract class AccidentRepository {
 
   Future<String> getAccidentStep(int accidentId);
 
+  Future<void> updateCarB(
+    int accidentId,
+    SecondDriverCarRequestModel secondDriverCarRequestModel,
+  );
+
+  Future<void> updateDriverB(
+    int accidentId,
+    ProfileRequestModel profileRequestModel,
+  );
+
+  Future<void> updatePolicyHolderB(
+    int accidentId,
+    PolicyHolderRequestModel policyHolderRequestModel,
+  );
+
+  Future<void> updateInsuranceCompanyB(
+    int accidentId,
+    InsuranceRequestModel insuranceRequestModel,
+  );
+
+  Future<VehicleType> getSecondDriverVehicleType(int accidentId);
 }
 
 class AccidentRepositoryImpl implements AccidentRepository {
@@ -146,6 +176,19 @@ class AccidentRepositoryImpl implements AccidentRepository {
   Future<void> accidentInjury(int accidentId, InjuryDto injuryDto) async {
     try {
       return await api.accidentInjury(accidentId, injuryDto);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  ///
+  /// Driver b
+  ///
+
+  @override
+  Future<void> connectToNoBlinqDriver(int accidentId) async {
+    try {
+      return await api.connectToNoBlinqDriver(accidentId);
     } catch (e) {
       rethrow;
     }
@@ -359,16 +402,83 @@ class AccidentRepositoryImpl implements AccidentRepository {
   @override
   Future<void> sendToInsurance(int accidentId) async {
     try {
-      await api.sendToInsurance(accidentId,);
+      await api.sendToInsurance(
+        accidentId,
+      );
     } catch (e) {
       rethrow;
     }
   }
 
   @override
-  Future<String> getAccidentStep(int accidentId) async{
-   try{
-     return await api.getAccidentStep(accidentId);
-   }catch(e){rethrow;}
+  Future<String> getAccidentStep(int accidentId) async {
+    try {
+      return await api.getAccidentStep(accidentId);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  ///
+  /// Update
+  ///
+
+  @override
+  Future<void> updateCarB(
+    int accidentId,
+    SecondDriverCarRequestModel secondDriverCarRequestModel,
+  ) async {
+    try {
+      return await api.updateCarB(accidentId, secondDriverCarRequestModel);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> updateDriverB(
+    int accidentId,
+    ProfileRequestModel profileRequestModel,
+  ) async {
+    try {
+      return await api.updateDriverB(accidentId, profileRequestModel);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> updateInsuranceCompanyB(
+    int accidentId,
+    InsuranceRequestModel insuranceRequestModel,
+  ) async {
+    try {
+      return await api.updateInsuranceCompanyB(
+          accidentId, insuranceRequestModel);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> updatePolicyHolderB(
+    int accidentId,
+    PolicyHolderRequestModel policyHolderRequestModel,
+  ) async {
+    try {
+      return await api.updatePolicyHolderB(
+          accidentId, policyHolderRequestModel);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<VehicleType> getSecondDriverVehicleType(int accidentId) async {
+    try {
+      return await api.getSecondDriverVehicleType(accidentId);
+    } catch (e) {
+      rethrow;
+    }
   }
 }

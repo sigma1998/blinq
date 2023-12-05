@@ -624,7 +624,7 @@
   "strIsSecondDriverAccount":  "Is this the second driver's BLINQ account?",
   "strDamageReportSent": "The damage report has been sent!",
   "strYourInformMessageSent": "Your Inform message has been sent!",
-  "strVehicleType": "Choose the type of vehicle",
+  "strVehicleType": "Type of vehicle",
   "strSelectFromGallery": "Select from Gallery",
   "strRecordVideo": "Record Video",
   "strMaxMediaFiles": "Maximum 2 video and 6 image media files can be uploaded",
@@ -638,6 +638,7 @@
   "strImageSizeExceeds": "Your image size exceeds our maximum size capacity\n(10 MB per image)",
   "strTryToReduceImageSize": "Please try reducing the image's quality and try again",
   "strGotIt": "Got it",
+  "strVehicleTypeShort": "Vehicle Type",
   "byke": {
     "windshield": "windshield",
     "handlebars": "handlebars",

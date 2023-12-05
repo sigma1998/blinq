@@ -29,13 +29,14 @@ class CarResponseModelAdapter extends TypeAdapter<CarResponseModel> {
       color: fields[9] as String?,
       brandId: fields[10] as int?,
       brand: fields[11] as String?,
+      vehicleType: fields[12] as VehicleType?,
     );
   }
 
   @override
   void write(BinaryWriter writer, CarResponseModel obj) {
     writer
-      ..writeByte(12)
+      ..writeByte(13)
       ..writeByte(0)
       ..write(obj.carId)
       ..writeByte(1)
@@ -59,7 +60,9 @@ class CarResponseModelAdapter extends TypeAdapter<CarResponseModel> {
       ..writeByte(10)
       ..write(obj.brandId)
       ..writeByte(11)
-      ..write(obj.brand);
+      ..write(obj.brand)
+      ..writeByte(12)
+      ..write(obj.vehicleType);
   }
 
   @override
@@ -93,6 +96,9 @@ _$CarResponseModelImpl _$$CarResponseModelImplFromJson(
       color: json['color'] as String?,
       brandId: json['brand_id'] as int?,
       brand: json['brand'] as String?,
+      vehicleType:
+          $enumDecodeNullable(_$VehicleTypeEnumMap, json['vehicle_type']) ??
+              VehicleType.auto,
     );
 
 Map<String, dynamic> _$$CarResponseModelImplToJson(
@@ -110,4 +116,11 @@ Map<String, dynamic> _$$CarResponseModelImplToJson(
       'color': instance.color,
       'brand_id': instance.brandId,
       'brand': instance.brand,
+      'vehicle_type': _$VehicleTypeEnumMap[instance.vehicleType],
     };
+
+const _$VehicleTypeEnumMap = {
+  VehicleType.auto: 'sedan',
+  VehicleType.van: 'van',
+  VehicleType.moto: 'bike',
+};

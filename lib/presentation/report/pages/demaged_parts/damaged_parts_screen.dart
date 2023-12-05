@@ -1,5 +1,6 @@
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
@@ -123,5 +124,3 @@ class DamagedPartsScreenArgs {
 
   DamagedPartsScreenArgs({required this.vehicleType});
 }
-
-enum VehicleType { auto, van, moto }

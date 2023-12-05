@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 // Package imports:
+import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'vehicle_request_model.freezed.dart';
@@ -13,6 +14,7 @@ class UserVehicleRequestModel with _$UserVehicleRequestModel {
     @JsonKey(name: 'traveled_km') String? traveledKm,
     @JsonKey(name: 'next_technical') String? nextTechnical,
     @JsonKey(name: 'oil_replacement') String? oilReplacement,
+    @JsonKey(name: 'vehicle_type') VehicleType? vehicleType,
     @JsonKey(name: 'battery_replacement_date') String? batteryReplacementDate,
   }) = _UserVehicleRequestModel;
 

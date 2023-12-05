@@ -1,3 +1,4 @@
+import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
@@ -110,10 +111,20 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
 
       await _sendRemarks();
 
+      final VehicleType vehicleType;
+
+      if (reportBloc.user == User.A) {
+        vehicleType = reportBloc.aDriverVehicleType;
+      } else {
+        vehicleType = await accidentRepository
+            .getSecondDriverVehicleType(reportBloc.reportId);
+      }
+
       emit(const GenericBlocState(status: Status.initial));
 
       NavigationService.pushNamed(
         routeName: DamagedPartsScreen.route,
+        arguments: DamagedPartsScreenArgs(vehicleType: vehicleType),
         nestedKey: NavigationService.homeNavigatorKey,
       );
 
@@ -124,27 +135,23 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
   }
 
   int getStep() {
-    if(speechToTextScreenMode == SpeechToTextScreenMode.witnesses){
+    if (speechToTextScreenMode == SpeechToTextScreenMode.witnesses) {
       return 3;
     }
-    if(speechToTextScreenMode == SpeechToTextScreenMode.visibleDamage){
-      if(reportBloc.user == User.A ){
+    if (speechToTextScreenMode == SpeechToTextScreenMode.visibleDamage) {
+      if (reportBloc.user == User.A) {
         return 5;
-      }
-      else{
+      } else {
         return 10;
       }
-    }
-    else{
-      if(reportBloc.user == User.A ){
+    } else {
+      if (reportBloc.user == User.A) {
         return 6;
-      }
-      else{
+      } else {
         return 11;
       }
     }
   }
-
 
   Future<void> _sendRemarks() async {
     if (reportBloc.reportType == ReportType.accident) {
@@ -159,5 +166,4 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
       //TODo
     }
   }
-
 }

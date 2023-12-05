@@ -57,6 +57,9 @@ mixin _$CarResponseModel {
   @HiveField(11)
   @JsonKey(name: 'brand')
   String? get brand => throw _privateConstructorUsedError;
+  @HiveField(12)
+  @JsonKey(name: 'vehicle_type')
+  VehicleType? get vehicleType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -88,7 +91,8 @@ abstract class $CarResponseModelCopyWith<$Res> {
       @HiveField(8) @JsonKey(name: 'car') String? car,
       @HiveField(9) @JsonKey(name: 'color') String? color,
       @HiveField(10) @JsonKey(name: 'brand_id') int? brandId,
-      @HiveField(11) @JsonKey(name: 'brand') String? brand});
+      @HiveField(11) @JsonKey(name: 'brand') String? brand,
+      @HiveField(12) @JsonKey(name: 'vehicle_type') VehicleType? vehicleType});
 }
 
 /// @nodoc
@@ -116,6 +120,7 @@ class _$CarResponseModelCopyWithImpl<$Res, $Val extends CarResponseModel>
     Object? color = freezed,
     Object? brandId = freezed,
     Object? brand = freezed,
+    Object? vehicleType = freezed,
   }) {
     return _then(_value.copyWith(
       carId: freezed == carId
@@ -166,6 +171,10 @@ class _$CarResponseModelCopyWithImpl<$Res, $Val extends CarResponseModel>
           ? _value.brand
           : brand // ignore: cast_nullable_to_non_nullable
               as String?,
+      vehicleType: freezed == vehicleType
+          ? _value.vehicleType
+          : vehicleType // ignore: cast_nullable_to_non_nullable
+              as VehicleType?,
     ) as $Val);
   }
 }
@@ -196,7 +205,8 @@ abstract class _$$CarResponseModelImplCopyWith<$Res>
       @HiveField(8) @JsonKey(name: 'car') String? car,
       @HiveField(9) @JsonKey(name: 'color') String? color,
       @HiveField(10) @JsonKey(name: 'brand_id') int? brandId,
-      @HiveField(11) @JsonKey(name: 'brand') String? brand});
+      @HiveField(11) @JsonKey(name: 'brand') String? brand,
+      @HiveField(12) @JsonKey(name: 'vehicle_type') VehicleType? vehicleType});
 }
 
 /// @nodoc
@@ -222,6 +232,7 @@ class __$$CarResponseModelImplCopyWithImpl<$Res>
     Object? color = freezed,
     Object? brandId = freezed,
     Object? brand = freezed,
+    Object? vehicleType = freezed,
   }) {
     return _then(_$CarResponseModelImpl(
       carId: freezed == carId
@@ -272,6 +283,10 @@ class __$$CarResponseModelImplCopyWithImpl<$Res>
           ? _value.brand
           : brand // ignore: cast_nullable_to_non_nullable
               as String?,
+      vehicleType: freezed == vehicleType
+          ? _value.vehicleType
+          : vehicleType // ignore: cast_nullable_to_non_nullable
+              as VehicleType?,
     ));
   }
 }
@@ -297,7 +312,10 @@ class _$CarResponseModelImpl implements _CarResponseModel {
       @HiveField(8) @JsonKey(name: 'car') this.car,
       @HiveField(9) @JsonKey(name: 'color') this.color,
       @HiveField(10) @JsonKey(name: 'brand_id') this.brandId,
-      @HiveField(11) @JsonKey(name: 'brand') this.brand});
+      @HiveField(11) @JsonKey(name: 'brand') this.brand,
+      @HiveField(12)
+      @JsonKey(name: 'vehicle_type')
+      this.vehicleType = VehicleType.auto});
 
   factory _$CarResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CarResponseModelImplFromJson(json);
@@ -350,10 +368,14 @@ class _$CarResponseModelImpl implements _CarResponseModel {
   @HiveField(11)
   @JsonKey(name: 'brand')
   final String? brand;
+  @override
+  @HiveField(12)
+  @JsonKey(name: 'vehicle_type')
+  final VehicleType? vehicleType;
 
   @override
   String toString() {
-    return 'CarResponseModel(carId: $carId, colorId: $colorId, modelSeries: $modelSeries, makeType: $makeType, engineNumber: $engineNumber, countryOfRegistration: $countryOfRegistration, trailerRegistrationNumber: $trailerRegistrationNumber, trailerCountryOfRegistration: $trailerCountryOfRegistration, car: $car, color: $color, brandId: $brandId, brand: $brand)';
+    return 'CarResponseModel(carId: $carId, colorId: $colorId, modelSeries: $modelSeries, makeType: $makeType, engineNumber: $engineNumber, countryOfRegistration: $countryOfRegistration, trailerRegistrationNumber: $trailerRegistrationNumber, trailerCountryOfRegistration: $trailerCountryOfRegistration, car: $car, color: $color, brandId: $brandId, brand: $brand, vehicleType: $vehicleType)';
   }
 
   @override
@@ -381,7 +403,9 @@ class _$CarResponseModelImpl implements _CarResponseModel {
             (identical(other.car, car) || other.car == car) &&
             (identical(other.color, color) || other.color == color) &&
             (identical(other.brandId, brandId) || other.brandId == brandId) &&
-            (identical(other.brand, brand) || other.brand == brand));
+            (identical(other.brand, brand) || other.brand == brand) &&
+            (identical(other.vehicleType, vehicleType) ||
+                other.vehicleType == vehicleType));
   }
 
   @JsonKey(ignore: true)
@@ -399,7 +423,8 @@ class _$CarResponseModelImpl implements _CarResponseModel {
       car,
       color,
       brandId,
-      brand);
+      brand,
+      vehicleType);
 
   @JsonKey(ignore: true)
   @override
@@ -435,9 +460,10 @@ abstract class _CarResponseModel implements CarResponseModel {
       @HiveField(8) @JsonKey(name: 'car') final String? car,
       @HiveField(9) @JsonKey(name: 'color') final String? color,
       @HiveField(10) @JsonKey(name: 'brand_id') final int? brandId,
-      @HiveField(11)
-      @JsonKey(name: 'brand')
-      final String? brand}) = _$CarResponseModelImpl;
+      @HiveField(11) @JsonKey(name: 'brand') final String? brand,
+      @HiveField(12)
+      @JsonKey(name: 'vehicle_type')
+      final VehicleType? vehicleType}) = _$CarResponseModelImpl;
 
   factory _CarResponseModel.fromJson(Map<String, dynamic> json) =
       _$CarResponseModelImpl.fromJson;
@@ -490,6 +516,10 @@ abstract class _CarResponseModel implements CarResponseModel {
   @HiveField(11)
   @JsonKey(name: 'brand')
   String? get brand;
+  @override
+  @HiveField(12)
+  @JsonKey(name: 'vehicle_type')
+  VehicleType? get vehicleType;
   @override
   @JsonKey(ignore: true)
   _$$CarResponseModelImplCopyWith<_$CarResponseModelImpl> get copyWith =>

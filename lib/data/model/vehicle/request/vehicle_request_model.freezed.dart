@@ -27,6 +27,8 @@ mixin _$UserVehicleRequestModel {
   String? get nextTechnical => throw _privateConstructorUsedError;
   @JsonKey(name: 'oil_replacement')
   String? get oilReplacement => throw _privateConstructorUsedError;
+  @JsonKey(name: 'vehicle_type')
+  VehicleType? get vehicleType => throw _privateConstructorUsedError;
   @JsonKey(name: 'battery_replacement_date')
   String? get batteryReplacementDate => throw _privateConstructorUsedError;
 
@@ -46,6 +48,7 @@ abstract class $UserVehicleRequestModelCopyWith<$Res> {
       {@JsonKey(name: 'traveled_km') String? traveledKm,
       @JsonKey(name: 'next_technical') String? nextTechnical,
       @JsonKey(name: 'oil_replacement') String? oilReplacement,
+      @JsonKey(name: 'vehicle_type') VehicleType? vehicleType,
       @JsonKey(name: 'battery_replacement_date')
       String? batteryReplacementDate});
 }
@@ -67,6 +70,7 @@ class _$UserVehicleRequestModelCopyWithImpl<$Res,
     Object? traveledKm = freezed,
     Object? nextTechnical = freezed,
     Object? oilReplacement = freezed,
+    Object? vehicleType = freezed,
     Object? batteryReplacementDate = freezed,
   }) {
     return _then(_value.copyWith(
@@ -82,6 +86,10 @@ class _$UserVehicleRequestModelCopyWithImpl<$Res,
           ? _value.oilReplacement
           : oilReplacement // ignore: cast_nullable_to_non_nullable
               as String?,
+      vehicleType: freezed == vehicleType
+          ? _value.vehicleType
+          : vehicleType // ignore: cast_nullable_to_non_nullable
+              as VehicleType?,
       batteryReplacementDate: freezed == batteryReplacementDate
           ? _value.batteryReplacementDate
           : batteryReplacementDate // ignore: cast_nullable_to_non_nullable
@@ -103,6 +111,7 @@ abstract class _$$UserVehicleRequestModelImplCopyWith<$Res>
       {@JsonKey(name: 'traveled_km') String? traveledKm,
       @JsonKey(name: 'next_technical') String? nextTechnical,
       @JsonKey(name: 'oil_replacement') String? oilReplacement,
+      @JsonKey(name: 'vehicle_type') VehicleType? vehicleType,
       @JsonKey(name: 'battery_replacement_date')
       String? batteryReplacementDate});
 }
@@ -123,6 +132,7 @@ class __$$UserVehicleRequestModelImplCopyWithImpl<$Res>
     Object? traveledKm = freezed,
     Object? nextTechnical = freezed,
     Object? oilReplacement = freezed,
+    Object? vehicleType = freezed,
     Object? batteryReplacementDate = freezed,
   }) {
     return _then(_$UserVehicleRequestModelImpl(
@@ -138,6 +148,10 @@ class __$$UserVehicleRequestModelImplCopyWithImpl<$Res>
           ? _value.oilReplacement
           : oilReplacement // ignore: cast_nullable_to_non_nullable
               as String?,
+      vehicleType: freezed == vehicleType
+          ? _value.vehicleType
+          : vehicleType // ignore: cast_nullable_to_non_nullable
+              as VehicleType?,
       batteryReplacementDate: freezed == batteryReplacementDate
           ? _value.batteryReplacementDate
           : batteryReplacementDate // ignore: cast_nullable_to_non_nullable
@@ -153,6 +167,7 @@ class _$UserVehicleRequestModelImpl implements _UserVehicleRequestModel {
       {@JsonKey(name: 'traveled_km') this.traveledKm,
       @JsonKey(name: 'next_technical') this.nextTechnical,
       @JsonKey(name: 'oil_replacement') this.oilReplacement,
+      @JsonKey(name: 'vehicle_type') this.vehicleType,
       @JsonKey(name: 'battery_replacement_date') this.batteryReplacementDate});
 
   factory _$UserVehicleRequestModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -168,12 +183,15 @@ class _$UserVehicleRequestModelImpl implements _UserVehicleRequestModel {
   @JsonKey(name: 'oil_replacement')
   final String? oilReplacement;
   @override
+  @JsonKey(name: 'vehicle_type')
+  final VehicleType? vehicleType;
+  @override
   @JsonKey(name: 'battery_replacement_date')
   final String? batteryReplacementDate;
 
   @override
   String toString() {
-    return 'UserVehicleRequestModel(traveledKm: $traveledKm, nextTechnical: $nextTechnical, oilReplacement: $oilReplacement, batteryReplacementDate: $batteryReplacementDate)';
+    return 'UserVehicleRequestModel(traveledKm: $traveledKm, nextTechnical: $nextTechnical, oilReplacement: $oilReplacement, vehicleType: $vehicleType, batteryReplacementDate: $batteryReplacementDate)';
   }
 
   @override
@@ -187,6 +205,8 @@ class _$UserVehicleRequestModelImpl implements _UserVehicleRequestModel {
                 other.nextTechnical == nextTechnical) &&
             (identical(other.oilReplacement, oilReplacement) ||
                 other.oilReplacement == oilReplacement) &&
+            (identical(other.vehicleType, vehicleType) ||
+                other.vehicleType == vehicleType) &&
             (identical(other.batteryReplacementDate, batteryReplacementDate) ||
                 other.batteryReplacementDate == batteryReplacementDate));
   }
@@ -194,7 +214,7 @@ class _$UserVehicleRequestModelImpl implements _UserVehicleRequestModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, traveledKm, nextTechnical,
-      oilReplacement, batteryReplacementDate);
+      oilReplacement, vehicleType, batteryReplacementDate);
 
   @JsonKey(ignore: true)
   @override
@@ -216,6 +236,7 @@ abstract class _UserVehicleRequestModel implements UserVehicleRequestModel {
       {@JsonKey(name: 'traveled_km') final String? traveledKm,
       @JsonKey(name: 'next_technical') final String? nextTechnical,
       @JsonKey(name: 'oil_replacement') final String? oilReplacement,
+      @JsonKey(name: 'vehicle_type') final VehicleType? vehicleType,
       @JsonKey(name: 'battery_replacement_date')
       final String? batteryReplacementDate}) = _$UserVehicleRequestModelImpl;
 
@@ -231,6 +252,9 @@ abstract class _UserVehicleRequestModel implements UserVehicleRequestModel {
   @override
   @JsonKey(name: 'oil_replacement')
   String? get oilReplacement;
+  @override
+  @JsonKey(name: 'vehicle_type')
+  VehicleType? get vehicleType;
   @override
   @JsonKey(name: 'battery_replacement_date')
   String? get batteryReplacementDate;
