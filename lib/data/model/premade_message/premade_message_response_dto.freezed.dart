@@ -21,13 +21,9 @@ PreMadeMessageResponseDto _$PreMadeMessageResponseDtoFromJson(
 
 /// @nodoc
 mixin _$PreMadeMessageResponseDto {
-  @HiveField(0)
   int? get count => throw _privateConstructorUsedError;
-  @HiveField(1)
   String? get next => throw _privateConstructorUsedError;
-  @HiveField(2)
   String? get previous => throw _privateConstructorUsedError;
-  @HiveField(3)
   List<PreMadeMessageResponseModel>? get results =>
       throw _privateConstructorUsedError;
 
@@ -44,10 +40,10 @@ abstract class $PreMadeMessageResponseDtoCopyWith<$Res> {
       _$PreMadeMessageResponseDtoCopyWithImpl<$Res, PreMadeMessageResponseDto>;
   @useResult
   $Res call(
-      {@HiveField(0) int? count,
-      @HiveField(1) String? next,
-      @HiveField(2) String? previous,
-      @HiveField(3) List<PreMadeMessageResponseModel>? results});
+      {int? count,
+      String? next,
+      String? previous,
+      List<PreMadeMessageResponseModel>? results});
 }
 
 /// @nodoc
@@ -100,10 +96,10 @@ abstract class _$$PremadeMessageResponseDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@HiveField(0) int? count,
-      @HiveField(1) String? next,
-      @HiveField(2) String? previous,
-      @HiveField(3) List<PreMadeMessageResponseModel>? results});
+      {int? count,
+      String? next,
+      String? previous,
+      List<PreMadeMessageResponseModel>? results});
 }
 
 /// @nodoc
@@ -149,27 +145,23 @@ class __$$PremadeMessageResponseDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PremadeMessageResponseDtoImpl implements _PremadeMessageResponseDto {
   const _$PremadeMessageResponseDtoImpl(
-      {@HiveField(0) this.count,
-      @HiveField(1) this.next,
-      @HiveField(2) this.previous,
-      @HiveField(3) final List<PreMadeMessageResponseModel>? results})
+      {this.count,
+      this.next,
+      this.previous,
+      final List<PreMadeMessageResponseModel>? results})
       : _results = results;
 
   factory _$PremadeMessageResponseDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$PremadeMessageResponseDtoImplFromJson(json);
 
   @override
-  @HiveField(0)
   final int? count;
   @override
-  @HiveField(1)
   final String? next;
   @override
-  @HiveField(2)
   final String? previous;
   final List<PreMadeMessageResponseModel>? _results;
   @override
-  @HiveField(3)
   List<PreMadeMessageResponseModel>? get results {
     final value = _results;
     if (value == null) return null;
@@ -217,26 +209,22 @@ class _$PremadeMessageResponseDtoImpl implements _PremadeMessageResponseDto {
 
 abstract class _PremadeMessageResponseDto implements PreMadeMessageResponseDto {
   const factory _PremadeMessageResponseDto(
-          {@HiveField(0) final int? count,
-          @HiveField(1) final String? next,
-          @HiveField(2) final String? previous,
-          @HiveField(3) final List<PreMadeMessageResponseModel>? results}) =
+          {final int? count,
+          final String? next,
+          final String? previous,
+          final List<PreMadeMessageResponseModel>? results}) =
       _$PremadeMessageResponseDtoImpl;
 
   factory _PremadeMessageResponseDto.fromJson(Map<String, dynamic> json) =
       _$PremadeMessageResponseDtoImpl.fromJson;
 
   @override
-  @HiveField(0)
   int? get count;
   @override
-  @HiveField(1)
   String? get next;
   @override
-  @HiveField(2)
   String? get previous;
   @override
-  @HiveField(3)
   List<PreMadeMessageResponseModel>? get results;
   @override
   @JsonKey(ignore: true)

@@ -21,34 +21,24 @@ InsuranceResponseModel _$InsuranceResponseModelFromJson(
 
 /// @nodoc
 mixin _$InsuranceResponseModel {
-  @HiveField(0)
   @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
-  @HiveField(1)
   @JsonKey(name: 'policy_number')
   String? get policyNumber => throw _privateConstructorUsedError;
-  @HiveField(2)
   @JsonKey(name: 'green_card_number')
   String? get greenCardNumber => throw _privateConstructorUsedError;
-  @HiveField(3)
   @JsonKey(name: 'certificate_valid_from')
   String? get certificateValidFrom => throw _privateConstructorUsedError;
-  @HiveField(4)
   @JsonKey(name: 'certificate_valid_to')
   String? get certificateValidTo => throw _privateConstructorUsedError;
-  @HiveField(5)
   @JsonKey(name: 'agency')
   String? get agency => throw _privateConstructorUsedError;
-  @HiveField(6)
   @JsonKey(name: 'country')
   String? get country => throw _privateConstructorUsedError;
-  @HiveField(7)
   @JsonKey(name: 'address')
   String? get address => throw _privateConstructorUsedError;
-  @HiveField(8)
   @JsonKey(name: 'email')
   String? get email => throw _privateConstructorUsedError;
-  @HiveField(9)
   @JsonKey(name: 'policy_cover')
   String? get policyCover => throw _privateConstructorUsedError;
 
@@ -65,20 +55,16 @@ abstract class $InsuranceResponseModelCopyWith<$Res> {
       _$InsuranceResponseModelCopyWithImpl<$Res, InsuranceResponseModel>;
   @useResult
   $Res call(
-      {@HiveField(0) @JsonKey(name: 'name') String? name,
-      @HiveField(1) @JsonKey(name: 'policy_number') String? policyNumber,
-      @HiveField(2) @JsonKey(name: 'green_card_number') String? greenCardNumber,
-      @HiveField(3)
-      @JsonKey(name: 'certificate_valid_from')
-      String? certificateValidFrom,
-      @HiveField(4)
-      @JsonKey(name: 'certificate_valid_to')
-      String? certificateValidTo,
-      @HiveField(5) @JsonKey(name: 'agency') String? agency,
-      @HiveField(6) @JsonKey(name: 'country') String? country,
-      @HiveField(7) @JsonKey(name: 'address') String? address,
-      @HiveField(8) @JsonKey(name: 'email') String? email,
-      @HiveField(9) @JsonKey(name: 'policy_cover') String? policyCover});
+      {@JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'policy_number') String? policyNumber,
+      @JsonKey(name: 'green_card_number') String? greenCardNumber,
+      @JsonKey(name: 'certificate_valid_from') String? certificateValidFrom,
+      @JsonKey(name: 'certificate_valid_to') String? certificateValidTo,
+      @JsonKey(name: 'agency') String? agency,
+      @JsonKey(name: 'country') String? country,
+      @JsonKey(name: 'address') String? address,
+      @JsonKey(name: 'email') String? email,
+      @JsonKey(name: 'policy_cover') String? policyCover});
 }
 
 /// @nodoc
@@ -161,20 +147,16 @@ abstract class _$$InsuranceResponseModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@HiveField(0) @JsonKey(name: 'name') String? name,
-      @HiveField(1) @JsonKey(name: 'policy_number') String? policyNumber,
-      @HiveField(2) @JsonKey(name: 'green_card_number') String? greenCardNumber,
-      @HiveField(3)
-      @JsonKey(name: 'certificate_valid_from')
-      String? certificateValidFrom,
-      @HiveField(4)
-      @JsonKey(name: 'certificate_valid_to')
-      String? certificateValidTo,
-      @HiveField(5) @JsonKey(name: 'agency') String? agency,
-      @HiveField(6) @JsonKey(name: 'country') String? country,
-      @HiveField(7) @JsonKey(name: 'address') String? address,
-      @HiveField(8) @JsonKey(name: 'email') String? email,
-      @HiveField(9) @JsonKey(name: 'policy_cover') String? policyCover});
+      {@JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'policy_number') String? policyNumber,
+      @JsonKey(name: 'green_card_number') String? greenCardNumber,
+      @JsonKey(name: 'certificate_valid_from') String? certificateValidFrom,
+      @JsonKey(name: 'certificate_valid_to') String? certificateValidTo,
+      @JsonKey(name: 'agency') String? agency,
+      @JsonKey(name: 'country') String? country,
+      @JsonKey(name: 'address') String? address,
+      @JsonKey(name: 'email') String? email,
+      @JsonKey(name: 'policy_cover') String? policyCover});
 }
 
 /// @nodoc
@@ -250,62 +232,48 @@ class __$$InsuranceResponseModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InsuranceResponseModelImpl implements _InsuranceResponseModel {
   const _$InsuranceResponseModelImpl(
-      {@HiveField(0) @JsonKey(name: 'name') this.name,
-      @HiveField(1) @JsonKey(name: 'policy_number') this.policyNumber,
-      @HiveField(2) @JsonKey(name: 'green_card_number') this.greenCardNumber,
-      @HiveField(3)
-      @JsonKey(name: 'certificate_valid_from')
-      this.certificateValidFrom,
-      @HiveField(4)
-      @JsonKey(name: 'certificate_valid_to')
-      this.certificateValidTo,
-      @HiveField(5) @JsonKey(name: 'agency') this.agency,
-      @HiveField(6) @JsonKey(name: 'country') this.country,
-      @HiveField(7) @JsonKey(name: 'address') this.address,
-      @HiveField(8) @JsonKey(name: 'email') this.email,
-      @HiveField(9) @JsonKey(name: 'policy_cover') this.policyCover});
+      {@JsonKey(name: 'name') this.name,
+      @JsonKey(name: 'policy_number') this.policyNumber,
+      @JsonKey(name: 'green_card_number') this.greenCardNumber,
+      @JsonKey(name: 'certificate_valid_from') this.certificateValidFrom,
+      @JsonKey(name: 'certificate_valid_to') this.certificateValidTo,
+      @JsonKey(name: 'agency') this.agency,
+      @JsonKey(name: 'country') this.country,
+      @JsonKey(name: 'address') this.address,
+      @JsonKey(name: 'email') this.email,
+      @JsonKey(name: 'policy_cover') this.policyCover});
 
   factory _$InsuranceResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$InsuranceResponseModelImplFromJson(json);
 
   @override
-  @HiveField(0)
   @JsonKey(name: 'name')
   final String? name;
   @override
-  @HiveField(1)
   @JsonKey(name: 'policy_number')
   final String? policyNumber;
   @override
-  @HiveField(2)
   @JsonKey(name: 'green_card_number')
   final String? greenCardNumber;
   @override
-  @HiveField(3)
   @JsonKey(name: 'certificate_valid_from')
   final String? certificateValidFrom;
   @override
-  @HiveField(4)
   @JsonKey(name: 'certificate_valid_to')
   final String? certificateValidTo;
   @override
-  @HiveField(5)
   @JsonKey(name: 'agency')
   final String? agency;
   @override
-  @HiveField(6)
   @JsonKey(name: 'country')
   final String? country;
   @override
-  @HiveField(7)
   @JsonKey(name: 'address')
   final String? address;
   @override
-  @HiveField(8)
   @JsonKey(name: 'email')
   final String? email;
   @override
-  @HiveField(9)
   @JsonKey(name: 'policy_cover')
   final String? policyCover;
 
@@ -368,22 +336,16 @@ class _$InsuranceResponseModelImpl implements _InsuranceResponseModel {
 
 abstract class _InsuranceResponseModel implements InsuranceResponseModel {
   const factory _InsuranceResponseModel(
-      {@HiveField(0) @JsonKey(name: 'name') final String? name,
-      @HiveField(1) @JsonKey(name: 'policy_number') final String? policyNumber,
-      @HiveField(2)
-      @JsonKey(name: 'green_card_number')
-      final String? greenCardNumber,
-      @HiveField(3)
+      {@JsonKey(name: 'name') final String? name,
+      @JsonKey(name: 'policy_number') final String? policyNumber,
+      @JsonKey(name: 'green_card_number') final String? greenCardNumber,
       @JsonKey(name: 'certificate_valid_from')
       final String? certificateValidFrom,
-      @HiveField(4)
-      @JsonKey(name: 'certificate_valid_to')
-      final String? certificateValidTo,
-      @HiveField(5) @JsonKey(name: 'agency') final String? agency,
-      @HiveField(6) @JsonKey(name: 'country') final String? country,
-      @HiveField(7) @JsonKey(name: 'address') final String? address,
-      @HiveField(8) @JsonKey(name: 'email') final String? email,
-      @HiveField(9)
+      @JsonKey(name: 'certificate_valid_to') final String? certificateValidTo,
+      @JsonKey(name: 'agency') final String? agency,
+      @JsonKey(name: 'country') final String? country,
+      @JsonKey(name: 'address') final String? address,
+      @JsonKey(name: 'email') final String? email,
       @JsonKey(name: 'policy_cover')
       final String? policyCover}) = _$InsuranceResponseModelImpl;
 
@@ -391,43 +353,33 @@ abstract class _InsuranceResponseModel implements InsuranceResponseModel {
       _$InsuranceResponseModelImpl.fromJson;
 
   @override
-  @HiveField(0)
   @JsonKey(name: 'name')
   String? get name;
   @override
-  @HiveField(1)
   @JsonKey(name: 'policy_number')
   String? get policyNumber;
   @override
-  @HiveField(2)
   @JsonKey(name: 'green_card_number')
   String? get greenCardNumber;
   @override
-  @HiveField(3)
   @JsonKey(name: 'certificate_valid_from')
   String? get certificateValidFrom;
   @override
-  @HiveField(4)
   @JsonKey(name: 'certificate_valid_to')
   String? get certificateValidTo;
   @override
-  @HiveField(5)
   @JsonKey(name: 'agency')
   String? get agency;
   @override
-  @HiveField(6)
   @JsonKey(name: 'country')
   String? get country;
   @override
-  @HiveField(7)
   @JsonKey(name: 'address')
   String? get address;
   @override
-  @HiveField(8)
   @JsonKey(name: 'email')
   String? get email;
   @override
-  @HiveField(9)
   @JsonKey(name: 'policy_cover')
   String? get policyCover;
   @override

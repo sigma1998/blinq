@@ -59,7 +59,7 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
 
   Future<void> onUploadDamagedMediaFiles() async {
     try {
-      if(state.files.isEmpty){
+      if (state.files.isEmpty) {
         _navigate();
         return;
       }
@@ -87,19 +87,19 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
   }
 
   Future<void> _uploadMedia() async {
-    if(reportBloc.reportType == ReportType.accident){
-      if(reportBloc.user == User.A){
+    if (reportBloc.reportType == ReportType.accident) {
+      if (reportBloc.user == User.A) {
         await accidentRepository.uploadMedia(
           reportBloc.reportId,
           state.uploadedFilesId,
         );
-      } else{
+      } else {
         await accidentRepository.uploadMediaB(
           reportBloc.reportId,
           state.uploadedFilesId,
         );
       }
-    }else{
+    } else {
       //TODO
     }
 
@@ -175,7 +175,11 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
     File? croppedImage;
     if (mediaPath != null && !_isVideoFile(File(mediaPath))) {
       if (_isImageFile(File(mediaPath))) {
-        croppedImage = await ImageCropHelper.cropImage(mediaPath);
+        croppedImage = await ImageCropHelper.cropImage(
+          mediaPath,
+          ratioX: 9,
+          ratioY: 16,
+        );
       } else {
         NavigationService.showErrorToast(
             'Allowed only jpg, jpeg, png, mp4, mov');
@@ -330,7 +334,7 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
   }
 
   int step() {
-    if(reportBloc.user == User.A){
+    if (reportBloc.user == User.A) {
       return 8;
     }
     return 13;

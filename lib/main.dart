@@ -9,19 +9,9 @@ import 'package:hive/hive.dart';
 // Project imports:
 import 'package:blinq/app.dart';
 import 'package:blinq/app/locator.dart';
-import 'package:blinq/data/model/car/response/car_response_model.dart';
-import 'package:blinq/data/model/insurance/response/insurance_response_model.dart';
-import 'package:blinq/data/model/policy_holder/response/policy_holder_response_model.dart';
 import 'package:blinq/data/model/profile/driver_license/driver_license_type.dart';
-import 'package:blinq/data/model/profile/response/profile_response_model.dart';
-import 'package:blinq/data/model/vehicle/response/vehicle_response_model.dart';
-import 'package:blinq/data/model/contact/response/contact_response_model.dart';
-import 'package:blinq/data/model/premade_message/response/premade_message_response_model.dart';
 import 'package:blinq/localization.dart';
 import 'data/datasource/local/storage_constants.dart';
-import 'data/model/car/vehicle_type/vehicle_type.dart';
-import 'data/model/contact/contact_response_dto.dart';
-import 'data/model/premade_message/premade_message_response_dto.dart';
 import 'data/model/user/user_status.dart';
 
 void main() async {
@@ -40,20 +30,6 @@ Future<void> _setUpHive() async {
   Hive.init((await getApplicationDocumentsDirectory()).path);
   Hive.registerAdapter(UserStatusAdapter());
   Hive.registerAdapter(DriverLicenseTypeAdapter());
-
-  Hive.registerAdapter(CarResponseModelAdapter());
-  Hive.registerAdapter(VehicleTypeAdapter());
-  Hive.registerAdapter(PolicyHolderResponseModelAdapter());
-  Hive.registerAdapter(InsuranceResponseModelAdapter());
-  Hive.registerAdapter(UserVehicleResponseModelAdapter());
-
-  Hive.registerAdapter(ContactResponseModelAdapter());
-  Hive.registerAdapter(ContactResponseDtoAdapter());
-
-  Hive.registerAdapter(PreMadeMessageResponseModelAdapter());
-  Hive.registerAdapter(PreMadeMessageResponseDtoAdapter());
-
-  Hive.registerAdapter(ProfileResponseModelAdapter());
 
   await Hive.openBox(StorageConstants.appBox);
   await Hive.openBox(StorageConstants.userStatusBox);

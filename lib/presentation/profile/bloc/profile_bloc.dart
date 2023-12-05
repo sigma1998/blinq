@@ -25,6 +25,7 @@ import 'package:blinq/presentation/profile/widgets/editors/vehicle/vehicle_edito
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/image_crop_helper.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'profile_event.dart';
 
 part 'profile_state.dart';
@@ -51,7 +52,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       emit(const ProfileState(status: Status.loading));
       final data = await repository.fetch();
       vehicleType = data.car?.vehicleType;
-      repository.setProfile(data);
       emit(ProfileState(profile: data, status: Status.success));
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
@@ -60,8 +60,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   Future<void> onUpdateProfile(ProfileRequestModel profile) async {
     try {
-      final data = await repository.update(profile);
-      repository.setProfile(data);
+      await repository.update(profile);
       add(OnFetchProfile());
     } catch (e) {
       rethrow;
@@ -88,7 +87,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           onPressed: () async {
             final imagePath =
                 await mediaService.pickImagePath(AppImageSource.camera);
-            final result = await ImageCropHelper.cropImage(imagePath);
+            final result = await ImageCropHelper.cropImage(
+              imagePath,
+              cropStyle: CropStyle.circle,
+            );
             NavigationService.back(result: result);
           },
         ),
@@ -97,7 +99,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           onPressed: () async {
             final imagePath =
                 await mediaService.pickImagePath(AppImageSource.gallery);
-            final result = await ImageCropHelper.cropImage(imagePath);
+            final result = await ImageCropHelper.cropImage(
+              imagePath,
+              cropStyle: CropStyle.circle,
+            );
             NavigationService.back(result: result);
           },
         ),

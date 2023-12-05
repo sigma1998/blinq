@@ -12,11 +12,17 @@ import 'package:blinq/core/theme/app_colors.dart';
 
 class ImageCropHelper {
   //
-  static Future<File> cropImage(String? imagePath) async {
+  static Future<File> cropImage(
+    String? imagePath, {
+    double ratioX = 1,
+    double ratioY = 1,
+    CropStyle cropStyle = CropStyle.rectangle,
+  }) async {
     CroppedFile? croppedFile = await ImageCropper().cropImage(
       sourcePath: imagePath ?? '',
+      cropStyle: cropStyle,
       aspectRatioPresets: [CropAspectRatioPreset.original],
-      aspectRatio: const CropAspectRatio(ratioX: 9, ratioY: 16),
+      aspectRatio: CropAspectRatio(ratioX: ratioX, ratioY: ratioY),
       compressQuality: 100,
       uiSettings: [
         AndroidUiSettings(

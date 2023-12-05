@@ -20,13 +20,9 @@ ContactResponseDto _$ContactResponseDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ContactResponseDto {
-  @HiveField(0)
   int? get count => throw _privateConstructorUsedError;
-  @HiveField(1)
   String? get next => throw _privateConstructorUsedError;
-  @HiveField(2)
   String? get previous => throw _privateConstructorUsedError;
-  @HiveField(3)
   List<ContactResponseModel>? get results => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,10 +38,10 @@ abstract class $ContactResponseDtoCopyWith<$Res> {
       _$ContactResponseDtoCopyWithImpl<$Res, ContactResponseDto>;
   @useResult
   $Res call(
-      {@HiveField(0) int? count,
-      @HiveField(1) String? next,
-      @HiveField(2) String? previous,
-      @HiveField(3) List<ContactResponseModel>? results});
+      {int? count,
+      String? next,
+      String? previous,
+      List<ContactResponseModel>? results});
 }
 
 /// @nodoc
@@ -96,10 +92,10 @@ abstract class _$$ContactResponseDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@HiveField(0) int? count,
-      @HiveField(1) String? next,
-      @HiveField(2) String? previous,
-      @HiveField(3) List<ContactResponseModel>? results});
+      {int? count,
+      String? next,
+      String? previous,
+      List<ContactResponseModel>? results});
 }
 
 /// @nodoc
@@ -143,27 +139,23 @@ class __$$ContactResponseDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ContactResponseDtoImpl implements _ContactResponseDto {
   const _$ContactResponseDtoImpl(
-      {@HiveField(0) this.count,
-      @HiveField(1) this.next,
-      @HiveField(2) this.previous,
-      @HiveField(3) final List<ContactResponseModel>? results})
+      {this.count,
+      this.next,
+      this.previous,
+      final List<ContactResponseModel>? results})
       : _results = results;
 
   factory _$ContactResponseDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$ContactResponseDtoImplFromJson(json);
 
   @override
-  @HiveField(0)
   final int? count;
   @override
-  @HiveField(1)
   final String? next;
   @override
-  @HiveField(2)
   final String? previous;
   final List<ContactResponseModel>? _results;
   @override
-  @HiveField(3)
   List<ContactResponseModel>? get results {
     final value = _results;
     if (value == null) return null;
@@ -211,26 +203,21 @@ class _$ContactResponseDtoImpl implements _ContactResponseDto {
 
 abstract class _ContactResponseDto implements ContactResponseDto {
   const factory _ContactResponseDto(
-          {@HiveField(0) final int? count,
-          @HiveField(1) final String? next,
-          @HiveField(2) final String? previous,
-          @HiveField(3) final List<ContactResponseModel>? results}) =
-      _$ContactResponseDtoImpl;
+      {final int? count,
+      final String? next,
+      final String? previous,
+      final List<ContactResponseModel>? results}) = _$ContactResponseDtoImpl;
 
   factory _ContactResponseDto.fromJson(Map<String, dynamic> json) =
       _$ContactResponseDtoImpl.fromJson;
 
   @override
-  @HiveField(0)
   int? get count;
   @override
-  @HiveField(1)
   String? get next;
   @override
-  @HiveField(2)
   String? get previous;
   @override
-  @HiveField(3)
   List<ContactResponseModel>? get results;
   @override
   @JsonKey(ignore: true)

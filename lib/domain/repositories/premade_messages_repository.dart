@@ -1,5 +1,4 @@
 // Project imports:
-import 'package:blinq/data/datasource/local/premade_messages_local_db.dart';
 import 'package:blinq/data/datasource/remote/premade_messages_api.dart';
 import 'package:blinq/data/model/premade_message/premade_message_response_dto.dart';
 import 'package:blinq/data/model/premade_message/request/premade_message_request_model.dart';
@@ -21,23 +20,13 @@ abstract class PremadeMessagesRepository {
   });
 
   Future<void> delete(int id);
-
-  ///
-  /// Local storage
-  ///
-
-  PreMadeMessageResponseDto getPremadeMessages();
-
-  void setPremadeMessages(PreMadeMessageResponseDto premadeMessage);
 }
 
 class PremadeMessagesRepositoryImpl implements PremadeMessagesRepository {
   //
   final PremadeMessagesApi api;
-  final PremadeMessagesLocalStorage localStorage;
 
-  PremadeMessagesRepositoryImpl(
-      {required this.api, required this.localStorage});
+  PremadeMessagesRepositoryImpl({required this.api});
 
   ///
   /// Premade Message
@@ -53,12 +42,10 @@ class PremadeMessagesRepositoryImpl implements PremadeMessagesRepository {
   }
 
   @override
-  Future<PreMadeMessageResponseModel> add(PreMadeMessageRequestModel contact) {
+  Future<PreMadeMessageResponseModel> add(
+      PreMadeMessageRequestModel contact) async {
     try {
-      return api.add(contact).then((data) {
-        // localStorage.setPremadeMessages([data]);
-        return data;
-      });
+      return await api.add(contact);
     } catch (e) {
       rethrow;
     }
@@ -68,35 +55,20 @@ class PremadeMessagesRepositoryImpl implements PremadeMessagesRepository {
   Future<PreMadeMessageResponseModel> update({
     required int id,
     required PreMadeMessageRequestModel premadeMessage,
-  }) {
+  }) async {
     try {
-      return api.update(id: id, premadeMessage: premadeMessage).then((data) {
-        // localStorage.setPremadeMessages([data]);
-        return data;
-      });
+      return await api.update(id: id, premadeMessage: premadeMessage);
     } catch (e) {
       rethrow;
     }
   }
 
   @override
-  Future<void> delete(int id) {
+  Future<void> delete(int id) async {
     try {
-      return api.delete(id);
+      return await api.delete(id);
     } catch (e) {
       rethrow;
     }
   }
-
-  ///
-  /// Local storage
-  ///
-
-  @override
-  PreMadeMessageResponseDto getPremadeMessages() =>
-      localStorage.getPremadeMessages();
-
-  @override
-  void setPremadeMessages(PreMadeMessageResponseDto contact) =>
-      localStorage.setPremadeMessages(contact);
 }
