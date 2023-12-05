@@ -85,10 +85,6 @@ class FloodFillPainter extends CustomPainter {
     _filler?.setFillColor(img.getColor(color.red, color.green, color.blue, color.alpha));
 
 
-    print('----0-0-0-0---=--------------------------==============-0=-0=-0-0');
-    print('COLOR SELECTED: $color');
-    print('----0-0-0-0---=--------------------------==============-0=-0=-0-0');
-
 
     if (onFloodFillStart != null) onFloodFillStart!(position,image);
 

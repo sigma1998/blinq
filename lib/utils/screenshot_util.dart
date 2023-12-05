@@ -22,11 +22,11 @@ Future<File?> captureSocialPng(GlobalKey container, BuildContext context) {
     /// it appears only in debug mode
     /// in profile/release mode should work fine
     /// comment it in release mode!!!
-    // if (boundary?.debugNeedsPaint ?? true) {
-    //   await Future.delayed(const Duration(milliseconds: 500));
-    //   // ignore: use_build_context_synchronously
-    //   return await captureSocialPng(container, context);
-    // }
+    if (boundary?.debugNeedsPaint ?? true) {
+      await Future.delayed(const Duration(milliseconds: 500));
+      // ignore: use_build_context_synchronously
+      return await captureSocialPng(container, context);
+    }
 
     ui.Image image = await boundary!.toImage();
     final directory = await FileUtil.createFolderInAppDocDir();

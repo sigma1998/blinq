@@ -266,28 +266,29 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
     final double y = double.parse(position.dy.toStringAsFixed(2));
     final double x = double.parse(position.dx.toStringAsFixed(2));
 
-    if (y > 17.96 && y < 47.96) {
-      color = damagedParts.contains(vehiclePartList[1]) ? inActive : active;
-      selectPartFunc(vehiclePartList[1]);
-    } else if (x > 9.0 && x < 24.67 && y < 56.3) {
-      color = damagedParts.contains(vehiclePartList[8]) ? inActive : active;
-      selectPartFunc(vehiclePartList[8]);
-    } else if (x > 216.33 && x < 233.0 && y < 54.3) {
-      color = damagedParts.contains(vehiclePartList[9]) ? inActive : active;
-      selectPartFunc(vehiclePartList[9]);
-    } else if (y > 52.67 && y < 79.01) {
+
+    if (y > 17.96 && y < 90.96 && x > 36 && x < 251) {
       color = damagedParts.contains(vehiclePartList[0]) ? inActive : active;
       selectPartFunc(vehiclePartList[0]);
-    } else if (x > 30.33 && x < 55.67 && y > 76.28 && y < 85.61) {
+    } else if (x > 9.0 && x < 24.67 && y < 72.3) {
+      color = damagedParts.contains(vehiclePartList[8]) ? inActive : active;
+      selectPartFunc(vehiclePartList[8]);
+    } else if (x > 265.33 && x < 284.0 && y < 72.3) {
+      color = damagedParts.contains(vehiclePartList[9]) ? inActive : active;
+      selectPartFunc(vehiclePartList[9]);
+    }  else if (x > 30.33 && x < 55.67 && y > 76.28 && y < 85.61) {
       color = damagedParts.contains(vehiclePartList[10]) ? inActive : active;
       selectPartFunc(vehiclePartList[10]);
     } else if (x > 186.33 && x < 211.33 && y > 76.95 && y < 85.95) {
       color = damagedParts.contains(vehiclePartList[11]) ? inActive : active;
       selectPartFunc(vehiclePartList[11]);
-    } else if (x > 68.33 && x < 172.67 && y > 88.3 && y < 108.97) {
-      color = damagedParts.contains(vehiclePartList[12]) ? inActive : active;
-      selectPartFunc(vehiclePartList[12]);
-    } else if (x > 22.67 &&
+    }
+    // else if (x > 68.33 && x < 172.67 && y > 88.3 && y < 108.97) {
+    //   color = damagedParts.contains(vehiclePartList[12]) ? inActive : active;
+    //   selectPartFunc(vehiclePartList[12]);
+    // }
+
+    else if (x > 22.67 &&
         double.parse(position.dx.toStringAsFixed(2)) < 221.33 &&
         y > 89.97 &&
         y < 138.97) {
@@ -301,16 +302,17 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
     Color? color;
     final double y = double.parse(position.dy.toStringAsFixed(2));
     final double x = double.parse(position.dx.toStringAsFixed(2));
+
     if (y > 22.43 && y < 43.77) {
       color = damagedParts.contains(vehiclePartList[3]) ? inActive : active;
       selectPartFunc(vehiclePartList[3]);
-    } else if (x > 30.5 && x < 75.67 && y < 71.0) {
+    } else if (x > 30.5 && x < 80.67 && y > 70.0 && y < 80.0) {
       color = damagedParts.contains(vehiclePartList[5]) ? inActive : active;
       selectPartFunc(vehiclePartList[5]);
-    } else if (x > 166.0 && x < 208.67 && y < 71.0) {
+    } else if (x > 199.0 && x < 283.67 && y > 70.0 && y < 80.0) {
       color = damagedParts.contains(vehiclePartList[6]) ? inActive : active;
       selectPartFunc(vehiclePartList[6]);
-    } else if (y > 77.1 && y < 139.77 && x > 21.67 && x < 222.0) {
+    } else if (y > 80.1 && y < 139.77 && x > 21.67 && x < 222.0) {
       color = damagedParts.contains(vehiclePartList[7]) ? inActive : active;
       selectPartFunc(vehiclePartList[7]);
     }
@@ -328,22 +330,22 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
     } else if (y > 10.75 && y < 28.75 && x > 176.33 && x < 229.67) {
       color = damagedParts.contains(vehiclePartList[23]) ? inActive : active;
       selectPartFunc(vehiclePartList[23]);
-    } else if (y > 35.75 && y < 77.09 && x > 98.67 && x < 165.33) {
-      color = damagedParts.contains(vehiclePartList[16]) ? inActive : active;
+    } else if (y > 35.75 && y < 77.09 && x > 88.67 && x < 146.33) {
+      color = damagedParts.contains(vehiclePartList[24]) ? inActive : active;
       selectPartFunc(vehiclePartList[24]);
-    } else if (y > 35 && y < 75 && x > 171 && x < 228) {
+    } else if (y > 35 && y < 75 && x > 154 && x < 210) {
       color = damagedParts.contains(vehiclePartList[25]) ? inActive : active;
       selectPartFunc(vehiclePartList[25]);
-    } else if (y > 39.42 && y < 62.75 && x > 37.33 && x < 96.0) {
+    } else if (y > 39.42 && y < 50.75 && x > 37.33 && x < 96.0) {
       color = damagedParts.contains(vehiclePartList[26]) ? inActive : active;
       selectPartFunc(vehiclePartList[26]);
-    } else if (y > 22.09 && y < 55.09 && x > 239.33 && x < 297.33) {
+    } else if (y > 22.09 && y < 55.09 && x > 221.33 && x < 297.33) {
       color = damagedParts.contains(vehiclePartList[27]) ? inActive : active;
       selectPartFunc(vehiclePartList[27]);
-    } else if (y > 66.75 && y < 90.75 && x > 51.67 && x < 77.0) {
+    } else if (y > 62.75 && y < 90.75 && x > 44.67 && x < 67.0) {
       color = damagedParts.contains(vehiclePartList[28]) ? inActive : active;
       selectPartFunc(vehiclePartList[28]);
-    } else if (y > 64.75 && y < 90.75 && x > 235.0 && x < 262.33) {
+    } else if (y > 62.75 && y < 90.75 && x > 213.0 && x < 239.33) {
       color = damagedParts.contains(vehiclePartList[29]) ? inActive : active;
       selectPartFunc(vehiclePartList[29]);
     }
@@ -356,26 +358,26 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
     final double y = double.parse(position.dy.toStringAsFixed(2));
     final double x = double.parse(position.dx.toStringAsFixed(2));
 
-    if (y > 13.07 && y < 31 && x < 145.33) {
+    if (y > 13.07 && y < 31 && x > 84 && x < 128.33) {
       color = damagedParts.contains(vehiclePartList[14]) ? inActive : active;
       selectPartFunc(vehiclePartList[14]);
     } else if (y > 13.07 && y < 31 && x > 149.0 && x < 216.33) {
       color = damagedParts.contains(vehiclePartList[15]) ? inActive : active;
       selectPartFunc(vehiclePartList[15]);
-    } else if (y > 36.74 && y < 76.07 && x > 154.0 && x < 222.67) {
+    } else if (y > 36.74 && y < 76.07 && x > 140 && x < 201.67) {
       color = damagedParts.contains(vehiclePartList[16]) ? inActive : active;
       selectPartFunc(vehiclePartList[16]);
-    } else if (y > 37.4 && y < 77.07 && x > 84.67 && x < 151.67) {
+    } else if (y > 34.4 && y < 77.07 && x > 70.67 && x < 131.67) {
       color = damagedParts.contains(vehiclePartList[17]) ? inActive : active;
       selectPartFunc(vehiclePartList[17]);
-    } else if (y > 18.84 && y < 47.17 && x > 85.67 && x < 74.33) {
+    } else if (y > 20.4 && y < 51.07 && x > 10.67 && x < 70.67) {
       color = damagedParts.contains(vehiclePartList[18]) ? inActive : active;
       selectPartFunc(vehiclePartList[18]);
     } else if (y > 33.17 && y < 55.51 && x > 199.33 && x < 249.67) {
       color = damagedParts.contains(vehiclePartList[19]) ? inActive : active;
       selectPartFunc(vehiclePartList[19]);
     } else if (y > 58.0 && y < 79.51 && x > 214.0 && x < 240.33) {
-      color = damagedParts.contains(vehiclePartList[29]) ? inActive : active;
+      color = damagedParts.contains(vehiclePartList[20]) ? inActive : active;
       selectPartFunc(vehiclePartList[20]);
     } else if (y > 57.51 && y < 79.84 && x > 51.0 && x < 75.0) {
       color = damagedParts.contains(vehiclePartList[21]) ? inActive : active;

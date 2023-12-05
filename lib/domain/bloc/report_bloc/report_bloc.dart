@@ -76,12 +76,6 @@ class ReportBloc extends Cubit<GenericBlocState> {
 
         final step = '/v2/api/$res';
 
-        print(
-            '-===========================--------------------------===========');
-        print(step);
-        print(NetworkConstants.connectBDriver(reportId));
-        print(
-            '-===========================--------------------------===========');
 
         if (step == NetworkConstants.accidentTimeAndPlace(reportId)) {
           return RouteAndArgs(route: LocationInfoScreen.route);
