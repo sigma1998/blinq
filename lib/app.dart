@@ -53,8 +53,7 @@ class MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-
-    final profileBloc =  ProfileBloc(
+    final profileBloc = ProfileBloc(
       mediaService: getIt<MediaServiceImpl>(),
       repository: getIt<ProfileRepositoryImpl>(),
     );
@@ -67,7 +66,7 @@ class MyAppState extends State<MyApp> {
           create: (context) => SuccessVideoBloc(),
         ),
         BlocProvider<ProfileBloc>(
-          create: (context) =>profileBloc,
+          create: (context) => profileBloc,
         ),
         BlocProvider<ContactsBloc>(
           create: (context) => ContactsBloc(
@@ -86,9 +85,8 @@ class MyAppState extends State<MyApp> {
         ),
         BlocProvider<ReportBloc>(
           create: (context) => ReportBloc(
-            accidentRepository: getIt<AccidentRepositoryImpl>(),
-            profileBloc: profileBloc
-          ),
+              accidentRepository: getIt<AccidentRepositoryImpl>(),
+              profileBloc: profileBloc),
         ),
         BlocProvider<LoggerCubit>(
           create: (context) => LoggerCubit(),

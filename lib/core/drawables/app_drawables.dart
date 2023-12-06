@@ -113,6 +113,9 @@ class AppDrawables {
   static const String errorProfileImage = '$images/error_profile_image.png';
 
   static const String vehicle = '$images/vehicle.png';
+  static const String vanImage = '$images/van_image.png';
+  static const String motoImage = '$images/moto_image.png';
+
   static const String scanningQr = '$images/scanning_qr.png';
 
   static const String deleteAccount = '$images/delete_account.png';

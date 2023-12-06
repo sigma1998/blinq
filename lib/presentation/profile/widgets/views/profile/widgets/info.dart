@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -21,6 +22,8 @@ class ProfileInfoWidget extends StatelessWidget {
 
     return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
+        final vehicleType = state.profile?.car?.vehicleType;
+
         return Column(
           children: [
             Row(
@@ -68,7 +71,7 @@ class ProfileInfoWidget extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             ProfileImageCard(
-              title: 'strMyCar'.tr(),
+              title: '${vehicleType?.title}',
               onTap: bloc.onMyCarPressed,
               desc: '${state.profile?.car?.brand}',
               image: SizedBox(
@@ -80,9 +83,9 @@ class ProfileInfoWidget extends StatelessWidget {
                       bottomRight: Radius.circular(20),
                     ),
                     child: Image.asset(
-                      AppDrawables.vehicle,
-                      width: 305,
-                      height: 137,
+                      '${vehicleType?.image}',
+                      width: vehicleType?.width,
+                      height: vehicleType?.height,
                     ),
                   ),
                 ),

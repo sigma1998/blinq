@@ -13,7 +13,6 @@ import 'package:flutter_svg/svg.dart';
 class NavigationButton extends StatelessWidget {
   //
   final String? label;
-  final String heroTag;
 
   final VoidCallback? onBack;
   final VoidCallback? onNextTap;
@@ -22,19 +21,18 @@ class NavigationButton extends StatelessWidget {
   final double padding;
   final double height;
 
-  const NavigationButton(
-      {super.key,
-      this.onNextTap,
-      //
-      this.height = 0,
-      //
-      this.heroTag = '',
-      //
-      this.canGoForward = true,
-      this.label,
-      this.padding = 32,
-      this.loading = false,
-      this.onBack});
+  const NavigationButton({
+    super.key,
+    this.onNextTap,
+    //
+    this.height = 0,
+    //
+    this.canGoForward = true,
+    this.label,
+    this.padding = 32,
+    this.loading = false,
+    this.onBack,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,18 +47,23 @@ class NavigationButton extends StatelessWidget {
           SizedBox(
             width: 45,
             height: 45,
-            child: FloatingActionButton(
-              onPressed: onBack ??
+            child: GestureDetector(
+              onTap: onBack ??
                   () => NavigationService.homeNavigatorKey.currentState?.pop(),
-              heroTag: heroTag,
-              backgroundColor: Theme.of(context).colorScheme.secondary,
-              child: SvgPicture.asset(
-                AppDrawables.arrowLeft,
-                width: 24,
-                height: 24,
-                colorFilter: const ColorFilter.mode(
-                  Colors.white,
-                  BlendMode.srcIn,
+              child: Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
+                child: SvgPicture.asset(
+                  AppDrawables.arrowLeft,
+                  width: 24,
+                  height: 24,
+                  colorFilter: const ColorFilter.mode(
+                    Colors.white,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ),
