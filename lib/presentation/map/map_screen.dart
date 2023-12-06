@@ -24,15 +24,16 @@ class _MapScreenState extends State<MapScreen> {
   void didChangeDependencies() {
     bloc = MapScreenBloc(
         position: (ModalRoute.of(context)!.settings.arguments as MapScreenArgs)
-            .initialPosition!);
+            .initialPosition ?? const CameraPosition(
+          target: LatLng(41.30275284012766, 69.23845700742682),
+          zoom: 14.4746,
+        ));
     super.didChangeDependencies();
   }
 
 
   @override
   Widget build(BuildContext context) {
-    final MapScreenArgs args =
-        ModalRoute.of(context)!.settings.arguments as MapScreenArgs;
     return BlocBuilder<MapScreenBloc, MapState>(
         bloc: bloc,
         builder: (context, state) {
@@ -49,7 +50,7 @@ class _MapScreenState extends State<MapScreen> {
                         myLocationEnabled: true,
                         myLocationButtonEnabled: false,
                         mapType: MapType.normal,
-                        initialCameraPosition: args.initialPosition!,
+                        initialCameraPosition: bloc.position,
                         onMapCreated: bloc.onMapCreated,
                         onCameraMove: bloc.onCameraMove,
                         onCameraIdle: bloc.onCameraIdle,
@@ -160,8 +161,5 @@ class MapScreenArgs {
   final CameraPosition? initialPosition;
 
   MapScreenArgs(
-      {this.initialPosition = const CameraPosition(
-        target: LatLng(41.30275284012766, 69.23845700742682),
-        zoom: 14.4746,
-      )});
+      {required this.initialPosition});
 }

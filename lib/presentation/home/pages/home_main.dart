@@ -18,12 +18,24 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeMain extends StatelessWidget {
+class HomeMain extends StatefulWidget  {
   //
   const HomeMain({super.key});
 
   @override
+  State<HomeMain> createState() => _HomeMainState();
+}
+
+class _HomeMainState extends State<HomeMain> with AutomaticKeepAliveClientMixin{
+
+
+  @override
+  bool get wantKeepAlive => true;
+
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     final bloc = context.read<HomeScreenCubit>();
 
     return BlocBuilder<HomeScreenCubit, HomeScreenState>(
@@ -126,4 +138,5 @@ class HomeMain extends StatelessWidget {
       nestedKey: NavigationService.homeNavigatorKey,
     );
   }
+
 }

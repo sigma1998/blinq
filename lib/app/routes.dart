@@ -1,13 +1,9 @@
 // Flutter imports:
-import 'package:blinq/presentation/report/second_driver_editors/screens/driver/driver_screen.dart';
-import 'package:flutter/material.dart';
-
 // Project imports:
 import 'package:blinq/presentation/auth/registration/email_screen/email_screen.dart';
 import 'package:blinq/presentation/auth/registration/registration_screen/registration_screen.dart';
 import 'package:blinq/presentation/auth/sign_in_screen/sign_in_screen.dart';
 import 'package:blinq/presentation/connect_to_blinq/connect_to_blinq_screen.dart';
-import 'package:blinq/presentation/contacts/contacts_screen.dart';
 import 'package:blinq/presentation/contacts/editors/contact/contact_edit_screen.dart';
 import 'package:blinq/presentation/contacts/editors/premage_message/premade_message_edit_screen.dart';
 import 'package:blinq/presentation/create_report/create_report_screen.dart';
@@ -52,10 +48,12 @@ import 'package:blinq/presentation/report/pages/sketch/sketch_screen.dart';
 import 'package:blinq/presentation/report/pages/speech_to_text/speech_to_text_screen.dart';
 import 'package:blinq/presentation/report/pages/vehicle_type/vehicle_type_screen.dart';
 import 'package:blinq/presentation/report/second_driver_editors/screens/car/car_screen.dart';
+import 'package:blinq/presentation/report/second_driver_editors/screens/driver/driver_screen.dart';
 import 'package:blinq/presentation/report/second_driver_editors/screens/insurance_company/insurance_company_screen.dart';
 import 'package:blinq/presentation/report/second_driver_editors/screens/policy_holder/policy_holder_screen.dart';
 import 'package:blinq/presentation/splash_screen/splash_screen.dart';
 import 'package:blinq/presentation/success_video/success_video_screen.dart';
+import 'package:flutter/material.dart';
 
 Map<String, WidgetBuilder> getRoutes(BuildContext context) {
   return {
@@ -162,9 +160,6 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
       page = const SecondDriverEditorPolicyHolderScreen();
     case SecondDriverEditorInsuranceScreen.route:
       page = const SecondDriverEditorInsuranceScreen();
-
-    default:
-      page = const HomeScreen();
   }
 
   return MaterialPageRoute<dynamic>(
@@ -182,8 +177,6 @@ Route onGenerateContactRoutes(RouteSettings settings) {
       page = const ContactEditScreen();
     case PremadeMessageEditScreen.route:
       page = const PremadeMessageEditScreen();
-    default:
-      page = const ContactsScreen();
   }
 
   return MaterialPageRoute<dynamic>(

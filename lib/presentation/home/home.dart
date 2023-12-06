@@ -1,10 +1,9 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Project imports:
 import 'package:blinq/app/routes.dart';
 import 'package:blinq/presentation/home/home_screen.dart';
 import 'package:blinq/utils/navigation_service.dart';
+import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
   //
@@ -13,7 +12,10 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Navigator(
-      initialRoute: HomeScreen.route,
+      requestFocus: false,
+      onGenerateInitialRoutes: (navigator, initialRoute) => [
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
+      ],
       onGenerateRoute: onGenerateHomeRoutes,
       key: NavigationService.homeNavigatorKey,
     );

@@ -57,7 +57,6 @@ class _VehicleEditorScreenState extends State<VehicleEditorScreen> {
                 vertical: 40,
                 horizontal: 32,
               ),
-              physics: const NeverScrollableScrollPhysics(),
               children: [
                 PickerTextField(
                   labelText: 'strVehicleType'.tr(),
