@@ -52,6 +52,7 @@ String timeFormat(String? date, {String format = "HH:mm"}) {
 }
 
 String getReportTime(String? date) {
+  if (date == null) return '';
   return "${dateFormat(date, format: "dd")}. ${getMonthName(int.parse(dateFormat(date, format: "MM")))} ${dateFormat(date, format: "yyyy")}, ${timeFormat(date)}";
 }
 

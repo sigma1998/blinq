@@ -93,7 +93,7 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
 
   Future<void> _sendVisibleDamage() async {
     if (reportBloc.reportType == ReportType.accident) {
-      if (reportBloc.user == User.A) {
+      if (reportBloc.state.user == User.A) {
         await accidentRepository.visibleDamage(
             reportBloc.reportId, textController.text);
       } else {
@@ -113,7 +113,7 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
 
       final VehicleType vehicleType;
 
-      if (reportBloc.user == User.A) {
+      if (reportBloc.state.user == User.A) {
         vehicleType = reportBloc.aDriverVehicleType;
       } else {
         vehicleType = await accidentRepository
@@ -139,13 +139,13 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
       return 3;
     }
     if (speechToTextScreenMode == SpeechToTextScreenMode.visibleDamage) {
-      if (reportBloc.user == User.A) {
+      if (reportBloc.state.user == User.A) {
         return 5;
       } else {
         return 10;
       }
     } else {
-      if (reportBloc.user == User.A) {
+      if (reportBloc.state.user == User.A) {
         return 6;
       } else {
         return 11;
@@ -155,7 +155,7 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
 
   Future<void> _sendRemarks() async {
     if (reportBloc.reportType == ReportType.accident) {
-      if (reportBloc.user == User.A) {
+      if (reportBloc.state.user == User.A) {
         await accidentRepository.myRemarks(
             reportBloc.reportId, textController.text);
       } else {

@@ -80,7 +80,7 @@ class PointsOfImpactBloc extends Cubit<PointsOfImpactScreenState> {
 
   Future<void> _sendData(MultipartFile multipartFile) async{
     if(reportBloc.reportType == ReportType.accident){
-      if(reportBloc.user == User.A){
+      if(reportBloc.state.user == User.A){
         await accidentRepository.accidentInitialImpactPoint(
             reportBloc.reportId, multipartFile);
       }
@@ -96,7 +96,7 @@ class PointsOfImpactBloc extends Cubit<PointsOfImpactScreenState> {
   }
 
   int getStep() {
-    if(reportBloc.user == User.A){
+    if(reportBloc.state.user == User.A){
      return 4;
     }
     else{

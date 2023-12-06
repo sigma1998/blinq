@@ -88,7 +88,7 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
 
   Future<void> _uploadMedia() async {
     if (reportBloc.reportType == ReportType.accident) {
-      if (reportBloc.user == User.A) {
+      if (reportBloc.state.user == User.A) {
         await accidentRepository.uploadMedia(
           reportBloc.reportId,
           state.uploadedFilesId,
@@ -315,7 +315,7 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
   void _navigate() {
     print('askdjoadfjodjasm');
     if (reportBloc.reportType == ReportType.accident) {
-      if (reportBloc.user == User.A) {
+      if (reportBloc.state.user == User.A) {
         print('askdjoadfjodjasdsadasdsam');
 
         NavigationService.pushNamed(
@@ -334,7 +334,7 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
   }
 
   int step() {
-    if (reportBloc.user == User.A) {
+    if (reportBloc.state.user == User.A) {
       return 8;
     }
     return 13;

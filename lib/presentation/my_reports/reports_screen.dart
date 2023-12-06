@@ -26,10 +26,14 @@ class _ReportsScreenState extends State<ReportsScreen> {
   late ReportsScreenBloc bloc;
 
   @override
-  void initState() {
-    bloc = ReportsScreenBloc(repository: getIt<ProfileRepositoryImpl>());
+  void didChangeDependencies() {
+    bloc = ReportsScreenBloc(
+      repository: getIt<ProfileRepositoryImpl>(),
+      reportBloc: context.read(),
+      mainScreenBloc: context.read(),
+    );
     bloc.add(OnInit());
-    super.initState();
+    super.didChangeDependencies();
   }
 
   @override

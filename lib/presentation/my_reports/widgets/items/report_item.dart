@@ -66,7 +66,7 @@ class _ProfileReportItemState extends State<ProfileReportItem>
               const SizedBox(width: 20),
               Expanded(
                 child: Text(
-                  getReportTime(widget.historyItemModelDto.createdAt!),
+                  getReportTime(widget.historyItemModelDto.createdAt),
                   style: const TextStyle(
                     fontWeight: FontWeight.w700,
                   ),

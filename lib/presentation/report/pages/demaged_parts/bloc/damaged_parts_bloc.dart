@@ -153,7 +153,7 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
   }
 
   int getStep() {
-    if (reportBloc.user == User.A) {
+    if (reportBloc.state.user == User.A) {
       return 7;
     }
     return 12;
@@ -166,7 +166,7 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
       required MultipartFile? left,
       required MultipartFile? right}) async {
     if (reportBloc.reportType == ReportType.accident) {
-      if (reportBloc.user == User.A) {
+      if (reportBloc.state.user == User.A) {
         await accidentRepository.damagedPoints(
             top: top,
             front: front,

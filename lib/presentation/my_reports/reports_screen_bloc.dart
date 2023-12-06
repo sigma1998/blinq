@@ -1,7 +1,10 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
+import 'package:blinq/presentation/main_screen/main_screen_bloc.dart';
+import 'package:blinq/presentation/main_screen/main_screen_event.dart';
 import 'package:blinq/utils/general_functions.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
@@ -17,8 +20,13 @@ import 'reports_screen_state.dart';
 
 class ReportsScreenBloc extends Bloc<ReportsScreenEvent, ReportsScreenState> {
   final ProfileRepository repository;
+  final ReportBloc reportBloc;
+  final MainScreenBloc mainScreenBloc;
 
-  ReportsScreenBloc({required this.repository})
+  ReportsScreenBloc(
+      {required this.repository,
+      required this.reportBloc,
+      required this.mainScreenBloc})
       : super(const ReportsScreenState(status: Status.loading)) {
     on<OnInit>(_onInit);
     on<OnTabBarChanged>(_onTabBatChanged);
@@ -116,5 +124,25 @@ class ReportsScreenBloc extends Bloc<ReportsScreenEvent, ReportsScreenState> {
   }
 
   FutureOr<void> _onContinueItem(
-      OnContinueItem event, Emitter<ReportsScreenState> emit) async {}
+      OnContinueItem event, Emitter<ReportsScreenState> emit) async {
+    emit(state.copyWith(status: Status.loading));
+    try {
+      final RouteAndArgs? routeAndArgs = await reportBloc.onCreateReport();
+
+      emit(state.copyWith(status: Status.initial));
+
+      if (routeAndArgs == null) {
+        NavigationService.showErrorToast('');
+      } else {
+        NavigationService.back();
+        mainScreenBloc.add(OnItemPressed(newIndex: 0));
+        NavigationService.pushNamed(
+            routeName: routeAndArgs.route,
+            nestedKey: NavigationService.homeNavigatorKey,
+            arguments: routeAndArgs.args);
+      }
+    } catch (e) {
+      emit(state.copyWith(status: Status.initial));
+    }
+  }
 }
