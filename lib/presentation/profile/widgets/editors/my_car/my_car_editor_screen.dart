@@ -56,6 +56,7 @@ class _EditorMyCarScreenState extends State<EditorMyCarScreen> {
                   vertical: 40,
                   horizontal: 32,
                 ),
+                physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
                     PickerTextField(

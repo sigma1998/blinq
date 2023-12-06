@@ -638,6 +638,8 @@
   "strTryToReduceImageSize": "Próbálja meg csökkenteni a kép minőségét, és próbálja újra",
   "strGotIt": "Értem",
   "strVehicleTypeShort": "Járműtípus",
+  "strMyVan": "Autóm",
+  "strMyMoto": "Motorkerékpárom",
   "byke": {
     "windshield": "szélvédő",
     "handlebars": "kormány",

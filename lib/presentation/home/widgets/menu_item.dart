@@ -23,7 +23,7 @@ class HomeScreenMenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: onTap,
       child: Container(
         height: 160,
@@ -35,9 +35,12 @@ class HomeScreenMenuItem extends StatelessWidget {
         child: Stack(
           children: [
             if (background != null)
-              SvgPicture.asset(
-                background!,
-                fit: BoxFit.cover,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: SvgPicture.asset(
+                  background!,
+                  fit: BoxFit.cover,
+                ),
               ),
             Padding(
               padding: EdgeInsets.all(padding),

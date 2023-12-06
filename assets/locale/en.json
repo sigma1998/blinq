@@ -639,6 +639,8 @@
   "strTryToReduceImageSize": "Please try reducing the image's quality and try again",
   "strGotIt": "Got it",
   "strVehicleTypeShort": "Vehicle Type",
+  "strMyVan": "My Van",
+  "strMyMoto": "My Moto",
   "byke": {
     "windshield": "windshield",
     "handlebars": "handlebars",

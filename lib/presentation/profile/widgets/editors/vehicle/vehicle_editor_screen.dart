@@ -57,14 +57,16 @@ class _VehicleEditorScreenState extends State<VehicleEditorScreen> {
                 vertical: 40,
                 horizontal: 32,
               ),
-              physics: const NeverScrollableScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               children: [
                 PickerTextField(
                   labelText: 'strVehicleType'.tr(),
                   controller: bloc.vehicleTypeController,
                   onTap: bloc.onVehicleTypePressed,
                 ),
-                const SizedBox(height: 16,),
+                const SizedBox(
+                  height: 16,
+                ),
                 NameTextField(
                   labelText: 'strMakeType'.tr(),
                   controller: bloc.makeTypeController,

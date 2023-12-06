@@ -57,7 +57,7 @@ class _MyVehicleEditorScreenState extends State<MyVehicleEditorScreen> {
                 vertical: 40,
                 horizontal: 32,
               ),
-              physics: const NeverScrollableScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               children: [
                 NumberTextField(
                   labelText: 'strMilesTravelled'.tr(),

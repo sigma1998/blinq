@@ -9,7 +9,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapScreen extends StatefulWidget {
-
   static const String route = 'map_screen';
   const MapScreen({Key? key}) : super(key: key);
 
@@ -28,7 +27,6 @@ class _MapScreenState extends State<MapScreen> {
     super.didChangeDependencies();
   }
 
-
   @override
   Widget build(BuildContext context) {
     final MapScreenArgs args =
@@ -41,8 +39,8 @@ class _MapScreenState extends State<MapScreen> {
               child: Stack(
                 children: [
                   Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 14),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12),
                       child: GoogleMap(
