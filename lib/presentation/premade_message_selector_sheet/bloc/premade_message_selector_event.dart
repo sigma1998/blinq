@@ -1,18 +1,19 @@
-import 'package:blinq/data/model/premade_message/premade_message_response_dto.dart';
+// Project imports:
 import 'package:blinq/data/model/premade_message/response/premade_message_response_model.dart';
+import 'package:blinq/data/model/premade_message/premade_message_response_dto.dart';
 
-sealed class PremadeMessageSelectorEvent {}
+sealed class PreMadeMessageSelectorEvent {}
 
-class OnLoadPremadeMessages extends PremadeMessageSelectorEvent {}
+class OnLoadPreMadeMessages extends PreMadeMessageSelectorEvent {}
 
-class OnSelectPremadeMessage extends PremadeMessageSelectorEvent {
-  final PreMadeMessageResponseModel message;
+class OnPreMadeMessagesLoaded extends PreMadeMessageSelectorEvent {
+  final PreMadeMessageResponseDto? premadeMessages;
 
-  OnSelectPremadeMessage({required this.message});
+  OnPreMadeMessagesLoaded({required this.premadeMessages});
 }
 
-class OnContactsLoaded extends PremadeMessageSelectorEvent {
-  PreMadeMessageResponseDto? premadeMessages;
+class OnSelectPreMadeMessage extends PreMadeMessageSelectorEvent {
+  final PreMadeMessageResponseModel message;
 
-  OnContactsLoaded({required this.premadeMessages});
+  OnSelectPreMadeMessage({required this.message});
 }

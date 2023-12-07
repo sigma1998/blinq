@@ -22,29 +22,29 @@ part 'premade_message_selector_bloc.freezed.dart';
 
 part 'premade_message_selector_state.dart';
 
-class PremadeMessageSelectorBloc
-    extends Bloc<PremadeMessageSelectorEvent, PremadeMessageSelectorState> {
+class PreMadeMessageSelectorBloc
+    extends Bloc<PreMadeMessageSelectorEvent, PremadeMessageSelectorState> {
   //
   final PreMadeMessagesBloc premadeMessagesBloc;
   final PermissionService permissionService;
 
-  PremadeMessageSelectorBloc({
+  PreMadeMessageSelectorBloc({
     required this.premadeMessagesBloc,
     required this.permissionService,
   }) : super(const PremadeMessageSelectorState()) {
-    on<OnLoadPremadeMessages>(_onLoadPremadeMessages);
-    on<OnSelectPremadeMessage>(_onSelectPremadeMessage);
-    on<OnContactsLoaded>(_onContactsLoaded);
+    on<OnLoadPreMadeMessages>(_onLoadPremadeMessages);
+    on<OnPreMadeMessagesLoaded>(_onPreMadeMessagesLoaded);
+    on<OnSelectPreMadeMessage>(_onSelectPremadeMessage);
 
     premadeMessagesBloc.stream.listen((event) {
       if (event.premadeMessages != null) {
-        add(OnContactsLoaded(premadeMessages: event.premadeMessages));
+        add(OnPreMadeMessagesLoaded(premadeMessages: event.premadeMessages));
       }
     });
   }
 
   void _onLoadPremadeMessages(
-      OnLoadPremadeMessages event, Emitter<PremadeMessageSelectorState> emit) {
+      OnLoadPreMadeMessages event, Emitter<PremadeMessageSelectorState> emit) {
     emit(
       state.copyWith(
         status: premadeMessagesBloc.state.status,
@@ -55,7 +55,7 @@ class PremadeMessageSelectorBloc
   }
 
   void _onSelectPremadeMessage(
-      OnSelectPremadeMessage event, Emitter<PremadeMessageSelectorState> emit) {
+      OnSelectPreMadeMessage event, Emitter<PremadeMessageSelectorState> emit) {
     emit(state.copyWith(
       selectedMessage: event.message,
     ));
@@ -81,8 +81,8 @@ class PremadeMessageSelectorBloc
     );
   }
 
-  FutureOr<void> _onContactsLoaded(
-      OnContactsLoaded event, Emitter<PremadeMessageSelectorState> emit) {
+  FutureOr<void> _onPreMadeMessagesLoaded(OnPreMadeMessagesLoaded event,
+      Emitter<PremadeMessageSelectorState> emit) {
     emit(
       state.copyWith(
         status: premadeMessagesBloc.state.status,
