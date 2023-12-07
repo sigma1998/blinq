@@ -167,8 +167,8 @@ class NavigationService {
     return navigatorKey.currentState!.canPop();
   }
 
-  static void showToast({required String text, required String title}) {
-    Flushbar(
+  static Future<void> showToast({required String text, required String title})async {
+   await Flushbar(
       borderRadius: BorderRadius.circular(15),
       title: title,
       messageText: Text(text),

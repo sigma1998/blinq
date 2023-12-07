@@ -1,18 +1,20 @@
 // Package imports:
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:blinq/data/model/contact/response/contact_response_model.dart';
+import 'package:blinq/presentation/contacts/pages/contacts/bloc/contacts_bloc.dart';
 
 // Project imports:
 import 'package:blinq/presentation/premade_message_selector_sheet/premade_message_selector_sheet.dart';
-import 'package:blinq/presentation/contacts/pages/contacts/bloc/contacts_bloc.dart';
-import 'package:blinq/data/model/contact/response/contact_response_model.dart';
-import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/url_helper.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'inform_close_ones_event.dart';
 
-part 'inform_close_ones_state.dart';
 part 'inform_close_ones_bloc.freezed.dart';
+
+part 'inform_close_ones_state.dart';
 
 class InformCloseOnesBloc
     extends Bloc<InformCloseOnesEvent, InformCloseOnesState> {
@@ -25,16 +27,21 @@ class InformCloseOnesBloc
     on<OnSelectContact>(_onSelectContact);
   }
 
-  void onChoosePremadeMessage() {
+  void onChoosePremadeMessage() async {
     final phoneNumbers =
         state.selectedContacts.map((e) => e.phoneNumber ?? '').toList();
 
-    NavigationService.showBottomSheet(
+    final res = await NavigationService.showBottomSheet(
       isScrollable: false,
       sheet: PremadeMessageSelectorSheet(
         phoneNumbers: phoneNumbers,
       ),
     );
+    if (res is bool) {
+      if (res) {
+        NavigationService.back();
+      }
+    }
   }
 
   void onPhoneCall(String phoneNumber) => MyUrlLauncher.call(phoneNumber);
