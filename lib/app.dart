@@ -18,7 +18,7 @@ import 'domain/repositories/contacts_repository.dart';
 import 'domain/repositories/profile_repository.dart';
 import 'presentation/contacts/pages/contacts/bloc/contacts_bloc.dart';
 import 'presentation/contacts/pages/premade_messages/bloc/premade_messages_bloc.dart';
-import 'presentation/main_screen/main_screen_bloc.dart';
+import 'presentation/main_screen/bloc/main_screen_bloc.dart';
 import 'presentation/profile/bloc/profile_bloc.dart';
 import 'presentation/success_video/success_video_bloc.dart';
 import 'utils/navigation_service.dart';

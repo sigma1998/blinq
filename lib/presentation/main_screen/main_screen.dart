@@ -6,17 +6,17 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 // Project imports:
 import 'package:blinq/presentation/connect_to_blinq/cubit/connect_to_blinq_cubit.dart';
-import 'package:blinq/presentation/main_screen/main_screen_event.dart';
 import 'package:blinq/presentation/profile/profile_screen.dart';
 import 'package:blinq/presentation/contacts/contacts.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/presentation/home/home.dart';
-import 'main_screen_bloc.dart';
+import 'bloc/main_screen_bloc.dart';
+import 'bloc/main_screen_event.dart';
+import 'widgets/item.dart';
 
 class MainScreen extends StatefulWidget {
   //
@@ -39,10 +39,12 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<MainScreenBloc>();
+
     return BlocBuilder<MainScreenBloc, GenericBlocState<int>>(
       builder: (context, state) {
         return WillPopScope(
-          onWillPop: context.read<MainScreenBloc>().onWillPop,
+          onWillPop: bloc.onWillPop,
           child: Scaffold(
             extendBody: true,
             body: IndexedStack(
@@ -79,44 +81,20 @@ class _MainScreenState extends State<MainScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        InkWell(
-                          onTap: () => context
-                              .read<MainScreenBloc>()
-                              .add(OnItemPressed(newIndex: 0)),
-                          child: SvgPicture.asset(
-                            AppDrawables.blinq,
-                            colorFilter: ColorFilter.mode(
-                                state.data == 0
-                                    ? Theme.of(context).colorScheme.primary
-                                    : Theme.of(context).colorScheme.onSecondary,
-                                BlendMode.srcIn),
-                          ),
+                        MainBottomNavigationItem(
+                          icon: AppDrawables.blinq,
+                          isActive: state.data == 0,
+                          onTap: () => bloc.add(OnItemPressed(newIndex: 0)),
                         ),
-                        InkWell(
-                          onTap: () => context
-                              .read<MainScreenBloc>()
-                              .add(OnItemPressed(newIndex: 1)),
-                          child: SvgPicture.asset(AppDrawables.contacts,
-                              colorFilter: ColorFilter.mode(
-                                  state.data == 1
-                                      ? Theme.of(context).colorScheme.primary
-                                      : Theme.of(context)
-                                          .colorScheme
-                                          .onSecondary,
-                                  BlendMode.srcIn)),
+                        MainBottomNavigationItem(
+                          icon: AppDrawables.contacts,
+                          isActive: state.data == 1,
+                          onTap: () => bloc.add(OnItemPressed(newIndex: 1)),
                         ),
-                        InkWell(
-                          onTap: () => context
-                              .read<MainScreenBloc>()
-                              .add(OnItemPressed(newIndex: 2)),
-                          child: SvgPicture.asset(AppDrawables.profile,
-                              colorFilter: ColorFilter.mode(
-                                  state.data == 2
-                                      ? Theme.of(context).colorScheme.primary
-                                      : Theme.of(context)
-                                          .colorScheme
-                                          .onSecondary,
-                                  BlendMode.srcIn)),
+                        MainBottomNavigationItem(
+                          icon: AppDrawables.profile,
+                          isActive: state.data == 2,
+                          onTap: () => bloc.add(OnItemPressed(newIndex: 2)),
                         ),
                       ],
                     ),

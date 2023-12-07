@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:blinq/presentation/main_screen/main_screen_event.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'main_screen_event.dart';
 
 class MainScreenBloc extends Bloc<MainScreenEvent, GenericBlocState<int>> {
   MainScreenBloc() : super(GenericBlocState.success(0)) {

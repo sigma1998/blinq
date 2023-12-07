@@ -3,8 +3,8 @@ import 'dart:io';
 
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
-import 'package:blinq/presentation/main_screen/main_screen_bloc.dart';
-import 'package:blinq/presentation/main_screen/main_screen_event.dart';
+import 'package:blinq/presentation/main_screen/bloc/main_screen_bloc.dart';
+import 'package:blinq/presentation/main_screen/bloc/main_screen_event.dart';
 import 'package:blinq/utils/general_functions.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
