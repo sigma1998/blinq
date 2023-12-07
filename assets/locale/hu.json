@@ -641,6 +641,7 @@
   "strMyVan": "Autóm",
   "strMyMoto": "Motorkerékpárom",
   "strYouHaveUnfinishedReport": "Van egy befejezetlen jelentésed",
+  "strYouDontHaveReports": "Még nincsenek jelentései",
   "byke": {
     "windshield": "szélvédő",
     "handlebars": "kormány",

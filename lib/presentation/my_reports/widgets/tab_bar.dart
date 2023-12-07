@@ -1,17 +1,21 @@
+// Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ReportsScreenTabBar extends StatelessWidget {
-  final VoidCallback onFirstTabPressed;
-  final VoidCallback onSecondTabPressed;
+  //
   final int index;
 
-  const ReportsScreenTabBar(
-      {Key? key,
-      required this.index,
-      required this.onFirstTabPressed,
-      required this.onSecondTabPressed})
-      : super(key: key);
+  final VoidCallback onFirstTabPressed;
+  final VoidCallback onSecondTabPressed;
+
+  const ReportsScreenTabBar({
+    super.key,
+    required this.index,
+    //
+    required this.onFirstTabPressed,
+    required this.onSecondTabPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
