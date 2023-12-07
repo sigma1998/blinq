@@ -640,6 +640,7 @@
   "strVehicleTypeShort": "Járműtípus",
   "strMyVan": "Autóm",
   "strMyMoto": "Motorkerékpárom",
+  "strYouHaveUnfinishedReport": "Van egy befejezetlen jelentésed",
   "byke": {
     "windshield": "szélvédő",
     "handlebars": "kormány",

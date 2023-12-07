@@ -641,6 +641,7 @@
   "strVehicleTypeShort": "Vehicle Type",
   "strMyVan": "My Van",
   "strMyMoto": "My Moto",
+  "strYouHaveUnfinishedReport": "You have an unfinished report",
   "byke": {
     "windshield": "windshield",
     "handlebars": "handlebars",

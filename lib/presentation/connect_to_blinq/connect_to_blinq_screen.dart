@@ -28,34 +28,36 @@ class ConnectToBlinqScreen extends StatelessWidget {
     return SafeArea(
       child: BlocBuilder<ConnectToBlinqCubit, ConnectToBlinqState>(
         builder: (context, state) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 40,
-              horizontal: 30,
-            ),
-            child: Stack(
-              children: [
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: ListView(
-                    shrinkWrap: true,
-                    physics: const BouncingScrollPhysics(),
-                    children: [
-                      _buildStateWidget(state),
-                      const SizedBox(height: 50),
-                      if (!state.scanning &&
-                          state.boardConnectionState !=
-                              DeviceConnectionState.connected &&
-                          state.savedBleDevices.isNotEmpty) ...[
-                        const PreviouslyConnectedToBlinqCard(),
+          return Scaffold(
+            body: Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 40,
+                horizontal: 30,
+              ),
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: ListView(
+                      shrinkWrap: true,
+                      physics: const BouncingScrollPhysics(),
+                      children: [
+                        _buildStateWidget(state),
+                        const SizedBox(height: 50),
+                        if (!state.scanning &&
+                            state.boardConnectionState !=
+                                DeviceConnectionState.connected &&
+                            state.savedBleDevices.isNotEmpty) ...[
+                          const PreviouslyConnectedToBlinqCard(),
+                        ],
                       ],
-                    ],
+                    ),
                   ),
-                ),
-                MyCloseButton(
-                  onTap: cubit.onNavigateBack,
-                ),
-              ],
+                  MyCloseButton(
+                    onTap: cubit.onNavigateBack,
+                  ),
+                ],
+              ),
             ),
           );
         },
