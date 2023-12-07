@@ -27,6 +27,8 @@ class PolicyHolderEditorBloc
   final ProfileBloc profileBloc;
   final ProfileRepository repository;
 
+  final formKey = GlobalKey<FormState>();
+
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final addressController = TextEditingController();
@@ -56,6 +58,21 @@ class PolicyHolderEditorBloc
         profileBloc.state.profile?.policyHolder?.phoneNumber ?? '';
   }
 
+  bool validateForm() => formKey.currentState!.validate();
+
+  //
+
+  void onSelectCountriesPressed() {
+    NavigationService.showDialog(dialog: const CountriesDialog())!
+        .then((value) {
+      if (value != null) {
+        countryController.text = value;
+      }
+    });
+  }
+
+  //
+
   FutureOr<void> _onSubmitPolicyHolder(
       OnSubmitPolicyHolder event, Emitter<PolicyHolderEditorState> emit) async {
     try {
@@ -76,14 +93,5 @@ class PolicyHolderEditorBloc
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }
-  }
-
-  void onSelectCountriesPressed() {
-    NavigationService.showDialog(dialog: const CountriesDialog())!
-        .then((value) {
-      if (value != null) {
-        countryController.text = value;
-      }
-    });
   }
 }

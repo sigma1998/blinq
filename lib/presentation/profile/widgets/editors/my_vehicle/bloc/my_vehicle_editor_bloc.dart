@@ -26,6 +26,8 @@ class MyVehicleEditorBloc
   final ProfileBloc profileBloc;
   final ProfileRepository repository;
 
+  final formKey = GlobalKey<FormState>();
+
   final traveledKmController = TextEditingController();
   final nextTechnicalController = TextEditingController();
   final oilReplacementController = TextEditingController();
@@ -48,6 +50,8 @@ class MyVehicleEditorBloc
     batteryReplacementDateController.text =
         profileBloc.state.profile?.userVehicle?.batteryReplacementDate ?? '';
   }
+
+  bool validateForm() => formKey.currentState!.validate();
 
   FutureOr<void> _onSubmitMyVehicle(
       OnSubmitMyVehicle event, Emitter<MyVehicleEditorState> emit) async {

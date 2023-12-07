@@ -47,76 +47,86 @@ class _VehicleEditorScreenState extends State<VehicleEditorScreen> {
   @override
   Widget build(BuildContext context) {
     return KeyboardEscape(
-      child: Scaffold(
-        appBar: MyAppBar(title: 'strVehicle'.tr()),
-        body: BlocBuilder<VehicleEditorBloc, VehicleEditorState>(
-          bloc: bloc,
-          builder: (context, state) {
-            return ListView(
-              padding: const EdgeInsets.symmetric(
-                vertical: 40,
-                horizontal: 32,
+      child: BlocBuilder<VehicleEditorBloc, VehicleEditorState>(
+        bloc: bloc,
+        builder: (context, state) {
+          return Scaffold(
+            extendBody: true,
+            appBar: MyAppBar(title: 'strVehicle'.tr()),
+            body: Form(
+              key: bloc.formKey,
+              child: ListView(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 40,
+                  horizontal: 32,
+                ),
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  PickerTextField(
+                    labelText: 'strVehicleType'.tr(),
+                    controller: bloc.vehicleTypeController,
+                    onTap: bloc.onVehicleTypePressed,
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  NameTextField(
+                    labelText: 'strMakeType'.tr(),
+                    controller: bloc.makeTypeController,
+                  ),
+                  const SizedBox(height: 16),
+                  NumberTextField(
+                    labelText:
+                        '${'strRegistrationNumber'.tr()} (${'strMotor'.tr()})',
+                    controller: bloc.engineNumberController,
+                  ),
+                  const SizedBox(height: 16),
+                  PickerTextField(
+                    labelText: 'strCountryRegistration'.tr(),
+                    controller: bloc.countryOfRegistrationController,
+                    onTap: bloc.onSelectCountryOfRegistrationPressed,
+                  ),
+                  const SizedBox(height: 16),
+                  NumberTextField(
+                    controller: bloc.trailerRegistrationNumberController,
+                    labelText:
+                        '${'strRegistrationNumber'.tr()} (${'strTrailer'.tr()})',
+                  ),
+                  const SizedBox(height: 16),
+                  PickerTextField(
+                    onTap: bloc.onSelectTrailerCountryOfRegistrationPressed,
+                    controller: bloc.trailerCountryOfRegistrationController,
+                    labelText:
+                        '${'strCountryRegistration'.tr()} (${'strTrailer'.tr()})',
+                  ),
+                  const SizedBox(height: 90),
+                ],
               ),
-              physics: const BouncingScrollPhysics(),
-              children: [
-                PickerTextField(
-                  labelText: 'strVehicleType'.tr(),
-                  controller: bloc.vehicleTypeController,
-                  onTap: bloc.onVehicleTypePressed,
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                NameTextField(
-                  labelText: 'strMakeType'.tr(),
-                  controller: bloc.makeTypeController,
-                ),
-                const SizedBox(height: 16),
-                NumberTextField(
-                  labelText:
-                      '${'strRegistrationNumber'.tr()} (${'strMotor'.tr()})',
-                  controller: bloc.engineNumberController,
-                ),
-                const SizedBox(height: 16),
-                PickerTextField(
-                  labelText: 'strCountryRegistration'.tr(),
-                  controller: bloc.countryOfRegistrationController,
-                  onTap: bloc.onSelectCountryOfRegistrationPressed,
-                ),
-                const SizedBox(height: 16),
-                NumberTextField(
-                  controller: bloc.trailerRegistrationNumberController,
-                  labelText:
-                      '${'strRegistrationNumber'.tr()} (${'strTrailer'.tr()})',
-                ),
-                const SizedBox(height: 16),
-                PickerTextField(
-                  onTap: bloc.onSelectTrailerCountryOfRegistrationPressed,
-                  controller: bloc.trailerCountryOfRegistrationController,
-                  labelText:
-                      '${'strCountryRegistration'.tr()} (${'strTrailer'.tr()})',
-                ),
-                const SizedBox(height: 40),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    MyButton.primary(
-                      label: 'strSave'.tr(),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8,
-                        horizontal: 60,
-                      ),
-                      onTap: () => bloc.add(OnSubmitVehicle()),
-                      isLoading: state.status == Status.loading,
-                      labelStyle: const TextStyle(fontWeight: FontWeight.w500),
+            ),
+            bottomNavigationBar: Padding(
+              padding: const EdgeInsets.only(bottom: 60),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  MyButton.primary(
+                    label: 'strSave'.tr(),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8,
+                      horizontal: 60,
                     ),
-                  ],
-                ),
-                const SizedBox(height: 24),
-              ],
-            );
-          },
-        ),
+                    isLoading: state.status == Status.loading,
+                    onTap: () {
+                      if (bloc.validateForm()) {
+                        bloc.add(OnSubmitVehicle());
+                      }
+                    },
+                    labelStyle: const TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

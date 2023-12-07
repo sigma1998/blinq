@@ -55,75 +55,78 @@ class _InsuranceEditorScreenState extends State<InsuranceEditorScreen> {
           return Scaffold(
             extendBody: true,
             appBar: MyAppBar(title: 'strInsurance'.tr()),
-            body: ListView(
-              padding: const EdgeInsets.symmetric(
-                vertical: 40,
-                horizontal: 32,
-              ),
-              physics: const BouncingScrollPhysics(),
-              children: [
-                NameTextField(
-                  labelText: 'strName'.tr(),
-                  controller: bloc.nameController,
+            body: Form(
+              key: bloc.formKey,
+              child: ListView(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 40,
+                  horizontal: 32,
                 ),
-                const SizedBox(height: 16),
-                NameTextField(
-                  labelText: 'strPolicyNumber'.tr(),
-                  controller: bloc.policyNumberController,
-                ),
-                const SizedBox(height: 16),
-                NameTextField(
-                  labelText: 'strGreenCardNumber'.tr(),
-                  controller: bloc.greenCardNumberController,
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  'strInsuranceCertificateGreenCardValid'.tr(),
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                    color: Theme.of(context).colorScheme.onSecondary,
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  NameTextField(
+                    labelText: 'strName'.tr(),
+                    controller: bloc.nameController,
                   ),
-                ),
-                const SizedBox(height: 16),
-                DatePickerTextField(
-                  labelText: 'strFrom'.tr(),
-                  controller: bloc.certificateValidFromController,
-                ),
-                const SizedBox(height: 16),
-                DatePickerTextField(
-                  labelText: 'strTo'.tr(),
-                  controller: bloc.certificateValidToController,
-                ),
-                const SizedBox(height: 16),
-                NameTextField(
-                  labelText: 'strAgency'.tr(),
-                  controller: bloc.agencyController,
-                ),
-                const SizedBox(height: 16),
-                NameTextField(
-                  labelText: 'strAddress'.tr(),
-                  controller: bloc.addressController,
-                ),
-                const SizedBox(height: 16),
-                PickerTextField(
-                  labelText: 'strCountry'.tr(),
-                  controller: bloc.countryController,
-                  onTap: bloc.onSelectCountriesPressed,
-                ),
-                const SizedBox(height: 16),
-                NameTextField(
-                  labelText: 'strTelEmail'.tr(),
-                  controller: bloc.emailController,
-                ),
-                const SizedBox(height: 16),
-                PickerTextField(
-                  labelText: 'strPolicCover'.tr(),
-                  onTap: bloc.onPolicyCoverPressed,
-                  controller: bloc.policyCoverController,
-                ),
-                const SizedBox(height: 90),
-              ],
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: 'strPolicyNumber'.tr(),
+                    controller: bloc.policyNumberController,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: 'strGreenCardNumber'.tr(),
+                    controller: bloc.greenCardNumberController,
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'strInsuranceCertificateGreenCardValid'.tr(),
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      color: Theme.of(context).colorScheme.onSecondary,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  DatePickerTextField(
+                    labelText: 'strFrom'.tr(),
+                    controller: bloc.certificateValidFromController,
+                  ),
+                  const SizedBox(height: 16),
+                  DatePickerTextField(
+                    labelText: 'strTo'.tr(),
+                    controller: bloc.certificateValidToController,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: 'strAgency'.tr(),
+                    controller: bloc.agencyController,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: 'strAddress'.tr(),
+                    controller: bloc.addressController,
+                  ),
+                  const SizedBox(height: 16),
+                  PickerTextField(
+                    labelText: 'strCountry'.tr(),
+                    controller: bloc.countryController,
+                    onTap: bloc.onSelectCountriesPressed,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: 'strTelEmail'.tr(),
+                    controller: bloc.emailController,
+                  ),
+                  const SizedBox(height: 16),
+                  PickerTextField(
+                    labelText: 'strPolicCover'.tr(),
+                    onTap: bloc.onPolicyCoverPressed,
+                    controller: bloc.policyCoverController,
+                  ),
+                  const SizedBox(height: 90),
+                ],
+              ),
             ),
             bottomNavigationBar: Padding(
               padding: const EdgeInsets.only(bottom: 60),
@@ -131,7 +134,11 @@ class _InsuranceEditorScreenState extends State<InsuranceEditorScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   MyButton.primary(
-                    onTap: () => bloc.add(OnSubmitInsurance()),
+                    onTap: () {
+                      if (bloc.validateForm()) {
+                        bloc.add(OnSubmitInsurance());
+                      }
+                    },
                     label: 'strSave'.tr(),
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,

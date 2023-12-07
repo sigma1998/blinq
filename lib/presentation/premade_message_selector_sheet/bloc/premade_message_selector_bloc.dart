@@ -10,7 +10,6 @@ import 'package:flutter_sms/flutter_sms.dart';
 // Project imports:
 import 'package:blinq/presentation/contacts/pages/premade_messages/bloc/premade_messages_bloc.dart';
 import 'package:blinq/data/model/premade_message/response/premade_message_response_model.dart';
-import 'package:blinq/presentation/create_report/create_report_screen.dart';
 import 'package:blinq/utils/services/permission/permission_service.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
@@ -65,8 +64,11 @@ class PremadeMessageSelectorBloc
       message: state.selectedMessage?.message ?? '',
     );
     debugPrint('result: $result');
-    NavigationService.showErrorToast('strYourInformMessageSent'.tr());
+    NavigationService.showToast(
+      text: 'strYourInformMessageSent'.tr(),
+      title: 'strSuccess'.tr(),
+    );
     await Future.delayed(const Duration(seconds: 2));
-    NavigationService.pushReplacement(routeName: CreateReportScreen.route);
+    NavigationService.back();
   }
 }

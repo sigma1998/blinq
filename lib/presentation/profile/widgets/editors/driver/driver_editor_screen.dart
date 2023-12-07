@@ -50,63 +50,66 @@ class _DriverEditorScreenState extends State<DriverEditorScreen> {
           return Scaffold(
             extendBody: true,
             appBar: MyAppBar(title: 'strDriver'.tr()),
-            body: ListView(
-              padding: const EdgeInsets.symmetric(
-                vertical: 40,
-                horizontal: 32,
+            body: Form(
+              key: bloc.formKey,
+              child: ListView(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 40,
+                  horizontal: 32,
+                ),
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  NameTextField(
+                    labelText: 'strFirstName'.tr(),
+                    controller: bloc.firstNameController,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: 'strLastName'.tr(),
+                    controller: bloc.lastNameController,
+                  ),
+                  const SizedBox(height: 16),
+                  DatePickerTextField(
+                    labelText: 'strDateBirthday'.tr(),
+                    maxDate: DateTime.now(),
+                    controller: bloc.dateOfBirthController,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: 'strAddress'.tr(),
+                    controller: bloc.addressController,
+                  ),
+                  const SizedBox(height: 16),
+                  PickerTextField(
+                    labelText: 'strCountry'.tr(),
+                    controller: bloc.countryController,
+                    onTap: bloc.onSelectCountriesPressed,
+                  ),
+                  const SizedBox(height: 16),
+                  PhoneTextField(
+                    labelText: 'strPhoneNumber'.tr(),
+                    controller: bloc.phoneNumberController,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: 'strDrivingLicenseNumber'.tr(),
+                    controller: bloc.drivingLicenseNumberController,
+                  ),
+                  const SizedBox(height: 16),
+                  PickerTextField(
+                    labelText: 'strCategory'.tr(),
+                    controller: bloc.categoryController,
+                    onTap: bloc.onSelectCategoryPressed,
+                  ),
+                  const SizedBox(height: 16),
+                  DatePickerTextField(
+                    minDate: DateTime.now(),
+                    labelText: 'strDrivingLicenceValidTill'.tr(),
+                    controller: bloc.licenseDateOfExpiryController,
+                  ),
+                  const SizedBox(height: 90),
+                ],
               ),
-              physics: const BouncingScrollPhysics(),
-              children: [
-                NameTextField(
-                  labelText: 'strFirstName'.tr(),
-                  controller: bloc.firstNameController,
-                ),
-                const SizedBox(height: 16),
-                NameTextField(
-                  labelText: 'strLastName'.tr(),
-                  controller: bloc.lastNameController,
-                ),
-                const SizedBox(height: 16),
-                DatePickerTextField(
-                  labelText: 'strDateBirthday'.tr(),
-                  maxDate: DateTime.now(),
-                  controller: bloc.dateOfBirthController,
-                ),
-                const SizedBox(height: 16),
-                NameTextField(
-                  labelText: 'strAddress'.tr(),
-                  controller: bloc.addressController,
-                ),
-                const SizedBox(height: 16),
-                PickerTextField(
-                  labelText: 'strCountry'.tr(),
-                  controller: bloc.countryController,
-                  onTap: bloc.onSelectCountriesPressed,
-                ),
-                const SizedBox(height: 16),
-                PhoneTextField(
-                  labelText: 'strPhoneNumber'.tr(),
-                  controller: bloc.phoneNumberController,
-                ),
-                const SizedBox(height: 16),
-                NameTextField(
-                  labelText: 'strDrivingLicenseNumber'.tr(),
-                  controller: bloc.drivingLicenseNumberController,
-                ),
-                const SizedBox(height: 16),
-                PickerTextField(
-                  labelText: 'strCategory'.tr(),
-                  controller: bloc.categoryController,
-                  onTap: bloc.onSelectCategoryPressed,
-                ),
-                const SizedBox(height: 16),
-                DatePickerTextField(
-                  minDate: DateTime.now(),
-                  labelText: 'strDrivingLicenceValidTill'.tr(),
-                  controller: bloc.licenseDateOfExpiryController,
-                ),
-                const SizedBox(height: 90),
-              ],
             ),
             bottomNavigationBar: Padding(
               padding: const EdgeInsets.only(bottom: 60),
@@ -115,7 +118,11 @@ class _DriverEditorScreenState extends State<DriverEditorScreen> {
                 children: [
                   MyButton.primary(
                     label: 'strSave'.tr(),
-                    onTap: () => bloc.add(OnSubmitDriver()),
+                    onTap: () {
+                      if (bloc.validateForm()) {
+                        bloc.add(OnSubmitDriver());
+                      }
+                    },
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,
                       horizontal: 60,

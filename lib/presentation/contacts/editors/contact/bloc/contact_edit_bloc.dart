@@ -33,6 +33,8 @@ class ContactEditBloc extends Bloc<ContactEditEvent, ContactEditState> {
   final ContactsRepository repository;
   final MediaService mediaService;
 
+  final formKey = GlobalKey<FormState>();
+
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final phoneNumberController = TextEditingController();
@@ -63,6 +65,8 @@ class ContactEditBloc extends Bloc<ContactEditEvent, ContactEditState> {
     phoneNumberController.text =
         MyStringHelper.phoneMask(contact?.phoneNumber ?? '');
   }
+
+  bool validateForm() => formKey.currentState!.validate();
 
   //
   FutureOr<void> _onAddContact(

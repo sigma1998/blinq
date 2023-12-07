@@ -52,51 +52,59 @@ class _MyVehicleEditorScreenState extends State<MyVehicleEditorScreen> {
         builder: (context, state) {
           return Scaffold(
             appBar: MyAppBar(title: 'strMyVehicle'.tr()),
-            body: ListView(
-              padding: const EdgeInsets.symmetric(
-                vertical: 40,
-                horizontal: 32,
-              ),
-              physics: const BouncingScrollPhysics(),
-              children: [
-                NumberTextField(
-                  labelText: 'strMilesTravelled'.tr(),
-                  controller: bloc.traveledKmController,
+            body: Form(
+              key: bloc.formKey,
+              child: ListView(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 40,
+                  horizontal: 32,
                 ),
-                const SizedBox(height: 16),
-                NumberTextField(
-                  controller: bloc.nextTechnicalController,
-                  labelText: 'strNextTechnicalInspection'.tr(),
-                ),
-                const SizedBox(height: 16),
-                NumberTextField(
-                  controller: bloc.oilReplacementController,
-                  labelText: 'strLastOilReplacementDate'.tr(),
-                ),
-                const SizedBox(height: 16),
-                DatePickerTextField(
-                  maxDate: DateTime.now(),
-                  labelText: 'strLastBatteryReplacementDate'.tr(),
-                  controller: bloc.batteryReplacementDateController,
-                ),
-                const SizedBox(height: 40),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    MyButton.primary(
-                      label: 'strSave'.tr(),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8,
-                        horizontal: 60,
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  NumberTextField(
+                    labelText: 'strMilesTravelled'.tr(),
+                    controller: bloc.traveledKmController,
+                  ),
+                  const SizedBox(height: 16),
+                  NumberTextField(
+                    controller: bloc.nextTechnicalController,
+                    labelText: 'strNextTechnicalInspection'.tr(),
+                  ),
+                  const SizedBox(height: 16),
+                  NumberTextField(
+                    controller: bloc.oilReplacementController,
+                    labelText: 'strLastOilReplacementDate'.tr(),
+                  ),
+                  const SizedBox(height: 16),
+                  DatePickerTextField(
+                    maxDate: DateTime.now(),
+                    labelText: 'strLastBatteryReplacementDate'.tr(),
+                    controller: bloc.batteryReplacementDateController,
+                  ),
+                  const SizedBox(height: 40),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      MyButton.primary(
+                        label: 'strSave'.tr(),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 8,
+                          horizontal: 60,
+                        ),
+                        isLoading: state.status == Status.loading,
+                        onTap: () {
+                          if (bloc.validateForm()) {
+                            bloc.add(OnSubmitMyVehicle());
+                          }
+                        },
+                        labelStyle:
+                            const TextStyle(fontWeight: FontWeight.w500),
                       ),
-                      isLoading: state.status == Status.loading,
-                      onTap: () => bloc.add(OnSubmitMyVehicle()),
-                      labelStyle: const TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 24),
-              ],
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                ],
+              ),
             ),
           );
         },

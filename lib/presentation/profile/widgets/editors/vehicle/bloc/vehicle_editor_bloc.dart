@@ -32,6 +32,8 @@ class VehicleEditorBloc extends Bloc<VehicleEditorEvent, VehicleEditorState> {
 
   final ProfileRepository repository;
 
+  final formKey = GlobalKey<FormState>();
+
   final makeTypeController = TextEditingController();
   final engineNumberController = TextEditingController();
   final countryOfRegistrationController = TextEditingController();
@@ -60,31 +62,9 @@ class VehicleEditorBloc extends Bloc<VehicleEditorEvent, VehicleEditorState> {
         profileBloc.state.profile?.car?.vehicleType?.name ?? '';
   }
 
-  FutureOr<void> _onSubmitVehicle(
-      OnSubmitVehicle event, Emitter<VehicleEditorState> emit) async {
-    try {
-      final vehicle = CarRequestModel(
-        // carId: ,
-        // colorId: ,
-        makeType: makeTypeController.text,
-        engineNumber: engineNumberController.text,
-        countryOfRegistration: countryOfRegistrationController.text,
-        trailerRegistrationNumber: trailerRegistrationNumberController.text,
-        trailerCountryOfRegistration:
-            trailerCountryOfRegistrationController.text,
-        vehicleType: VehicleType.values
-            .firstWhere((type) => type.name == vehicleTypeController.text),
-      );
+  bool validateForm() => formKey.currentState!.validate();
 
-      emit(const VehicleEditorState(status: Status.loading));
-      await repository.updateCar(vehicle);
-      emit(const VehicleEditorState(status: Status.success));
-      profileBloc.add(OnFetchProfile());
-      NavigationService.back();
-    } catch (e) {
-      emit(state.copyWith(status: Status.initial));
-    }
-  }
+  //
 
   void onSelectCountryOfRegistrationPressed() {
     NavigationService.showDialog(dialog: const CountriesDialog())!
@@ -111,5 +91,33 @@ class VehicleEditorBloc extends Bloc<VehicleEditorEvent, VehicleEditorState> {
         trailerCountryOfRegistrationController.text = value;
       }
     });
+  }
+
+  //
+
+  FutureOr<void> _onSubmitVehicle(
+      OnSubmitVehicle event, Emitter<VehicleEditorState> emit) async {
+    try {
+      final vehicle = CarRequestModel(
+        // carId: ,
+        // colorId: ,
+        makeType: makeTypeController.text,
+        engineNumber: engineNumberController.text,
+        countryOfRegistration: countryOfRegistrationController.text,
+        trailerRegistrationNumber: trailerRegistrationNumberController.text,
+        trailerCountryOfRegistration:
+            trailerCountryOfRegistrationController.text,
+        vehicleType: VehicleType.values
+            .firstWhere((type) => type.name == vehicleTypeController.text),
+      );
+
+      emit(const VehicleEditorState(status: Status.loading));
+      await repository.updateCar(vehicle);
+      emit(const VehicleEditorState(status: Status.success));
+      profileBloc.add(OnFetchProfile());
+      NavigationService.back();
+    } catch (e) {
+      emit(state.copyWith(status: Status.initial));
+    }
   }
 }

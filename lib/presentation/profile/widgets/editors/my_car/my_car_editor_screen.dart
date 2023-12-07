@@ -51,56 +51,63 @@ class _EditorMyCarScreenState extends State<EditorMyCarScreen> {
           appBar: MyAppBar(title: 'strMyCar'.tr()),
           body: Stack(
             children: [
-              SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 40,
-                  horizontal: 32,
-                ),
-                physics: const BouncingScrollPhysics(),
-                child: Column(
-                  children: [
-                    PickerTextField(
-                      labelText: 'strVehicleType'.tr(),
-                      onTap: bloc.onVehicleTypeTap,
-                      controller: bloc.vehicleTypeController,
-                    ),
-                    const SizedBox(height: 16),
-                    PickerTextField(
-                      labelText: 'strMark'.tr(),
-                      onTap: bloc.onBrandTap,
-                      controller: bloc.brandController,
-                    ),
-                    const SizedBox(height: 16),
-                    PickerTextField(
-                        labelText: 'strModel'.tr(),
-                        onTap: bloc.onModelTap,
-                        controller: bloc.modelController),
-                    const SizedBox(height: 16),
-                    NameTextField(
-                        labelText: 'strModelSeries'.tr(),
-                        controller: bloc.modelSeriesController),
-                    const SizedBox(height: 16),
-                    PickerTextField(
-                      labelText: 'strColour'.tr(),
-                      onTap: bloc.onColorTap,
-                      controller: bloc.colorController,
-                    ),
-                    const SizedBox(height: 40),
-                    SizedBox(
-                      width: 155,
-                      child: MyButton.primary(
-                        onTap: bloc.onSubmit,
-                        label: 'strSave'.tr(),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8,
-                          horizontal: 60,
-                        ),
-                        labelStyle:
-                            const TextStyle(fontWeight: FontWeight.w500),
+              Form(
+                key: bloc.formKey,
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 40,
+                    horizontal: 32,
+                  ),
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    children: [
+                      PickerTextField(
+                        labelText: 'strVehicleType'.tr(),
+                        onTap: bloc.onVehicleTypeTap,
+                        controller: bloc.vehicleTypeController,
                       ),
-                    ),
-                    const SizedBox(height: 24),
-                  ],
+                      const SizedBox(height: 16),
+                      PickerTextField(
+                        labelText: 'strMark'.tr(),
+                        onTap: bloc.onBrandTap,
+                        controller: bloc.brandController,
+                      ),
+                      const SizedBox(height: 16),
+                      PickerTextField(
+                          labelText: 'strModel'.tr(),
+                          onTap: bloc.onModelTap,
+                          controller: bloc.modelController),
+                      const SizedBox(height: 16),
+                      NameTextField(
+                          labelText: 'strModelSeries'.tr(),
+                          controller: bloc.modelSeriesController),
+                      const SizedBox(height: 16),
+                      PickerTextField(
+                        labelText: 'strColour'.tr(),
+                        onTap: bloc.onColorTap,
+                        controller: bloc.colorController,
+                      ),
+                      const SizedBox(height: 40),
+                      SizedBox(
+                        width: 155,
+                        child: MyButton.primary(
+                          onTap: () {
+                            if (bloc.validateForm()) {
+                              bloc.onSubmit();
+                            }
+                          },
+                          label: 'strSave'.tr(),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 8,
+                            horizontal: 60,
+                          ),
+                          labelStyle:
+                              const TextStyle(fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                    ],
+                  ),
                 ),
               ),
               Visibility(

@@ -120,7 +120,13 @@ class MyTextField extends StatelessWidget {
         Stack(
           children: [
             TextFormField(
-              validator: validator,
+              validator: validator ??
+                  (value) {
+                    if (value.toString().isEmpty) {
+                      return '${'strEnter'.tr()} $labelText';
+                    }
+                    return null;
+                  },
               controller: controller,
               //
               enabled: enabled,

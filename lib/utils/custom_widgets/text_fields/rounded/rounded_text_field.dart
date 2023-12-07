@@ -212,7 +212,13 @@ class _RoundedTextFieldState extends State<RoundedTextField> {
           children: [
             TextFormField(
               controller: controller,
-              validator: widget.validator,
+              validator: widget.validator ??
+                  (value) {
+                    if (value.toString().isEmpty) {
+                      return '${'strEnter'.tr()} ${widget.labelText}';
+                    }
+                    return null;
+                  },
               //
               focusNode: focusNode,
               enabled: widget.enabled,

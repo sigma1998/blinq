@@ -26,6 +26,8 @@ class DriverEditorBloc extends Bloc<DriverEditorEvent, DriverEditorState> {
   //
   final ProfileBloc profileBloc;
 
+  final formKey = GlobalKey<FormState>();
+
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final dateOfBirthController = TextEditingController();
@@ -57,6 +59,30 @@ class DriverEditorBloc extends Bloc<DriverEditorEvent, DriverEditorState> {
         profileBloc.state.profile?.driverLicenseExpiredDate ?? '';
   }
 
+  bool validateForm() => formKey.currentState!.validate();
+
+  //
+
+  void onSelectCountriesPressed() {
+    NavigationService.showDialog(dialog: const CountriesDialog())!
+        .then((value) {
+      if (value != null) {
+        countryController.text = value;
+      }
+    });
+  }
+
+  void onSelectCategoryPressed() {
+    NavigationService.showDialog(dialog: const LicenseCategoryDialog())!
+        .then((value) {
+      if (value != null) {
+        categoryController.text = value;
+      }
+    });
+  }
+
+  //
+
   FutureOr<void> _onSubmitDriver(
       OnSubmitDriver event, Emitter<DriverEditorState> emit) async {
     try {
@@ -81,23 +107,5 @@ class DriverEditorBloc extends Bloc<DriverEditorEvent, DriverEditorState> {
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }
-  }
-
-  void onSelectCountriesPressed() {
-    NavigationService.showDialog(dialog: const CountriesDialog())!
-        .then((value) {
-      if (value != null) {
-        countryController.text = value;
-      }
-    });
-  }
-
-  void onSelectCategoryPressed() {
-    NavigationService.showDialog(dialog: const LicenseCategoryDialog())!
-        .then((value) {
-      if (value != null) {
-        categoryController.text = value;
-      }
-    });
   }
 }

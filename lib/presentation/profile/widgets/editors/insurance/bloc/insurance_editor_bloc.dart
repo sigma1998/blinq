@@ -30,6 +30,8 @@ class InsuranceEditorBloc
   final ProfileBloc profileBloc;
   final ProfileRepository repository;
 
+  final formKey = GlobalKey<FormState>();
+
   final nameController = TextEditingController();
   final policyNumberController = TextEditingController();
   final greenCardNumberController = TextEditingController();
@@ -68,6 +70,31 @@ class InsuranceEditorBloc
         profileBloc.state.profile?.insurance?.policyCover ?? '';
   }
 
+  bool validateForm() => formKey.currentState!.validate();
+
+  //
+
+  void onSelectCountriesPressed() {
+    NavigationService.showDialog(dialog: const CountriesDialog())!
+        .then((value) {
+      if (value != null) {
+        countryController.text = value;
+      }
+    });
+  }
+
+  void onPolicyCoverPressed() {
+    NavigationService.showDialog(
+            dialog: MyCupertinoDialog(title: 'strPolicCover'.tr()))!
+        .then((value) {
+      if (value != null) {
+        policyCoverController.text = value;
+      }
+    });
+  }
+
+  //
+
   FutureOr<void> _onSubmitDriver(
       OnSubmitInsurance event, Emitter<InsuranceEditorState> emit) async {
     try {
@@ -92,24 +119,5 @@ class InsuranceEditorBloc
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }
-  }
-
-  void onSelectCountriesPressed() {
-    NavigationService.showDialog(dialog: const CountriesDialog())!
-        .then((value) {
-      if (value != null) {
-        countryController.text = value;
-      }
-    });
-  }
-
-  void onPolicyCoverPressed() {
-    NavigationService.showDialog(
-            dialog: MyCupertinoDialog(title: 'strPolicCover'.tr()))!
-        .then((value) {
-      if (value != null) {
-        policyCoverController.text = value;
-      }
-    });
   }
 }

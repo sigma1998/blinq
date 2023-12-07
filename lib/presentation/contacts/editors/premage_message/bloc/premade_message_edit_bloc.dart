@@ -26,6 +26,8 @@ class PremadeMessageEditorBloc
   final PreMadeMessagesBloc preMadeMessagesBloc;
   final PremadeMessagesRepository repository;
 
+  final formKey = GlobalKey<FormState>();
+
   final titleController = TextEditingController();
   final messageController = TextEditingController();
 
@@ -49,6 +51,8 @@ class PremadeMessageEditorBloc
     titleController.text = premadeMessage?.title ?? '';
     messageController.text = premadeMessage?.message ?? '';
   }
+
+  bool validateForm() => formKey.currentState!.validate();
 
   //
   FutureOr<void> _onAddContact(OnAddPreMadeMessage event,

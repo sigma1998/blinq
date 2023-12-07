@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
 /*========================Email Validator==============================================*/
 class Validator {
@@ -31,14 +32,7 @@ class Validator {
     return null;
   }
 
-  // static String? validatePhoneNumber(String value) {
-  //   if (value.isEmpty) {
-  //     return 'strPhoneEmEmpty'.tr();
-  //   } else if (!GetUtils.isPhoneNumber(value.trim())) {
-  //     return "strPhoneNumberInvalid".tr();
-  //   }
-  //   return null;
-  // }
+  static bool isPhone(String value) => isPhoneValid(value);
 
   static String? fieldChecker({required String value, required message}) {
     if (value.toString().trim().isEmpty) {

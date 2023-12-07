@@ -17,6 +17,8 @@ class EditMyCarBloc extends Cubit<EditMyCarState> {
   final ProfileRepository profileRepository;
   final ProfileBloc profileBloc;
 
+  final formKey = GlobalKey<FormState>();
+
   final TextEditingController vehicleTypeController = TextEditingController();
   final TextEditingController brandController = TextEditingController();
   final TextEditingController modelController = TextEditingController();
@@ -61,6 +63,8 @@ class EditMyCarBloc extends Cubit<EditMyCarState> {
   Future<void> init() async {
     await _fetchBrands();
   }
+
+  bool validateForm() => formKey.currentState!.validate();
 
   void onVehicleTypeTap() async {
     NavigationService.showDialog(dialog: const VehicleTypeDialog())!
