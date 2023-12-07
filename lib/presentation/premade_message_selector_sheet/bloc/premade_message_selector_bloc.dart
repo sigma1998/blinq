@@ -1,22 +1,26 @@
 // Flutter imports:
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
+import 'dart:async';
 
-// Package imports:
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_sms/flutter_sms.dart';
+import 'package:blinq/data/model/premade_message/response/premade_message_response_model.dart';
 
 // Project imports:
 import 'package:blinq/presentation/contacts/pages/premade_messages/bloc/premade_messages_bloc.dart';
-import 'package:blinq/data/model/premade_message/response/premade_message_response_model.dart';
-import 'package:blinq/utils/services/permission/permission_service.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/services/permission/permission_service.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_sms/flutter_sms.dart';
+
+// Package imports:
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'premade_message_selector_event.dart';
 
-part 'premade_message_selector_state.dart';
 part 'premade_message_selector_bloc.freezed.dart';
+
+part 'premade_message_selector_state.dart';
 
 class PremadeMessageSelectorBloc
     extends Bloc<PremadeMessageSelectorEvent, PremadeMessageSelectorState> {
@@ -30,6 +34,13 @@ class PremadeMessageSelectorBloc
   }) : super(const PremadeMessageSelectorState()) {
     on<OnLoadPremadeMessages>(_onLoadPremadeMessages);
     on<OnSelectPremadeMessage>(_onSelectPremadeMessage);
+    on<OnContactsLoaded>(_onContactsLoaded);
+
+    premadeMessagesBloc.stream.listen((event) {
+      if (event.premadeMessages != null) {
+        add(OnContactsLoaded(premadeMessages: event.premadeMessages));
+      }
+    });
   }
 
   void _onLoadPremadeMessages(
@@ -64,11 +75,19 @@ class PremadeMessageSelectorBloc
       message: state.selectedMessage?.message ?? '',
     );
     debugPrint('result: $result');
-    NavigationService.showToast(
+    await NavigationService.showToast(
       text: 'strYourInformMessageSent'.tr(),
       title: 'strSuccess'.tr(),
     );
-    await Future.delayed(const Duration(seconds: 2));
-    NavigationService.back();
+  }
+
+  FutureOr<void> _onContactsLoaded(
+      OnContactsLoaded event, Emitter<PremadeMessageSelectorState> emit) {
+    emit(
+      state.copyWith(
+        status: premadeMessagesBloc.state.status,
+        premadeMessages: event.premadeMessages?.results ?? [],
+      ),
+    );
   }
 }

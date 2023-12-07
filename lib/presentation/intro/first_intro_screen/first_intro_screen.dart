@@ -37,7 +37,7 @@ class _FirstIntroScreenState extends State<FirstIntroScreen>
               setState(() {});
             }));
     }
-    timer = Timer.periodic(const Duration(seconds: 2), (timer) {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (timer.tick <= text1Controller.length) {
         text1Controller[timer.tick - 1].forward();
       } else {
