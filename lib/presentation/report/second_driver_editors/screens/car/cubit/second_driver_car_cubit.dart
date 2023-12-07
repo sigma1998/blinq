@@ -30,6 +30,8 @@ class SecondDriverCarCubit extends Cubit<SecondDriverCarState> {
   final AccidentRepository accidentRepository;
   final ProfileRepository profileRepository;
 
+  final formKey = GlobalKey<FormState>();
+
   final vehicleTypeController = TextEditingController();
   final brandController = TextEditingController();
   final modelController = TextEditingController();
@@ -60,6 +62,10 @@ class SecondDriverCarCubit extends Cubit<SecondDriverCarState> {
   Future<void> init() async {
     await _fetchBrands();
   }
+
+  bool validateForm() => formKey.currentState!.validate();
+
+  //
 
   void onSubmit() async {
     emit(state.copyWith(status: Status.loading));

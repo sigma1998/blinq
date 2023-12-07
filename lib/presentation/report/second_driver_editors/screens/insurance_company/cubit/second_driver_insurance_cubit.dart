@@ -26,6 +26,8 @@ class SecondDriverInsuranceCubit extends Cubit<SecondDriverInsuranceState> {
 
   final AccidentRepository accidentRepository;
 
+  final formKey = GlobalKey<FormState>();
+
   final nameController = TextEditingController();
   final policyNumberController = TextEditingController();
   final greenCardNumberController = TextEditingController();
@@ -42,6 +44,12 @@ class SecondDriverInsuranceCubit extends Cubit<SecondDriverInsuranceState> {
     required this.reportBloc,
     required this.accidentRepository,
   }) : super(const SecondDriverInsuranceState());
+
+  //
+
+  bool validateForm() => formKey.currentState!.validate();
+
+  //
 
   void onSubmit() async {
     emit(state.copyWith(status: Status.loading));

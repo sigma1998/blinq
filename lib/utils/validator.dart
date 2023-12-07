@@ -32,8 +32,6 @@ class Validator {
     return null;
   }
 
-  static bool isPhone(String value) => isPhoneValid(value);
-
   static String? fieldChecker({required String value, required message}) {
     if (value.toString().trim().isEmpty) {
       return "$message ${'strCannotBeEmpty'.tr}";
@@ -70,13 +68,11 @@ class PasswordFormValidator {
 /*================================================== Phone Number Validator ===================================================*/
 
 class PhoneNumberValidate {
-  static String? validateMobile(String value) {
-    if (value.isEmpty) {
+  static String? validateMobile(String? value) {
+    if (value?.isEmpty ?? true) {
       return 'strPhoneEmEmpty'.tr();
-    } else if (value.length < 8 || value.length > 15) {
+    } else if (!isPhoneValid(value ?? '')) {
       return 'strPhoneNumberInvalid'.tr();
-    } else if (!validateNumber(value)) {
-      return 'strSpecialCharacter'.tr();
     }
     return null;
   }

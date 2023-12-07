@@ -27,6 +27,8 @@ class SecondDriverCubit extends Cubit<SecondDriverState> {
 
   final AccidentRepository accidentRepository;
 
+  final formKey = GlobalKey<FormState>();
+
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final dateOfBirthController = TextEditingController();
@@ -42,6 +44,10 @@ class SecondDriverCubit extends Cubit<SecondDriverState> {
     required this.reportBloc,
     required this.accidentRepository,
   }) : super(const SecondDriverState());
+
+  //
+
+  bool validateForm() => formKey.currentState!.validate();
 
   //
 
