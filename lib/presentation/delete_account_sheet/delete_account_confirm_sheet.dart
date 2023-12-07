@@ -64,7 +64,10 @@ class DeleteAccountConfirmSheet extends StatelessWidget {
                 label: 'strConfirm'.tr(),
                 isLoading: state.status == Status.loading,
                 onTap: () => bloc.add(OnVerifyDeleteAccount()),
-                labelStyle: const TextStyle(fontWeight: FontWeight.w500),
+                labelStyle: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black,
+                ),
               ),
             ],
           );

@@ -90,8 +90,8 @@ class _RoundedDatePickerTextFieldState
     final newDate = await showDatePicker(
       context: context,
       initialDate: dateTime!,
-      lastDate: widget.maxDate ?? DateTime(today.year + 20),
-      firstDate: widget.minDate ?? DateTime(today.year - 20),
+      lastDate: widget.maxDate ?? DateTime(today.year + 100),
+      firstDate: widget.minDate ?? DateTime(today.year - 100),
     );
 
     if (newDate != null) {

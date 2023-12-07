@@ -31,22 +31,25 @@ class LocationInfoScreen extends StatefulWidget {
 }
 
 class _LocationInfoScreenState extends State<LocationInfoScreen> {
-  late final LocationInfoScreenBloc bloc;
+  //
+  late final LocationInfoScreenCubit cubit;
 
   @override
   void didChangeDependencies() {
-    bloc = LocationInfoScreenBloc(
+    cubit = LocationInfoScreenCubit(
       accidentRepository: getIt<AccidentRepositoryImpl>(),
       reportBloc: context.read(),
     );
+
+    cubit.init();
 
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LocationInfoScreenBloc, LocationInfoScreenState>(
-        bloc: bloc,
+    return BlocBuilder<LocationInfoScreenCubit, LocationInfoScreenState>(
+        bloc: cubit,
         builder: (context, state) {
           return KeyboardEscape(
             child: SafeArea(
@@ -71,7 +74,7 @@ class _LocationInfoScreenState extends State<LocationInfoScreen> {
                       RoundedDatePickerTextField(
                         maxDate: DateTime.now(),
                         initialDate: DateTime.now(),
-                        controller: bloc.dateController,
+                        controller: cubit.dateController,
                       ),
                       const SizedBox(height: 36),
                       Text(
@@ -84,24 +87,25 @@ class _LocationInfoScreenState extends State<LocationInfoScreen> {
                       const SizedBox(height: 12),
                       RoundedTimePickerTextField(
                         initialTime: TimeOfDay.now(),
-                        controller: bloc.timeController,
+                        controller: cubit.timeController,
                       ),
                       const SizedBox(height: 36),
                       PickerTextField(
-                        onTap: bloc.onCountryPressed,
+                        onTap: cubit.onCountryPressed,
                         labelText: 'strCountry'.tr(),
-                        controller: bloc.countryController,
+                        controller: cubit.countryController,
                       ),
                       const SizedBox(height: 36),
                       NameTextField(
                         labelText: 'strPlace'.tr(),
-                        controller: bloc.placeController,
+                        maxLines: 3,
+                        controller: cubit.placeController,
                       ),
                     ],
                   ),
                   resizeToAvoidBottomInset: true,
                   floatingActionButton:
-                      NavigationButton(onNextTap: bloc.onSubmit),
+                      NavigationButton(onNextTap: cubit.onSubmit),
                   floatingActionButtonLocation:
                       FloatingActionButtonLocation.centerFloat,
                 ),
