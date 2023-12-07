@@ -53,98 +53,107 @@ class _SecondDriverEditorCarScreenState
         return SafeArea(
           child: KeyboardEscape(
             child: Scaffold(
-              body: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 40,
-                  horizontal: 32,
-                ),
-                physics: const BouncingScrollPhysics(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'strInformationCar'.tr(),
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    const SizedBox(height: 40),
-                    PickerTextField(
-                      labelText: 'strVehicleType'.tr(),
-                      onTap: cubit.onVehicleTypeTap,
-                      controller: cubit.vehicleTypeController,
-                    ),
-                    const SizedBox(height: 16),
-                    PickerTextField(
-                      labelText: 'strMark'.tr(),
-                      onTap: cubit.onBrandTap,
-                      controller: cubit.brandController,
-                    ),
-                    const SizedBox(height: 16),
-                    PickerTextField(
-                      labelText: 'strModel'.tr(),
-                      onTap: cubit.onModelTap,
-                      controller: cubit.modelController,
-                    ),
-                    const SizedBox(height: 16),
-                    NameTextField(
-                      labelText: 'strModelSeries'.tr(),
-                      controller: cubit.modelSeriesController,
-                    ),
-                    const SizedBox(height: 16),
-                    PickerTextField(
-                      labelText: 'strColour'.tr(),
-                      onTap: cubit.onColorTap,
-                      controller: cubit.colorController,
-                    ),
-                    const SizedBox(height: 90),
+              body: Form(
+                key: cubit.formKey,
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 40,
+                    horizontal: 32,
+                  ),
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'strInformationCar'.tr(),
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      const SizedBox(height: 40),
+                      PickerTextField(
+                        labelText: 'strVehicleType'.tr(),
+                        onTap: cubit.onVehicleTypeTap,
+                        controller: cubit.vehicleTypeController,
+                      ),
+                      const SizedBox(height: 16),
+                      PickerTextField(
+                        labelText: 'strMark'.tr(),
+                        onTap: cubit.onBrandTap,
+                        controller: cubit.brandController,
+                      ),
+                      const SizedBox(height: 16),
+                      PickerTextField(
+                        labelText: 'strModel'.tr(),
+                        onTap: cubit.onModelTap,
+                        controller: cubit.modelController,
+                      ),
+                      const SizedBox(height: 16),
+                      NameTextField(
+                        labelText: 'strModelSeries'.tr(),
+                        controller: cubit.modelSeriesController,
+                      ),
+                      const SizedBox(height: 16),
+                      PickerTextField(
+                        labelText: 'strColour'.tr(),
+                        onTap: cubit.onColorTap,
+                        controller: cubit.colorController,
+                      ),
+                      const SizedBox(height: 90),
 
-                    //~ Motor
+                      //~ Motor
 
-                    Text(
-                      'strMotor'.tr(),
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    const SizedBox(height: 40),
-                    NameTextField(
-                      labelText: 'strMakeType'.tr(),
-                      controller: cubit.makeTypeController,
-                    ),
-                    const SizedBox(height: 16),
-                    NumberTextField(
-                      labelText:
-                          '${'strRegistrationNumber'.tr()} (${'strMotor'.tr()})',
-                      controller: cubit.engineNumberController,
-                    ),
-                    const SizedBox(height: 16),
-                    PickerTextField(
-                      labelText: 'strCountryRegistration'.tr(),
-                      onTap: cubit.onSelectCountryOfRegistrationPressed,
-                      controller: cubit.countryOfRegistrationController,
-                    ),
-                    const SizedBox(height: 90),
+                      Text(
+                        'strMotor'.tr(),
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      const SizedBox(height: 40),
+                      NameTextField(
+                        labelText: 'strMakeType'.tr(),
+                        controller: cubit.makeTypeController,
+                      ),
+                      const SizedBox(height: 16),
+                      NumberTextField(
+                        labelText:
+                            '${'strRegistrationNumber'.tr()} (${'strMotor'.tr()})',
+                        controller: cubit.engineNumberController,
+                      ),
+                      const SizedBox(height: 16),
+                      PickerTextField(
+                        labelText: 'strCountryRegistration'.tr(),
+                        onTap: cubit.onSelectCountryOfRegistrationPressed,
+                        controller: cubit.countryOfRegistrationController,
+                      ),
+                      const SizedBox(height: 90),
 
-                    //& Trailer
+                      //& Trailer
 
-                    Text(
-                      'strTrailer'.tr(),
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    const SizedBox(height: 40),
-                    NumberTextField(
-                      labelText: 'strRegistrationNumber'.tr(),
-                      controller: cubit.trailerRegistrationNumberController,
-                    ),
-                    const SizedBox(height: 16),
-                    PickerTextField(
-                      labelText: 'strCountryRegistration'.tr(),
-                      onTap: cubit.onSelectTrailerCountryOfRegistrationPressed,
-                      controller: cubit.trailerCountryOfRegistrationController,
-                    ),
-                    const SizedBox(height: 36),
-                  ],
+                      Text(
+                        'strTrailer'.tr(),
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      const SizedBox(height: 40),
+                      NumberTextField(
+                        labelText: 'strRegistrationNumber'.tr(),
+                        controller: cubit.trailerRegistrationNumberController,
+                      ),
+                      const SizedBox(height: 16),
+                      PickerTextField(
+                        labelText: 'strCountryRegistration'.tr(),
+                        onTap:
+                            cubit.onSelectTrailerCountryOfRegistrationPressed,
+                        controller:
+                            cubit.trailerCountryOfRegistrationController,
+                      ),
+                      const SizedBox(height: 36),
+                    ],
+                  ),
                 ),
               ),
               floatingActionButton: NavigationButton(
-                onNextTap: cubit.onSubmit,
+                onNextTap: () {
+                  if (cubit.validateForm()) {
+                    cubit.onSubmit();
+                  }
+                },
                 loading: state.status == Status.loading,
               ),
               floatingActionButtonLocation:

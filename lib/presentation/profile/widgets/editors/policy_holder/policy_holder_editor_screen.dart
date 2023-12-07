@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/utils/custom_widgets/text_fields/email_text_field.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -89,8 +90,7 @@ class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
                     onTap: bloc.onSelectCountriesPressed,
                   ),
                   const SizedBox(height: 16),
-                  NameTextField(
-                    labelText: 'strTelEmail'.tr(),
+                  EmailTextField(
                     controller: bloc.phoneNumberController,
                   ),
                   const SizedBox(height: 90),

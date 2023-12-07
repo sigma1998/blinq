@@ -25,6 +25,8 @@ class SecondDriverPolicyHolderCubit
 
   final AccidentRepository accidentRepository;
 
+  final formKey = GlobalKey<FormState>();
+
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final addressController = TextEditingController();
@@ -37,6 +39,12 @@ class SecondDriverPolicyHolderCubit
     required this.reportBloc,
     required this.accidentRepository,
   }) : super(const SecondDriverPolicyHolderState());
+
+  //
+
+  bool validateForm() => formKey.currentState!.validate();
+
+  //
 
   void onSubmit() async {
     emit(state.copyWith(status: Status.loading));

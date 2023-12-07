@@ -51,76 +51,83 @@ class _SecondDriverEditorScreenState extends State<SecondDriverEditorScreen> {
         return SafeArea(
           child: KeyboardEscape(
             child: Scaffold(
-              body: ListView(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 40,
-                  horizontal: 32,
+              body: Form(
+                key: cubit.formKey,
+                child: ListView(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 40,
+                    horizontal: 32,
+                  ),
+                  physics: const BouncingScrollPhysics(),
+                  children: [
+                    Text(
+                      'strInformationDriver'.tr(),
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const SizedBox(height: 40),
+                    NameTextField(
+                      labelText: 'strFirstName'.tr(),
+                      controller: cubit.firstNameController,
+                    ),
+                    const SizedBox(height: 16),
+                    NameTextField(
+                      labelText: 'strLastName'.tr(),
+                      controller: cubit.lastNameController,
+                    ),
+                    const SizedBox(height: 16),
+                    DatePickerTextField(
+                      labelText: 'strDateBirthday'.tr(),
+                      maxDate: DateTime.now(),
+                      controller: cubit.dateOfBirthController,
+                    ),
+                    const SizedBox(height: 16),
+                    NameTextField(
+                      labelText: 'strAddress'.tr(),
+                      controller: cubit.addressController,
+                    ),
+                    const SizedBox(height: 16),
+                    PickerTextField(
+                      labelText: 'strCountry'.tr(),
+                      controller: cubit.countryController,
+                      onTap: cubit.onSelectCountriesPressed,
+                    ),
+                    const SizedBox(height: 16),
+                    PhoneTextField(
+                      labelText: 'strPhoneNumber'.tr(),
+                      controller: cubit.phoneNumberController,
+                    ),
+                    const SizedBox(height: 16),
+                    NameTextField(
+                      labelText: 'strPostalCode'.tr(),
+                      controller: cubit.postalCodeController,
+                    ),
+                    const SizedBox(height: 16),
+                    NameTextField(
+                      labelText: 'strDrivingLicenseNumber'.tr(),
+                      controller: cubit.drivingLicenseNumberController,
+                    ),
+                    const SizedBox(height: 16),
+                    PickerTextField(
+                      labelText: 'strCategory'.tr(),
+                      controller: cubit.categoryController,
+                      onTap: cubit.onSelectCategoryPressed,
+                    ),
+                    const SizedBox(height: 16),
+                    DatePickerTextField(
+                      minDate: DateTime.now(),
+                      labelText: 'strDrivingLicenceValidTill'.tr(),
+                      controller: cubit.licenseDateOfExpiryController,
+                    ),
+                    const SizedBox(height: 36),
+                  ],
                 ),
-                physics: const BouncingScrollPhysics(),
-                children: [
-                  Text(
-                    'strInformationDriver'.tr(),
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  const SizedBox(height: 40),
-                  NameTextField(
-                    labelText: 'strFirstName'.tr(),
-                    controller: cubit.firstNameController,
-                  ),
-                  const SizedBox(height: 16),
-                  NameTextField(
-                    labelText: 'strLastName'.tr(),
-                    controller: cubit.lastNameController,
-                  ),
-                  const SizedBox(height: 16),
-                  DatePickerTextField(
-                    labelText: 'strDateBirthday'.tr(),
-                    maxDate: DateTime.now(),
-                    controller: cubit.dateOfBirthController,
-                  ),
-                  const SizedBox(height: 16),
-                  NameTextField(
-                    labelText: 'strAddress'.tr(),
-                    controller: cubit.addressController,
-                  ),
-                  const SizedBox(height: 16),
-                  PickerTextField(
-                    labelText: 'strCountry'.tr(),
-                    controller: cubit.countryController,
-                    onTap: cubit.onSelectCountriesPressed,
-                  ),
-                  const SizedBox(height: 16),
-                  PhoneTextField(
-                    labelText: 'strPhoneNumber'.tr(),
-                    controller: cubit.phoneNumberController,
-                  ),
-                  const SizedBox(height: 16),
-                  NameTextField(
-                    labelText: 'strPostalCode'.tr(),
-                    controller: cubit.postalCodeController,
-                  ),
-                  const SizedBox(height: 16),
-                  NameTextField(
-                    labelText: 'strDrivingLicenseNumber'.tr(),
-                    controller: cubit.drivingLicenseNumberController,
-                  ),
-                  const SizedBox(height: 16),
-                  PickerTextField(
-                    labelText: 'strCategory'.tr(),
-                    controller: cubit.categoryController,
-                    onTap: cubit.onSelectCategoryPressed,
-                  ),
-                  const SizedBox(height: 16),
-                  DatePickerTextField(
-                    minDate: DateTime.now(),
-                    labelText: 'strDrivingLicenceValidTill'.tr(),
-                    controller: cubit.licenseDateOfExpiryController,
-                  ),
-                  const SizedBox(height: 36),
-                ],
               ),
               floatingActionButton: NavigationButton(
-                onNextTap: cubit.onSubmit,
+                onNextTap: () {
+                  if (cubit.validateForm()) {
+                    cubit.onSubmit();
+                  }
+                },
                 loading: state.status == Status.loading,
               ),
               floatingActionButtonLocation:

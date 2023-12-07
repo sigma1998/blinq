@@ -42,17 +42,12 @@ class PhoneTextField extends StatelessWidget {
       key: key,
       enabled: enabled,
       autofocus: autofocus,
-      validator: (value) {
-        if (value.toString().isEmpty && !Validator.isPhone(value!)) {
-          return '${'strEnter'.tr()} ${labelText ?? 'strPhoneNumber'.tr()}';
-        }
-        return null;
-      },
       controller: controller,
       inputFormatters: [mask],
       keyboardType: TextInputType.phone,
       labelText: labelText ?? 'strPhoneNumber'.tr(),
       initialValue: MyStringHelper.phoneMask(initialValue),
+      validator: (value) => PhoneNumberValidate.validateMobile(value),
     );
   }
 }
