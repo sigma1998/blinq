@@ -2,10 +2,13 @@
 import 'dart:ui';
 
 // Flutter imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 // Project imports:
 import 'package:blinq/presentation/connect_to_blinq/cubit/connect_to_blinq_cubit.dart';
@@ -16,7 +19,6 @@ import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/presentation/home/home.dart';
 import 'bloc/main_screen_bloc.dart';
 import 'bloc/main_screen_event.dart';
-import 'widgets/item.dart';
 
 class MainScreen extends StatefulWidget {
   //
@@ -34,11 +36,11 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<ConnectToBlinqCubit>().connectPreviousDevices();
   }
 
   @override
   Widget build(BuildContext context) {
+    context.read<ConnectToBlinqCubit>().connectPreviousDevices();
     final bloc = context.read<MainScreenBloc>();
 
     return BlocBuilder<MainScreenBloc, GenericBlocState<int>>(
@@ -72,29 +74,41 @@ class _MainScreenState extends State<MainScreen> {
                     height: 64,
                     width: double.maxFinite,
                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(40),
+                      border: Border.all(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .outline
+                            .withOpacity(0.4),
+                      ),
                       color: Theme.of(context)
                           .colorScheme
                           .secondary
                           .withOpacity(0.8),
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        MainBottomNavigationItem(
+                    child: SalomonBottomBar(
+                      currentIndex: state.data!,
+                      itemPadding: const EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 24,
+                      ),
+                      onTap: (index) =>
+                          bloc.add(OnItemPressed(newIndex: index)),
+                      items: [
+                        _buildBottomBarItem(
+                          title: 'strHome'.tr(),
                           icon: AppDrawables.blinq,
-                          isActive: state.data == 0,
-                          onTap: () => bloc.add(OnItemPressed(newIndex: 0)),
+                          activeIcon: AppDrawables.blinq,
                         ),
-                        MainBottomNavigationItem(
+                        _buildBottomBarItem(
+                          title: 'strContacts'.tr(),
                           icon: AppDrawables.contacts,
-                          isActive: state.data == 1,
-                          onTap: () => bloc.add(OnItemPressed(newIndex: 1)),
+                          activeIcon: AppDrawables.contacts,
                         ),
-                        MainBottomNavigationItem(
+                        _buildBottomBarItem(
+                          title: 'strProfile'.tr(),
                           icon: AppDrawables.profile,
-                          isActive: state.data == 2,
-                          onTap: () => bloc.add(OnItemPressed(newIndex: 2)),
+                          activeIcon: AppDrawables.profile,
                         ),
                       ],
                     ),
@@ -105,6 +119,33 @@ class _MainScreenState extends State<MainScreen> {
           ),
         );
       },
+    );
+  }
+
+  SalomonBottomBarItem _buildBottomBarItem({
+    required String icon,
+    required String title,
+    required String activeIcon,
+  }) {
+    return SalomonBottomBarItem(
+      title: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 14,
+          color: Colors.white,
+        ),
+      ),
+      icon: SvgPicture.asset(
+        icon,
+      ),
+      activeIcon: SvgPicture.asset(
+        activeIcon,
+        colorFilter: ColorFilter.mode(
+          Theme.of(context).colorScheme.primary,
+          BlendMode.srcIn,
+        ),
+      ),
+      selectedColor: Theme.of(context).colorScheme.outline,
     );
   }
 }
