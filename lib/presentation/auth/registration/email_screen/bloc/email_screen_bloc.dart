@@ -51,6 +51,9 @@ class EmailScreenBloc extends Bloc<EmailScreenEvent, EmailScreenState> {
               routeName: RegistrationScreen.route,
               arguments: sendEmailForRegistrationResponse!.email);
         }
+        else{
+          NavigationService.showErrorToast('strInvalidCode'.tr());
+        }
       }
     }
   }

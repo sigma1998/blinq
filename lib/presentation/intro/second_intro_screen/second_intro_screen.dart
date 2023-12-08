@@ -30,17 +30,20 @@ class _SecondIntroScreenState extends State<SecondIntroScreen>
           duration: const Duration(milliseconds: 400), vsync: this));
     }
     for (int i = 0; i < 5; i++) {
-      text1ColorAnim.add(ColorTween(
-              begin:  const Color(0xff5b5b5b),
-              end: Colors.white)
-          .animate(text1Controller[i])
-        ..addListener(() {
-          setState(() {});
-        }));
+      text1ColorAnim.add(
+          ColorTween(begin: const Color(0xff5b5b5b), end: Colors.white)
+              .animate(text1Controller[i])
+            ..addListener(() {
+              setState(() {});
+            }));
     }
+    _forward(0);
+  }
+
+  _forward(int initialProgress) {
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (timer.tick <= text1Controller.length) {
-        text1Controller[timer.tick - 1].forward();
+      if ((timer.tick + initialProgress) <= text1Controller.length) {
+        text1Controller[initialProgress + timer.tick - 1].forward();
       } else {
         timer.cancel();
         NavigationService.pushReplacement(routeName: SignInScreen.route);
@@ -48,71 +51,94 @@ class _SecondIntroScreenState extends State<SecondIntroScreen>
     });
   }
 
+  _onBackGroundPressed() {
+    timer.cancel();
+    for (int i = 0; i < text1Controller.length; i++) {
+      if (text1Controller[i].status == AnimationStatus.dismissed) {
+        text1Controller[i].forward();
+        _forward(i + 1);
+        return;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.only(top: 198, left: 32),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SvgPicture.asset(
-                AppDrawables.blinq,
-                width: 62,
-                colorFilter: ColorFilter.mode(
-                  Theme.of(context).colorScheme.primary,
-                  BlendMode.srcIn,
-                ),
+        body: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 198, left: 32),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SvgPicture.asset(
+                    AppDrawables.blinq,
+                    width: 62,
+                    colorFilter: ColorFilter.mode(
+                      Theme.of(context).colorScheme.primary,
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  Text(
+                    'strIAmPersonalAssistant'.tr(),
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(color: text1ColorAnim[0].value),
+                  ),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  Text(
+                    'strConnectBlinqx'.tr(),
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(color: text1ColorAnim[1].value),
+                  ),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  Text(
+                    'strHelpBreakdownAccidents'.tr(),
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(color: text1ColorAnim[2].value),
+                  ),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  Text(
+                    'strConnectFriends'.tr(),
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(color: text1ColorAnim[3].value),
+                  ),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  Text(
+                    'strSendAcciendtsReports'.tr(),
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(color: text1ColorAnim[4].value),
+                  ),
+                ],
               ),
-              const SizedBox(
-                height: 32,
-              ),
-              Text(
-                'strIAmPersonalAssistant'.tr(),
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium
-                    ?.copyWith(color: text1ColorAnim[0].value),
-              ),
-              const SizedBox(
-                height: 32,
-              ),
-              Text(
-                'strConnectBlinqx'.tr(),
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium
-                    ?.copyWith(color: text1ColorAnim[1].value),
-              ),
-              const SizedBox(height: 32,),
-              Text(
-                'strHelpBreakdownAccidents'.tr(),
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium
-                    ?.copyWith(color: text1ColorAnim[2].value),
-              ),
-              const SizedBox(height: 32,),
-              Text(
-                'strConnectFriends'.tr(),
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium
-                    ?.copyWith(color: text1ColorAnim[3].value),
-              ),
-              const SizedBox(height: 32,),
-              Text(
-                'strSendAcciendtsReports'.tr(),
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium
-                    ?.copyWith(color: text1ColorAnim[4].value),
-              ),
-
-            ],
-          ),
+            ),
+            GestureDetector(
+              onTap: _onBackGroundPressed,
+            )
+          ],
         ),
       ),
     );
@@ -126,6 +152,4 @@ class _SecondIntroScreenState extends State<SecondIntroScreen>
     }
     super.dispose();
   }
-
-
 }
