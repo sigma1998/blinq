@@ -1,17 +1,17 @@
 // Flutter imports:
-import 'package:blinq/core/drawables/app_drawables.dart';
-import 'package:blinq/core/theme/app_colors.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
 import 'package:blinq/data/model/history/history_item/history_item_dto.dart';
 import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/expanded_section.dart';
 import 'package:blinq/utils/custom_widgets/info_container.dart';
+import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/utils/general_functions.dart';
-
-// Package imports:
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
+import 'package:blinq/core/theme/app_colors.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ProfileReportItem extends StatefulWidget {
@@ -23,16 +23,15 @@ class ProfileReportItem extends StatefulWidget {
   final void Function() onDelete;
   final void Function() onContinue;
 
-  const ProfileReportItem({
-    super.key,
-    required this.historyItemModelDto,
-    // required this.status,
-    //
-    required this.onPdfOpen,
-    required this.onDelete,
-    required this.onDownload,
-    required this.onContinue
-  });
+  const ProfileReportItem(
+      {super.key,
+      required this.historyItemModelDto,
+      // required this.status,
+      //
+      required this.onPdfOpen,
+      required this.onDelete,
+      required this.onDownload,
+      required this.onContinue});
 
   @override
   State<ProfileReportItem> createState() => _ProfileReportItemState();
@@ -83,11 +82,11 @@ class _ProfileReportItemState extends State<ProfileReportItem>
                 const SizedBox(height: 36),
                 isActive
                     ? Center(
-                      child: MyButton.primary(
-                        width: 110,
+                        child: MyButton.primary(
+                          width: 110,
                           color: AppColors.activeReportColor,
                           label: 'strContinue'.tr(),
-                          onTap: widget.onContinue ,
+                          onTap: widget.onContinue,
                           padding: const EdgeInsets.symmetric(
                             vertical: 6,
                             horizontal: 16,
@@ -97,13 +96,13 @@ class _ProfileReportItemState extends State<ProfileReportItem>
                           ),
                           labelStyle: const TextStyle(fontSize: 11),
                         ),
-                    )
+                      )
                     : Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           MyButton.primary(
                             label: 'strOpenPdf'.tr(),
-                            onTap: widget.onPdfOpen ,
+                            onTap: widget.onPdfOpen,
                             padding: const EdgeInsets.symmetric(
                               vertical: 6,
                               horizontal: 16,

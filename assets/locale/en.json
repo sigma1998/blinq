@@ -642,6 +642,7 @@
   "strMyVan": "My Van",
   "strMyMoto": "My Moto",
   "strYouHaveUnfinishedReport": "You have an unfinished report",
+  "strYouDontHaveReports": "You don’t have any reports yet",
   "byke": {
     "windshield": "windshield",
     "handlebars": "handlebars",

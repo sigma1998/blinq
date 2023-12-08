@@ -13,6 +13,8 @@ class NameTextField extends StatelessWidget {
   final TextEditingController controller;
 
   final FocusNode? focusNode;
+
+  final int minLines;
   final int maxLines;
 
   final bool enabled;
@@ -27,6 +29,7 @@ class NameTextField extends StatelessWidget {
     this.initialValue,
     //
     this.focusNode,
+    this.minLines = 1,
     this.maxLines = 1,
     //
     this.enabled = true,
@@ -39,6 +42,7 @@ class NameTextField extends StatelessWidget {
     return MyTextField(
       key: key,
       enabled: enabled,
+      minLines: minLines,
       maxLines: maxLines,
       labelText: labelText,
       autofocus: autofocus,

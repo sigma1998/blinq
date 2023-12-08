@@ -16,18 +16,16 @@ class LocationService {
 
   static geo.Position? myPosition;
 
-
-
   static Future<void> requestPermission() async {
     _locationPermission = await _location.requestPermission();
   }
 
-  static Future<void> requestService()async{
+  static Future<void> requestService() async {
     final serviceEnabled = await _location.requestService();
 
-      if(!serviceEnabled){
-        _locationPermission = PermissionStatus.denied;
-      }
+    if (!serviceEnabled) {
+      _locationPermission = PermissionStatus.denied;
+    }
   }
 
   static Future<geo.Position?> determinePosition() async {
@@ -37,10 +35,9 @@ class LocationService {
 
     if (permission == PermissionStatus.granted ||
         permission == PermissionStatus.grantedLimited) {
-
       var serviceEnabled = await _location.serviceEnabled();
 
-      if(!serviceEnabled){
+      if (!serviceEnabled) {
         _locationPermission = PermissionStatus.denied;
         return null;
       }
@@ -63,7 +60,6 @@ class LocationService {
     }
     return null;
   }
-
 
   static const String key = 'AIzaSyAfbxHPjQ_PlRCzzvKRPqaoc55uh4DNEvQ';
 
@@ -104,7 +100,4 @@ class LocationService {
       return null;
     }
   }
-
 }
-
-

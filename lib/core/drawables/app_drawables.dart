@@ -49,6 +49,8 @@ class AppDrawables {
   static const String blinqBloothooth = '$icons/blinq_bluetooth.svg';
   static const String mobilePhone = '$icons/mobile_phone.svg';
 
+  static const String reportsEmpty = '$icons/reports_empty.svg';
+
   //~ Social Media
   static const String telegram = '$icons/telegram.svg';
   static const String whatsapp = '$icons/whatsapp.svg';
