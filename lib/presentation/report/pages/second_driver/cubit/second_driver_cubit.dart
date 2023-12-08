@@ -1,29 +1,42 @@
-// Package imports:
+// Dart imports:
 import 'dart:async';
 
-import 'package:blinq/data/model/profile/response/profile_response_model.dart';
-import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
-import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
-import 'package:blinq/domain/repositories/accident_repository.dart';
-import 'package:blinq/presentation/report/pages/points_of_impact/points_of_impact_screen.dart';
+// Package imports:
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
+import 'package:blinq/presentation/report/pages/connect_to_driver/connect_to_driver_screen.dart';
+import 'package:blinq/presentation/report/pages/points_of_impact/points_of_impact_screen.dart';
+import 'package:blinq/data/model/profile/response/profile_response_model.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'second_driver_bloc.freezed.dart';
+part 'second_driver_cubit.freezed.dart';
 
 part 'second_driver_state.dart';
 
-class SecondDriverBloc extends Cubit<SecondDriverState> {
+class SecondDriverCubit extends Cubit<SecondDriverState> {
   //
-  final AccidentRepository repository;
   final ReportBloc reportBloc;
 
-  SecondDriverBloc({required this.repository, required this.reportBloc})
-      : super(const SecondDriverState());
+  final AccidentRepository repository;
+
+  SecondDriverCubit({
+    required this.repository,
+    required this.reportBloc,
+  }) : super(const SecondDriverState());
+
+  //
+  void onValueChanged(bool? value) =>
+      emit(state.copyWith(isSecondDriverBlinq: value));
+
+  bool get isNextEnabled => state.isSecondDriverBlinq != null;
+
+  //
 
   FutureOr<void> onFetchSecondDriver(int id) async {
     try {
@@ -36,6 +49,13 @@ class SecondDriverBloc extends Cubit<SecondDriverState> {
   }
 
   void onNextPressed() async {
+    if (!state.isSecondDriverBlinq!) {
+      NavigationService.homeNavigatorKey.currentState?.popUntil(
+        (route) => route.settings.name == ConnectToDriverScreen.route,
+      );
+      return;
+    }
+
     emit(state.copyWith(status: Status.loading));
 
     try {
@@ -55,12 +75,10 @@ class SecondDriverBloc extends Cubit<SecondDriverState> {
     }
   }
 
-  Future<bool> onScreenPop() async{
+  Future<bool> onScreenPop() async {
     reportBloc.setUser(User.A);
     return true;
   }
-
-
 
   void onBack() {
     reportBloc.setUser(User.A);

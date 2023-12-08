@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'second_driver_bloc.dart';
+part of 'second_driver_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SecondDriverState {
   Status get status => throw _privateConstructorUsedError;
+  bool? get isSecondDriverBlinq => throw _privateConstructorUsedError;
   ProfileResponseModel? get secondDriver => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
@@ -31,7 +32,11 @@ abstract class $SecondDriverStateCopyWith<$Res> {
           SecondDriverState value, $Res Function(SecondDriverState) then) =
       _$SecondDriverStateCopyWithImpl<$Res, SecondDriverState>;
   @useResult
-  $Res call({Status status, ProfileResponseModel? secondDriver, Error? error});
+  $Res call(
+      {Status status,
+      bool? isSecondDriverBlinq,
+      ProfileResponseModel? secondDriver,
+      Error? error});
 
   $ProfileResponseModelCopyWith<$Res>? get secondDriver;
 }
@@ -50,6 +55,7 @@ class _$SecondDriverStateCopyWithImpl<$Res, $Val extends SecondDriverState>
   @override
   $Res call({
     Object? status = null,
+    Object? isSecondDriverBlinq = freezed,
     Object? secondDriver = freezed,
     Object? error = freezed,
   }) {
@@ -58,6 +64,10 @@ class _$SecondDriverStateCopyWithImpl<$Res, $Val extends SecondDriverState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
+      isSecondDriverBlinq: freezed == isSecondDriverBlinq
+          ? _value.isSecondDriverBlinq
+          : isSecondDriverBlinq // ignore: cast_nullable_to_non_nullable
+              as bool?,
       secondDriver: freezed == secondDriver
           ? _value.secondDriver
           : secondDriver // ignore: cast_nullable_to_non_nullable
@@ -90,7 +100,11 @@ abstract class _$$SecondDriverStateImplCopyWith<$Res>
       __$$SecondDriverStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Status status, ProfileResponseModel? secondDriver, Error? error});
+  $Res call(
+      {Status status,
+      bool? isSecondDriverBlinq,
+      ProfileResponseModel? secondDriver,
+      Error? error});
 
   @override
   $ProfileResponseModelCopyWith<$Res>? get secondDriver;
@@ -108,6 +122,7 @@ class __$$SecondDriverStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? isSecondDriverBlinq = freezed,
     Object? secondDriver = freezed,
     Object? error = freezed,
   }) {
@@ -116,6 +131,10 @@ class __$$SecondDriverStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
+      isSecondDriverBlinq: freezed == isSecondDriverBlinq
+          ? _value.isSecondDriverBlinq
+          : isSecondDriverBlinq // ignore: cast_nullable_to_non_nullable
+              as bool?,
       secondDriver: freezed == secondDriver
           ? _value.secondDriver
           : secondDriver // ignore: cast_nullable_to_non_nullable
@@ -132,11 +151,16 @@ class __$$SecondDriverStateImplCopyWithImpl<$Res>
 
 class _$SecondDriverStateImpl implements _SecondDriverState {
   const _$SecondDriverStateImpl(
-      {this.status = Status.initial, this.secondDriver, this.error});
+      {this.status = Status.initial,
+      this.isSecondDriverBlinq,
+      this.secondDriver,
+      this.error});
 
   @override
   @JsonKey()
   final Status status;
+  @override
+  final bool? isSecondDriverBlinq;
   @override
   final ProfileResponseModel? secondDriver;
   @override
@@ -144,7 +168,7 @@ class _$SecondDriverStateImpl implements _SecondDriverState {
 
   @override
   String toString() {
-    return 'SecondDriverState(status: $status, secondDriver: $secondDriver, error: $error)';
+    return 'SecondDriverState(status: $status, isSecondDriverBlinq: $isSecondDriverBlinq, secondDriver: $secondDriver, error: $error)';
   }
 
   @override
@@ -153,13 +177,16 @@ class _$SecondDriverStateImpl implements _SecondDriverState {
         (other.runtimeType == runtimeType &&
             other is _$SecondDriverStateImpl &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.isSecondDriverBlinq, isSecondDriverBlinq) ||
+                other.isSecondDriverBlinq == isSecondDriverBlinq) &&
             (identical(other.secondDriver, secondDriver) ||
                 other.secondDriver == secondDriver) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, secondDriver, error);
+  int get hashCode => Object.hash(
+      runtimeType, status, isSecondDriverBlinq, secondDriver, error);
 
   @JsonKey(ignore: true)
   @override
@@ -172,11 +199,14 @@ class _$SecondDriverStateImpl implements _SecondDriverState {
 abstract class _SecondDriverState implements SecondDriverState {
   const factory _SecondDriverState(
       {final Status status,
+      final bool? isSecondDriverBlinq,
       final ProfileResponseModel? secondDriver,
       final Error? error}) = _$SecondDriverStateImpl;
 
   @override
   Status get status;
+  @override
+  bool? get isSecondDriverBlinq;
   @override
   ProfileResponseModel? get secondDriver;
   @override

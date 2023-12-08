@@ -1,18 +1,17 @@
 // Package imports:
-import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
-import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
-import 'package:blinq/domain/repositories/accident_repository.dart';
-import 'package:blinq/presentation/report/pages/qr_scan/qr_scan_screen.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:blinq/presentation/report/second_driver_editors/screens/policy_holder/policy_holder_screen.dart';
+import 'package:blinq/presentation/report/pages/qr_scan/qr_scan_screen.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'connect_to_driver_cubit.freezed.dart';
-
 part 'connect_to_driver_state.dart';
 
 class ConnectToDriverCubit extends Cubit<ConnectToDriverState> {
@@ -27,8 +26,11 @@ class ConnectToDriverCubit extends Cubit<ConnectToDriverState> {
   }) : super(const ConnectToDriverState());
 
   //
+  void onHasBlinqChanged(bool? value) => emit(state.copyWith(hasBlinq: value));
 
-  void onValueChanged(bool value) => emit(state.copyWith(hasBlinq: value));
+  bool get isNextEnabled => state.hasBlinq != null;
+
+  //
 
   void onNextPressed() async {
     if (state.hasBlinq!) {

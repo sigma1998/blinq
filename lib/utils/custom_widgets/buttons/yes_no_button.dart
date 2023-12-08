@@ -10,7 +10,7 @@ import 'default_ink_well.dart';
 class YesNoButton extends StatefulWidget {
   //
 
-  final void Function(bool) onChanged;
+  final void Function(bool?) onChanged;
 
   const YesNoButton({
     super.key,
