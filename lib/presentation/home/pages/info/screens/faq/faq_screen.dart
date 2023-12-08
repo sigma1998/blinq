@@ -16,25 +16,27 @@ class HomeInfoFaqScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HomeInfoCard(
-      title: 'strFrequentlyAskedQuestions'.tr(),
-      children: [
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.48,
-          child: ListView.builder(
-            itemCount: faqItems.length,
-            itemBuilder: (context, index) {
-              final title = faqItems.keys.toList()[index];
-              final description = faqItems.values.toList()[index];
+    return Scaffold(
+      body: HomeInfoCard(
+        title: 'strFrequentlyAskedQuestions'.tr(),
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.48,
+            child: ListView.builder(
+              itemCount: faqItems.length,
+              itemBuilder: (context, index) {
+                final title = faqItems.keys.toList()[index];
+                final description = faqItems.values.toList()[index];
 
-              return HomeInfoFaqItem(
-                title: title,
-                description: description,
-              );
-            },
+                return HomeInfoFaqItem(
+                  title: title,
+                  description: description,
+                );
+              },
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

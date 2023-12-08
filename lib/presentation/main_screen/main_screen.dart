@@ -88,6 +88,7 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                     child: SalomonBottomBar(
                       currentIndex: state.data!,
+                      curve: Curves.linearToEaseOut,
                       itemPadding: const EdgeInsets.symmetric(
                         vertical: 10,
                         horizontal: 24,
