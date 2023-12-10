@@ -62,7 +62,10 @@ class ReportBloc extends Cubit<ReportState> {
       return RouteAndArgs(route: LocationInfoScreen.route);
     } catch (e) {
       if (e is HaveActiveReportException) {
-        return await getReportStep(e.accidentId);
+        setReportId(e.accidentId);
+
+        return RouteAndArgs(route: LocationInfoScreen.route);
+        // return await getReportStep(e.accidentId);
       }
     }
 
@@ -78,7 +81,6 @@ class ReportBloc extends Cubit<ReportState> {
       setUser(User.A);
     }
     if (res.split('/').first == 'bdriver') {
-      print('fkdsjlnfsdkljmfnldksjm,fnldkmfldksfmdlkxfmdlksfmds');
       setUser(User.B);
     }
 

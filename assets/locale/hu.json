@@ -742,6 +742,7 @@
   },
   "strABCompleted": "Az A és B vezetők egy része\nelkészülnek",
   "strPartsCommon": "The following part is common to both drivers",
-  "strInvalidCode": "Érvénytelen kód, próbálja újra"
+  "strInvalidCode": "Érvénytelen kód, próbálja újra",
+  "strEmpty": "Kérjük, írja be megjegyzéseit"
 }
 

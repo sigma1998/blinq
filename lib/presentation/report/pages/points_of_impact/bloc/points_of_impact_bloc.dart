@@ -48,7 +48,7 @@ class PointsOfImpactBloc extends Cubit<PointsOfImpactScreenState> {
       status: Status.loading,
     ));
 
-    try {
+    // try {
       final file = await captureSocialPng(key, context);
 
       if (file == null) {
@@ -71,11 +71,11 @@ class PointsOfImpactBloc extends Cubit<PointsOfImpactScreenState> {
           arguments:
               SpeechToTextArgs(mode: SpeechToTextScreenMode.visibleDamage),
           nestedKey: NavigationService.homeNavigatorKey);
-    } catch (e) {
-      emit(state.copyWith(
-        status: Status.initial,
-      ));
-    }
+    // } catch (e) {
+    //   emit(state.copyWith(
+    //     status: Status.initial,
+    //   ));
+    // }
   }
 
   Future<void> _sendData(MultipartFile multipartFile) async{

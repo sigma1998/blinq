@@ -127,7 +127,7 @@ class ReportsScreenBloc extends Bloc<ReportsScreenEvent, ReportsScreenState> {
       OnContinueItem event, Emitter<ReportsScreenState> emit) async {
     emit(state.copyWith(status: Status.loading));
     try {
-      final RouteAndArgs? routeAndArgs = await reportBloc.onCreateReport();
+      final RouteAndArgs? routeAndArgs = await reportBloc.getReportStep(event.itemModelDto.id!);
 
       emit(state.copyWith(status: Status.initial));
 

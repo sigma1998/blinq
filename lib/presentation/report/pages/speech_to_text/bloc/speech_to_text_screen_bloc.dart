@@ -20,7 +20,7 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
 
   late final String title;
 
-  final TextEditingController textController = TextEditingController();
+  TextEditingController textController = TextEditingController();
 
   SpeechToTextScreenBloc(
       {required this.speechToTextScreenMode,
@@ -41,6 +41,11 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
   }
 
   void onNextTap() {
+    if (textController.text.isEmpty) {
+      NavigationService.showErrorToast('strEmpty'.tr());
+      return;
+    }
+
     switch (speechToTextScreenMode) {
       case SpeechToTextScreenMode.remarks:
         _onRemarksSubmitted();

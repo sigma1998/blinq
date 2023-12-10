@@ -743,5 +743,6 @@
   },
   "strABCompleted": "Part of drivers A and B\nare completed",
   "strPartsCommon": "The following part is common to both drivers",
-  "strInvalidCode": "Invalid code, please try again"
+  "strInvalidCode": "Invalid code, please try again",
+  "strEmpty": "Please enter your comments"
 }

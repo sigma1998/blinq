@@ -15,6 +15,7 @@ class VehiclesList extends StatelessWidget {
     final active = Theme.of(context).colorScheme.primary;
 
     return BlocBuilder<DamagedPartsBloc, DamagedPartsState>(
+      bloc: bloc,
       builder: (context, state) {
         return ListView(
           scrollDirection: Axis.horizontal,
@@ -44,7 +45,7 @@ class VehiclesList extends StatelessWidget {
                             inActive: inActive,
                             index: index);
                       },
-                      tolerance: 8,
+                      // tolerance: 8,
                     ),
                   ),
                 ),

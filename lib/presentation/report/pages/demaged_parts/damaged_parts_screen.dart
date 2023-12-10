@@ -25,36 +25,35 @@ class DamagedPartsScreen extends StatefulWidget {
 }
 
 class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
-  late final DamagedPartsBloc bloc;
+  late DamagedPartsBloc bloc;
 
   @override
   void didChangeDependencies() {
     final args =
-    ModalRoute
-        .of(context)
-        ?.settings
-        .arguments as DamagedPartsScreenArgs?;
+        ModalRoute.of(context)?.settings.arguments as DamagedPartsScreenArgs?;
 
-    bloc = DamagedPartsBloc(vehicleType: args?.vehicleType ?? VehicleType.auto,
-        accidentRepository: getIt<AccidentRepositoryImpl>(),
-        reportBloc: context.read(),
+    bloc = DamagedPartsBloc(
+      vehicleType: args?.vehicleType ?? VehicleType.auto,
+      accidentRepository: getIt<AccidentRepositoryImpl>(),
+      reportBloc: context.read(),
     );
-
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    final width = MediaQuery.of(context).size.width;
     return BlocProvider(
       create: (_) {
         return bloc;
       },
       child: BlocBuilder<DamagedPartsBloc, DamagedPartsState>(
+        bloc: bloc,
         builder: (context, state) {
+          print('fjksdnflsdmfklsdflsdkmfkldsmfldsmfs');
+          print(state.pageIndex);
+          print('fjksdnflsdmfklsdflsdkmfkldsmfldsmfs');
+
           return Scaffold(
             body: SafeArea(
               child: Padding(
@@ -70,10 +69,7 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
                     ),
                     Text(
                       'strSelectDamage'.tr(),
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .titleMedium,
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                     const SizedBox(
                       height: 24,
