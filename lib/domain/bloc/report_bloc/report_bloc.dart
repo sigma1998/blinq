@@ -15,7 +15,9 @@ import 'package:blinq/presentation/report/pages/points_of_impact/points_of_impac
 import 'package:blinq/presentation/report/pages/sign/sign_screen.dart';
 import 'package:blinq/presentation/report/pages/speech_to_text/bloc/speech_to_text_screen_mode.dart';
 import 'package:blinq/presentation/report/pages/speech_to_text/speech_to_text_screen.dart';
+import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/services/location/location_service.dart';
+import 'package:blinq/utils/smart_widgets/dialogs/unifnished_report_dialog/unfinished_report_dialog.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ReportBloc extends Cubit<ReportState> {
@@ -49,7 +51,7 @@ class ReportBloc extends Cubit<ReportState> {
   VehicleType get aDriverVehicleType =>
       profileBloc.vehicleType ?? VehicleType.auto;
 
-  Future<RouteAndArgs?> onCreateReport() async {
+  Future<RouteAndArgs?> onCreateAccident() async {
     final position = await LocationService.determinePosition();
 
     if (position == null) return null;
@@ -63,7 +65,21 @@ class ReportBloc extends Cubit<ReportState> {
     } catch (e) {
       if (e is HaveActiveReportException) {
         setReportId(e.accidentId);
-        return await getReportStep(e.accidentId);
+
+        final bool? res = await NavigationService.showDialog(
+            dialog: const UnfinishedReportDialog());
+
+        if (res == null) {
+          return RouteAndArgs(route: '');
+        }
+
+        if (res) {
+          return await getReportStep(e.accidentId);
+        } else {
+          await accidentRepository.deactivateAccident(e.accidentId);
+
+          return await onCreateAccident();
+        }
       }
     }
 

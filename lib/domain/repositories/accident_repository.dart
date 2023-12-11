@@ -115,6 +115,8 @@ abstract class AccidentRepository {
   );
 
   Future<VehicleType> getSecondDriverVehicleType(int accidentId);
+
+  Future<void> deactivateAccident(int accidentId);
 }
 
 class AccidentRepositoryImpl implements AccidentRepository {
@@ -477,6 +479,15 @@ class AccidentRepositoryImpl implements AccidentRepository {
   Future<VehicleType> getSecondDriverVehicleType(int accidentId) async {
     try {
       return await api.getSecondDriverVehicleType(accidentId);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> deactivateAccident(int accidentId) async {
+    try {
+      await api.deactivateAccident(accidentId);
     } catch (e) {
       rethrow;
     }

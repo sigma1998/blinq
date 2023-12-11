@@ -62,12 +62,14 @@ class CreateReportBloc extends Cubit<GenericBlocState> {
         return;
       }
 
-      final RouteAndArgs? routeAndArgs = await reportBloc.onCreateReport();
+      final RouteAndArgs? routeAndArgs = await reportBloc.onCreateAccident();
 
       emit(const GenericBlocState(status: Status.initial));
 
       if (routeAndArgs == null) {
         NavigationService.showErrorToast('Location permission is needed');
+      } else if (routeAndArgs.route.isEmpty) {
+        return;
       } else {
         NavigationService.pushNamed(
             routeName: routeAndArgs.route,

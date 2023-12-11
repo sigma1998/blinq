@@ -640,7 +640,8 @@
   "strVehicleTypeShort": "Járműtípus",
   "strMyVan": "Autóm",
   "strMyMoto": "Motorkerékpárom",
-  "strYouHaveUnfinishedReport": "Van egy befejezetlen jelentésed",
+  "strYouHaveUnfinishedReport": "Van egy befejezetlen jelentésed.  Akarod folytatni?",
+  "strCreateNew": "Nem, hozzon létre egy újat",
   "strYouDontHaveReports": "Még nincsenek jelentései",
   "byke": {
     "windshield": "szélvédő",

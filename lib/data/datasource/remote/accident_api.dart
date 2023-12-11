@@ -116,6 +116,8 @@ abstract class AccidentApi {
   );
 
   Future<VehicleType> getSecondDriverVehicleType(int accidentId);
+
+  Future<void> deactivateAccident(int accidentId);
 }
 
 class AccidentApiImpl implements AccidentApi {
@@ -544,6 +546,16 @@ class AccidentApiImpl implements AccidentApi {
         default:
           return VehicleType.auto;
       }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> deactivateAccident(int accidentId) async {
+    try {
+      await api.patch(NetworkConstants.deactivateAccident(accidentId),
+          data: {'status': 'rejected'});
     } catch (e) {
       rethrow;
     }

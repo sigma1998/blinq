@@ -641,8 +641,9 @@
   "strVehicleTypeShort": "Vehicle Type",
   "strMyVan": "My Van",
   "strMyMoto": "My Moto",
-  "strYouHaveUnfinishedReport": "You have an unfinished report",
+  "strYouHaveUnfinishedReport": "You have an unfinished report. Do you want to continue?",
   "strYouDontHaveReports": "You don’t have any reports yet",
+  "strCreateNew": "No, create a new",
   "strHome": "Home",
   "strContacts": "Contacts",
   "byke": {
