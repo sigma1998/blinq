@@ -14,6 +14,7 @@ class MyButton extends StatelessWidget {
   final Color enabledColor;
   final Color disabledColor;
   final Color? color;
+  final Color loaderColor;
 
   final void Function() onTap;
   final void Function()? onLongPress;
@@ -55,9 +56,11 @@ class MyButton extends StatelessWidget {
     this.isLoading = false,
     this.enable = true,
     //
-    this.width, this.color,
+    this.width,
+    this.color,
   })  : enabledColor = AppColors.primaryColor,
-        disabledColor = AppColors.grey1;
+        disabledColor = AppColors.grey1,
+        loaderColor = Colors.white;
 
   const MyButton.secondary({
     super.key,
@@ -82,9 +85,11 @@ class MyButton extends StatelessWidget {
     this.isLoading = false,
     this.enable = true,
     //
-    this.width, this.color,
+    this.width,
+    this.color,
   })  : enabledColor = Colors.white,
-        disabledColor = AppColors.grey1;
+        disabledColor = AppColors.grey1,
+        loaderColor = Colors.black;
 
   const MyButton.tertiary({
     super.key,
@@ -108,9 +113,11 @@ class MyButton extends StatelessWidget {
     this.isLoading = false,
     this.enable = true,
     //
-    this.width, this.color,
+    this.width,
+    this.color,
   })  : enabledColor = AppColors.grey1,
-        disabledColor = AppColors.grey1;
+        disabledColor = AppColors.grey1,
+        loaderColor = Colors.white;
 
   //
 
@@ -147,13 +154,13 @@ class MyButton extends StatelessWidget {
                 ],
               )
             else
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
                     height: 18,
                     width: 18,
-                    child: Loading(),
+                    child: Loading(color: loaderColor),
                   ),
                 ],
               ),

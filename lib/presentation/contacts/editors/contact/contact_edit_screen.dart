@@ -60,46 +60,48 @@ class _ContactEditScreenState extends State<ContactEditScreen> {
         builder: (context, state) {
           final isLoading = state.status == Status.loading;
 
-          return Form(
-            key: bloc.formKey,
-            child: EditCard(
-              isLoading: isLoading,
-              onNavigateBack: bloc.onNavigateBack,
-              id: id,
-              onSave: () {
-                if (bloc.validateForm()) {
-                  id == null
-                      ? bloc.add(OnAddContact())
-                      : bloc.add(OnUpdateContact(id: id!));
-                }
-              },
-              onDelete: () => bloc.add(OnDeleteContact(id: id!)),
-              children: [
-                SizedBox(
-                  width: 96,
-                  child: MyImage(
-                    bloc.imageUrl,
-                    width: 86,
-                    height: 86,
-                    file: state.image,
-                    onChangeImage: () => bloc.add(OnUpdateContactImage()),
+          return Scaffold(
+            body: Form(
+              key: bloc.formKey,
+              child: EditCard(
+                isLoading: isLoading,
+                onNavigateBack: bloc.onNavigateBack,
+                id: id,
+                onSave: () {
+                  if (bloc.validateForm()) {
+                    id == null
+                        ? bloc.add(OnAddContact())
+                        : bloc.add(OnUpdateContact(id: id!));
+                  }
+                },
+                onDelete: () => bloc.add(OnDeleteContact(id: id!)),
+                children: [
+                  SizedBox(
+                    width: 96,
+                    child: MyImage(
+                      bloc.imageUrl,
+                      width: 86,
+                      height: 86,
+                      file: state.image,
+                      onChangeImage: () => bloc.add(OnUpdateContactImage()),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 16),
-                NameTextField(
-                  labelText: 'strFirstName'.tr(),
-                  controller: bloc.firstNameController,
-                ),
-                const SizedBox(height: 40),
-                NameTextField(
-                  labelText: 'strLastName'.tr(),
-                  controller: bloc.lastNameController,
-                ),
-                const SizedBox(height: 40),
-                PhoneTextField(
-                  controller: bloc.phoneNumberController,
-                ),
-              ],
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: 'strFirstName'.tr(),
+                    controller: bloc.firstNameController,
+                  ),
+                  const SizedBox(height: 40),
+                  NameTextField(
+                    labelText: 'strLastName'.tr(),
+                    controller: bloc.lastNameController,
+                  ),
+                  const SizedBox(height: 40),
+                  PhoneTextField(
+                    controller: bloc.phoneNumberController,
+                  ),
+                ],
+              ),
             ),
           );
         },

@@ -16,11 +16,13 @@ class HomeInfoTechnicalDataScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HomeInfoCard(
-      title: 'strTechnicalData'.tr(),
-      children: const [
-        ComingSoonWidget(),
-      ],
+    return Scaffold(
+      body: HomeInfoCard(
+        title: 'strTechnicalData'.tr(),
+        children: const [
+          ComingSoonWidget(),
+        ],
+      ),
     );
   }
 }

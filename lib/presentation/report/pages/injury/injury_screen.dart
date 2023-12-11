@@ -1,20 +1,19 @@
 // Flutter imports:
-import 'package:blinq/app/locator.dart';
-import 'package:blinq/domain/repositories/accident_repository.dart';
-import 'package:blinq/presentation/report/pages/injury/bloc/injury_screen_bloc.dart';
-import 'package:blinq/presentation/report/pages/injury/bloc/injury_screen_state.dart';
-
-// Project imports:
-import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
-import 'package:blinq/utils/custom_widgets/modal_progress_hud.dart';
-import 'package:blinq/utils/generic_bloc_state.dart';
-import 'package:blinq/utils/step_indicator.dart';
+import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+// Project imports:
+import 'package:blinq/presentation/report/pages/injury/cubit/injury_screen_cubit.dart';
+import 'package:blinq/presentation/report/pages/injury/cubit/injury_screen_state.dart';
+import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/utils/custom_widgets/modal_progress_hud.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/step_indicator.dart';
+import 'package:blinq/app/locator.dart';
 import 'wigets/item.dart';
 
 class InjuryScreen extends StatefulWidget {
@@ -28,11 +27,11 @@ class InjuryScreen extends StatefulWidget {
 }
 
 class _InjuryScreenState extends State<InjuryScreen> {
-  late InjuryScreenBloc bloc;
+  late InjuryScreenCubit cubit;
 
   @override
   void didChangeDependencies() {
-    bloc = InjuryScreenBloc(
+    cubit = InjuryScreenCubit(
         reportBloc: context.read(),
         accidentRepository: getIt<AccidentRepositoryImpl>());
 
@@ -41,8 +40,8 @@ class _InjuryScreenState extends State<InjuryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<InjuryScreenBloc, InjuryScreenState>(
-        bloc: bloc,
+    return BlocBuilder<InjuryScreenCubit, InjuryScreenState>(
+        bloc: cubit,
         builder: (context, state) {
           return SafeArea(
             child: ModalProgressHud(
@@ -57,27 +56,24 @@ class _InjuryScreenState extends State<InjuryScreen> {
                     const SizedBox(height: 52),
                     InjuryItem(
                       title: 'strMinorInjuries'.tr(),
-                      onChanged: (v) {
-                        bloc.anyInjuries = v;
-                      },
+                      onChanged: cubit.onAnyInjuriesChanged,
                     ),
                     const SizedBox(height: 50),
                     InjuryItem(
                       title: 'strDamagedVehicle'.tr(),
-                      onChanged: (v) {
-                        bloc.damagedVehicles = v;
-                      },
+                      onChanged: cubit.onDamagedVehiclesChanged,
                     ),
                     const SizedBox(height: 50),
                     InjuryItem(
                       title: 'strDamagedBesidesVehicle'.tr(),
-                      onChanged: (v) {
-                        bloc.damageBesideVehicle = v;
-                      },
+                      onChanged: cubit.onDamageBesideVehicleChanged,
                     ),
                   ],
                 ),
-                floatingActionButton: NavigationButton(onNextTap: bloc.onNext),
+                floatingActionButton: NavigationButton(
+                  onNextTap: cubit.onNext,
+                  canGoForward: cubit.isNextEnabled,
+                ),
                 floatingActionButtonLocation:
                     FloatingActionButtonLocation.centerFloat,
               ),

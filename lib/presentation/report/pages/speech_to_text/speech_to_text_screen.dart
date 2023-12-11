@@ -33,10 +33,7 @@ class _SpeechToTextScreenState extends State<SpeechToTextScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final args = ModalRoute
-        .of(context)!
-        .settings
-        .arguments as SpeechToTextArgs;
+    final args = ModalRoute.of(context)!.settings.arguments as SpeechToTextArgs;
     bloc = SpeechToTextScreenBloc(
       speechToTextScreenMode: args.mode,
       accidentRepository: getIt<AccidentRepositoryImpl>(),
@@ -73,7 +70,7 @@ class _SpeechToTextScreenState extends State<SpeechToTextScreen> {
                 onNextTap: bloc.onNextTap,
               ),
               floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerFloat,
+                  FloatingActionButtonLocation.centerFloat,
             ),
           ),
         );

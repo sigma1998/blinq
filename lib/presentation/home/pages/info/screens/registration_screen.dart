@@ -16,11 +16,13 @@ class HomeInfoRegistrationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HomeInfoCard(
-      title: 'strRegistration'.tr(),
-      children: const [
-        ComingSoonWidget(),
-      ],
+    return Scaffold(
+      body: HomeInfoCard(
+        title: 'strRegistration'.tr(),
+        children: const [
+          ComingSoonWidget(),
+        ],
+      ),
     );
   }
 }

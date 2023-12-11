@@ -8,7 +8,7 @@ class InjuryItem extends StatelessWidget {
   //
   final String title;
 
-  final void Function(bool) onChanged;
+  final void Function(bool?) onChanged;
 
   const InjuryItem({
     super.key,

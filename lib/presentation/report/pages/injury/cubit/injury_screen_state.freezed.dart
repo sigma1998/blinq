@@ -17,6 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$InjuryScreenState {
   Status get status => throw _privateConstructorUsedError;
+  bool? get anyInjuries => throw _privateConstructorUsedError;
+  bool? get damagedVehicles => throw _privateConstructorUsedError;
+  bool? get damageBesideVehicle => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +33,12 @@ abstract class $InjuryScreenStateCopyWith<$Res> {
           InjuryScreenState value, $Res Function(InjuryScreenState) then) =
       _$InjuryScreenStateCopyWithImpl<$Res, InjuryScreenState>;
   @useResult
-  $Res call({Status status, Error? error});
+  $Res call(
+      {Status status,
+      bool? anyInjuries,
+      bool? damagedVehicles,
+      bool? damageBesideVehicle,
+      Error? error});
 }
 
 /// @nodoc
@@ -47,6 +55,9 @@ class _$InjuryScreenStateCopyWithImpl<$Res, $Val extends InjuryScreenState>
   @override
   $Res call({
     Object? status = null,
+    Object? anyInjuries = freezed,
+    Object? damagedVehicles = freezed,
+    Object? damageBesideVehicle = freezed,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -54,6 +65,18 @@ class _$InjuryScreenStateCopyWithImpl<$Res, $Val extends InjuryScreenState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
+      anyInjuries: freezed == anyInjuries
+          ? _value.anyInjuries
+          : anyInjuries // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      damagedVehicles: freezed == damagedVehicles
+          ? _value.damagedVehicles
+          : damagedVehicles // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      damageBesideVehicle: freezed == damageBesideVehicle
+          ? _value.damageBesideVehicle
+          : damageBesideVehicle // ignore: cast_nullable_to_non_nullable
+              as bool?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -70,7 +93,12 @@ abstract class _$$InjuryScreenStateImplCopyWith<$Res>
       __$$InjuryScreenStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Status status, Error? error});
+  $Res call(
+      {Status status,
+      bool? anyInjuries,
+      bool? damagedVehicles,
+      bool? damageBesideVehicle,
+      Error? error});
 }
 
 /// @nodoc
@@ -85,6 +113,9 @@ class __$$InjuryScreenStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? anyInjuries = freezed,
+    Object? damagedVehicles = freezed,
+    Object? damageBesideVehicle = freezed,
     Object? error = freezed,
   }) {
     return _then(_$InjuryScreenStateImpl(
@@ -92,6 +123,18 @@ class __$$InjuryScreenStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
+      anyInjuries: freezed == anyInjuries
+          ? _value.anyInjuries
+          : anyInjuries // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      damagedVehicles: freezed == damagedVehicles
+          ? _value.damagedVehicles
+          : damagedVehicles // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      damageBesideVehicle: freezed == damageBesideVehicle
+          ? _value.damageBesideVehicle
+          : damageBesideVehicle // ignore: cast_nullable_to_non_nullable
+              as bool?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -103,17 +146,28 @@ class __$$InjuryScreenStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InjuryScreenStateImpl implements _InjuryScreenState {
-  const _$InjuryScreenStateImpl({this.status = Status.initial, this.error});
+  const _$InjuryScreenStateImpl(
+      {this.status = Status.initial,
+      this.anyInjuries,
+      this.damagedVehicles,
+      this.damageBesideVehicle,
+      this.error});
 
   @override
   @JsonKey()
   final Status status;
   @override
+  final bool? anyInjuries;
+  @override
+  final bool? damagedVehicles;
+  @override
+  final bool? damageBesideVehicle;
+  @override
   final Error? error;
 
   @override
   String toString() {
-    return 'InjuryScreenState(status: $status, error: $error)';
+    return 'InjuryScreenState(status: $status, anyInjuries: $anyInjuries, damagedVehicles: $damagedVehicles, damageBesideVehicle: $damageBesideVehicle, error: $error)';
   }
 
   @override
@@ -122,11 +176,18 @@ class _$InjuryScreenStateImpl implements _InjuryScreenState {
         (other.runtimeType == runtimeType &&
             other is _$InjuryScreenStateImpl &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.anyInjuries, anyInjuries) ||
+                other.anyInjuries == anyInjuries) &&
+            (identical(other.damagedVehicles, damagedVehicles) ||
+                other.damagedVehicles == damagedVehicles) &&
+            (identical(other.damageBesideVehicle, damageBesideVehicle) ||
+                other.damageBesideVehicle == damageBesideVehicle) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, error);
+  int get hashCode => Object.hash(runtimeType, status, anyInjuries,
+      damagedVehicles, damageBesideVehicle, error);
 
   @JsonKey(ignore: true)
   @override
@@ -137,11 +198,21 @@ class _$InjuryScreenStateImpl implements _InjuryScreenState {
 }
 
 abstract class _InjuryScreenState implements InjuryScreenState {
-  const factory _InjuryScreenState({final Status status, final Error? error}) =
-      _$InjuryScreenStateImpl;
+  const factory _InjuryScreenState(
+      {final Status status,
+      final bool? anyInjuries,
+      final bool? damagedVehicles,
+      final bool? damageBesideVehicle,
+      final Error? error}) = _$InjuryScreenStateImpl;
 
   @override
   Status get status;
+  @override
+  bool? get anyInjuries;
+  @override
+  bool? get damagedVehicles;
+  @override
+  bool? get damageBesideVehicle;
   @override
   Error? get error;
   @override

@@ -25,7 +25,6 @@ class ConnectToDriverScreen extends StatefulWidget {
 }
 
 class _ConnectToDriverScreenState extends State<ConnectToDriverScreen> {
-
   late ConnectToDriverCubit cubit;
 
   @override
@@ -33,12 +32,12 @@ class _ConnectToDriverScreenState extends State<ConnectToDriverScreen> {
     cubit = ConnectToDriverCubit(
       reportBloc: context.read<ReportBloc>(),
       accidentRepository: getIt<AccidentRepositoryImpl>(),
-    );    super.didChangeDependencies();
+    );
+    super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-
     return BlocBuilder<ConnectToDriverCubit, ConnectToDriverState>(
       bloc: cubit,
       builder: (context, state) {
@@ -60,7 +59,7 @@ class _ConnectToDriverScreenState extends State<ConnectToDriverScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       YesNoButton(
-                        onChanged: cubit.onValueChanged,
+                        onChanged: cubit.onHasBlinqChanged,
                       ),
                     ],
                   ),
@@ -70,7 +69,7 @@ class _ConnectToDriverScreenState extends State<ConnectToDriverScreen> {
               floatingActionButton: NavigationButton(
                 onBack: cubit.onBack,
                 onNextTap: cubit.onNextPressed,
-                canGoForward: state.hasBlinq != null,
+                canGoForward: cubit.isNextEnabled,
                 loading: state.status == Status.loading,
               ),
               floatingActionButtonLocation:

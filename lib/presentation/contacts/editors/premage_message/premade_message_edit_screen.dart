@@ -57,31 +57,33 @@ class _PremadeMessageEditScreenState extends State<PremadeMessageEditScreen> {
         builder: (context, state) {
           final isLoading = state.status == Status.loading;
 
-          return Form(
-            key: bloc.formKey,
-            child: EditCard(
-              isLoading: isLoading,
-              onNavigateBack: bloc.onNavigateBack,
-              id: id,
-              onSave: () {
-                if (bloc.validateForm()) {
-                  id == null
-                      ? bloc.add(OnAddPreMadeMessage())
-                      : bloc.add(OnUpdatePreMadeMessage(id: id!));
-                }
-              },
-              onDelete: () => bloc.add(OnDeletePreMadeMessage(id: id!)),
-              children: [
-                NameTextField(
-                  labelText: 'strMessageName'.tr(),
-                  controller: bloc.titleController,
-                ),
-                const SizedBox(height: 40),
-                NameTextField(
-                  labelText: 'strMessages'.tr(),
-                  controller: bloc.messageController,
-                ),
-              ],
+          return Scaffold(
+            body: Form(
+              key: bloc.formKey,
+              child: EditCard(
+                isLoading: isLoading,
+                onNavigateBack: bloc.onNavigateBack,
+                id: id,
+                onSave: () {
+                  if (bloc.validateForm()) {
+                    id == null
+                        ? bloc.add(OnAddPreMadeMessage())
+                        : bloc.add(OnUpdatePreMadeMessage(id: id!));
+                  }
+                },
+                onDelete: () => bloc.add(OnDeletePreMadeMessage(id: id!)),
+                children: [
+                  NameTextField(
+                    labelText: 'strMessageName'.tr(),
+                    controller: bloc.titleController,
+                  ),
+                  const SizedBox(height: 40),
+                  NameTextField(
+                    labelText: 'strMessages'.tr(),
+                    controller: bloc.messageController,
+                  ),
+                ],
+              ),
             ),
           );
         },

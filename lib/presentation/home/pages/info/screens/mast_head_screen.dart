@@ -16,11 +16,13 @@ class HomeInfoMastHeadScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HomeInfoCard(
-      title: 'strMastHead'.tr(),
-      children: const [
-        ComingSoonWidget(),
-      ],
+    return Scaffold(
+      body: HomeInfoCard(
+        title: 'strMastHead'.tr(),
+        children: const [
+          ComingSoonWidget(),
+        ],
+      ),
     );
   }
 }
