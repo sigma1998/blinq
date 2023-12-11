@@ -50,10 +50,6 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
       child: BlocBuilder<DamagedPartsBloc, DamagedPartsState>(
         bloc: bloc,
         builder: (context, state) {
-          print('fjksdnflsdmfklsdflsdkmfkldsmfldsmfs');
-          print(state.pageIndex);
-          print('fjksdnflsdmfklsdflsdkmfkldsmfldsmfs');
-
           return Scaffold(
             body: SafeArea(
               child: Padding(
@@ -81,20 +77,23 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
                     Expanded(
                       child: Stack(
                         children: [
-                          const VehiclesList(),
+                          RepaintBoundary(
+                            key: bloc.imagePreview,
+                            child: const VehiclesList(),
+                          ),
                           if (state.pageIndex < bloc.vehicleSelect.length - 1)
                             Arrow(
                               alignment: Alignment.centerRight,
                               icon: AppDrawables.leftArrow,
-                              onTap: () =>
-                                  bloc.setPageIndex(state.pageIndex + 1, width),
+                              onTap: () => bloc.setPageIndex(
+                                  state.pageIndex + 1, width, context),
                             ),
                           if (state.pageIndex > 0)
                             Arrow(
                               alignment: Alignment.centerLeft,
                               icon: AppDrawables.rightArrow,
-                              onTap: () =>
-                                  bloc.setPageIndex(state.pageIndex - 1, width),
+                              onTap: () => bloc.setPageIndex(
+                                  state.pageIndex - 1, width, context),
                             ),
                         ],
                       ),

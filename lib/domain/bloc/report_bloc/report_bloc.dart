@@ -63,9 +63,7 @@ class ReportBloc extends Cubit<ReportState> {
     } catch (e) {
       if (e is HaveActiveReportException) {
         setReportId(e.accidentId);
-
-        return RouteAndArgs(route: LocationInfoScreen.route);
-        // return await getReportStep(e.accidentId);
+        return await getReportStep(e.accidentId);
       }
     }
 

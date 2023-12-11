@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:io';
+
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
@@ -29,6 +31,8 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
 
   List<String> vehicleSelect = [];
 
+  List<File?> screenShots = [];
+
   DamagedPartsBloc(
       {required this.vehicleType,
       required this.accidentRepository,
@@ -48,33 +52,20 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
         vehicleSelect = _carsSelect;
         break;
     }
+
+    for (var _ in vehicleSelect) {
+      screenShots.add(null);
+    }
   }
 
   Set<String> damagedParts = {};
 
-  GlobalKey previewCarTop = GlobalKey();
-  GlobalKey previewCarFront = GlobalKey();
-  GlobalKey previewCarBack = GlobalKey();
-  GlobalKey previewCarLeft = GlobalKey();
-  GlobalKey previewCarRight = GlobalKey();
+  GlobalKey imagePreview = GlobalKey();
 
-  getKey(int index) {
-    switch (index) {
-      case 0:
-        return previewCarFront;
-      case 1:
-        return previewCarLeft;
-      case 2:
-        return previewCarRight;
+  void setPageIndex(int index, double width, context) async {
+    var file = await captureSocialPng(imagePreview, context);
+    screenShots[state.pageIndex] = file;
 
-      case 3:
-        return previewCarTop;
-      case 4:
-        return previewCarBack;
-    }
-  }
-
-  void setPageIndex(int index, double width) {
     scrollController.animateTo((width - 48) * index,
         duration: const Duration(milliseconds: 300), curve: Curves.linear);
 
@@ -108,35 +99,19 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
       MultipartFile? top;
       MultipartFile? back;
 
-      var file = await captureSocialPng(previewCarFront, context);
+      var file = await captureSocialPng(imagePreview, context);
+      screenShots[state.pageIndex] = file;
 
-      front = MultipartFile.fromBytes(
-        file!.readAsBytesSync(),
-        filename: file.path.split('/').last,
-      );
+      front = await _getMultiPartFile(0);
 
-      file = await captureSocialPng(previewCarLeft, context);
-      left = MultipartFile.fromBytes(
-        file!.readAsBytesSync(),
-        filename: file.path.split('/').last,
-      );
+      left = await _getMultiPartFile(1);
 
       if (vehicleType != VehicleType.moto) {
-        file = await captureSocialPng(previewCarRight, context);
-        right = MultipartFile.fromBytes(
-          file!.readAsBytesSync(),
-          filename: file.path.split('/').last,
-        );
-        file = await captureSocialPng(previewCarTop, context);
-        top = MultipartFile.fromBytes(
-          file!.readAsBytesSync(),
-          filename: file.path.split('/').last,
-        );
-        file = await captureSocialPng(previewCarBack, context);
-        back = MultipartFile.fromBytes(
-          file!.readAsBytesSync(),
-          filename: file.path.split('/').last,
-        );
+        right = await _getMultiPartFile(2);
+
+        top = await _getMultiPartFile(3);
+
+        back = await _getMultiPartFile(4);
       }
 
       await _sendData(
@@ -157,37 +132,6 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
       return 7;
     }
     return 12;
-  }
-
-  Future<void> _sendData(
-      {required MultipartFile? top,
-      required MultipartFile? front,
-      required MultipartFile? back,
-      required MultipartFile? left,
-      required MultipartFile? right}) async {
-    if (reportBloc.reportType == ReportType.accident) {
-      if (reportBloc.state.user == User.A) {
-        await accidentRepository.damagedPoints(
-            top: top,
-            front: front,
-            back: back,
-            left: left,
-            right: right,
-            accidentId: reportBloc.reportId,
-            damageParts: state.carParts.toList());
-      } else {
-        await accidentRepository.damagedPointsB(
-            top: top,
-            front: front,
-            back: back,
-            left: left,
-            right: right,
-            accidentId: reportBloc.reportId,
-            damageParts: state.carParts.toList());
-      }
-    } else {
-      //TODO
-    }
   }
 
   Color onFColor(
@@ -235,6 +179,48 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
     }
 
     return active;
+  }
+
+  Future<MultipartFile> _getMultiPartFile(int index)async{
+    if(screenShots[index] == null){
+      screenShots[index] = await getImageFileFromAssets(vehicleSelect[index]);
+    }
+
+    return MultipartFile.fromBytes(
+      screenShots[index]!.readAsBytesSync(),
+      filename: screenShots[index]?.path.split('/').last,
+    );
+  }
+
+  Future<void> _sendData(
+      {required MultipartFile? top,
+        required MultipartFile? front,
+        required MultipartFile? back,
+        required MultipartFile? left,
+        required MultipartFile? right}) async {
+    if (reportBloc.reportType == ReportType.accident) {
+      if (reportBloc.state.user == User.A) {
+        await accidentRepository.damagedPoints(
+            top: top,
+            front: front,
+            back: back,
+            left: left,
+            right: right,
+            accidentId: reportBloc.reportId,
+            damageParts: state.carParts.toList());
+      } else {
+        await accidentRepository.damagedPointsB(
+            top: top,
+            front: front,
+            back: back,
+            left: left,
+            right: right,
+            accidentId: reportBloc.reportId,
+            damageParts: state.carParts.toList());
+      }
+    } else {
+      //TODO
+    }
   }
 
   ///getActiveColorForCar for cars
@@ -288,7 +274,7 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
     // }
 
     else if (x > 22.67 &&
-        double.parse(position.dx.toStringAsFixed(2)) < 221.33 &&
+        double.parse(position.dx.toStringAsFixed(2)) < 264.33 &&
         y > 89.97 &&
         y < 138.97) {
       color = damagedParts.contains(vehiclePartList[13]) ? inActive : active;
@@ -410,7 +396,6 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
     Color? color;
     final x = double.parse(position.dx.toStringAsFixed(2));
     final y = double.parse(position.dy.toStringAsFixed(2));
-
 
     if (x > 26 && x < 269 && y > 212 && y < 263) {
       color = damagedParts.contains(vehiclePartList[11]) ? inActive : active;

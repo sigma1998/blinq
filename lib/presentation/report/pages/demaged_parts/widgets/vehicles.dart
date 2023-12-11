@@ -28,25 +28,22 @@ class VehiclesList extends StatelessWidget {
               return SizedBox(
                 width: width - 48,
                 child: Center(
-                  child: RepaintBoundary(
-                    key: bloc.getKey(index),
-                    child: FloodFillImage(
-                      imageProvider: AssetImage(bloc.vehicleSelect[index]),
-                      fColor: (position) {
-                        const inActive =
-                             Color(0xff2d2d2d);
+                  child: FloodFillImage(
+                    imageProvider: AssetImage(bloc.vehicleSelect[index]),
+                    fColor: (position) {
+                      const inActive =
+                           Color(0xff2d2d2d);
 
-                        if (position == null) {
-                          return active;
-                        }
-                        return bloc.onFColor(
-                            position: position,
-                            active: active,
-                            inActive: inActive,
-                            index: index);
-                      },
-                      // tolerance: 8,
-                    ),
+                      if (position == null) {
+                        return active;
+                      }
+                      return bloc.onFColor(
+                          position: position,
+                          active: active,
+                          inActive: inActive,
+                          index: index);
+                    },
+                    // tolerance: 8,
                   ),
                 ),
               );

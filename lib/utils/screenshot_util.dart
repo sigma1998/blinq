@@ -1,9 +1,10 @@
-import 'dart:io';
 import 'dart:async';
-import 'dart:typed_data';
+import 'dart:io';
 import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 
 import 'cache_folder.dart';
 
@@ -21,11 +22,11 @@ Future<File?> captureSocialPng(GlobalKey container, BuildContext context) {
     /// it appears only in debug mode
     /// in profile/release mode should work fine
     /// comment it in release mode!!!
-    // if (boundary?.debugNeedsPaint ?? true) {
-    //   await Future.delayed(const Duration(milliseconds: 500));
-    //   // ignore: use_build_context_synchronously
-    //   return await captureSocialPng(container, context);
-    // }
+    if (boundary?.debugNeedsPaint ?? true) {
+      await Future.delayed(const Duration(milliseconds: 500));
+      // ignore: use_build_context_synchronously
+      return await captureSocialPng(container, context);
+    }
 
     ui.Image image = await boundary!.toImage();
     final directory = await FileUtil.createFolderInAppDocDir();
@@ -37,4 +38,19 @@ Future<File?> captureSocialPng(GlobalKey container, BuildContext context) {
     await imgFile.writeAsBytes(pngBytes);
     return imgFile;
   });
+}
+
+Future<File> getImageFileFromAssets(String path) async {
+  final byteData = await rootBundle.load(path);
+
+  Uint8List pngBytes = byteData.buffer.asUint8List();
+
+  final directory = await FileUtil.createFolderInAppDocDir();
+
+  File imgFile =
+      await File('$directory${DateTime.now().millisecondsSinceEpoch}.png')
+          .create(recursive: true);
+  await imgFile.writeAsBytes(pngBytes);
+
+  return imgFile;
 }
