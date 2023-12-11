@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "573054971190",
+    "project_id": "blinq-382713",
+    "storage_bucket": "blinq-382713.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:573054971190:android:0295a0504ce0d5e0369797",
+        "android_client_info": {
+          "package_name": "com.blinqx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "573054971190-lhnt6afnkg0pr3r9h03pgnlv1eh6n15r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blinqx",
+            "certificate_hash": "d5872db05742a3921718bc21c1e1b40e19f14ed6"
+          }
+        },
+        {
+          "client_id": "573054971190-mogivdm1mjrobra0uu273bi9h2rq8b34.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blinqx",
+            "certificate_hash": "9f5a65a8cf04849adef999c5ea0bb5d0d10b9378"
+          }
+        },
+        {
+          "client_id": "573054971190-8scv099a5ot9pkqi7p0ts1fug9sn00r3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqKZVTLo5hc3AsO2TCfww1sLjz_BGyxMs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "573054971190-8scv099a5ot9pkqi7p0ts1fug9sn00r3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "573054971190-inud9nk3kcpnsgfam3ukadmu5trk45d6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.samuraidevs.blinq"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
