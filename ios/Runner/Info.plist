@@ -45,6 +45,19 @@
 		<string>sms</string>
 		<string>tel</string>
 	</array>
+	<key>GIDClientID</key>
+	<string>573054971190-inud9nk3kcpnsgfam3ukadmu5trk45d6.apps.googleusercontent.com</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.573054971190-inud9nk3kcpnsgfam3ukadmu5trk45d6</string>
+			</array>
+		</dict>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

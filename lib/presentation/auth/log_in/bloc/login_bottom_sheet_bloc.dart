@@ -78,22 +78,27 @@ class LoginBottomSheetBloc
 
   FutureOr<void> _onGoogleSelected(
       OnGoogleSelected event, Emitter<LoginBottomSheetState> emit) async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
 
-    if (googleAuth != null) {
-      emit(state.copyWith(status: Status.loading));
-      final model = LoginGoogleRequest(
-        email: googleUser?.email ?? '',
-        displayName: googleUser?.displayName ?? '',
-        id: googleUser?.id ?? '',
-      );
-      final res = await authRepository.loginWithGoogle(model);
-      _saveData(res);
+      if (googleAuth != null) {
+        emit(state.copyWith(status: Status.loading));
+        final model = LoginGoogleRequest(
+          email: googleUser?.email ?? '',
+          displayName: googleUser?.displayName ?? '',
+          id: googleUser?.id ?? '',
+        );
+        final res = await authRepository.loginWithGoogle(model);
+        _saveData(res);
+        emit(state.copyWith(status: Status.initial));
+        NavigationService.newRootScreen(MainScreen.route);
+      }
+    } catch (e) {
+      debugPrint(e.toString());
       emit(state.copyWith(status: Status.initial));
-      NavigationService.newRootScreen(MainScreen.route);
     }
   }
 
