@@ -91,7 +91,7 @@ class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
                   ),
                   const SizedBox(height: 16),
                   EmailTextField(
-                    controller: bloc.phoneNumberController,
+                    controller: bloc.emailController,
                   ),
                   const SizedBox(height: 90),
                 ],

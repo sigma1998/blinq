@@ -34,7 +34,7 @@ class PolicyHolderEditorBloc
   final addressController = TextEditingController();
   final postalCodeController = TextEditingController();
   final countryController = TextEditingController();
-  final phoneNumberController = TextEditingController();
+  final emailController = TextEditingController();
 
   PolicyHolderEditorBloc({
     required this.profileBloc,
@@ -54,8 +54,8 @@ class PolicyHolderEditorBloc
         profileBloc.state.profile?.policyHolder?.postalCode ?? '';
     countryController.text =
         profileBloc.state.profile?.policyHolder?.country ?? '';
-    phoneNumberController.text =
-        profileBloc.state.profile?.policyHolder?.phoneNumber ?? '';
+    emailController.text =
+        profileBloc.state.profile?.policyHolder?.email ?? '';
   }
 
   bool validateForm() => formKey.currentState!.validate();
@@ -82,7 +82,7 @@ class PolicyHolderEditorBloc
         address: addressController.text,
         postalCode: postalCodeController.text,
         country: countryController.text,
-        phoneNumber: phoneNumberController.text,
+        email: emailController.text,
       );
 
       emit(const PolicyHolderEditorState(status: Status.loading));
