@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:blinq/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -22,6 +24,10 @@ void main() async {
   setUpLocator();
 
   await _setUpHive();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(const MyLocalization(child: MyApp()));
 }
