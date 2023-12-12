@@ -15,12 +15,18 @@ class MyCupertinoDialog extends StatelessWidget {
   final String? leftActionTitle;
   final String? rightActionTitle;
 
+  final VoidCallback? leftAction;
+  final VoidCallback? rightAction;
+
   const MyCupertinoDialog({
     super.key,
     required this.title,
     //
     this.leftActionTitle,
     this.rightActionTitle,
+    //
+    this.leftAction,
+    this.rightAction,
   });
 
   @override
@@ -33,21 +39,23 @@ class MyCupertinoDialog extends StatelessWidget {
       actions: [
         CupertinoDialogAction(
           isDefaultAction: true,
+          onPressed: leftAction ??
+              () => NavigationService.back(
+                  result: leftActionTitle ?? 'strNo'.tr()),
           child: Text(
             leftActionTitle ?? 'strNo'.tr(),
             style: Theme.of(context).textTheme.bodyLarge,
           ),
-          onPressed: () =>
-              NavigationService.back(result: leftActionTitle ?? 'strNo'.tr()),
         ),
         CupertinoDialogAction(
           isDefaultAction: true,
+          onPressed: rightAction ??
+              () => NavigationService.back(
+                  result: leftActionTitle ?? 'strYes'.tr()),
           child: Text(
             rightActionTitle ?? 'strYes'.tr(),
             style: Theme.of(context).textTheme.bodyLarge,
           ),
-          onPressed: () =>
-              NavigationService.back(result: leftActionTitle ?? 'strYes'.tr()),
         ),
       ],
     );

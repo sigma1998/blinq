@@ -643,6 +643,8 @@
   "strYouHaveUnfinishedReport": "Van egy befejezetlen jelentésed.  Akarod folytatni?",
   "strCreateNew": "Nem, hozzon létre egy újat",
   "strYouDontHaveReports": "Még nincsenek jelentései",
+  "strBleTurnOnPermission": "Kérjük, engedélyezze a Bluetoothot a BLINQ-hoz való csatlakozáshoz",
+
   "byke": {
     "windshield": "szélvédő",
     "handlebars": "kormány",

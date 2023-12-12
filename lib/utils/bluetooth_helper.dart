@@ -2,10 +2,14 @@
 import 'dart:io' show Platform;
 
 // Flutter imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
 // Package imports:
+import 'package:blinq/utils/smart_widgets/dialogs/permission_dialog/permission_dialog.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
+import 'package:blinq/utils/navigation_service.dart';
 
 // Project imports:
 import 'device_info_helper.dart';
@@ -171,5 +175,19 @@ class BluetoothHelper {
     }
     value[0] = appCmdMsgAck;
     return value;
+  }
+
+  Future<void> checkBleConnectionStatus() async {
+    final isOn =
+        await FlutterBluePlus.adapterState.first == BluetoothAdapterState.on;
+
+    if (Platform.isAndroid && !isOn) {
+      return await FlutterBluePlus.turnOn();
+    } else if (Platform.isIOS && !isOn) {
+      return await NavigationService.showDialog(
+          dialog: PermissionDialog(
+        title: 'strBleTurnOnPermission'.tr(),
+      ));
+    }
   }
 }
