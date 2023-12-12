@@ -2,6 +2,7 @@
 import 'dart:io' show Platform;
 
 // Flutter imports:
+import 'package:app_settings/app_settings.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
@@ -186,6 +187,12 @@ class BluetoothHelper {
     } else if (Platform.isIOS && !isOn) {
       return await NavigationService.showDialog(
           dialog: PermissionDialog(
+        onSettingsPressed: () async {
+          await AppSettings.openAppSettings(
+            asAnotherTask: true,
+            type: AppSettingsType.bluetooth,
+          );
+        },
         title: 'strBleTurnOnPermission'.tr(),
       ));
     }
