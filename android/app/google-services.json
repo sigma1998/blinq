@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "573054971190-a9rj9p4r5csrm357npueua3ptonl6git.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blinqx",
+            "certificate_hash": "ae1d0158bf2a802e3fd82381d33a8a4b38e176cf"
+          }
+        },
+        {
           "client_id": "573054971190-lhnt6afnkg0pr3r9h03pgnlv1eh6n15r.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

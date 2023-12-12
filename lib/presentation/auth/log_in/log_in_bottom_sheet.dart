@@ -108,7 +108,7 @@ class _LogInBottomSheetState extends State<LogInBottomSheet> {
                             ),
                           if (Platform.isIOS) const SizedBox(width: 30),
                           InkWell(
-                            onTap: () {},
+                            onTap: () => bloc.add(OnGoogleSelected()),
                             child: Image.asset(
                               AppDrawables.google,
                               height: 40,

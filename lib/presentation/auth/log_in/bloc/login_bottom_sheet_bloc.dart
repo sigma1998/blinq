@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:blinq/core/network/dio_client.dart';
+import 'package:blinq/data/model/login/google_request/login_google_request.dart';
 import 'package:blinq/data/model/login/response/login_response_model.dart';
 import 'package:blinq/data/model/user/user_status.dart';
 import 'package:blinq/domain/repositories/auth_repository.dart';
@@ -12,6 +13,7 @@ import 'package:blinq/utils/navigation_service.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import 'login_bottom_sheet_event.dart';
@@ -75,7 +77,25 @@ class LoginBottomSheetBloc
   }
 
   FutureOr<void> _onGoogleSelected(
-      OnGoogleSelected event, Emitter<LoginBottomSheetState> emit) {}
+      OnGoogleSelected event, Emitter<LoginBottomSheetState> emit) async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    if (googleAuth != null) {
+      emit(state.copyWith(status: Status.loading));
+      final model = LoginGoogleRequest(
+        email: googleUser?.email ?? '',
+        displayName: googleUser?.displayName ?? '',
+        id: googleUser?.id ?? '',
+      );
+      final res = await authRepository.loginWithGoogle(model);
+      _saveData(res);
+      emit(state.copyWith(status: Status.initial));
+      NavigationService.newRootScreen(MainScreen.route);
+    }
+  }
 
   void _saveData(LoginResponseModel res) {
     DioClient.setToken(res.access);
