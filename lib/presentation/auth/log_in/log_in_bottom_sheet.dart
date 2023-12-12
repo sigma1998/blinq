@@ -100,7 +100,7 @@ class _LogInBottomSheetState extends State<LogInBottomSheet> {
                         children: [
                           if (Platform.isIOS)
                             InkWell(
-                              onTap: () {},
+                              onTap: () => bloc.add(OnAppleSelected()),
                               child: Image.asset(
                                 AppDrawables.apple,
                                 height: 40,
