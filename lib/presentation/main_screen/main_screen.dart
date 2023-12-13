@@ -86,32 +86,35 @@ class _MainScreenState extends State<MainScreen> {
                           .secondary
                           .withOpacity(0.8),
                     ),
-                    child: SalomonBottomBar(
-                      currentIndex: state.data!,
-                      curve: Curves.linearToEaseOut,
-                      itemPadding: const EdgeInsets.symmetric(
-                        vertical: 10,
-                        horizontal: 24,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: SalomonBottomBar(
+                        currentIndex: state.data!,
+                        curve: Curves.linearToEaseOut,
+                        itemPadding: const EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 24,
+                        ),
+                        onTap: (index) =>
+                            bloc.add(OnItemPressed(newIndex: index)),
+                        items: [
+                          _buildBottomBarItem(
+                            title: 'strHome'.tr(),
+                            icon: AppDrawables.blinq,
+                            activeIcon: AppDrawables.blinq,
+                          ),
+                          _buildBottomBarItem(
+                            title: 'strContacts'.tr(),
+                            icon: AppDrawables.contacts,
+                            activeIcon: AppDrawables.contacts,
+                          ),
+                          _buildBottomBarItem(
+                            title: 'strProfile'.tr(),
+                            icon: AppDrawables.profile,
+                            activeIcon: AppDrawables.profile,
+                          ),
+                        ],
                       ),
-                      onTap: (index) =>
-                          bloc.add(OnItemPressed(newIndex: index)),
-                      items: [
-                        _buildBottomBarItem(
-                          title: 'strHome'.tr(),
-                          icon: AppDrawables.blinq,
-                          activeIcon: AppDrawables.blinq,
-                        ),
-                        _buildBottomBarItem(
-                          title: 'strContacts'.tr(),
-                          icon: AppDrawables.contacts,
-                          activeIcon: AppDrawables.contacts,
-                        ),
-                        _buildBottomBarItem(
-                          title: 'strProfile'.tr(),
-                          icon: AppDrawables.profile,
-                          activeIcon: AppDrawables.profile,
-                        ),
-                      ],
                     ),
                   ),
                 ),
