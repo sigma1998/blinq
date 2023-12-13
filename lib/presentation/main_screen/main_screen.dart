@@ -36,11 +36,11 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
+    context.read<ConnectToBlinqCubit>().connectPreviousDevices();
   }
 
   @override
   Widget build(BuildContext context) {
-    context.read<ConnectToBlinqCubit>().connectPreviousDevices();
     final bloc = context.read<MainScreenBloc>();
 
     return BlocBuilder<MainScreenBloc, GenericBlocState<int>>(

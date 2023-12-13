@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:io';
 
 // Flutter imports:
+import 'package:blinq/utils/smart_widgets/dialogs/permission_dialog/permission_dialog.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -64,11 +65,10 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
   }
 
   Future<void> findPreviouslyPairedDevices() async {
-    List<DiscoveredDevice> savedBleDevices =
-        await LocalStorageService().getDevices;
+    final savedBleDevices = await LocalStorageService().getDevices;
     // print("===> SAVED BLE DEVICES $savedBleDevices");
     /// saving all available devices from local db to our state
-    emit(state.copyWith(savedBleDevices: [...savedBleDevices]));
+    emit(state.copyWith(savedBleDevices: List.of(savedBleDevices)));
   }
 
   Future<void> connectPreviousDevices() async {
@@ -84,15 +84,15 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
 
     /// If no saved devices are discovered, this function should stop moving
     /// forward
-    if (state.savedBleDevices.isEmpty == true &&
+    if (state.savedBleDevices.isEmpty &&
         state.boardConnectionState != DeviceConnectionState.disconnected) {
       return;
     }
 
     if (Platform.isAndroid) {
-      bool isAndroidPermissions = await checkAndroidPermissionsCode();
+      bool isAndroidPermissions = await checkPermissions();
       loggerCubit.logMessage("Inside Android Permission Checking");
-      if (isAndroidPermissions == true) _initializeScanningStream();
+      if (isAndroidPermissions) _initializeScanningStream();
     } else {
       loggerCubit.logMessage("Right before initializing scanning stream!");
       _initializeScanningStream();
@@ -100,6 +100,8 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
   }
 
   void _initializeScanningStream() async {
+    await _bluetoothHelper.checkBleConnectionStatus();
+
     emit(state.copyWith(scanning: true));
     if (_scanStream != null) {
       await _scanStream!.cancel();
@@ -177,12 +179,14 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
   }
 
   void _connectToDetectedDevice(DiscoveredDevice device) async {
-    if (state.savedBleDevices.isEmpty == true) return;
+    await findPreviouslyPairedDevices();
 
-    Iterable<DiscoveredDevice> matchesPairedDevices =
+    if (state.savedBleDevices.isEmpty) return;
+
+    final pairedDevices =
         state.savedBleDevices.where((element) => element.id == device.id);
 
-    if (matchesPairedDevices.isNotEmpty == true) {
+    if (pairedDevices.isNotEmpty) {
       await onConnectDevice(device);
     }
 
@@ -431,7 +435,7 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
     ));
   }
 
-  Future<bool> checkAndroidPermissionsCode() async {
+  Future<bool> checkPermissions() async {
     await LocationService.requestPermission();
     await LocationService.requestService();
     final location =
@@ -444,30 +448,12 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
     if (location && bleScan && bleConnect) {
       return true;
     } else {
-      await showNoPermissionDialog();
+      NavigationService.showDialog(
+        dialog: const PermissionDialog(
+          title: 'Location permission is required for BLE to function',
+        ),
+      );
       return false;
     }
-  }
-
-  Future<void> showNoPermissionDialog() async {
-    NavigationService.showDialog(
-      dialog: const AlertDialog(
-        title: Text('No location permission '),
-        content: SingleChildScrollView(
-          child: ListBody(
-            children: <Widget>[
-              Text('No location permission granted.'),
-              Text('Location permission is required for BLE to function.'),
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: NavigationService.back,
-            child: Text('Acknowledge'),
-          ),
-        ],
-      ),
-    );
   }
 }

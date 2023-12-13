@@ -646,6 +646,7 @@
   "strCreateNew": "No, create a new",
   "strHome": "Home",
   "strContacts": "Contacts",
+  "strBleTurnOnPermission" : "Please turn on Bluetooth to connect to BLINQ",
   "byke": {
     "windshield": "windshield",
     "handlebars": "handlebars",

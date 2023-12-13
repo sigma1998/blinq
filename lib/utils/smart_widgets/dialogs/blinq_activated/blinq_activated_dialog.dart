@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/utils/custom_widgets/info_container.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/utils/navigation_service.dart';
+import 'blinq_activated_bloc.dart';
 import 'widgets/button.dart';
 
 class BlinqActivatedDialog extends StatelessWidget {
@@ -16,6 +19,8 @@ class BlinqActivatedDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = BlinqActivatedBloc(reportBloc: context.read<ReportBloc>());
+
     return MyInfoContainer(
       isEdit: true,
       onClose: NavigationService.back,
@@ -43,14 +48,14 @@ class BlinqActivatedDialog extends StatelessWidget {
           const SizedBox(height: 24),
           BlinqActivatedButton(
             title: 'strBreakDown'.tr(),
+            onTap: bloc.onBreakDownPressed,
             icon: AppDrawables.blinqBreakdown,
-            onTap: () {},
           ),
           const SizedBox(height: 10),
           BlinqActivatedButton(
             title: 'strAccident'.tr(),
+            onTap: bloc.onAccidentPressed,
             icon: AppDrawables.blinqAccident,
-            onTap: () {},
           ),
         ],
       ),
