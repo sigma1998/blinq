@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'accident_time_and_location.dart';
+part of 'report_time_and_location.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-AccidentTimeAndLocationDto _$AccidentTimeAndLocationDtoFromJson(
+ReportTimeAndLocationDto _$AccidentTimeAndLocationDtoFromJson(
     Map<String, dynamic> json) {
   return _AccidentTimeAndLocationDto.fromJson(json);
 }
@@ -28,16 +28,16 @@ mixin _$AccidentTimeAndLocationDto {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AccidentTimeAndLocationDtoCopyWith<AccidentTimeAndLocationDto>
+  $AccidentTimeAndLocationDtoCopyWith<ReportTimeAndLocationDto>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AccidentTimeAndLocationDtoCopyWith<$Res> {
-  factory $AccidentTimeAndLocationDtoCopyWith(AccidentTimeAndLocationDto value,
-          $Res Function(AccidentTimeAndLocationDto) then) =
+  factory $AccidentTimeAndLocationDtoCopyWith(ReportTimeAndLocationDto value,
+          $Res Function(ReportTimeAndLocationDto) then) =
       _$AccidentTimeAndLocationDtoCopyWithImpl<$Res,
-          AccidentTimeAndLocationDto>;
+          ReportTimeAndLocationDto>;
   @useResult
   $Res call(
       {String country,
@@ -47,7 +47,7 @@ abstract class $AccidentTimeAndLocationDtoCopyWith<$Res> {
 
 /// @nodoc
 class _$AccidentTimeAndLocationDtoCopyWithImpl<$Res,
-        $Val extends AccidentTimeAndLocationDto>
+        $Val extends ReportTimeAndLocationDto>
     implements $AccidentTimeAndLocationDtoCopyWith<$Res> {
   _$AccidentTimeAndLocationDtoCopyWithImpl(this._value, this._then);
 
@@ -186,7 +186,7 @@ class _$AccidentTimeAndLocationDtoImpl implements _AccidentTimeAndLocationDto {
 }
 
 abstract class _AccidentTimeAndLocationDto
-    implements AccidentTimeAndLocationDto {
+    implements ReportTimeAndLocationDto {
   const factory _AccidentTimeAndLocationDto(
           {required final String country,
           required final String location,

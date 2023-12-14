@@ -2,6 +2,7 @@ import 'package:blinq/app/locator.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/step_indicator.dart';
@@ -35,6 +36,7 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
     bloc = DamagedPartsBloc(
       vehicleType: args?.vehicleType ?? VehicleType.auto,
       accidentRepository: getIt<AccidentRepositoryImpl>(),
+      breakdownRepository: getIt<BreakdownRepositoryImpl>(),
       reportBloc: context.read(),
     );
     super.didChangeDependencies();

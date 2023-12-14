@@ -68,7 +68,7 @@ class NetworkConstants {
   ///
   ///  second version reports
   ///
-  static String createReport = 'v2/api/create/accident/adriver/';
+  static String createAccident = 'v2/api/create/accident/adriver/';
   static String accidentTimeAndPlace (int accidentId)=> '/v2/api/adriver/accident/$accidentId/date_time_country_place/';
   static String accidentSketch (int accidentId)=> '/v2/api/abdriver/accident/$accidentId/sketch/';
   static String accidentCircumstances (int accidentId)=> '/v2/api/abdriver/accident/$accidentId/circumstances/';
@@ -115,7 +115,7 @@ class NetworkConstants {
   static String signB(int accidentId) =>
       '/v2/api/bdriver/accident/$accidentId/sign/';
 
-  static String getPdf(int accidentId) => '/v2/api/accident/$accidentId/get_pdf/';
+  static String getAccidentPdf(int accidentId) => '/v2/api/accident/$accidentId/get_pdf/';
 
   static String sendToInsurance = 'v1/api/accident/send/breakdown/report/to/insurance/';
 
@@ -134,5 +134,35 @@ class NetworkConstants {
   static String deactivateAccident (int accidentId)=>
       '/v2/api/update/accident/$accidentId/status/';
 
+
+///
+/// breakdowns
+///
+  static String createBreakdown = 'v2/api/create/breakdown/';
+  static String breakdownTimeAndPlace (int breakdownId)=> '/v2/api/breakdown/$breakdownId/date_time_country_place/';
+  static String breakdownSketch (int breakdownId)=> '/v2/api/breakdown/$breakdownId/sketch/';
+  static String breakdownCircumstances (int breakdownId)=> '/v2/api/breakdown/$breakdownId/circumstances/';
+  static String getBreakdownPdf(int accidentId) => '/v2/api/breakdown/$accidentId/get_pdf/';
+
+  static String getBreakdownStatus(int breakdownId)=> 'v2/api/get/breakdown/$breakdownId/status/';
+
+  static String injuryBreakdown(int breakdownId) =>
+      '/v2/api/breakdown/$breakdownId/injury/';
+  static String witnessesBreakdown(int breakdownId) =>
+      '/v2/api/breakdown/$breakdownId/witnesses/';
+  static String visibleDamageBreakdown(int breakdownId) =>
+      '/v2/api/breakdown/$breakdownId/visible_damage/';
+  static String initialImpactPointBreakdown(int breakdownId) =>
+      '/v2/api/breakdown/$breakdownId/initial_impact_point/';
+  static String myRemarksBreakdown(int breakdownId) =>
+      '/v2/api/breakdown/$breakdownId/my_remarks/';
+  static String damagePointsBreakdown(int breakdownId) =>
+      '/v2/api/breakdown/$breakdownId/damage_points/';
+  static String uploadMediaBreakdown(int breakdownId) =>
+      '/v2/api/breakdown/$breakdownId/upload_media/';
+  static String signBreakdown(int breakdownId) =>
+      '/v2/api/breakdown/$breakdownId/sign/';
+  static String deactivateBreakdown (int breakdownId)=>
+      '/v2/api/update/breakdown/$breakdownId/status/';
 
 }

@@ -746,6 +746,8 @@
   "strABCompleted": "Az A és B vezetők egy része\nelkészülnek",
   "strPartsCommon": "The following part is common to both drivers",
   "strInvalidCode": "Érvénytelen kód, próbálja újra",
-  "strEmpty": "Kérjük, írja be megjegyzéseit"
+  "strEmpty": "Kérjük, írja be megjegyzéseit",
+  "strBadConnection": "Rossz a kapcsolat, ellenőrizze, hogy az internet stabil-e",
+  "strReportCreatedAt": "Jelentés készült: "
 }
 

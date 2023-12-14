@@ -2,6 +2,7 @@
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/repositories/breakdown_repository.dart';
 
 // Project imports:
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
@@ -41,6 +42,7 @@ class _DamagedMediaScreenState extends State<DamagedMediaScreen> {
     cubit = DamagedMediaCubit(
       reportBloc: context.read<ReportBloc>(),
       accidentRepository: getIt<AccidentRepositoryImpl>(),
+      breakdownRepository: getIt<BreakdownRepositoryImpl>(),
       mediaService: getIt<MediaServiceImpl>(),
     );
   }

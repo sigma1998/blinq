@@ -14,12 +14,10 @@ class StepIndicator extends StatelessWidget {
   final bool showTrailingTitle;
 
   final int currentStep;
-  final int totalSteps;
 
   const StepIndicator({
     super.key,
     this.currentStep = 1,
-    this.totalSteps = 17,
     //
     this.showTrailingTitle = false,
   });
@@ -45,7 +43,7 @@ class StepIndicator extends StatelessWidget {
                   TextSpan(
                     text: reportBloc.reportType == ReportType.accident
                         ? 'strAccident'.tr()
-                        : 'strBreakdown'.tr(),
+                        : 'strBreakDown'.tr(),
                   ),
                   if (showTrailingTitle && reportBloc.reportType == ReportType.accident)
                     TextSpan(
@@ -62,7 +60,7 @@ class StepIndicator extends StatelessWidget {
             StepProgressIndicator(
               size: 8,
               padding: 0,
-              totalSteps: totalSteps,
+              totalSteps: reportBloc.reportType == ReportType.accident ? 17 : 10,
               currentStep: currentStep,
               unselectedColor: Colors.black,
               roundedEdges: const Radius.circular(10),

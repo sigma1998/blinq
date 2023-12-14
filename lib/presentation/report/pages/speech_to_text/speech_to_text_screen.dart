@@ -2,6 +2,7 @@
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/presentation/report/pages/speech_to_text/bloc/speech_to_text_screen_bloc.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
@@ -37,6 +38,7 @@ class _SpeechToTextScreenState extends State<SpeechToTextScreen> {
     bloc = SpeechToTextScreenBloc(
       speechToTextScreenMode: args.mode,
       accidentRepository: getIt<AccidentRepositoryImpl>(),
+      breakdownRepository: getIt<BreakdownRepositoryImpl>(),
       reportBloc: context.read<ReportBloc>(),
     );
   }

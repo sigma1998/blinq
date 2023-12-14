@@ -12,18 +12,23 @@ class CustomInterceptor extends Interceptor {
     if (err.type == DioErrorType.connectTimeout ||
         err.type == DioErrorType.sendTimeout ||
         err.type == DioErrorType.receiveTimeout) {
-      NavigationService.showErrorToast('common.low_internet_connection'.tr());
+      NavigationService.showErrorToast('strBadConnection'.tr());
       return handler.next(err);
     }
     int statusCode = (err.response?.statusCode ?? 0);
     if (statusCode == 400 &&
-        err.requestOptions.path == NetworkConstants.createReport) {
+        (err.requestOptions.path == NetworkConstants.createAccident ||
+            err.requestOptions.path == NetworkConstants.createBreakdown)) {
       final data = err.response!.data;
-      final list = data['active_accidents'];
+      final list = data['active_reports'];
 
       return handler.next(HaveActiveReportException(
-          accidentId: list[0], requestOptions: err.requestOptions));
-    } else if (statusCode >= 400 && statusCode <= 500) {
+          id: list[0]['id'],
+          reportType: list[0]['type'],
+          createdAt: list[0]['created_datetime'],
+          requestOptions: err.requestOptions));
+    }
+    else if (statusCode >= 400 && statusCode < 500) {
       final text =
           err.response!.data?['message'] ?? err.response!.data['detail'];
       NavigationService.showErrorToast((text).toString());

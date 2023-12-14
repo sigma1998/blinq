@@ -748,5 +748,7 @@
   "strABCompleted": "Part of drivers A and B\nare completed",
   "strPartsCommon": "The following part is common to both drivers",
   "strInvalidCode": "Invalid code, please try again",
-  "strEmpty": "Please enter your comments"
+  "strEmpty": "Please enter your comments",
+  "strBadConnection": "You have a bad connection, make sure your internet is stable",
+  "strReportCreatedAt": "Report created at "
 }

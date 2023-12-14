@@ -62,7 +62,7 @@ class CreateReportBloc extends Cubit<GenericBlocState> {
         return;
       }
 
-      final RouteAndArgs? routeAndArgs = await reportBloc.onCreateAccident();
+      final RouteAndArgs? routeAndArgs = await reportBloc.onCreateReport();
 
       emit(const GenericBlocState(status: Status.initial));
 

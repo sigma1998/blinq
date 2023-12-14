@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/presentation/report/pages/location_info/bloc/location_info_screen_bloc.dart';
 import 'package:blinq/presentation/report/pages/location_info/bloc/location_info_screen_state.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
@@ -38,6 +39,7 @@ class _LocationInfoScreenState extends State<LocationInfoScreen> {
   void didChangeDependencies() {
     cubit = LocationInfoScreenCubit(
       accidentRepository: getIt<AccidentRepositoryImpl>(),
+      breakdownRepository: getIt<BreakdownRepositoryImpl>(),
       reportBloc: context.read(),
     );
 

@@ -1,6 +1,7 @@
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/presentation/report/pages/speech_to_text/bloc/speech_to_text_screen_mode.dart';
 import 'package:blinq/presentation/report/pages/speech_to_text/speech_to_text_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
@@ -14,13 +15,16 @@ import 'points_of_impact_state.dart';
 
 class PointsOfImpactBloc extends Cubit<PointsOfImpactScreenState> {
   final AccidentRepository accidentRepository;
+  final BreakdownRepository breakdownRepository;
   final ReportBloc reportBloc;
 
   final GlobalKey key = GlobalKey();
 
-  PointsOfImpactBloc(
-      {required this.reportBloc, required this.accidentRepository})
-      : super(const PointsOfImpactScreenState());
+  PointsOfImpactBloc({
+    required this.reportBloc,
+    required this.accidentRepository,
+    required this.breakdownRepository,
+  }) : super(const PointsOfImpactScreenState());
 
   void onArrowPressed({required PointOfImpact pointOfImpact}) {
     switch (pointOfImpact) {
@@ -48,7 +52,7 @@ class PointsOfImpactBloc extends Cubit<PointsOfImpactScreenState> {
       status: Status.loading,
     ));
 
-    // try {
+    try {
       final file = await captureSocialPng(key, context);
 
       if (file == null) {
@@ -71,40 +75,35 @@ class PointsOfImpactBloc extends Cubit<PointsOfImpactScreenState> {
           arguments:
               SpeechToTextArgs(mode: SpeechToTextScreenMode.visibleDamage),
           nestedKey: NavigationService.homeNavigatorKey);
-    // } catch (e) {
-    //   emit(state.copyWith(
-    //     status: Status.initial,
-    //   ));
-    // }
+    } catch (e) {
+      emit(state.copyWith(
+        status: Status.initial,
+      ));
+    }
   }
 
-  Future<void> _sendData(MultipartFile multipartFile) async{
-    if(reportBloc.reportType == ReportType.accident){
-      if(reportBloc.state.user == User.A){
+  Future<void> _sendData(MultipartFile multipartFile) async {
+    if (reportBloc.reportType == ReportType.accident) {
+      if (reportBloc.state.user == User.A) {
         await accidentRepository.accidentInitialImpactPoint(
             reportBloc.reportId, multipartFile);
-      }
-      else{
+      } else {
         await accidentRepository.accidentInitialImpactPointB(
             reportBloc.reportId, multipartFile);
       }
+    } else {
+      await breakdownRepository.breakdownInitialImpactPoint(
+          reportBloc.reportId, multipartFile);
     }
-    else{
-      //TODO
-    }
-
   }
 
   int getStep() {
-    if(reportBloc.state.user == User.A){
-     return 4;
-    }
-    else{
+    if (reportBloc.state.user == User.A) {
+      return 4;
+    } else {
       return 9;
     }
   }
-
-
 }
 
 enum PointOfImpact {

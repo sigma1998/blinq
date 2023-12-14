@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'accident_time_and_location.dart';
+part of 'report_time_and_location.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

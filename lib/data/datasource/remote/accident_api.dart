@@ -2,8 +2,8 @@
 
 import 'package:blinq/core/network/api_service.dart';
 import 'package:blinq/core/network/network_constants.dart';
-import 'package:blinq/data/model/accident/accident_time_and_location/accident_time_and_location.dart';
-import 'package:blinq/data/model/accident/injury/injury.dart';
+import 'package:blinq/data/model/report/report_time_and_location/report_time_and_location.dart';
+import 'package:blinq/data/model/report/injury/injury.dart';
 import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/data/model/insurance/request/insurance_request_model.dart';
 import 'package:blinq/data/model/policy_holder/request/policy_holder_request_model.dart';
@@ -22,8 +22,8 @@ abstract class AccidentApi {
 
   Future<int> createAccident(String long, String lat);
 
-  Future<void> adAccidentLocationAndTime(
-      int accidentId, AccidentTimeAndLocationDto accidentTimeAndLocationDto);
+  Future<void> addAccidentLocationAndTime(
+      int accidentId, ReportTimeAndLocationDto accidentTimeAndLocationDto);
 
   Future<int> uploadFile({required MultipartFile file});
 
@@ -39,7 +39,7 @@ abstract class AccidentApi {
 
   Future<void> visibleDamage(int accidentId, String visibleDamage);
 
-  Future<void> myRemarks(int accidentId, String visibleDamage);
+  Future<void> myRemarks(int accidentId, String myRemarks);
 
   Future<void> damagedPoints(
       {required MultipartFile? top,
@@ -150,7 +150,7 @@ class AccidentApiImpl implements AccidentApi {
   @override
   Future<int> createAccident(String long, String lat) async {
     try {
-      final res = await api.post(NetworkConstants.createReport,
+      final res = await api.post(NetworkConstants.createAccident,
           data: {'long': long, 'lat': lat});
 
       return res['accident_id'];
@@ -160,8 +160,8 @@ class AccidentApiImpl implements AccidentApi {
   }
 
   @override
-  Future<void> adAccidentLocationAndTime(int accidentId,
-      AccidentTimeAndLocationDto accidentTimeAndLocationDto) async {
+  Future<void> addAccidentLocationAndTime(int accidentId,
+      ReportTimeAndLocationDto accidentTimeAndLocationDto) async {
     try {
       await api.patch(NetworkConstants.accidentTimeAndPlace(accidentId),
           data: accidentTimeAndLocationDto.toJson());
@@ -440,7 +440,7 @@ class AccidentApiImpl implements AccidentApi {
   @override
   Future<String> getPdf(int accidentId) async {
     try {
-      final res = await api.get(NetworkConstants.getPdf(accidentId));
+      final res = await api.get(NetworkConstants.getAccidentPdf(accidentId));
       return res['accident_document_pdf'];
     } catch (e) {
       rethrow;

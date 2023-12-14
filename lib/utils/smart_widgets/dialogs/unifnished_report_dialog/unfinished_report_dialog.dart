@@ -9,9 +9,11 @@ import 'package:flutter/material.dart';
 
 class UnfinishedReportDialog extends StatelessWidget {
   //
+  final String dateTime;
 
   const UnfinishedReportDialog({
     super.key,
+    required this.dateTime,
   });
 
   @override
@@ -20,7 +22,7 @@ class UnfinishedReportDialog extends StatelessWidget {
       child: MyInfoContainer(
         padding: const EdgeInsets.all(36),
         margin: const EdgeInsets.symmetric(horizontal: 51),
-        height: 332,
+        height: 350,
         child: Column(
           children: [
             Text(
@@ -31,7 +33,13 @@ class UnfinishedReportDialog extends StatelessWidget {
                 fontWeight: FontWeight.w700,
               ),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 16),
+            Text('strReportCreatedAt'.tr() + dateTime.substring(0, 10),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: Theme.of(context).colorScheme.outline
+            ),
+            ),
+            const SizedBox(height: 16),
             MyButton.secondary(
               label: 'strContinue'.tr(),
               onTap: () {

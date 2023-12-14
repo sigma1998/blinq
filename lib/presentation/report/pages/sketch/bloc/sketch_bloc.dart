@@ -1,5 +1,7 @@
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/screenshot_util.dart';
@@ -10,9 +12,13 @@ import 'package:flutter_painter_v2/flutter_painter.dart';
 
 class SketchBloc extends Cubit<GenericBlocState<bool>> {
   final AccidentRepository accidentRepository;
+  final BreakdownRepository breakdownRepository;
   final ReportBloc reportBloc;
 
-  SketchBloc({required this.reportBloc, required this.accidentRepository})
+  SketchBloc(
+      {required this.reportBloc,
+      required this.accidentRepository,
+      required this.breakdownRepository})
       : super(
             const GenericBlocState<bool>(status: Status.initial, data: true)) {
     onInit();
@@ -78,8 +84,8 @@ class SketchBloc extends Cubit<GenericBlocState<bool>> {
   void onSubmitted(BuildContext context) async {
     emit(const GenericBlocState(status: Status.initial, data: false));
 
-    try{
-      final file =  await captureSocialPng(key, context);
+    try {
+      final file = await captureSocialPng(key, context);
 
       final multipartFile = MultipartFile.fromBytes(
         file!.readAsBytesSync(),
@@ -88,13 +94,18 @@ class SketchBloc extends Cubit<GenericBlocState<bool>> {
 
       emit(const GenericBlocState(status: Status.loading, data: true));
 
-      await accidentRepository.accidentSketch(reportBloc.reportId, multipartFile);
+      if (reportBloc.reportType == ReportType.accident) {
+        await accidentRepository.accidentSketch(
+            reportBloc.reportId, multipartFile);
+      } else {
+        await breakdownRepository.uploadBreakdownSketch(
+            breakdownId: reportBloc.reportId, sketch: multipartFile);
+      }
 
       emit(const GenericBlocState(status: Status.initial, data: true));
       NavigationService.back(result: true);
-    }catch(e){
+    } catch (e) {
       emit(const GenericBlocState(status: Status.initial, data: true));
     }
-
   }
 }

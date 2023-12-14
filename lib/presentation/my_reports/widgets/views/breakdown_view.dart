@@ -1,15 +1,16 @@
 // Flutter imports:
+import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
+import 'package:blinq/presentation/my_reports/bloc/reports_screen_bloc.dart';
+import 'package:blinq/presentation/my_reports/bloc/reports_screen_event.dart';
+import 'package:blinq/presentation/my_reports/bloc/reports_screen_state.dart';
+import 'package:blinq/presentation/my_reports/widgets/items/report_item.dart';
+
+// Project imports:
+import 'package:blinq/presentation/my_reports/widgets/states/empty_state.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-// Project imports:
-import 'package:blinq/presentation/my_reports/widgets/states/empty_state.dart';
-import 'package:blinq/presentation/my_reports/bloc/reports_screen_event.dart';
-import 'package:blinq/presentation/my_reports/bloc/reports_screen_state.dart';
-import 'package:blinq/presentation/my_reports/widgets/items/report_item.dart';
-import 'package:blinq/presentation/my_reports/bloc/reports_screen_bloc.dart';
 
 class BreakdownReportsView extends StatelessWidget {
   //
@@ -38,7 +39,9 @@ class BreakdownReportsView extends StatelessWidget {
                 OnDownloadItem(itemModelDto: state.accidents[index]),
               ),
               onContinue: () => bloc.add(
-                OnContinueItem(itemModelDto: state.accidents[index]),
+                OnContinueItem(
+                    itemModelDto: state.accidents[index],
+                    reportType: ReportType.accident),
               ),
             );
           },

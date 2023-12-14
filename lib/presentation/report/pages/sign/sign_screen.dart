@@ -1,6 +1,7 @@
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/utils/custom_widgets/app_btn.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
@@ -32,6 +33,7 @@ class _SignScreenState extends State<SignScreen> {
 
     bloc = SignScreenBloc(
         accidentRepository: getIt<AccidentRepositoryImpl>(),
+        breakdownRepository: getIt<BreakdownRepositoryImpl>(),
         reportBloc: context.read(),
         user: user);
     super.didChangeDependencies();
@@ -49,7 +51,7 @@ class _SignScreenState extends State<SignScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  StepIndicator(currentStep: bloc.user == User.A ? 16: 17),
+                  StepIndicator(currentStep: bloc.getStep()),
                   const SizedBox(
                     height: 16,
                   ),
