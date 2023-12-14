@@ -72,9 +72,6 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                   child: Container(
                     height: 64,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                    ),
                     width: double.maxFinite,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(40),

@@ -85,7 +85,9 @@ class ReportsScreenBloc extends Bloc<ReportsScreenEvent, ReportsScreenState> {
   }
 
   FutureOr<void> _onDownloadItem(
-      OnDownloadItem event, Emitter<ReportsScreenState> emit) async {
+    OnDownloadItem event,
+    Emitter<ReportsScreenState> emit,
+  ) async {
     if (event.itemModelDto.accidentDocumentPdf == null) {
       NavigationService.showErrorToast('');
       return;
@@ -94,7 +96,7 @@ class ReportsScreenBloc extends Bloc<ReportsScreenEvent, ReportsScreenState> {
     if (Platform.isIOS) {
       final dir = await getApplicationDocumentsDirectory();
       String fn = event.itemModelDto.accidentDocumentPdf!.split('/').last;
-      file = File('${dir.path}/$fn.pdf');
+      file = File('${dir.path}/$fn');
     }
     if (Platform.isAndroid) {
       final plugin = DeviceInfoPlugin();
@@ -111,16 +113,20 @@ class ReportsScreenBloc extends Bloc<ReportsScreenEvent, ReportsScreenState> {
         const downloadsFolderPath = '/storage/emulated/0/Download/';
         Directory dir = Directory(downloadsFolderPath);
         String fn = event.itemModelDto.accidentDocumentPdf!.split('/').last;
-        file = File('${dir.path}/$fn.pdf');
+        file = File('${dir.path}/$fn');
       }
     }
     if (file == null) return;
 
     await repository.downloadReport(
-        url: event.itemModelDto.accidentDocumentPdf!, localPath: file.path);
+      localPath: file.path,
+      url: event.itemModelDto.accidentDocumentPdf!,
+    );
 
     NavigationService.showToast(
-        text: 'strPdfSaved'.tr(), title: 'strSuccess'.tr());
+      text: 'strPdfSaved'.tr(),
+      title: 'strSuccess'.tr(),
+    );
   }
 
   FutureOr<void> _onContinueItem(
