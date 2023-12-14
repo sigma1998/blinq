@@ -58,7 +58,6 @@ class CreateReportBloc extends Cubit<GenericBlocState> {
         list.add(await _navigateAndCheckResult(InsuranceEditorScreen.route));
       }
 
-
       if (list.every((result) => result == true)) {
         final RouteAndArgs? routeAndArgs = await reportBloc.onCreateReport();
 
@@ -81,7 +80,15 @@ class CreateReportBloc extends Cubit<GenericBlocState> {
 
   Future<bool> _navigateAndCheckResult(String routeName) async {
     emit(const GenericBlocState(status: Status.initial));
+
     final result = await NavigationService.pushNamed(routeName: routeName);
-    return result == true;
+
+    if (result == true) {
+      return true;
+    } else {
+      final currentRoute = NavigationService.getCurrentRouteName();
+
+      return currentRoute != routeName;
+    }
   }
 }

@@ -67,6 +67,10 @@ class NavigationService {
     }
   }
 
+  static String getCurrentRouteName() {
+    return navigatorKey.currentState?.widget.pages.last.name ?? '';
+  }
+
   static void back<T extends Object?>({T? result}) {
     isActiveDialog = false;
     navigatorKey.currentState!.pop(result);
@@ -167,8 +171,9 @@ class NavigationService {
     return navigatorKey.currentState!.canPop();
   }
 
-  static Future<void> showToast({required String text, required String title})async {
-   await Flushbar(
+  static Future<void> showToast(
+      {required String text, required String title}) async {
+    await Flushbar(
       borderRadius: BorderRadius.circular(15),
       title: title,
       messageText: Text(text),
