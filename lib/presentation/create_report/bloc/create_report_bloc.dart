@@ -43,56 +43,44 @@ class CreateReportBloc extends Cubit<GenericBlocState> {
     emit(const GenericBlocState(status: Status.loading));
     try {
       final data = await profileRepository.checkAccountData();
+      final List<bool> list = [];
 
       if (data.account == false) {
-        emit(const GenericBlocState(status: Status.initial));
-        await NavigationService.pushNamed(
-          routeName: DriverEditorScreen.route,
-        );
+        list.add(await _navigateAndCheckResult(DriverEditorScreen.route));
       }
       if (data.car == false) {
-        emit(const GenericBlocState(status: Status.initial));
-        await NavigationService.pushNamed(
-          routeName: VehicleEditorScreen.route,
-        );
+        list.add(await _navigateAndCheckResult(VehicleEditorScreen.route));
       }
       if (data.policyHolder == false) {
-        emit(const GenericBlocState(status: Status.initial));
-        await NavigationService.pushNamed(
-          routeName: PolicyHolderEditorScreen.route,
-        );
+        list.add(await _navigateAndCheckResult(PolicyHolderEditorScreen.route));
       }
       if (data.insurance == false) {
+        list.add(await _navigateAndCheckResult(InsuranceEditorScreen.route));
+      }
+
+      if (list.every((result) => result == true)) {
+        final RouteAndArgs? routeAndArgs = await reportBloc.onCreateAccident();
+
         emit(const GenericBlocState(status: Status.initial));
-        await NavigationService.pushNamed(
-          routeName: InsuranceEditorScreen.route,
-        );
-      }
 
-      if (data.insurance == false ||
-          data.policyHolder == false ||
-          data.car == false ||
-          data.account == false) {
-        return;
-      }
-
-      final RouteAndArgs? routeAndArgs = await reportBloc.onCreateAccident();
-
-      emit(const GenericBlocState(status: Status.initial));
-
-      if (routeAndArgs == null) {
-        NavigationService.showErrorToast('Location permission is needed');
-      } else if (routeAndArgs.route.isEmpty) {
-        return;
-      } else {
-        NavigationService.pushNamed(
-          routeName: routeAndArgs.route,
-          nestedKey: NavigationService.homeNavigatorKey,
-          arguments: routeAndArgs.args,
-        );
+        if (routeAndArgs == null) {
+          NavigationService.showErrorToast('Location permission is needed');
+        } else if (routeAndArgs.route.isNotEmpty) {
+          NavigationService.pushNamed(
+            routeName: routeAndArgs.route,
+            nestedKey: NavigationService.homeNavigatorKey,
+            arguments: routeAndArgs.args,
+          );
+        }
       }
     } catch (e) {
       emit(const GenericBlocState(status: Status.initial));
     }
+  }
+
+  Future<bool> _navigateAndCheckResult(String routeName) async {
+    emit(const GenericBlocState(status: Status.initial));
+    final result = await NavigationService.pushNamed(routeName: routeName);
+    return result == true;
   }
 }

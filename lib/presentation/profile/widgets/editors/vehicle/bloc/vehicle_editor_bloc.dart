@@ -115,7 +115,7 @@ class VehicleEditorBloc extends Bloc<VehicleEditorEvent, VehicleEditorState> {
       await repository.updateCar(vehicle);
       emit(const VehicleEditorState(status: Status.success));
       profileBloc.add(OnFetchProfile());
-      NavigationService.back();
+      NavigationService.back(result: true);
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }
