@@ -115,7 +115,7 @@ class InsuranceEditorBloc
       await repository.updateInsurance(insurance);
       emit(const InsuranceEditorState(status: Status.success));
       profileBloc.add(OnFetchProfile());
-      NavigationService.back();
+      NavigationService.back(result: true);
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }

@@ -14,6 +14,7 @@ import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/services/permission/permission_service.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'settings_event.dart';
 
@@ -23,11 +24,11 @@ class SettingsBloc extends Bloc<SettingsEvent, GenericBlocState<bool>> {
   final PermissionService permissionService;
   final AuthRepository authRepository;
 
-  SettingsBloc(
-      {required this.profileBloc,
-      required this.permissionService,
-      required this.authRepository})
-      : super(GenericBlocState.success(false)) {
+  SettingsBloc({
+    required this.profileBloc,
+    required this.permissionService,
+    required this.authRepository,
+  }) : super(GenericBlocState.success(false)) {
     on<ToggleNotification>(_toggleNotification);
   }
 
@@ -50,7 +51,10 @@ class SettingsBloc extends Bloc<SettingsEvent, GenericBlocState<bool>> {
     NavigationService.showBottomSheet(sheet: const DeleteAccountSheet());
   }
 
-  void onLogoutPressed() {
+  void onLogoutPressed() async {
+    if (await GoogleSignIn().isSignedIn()) {
+      await GoogleSignIn().signOut();
+    }
     DioClient.setToken(null);
     authRepository.setUserStatus(UserStatus.haveSeenIntro);
     NavigationService.pushReplacement(routeName: SignInScreen.route);

@@ -54,8 +54,7 @@ class PolicyHolderEditorBloc
         profileBloc.state.profile?.policyHolder?.postalCode ?? '';
     countryController.text =
         profileBloc.state.profile?.policyHolder?.country ?? '';
-    emailController.text =
-        profileBloc.state.profile?.policyHolder?.email ?? '';
+    emailController.text = profileBloc.state.profile?.policyHolder?.email ?? '';
   }
 
   bool validateForm() => formKey.currentState!.validate();
@@ -89,7 +88,7 @@ class PolicyHolderEditorBloc
       await repository.updatePolicyHolder(policyHolder);
       emit(const PolicyHolderEditorState(status: Status.success));
       profileBloc.add(OnFetchProfile());
-      NavigationService.back();
+      NavigationService.back(result: true);
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }

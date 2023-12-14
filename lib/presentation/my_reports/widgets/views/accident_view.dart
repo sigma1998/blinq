@@ -22,7 +22,7 @@ class AccidentReportsView extends StatelessWidget {
 
     return BlocBuilder<ReportsScreenBloc, ReportsScreenState>(
       builder: (context, state) {
-        if (state.breakdowns.isEmpty) return const ReportsEmptyStateWidget();
+        if (state.accidents.isEmpty) return const ReportsEmptyStateWidget();
 
         return ListView.separated(
             padding: const EdgeInsets.symmetric(vertical: 21),

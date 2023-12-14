@@ -2,15 +2,16 @@
 import 'dart:async';
 
 // Flutter imports:
-import 'package:blinq/presentation/auth/sign_in_screen/sign_in_screen.dart';
 import 'package:flutter/cupertino.dart';
 
 // Package imports:
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:blinq/presentation/delete_account_sheet/delete_account_confirm_sheet.dart';
+import 'package:blinq/presentation/auth/sign_in_screen/sign_in_screen.dart';
 import 'package:blinq/domain/repositories/auth_repository.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
@@ -53,6 +54,9 @@ class DeleteAccountBloc extends Bloc<DeleteAccountEvent, DeleteAccountState> {
       emit(state.copyWith(status: Status.loading));
       await repository.verifyDeleteUser(codeController.text);
       emit(state.copyWith(status: Status.success));
+      if (await GoogleSignIn().isSignedIn()) {
+        await GoogleSignIn().signOut();
+      }
       DioClient.setToken(null);
       NavigationService.pushReplacement(routeName: SignInScreen.route);
     } catch (e) {

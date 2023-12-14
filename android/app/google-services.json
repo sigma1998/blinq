@@ -22,22 +22,6 @@
           }
         },
         {
-          "client_id": "573054971190-lhnt6afnkg0pr3r9h03pgnlv1eh6n15r.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.blinqx",
-            "certificate_hash": "d5872db05742a3921718bc21c1e1b40e19f14ed6"
-          }
-        },
-        {
-          "client_id": "573054971190-mogivdm1mjrobra0uu273bi9h2rq8b34.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.blinqx",
-            "certificate_hash": "9f5a65a8cf04849adef999c5ea0bb5d0d10b9378"
-          }
-        },
-        {
           "client_id": "573054971190-8scv099a5ot9pkqi7p0ts1fug9sn00r3.apps.googleusercontent.com",
           "client_type": 3
         }
