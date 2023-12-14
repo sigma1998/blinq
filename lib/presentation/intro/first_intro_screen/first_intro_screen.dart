@@ -53,12 +53,17 @@ class _FirstIntroScreenState extends State<FirstIntroScreen>
 
   _onBackGroundPressed() {
     timer.cancel();
+    bool completed = true;
     for (int i = 0; i < text1Controller.length; i++) {
       if (text1Controller[i].status == AnimationStatus.dismissed) {
+        completed = false;
         text1Controller[i].forward();
         _forward(i + 1);
         return;
       }
+    }
+    if (completed) {
+      NavigationService.pushReplacement(routeName: SecondIntroScreen.route);
     }
   }
 

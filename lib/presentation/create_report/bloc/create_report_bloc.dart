@@ -58,8 +58,9 @@ class CreateReportBloc extends Cubit<GenericBlocState> {
         list.add(await _navigateAndCheckResult(InsuranceEditorScreen.route));
       }
 
+
       if (list.every((result) => result == true)) {
-        final RouteAndArgs? routeAndArgs = await reportBloc.onCreateAccident();
+        final RouteAndArgs? routeAndArgs = await reportBloc.onCreateReport();
 
         emit(const GenericBlocState(status: Status.initial));
 

@@ -7,6 +7,7 @@ import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/presentation/report/pages/damaged_media/damaged_media_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
@@ -22,6 +23,7 @@ part 'vehicle_info.dart';
 
 class DamagedPartsBloc extends Cubit<DamagedPartsState> {
   final AccidentRepository accidentRepository;
+  final BreakdownRepository breakdownRepository;
   final ReportBloc reportBloc;
 
   ScrollController scrollController = ScrollController();
@@ -36,6 +38,7 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
   DamagedPartsBloc(
       {required this.vehicleType,
       required this.accidentRepository,
+      required this.breakdownRepository,
       required this.reportBloc})
       : super(const DamagedPartsState()) {
     switch (vehicleType) {
@@ -128,10 +131,14 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
   }
 
   int getStep() {
-    if (reportBloc.state.user == User.A) {
-      return 7;
-    }
-    return 12;
+   if(reportBloc.reportType == ReportType.accident){
+     if (reportBloc.state.user == User.A) {
+       return 7;
+     }
+     return 12;
+   }else{
+     return 8;
+   }
   }
 
   Color onFColor(
@@ -181,8 +188,8 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
     return active;
   }
 
-  Future<MultipartFile> _getMultiPartFile(int index)async{
-    if(screenShots[index] == null){
+  Future<MultipartFile> _getMultiPartFile(int index) async {
+    if (screenShots[index] == null) {
       screenShots[index] = await getImageFileFromAssets(vehicleSelect[index]);
     }
 
@@ -194,10 +201,10 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
 
   Future<void> _sendData(
       {required MultipartFile? top,
-        required MultipartFile? front,
-        required MultipartFile? back,
-        required MultipartFile? left,
-        required MultipartFile? right}) async {
+      required MultipartFile? front,
+      required MultipartFile? back,
+      required MultipartFile? left,
+      required MultipartFile? right}) async {
     if (reportBloc.reportType == ReportType.accident) {
       if (reportBloc.state.user == User.A) {
         await accidentRepository.damagedPoints(
@@ -219,7 +226,15 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
             damageParts: state.carParts.toList());
       }
     } else {
-      //TODO
+      await breakdownRepository.damagedPoints(
+        top: top,
+        front: front,
+        back: back,
+        left: left,
+        right: right,
+        breakdownId: reportBloc.reportId,
+        damageParts: state.carParts.toList(),
+      );
     }
   }
 

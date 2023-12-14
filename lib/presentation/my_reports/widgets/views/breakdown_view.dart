@@ -1,15 +1,16 @@
 // Flutter imports:
+import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
+import 'package:blinq/presentation/my_reports/bloc/reports_screen_bloc.dart';
+import 'package:blinq/presentation/my_reports/bloc/reports_screen_event.dart';
+import 'package:blinq/presentation/my_reports/bloc/reports_screen_state.dart';
+import 'package:blinq/presentation/my_reports/widgets/items/report_item.dart';
+
+// Project imports:
+import 'package:blinq/presentation/my_reports/widgets/states/empty_state.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-// Project imports:
-import 'package:blinq/presentation/my_reports/widgets/states/empty_state.dart';
-import 'package:blinq/presentation/my_reports/bloc/reports_screen_event.dart';
-import 'package:blinq/presentation/my_reports/bloc/reports_screen_state.dart';
-import 'package:blinq/presentation/my_reports/widgets/items/report_item.dart';
-import 'package:blinq/presentation/my_reports/bloc/reports_screen_bloc.dart';
 
 class BreakdownReportsView extends StatelessWidget {
   //
@@ -29,16 +30,18 @@ class BreakdownReportsView extends StatelessWidget {
             return ProfileReportItem(
               historyItemModelDto: state.breakdowns[index],
               onDelete: () => bloc.add(
-                OnItemDelete(id: state.accidents[index].id!),
+                OnItemDelete(id: state.breakdowns[index].id!),
               ),
               onPdfOpen: () => bloc.add(
-                OnOpenItem(itemModelDto: state.accidents[index]),
+                OnOpenItem(itemModelDto: state.breakdowns[index]),
               ),
               onDownload: () => bloc.add(
-                OnDownloadItem(itemModelDto: state.accidents[index]),
+                OnDownloadItem(itemModelDto: state.breakdowns[index]),
               ),
               onContinue: () => bloc.add(
-                OnContinueItem(itemModelDto: state.accidents[index]),
+                OnContinueItem(
+                    itemModelDto: state.breakdowns[index],
+                    reportType: ReportType.breakdown),
               ),
             );
           },

@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -38,7 +39,7 @@ class AccidentReportsView extends StatelessWidget {
                   OnDownloadItem(itemModelDto: state.accidents[index]),
                 ),
                 onContinue: () => bloc.add(
-                  OnContinueItem(itemModelDto: state.accidents[index]),
+                  OnContinueItem(itemModelDto: state.accidents[index], reportType: ReportType.accident),
                 ),
               );
             },

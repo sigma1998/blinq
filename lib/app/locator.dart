@@ -1,4 +1,6 @@
 // Package imports:
+import 'package:blinq/data/datasource/remote/breakdown_api.dart';
+import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:get_it/get_it.dart';
 
 // Project imports:
@@ -40,6 +42,10 @@ void setUpLocator() {
       () => PremadeMessagesApiImpl(api: getIt()));
   getIt.registerLazySingleton<AccidentApiImpl>(
       () => AccidentApiImpl(api: getIt()));
+  getIt.registerLazySingleton<BreakdownApiImpl>(
+      () => BreakdownApiImpl(api: getIt()));
+
+
 
   ///
   /// Repositories
@@ -54,6 +60,9 @@ void setUpLocator() {
       PremadeMessagesRepositoryImpl(api: getIt<PremadeMessagesApiImpl>()));
   getIt.registerLazySingleton<AccidentRepositoryImpl>(
       () => AccidentRepositoryImpl(api: getIt<AccidentApiImpl>()));
+  getIt.registerLazySingleton<BreakdownRepositoryImpl>(
+      () => BreakdownRepositoryImpl(breakdownApi: getIt<BreakdownApiImpl>()));
+
 
   ///
   /// Permission

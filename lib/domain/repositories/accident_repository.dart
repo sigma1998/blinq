@@ -1,8 +1,8 @@
 // Project imports:
 
 import 'package:blinq/data/datasource/remote/accident_api.dart';
-import 'package:blinq/data/model/accident/accident_time_and_location/accident_time_and_location.dart';
-import 'package:blinq/data/model/accident/injury/injury.dart';
+import 'package:blinq/data/model/report/report_time_and_location/report_time_and_location.dart';
+import 'package:blinq/data/model/report/injury/injury.dart';
 import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/data/model/insurance/request/insurance_request_model.dart';
 import 'package:blinq/data/model/policy_holder/request/policy_holder_request_model.dart';
@@ -23,7 +23,7 @@ abstract class AccidentRepository {
   Future<int> createAccident(String long, String lat);
 
   Future<void> adAccidentLocationAndTime(
-      int accidentId, AccidentTimeAndLocationDto accidentTimeAndLocationDto);
+      int accidentId, ReportTimeAndLocationDto accidentTimeAndLocationDto);
 
   Future<void> accidentSketch(int accidentId, MultipartFile sketch);
 
@@ -225,9 +225,9 @@ class AccidentRepositoryImpl implements AccidentRepository {
 
   @override
   Future<void> adAccidentLocationAndTime(int accidentId,
-      AccidentTimeAndLocationDto accidentTimeAndLocationDto) async {
+      ReportTimeAndLocationDto accidentTimeAndLocationDto) async {
     try {
-      return await api.adAccidentLocationAndTime(
+      return await api.addAccidentLocationAndTime(
           accidentId, accidentTimeAndLocationDto);
     } catch (e) {
       rethrow;

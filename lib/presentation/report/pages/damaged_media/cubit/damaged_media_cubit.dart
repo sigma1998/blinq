@@ -7,8 +7,10 @@ import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 // Flutter imports:
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/presentation/report/pages/a_b_users_completed/a_b_users_completed_screen.dart';
 import 'package:blinq/presentation/report/pages/connect_to_driver/connect_to_driver_screen.dart';
+import 'package:blinq/presentation/report/pages/sign/sign_screen.dart';
 import 'package:blinq/utils/custom_widgets/cupertino_action/cupertino_action.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/image_crop_helper.dart';
@@ -38,6 +40,7 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
   //
   final ReportBloc reportBloc;
   final AccidentRepository accidentRepository;
+  final BreakdownRepository breakdownRepository;
 
   final MediaService mediaService;
 
@@ -50,6 +53,7 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
   DamagedMediaCubit({
     required this.reportBloc,
     required this.accidentRepository,
+    required this.breakdownRepository,
     required this.mediaService,
   }) : super(const DamagedMediaState());
 
@@ -100,7 +104,8 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
         );
       }
     } else {
-      //TODO
+      await breakdownRepository.uploadMedia(
+          reportBloc.reportId, state.uploadedFilesId);
     }
 
     await NavigationService.showDialog(
@@ -313,11 +318,8 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
   }
 
   void _navigate() {
-    print('askdjoadfjodjasm');
     if (reportBloc.reportType == ReportType.accident) {
       if (reportBloc.state.user == User.A) {
-        print('askdjoadfjodjasdsadasdsam');
-
         NavigationService.pushNamed(
           routeName: ConnectToDriverScreen.route,
           nestedKey: NavigationService.homeNavigatorKey,
@@ -329,14 +331,21 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
         );
       }
     } else {
-      //TODO
+      NavigationService.pushNamed(
+        routeName: SignScreen.route,
+        nestedKey: NavigationService.homeNavigatorKey,
+      );
     }
   }
 
   int step() {
-    if (reportBloc.state.user == User.A) {
-      return 8;
+    if (reportBloc.reportType == ReportType.accident) {
+      if (reportBloc.state.user == User.A) {
+        return 8;
+      }
+      return 13;
+    } else {
+      return 9;
     }
-    return 13;
   }
 }

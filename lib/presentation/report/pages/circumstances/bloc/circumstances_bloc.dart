@@ -1,8 +1,11 @@
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/presentation/report/pages/sign/sign_screen.dart';
 import 'package:blinq/presentation/report/pages/sketch/sketch_screen.dart';
+import 'package:blinq/presentation/report/pages/speech_to_text/bloc/speech_to_text_screen_mode.dart';
+import 'package:blinq/presentation/report/pages/speech_to_text/speech_to_text_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,11 +15,14 @@ import 'circumstance_state.dart';
 class CircumstancesBloc extends Cubit<CircumstanceState> {
   final ReportBloc reportBloc;
   final AccidentRepository accidentRepository;
+  final BreakdownRepository breakdownRepository;
 
   late final bool isAccident;
 
   CircumstancesBloc(
-      {required this.accidentRepository, required this.reportBloc})
+      {required this.accidentRepository,
+      required this.breakdownRepository,
+      required this.reportBloc})
       : super(const CircumstanceState()) {
     isAccident = reportBloc.reportType == ReportType.accident;
   }
@@ -45,7 +51,6 @@ class CircumstancesBloc extends Cubit<CircumstanceState> {
 
   onCheckedB(int index) {
     if (state.driverB.contains(Circumstances.values[index].key)) {
-
       Set<String> set = {};
       set.addAll(state.driverB);
       set.remove(Circumstances.values[index].key);
@@ -62,23 +67,45 @@ class CircumstancesBloc extends Cubit<CircumstanceState> {
     emit(state.copyWith(status: Status.loading));
 
     try {
-      await accidentRepository.sendCircumstances(
-          accidentId: reportBloc.reportId,
-          a: state.driverA.toList(),
-          b: state.driverB.toList());
+      if (reportBloc.reportType == ReportType.accident) {
+        await accidentRepository.sendCircumstances(
+            accidentId: reportBloc.reportId,
+            a: state.driverA.toList(),
+            b: state.driverB.toList());
+      } else {
+        await breakdownRepository.sendCircumstances(
+          breakdownId: reportBloc.reportId,
+          list: state.driverB.toList(),
+        );
+      }
 
       emit(state.copyWith(status: Status.initial));
 
       final bool? res =
           await NavigationService.pushNamed(routeName: SketchScreen.route);
       if (res ?? false) {
-        NavigationService.pushNamed(
-            routeName: SignScreen.route,
-            nestedKey: NavigationService.homeNavigatorKey);
+        if (reportBloc.reportType == ReportType.accident) {
+          NavigationService.pushNamed(
+              routeName: SignScreen.route,
+              nestedKey: NavigationService.homeNavigatorKey);
+        } else {
+          NavigationService.pushNamed(
+            routeName: SpeechToTextScreen.route,
+            nestedKey: NavigationService.homeNavigatorKey,
+            arguments: SpeechToTextArgs(mode: SpeechToTextScreenMode.remarks),
+          );
+        }
       }
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }
+  }
+
+  int getStep() {
+    if(reportBloc.reportType == ReportType.accident){
+      return 15;
+    }
+    return 6;
   }
 }
 

@@ -1,6 +1,7 @@
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/utils/custom_widgets/arrow_button.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
@@ -28,8 +29,10 @@ class _PointsOfImpactScreenState extends State<PointsOfImpactScreen> {
   @override
   void didChangeDependencies() {
     bloc = PointsOfImpactBloc(
-        reportBloc: context.read(),
-        accidentRepository: getIt<AccidentRepositoryImpl>());
+      reportBloc: context.read(),
+      accidentRepository: getIt<AccidentRepositoryImpl>(),
+      breakdownRepository: getIt<BreakdownRepositoryImpl>(),
+    );
     super.didChangeDependencies();
   }
 
@@ -45,7 +48,10 @@ class _PointsOfImpactScreenState extends State<PointsOfImpactScreen> {
               padding: const EdgeInsets.all(24.0),
               child: Column(
                 children: [
-                  StepIndicator(currentStep: bloc.getStep(), showTrailingTitle: true,),
+                  StepIndicator(
+                    currentStep: bloc.getStep(),
+                    showTrailingTitle: true,
+                  ),
                   const SizedBox(
                     height: 32,
                   ),

@@ -1,6 +1,7 @@
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
@@ -30,6 +31,7 @@ class _SketchScreenState extends State<SketchScreen> {
   void didChangeDependencies() {
     bloc = SketchBloc(
         accidentRepository: getIt<AccidentRepositoryImpl>(),
+        breakdownRepository: getIt<BreakdownRepositoryImpl>(),
         reportBloc: context.read<ReportBloc>());
     SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
     super.didChangeDependencies();

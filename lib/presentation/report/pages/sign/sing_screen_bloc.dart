@@ -1,6 +1,7 @@
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/presentation/report/pages/finished/finished_screen.dart';
 import 'package:blinq/presentation/report/pages/sign/sign_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
@@ -13,6 +14,7 @@ import 'package:hand_signature/signature.dart';
 
 class SignScreenBloc extends Cubit<GenericBlocState<bool>> {
   final AccidentRepository accidentRepository;
+  final BreakdownRepository breakdownRepository;
   final ReportBloc reportBloc;
   final User user;
 
@@ -28,6 +30,7 @@ class SignScreenBloc extends Cubit<GenericBlocState<bool>> {
   SignScreenBloc(
       {required this.reportBloc,
       required this.accidentRepository,
+      required this.breakdownRepository,
       required this.user})
       : super(const GenericBlocState(status: Status.initial)) {
     if (reportBloc.reportType == ReportType.accident) {
@@ -49,13 +52,17 @@ class SignScreenBloc extends Cubit<GenericBlocState<bool>> {
       filename: img.path.split('/').last,
     );
 
-    switch (user) {
-      case User.A:
-        _sendUserASign(sign);
-        break;
-      case User.B:
-        _sendUserBSign(sign);
-        break;
+    if (reportBloc.reportType == ReportType.accident) {
+      switch (user) {
+        case User.A:
+          _sendUserASign(sign);
+          break;
+        case User.B:
+          _sendUserBSign(sign);
+          break;
+      }
+    } else {
+      _sendSignForBreakdown(sign);
     }
   }
 
@@ -86,5 +93,26 @@ class SignScreenBloc extends Cubit<GenericBlocState<bool>> {
     } catch (e) {
       emit(const GenericBlocState(status: Status.initial));
     }
+  }
+
+  void _sendSignForBreakdown(MultipartFile sign) async {
+    try {
+      await breakdownRepository.sign(reportBloc.reportId, sign);
+
+      emit(const GenericBlocState(status: Status.initial));
+
+      NavigationService.pushNamed(
+        routeName: FinishedScreen.route,
+        nestedKey: NavigationService.homeNavigatorKey,
+      );
+    } catch (e) {
+      emit(const GenericBlocState(status: Status.initial));
+    }
+  }
+
+  int getStep() {
+    if(reportBloc.reportType == ReportType.accident){
+      return user == User.A ? 16: 17;
+    }else{return 10;}
   }
 }

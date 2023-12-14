@@ -3,6 +3,7 @@ import 'package:blinq/app/locator.dart';
 import 'package:blinq/app/routes.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/domain/repositories/premade_messages_repository.dart';
 import 'package:blinq/presentation/connect_to_blinq/cubit/connect_to_blinq_cubit.dart';
 import 'package:blinq/presentation/connect_to_blinq/logger/logger_cubit.dart';
@@ -86,6 +87,7 @@ class MyAppState extends State<MyApp> {
         BlocProvider<ReportBloc>(
           create: (context) => ReportBloc(
               accidentRepository: getIt<AccidentRepositoryImpl>(),
+              breakdownRepository: getIt<BreakdownRepositoryImpl>(),
               profileBloc: profileBloc),
         ),
         BlocProvider<LoggerCubit>(

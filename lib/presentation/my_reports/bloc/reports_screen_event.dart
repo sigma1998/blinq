@@ -1,4 +1,5 @@
 import 'package:blinq/data/model/history/history_item/history_item_dto.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 
 sealed class ReportsScreenEvent{}
 
@@ -25,7 +26,8 @@ class OnDownloadItem extends ReportsScreenEvent{
 }
 class OnContinueItem extends ReportsScreenEvent{
   final HistoryItemModelDto itemModelDto;
-  OnContinueItem({required this.itemModelDto});
+  final ReportType reportType;
+  OnContinueItem({required this.itemModelDto, required this.reportType});
 }
 
 
