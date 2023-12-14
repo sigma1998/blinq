@@ -28,6 +28,7 @@ class AccidentReportsView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 21),
             itemBuilder: (context, index) {
               return ProfileReportItem(
+                isDownloading: state.isDownloading,
                 historyItemModelDto: state.accidents[index],
                 onDelete: () => bloc.add(
                   OnItemDelete(id: state.accidents[index].id!),
@@ -39,7 +40,9 @@ class AccidentReportsView extends StatelessWidget {
                   OnDownloadItem(itemModelDto: state.accidents[index]),
                 ),
                 onContinue: () => bloc.add(
-                  OnContinueItem(itemModelDto: state.accidents[index], reportType: ReportType.accident),
+                  OnContinueItem(
+                      itemModelDto: state.accidents[index],
+                      reportType: ReportType.accident),
                 ),
               );
             },
