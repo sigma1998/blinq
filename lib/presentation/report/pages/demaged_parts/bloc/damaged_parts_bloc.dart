@@ -26,7 +26,6 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
   final BreakdownRepository breakdownRepository;
   final ReportBloc reportBloc;
 
-  ScrollController scrollController = ScrollController();
   final VehicleType vehicleType;
 
   List<String> vehiclePartList = [];
@@ -65,7 +64,7 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
 
   GlobalKey imagePreview = GlobalKey();
 
-  void setPageIndex(int index, double width, context) async {
+  void setPageIndex(int index, double width, context, ScrollController scrollController) async {
     var file = await captureSocialPng(imagePreview, context);
     screenShots[state.pageIndex] = file;
 

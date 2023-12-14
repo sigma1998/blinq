@@ -63,7 +63,7 @@ class LocationInfoScreenCubit extends Cubit<LocationInfoScreenState> {
           ReportTimeAndLocationDto(
               country: countryController.text,
               location: placeController.text,
-              createdAt: dateController.text),
+              createdAt: '${dateController.text}T${timeController.text}:00Z' ),
         );
       } else {
         await breakdownRepository.addBreakdownLocationAndTime(
@@ -71,7 +71,7 @@ class LocationInfoScreenCubit extends Cubit<LocationInfoScreenState> {
           ReportTimeAndLocationDto(
               country: countryController.text,
               location: placeController.text,
-              createdAt: dateController.text),
+              createdAt: '${dateController.text}T${timeController.text}:00Z' ),
         );
       }
 

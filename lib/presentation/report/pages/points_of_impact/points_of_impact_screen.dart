@@ -69,6 +69,7 @@ class _PointsOfImpactScreenState extends State<PointsOfImpactScreen> {
                       child: RepaintBoundary(
                         key: bloc.key,
                         child: Column(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.end,

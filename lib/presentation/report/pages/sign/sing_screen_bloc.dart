@@ -45,7 +45,7 @@ class SignScreenBloc extends Cubit<GenericBlocState<bool>> {
   Future<void> onNextTap(BuildContext context) async {
     emit(const GenericBlocState(status: Status.loading));
 
-    final img = await captureSocialPng(previewContainer, context);
+    final img = await captureSign(previewContainer, context);
 
     final MultipartFile sign = MultipartFile.fromBytes(
       img!.readAsBytesSync(),

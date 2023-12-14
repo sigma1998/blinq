@@ -27,6 +27,7 @@ class DamagedPartsScreen extends StatefulWidget {
 
 class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
   late DamagedPartsBloc bloc;
+  final ScrollController scrollController = ScrollController();
 
   @override
   void didChangeDependencies() {
@@ -81,21 +82,21 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
                         children: [
                           RepaintBoundary(
                             key: bloc.imagePreview,
-                            child: const VehiclesList(),
+                            child: VehiclesList(controller: scrollController,),
                           ),
                           if (state.pageIndex < bloc.vehicleSelect.length - 1)
                             Arrow(
                               alignment: Alignment.centerRight,
                               icon: AppDrawables.leftArrow,
                               onTap: () => bloc.setPageIndex(
-                                  state.pageIndex + 1, width, context),
+                                  state.pageIndex + 1, width, context, scrollController),
                             ),
                           if (state.pageIndex > 0)
                             Arrow(
                               alignment: Alignment.centerLeft,
                               icon: AppDrawables.rightArrow,
                               onTap: () => bloc.setPageIndex(
-                                  state.pageIndex - 1, width, context),
+                                  state.pageIndex - 1, width, context, scrollController),
                             ),
                         ],
                       ),
