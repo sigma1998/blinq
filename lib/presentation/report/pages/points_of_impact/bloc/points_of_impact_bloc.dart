@@ -53,7 +53,7 @@ class PointsOfImpactBloc extends Cubit<PointsOfImpactScreenState> {
     ));
 
     try {
-      final file = await captureSocialPng(key, context);
+      final file = await captureImpactPoint(key, context);
 
       if (file == null) {
         return;

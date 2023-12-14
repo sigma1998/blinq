@@ -46,8 +46,7 @@ String timeFormat(String? date, {String format = "HH:mm"}) {
   }
   var dateValue = DateFormat(
           date.contains('T') ? 'yyyy-MM-ddTHH:mm:ssZ' : "yyyy-MM-dd HH:mm:ssZ")
-      .parse(date, true)
-      .toLocal();
+      .parse(date, true);
   return DateFormat(format).format(dateValue);
 }
 

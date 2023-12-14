@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VehiclesList extends StatelessWidget {
-  const VehiclesList({Key? key}) : super(key: key);
+  final ScrollController controller;
+  const VehiclesList({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +20,8 @@ class VehiclesList extends StatelessWidget {
       builder: (context, state) {
         return ListView(
           scrollDirection: Axis.horizontal,
-          controller: bloc.scrollController,
+          controller: controller,
           physics: const NeverScrollableScrollPhysics(),
-          cacheExtent: 6 * width,
           children: List.generate(
             bloc.vehicleSelect.length,
             (index) {
