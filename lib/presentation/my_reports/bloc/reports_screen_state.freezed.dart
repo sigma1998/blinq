@@ -21,6 +21,7 @@ mixin _$ReportsScreenState {
   List<HistoryItemModelDto> get accidents => throw _privateConstructorUsedError;
   List<HistoryItemModelDto> get breakdowns =>
       throw _privateConstructorUsedError;
+  bool get isDownloading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ReportsScreenStateCopyWith<ReportsScreenState> get copyWith =>
@@ -37,7 +38,8 @@ abstract class $ReportsScreenStateCopyWith<$Res> {
       {Status status,
       int pageIndex,
       List<HistoryItemModelDto> accidents,
-      List<HistoryItemModelDto> breakdowns});
+      List<HistoryItemModelDto> breakdowns,
+      bool isDownloading});
 }
 
 /// @nodoc
@@ -57,6 +59,7 @@ class _$ReportsScreenStateCopyWithImpl<$Res, $Val extends ReportsScreenState>
     Object? pageIndex = null,
     Object? accidents = null,
     Object? breakdowns = null,
+    Object? isDownloading = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -75,6 +78,10 @@ class _$ReportsScreenStateCopyWithImpl<$Res, $Val extends ReportsScreenState>
           ? _value.breakdowns
           : breakdowns // ignore: cast_nullable_to_non_nullable
               as List<HistoryItemModelDto>,
+      isDownloading: null == isDownloading
+          ? _value.isDownloading
+          : isDownloading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -91,7 +98,8 @@ abstract class _$$ReportsScreenStateImplCopyWith<$Res>
       {Status status,
       int pageIndex,
       List<HistoryItemModelDto> accidents,
-      List<HistoryItemModelDto> breakdowns});
+      List<HistoryItemModelDto> breakdowns,
+      bool isDownloading});
 }
 
 /// @nodoc
@@ -109,6 +117,7 @@ class __$$ReportsScreenStateImplCopyWithImpl<$Res>
     Object? pageIndex = null,
     Object? accidents = null,
     Object? breakdowns = null,
+    Object? isDownloading = null,
   }) {
     return _then(_$ReportsScreenStateImpl(
       status: null == status
@@ -127,6 +136,10 @@ class __$$ReportsScreenStateImplCopyWithImpl<$Res>
           ? _value._breakdowns
           : breakdowns // ignore: cast_nullable_to_non_nullable
               as List<HistoryItemModelDto>,
+      isDownloading: null == isDownloading
+          ? _value.isDownloading
+          : isDownloading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -138,7 +151,8 @@ class _$ReportsScreenStateImpl implements _ReportsScreenState {
       {this.status = Status.initial,
       this.pageIndex = 0,
       final List<HistoryItemModelDto> accidents = const [],
-      final List<HistoryItemModelDto> breakdowns = const []})
+      final List<HistoryItemModelDto> breakdowns = const [],
+      this.isDownloading = false})
       : _accidents = accidents,
         _breakdowns = breakdowns;
 
@@ -167,8 +181,12 @@ class _$ReportsScreenStateImpl implements _ReportsScreenState {
   }
 
   @override
+  @JsonKey()
+  final bool isDownloading;
+
+  @override
   String toString() {
-    return 'ReportsScreenState(status: $status, pageIndex: $pageIndex, accidents: $accidents, breakdowns: $breakdowns)';
+    return 'ReportsScreenState(status: $status, pageIndex: $pageIndex, accidents: $accidents, breakdowns: $breakdowns, isDownloading: $isDownloading)';
   }
 
   @override
@@ -182,7 +200,9 @@ class _$ReportsScreenStateImpl implements _ReportsScreenState {
             const DeepCollectionEquality()
                 .equals(other._accidents, _accidents) &&
             const DeepCollectionEquality()
-                .equals(other._breakdowns, _breakdowns));
+                .equals(other._breakdowns, _breakdowns) &&
+            (identical(other.isDownloading, isDownloading) ||
+                other.isDownloading == isDownloading));
   }
 
   @override
@@ -191,7 +211,8 @@ class _$ReportsScreenStateImpl implements _ReportsScreenState {
       status,
       pageIndex,
       const DeepCollectionEquality().hash(_accidents),
-      const DeepCollectionEquality().hash(_breakdowns));
+      const DeepCollectionEquality().hash(_breakdowns),
+      isDownloading);
 
   @JsonKey(ignore: true)
   @override
@@ -206,7 +227,8 @@ abstract class _ReportsScreenState implements ReportsScreenState {
       {final Status status,
       final int pageIndex,
       final List<HistoryItemModelDto> accidents,
-      final List<HistoryItemModelDto> breakdowns}) = _$ReportsScreenStateImpl;
+      final List<HistoryItemModelDto> breakdowns,
+      final bool isDownloading}) = _$ReportsScreenStateImpl;
 
   @override
   Status get status;
@@ -216,6 +238,8 @@ abstract class _ReportsScreenState implements ReportsScreenState {
   List<HistoryItemModelDto> get accidents;
   @override
   List<HistoryItemModelDto> get breakdowns;
+  @override
+  bool get isDownloading;
   @override
   @JsonKey(ignore: true)
   _$$ReportsScreenStateImplCopyWith<_$ReportsScreenStateImpl> get copyWith =>

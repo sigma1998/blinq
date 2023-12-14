@@ -28,6 +28,7 @@ class BreakdownReportsView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 21),
           itemBuilder: (context, index) {
             return ProfileReportItem(
+              isDownloading: state.isDownloading,
               historyItemModelDto: state.breakdowns[index],
               onDelete: () => bloc.add(
                 OnItemDelete(id: state.breakdowns[index].id!),

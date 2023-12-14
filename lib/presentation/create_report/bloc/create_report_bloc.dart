@@ -79,8 +79,6 @@ class CreateReportBloc extends Cubit<GenericBlocState> {
   }
 
   Future<bool> _navigateAndCheckResult(String routeName) async {
-    emit(const GenericBlocState(status: Status.initial));
-
     final result = await NavigationService.pushNamed(routeName: routeName);
 
     if (result == true) {

@@ -14,13 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ReportTimeAndLocationDto _$AccidentTimeAndLocationDtoFromJson(
+ReportTimeAndLocationDto _$ReportTimeAndLocationDtoFromJson(
     Map<String, dynamic> json) {
   return _AccidentTimeAndLocationDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$AccidentTimeAndLocationDto {
+mixin _$ReportTimeAndLocationDto {
   String get country => throw _privateConstructorUsedError;
   String get location => throw _privateConstructorUsedError;
   @JsonKey(name: "created_at")
@@ -28,16 +28,15 @@ mixin _$AccidentTimeAndLocationDto {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AccidentTimeAndLocationDtoCopyWith<ReportTimeAndLocationDto>
-      get copyWith => throw _privateConstructorUsedError;
+  $ReportTimeAndLocationDtoCopyWith<ReportTimeAndLocationDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AccidentTimeAndLocationDtoCopyWith<$Res> {
-  factory $AccidentTimeAndLocationDtoCopyWith(ReportTimeAndLocationDto value,
+abstract class $ReportTimeAndLocationDtoCopyWith<$Res> {
+  factory $ReportTimeAndLocationDtoCopyWith(ReportTimeAndLocationDto value,
           $Res Function(ReportTimeAndLocationDto) then) =
-      _$AccidentTimeAndLocationDtoCopyWithImpl<$Res,
-          ReportTimeAndLocationDto>;
+      _$ReportTimeAndLocationDtoCopyWithImpl<$Res, ReportTimeAndLocationDto>;
   @useResult
   $Res call(
       {String country,
@@ -46,10 +45,10 @@ abstract class $AccidentTimeAndLocationDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AccidentTimeAndLocationDtoCopyWithImpl<$Res,
+class _$ReportTimeAndLocationDtoCopyWithImpl<$Res,
         $Val extends ReportTimeAndLocationDto>
-    implements $AccidentTimeAndLocationDtoCopyWith<$Res> {
-  _$AccidentTimeAndLocationDtoCopyWithImpl(this._value, this._then);
+    implements $ReportTimeAndLocationDtoCopyWith<$Res> {
+  _$ReportTimeAndLocationDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -82,7 +81,7 @@ class _$AccidentTimeAndLocationDtoCopyWithImpl<$Res,
 
 /// @nodoc
 abstract class _$$AccidentTimeAndLocationDtoImplCopyWith<$Res>
-    implements $AccidentTimeAndLocationDtoCopyWith<$Res> {
+    implements $ReportTimeAndLocationDtoCopyWith<$Res> {
   factory _$$AccidentTimeAndLocationDtoImplCopyWith(
           _$AccidentTimeAndLocationDtoImpl value,
           $Res Function(_$AccidentTimeAndLocationDtoImpl) then) =
@@ -97,7 +96,7 @@ abstract class _$$AccidentTimeAndLocationDtoImplCopyWith<$Res>
 
 /// @nodoc
 class __$$AccidentTimeAndLocationDtoImplCopyWithImpl<$Res>
-    extends _$AccidentTimeAndLocationDtoCopyWithImpl<$Res,
+    extends _$ReportTimeAndLocationDtoCopyWithImpl<$Res,
         _$AccidentTimeAndLocationDtoImpl>
     implements _$$AccidentTimeAndLocationDtoImplCopyWith<$Res> {
   __$$AccidentTimeAndLocationDtoImplCopyWithImpl(
@@ -151,7 +150,7 @@ class _$AccidentTimeAndLocationDtoImpl implements _AccidentTimeAndLocationDto {
 
   @override
   String toString() {
-    return 'AccidentTimeAndLocationDto(country: $country, location: $location, createdAt: $createdAt)';
+    return 'ReportTimeAndLocationDto(country: $country, location: $location, createdAt: $createdAt)';
   }
 
   @override
@@ -185,8 +184,7 @@ class _$AccidentTimeAndLocationDtoImpl implements _AccidentTimeAndLocationDto {
   }
 }
 
-abstract class _AccidentTimeAndLocationDto
-    implements ReportTimeAndLocationDto {
+abstract class _AccidentTimeAndLocationDto implements ReportTimeAndLocationDto {
   const factory _AccidentTimeAndLocationDto(
           {required final String country,
           required final String location,

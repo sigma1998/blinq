@@ -8,7 +8,7 @@ class NetworkConstants {
   static String loginApple = 'v1/api/social/auth/apple/jwt/';
   static String loginGoogle = 'v1/api/social/auth/google/';
   static String confirmMailVerification =
-      'v1/api/onfirm/email/for/reset/password';
+      'v1/api/confirm/email/for/reset/password';
   static String getVerificationCode = 'v1/api/send/code/for/reset/password/';
   static String resetPassword = 'v1/api/reset/password/';
   static String deleteUser = 'v1/api/user/delete/request/';
@@ -25,10 +25,10 @@ class NetworkConstants {
   static String history = 'v1/api/accident/breakdown/history/?page=1';
   static String deleteReport = '${accident}breakdown/delete';
 
-  static String getDriverB (int id) => 'v1/api/user/$id/mini/';
+  static String getDriverB(int id) => 'v1/api/user/$id/mini/';
 
-  static String connectBDriver (int accidentId) => '/v2/api/adriver/accident/$accidentId/connect_bdriver_with_qr_code/';
-
+  static String connectBDriver(int accidentId) =>
+      '/v2/api/adriver/accident/$accidentId/connect_bdriver_with_qr_code/';
 
   ///
   /// Profile
@@ -39,8 +39,8 @@ class NetworkConstants {
 
   static String changeEmail = '${profile}change/email/';
   static String verifyEmail = '${profile}verify/changed/email/';
-  static String changePassword = 'change/password/in/profile/';
-  static String changeLanguage = 'change/language/';
+  static String changePassword = '/v1/api/change/password/in/profile/';
+  static String changeLanguage = '/v1/api/change/language/';
 
   static String insurance = '${profile}insurance/update/';
   static String policyHolder = '${profile}policy/holder/update/';
@@ -69,12 +69,16 @@ class NetworkConstants {
   ///  second version reports
   ///
   static String createAccident = 'v2/api/create/accident/adriver/';
-  static String accidentTimeAndPlace (int accidentId)=> '/v2/api/adriver/accident/$accidentId/date_time_country_place/';
-  static String accidentSketch (int accidentId)=> '/v2/api/abdriver/accident/$accidentId/sketch/';
-  static String accidentCircumstances (int accidentId)=> '/v2/api/abdriver/accident/$accidentId/circumstances/';
+  static String accidentTimeAndPlace(int accidentId) =>
+      '/v2/api/adriver/accident/$accidentId/date_time_country_place/';
+  static String accidentSketch(int accidentId) =>
+      '/v2/api/abdriver/accident/$accidentId/sketch/';
+  static String accidentCircumstances(int accidentId) =>
+      '/v2/api/abdriver/accident/$accidentId/circumstances/';
   static String uploadFile = 'v2/api/files/';
 
-  static String accidentStatus(int accidentId)=> 'v2/api/get/accident/$accidentId/status/';
+  static String accidentStatus(int accidentId) =>
+      'v2/api/get/accident/$accidentId/status/';
 
   ///driver a
   static String injury(int accidentId) =>
@@ -115,9 +119,11 @@ class NetworkConstants {
   static String signB(int accidentId) =>
       '/v2/api/bdriver/accident/$accidentId/sign/';
 
-  static String getAccidentPdf(int accidentId) => '/v2/api/accident/$accidentId/get_pdf/';
+  static String getAccidentPdf(int accidentId) =>
+      '/v2/api/accident/$accidentId/get_pdf/';
 
-  static String sendToInsurance = 'v1/api/accident/send/breakdown/report/to/insurance/';
+  static String sendToInsurance =
+      'v1/api/accident/send/breakdown/report/to/insurance/';
 
   static String updateCarB(int accidentId) =>
       '/v2/api/bdriver/accident/$accidentId/about_car/';
@@ -131,20 +137,24 @@ class NetworkConstants {
   static String secondDriverVehicleType(int accidentId) =>
       '/v2/api/bdriver/accident/$accidentId/vehicle_type/';
 
-  static String deactivateAccident (int accidentId)=>
+  static String deactivateAccident(int accidentId) =>
       '/v2/api/update/accident/$accidentId/status/';
 
-
-///
-/// breakdowns
-///
+  ///
+  /// breakdowns
+  ///
   static String createBreakdown = 'v2/api/create/breakdown/';
-  static String breakdownTimeAndPlace (int breakdownId)=> '/v2/api/breakdown/$breakdownId/date_time_country_place/';
-  static String breakdownSketch (int breakdownId)=> '/v2/api/breakdown/$breakdownId/sketch/';
-  static String breakdownCircumstances (int breakdownId)=> '/v2/api/breakdown/$breakdownId/circumstances/';
-  static String getBreakdownPdf(int accidentId) => '/v2/api/breakdown/$accidentId/get_pdf/';
+  static String breakdownTimeAndPlace(int breakdownId) =>
+      '/v2/api/breakdown/$breakdownId/date_time_country_place/';
+  static String breakdownSketch(int breakdownId) =>
+      '/v2/api/breakdown/$breakdownId/sketch/';
+  static String breakdownCircumstances(int breakdownId) =>
+      '/v2/api/breakdown/$breakdownId/circumstances/';
+  static String getBreakdownPdf(int accidentId) =>
+      '/v2/api/breakdown/$accidentId/get_pdf/';
 
-  static String getBreakdownStatus(int breakdownId)=> 'v2/api/get/breakdown/$breakdownId/status/';
+  static String getBreakdownStatus(int breakdownId) =>
+      'v2/api/get/breakdown/$breakdownId/status/';
 
   static String injuryBreakdown(int breakdownId) =>
       '/v2/api/breakdown/$breakdownId/injury/';
@@ -162,7 +172,6 @@ class NetworkConstants {
       '/v2/api/breakdown/$breakdownId/upload_media/';
   static String signBreakdown(int breakdownId) =>
       '/v2/api/breakdown/$breakdownId/sign/';
-  static String deactivateBreakdown (int breakdownId)=>
+  static String deactivateBreakdown(int breakdownId) =>
       '/v2/api/update/breakdown/$breakdownId/status/';
-
 }
