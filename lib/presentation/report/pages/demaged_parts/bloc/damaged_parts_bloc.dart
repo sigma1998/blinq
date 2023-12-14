@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:async';
 import 'dart:io';
 
 import 'package:blinq/core/drawables/app_drawables.dart';
@@ -64,15 +65,29 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
 
   GlobalKey imagePreview = GlobalKey();
 
+  var isClicked = false;
+  late Timer _timer;
+
   void setPageIndex(int index, double width, context, ScrollController scrollController) async {
-    var file = await captureSocialPng(imagePreview, context);
-    screenShots[state.pageIndex] = file;
+    if (isClicked == false) {
+      _startTimer();
+      isClicked = true;
+      var file = await captureSocialPng(imagePreview, context);
+      screenShots[state.pageIndex] = file;
 
-    scrollController.animateTo((width - 48) * index,
-        duration: const Duration(milliseconds: 300), curve: Curves.linear);
+      scrollController.animateTo((width - 48) * index,
+          duration: const Duration(milliseconds: 300), curve: Curves.linear);
 
-    emit(state.copyWith(pageIndex: index));
+      emit(state.copyWith(pageIndex: index));
+    }
+
+
   }
+  _startTimer() =>
+    _timer = Timer(const Duration(milliseconds: 500), () {
+      isClicked = false;
+      _timer.cancel();
+    });
 
   void selectPartFunc(String indexPart) {
     Set<String> selectedPart = {...state.carParts};
