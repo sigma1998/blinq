@@ -30,18 +30,18 @@ class BreakdownReportsView extends StatelessWidget {
             return ProfileReportItem(
               historyItemModelDto: state.breakdowns[index],
               onDelete: () => bloc.add(
-                OnItemDelete(id: state.accidents[index].id!),
+                OnItemDelete(id: state.breakdowns[index].id!),
               ),
               onPdfOpen: () => bloc.add(
-                OnOpenItem(itemModelDto: state.accidents[index]),
+                OnOpenItem(itemModelDto: state.breakdowns[index]),
               ),
               onDownload: () => bloc.add(
-                OnDownloadItem(itemModelDto: state.accidents[index]),
+                OnDownloadItem(itemModelDto: state.breakdowns[index]),
               ),
               onContinue: () => bloc.add(
                 OnContinueItem(
-                    itemModelDto: state.accidents[index],
-                    reportType: ReportType.accident),
+                    itemModelDto: state.breakdowns[index],
+                    reportType: ReportType.breakdown),
               ),
             );
           },
