@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/presentation/connect_to_blinq/widgets/items/bluetooth_item.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -20,6 +21,32 @@ class ConnectToBlinqScanningStateWidget extends StatelessWidget {
 
     return Column(
       children: [
+        BlocBuilder<ConnectToBlinqCubit, ConnectToBlinqState>(
+          builder: (context, state) {
+            final list = state.scannedBleDevices;
+
+            return Wrap(
+              spacing: 16,
+              runSpacing: 16,
+              alignment: WrapAlignment.center,
+              children: List.generate(
+                list.length,
+                (index) {
+                  final device = list[index];
+
+                  return ConnectToBlinqBluetoothItem(
+                    width: 57,
+                    height: 52,
+                    fontSize: 14,
+                    title: '$index: ${device.name}',
+                    onTap: () => cubit.onConnectDevice(device),
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  );
+                },
+              ),
+            );
+          },
+        ),
         ConnectToBlinqScanItem(
           animate: true,
           description: 'strSearching'.tr(),

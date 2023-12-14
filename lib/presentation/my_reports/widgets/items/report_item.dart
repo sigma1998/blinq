@@ -23,15 +23,15 @@ class ProfileReportItem extends StatefulWidget {
   final void Function() onDelete;
   final void Function() onContinue;
 
-  const ProfileReportItem(
-      {super.key,
-      required this.historyItemModelDto,
-      // required this.status,
-      //
-      required this.onPdfOpen,
-      required this.onDelete,
-      required this.onDownload,
-      required this.onContinue});
+  const ProfileReportItem({
+    super.key,
+    required this.historyItemModelDto,
+    //
+    required this.onPdfOpen,
+    required this.onDelete,
+    required this.onDownload,
+    required this.onContinue,
+  });
 
   @override
   State<ProfileReportItem> createState() => _ProfileReportItemState();
@@ -53,7 +53,9 @@ class _ProfileReportItemState extends State<ProfileReportItem>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    bool isActive = widget.historyItemModelDto.status == 'active';
+    final isActive = widget.historyItemModelDto.status == 'active';
+    final rejected = widget.historyItemModelDto.status == 'rejected';
+
     return MyInfoContainer(
       onTap: onTap,
       margin: const EdgeInsets.only(bottom: 10),
@@ -72,62 +74,68 @@ class _ProfileReportItemState extends State<ProfileReportItem>
                 ),
               ),
               SvgPicture.asset(
-                  isActive ? AppDrawables.stop : AppDrawables.success),
+                statusIcon,
+              ),
             ],
           ),
           ExpandedSection(
-            expand: isExpanded,
+            expand: isExpanded && !rejected,
             child: Column(
               children: [
                 const SizedBox(height: 36),
-                isActive
-                    ? Center(
-                        child: MyButton.primary(
-                          width: 110,
-                          color: AppColors.activeReportColor,
-                          label: 'strContinue'.tr(),
-                          onTap: widget.onContinue,
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 6,
-                            horizontal: 16,
-                          ),
-                          iconLeft: SvgPicture.asset(
-                            AppDrawables.retry,
-                          ),
-                          labelStyle: const TextStyle(fontSize: 11),
-                        ),
-                      )
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          MyButton.primary(
-                            label: 'strOpenPdf'.tr(),
-                            onTap: widget.onPdfOpen,
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 6,
-                              horizontal: 16,
-                            ),
-                            iconLeft: SvgPicture.asset(
-                              AppDrawables.pdf,
-                              colorFilter: const ColorFilter.mode(
-                                Colors.white,
-                                BlendMode.srcIn,
-                              ),
-                            ),
-                            labelStyle: const TextStyle(fontSize: 11),
-                          ),
-                          const SizedBox(width: 44),
-                          GestureDetector(
-                            onTap: widget.onDownload,
-                            child: SvgPicture.asset(AppDrawables.download),
-                          ),
-                          const SizedBox(width: 16),
-                          GestureDetector(
-                            onTap: widget.onDelete,
-                            child: SvgPicture.asset(AppDrawables.delete),
-                          ),
-                        ],
+                if (isActive) ...[
+                  Center(
+                    child: MyButton.primary(
+                      width: 110,
+                      color: AppColors.activeReportColor,
+                      label: 'strContinue'.tr(),
+                      onTap: widget.onContinue,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 6,
+                        horizontal: 16,
                       ),
+                      iconLeft: SvgPicture.asset(
+                        AppDrawables.retry,
+                      ),
+                      labelStyle: const TextStyle(
+                        fontSize: 11,
+                        color: Colors.black,
+                      ),
+                    ),
+                  )
+                ] else ...[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      MyButton.primary(
+                        label: 'strOpenPdf'.tr(),
+                        onTap: widget.onPdfOpen,
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 6,
+                          horizontal: 16,
+                        ),
+                        iconLeft: SvgPicture.asset(
+                          AppDrawables.pdf,
+                          colorFilter: const ColorFilter.mode(
+                            Colors.white,
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                        labelStyle: const TextStyle(fontSize: 11),
+                      ),
+                      const SizedBox(width: 44),
+                      GestureDetector(
+                        onTap: widget.onDownload,
+                        child: SvgPicture.asset(AppDrawables.download),
+                      ),
+                      const SizedBox(width: 16),
+                      GestureDetector(
+                        onTap: widget.onDelete,
+                        child: SvgPicture.asset(AppDrawables.delete),
+                      ),
+                    ],
+                  ),
+                ],
               ],
             ),
           ),
@@ -139,6 +147,16 @@ class _ProfileReportItemState extends State<ProfileReportItem>
   void onTap() {
     isExpanded = !isExpanded;
     updateState();
+  }
+
+  String get statusIcon {
+    if (widget.historyItemModelDto.status == 'active') {
+      return AppDrawables.stop;
+    } else if (widget.historyItemModelDto.status == 'rejected') {
+      return AppDrawables.rejected;
+    } else {
+      return AppDrawables.success;
+    }
   }
 
   @override

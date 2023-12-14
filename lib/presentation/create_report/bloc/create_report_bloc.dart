@@ -1,4 +1,7 @@
 // Package imports:
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
@@ -7,13 +10,10 @@ import 'package:blinq/presentation/inform_close_ones/inform_close_ones_screen.da
 import 'package:blinq/presentation/medical_assistance/medical_assistance_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/driver/driver_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/insurance/insurance_editor_screen.dart';
-
-// Project imports:
 import 'package:blinq/presentation/profile/widgets/editors/policy_holder/policy_holder_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/vehicle/vehicle_editor_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CreateReportBloc extends Cubit<GenericBlocState> {
   //
@@ -46,19 +46,33 @@ class CreateReportBloc extends Cubit<GenericBlocState> {
 
       if (data.account == false) {
         emit(const GenericBlocState(status: Status.initial));
-        NavigationService.pushNamed(routeName: DriverEditorScreen.route);
-        return;
-      } else if (data.car == false) {
+        await NavigationService.pushNamed(
+          routeName: DriverEditorScreen.route,
+        );
+      }
+      if (data.car == false) {
         emit(const GenericBlocState(status: Status.initial));
-        NavigationService.pushNamed(routeName: VehicleEditorScreen.route);
-        return;
-      } else if (data.policyHolder == false) {
+        await NavigationService.pushNamed(
+          routeName: VehicleEditorScreen.route,
+        );
+      }
+      if (data.policyHolder == false) {
         emit(const GenericBlocState(status: Status.initial));
-        NavigationService.pushNamed(routeName: PolicyHolderEditorScreen.route);
-        return;
-      } else if (data.insurance == false) {
+        await NavigationService.pushNamed(
+          routeName: PolicyHolderEditorScreen.route,
+        );
+      }
+      if (data.insurance == false) {
         emit(const GenericBlocState(status: Status.initial));
-        NavigationService.pushNamed(routeName: InsuranceEditorScreen.route);
+        await NavigationService.pushNamed(
+          routeName: InsuranceEditorScreen.route,
+        );
+      }
+
+      if (data.insurance == false ||
+          data.policyHolder == false ||
+          data.car == false ||
+          data.account == false) {
         return;
       }
 
@@ -72,9 +86,10 @@ class CreateReportBloc extends Cubit<GenericBlocState> {
         return;
       } else {
         NavigationService.pushNamed(
-            routeName: routeAndArgs.route,
-            nestedKey: NavigationService.homeNavigatorKey,
-            arguments: routeAndArgs.args);
+          routeName: routeAndArgs.route,
+          nestedKey: NavigationService.homeNavigatorKey,
+          arguments: routeAndArgs.args,
+        );
       }
     } catch (e) {
       emit(const GenericBlocState(status: Status.initial));
