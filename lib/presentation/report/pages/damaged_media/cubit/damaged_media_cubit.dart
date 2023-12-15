@@ -193,12 +193,23 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
     }
 
     final file = croppedImage ?? File(mediaPath ?? '');
-    bool isFileValid = _isVideoFile(file)
-        ? await _isVideoValid(file) != null
-        : await _isImageValid(file) != null;
+    // bool isFileValid = _isVideoFile(file)
+    //     ? await _isVideoValid(file) != null
+    //     : await _isImageValid(file) != null;
+
+    bool isFileValid = false;
+    File? compressedFile;
+    if(_isVideoFile(file)){
+      compressedFile = await _isVideoValid(file);
+    }else{
+      compressedFile = await _isImageValid(file);
+    }
+
+    isFileValid = compressedFile != null;
+
 
     if (isFileValid) {
-      final updatedFiles = List<File>.from(state.files)..add(file);
+      final updatedFiles = List<File>.from(state.files)..add(compressedFile);
       if (!_isMaxVideoFiles(
               updatedFiles.where((file) => _isVideoFile(file)).length) ||
           !_isMaxImageFiles(
