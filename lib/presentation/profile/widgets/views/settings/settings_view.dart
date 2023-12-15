@@ -79,12 +79,16 @@ class _SettingsViewState extends State<SettingsView> {
               title: 'strDeleteAccount'.tr(),
             ),
             const Expanded(child: SizedBox(height: 24)),
-            MyButton.primary(
-              width: 120,
-              label: 'strLogout'.tr(),
-              onTap: bloc.onLogoutPressed,
-              isLoading: state.status == Status.loading,
-              labelStyle: const TextStyle(fontWeight: FontWeight.w500),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                MyButton.primary(
+                  label: 'strLogout'.tr(),
+                  onTap: bloc.onLogoutPressed,
+                  isLoading: state.status == Status.loading,
+                  labelStyle: const TextStyle(fontWeight: FontWeight.w500),
+                ),
+              ],
             ),
             const SafeArea(
               top: false,

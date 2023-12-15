@@ -18,7 +18,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'cubit/damaged_media_cubit.dart';
 import 'widgets/button.dart';
-import 'widgets/empty_state.dart';
+import 'widgets/states/empty_state.dart';
 import 'widgets/item.dart';
 
 class DamagedMediaScreen extends StatefulWidget {
@@ -65,7 +65,10 @@ class _DamagedMediaScreenState extends State<DamagedMediaScreen> {
                 padding: const EdgeInsets.all(32),
                 child: Column(
                   children: [
-                    StepIndicator(currentStep: cubit.step(), showTrailingTitle: true,),
+                    StepIndicator(
+                      currentStep: cubit.step(),
+                      showTrailingTitle: true,
+                    ),
                     const SizedBox(height: 20),
                     if (list.isEmpty)
                       const Expanded(
