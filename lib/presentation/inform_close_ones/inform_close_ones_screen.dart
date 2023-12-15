@@ -86,16 +86,15 @@ class _InformCloseOnesScreenState extends State<InformCloseOnesScreen> {
                 ),
           bottomNavigationBar: isLoading
               ? null
-              : Padding(
-                  padding: const EdgeInsets.symmetric(
+              : MyButton.primary(
+                  margin: const EdgeInsets.symmetric(
                     vertical: 12,
                     horizontal: 18,
                   ),
-                  child: MyButton.primary(
-                    onTap: bloc.onChoosePremadeMessage,
-                    label: 'strChoosethepremademessage'.tr(),
-                    enable: state.selectedContacts.isNotEmpty,
-                  ),
+                  onTap: bloc.onChoosePremadeMessage,
+                  label: 'strChoosethepremademessage'.tr(),
+                  enable: state.selectedContacts.isNotEmpty,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
                 ),
         );
       },

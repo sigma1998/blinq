@@ -88,22 +88,24 @@ class _EditorMyCarScreenState extends State<EditorMyCarScreen> {
                       controller: bloc.colorController,
                     ),
                     const SizedBox(height: 40),
-                    SizedBox(
-                      width: 155,
-                      child: MyButton.primary(
-                        onTap: () {
-                          if (bloc.validateForm()) {
-                            bloc.onSubmit();
-                          }
-                        },
-                        label: 'strSave'.tr(),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8,
-                          horizontal: 60,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MyButton.primary(
+                          onTap: () {
+                            if (bloc.validateForm()) {
+                              bloc.onSubmit();
+                            }
+                          },
+                          label: 'strSave'.tr(),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 8,
+                            horizontal: 60,
+                          ),
+                          labelStyle:
+                              const TextStyle(fontWeight: FontWeight.w500),
                         ),
-                        labelStyle:
-                            const TextStyle(fontWeight: FontWeight.w500),
-                      ),
+                      ],
                     ),
                     const SizedBox(height: 24),
                   ],
