@@ -28,11 +28,11 @@ class CustomInterceptor extends Interceptor {
           createdAt: list[0]['created_datetime'],
           requestOptions: err.requestOptions));
     }
-    // else if (statusCode >= 400 && statusCode < 500) {
-    //   final text =
-    //       err.response!.data?['message'] ?? err.response!.data['detail'];
-    //   NavigationService.showErrorToast((text).toString());
-    // }
+    else if (statusCode >= 400 && statusCode < 500) {
+      final text =
+          err.response!.data?['message'] ?? err.response!.data['detail'];
+      NavigationService.showErrorToast((text).toString());
+    }
 
     return handler.next(err);
   }
