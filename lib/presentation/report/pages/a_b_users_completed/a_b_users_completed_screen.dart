@@ -1,7 +1,7 @@
 import 'package:blinq/presentation/report/pages/circumstances/circumstances_screen.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:blinq/utils/step_indicator.dart';
+import 'package:blinq/utils/custom_widgets/step_indicator.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +20,9 @@ class ABUsersCompletedScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const StepIndicator(currentStep: 14,),
+                const StepIndicator(
+                  currentStep: 14,
+                ),
                 const SizedBox(
                   height: 52,
                 ),
@@ -38,12 +40,10 @@ class ABUsersCompletedScreen extends StatelessWidget {
                       .titleMedium
                       ?.copyWith(color: Theme.of(context).colorScheme.outline),
                 ),
-
               ],
             ),
           ),
           const Spacer(),
-
           Padding(
             padding: const EdgeInsets.only(bottom: 24.0),
             child: NavigationButton(

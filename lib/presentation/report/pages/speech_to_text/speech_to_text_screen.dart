@@ -10,7 +10,7 @@ import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 // Project imports:
 import 'package:blinq/utils/custom_widgets/text_fields/rounded/speech_to_text_field.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
-import 'package:blinq/utils/step_indicator.dart';
+import 'package:blinq/utils/custom_widgets/step_indicator.dart';
 
 // Package imports:
 import 'package:flutter/material.dart';

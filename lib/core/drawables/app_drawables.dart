@@ -14,6 +14,8 @@ class AppDrawables {
   static const String successAnim = '$animations/success.json';
   static const String scanAnim = '$animations/scan.json';
 
+  static const String blinqLoadingAnim = '$animations/blinq_loading.json';
+
   ///
   /// Info
   ///
