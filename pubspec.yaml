@@ -131,7 +131,6 @@ dependencies:
   device_info_plus: ^9.1.0
   phosphor_flutter: 2.0.0
   firebase_core: ^2.24.2
-  connectivity_plus: ^5.0.2
 
 
 dev_dependencies:

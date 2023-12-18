@@ -25,7 +25,7 @@ import 'package:blinq/presentation/map/map_screen.dart';
 import 'package:blinq/presentation/medical_assistance/medical_assistance_screen.dart';
 import 'package:blinq/presentation/my_reports/pdf_view/pdf_view.dart';
 import 'package:blinq/presentation/my_reports/reports_screen.dart';
-import 'package:blinq/presentation/offline/offline_screen_bloc.dart';
+import 'package:blinq/presentation/offline/offline_screen.dart';
 import 'package:blinq/presentation/password_editor/password_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/driver/driver_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/insurance/insurance_editor_screen.dart';

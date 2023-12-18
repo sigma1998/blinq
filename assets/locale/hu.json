@@ -750,6 +750,8 @@
   "strInvalidCode": "Érvénytelen kód, próbálja újra",
   "strEmpty": "Kérjük, írja be megjegyzéseit",
   "strBadConnection": "Rossz a kapcsolat, ellenőrizze, hogy az internet stabil-e",
-  "strReportCreatedAt": "Jelentés készült: "
+  "strReportCreatedAt": "Jelentés készült: ",
+  "strConnectionProblem": "Úgy tűnik, problémái vannak az internettel",
+  "strPleaseConnect": "Kérjük, csatlakozzon egy jó\nhálózathoz, és próbálja újra."
 }
 

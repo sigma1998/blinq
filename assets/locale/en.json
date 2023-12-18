@@ -750,5 +750,7 @@
   "strInvalidCode": "Invalid code, please try again",
   "strEmpty": "Please enter your comments",
   "strBadConnection": "You have a bad connection, make sure your internet is stable",
-  "strReportCreatedAt": "Report created at "
+  "strReportCreatedAt": "Report created at ",
+  "strConnectionProblem": "Looks like you are having trouble with internet",
+  "strPleaseConnect": "Please connect to a good\nnetwork and try again."
 }

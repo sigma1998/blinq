@@ -12,9 +12,6 @@ PODS:
   - blinkid_flutter (6.1.1):
     - Flutter
     - PPBlinkID (~> 6.1.2)
-  - connectivity_plus (0.0.1):
-    - Flutter
-    - ReachabilitySwift
   - device_info (0.0.1):
     - Flutter
   - device_info_plus (0.0.1):
@@ -148,7 +145,6 @@ PODS:
   - qr_code_scanner (0.2.0):
     - Flutter
     - MTBBarcodeScanner
-  - ReachabilitySwift (5.0.0)
   - reactive_ble_mobile (0.0.1):
     - Flutter
     - Protobuf (~> 3.5)
@@ -191,7 +187,6 @@ DEPENDENCIES:
   - app_settings (from `.symlinks/plugins/app_settings/ios`)
   - background_sms (from `.symlinks/plugins/background_sms/ios`)
   - blinkid_flutter (from `.symlinks/plugins/blinkid_flutter/ios`)
-  - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - device_info (from `.symlinks/plugins/device_info/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
@@ -245,7 +240,6 @@ SPEC REPOS:
     - PPBlinkID
     - PromisesObjC
     - Protobuf
-    - ReachabilitySwift
     - SDWebImage
     - SDWebImageWebPCoder
     - SwiftProtobuf
@@ -261,8 +255,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/background_sms/ios"
   blinkid_flutter:
     :path: ".symlinks/plugins/blinkid_flutter/ios"
-  connectivity_plus:
-    :path: ".symlinks/plugins/connectivity_plus/ios"
   device_info:
     :path: ".symlinks/plugins/device_info/ios"
   device_info_plus:
@@ -333,7 +325,6 @@ SPEC CHECKSUMS:
   AppAuth: 3bb1d1cd9340bd09f5ed189fb00b1cc28e1e8570
   background_sms: ead2469d0ef3b811cf68bc09670c38cf80b13a6e
   blinkid_flutter: d4cb7f6a93a741132b1359b2e50f527811cf2775
-  connectivity_plus: bf0076dd84a130856aa636df1c71ccaff908fa1d
   device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
   device_info_plus: c6fb39579d0f423935b0c9ce7ee2f44b71b9fce6
   DKImagePickerController: b512c28220a2b8ac7419f21c491fc8534b7601ac
@@ -373,7 +364,6 @@ SPEC CHECKSUMS:
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   Protobuf: d94761c33f1239c0a43a0817ca1a5f7f7c900241
   qr_code_scanner: bb67d64904c3b9658ada8c402e8b4d406d5d796e
-  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   reactive_ble_mobile: 9ce6723d37ccf701dbffd202d487f23f5de03b4c
   SDWebImage: f9258c58221ed854cfa0e2b80ee4033710b1c6d3
   SDWebImageWebPCoder: 633b813fca24f1de5e076bcd7f720c038b23892b

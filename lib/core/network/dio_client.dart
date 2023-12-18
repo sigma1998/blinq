@@ -27,8 +27,10 @@ class DioClient {
   );
 
   static Dio _createDio() {
-    _myDio ??= Dio(myDioOptions)
-      ..interceptors.addAll([CustomInterceptor(), logInterceptor]);
+    if(_myDio == null){
+      _myDio ??= Dio(myDioOptions);
+      _myDio!.interceptors.addAll([CustomInterceptor(dio: _myDio!), logInterceptor]);
+    }
     return _myDio!;
   }
 

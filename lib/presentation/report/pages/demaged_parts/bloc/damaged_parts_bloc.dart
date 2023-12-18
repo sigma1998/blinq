@@ -326,7 +326,7 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
     } else if (x > 199.0 && x < 283.67 && y > 70.0 && y < 80.0) {
       color = damagedParts.contains(vehiclePartList[6]) ? inActive : active;
       selectPartFunc(vehiclePartList[6]);
-    } else if (y > 80.1 && y < 139.77 && x > 21.67 && x < 222.0) {
+    } else if (y > 87.1 && y < 170.77 && x > 19.67 && x < 271.0) {
       color = damagedParts.contains(vehiclePartList[7]) ? inActive : active;
       selectPartFunc(vehiclePartList[7]);
     }

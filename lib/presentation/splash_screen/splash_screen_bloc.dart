@@ -13,6 +13,7 @@ class SplashScreenBloc {
 
   void checkStatus() async {
     final UserStatus status = authRepository.getUserStatus();
+
     Future.delayed(const Duration(seconds: 3)).then((_) async {
       switch (status) {
         case UserStatus.signed:
