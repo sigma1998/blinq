@@ -118,14 +118,14 @@ class ReportsScreenBloc extends Bloc<ReportsScreenEvent, ReportsScreenState> {
     }
     if (file == null) return;
 
-    emit(state.copyWith(isDownloading: true));
+    emit(state.copyWith(status: Status.loading));
 
     await repository.downloadReport(
       localPath: file.path,
       url: event.itemModelDto.accidentDocumentPdf!,
     );
 
-    emit(state.copyWith(isDownloading: false));
+    emit(state.copyWith(status: Status.success));
 
     NavigationService.showToast(
       text: 'strPdfSaved'.tr(),

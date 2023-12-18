@@ -11,6 +11,5 @@ class ReportsScreenState with _$ReportsScreenState {
     @Default(0) int pageIndex,
     @Default([]) List<HistoryItemModelDto> accidents,
     @Default([]) List<HistoryItemModelDto> breakdowns,
-    @Default(false) bool isDownloading,
   }) = _ReportsScreenState;
 }

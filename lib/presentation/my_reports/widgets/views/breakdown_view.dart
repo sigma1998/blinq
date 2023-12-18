@@ -7,6 +7,8 @@ import 'package:blinq/presentation/my_reports/widgets/items/report_item.dart';
 
 // Project imports:
 import 'package:blinq/presentation/my_reports/widgets/states/empty_state.dart';
+import 'package:blinq/utils/custom_widgets/loading.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -22,13 +24,16 @@ class BreakdownReportsView extends StatelessWidget {
 
     return BlocBuilder<ReportsScreenBloc, ReportsScreenState>(
       builder: (context, state) {
+        final isLoading = state.status == Status.loading;
+
         if (state.breakdowns.isEmpty) return const ReportsEmptyStateWidget();
+
+        if (isLoading) return const Loading();
 
         return ListView.separated(
           padding: const EdgeInsets.symmetric(vertical: 21),
           itemBuilder: (context, index) {
             return ProfileReportItem(
-              isDownloading: false,
               historyItemModelDto: state.breakdowns[index],
               onDelete: () => bloc.add(
                 OnItemDelete(id: state.breakdowns[index].id!),
