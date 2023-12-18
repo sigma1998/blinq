@@ -9,7 +9,7 @@ import 'package:blinq/presentation/report/pages/injury/cubit/injury_screen_state
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/custom_widgets/modal_progress_hud.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
-import 'package:blinq/utils/step_indicator.dart';
+import 'package:blinq/utils/custom_widgets/step_indicator.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';

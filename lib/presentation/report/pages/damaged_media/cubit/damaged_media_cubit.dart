@@ -69,24 +69,32 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
       }
 
       emit(state.copyWith(status: Status.loading));
+      emit(state.copyWith(isUploading: true));
+
       final files = state.files;
-      final uploadedFilesId = <int>[];
+      emit(state.copyWith(uploadedFilesId: []));
       for (final file in files) {
         final multipartFile = await MultipartFile.fromFile(file.path,
             filename: file.path.split('/').last);
         final uploadedFileId = await accidentRepository.uploadFile(
           file: multipartFile,
         );
-        uploadedFilesId.add(uploadedFileId);
+
+        emit(
+          state.copyWith(
+            uploadedFilesId: [...state.uploadedFilesId, uploadedFileId],
+          ),
+        );
       }
-      emit(state.copyWith(uploadedFilesId: uploadedFilesId));
       await _uploadMedia();
 
       _navigate();
 
       emit(state.copyWith(status: Status.success));
+      emit(state.copyWith(isUploading: false));
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
+      emit(state.copyWith(isUploading: false));
     }
   }
 

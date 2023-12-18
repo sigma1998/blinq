@@ -15,6 +15,8 @@ class AppDrawables {
   static const String scanAnim = '$animations/scan.json';
   static const String noInternet = '$animations/no_internet_anim.json';
 
+  static const String blinqLoadingAnim = '$animations/blinq_loading.json';
+
   ///
   /// Info
   ///

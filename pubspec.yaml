@@ -122,9 +122,9 @@ dependencies:
   json_annotation: ^4.8.1
   equatable: ^2.0.5
 
-#  localization
+  #  localization
   easy_localization: ^3.0.3
-#  ui utils
+  #  ui utils
   email_validator: ^2.1.17
   another_flushbar: ^1.12.30
   carousel_slider: ^4.2.1

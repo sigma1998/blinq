@@ -19,6 +19,7 @@ mixin _$DamagedMediaState {
   Status get status => throw _privateConstructorUsedError;
   List<File> get files => throw _privateConstructorUsedError;
   List<int> get uploadedFilesId => throw _privateConstructorUsedError;
+  bool get isUploading => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -36,6 +37,7 @@ abstract class $DamagedMediaStateCopyWith<$Res> {
       {Status status,
       List<File> files,
       List<int> uploadedFilesId,
+      bool isUploading,
       Error? error});
 }
 
@@ -55,6 +57,7 @@ class _$DamagedMediaStateCopyWithImpl<$Res, $Val extends DamagedMediaState>
     Object? status = null,
     Object? files = null,
     Object? uploadedFilesId = null,
+    Object? isUploading = null,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -70,6 +73,10 @@ class _$DamagedMediaStateCopyWithImpl<$Res, $Val extends DamagedMediaState>
           ? _value.uploadedFilesId
           : uploadedFilesId // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      isUploading: null == isUploading
+          ? _value.isUploading
+          : isUploading // ignore: cast_nullable_to_non_nullable
+              as bool,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -90,6 +97,7 @@ abstract class _$$DamagedMediaStateImplCopyWith<$Res>
       {Status status,
       List<File> files,
       List<int> uploadedFilesId,
+      bool isUploading,
       Error? error});
 }
 
@@ -107,6 +115,7 @@ class __$$DamagedMediaStateImplCopyWithImpl<$Res>
     Object? status = null,
     Object? files = null,
     Object? uploadedFilesId = null,
+    Object? isUploading = null,
     Object? error = freezed,
   }) {
     return _then(_$DamagedMediaStateImpl(
@@ -122,6 +131,10 @@ class __$$DamagedMediaStateImplCopyWithImpl<$Res>
           ? _value._uploadedFilesId
           : uploadedFilesId // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      isUploading: null == isUploading
+          ? _value.isUploading
+          : isUploading // ignore: cast_nullable_to_non_nullable
+              as bool,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -137,6 +150,7 @@ class _$DamagedMediaStateImpl implements _DamagedMediaState {
       {this.status = Status.initial,
       final List<File> files = const [],
       final List<int> uploadedFilesId = const [],
+      this.isUploading = false,
       this.error})
       : _files = files,
         _uploadedFilesId = uploadedFilesId;
@@ -163,11 +177,14 @@ class _$DamagedMediaStateImpl implements _DamagedMediaState {
   }
 
   @override
+  @JsonKey()
+  final bool isUploading;
+  @override
   final Error? error;
 
   @override
   String toString() {
-    return 'DamagedMediaState(status: $status, files: $files, uploadedFilesId: $uploadedFilesId, error: $error)';
+    return 'DamagedMediaState(status: $status, files: $files, uploadedFilesId: $uploadedFilesId, isUploading: $isUploading, error: $error)';
   }
 
   @override
@@ -179,6 +196,8 @@ class _$DamagedMediaStateImpl implements _DamagedMediaState {
             const DeepCollectionEquality().equals(other._files, _files) &&
             const DeepCollectionEquality()
                 .equals(other._uploadedFilesId, _uploadedFilesId) &&
+            (identical(other.isUploading, isUploading) ||
+                other.isUploading == isUploading) &&
             (identical(other.error, error) || other.error == error));
   }
 
@@ -188,6 +207,7 @@ class _$DamagedMediaStateImpl implements _DamagedMediaState {
       status,
       const DeepCollectionEquality().hash(_files),
       const DeepCollectionEquality().hash(_uploadedFilesId),
+      isUploading,
       error);
 
   @JsonKey(ignore: true)
@@ -203,6 +223,7 @@ abstract class _DamagedMediaState implements DamagedMediaState {
       {final Status status,
       final List<File> files,
       final List<int> uploadedFilesId,
+      final bool isUploading,
       final Error? error}) = _$DamagedMediaStateImpl;
 
   @override
@@ -211,6 +232,8 @@ abstract class _DamagedMediaState implements DamagedMediaState {
   List<File> get files;
   @override
   List<int> get uploadedFilesId;
+  @override
+  bool get isUploading;
   @override
   Error? get error;
   @override

@@ -14,7 +14,7 @@ import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/rounded/date_picker_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/rounded/time_picker_text_field.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
-import 'package:blinq/utils/step_indicator.dart';
+import 'package:blinq/utils/custom_widgets/step_indicator.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';

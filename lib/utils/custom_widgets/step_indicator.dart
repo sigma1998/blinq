@@ -25,7 +25,7 @@ class StepIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final reportBloc = context.read<ReportBloc>();
-    return BlocBuilder<ReportBloc, ReportState>(builder: (context, state){
+    return BlocBuilder<ReportBloc, ReportState>(builder: (context, state) {
       return Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40),
@@ -45,10 +45,11 @@ class StepIndicator extends StatelessWidget {
                         ? 'strAccident'.tr()
                         : 'strBreakDown'.tr(),
                   ),
-                  if (showTrailingTitle && reportBloc.reportType == ReportType.accident)
+                  if (showTrailingTitle &&
+                      reportBloc.reportType == ReportType.accident)
                     TextSpan(
                       text:
-                      '  ${'strDriver'.tr()} ${state.user == User.A ? 'A' : 'B'}',
+                          '  ${'strDriver'.tr()} ${state.user == User.A ? 'A' : 'B'}',
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onSecondary,
                       ),
@@ -60,7 +61,8 @@ class StepIndicator extends StatelessWidget {
             StepProgressIndicator(
               size: 8,
               padding: 0,
-              totalSteps: reportBloc.reportType == ReportType.accident ? 17 : 10,
+              totalSteps:
+                  reportBloc.reportType == ReportType.accident ? 17 : 10,
               currentStep: currentStep,
               unselectedColor: Colors.black,
               roundedEdges: const Radius.circular(10),
