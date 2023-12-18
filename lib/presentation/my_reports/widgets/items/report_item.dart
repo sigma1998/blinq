@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:blinq/utils/custom_widgets/loading.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -24,8 +23,6 @@ class ProfileReportItem extends StatefulWidget {
   final void Function() onDelete;
   final void Function() onContinue;
 
-  final bool isDownloading;
-
   const ProfileReportItem({
     super.key,
     required this.historyItemModelDto,
@@ -34,8 +31,6 @@ class ProfileReportItem extends StatefulWidget {
     required this.onDelete,
     required this.onDownload,
     required this.onContinue,
-    //
-    required this.isDownloading,
   });
 
   @override
@@ -129,16 +124,10 @@ class _ProfileReportItemState extends State<ProfileReportItem>
                         labelStyle: const TextStyle(fontSize: 11),
                       ),
                       const SizedBox(width: 44),
-                      widget.isDownloading
-                          ? const SizedBox(
-                              width: 30,
-                              height: 30,
-                              child: Loading(),
-                            )
-                          : GestureDetector(
-                              onTap: widget.onDownload,
-                              child: SvgPicture.asset(AppDrawables.download),
-                            ),
+                      GestureDetector(
+                        onTap: widget.onDownload,
+                        child: SvgPicture.asset(AppDrawables.download),
+                      ),
                       const SizedBox(width: 16),
                       GestureDetector(
                         onTap: widget.onDelete,

@@ -308,8 +308,8 @@ class _$ConnectToBlinqStateImpl implements _ConnectToBlinqState {
                 .equals(other._receivedData, _receivedData) &&
             (identical(other.connectAttempt, connectAttempt) ||
                 other.connectAttempt == connectAttempt) &&
-            const DeepCollectionEquality()
-                .equals(other.recentlyConnected, recentlyConnected));
+            (identical(other.recentlyConnected, recentlyConnected) ||
+                other.recentlyConnected == recentlyConnected));
   }
 
   @override
@@ -324,7 +324,7 @@ class _$ConnectToBlinqStateImpl implements _ConnectToBlinqState {
       stateTexts,
       const DeepCollectionEquality().hash(_receivedData),
       connectAttempt,
-      const DeepCollectionEquality().hash(recentlyConnected));
+      recentlyConnected);
 
   @JsonKey(ignore: true)
   @override
