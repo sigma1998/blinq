@@ -168,11 +168,13 @@ class _SpeechToTextFieldState extends State<SpeechToTextField> {
                     decoration: _decoration,
                   ),
                   AvatarGlow(
-                    endRadius: 56.0,
+                    endRadius: 75.0,
                     animate: isRecording,
-                    duration: const Duration(milliseconds: 2000),
+                    curve: Curves.fastEaseInToSlowEaseOut,
+                    duration: const Duration(seconds: 2),
                     glowColor: Theme.of(context).colorScheme.onSecondary,
                     repeatPauseDuration: const Duration(milliseconds: 100),
+                    repeat: true,
                     child: SizedBox(
                       height: 76,
                       width: 76,
@@ -205,9 +207,11 @@ class _SpeechToTextFieldState extends State<SpeechToTextField> {
 
   Future toggleRecording() => SpeechToTextHelper.toggleRecording(
         onResult: (text) {
-          controller.text += text;
+          controller.text = text;
           controller.selection = TextSelection.fromPosition(
-            TextPosition(offset: controller.text.length),
+            TextPosition(
+              offset: controller.text.length,
+            ),
           );
         },
         onListening: (isListening) {
@@ -216,7 +220,9 @@ class _SpeechToTextFieldState extends State<SpeechToTextField> {
 
           if (!isListening) {
             controller.selection = TextSelection.fromPosition(
-              TextPosition(offset: controller.text.length),
+              TextPosition(
+                offset: controller.text.length,
+              ),
             );
           }
         },

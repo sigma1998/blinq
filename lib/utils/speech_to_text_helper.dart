@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:blinq/utils/navigation_service.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -23,7 +25,13 @@ class SpeechToTextHelper {
     );
 
     if (isAvailable) {
-      _speech.listen(onResult: (value) => onResult(value.recognizedWords));
+      _speech.listen(
+        localeId:
+            NavigationService.navigatorKey.currentContext!.locale.languageCode,
+        onResult: (value) => onResult(
+          value.recognizedWords,
+        ),
+      );
     }
 
     return isAvailable;

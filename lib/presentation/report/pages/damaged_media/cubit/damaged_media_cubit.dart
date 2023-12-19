@@ -68,52 +68,49 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
         return;
       }
 
-      emit(state.copyWith(status: Status.loading));
-      emit(state.copyWith(isUploading: true));
-
-      final files = state.files;
-      emit(state.copyWith(uploadedFilesId: []));
-      for (final file in files) {
-        final multipartFile = await MultipartFile.fromFile(file.path,
-            filename: file.path.split('/').last);
-        final uploadedFileId = await accidentRepository.uploadFile(
-          file: multipartFile,
-        );
-
-        emit(
-          state.copyWith(
-            uploadedFilesId: [...state.uploadedFilesId, uploadedFileId],
-          ),
-        );
-      }
+      emit(state.copyWith(status: Status.loading, isUploading: true));
+      await _uploadFiles();
       await _uploadMedia();
 
       _navigate();
 
-      emit(state.copyWith(status: Status.success));
-      emit(state.copyWith(isUploading: false));
+      emit(state.copyWith(status: Status.success, isUploading: false));
     } catch (e) {
-      emit(state.copyWith(status: Status.initial));
-      emit(state.copyWith(isUploading: false));
+      emit(state.copyWith(status: Status.initial, isUploading: false));
+    }
+  }
+
+  Future<void> _uploadFiles() async {
+    final files = state.files;
+    emit(state.copyWith(uploadedFilesId: []));
+
+    for (final file in files) {
+      final multipartFile = await MultipartFile.fromFile(
+        file.path,
+        filename: file.path.split('/').last,
+      );
+      final uploadedFileId = await accidentRepository.uploadFile(
+        file: multipartFile,
+      );
+
+      emit(state.copyWith(
+        uploadedFilesId: [...state.uploadedFilesId, uploadedFileId],
+      ));
     }
   }
 
   Future<void> _uploadMedia() async {
+    final reportId = reportBloc.reportId;
+    final uploadedFilesId = state.uploadedFilesId;
+
     if (reportBloc.reportType == ReportType.accident) {
       if (reportBloc.state.user == User.A) {
-        await accidentRepository.uploadMedia(
-          reportBloc.reportId,
-          state.uploadedFilesId,
-        );
+        await accidentRepository.uploadMedia(reportId, uploadedFilesId);
       } else {
-        await accidentRepository.uploadMediaB(
-          reportBloc.reportId,
-          state.uploadedFilesId,
-        );
+        await accidentRepository.uploadMediaB(reportId, uploadedFilesId);
       }
     } else {
-      await breakdownRepository.uploadMedia(
-          reportBloc.reportId, state.uploadedFilesId);
+      await breakdownRepository.uploadMedia(reportId, uploadedFilesId);
     }
 
     await NavigationService.showDialog(
@@ -182,42 +179,45 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
 
   ///
 
-  Future<void> _updateFiles(Future<String?> openMedia) async {
+  Future<void> _updateFiles(Future<String?> filePath) async {
     NavigationService.back();
-    final mediaPath = await openMedia;
-    File? croppedImage;
-    if (mediaPath != null && !_isVideoFile(File(mediaPath))) {
-      if (_isImageFile(File(mediaPath))) {
-        croppedImage = await ImageCropHelper.cropImage(
-          mediaPath,
-          ratioX: 9,
-          ratioY: 16,
-        );
-      } else {
-        NavigationService.showErrorToast(
-            'Allowed only jpg, jpeg, png, mp4, mov');
-        return;
-      }
+    final filePathSync = await filePath;
+
+    if (filePathSync == null) {
+      return;
     }
 
-    final file = croppedImage ?? File(mediaPath ?? '');
-    // bool isFileValid = _isVideoFile(file)
-    //     ? await _isVideoValid(file) != null
-    //     : await _isImageValid(file) != null;
-
-    bool isFileValid = false;
-    File? compressedFile;
-    if(_isVideoFile(file)){
-      compressedFile = await _isVideoValid(file);
-    }else{
-      compressedFile = await _isImageValid(file);
+    if (_isVideoFile(File(filePathSync))) {
+      await _updateVideoFiles(filePathSync);
+    } else if (_isImageFile(File(filePathSync))) {
+      await _updateImageFiles(filePathSync);
+    } else {
+      NavigationService.showErrorToast(
+        'Allowed only jpg, jpeg, heic, heif, png, mp4, mov',
+      );
     }
+  }
 
-    isFileValid = compressedFile != null;
+  Future<void> _updateImageFiles(String imagePath) async {
+    final croppedImage = await ImageCropHelper.cropImage(
+      imagePath,
+      ratioX: 9,
+      ratioY: 16,
+    );
 
+    final compressedFile = await _isImageValid(croppedImage);
 
-    if (isFileValid) {
-      final updatedFiles = List<File>.from(state.files)..add(compressedFile);
+    await _handleFile(compressedFile);
+  }
+
+  Future<void> _updateVideoFiles(String filePath) async {
+    final file = await _isVideoValid(File(filePath));
+    await _handleFile(file);
+  }
+
+  Future<void> _handleFile(File? file) async {
+    if (file != null) {
+      final updatedFiles = List<File>.from(state.files)..add(file);
       if (!_isMaxVideoFiles(
               updatedFiles.where((file) => _isVideoFile(file)).length) ||
           !_isMaxImageFiles(
@@ -296,6 +296,8 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
     final fileExtension = p.extension(file.path).toLowerCase();
     return fileExtension == '.jpg' ||
         fileExtension == '.jpeg' ||
+        fileExtension == '.heic' ||
+        fileExtension == '.heif' ||
         fileExtension == '.png';
   }
 
