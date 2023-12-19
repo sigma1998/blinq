@@ -1,22 +1,21 @@
 // Flutter imports:
-import 'package:blinq/app/locator.dart';
-import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
-import 'package:blinq/domain/repositories/accident_repository.dart';
-import 'package:blinq/domain/repositories/breakdown_repository.dart';
-import 'package:blinq/presentation/report/pages/speech_to_text/bloc/speech_to_text_screen_bloc.dart';
-import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
-import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:blinq/utils/custom_widgets/text_fields/rounded/speech_to_text_field.dart';
-import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
+import 'package:blinq/domain/repositories/breakdown_repository.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/utils/custom_widgets/step_indicator.dart';
-
-// Package imports:
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'bloc/speech_to_text_screen_mode.dart';
+import 'package:blinq/app/locator.dart';
+import 'bloc/speech_to_text_cubit.dart';
 
 class SpeechToTextScreen extends StatefulWidget {
   //
@@ -29,13 +28,14 @@ class SpeechToTextScreen extends StatefulWidget {
 }
 
 class _SpeechToTextScreenState extends State<SpeechToTextScreen> {
-  late SpeechToTextScreenBloc bloc;
+  //
+  late SpeechToTextCubit bloc;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     final args = ModalRoute.of(context)!.settings.arguments as SpeechToTextArgs;
-    bloc = SpeechToTextScreenBloc(
+    bloc = SpeechToTextCubit(
       speechToTextScreenMode: args.mode,
       accidentRepository: getIt<AccidentRepositoryImpl>(),
       breakdownRepository: getIt<BreakdownRepositoryImpl>(),
@@ -45,7 +45,7 @@ class _SpeechToTextScreenState extends State<SpeechToTextScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SpeechToTextScreenBloc, GenericBlocState>(
+    return BlocBuilder<SpeechToTextCubit, SpeechToTextState>(
       bloc: bloc,
       builder: (context, state) {
         return KeyboardEscape(
@@ -61,9 +61,10 @@ class _SpeechToTextScreenState extends State<SpeechToTextScreen> {
                   const SizedBox(height: 52),
                   SpeechToTextField(
                     maxLines: 10,
-                    canClear: false,
                     labelText: bloc.title,
+                    isRecording: state.isRecording,
                     controller: bloc.textController,
+                    toggleRecording: bloc.toggleRecording,
                   ),
                 ],
               ),

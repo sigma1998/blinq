@@ -9,13 +9,19 @@ import 'package:blinq/presentation/report/pages/points_of_impact/points_of_impac
 import 'package:blinq/presentation/report/pages/speech_to_text/speech_to_text_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/speech_to_text_helper.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'speech_to_text_screen_mode.dart';
 
-class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
+part 'speech_to_text_cubit.freezed.dart';
+part 'speech_to_text_state.dart';
+
+class SpeechToTextCubit extends Cubit<SpeechToTextState> {
+  //
   final SpeechToTextScreenMode speechToTextScreenMode;
   final AccidentRepository accidentRepository;
   final BreakdownRepository breakdownRepository;
@@ -25,12 +31,12 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
 
   TextEditingController textController = TextEditingController();
 
-  SpeechToTextScreenBloc({
+  SpeechToTextCubit({
     required this.speechToTextScreenMode,
     required this.reportBloc,
     required this.accidentRepository,
     required this.breakdownRepository,
-  }) : super(const GenericBlocState(status: Status.initial)) {
+  }) : super(const SpeechToTextState()) {
     switch (speechToTextScreenMode) {
       case SpeechToTextScreenMode.remarks:
         title = 'strMyRemarks'.tr();
@@ -42,6 +48,34 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
         title = 'strVisibleDamage'.tr();
         break;
     }
+  }
+
+  //
+
+  Future<void> toggleRecording() async {
+    String result = '${textController.text}\n';
+
+    await SpeechToTextHelper.toggleRecording(
+      onResult: (text) {
+        textController.text = result + text;
+        textController.selection = TextSelection.fromPosition(
+          TextPosition(
+            offset: textController.text.length,
+          ),
+        );
+      },
+      onListening: (isListening) {
+        emit(state.copyWith(isRecording: isListening));
+
+        if (!isListening) {
+          textController.selection = TextSelection.fromPosition(
+            TextPosition(
+              offset: textController.text.length,
+            ),
+          );
+        }
+      },
+    );
   }
 
   void onNextTap() {
@@ -65,7 +99,7 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
 
   void _onWitnessesSubmitted() async {
     try {
-      emit(const GenericBlocState(status: Status.loading));
+      emit(state.copyWith(status: Status.loading));
 
       if (reportBloc.reportType == ReportType.accident) {
         await accidentRepository.accidentWitnesses(
@@ -80,19 +114,19 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
         nestedKey: NavigationService.homeNavigatorKey,
       );
 
-      emit(const GenericBlocState(status: Status.initial));
+      emit(state.copyWith(status: Status.initial));
     } catch (e) {
-      emit(const GenericBlocState(status: Status.initial));
+      emit(state.copyWith(status: Status.initial));
     }
   }
 
   void _onVisibleDamageSubmitted() async {
     try {
-      emit(const GenericBlocState(status: Status.loading));
+      emit(state.copyWith(status: Status.loading));
 
       await _sendVisibleDamage();
 
-      emit(const GenericBlocState(status: Status.initial));
+      emit(state.copyWith(status: Status.initial));
 
       if (reportBloc.reportType == ReportType.accident) {
         NavigationService.pushNamed(
@@ -107,7 +141,7 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
         );
       }
     } catch (e) {
-      emit(const GenericBlocState(status: Status.initial));
+      emit(state.copyWith(status: Status.initial));
     }
   }
 
@@ -128,7 +162,7 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
 
   void _onRemarksSubmitted() async {
     try {
-      emit(const GenericBlocState(status: Status.loading));
+      emit(state.copyWith(status: Status.loading));
 
       await _sendRemarks();
 
@@ -142,7 +176,7 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
             .getSecondDriverVehicleType(reportBloc.reportId);
       }
 
-      emit(const GenericBlocState(status: Status.initial));
+      emit(state.copyWith(status: Status.initial));
 
       NavigationService.pushNamed(
         routeName: DamagedPartsScreen.route,
@@ -150,9 +184,9 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
         nestedKey: NavigationService.homeNavigatorKey,
       );
 
-      emit(const GenericBlocState(status: Status.initial));
+      emit(state.copyWith(status: Status.initial));
     } catch (e) {
-      emit(const GenericBlocState(status: Status.initial));
+      emit(state.copyWith(status: Status.initial));
     }
   }
 
@@ -167,13 +201,15 @@ class SpeechToTextScreenBloc extends Cubit<GenericBlocState> {
         return 10;
       }
     } else {
-      if(reportBloc.reportType == ReportType.accident){
+      if (reportBloc.reportType == ReportType.accident) {
         if (reportBloc.state.user == User.A) {
           return 6;
         } else {
           return 11;
         }
-      }else{return 7;}
+      } else {
+        return 7;
+      }
     }
   }
 
