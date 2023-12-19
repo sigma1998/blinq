@@ -39,8 +39,8 @@ class _SketchScreenState extends State<SketchScreen> {
 
   @override
   void dispose() async {
-    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     super.dispose();
+    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
 
   @override
@@ -93,7 +93,8 @@ class _SketchScreenState extends State<SketchScreen> {
                                           Row(
                                             children: [
                                               const Expanded(
-                                                  flex: 1, child: Text("Color")),
+                                                  flex: 1,
+                                                  child: Text("Color")),
                                               // Control free style color hue
                                               Expanded(
                                                 flex: 3,
@@ -204,16 +205,16 @@ class _SketchScreenState extends State<SketchScreen> {
                           ),
                         )
                       : const SizedBox(),
-
-                  visible ?
-                  Positioned(
-                    top: 40,
-                    left: 24,
-                    child: Text(
-                      'strSketchAccident'.tr(),
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                  ) : const SizedBox(),
+                  visible
+                      ? Positioned(
+                          top: 40,
+                          left: 24,
+                          child: Text(
+                            'strSketchAccident'.tr(),
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                        )
+                      : const SizedBox(),
                 ],
               ),
             ),

@@ -89,7 +89,9 @@ class _SpeechToTextFieldState extends State<SpeechToTextField> {
     super.initState();
   }
 
-  void updateState() => {if (mounted) setState(() {})};
+  void updateState() {
+    if (mounted) setState(() {});
+  }
 
   @override
   void dispose() {
@@ -205,28 +207,32 @@ class _SpeechToTextFieldState extends State<SpeechToTextField> {
     );
   }
 
-  Future toggleRecording() => SpeechToTextHelper.toggleRecording(
-        onResult: (text) {
-          controller.text = text;
+  Future<void> toggleRecording() async {
+    String result = '${controller.text}\n';
+
+    await SpeechToTextHelper.toggleRecording(
+      onResult: (text) {
+        controller.text = result + text;
+        controller.selection = TextSelection.fromPosition(
+          TextPosition(
+            offset: controller.text.length,
+          ),
+        );
+      },
+      onListening: (isListening) {
+        isRecording = isListening;
+        updateState();
+
+        if (!isListening) {
           controller.selection = TextSelection.fromPosition(
             TextPosition(
               offset: controller.text.length,
             ),
           );
-        },
-        onListening: (isListening) {
-          isRecording = isListening;
-          updateState();
-
-          if (!isListening) {
-            controller.selection = TextSelection.fromPosition(
-              TextPosition(
-                offset: controller.text.length,
-              ),
-            );
-          }
-        },
-      );
+        }
+      },
+    );
+  }
 
   InputDecoration get _decoration {
     return InputDecoration(
