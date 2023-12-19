@@ -68,26 +68,29 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
   var isClicked = false;
   late Timer _timer;
 
-  void setPageIndex(int index, double width, context, ScrollController scrollController) async {
+  void setPageIndex({
+    required int index,
+    required double width,
+    required context,
+    required ScrollController pageController,
+  }) async {
     if (isClicked == false) {
       _startTimer();
       isClicked = true;
       var file = await captureSocialPng(imagePreview, context);
       screenShots[state.pageIndex] = file;
 
-      scrollController.animateTo((width - 48) * index,
+      pageController.animateTo((width - 48) * index,
           duration: const Duration(milliseconds: 300), curve: Curves.linear);
 
       emit(state.copyWith(pageIndex: index));
     }
-
-
   }
-  _startTimer() =>
-    _timer = Timer(const Duration(milliseconds: 500), () {
-      isClicked = false;
-      _timer.cancel();
-    });
+
+  _startTimer() => _timer = Timer(const Duration(milliseconds: 500), () {
+        isClicked = false;
+        _timer.cancel();
+      });
 
   void selectPartFunc(String indexPart) {
     Set<String> selectedPart = {...state.carParts};
@@ -145,61 +148,69 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
   }
 
   int getStep() {
-   if(reportBloc.reportType == ReportType.accident){
-     if (reportBloc.state.user == User.A) {
-       return 7;
-     }
-     return 12;
-   }else{
-     return 8;
-   }
+    if (reportBloc.reportType == ReportType.accident) {
+      if (reportBloc.state.user == User.A) {
+        return 7;
+      }
+      return 12;
+    } else {
+      return 8;
+    }
   }
 
   Color onFColor(
       {required Offset position,
       required Color active,
       required Color inActive,
-      required int index}) {
+      required int index,
+      required ScrollController listController}) {
+    Color? color;
     if (vehicleType == VehicleType.auto) {
       switch (index) {
         case 0:
-          return _onFColorFrontViewCar(position, active, inActive);
+          color = _onFColorFrontViewCar(position, active, inActive);
 
         case 1:
-          return _onFColorLeftViewCar(position, active, inActive);
+          color = _onFColorLeftViewCar(position, active, inActive);
         case 2:
-          return _onFColorRightViewCar(position, active, inActive);
+          color = _onFColorRightViewCar(position, active, inActive);
         case 3:
-          return _onFColorTopViewCar(position, active, inActive);
+          color = _onFColorTopViewCar(position, active, inActive);
 
         case 4:
-          return _onFColorBackViewCar(position, active, inActive);
+          color = _onFColorBackViewCar(position, active, inActive);
       }
     } else if (vehicleType == VehicleType.van) {
       switch (index) {
         case 0:
-          return _onFColorFrontViewVan(position, active, inActive);
+          color = _onFColorFrontViewVan(position, active, inActive);
 
         case 1:
-          return _onFColorLeftViewVan(position, active, inActive);
+          color = _onFColorLeftViewVan(position, active, inActive);
         case 2:
-          return _onFColorRightViewVan(position, active, inActive);
+          color = _onFColorRightViewVan(position, active, inActive);
         case 3:
-          return _onFColorTopViewVan(position, active, inActive);
+          color = _onFColorTopViewVan(position, active, inActive);
 
         case 4:
-          return _onFColorBackViewVan(position, active, inActive);
+          color = _onFColorBackViewVan(position, active, inActive);
       }
     } else if (vehicleType == VehicleType.moto) {
       switch (index) {
         case 0:
-          return _onFColorFrontViewMoto(position, active, inActive);
+          color = _onFColorFrontViewMoto(position, active, inActive);
         case 1:
-          return _onFColorLeftViewMoto(position, active, inActive);
+          color = _onFColorLeftViewMoto(position, active, inActive);
       }
     }
 
-    return active;
+    listController.animateTo(
+      listController.position.maxScrollExtent,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.fastOutSlowIn,
+    );
+
+    return color ?? active;
   }
 
   Future<MultipartFile> _getMultiPartFile(int index) async {

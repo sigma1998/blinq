@@ -38,6 +38,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   VehicleType? vehicleType;
 
+  ProfileResponseModel? profile;
+
+
   ProfileBloc({
     required this.repository,
     required this.mediaService,
@@ -52,6 +55,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       emit(const ProfileState(status: Status.loading));
       final data = await repository.fetch();
       vehicleType = data.car?.vehicleType;
+      profile = data;
       emit(ProfileState(profile: data, status: Status.success));
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
