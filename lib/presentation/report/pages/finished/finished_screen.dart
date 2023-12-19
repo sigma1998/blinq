@@ -52,6 +52,7 @@ class _FinishedScreenState extends State<FinishedScreen>
   void didChangeDependencies() {
     bloc = FinishedScreenBloc(
       reportBloc: context.read(),
+      profileBloc: context.read(),
       accidentRepository: getIt<AccidentRepositoryImpl>(),
       breakdownRepository: getIt<BreakdownRepositoryImpl>(),
     );

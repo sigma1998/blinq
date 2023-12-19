@@ -2,6 +2,7 @@ import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/domain/repositories/breakdown_repository.dart';
+import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -12,12 +13,14 @@ class FinishedScreenBloc extends Cubit<GenericBlocState<String>> {
   final AccidentRepository accidentRepository;
   final BreakdownRepository breakdownRepository;
   final ReportBloc reportBloc;
+  final ProfileBloc profileBloc;
 
   final String _pdfName = 'strDamageReports'.tr();
 
   FinishedScreenBloc(
       {required this.reportBloc,
       required this.accidentRepository,
+        required this.profileBloc,
       required this.breakdownRepository})
       : super(const GenericBlocState<String>(status: Status.loading)) {
     _getPdf();
@@ -42,12 +45,29 @@ class FinishedScreenBloc extends Cubit<GenericBlocState<String>> {
   void onSendInsurance() async {
     emit(GenericBlocState(status: Status.loading, data: state.data));
     try {
-      await accidentRepository.sendToInsurance(reportBloc.reportId);
-      emit(GenericBlocState(status: Status.initial, data: state.data));
+      // await accidentRepository.sendToInsurance(reportBloc.reportId);
 
+      final String? mail = profileBloc.profile?.insurance?.email;
+
+      final Uri emailLaunchUri = Uri(
+        scheme: 'mailto',
+        path: mail,
+        queryParameters: {
+          'subject': 'Damage report',
+          'body': state.data
+        },
+      );
+
+
+      launchUrl(emailLaunchUri);
+
+      emit(GenericBlocState(status: Status.initial, data: state.data));
       NavigationService.showToast(
           text: 'strSuccess'.tr(), title: 'strReportSent'.tr());
     } catch (e) {
+      NavigationService.showErrorToast(
+        'Can not send mail'
+      );
       emit(GenericBlocState(status: Status.initial, data: state.data));
     }
   }

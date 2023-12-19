@@ -27,7 +27,8 @@ class DamagedPartsScreen extends StatefulWidget {
 
 class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
   late DamagedPartsBloc bloc;
-  final ScrollController scrollController = ScrollController();
+  final ScrollController pageController = ScrollController();
+  final ScrollController listScrollController = ScrollController();
 
   @override
   void didChangeDependencies() {
@@ -73,7 +74,7 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
                     const SizedBox(
                       height: 24,
                     ),
-                    const SelectedPartsList(),
+                    SelectedPartsList(controller: listScrollController,),
                     const SizedBox(
                       height: 24,
                     ),
@@ -83,7 +84,8 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
                           RepaintBoundary(
                             key: bloc.imagePreview,
                             child: VehiclesList(
-                              controller: scrollController,
+                              pageController: pageController,
+                              listController: listScrollController,
                             ),
                           ),
                           if (state.pageIndex < bloc.vehicleSelect.length - 1)
@@ -91,20 +93,22 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
                               alignment: Alignment.centerRight,
                               icon: AppDrawables.leftArrow,
                               onTap: () => bloc.setPageIndex(
-                                  state.pageIndex + 1,
-                                  width,
-                                  context,
-                                  scrollController),
+                                  index: state.pageIndex + 1,
+                                  width:width,
+                                  context:context,
+                                  pageController: pageController,
+                              ),
                             ),
                           if (state.pageIndex > 0)
                             Arrow(
                               alignment: Alignment.centerLeft,
                               icon: AppDrawables.rightArrow,
                               onTap: () => bloc.setPageIndex(
-                                  state.pageIndex - 1,
-                                  width,
-                                  context,
-                                  scrollController),
+                                  index: state.pageIndex - 1,
+                                  width:width,
+                                  context:context,
+                                  pageController: pageController,
+                              ),
                             ),
                         ],
                       ),

@@ -1,4 +1,3 @@
-
 import 'package:blinq/presentation/report/pages/demaged_parts/bloc/damaged_parts_bloc.dart';
 import 'package:blinq/presentation/report/pages/demaged_parts/bloc/damaged_parts_state.dart';
 import 'package:blinq/utils/flood_image/floodfill_image.dart';
@@ -6,8 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VehiclesList extends StatelessWidget {
-  final ScrollController controller;
-  const VehiclesList({Key? key, required this.controller}) : super(key: key);
+  final ScrollController pageController;
+  final ScrollController listController;
+
+  const VehiclesList(
+      {Key? key, required this.pageController, required this.listController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +23,9 @@ class VehiclesList extends StatelessWidget {
       builder: (context, state) {
         return ListView(
           scrollDirection: Axis.horizontal,
-          controller: controller,
+          controller: pageController,
           physics: const NeverScrollableScrollPhysics(),
+          cacheExtent: 6 * width,
           children: List.generate(
             bloc.vehicleSelect.length,
             (index) {
@@ -31,8 +35,7 @@ class VehiclesList extends StatelessWidget {
                   child: FloodFillImage(
                     imageProvider: AssetImage(bloc.vehicleSelect[index]),
                     fColor: (position) {
-                      const inActive =
-                           Color(0xff2d2d2d);
+                      const inActive = Color(0xff2d2d2d);
 
                       if (position == null) {
                         return active;
@@ -41,7 +44,8 @@ class VehiclesList extends StatelessWidget {
                           position: position,
                           active: active,
                           inActive: inActive,
-                          index: index);
+                          index: index,
+                          listController: listController);
                     },
                     // tolerance: 8,
                   ),

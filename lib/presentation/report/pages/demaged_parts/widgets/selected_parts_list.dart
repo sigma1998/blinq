@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SelectedPartsList extends StatelessWidget {
-  const SelectedPartsList({Key? key}) : super(key: key);
+  final ScrollController controller;
+  const SelectedPartsList({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +20,7 @@ class SelectedPartsList extends StatelessWidget {
           height: 24,
           width: width - 48,
           child: ListView.separated(
+            controller: controller,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return Container(
