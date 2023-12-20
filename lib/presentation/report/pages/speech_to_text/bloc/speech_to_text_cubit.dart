@@ -9,7 +9,7 @@ import 'package:blinq/presentation/report/pages/points_of_impact/points_of_impac
 import 'package:blinq/presentation/report/pages/speech_to_text/speech_to_text_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:blinq/utils/speech_to_text_helper.dart';
+import 'package:blinq/utils/speech_to_text/speech_to_text.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,12 +31,16 @@ class SpeechToTextCubit extends Cubit<SpeechToTextState> {
 
   TextEditingController textController = TextEditingController();
 
+  late SpeechToText? speechToText;
+
   SpeechToTextCubit({
     required this.speechToTextScreenMode,
     required this.reportBloc,
     required this.accidentRepository,
     required this.breakdownRepository,
   }) : super(const SpeechToTextState()) {
+    initializeSpeechToText();
+
     switch (speechToTextScreenMode) {
       case SpeechToTextScreenMode.remarks:
         title = 'strMyRemarks'.tr();
@@ -52,28 +56,46 @@ class SpeechToTextCubit extends Cubit<SpeechToTextState> {
 
   //
 
-  Future<void> toggleRecording() async {
-    String result = '${textController.text}\n';
+  void initializeSpeechToText() async {
+    speechToText = SpeechToText();
+    await speechToText?.initialize(
+      finalTimeout: const Duration(milliseconds: 500),
+      onStatus: (String status) {
+        if (status == 'listening') {
+          emit(state.copyWith(isRecording: true));
+        } else {
+          emit(state.copyWith(isRecording: false));
+        }
+      },
+      onError: (e) => debugPrint('Error speech: $e'),
+    );
+  }
 
-    await SpeechToTextHelper.toggleRecording(
-      onResult: (text) {
-        textController.text = result + text;
+  Future<void> toggleRecording(String? localeId) async {
+    if (!speechToText!.isAvailable) return;
+
+    if (speechToText!.isListening) {
+      speechToText?.stop();
+      emit(state.copyWith(isRecording: false));
+    } else {
+      emit(state.copyWith(isRecording: true));
+      await startSpeechListening(localeId);
+    }
+  }
+
+  Future<void> startSpeechListening(String? localeId) async {
+    String recognizedText = '${textController.text}\n';
+
+    await speechToText!.listen(
+      localeId: localeId,
+      cancelOnError: true,
+      onResult: (value) {
+        textController.text = recognizedText + value.recognizedWords;
         textController.selection = TextSelection.fromPosition(
           TextPosition(
             offset: textController.text.length,
           ),
         );
-      },
-      onListening: (isListening) {
-        emit(state.copyWith(isRecording: isListening));
-
-        if (!isListening) {
-          textController.selection = TextSelection.fromPosition(
-            TextPosition(
-              offset: textController.text.length,
-            ),
-          );
-        }
       },
     );
   }
@@ -83,6 +105,8 @@ class SpeechToTextCubit extends Cubit<SpeechToTextState> {
       NavigationService.showErrorToast('strEmpty'.tr());
       return;
     }
+    speechToText?.cancel();
+    speechToText = null;
 
     switch (speechToTextScreenMode) {
       case SpeechToTextScreenMode.remarks:

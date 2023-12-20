@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -64,7 +65,8 @@ class _SpeechToTextScreenState extends State<SpeechToTextScreen> {
                     labelText: bloc.title,
                     isRecording: state.isRecording,
                     controller: bloc.textController,
-                    toggleRecording: bloc.toggleRecording,
+                    toggleRecording: () =>
+                        bloc.toggleRecording(context.locale.languageCode),
                   ),
                 ],
               ),
