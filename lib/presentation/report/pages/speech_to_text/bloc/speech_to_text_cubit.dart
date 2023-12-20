@@ -30,6 +30,7 @@ class SpeechToTextCubit extends Cubit<SpeechToTextState> {
   late final String title;
 
   TextEditingController textController = TextEditingController();
+  ScrollController scrollController = ScrollController();
 
   late SpeechToText? speechToText;
 
@@ -64,7 +65,7 @@ class SpeechToTextCubit extends Cubit<SpeechToTextState> {
         if (status == 'listening') {
           emit(state.copyWith(isRecording: true));
         } else {
-          emit(state.copyWith(isRecording: false));
+          emit(state.copyWith(isRecording: false, soundLevel: 0));
         }
       },
       onError: (e) => debugPrint('Error speech: $e'),
@@ -76,7 +77,7 @@ class SpeechToTextCubit extends Cubit<SpeechToTextState> {
 
     if (speechToText!.isListening) {
       speechToText?.stop();
-      emit(state.copyWith(isRecording: false));
+      emit(state.copyWith(isRecording: false, soundLevel: 0));
     } else {
       emit(state.copyWith(isRecording: true));
       await startSpeechListening(localeId);
@@ -89,12 +90,20 @@ class SpeechToTextCubit extends Cubit<SpeechToTextState> {
     await speechToText!.listen(
       localeId: localeId,
       cancelOnError: true,
+      onSoundLevelChange: (double level) {
+        emit(state.copyWith(soundLevel: level));
+      },
       onResult: (value) {
         textController.text = recognizedText + value.recognizedWords;
         textController.selection = TextSelection.fromPosition(
           TextPosition(
             offset: textController.text.length,
           ),
+        );
+        scrollController.animateTo(
+          scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
         );
       },
     );

@@ -63,8 +63,10 @@ class _SpeechToTextScreenState extends State<SpeechToTextScreen> {
                   SpeechToTextField(
                     maxLines: 10,
                     labelText: bloc.title,
+                    soundLevel: state.soundLevel,
                     isRecording: state.isRecording,
                     controller: bloc.textController,
+                    scrollController: bloc.scrollController,
                     toggleRecording: () =>
                         bloc.toggleRecording(context.locale.languageCode),
                   ),
