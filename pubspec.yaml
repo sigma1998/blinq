@@ -131,7 +131,11 @@ dependencies:
   carousel_slider: ^4.2.1
   device_info_plus: ^9.1.0
   phosphor_flutter: 2.0.0
+
+
+  #notifications
   firebase_core: ^2.24.2
+  firebase_messaging: ^14.7.9
 
 
 dev_dependencies:

@@ -5,6 +5,7 @@ import 'package:blinq/presentation/auth/sign_in_screen/sign_in_screen.dart';
 import 'package:blinq/presentation/intro/first_intro_screen/first_intro_screen.dart';
 import 'package:blinq/presentation/main_screen/main_screen.dart';
 import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/services/notification/notification_service.dart';
 
 class SplashScreenBloc {
   final AuthRepository authRepository;
@@ -13,6 +14,13 @@ class SplashScreenBloc {
 
   void checkStatus() async {
     final UserStatus status = authRepository.getUserStatus();
+
+
+    NotificationService.setupNotificationService();
+    final token = await NotificationService.getFcmToken();
+    print('fsjknfmldskfmlkdsmflkdsmflkdmflkdsmflkdmflkdmfldkmflsdkmflsdkmfslkd');
+    print(token);
+    print('fsjknfmldskfmlkdsmflkdsmflkdmflkdsmflkdmflkdmfldkmflsdkmflsdkmfslkd');
 
     Future.delayed(const Duration(seconds: 3)).then((_) async {
       switch (status) {
