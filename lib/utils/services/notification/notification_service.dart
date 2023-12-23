@@ -11,7 +11,7 @@ class NotificationService {
     return await _firebaseMessaging.getToken();
   }
 
-  static void setupNotificationService() async {
+  static Future<void> setupNotificationService() async {
     // iOS notifications setup
     await _firebaseMessaging.requestPermission();
     await _firebaseMessaging.setForegroundNotificationPresentationOptions(
@@ -51,4 +51,8 @@ class NotificationService {
   }
 }
 
-Future<dynamic> myBackgroundMessageHandler(RemoteMessage message) async {}
+Future<dynamic> myBackgroundMessageHandler(RemoteMessage message) async {
+  print('fkjdnfdskjfndkjfndksjfndksjnfkdsjnfkjsdnfkjsdnfkdsjnf');
+  print(message.data);
+  print('fkjdnfdskjfndkjfndksjfndksjnfkdsjnfkjsdnfkjsdnfkdsjnf');
+}

@@ -16,7 +16,7 @@ class SplashScreenBloc {
     final UserStatus status = authRepository.getUserStatus();
 
 
-    NotificationService.setupNotificationService();
+    await NotificationService.setupNotificationService();
     final token = await NotificationService.getFcmToken();
     print('fsjknfmldskfmlkdsmflkdsmflkdmflkdsmflkdmflkdmfldkmflsdkmflsdkmfslkd');
     print(token);

@@ -16,37 +16,12 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>blinq</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-    <string>We require access to the gallery so that the user could choose an image from their gallery to set their profile picture in the app. Also, the user can send images in the chat with creators by choosing the images from their gallery.</string>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Allow "BLINQ" to access your Bluetooth in order to scan, connect and pair to BLINQ emergency triangles around you</string>
-	<key>NSMicrophoneUsageDescription</key>
-    <string>Need microphone access for uploading audio</string>
-    <key>NSCameraUsageDescription</key>
-    <string>Need camera access for uploading images</string>
-	<key>NSSpeechRecognitionUsageDescription</key>
-    <string>The app uses speech to text input to capture notes, this requires speech recognition use</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>We require access to the user's geolocation to set the clients geolocation in the app and help them identify the nearest photographers. Our app estimates distances between users in order to connect them locally, therefore the location is required.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We require access to the user's geolocation to set the clients geolocation in the app and help them identify the nearest photographers. Our app estimates distances between users in order to connect them locally, therefore the location is required.</string>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Our app does not request this permission or utilize this functionality but it is included in our info.plist since our app utilizes the react-native-permissions library, which references this permission in its code.</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>$(FLUTTER_BUILD_NUMBER)</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>sms</string>
-		<string>tel</string>
-	</array>
-	<key>GIDClientID</key>
-	<string>573054971190-inud9nk3kcpnsgfam3ukadmu5trk45d6.apps.googleusercontent.com</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -58,10 +33,40 @@
 			</array>
 		</dict>
 	</array>
+	<key>CFBundleVersion</key>
+	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>GIDClientID</key>
+	<string>573054971190-inud9nk3kcpnsgfam3ukadmu5trk45d6.apps.googleusercontent.com</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>sms</string>
+		<string>tel</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Our app does not request this permission or utilize this functionality but it is included in our info.plist since our app utilizes the react-native-permissions library, which references this permission in its code.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Allow "BLINQ" to access your Bluetooth in order to scan, connect and pair to BLINQ emergency triangles around you</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Need camera access for uploading images</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>We require access to the user's geolocation to set the clients geolocation in the app and help them identify the nearest photographers. Our app estimates distances between users in order to connect them locally, therefore the location is required.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We require access to the user's geolocation to set the clients geolocation in the app and help them identify the nearest photographers. Our app estimates distances between users in order to connect them locally, therefore the location is required.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Need microphone access for uploading audio</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We require access to the gallery so that the user could choose an image from their gallery to set their profile picture in the app. Also, the user can send images in the chat with creators by choosing the images from their gallery.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>The app uses speech to text input to capture notes, this requires speech recognition use</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
