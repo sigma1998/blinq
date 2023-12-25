@@ -119,6 +119,34 @@ class MyButton extends StatelessWidget {
         disabledColor = AppColors.grey1,
         loaderColor = Colors.white;
 
+  const MyButton.tertiaryVarient({
+    super.key,
+    required this.label,
+    required this.onTap,
+    this.labelStyle = const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+    ),
+    this.onLongPress,
+    //
+    this.iconLeft,
+    this.iconRight,
+    //
+    this.padding = const EdgeInsets.symmetric(
+      vertical: 12,
+      horizontal: 32,
+    ),
+    this.margin = EdgeInsets.zero,
+    //
+    this.isLoading = false,
+    this.enable = true,
+    //
+    this.width,
+    this.color,
+  })  : enabledColor = AppColors.darkGrey,
+        disabledColor = AppColors.darkGrey,
+        loaderColor = Colors.white;
+
   //
 
   @override

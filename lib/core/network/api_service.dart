@@ -76,7 +76,7 @@ class AppApi {
         onReceiveProgress: onReceiveProgress,
       );
       debugPrint('0ri09t8409583-4059-3405930-495-03495-034');
-      debugPrint(response.data);
+      debugPrint(response.data.toString());
       debugPrint('0ri09t8409583-4059-3405930-495-03495-034');
 
       return response.data;

@@ -8,7 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 // Project imports:
 import 'package:blinq/core/drawables/app_drawables.dart';
-import 'package:blinq/utils/custom_widgets/app_btn.dart';
+import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'sign_in_screen_bloc.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -80,20 +80,21 @@ class SignInScreen extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            AppButton(
+            MyButton.secondary(
+              label: 'strSignUp'.tr(),
               onTap: _bloc.onSignUpPressed,
-              text: 'strSignUp'.tr(),
-              btnColor: Colors.white,
-              txtColor: Colors.black,
+              labelStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: Colors.black,
+                  ),
             ),
             const SizedBox(
               height: 16,
             ),
-            AppButton(
+            MyButton.tertiaryVarient(
+              label: 'strLogin'.tr(),
               onTap: _bloc.onLogInPressed,
-              text: 'strLogin'.tr(),
-              btnColor: Theme.of(context).colorScheme.secondary,
-            )
+              labelStyle: Theme.of(context).textTheme.bodyMedium!,
+            ),
           ],
         ),
       ),

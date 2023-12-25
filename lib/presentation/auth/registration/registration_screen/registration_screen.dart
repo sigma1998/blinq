@@ -10,7 +10,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/domain/repositories/auth_repository.dart';
-import 'package:blinq/utils/custom_widgets/app_btn.dart';
+import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/custom_textfield.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
@@ -122,22 +122,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     textController: bloc.firstNameController,
                     hint: 'strEnterName'.tr(),
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
+                  const SizedBox(height: 30),
                   TextFieldRoundedWidget(
                     textController: bloc.secondNameController,
                     hint: 'strLastNameHint'.tr(),
                   ),
-                  const SizedBox(
-                    height: 88,
-                  ),
-                  AppButton(
-                    loading: state.status == Status.loading,
+                  const SizedBox(height: 88),
+                  MyButton.secondary(
+                    label: 'strNext'.tr(),
+                    isLoading: state.status == Status.loading,
                     onTap: () => bloc.add(OnSubmitted(email: email)),
-                    text: 'strNext'.tr(),
-                    btnColor: Colors.white,
-                    txtColor: Colors.black,
+                    labelStyle:
+                        Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              color: Colors.black,
+                            ),
                   ),
                 ],
               ),

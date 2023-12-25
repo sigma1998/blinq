@@ -7,7 +7,7 @@ import 'package:lottie/lottie.dart';
 
 // Project imports:
 import 'package:blinq/core/drawables/app_drawables.dart';
-import 'package:blinq/utils/custom_widgets/app_btn.dart';
+import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/navigation_service.dart';
 
 class OfflineScreen extends StatelessWidget {
@@ -47,12 +47,10 @@ class OfflineScreen extends StatelessWidget {
                       ?.copyWith(color: Theme.of(context).colorScheme.outline),
                 ),
                 const Spacer(),
-                AppButton(
-                  onTap: () {
-                    NavigationService.back(result: true);
-                  },
-                  text: 'strTryAgain'.tr(),
-                )
+                MyButton.primary(
+                  label: 'strTryAgain'.tr(),
+                  onTap: () => NavigationService.back(result: true),
+                ),
               ],
             ),
           ),

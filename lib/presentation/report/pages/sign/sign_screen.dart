@@ -11,7 +11,7 @@ import 'package:blinq/app/locator.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/domain/repositories/breakdown_repository.dart';
-import 'package:blinq/utils/custom_widgets/app_btn.dart';
+import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/custom_widgets/step_indicator.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
@@ -81,13 +81,21 @@ class _SignScreenState extends State<SignScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  Center(
-                    child: AppButton(
-                      height: 30,
-                      width: 120,
-                      text: 'strClear'.tr(),
-                      onTap: () => bloc.control.clear(),
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: MyButton.primary(
+                          label: 'strClear'.tr(),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 5,
+                            horizontal: 40,
+                          ),
+                          onTap: () => bloc.control.clear(),
+                          labelStyle: Theme.of(context).textTheme.bodyMedium!,
+                        ),
+                      ),
+                    ],
                   ),
                   const Spacer(),
                   NavigationButton(

@@ -88,6 +88,12 @@ class MapPickerState extends State<MapPicker>
   void mapFinishedMoving() {
     animationController.reverse();
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    animationController.dispose();
+  }
 }
 
 class MapPickerController {
