@@ -5,17 +5,17 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 
 // Package imports:
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:blinq/presentation/delete_account_sheet/delete_account_confirm_sheet.dart';
-import 'package:blinq/presentation/auth/sign_in_screen/sign_in_screen.dart';
+import 'package:blinq/core/network/dio_client.dart';
 import 'package:blinq/domain/repositories/auth_repository.dart';
+import 'package:blinq/presentation/auth/sign_in_screen/sign_in_screen.dart';
+import 'package:blinq/presentation/delete_account_sheet/delete_account_confirm_sheet.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:blinq/core/network/dio_client.dart';
 import 'delete_account_event.dart';
 
 part 'delete_account_state.dart';

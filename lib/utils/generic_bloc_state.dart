@@ -1,3 +1,4 @@
+// Flutter imports:
 import 'package:flutter/foundation.dart' show immutable;
 
 ///The base state class should always be named: BlocSubject + State.

@@ -1,15 +1,17 @@
 // Flutter imports:x
+
+// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
+// Package imports:
 import 'package:flutter_svg/svg.dart';
 
 // Project imports:
+import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/data/model/contact/response/contact_response_model.dart';
+import 'package:blinq/utils/custom_widgets/default_image.dart';
 import 'package:blinq/utils/custom_widgets/expanded_section.dart';
 import 'package:blinq/utils/custom_widgets/info_container.dart';
-import 'package:blinq/utils/custom_widgets/default_image.dart';
-import 'package:blinq/core/drawables/app_drawables.dart';
 
 class ContactItem extends StatefulWidget {
   //

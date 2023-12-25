@@ -1,3 +1,4 @@
+// Project imports:
 import 'package:blinq/data/model/history/history_item/history_item_dto.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 

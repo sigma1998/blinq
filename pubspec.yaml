@@ -70,6 +70,7 @@ dependencies:
   get_it: ^7.6.4
   flutter_multi_formatter: ^2.11.16
   in_date_utils: ^1.2.0+2
+  import_sorter: ^4.6.0
 
   # state mangment
   flutter_bloc: ^8.1.3

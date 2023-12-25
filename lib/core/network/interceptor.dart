@@ -1,10 +1,13 @@
+// Dart imports:
 import 'dart:io';
 
+// Package imports:
+import 'package:dio/dio.dart';
+
+// Project imports:
 import 'package:blinq/core/network/network_constants.dart';
 import 'package:blinq/presentation/offline/offline_screen.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:dio/dio.dart';
-
 import 'custom_error.dart';
 
 class CustomInterceptor extends Interceptor {

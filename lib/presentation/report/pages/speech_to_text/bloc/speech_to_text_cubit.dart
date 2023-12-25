@@ -1,3 +1,12 @@
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
 import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
@@ -10,11 +19,6 @@ import 'package:blinq/presentation/report/pages/speech_to_text/speech_to_text_sc
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/speech_to_text/speech_to_text.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'speech_to_text_screen_mode.dart';
 
 part 'speech_to_text_cubit.freezed.dart';
@@ -72,6 +76,7 @@ class SpeechToTextCubit extends Cubit<SpeechToTextState> {
     );
   }
 
+  /// Starts or stops the speech recognition service.
   Future<void> toggleRecording(String? localeId) async {
     if (!speechToText!.isAvailable) return;
 
@@ -109,6 +114,8 @@ class SpeechToTextCubit extends Cubit<SpeechToTextState> {
     );
   }
 
+  /// Cancels the speech recognition service.
+  /// Submit the text depending on the [speechToTextScreenMode].
   void onNextTap() {
     if (textController.text.isEmpty) {
       NavigationService.showErrorToast('strEmpty'.tr());
@@ -223,6 +230,7 @@ class SpeechToTextCubit extends Cubit<SpeechToTextState> {
     }
   }
 
+  /// Returns the current step to be displayed in the [StepIndicator].
   int getStep() {
     if (speechToTextScreenMode == SpeechToTextScreenMode.witnesses) {
       return 3;

@@ -1,7 +1,10 @@
+// Dart imports:
 import 'dart:async';
 
+// Package imports:
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
+// Project imports:
 import 'method_channel_speech_to_text.dart';
 
 /// Holds a configuration option for a specific platform implementation.

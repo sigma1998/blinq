@@ -1,6 +1,11 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+// Project imports:
 import 'dio_client.dart';
 
 class AppApi {
@@ -70,13 +75,13 @@ class AppApi {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
-      print('0ri09t8409583-4059-3405930-495-03495-034');
-      print(response.data);
-      print('0ri09t8409583-4059-3405930-495-03495-034');
+      debugPrint('0ri09t8409583-4059-3405930-495-03495-034');
+      debugPrint(response.data);
+      debugPrint('0ri09t8409583-4059-3405930-495-03495-034');
 
       return response.data;
     } catch (e) {
-      print('0ri09t8409583-4059werfdggvdfe-3405930-495-03495-034');
+      debugPrint('0ri09t8409583-4059werfdggvdfe-3405930-495-03495-034');
 
       rethrow;
     }
@@ -172,16 +177,16 @@ class AppApi {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-    DioClient.myDioOptions.headers = {};
-    final Response response = await DioClient.myDio.download(uri, savePath,
-        data: data,
-        queryParameters: queryParameters,
-        cancelToken: cancelToken,
-        onReceiveProgress: onReceiveProgress);
-    DioClient.myDioOptions.headers = {
-      'Content-Type': 'application/json; charset=utf-8'
-    };
-    return response.data;
+      DioClient.myDioOptions.headers = {};
+      final Response response = await DioClient.myDio.download(uri, savePath,
+          data: data,
+          queryParameters: queryParameters,
+          cancelToken: cancelToken,
+          onReceiveProgress: onReceiveProgress);
+      DioClient.myDioOptions.headers = {
+        'Content-Type': 'application/json; charset=utf-8'
+      };
+      return response.data;
     } catch (e) {
       throw 'common.file_downloading_error'.tr();
     }

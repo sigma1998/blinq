@@ -1,6 +1,9 @@
-import 'package:blinq/utils/generic_bloc_state.dart';
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:video_player/video_player.dart';
+
+// Project imports:
+import 'package:blinq/utils/generic_bloc_state.dart';
 
 class SuccessVideoBloc extends Bloc {
   late VideoPlayerController controller;

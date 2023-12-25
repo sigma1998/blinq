@@ -1,6 +1,8 @@
 // ignore_for_file: invalid_annotation_target
 
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'send_email_response.freezed.dart';
 part 'send_email_response.g.dart';
 

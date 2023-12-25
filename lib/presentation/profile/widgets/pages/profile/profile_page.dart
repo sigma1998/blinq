@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:blinq/utils/custom_widgets/default_image.dart';
-import 'package:blinq/utils/generic_bloc_state.dart';
-import 'package:blinq/utils/custom_widgets/loading.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
+import 'package:blinq/utils/custom_widgets/default_image.dart';
+import 'package:blinq/utils/custom_widgets/loading.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'widgets/info.dart';
 import 'widgets/vehicle.dart';
 
-class ProfileView extends StatelessWidget {
+class ProfilePage extends StatelessWidget {
   //
-  const ProfileView({super.key});
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {

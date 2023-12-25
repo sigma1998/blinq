@@ -1,21 +1,21 @@
 // Flutter imports:
-import 'package:blinq/utils/string_helper.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:blinq/presentation/report/second_driver_editors/screens/driver/driver_screen.dart';
-import 'package:blinq/utils/smart_widgets/dialogs/countries_dialog/countries_dialog.dart';
 import 'package:blinq/data/model/insurance/request/insurance_request_model.dart';
-import 'package:blinq/utils/custom_widgets/dialogs/cupertino_dialog.dart';
-import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
-import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/presentation/report/second_driver_editors/screens/driver/driver_screen.dart';
+import 'package:blinq/utils/custom_widgets/dialogs/cupertino_dialog.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/smart_widgets/dialogs/countries_dialog/countries_dialog.dart';
+import 'package:blinq/utils/string_helper.dart';
 
 part 'second_driver_insurance_state.dart';
 part 'second_driver_insurance_cubit.freezed.dart';

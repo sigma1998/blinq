@@ -1,9 +1,9 @@
 // Project imports:
-import 'package:blinq/data/model/premade_message/premade_message_response_dto.dart';
-import 'package:blinq/data/model/premade_message/response/premade_message_response_model.dart';
-import 'package:blinq/data/model/premade_message/request/premade_message_request_model.dart';
-import 'package:blinq/core/network/network_constants.dart';
 import 'package:blinq/core/network/api_service.dart';
+import 'package:blinq/core/network/network_constants.dart';
+import 'package:blinq/data/model/premade_message/premade_message_response_dto.dart';
+import 'package:blinq/data/model/premade_message/request/premade_message_request_model.dart';
+import 'package:blinq/data/model/premade_message/response/premade_message_response_model.dart';
 
 abstract class PremadeMessagesApi {
   //

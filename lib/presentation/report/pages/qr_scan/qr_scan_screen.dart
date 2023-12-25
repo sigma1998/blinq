@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:io';
 
 // Flutter imports:
-import 'package:blinq/presentation/report/pages/second_driver/second_driver_screen.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -11,6 +10,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 // Project imports:
+import 'package:blinq/presentation/report/pages/second_driver/second_driver_screen.dart';
 import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/navigation_service.dart';
 
@@ -90,15 +90,20 @@ class _QrScanScreenState extends State<QrScanScreen> {
             )
           ],
         ),
-        floatingActionButton: MyButton.tertiary(
-          width: 100,
-          label: 'strCancel'.tr(),
-          onTap: ()=>NavigationService.homeNavigatorKey.currentState?.pop(),
-          padding: const EdgeInsets.symmetric(
-            vertical: 12,
-            horizontal: 24,
-          ),
-          margin: const EdgeInsets.only(bottom: 50),
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            MyButton.tertiary(
+              label: 'strCancel'.tr(),
+              onTap: () =>
+                  NavigationService.homeNavigatorKey.currentState?.pop(),
+              padding: const EdgeInsets.symmetric(
+                vertical: 12,
+                horizontal: 24,
+              ),
+              margin: const EdgeInsets.only(bottom: 50),
+            ),
+          ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
@@ -112,10 +117,9 @@ class _QrScanScreenState extends State<QrScanScreen> {
       final userJson = jsonDecode(data.code?.replaceAll('\'', '"') ?? '{}');
       debugPrint('userJson: $userJson');
       NavigationService.pushReplacement(
-        routeName: SecondDriverScreen.route,
-        arguments: userJson['user_id'],
-        nestedKey: NavigationService.homeNavigatorKey
-      );
+          routeName: SecondDriverScreen.route,
+          arguments: userJson['user_id'],
+          nestedKey: NavigationService.homeNavigatorKey);
       _isScanned = true;
     });
   }

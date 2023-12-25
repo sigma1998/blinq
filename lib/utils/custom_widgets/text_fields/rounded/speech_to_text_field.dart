@@ -1,10 +1,11 @@
 // Flutter imports:
 
-import 'package:blinq/utils/custom_widgets/wave.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:blinq/utils/custom_widgets/loading.dart';
+import 'package:blinq/utils/custom_widgets/wave.dart';
 
 class SpeechToTextField extends StatelessWidget {
   //

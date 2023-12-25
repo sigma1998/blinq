@@ -2,18 +2,18 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 
 // Project imports:
-import 'package:blinq/presentation/connect_to_blinq/widgets/states/initial_state.dart';
 import 'package:blinq/presentation/connect_to_blinq/cubit/connect_to_blinq_cubit.dart';
+import 'package:blinq/presentation/connect_to_blinq/widgets/states/initial_state.dart';
 import 'package:blinq/utils/custom_widgets/buttons/close_button.dart';
+import 'widgets/card/card.dart';
 import 'widgets/states/connected_state.dart';
 import 'widgets/states/connecting_state.dart';
 import 'widgets/states/scanning_state.dart';
 import 'widgets/states/select_state.dart';
-import 'widgets/card/card.dart';
 
 class ConnectToBlinqScreen extends StatelessWidget {
   //

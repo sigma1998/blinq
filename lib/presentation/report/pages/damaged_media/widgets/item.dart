@@ -2,15 +2,15 @@
 import 'dart:io';
 
 // Flutter imports:
-import 'package:blinq/utils/custom_widgets/loading.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:video_player/video_player.dart';
 import 'package:path/path.dart' as p;
+import 'package:video_player/video_player.dart';
 
 // Project imports:
 import 'package:blinq/utils/custom_widgets/buttons/default_ink_well.dart';
+import 'package:blinq/utils/custom_widgets/loading.dart';
 
 class DamagedMediaItem extends StatefulWidget {
   //

@@ -3,6 +3,7 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+// Project imports:
 import 'response/contact_response_model.dart';
 
 part 'contact_response_dto.freezed.dart';

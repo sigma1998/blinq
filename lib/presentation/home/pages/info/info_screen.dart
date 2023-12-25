@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
+import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/presentation/home/pages/info/info_bloc.dart';
 import 'package:blinq/presentation/home/widgets/info_item.dart';
-import 'package:blinq/core/drawables/app_drawables.dart';
 
 class HomeInfoScreen extends StatelessWidget {
   //

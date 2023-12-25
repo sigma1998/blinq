@@ -45,6 +45,8 @@ class CreateReportBloc extends Cubit<GenericBlocState> {
       final data = await profileRepository.checkAccountData();
       final List<bool> list = [];
 
+      /// Check if all data is filled
+      /// If not, navigate to the editor screen
       if (data.account == false) {
         list.add(await _navigateAndCheckResult(DriverEditorScreen.route));
       }
@@ -78,6 +80,7 @@ class CreateReportBloc extends Cubit<GenericBlocState> {
     }
   }
 
+  /// Navigate to the editor screen and check if the user filled the data
   Future<bool> _navigateAndCheckResult(String routeName) async {
     final result = await NavigationService.pushNamed(routeName: routeName);
 

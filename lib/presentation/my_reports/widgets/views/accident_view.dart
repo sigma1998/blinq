@@ -1,18 +1,18 @@
 // Flutter imports:
-import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
-import 'package:blinq/utils/custom_widgets/loading.dart';
-import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:blinq/presentation/my_reports/widgets/states/empty_state.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
+import 'package:blinq/presentation/my_reports/bloc/reports_screen_bloc.dart';
 import 'package:blinq/presentation/my_reports/bloc/reports_screen_event.dart';
 import 'package:blinq/presentation/my_reports/bloc/reports_screen_state.dart';
 import 'package:blinq/presentation/my_reports/widgets/items/report_item.dart';
-import 'package:blinq/presentation/my_reports/bloc/reports_screen_bloc.dart';
+import 'package:blinq/presentation/my_reports/widgets/states/empty_state.dart';
+import 'package:blinq/utils/custom_widgets/loading.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 
 class AccidentReportsView extends StatelessWidget {
   //

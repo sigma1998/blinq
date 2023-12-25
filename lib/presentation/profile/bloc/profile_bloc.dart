@@ -3,29 +3,29 @@ import 'dart:async';
 import 'dart:io';
 
 // Package imports:
-import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:image_cropper/image_cropper.dart';
 
 // Project imports:
-import 'package:blinq/presentation/profile/widgets/editors/driver/driver_editor_screen.dart';
-import 'package:blinq/presentation/profile/widgets/editors/insurance/insurance_editor_screen.dart';
-import 'package:blinq/presentation/my_reports/reports_screen.dart';
-import 'package:blinq/utils/services/media/media_service.dart';
-import 'package:blinq/utils/smart_widgets/dialogs/qr_dialog/qr_dialog.dart';
-import 'package:blinq/presentation/profile/widgets/editors/my_car/my_car_editor_screen.dart';
-import 'package:blinq/presentation/profile/widgets/editors/my_vehicle/my_vehicle_editor_screen.dart';
+import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/data/model/profile/request/profile_request_model.dart';
 import 'package:blinq/data/model/profile/response/profile_response_model.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
-import 'package:blinq/utils/custom_widgets/cupertino_action/cupertino_action.dart';
+import 'package:blinq/presentation/my_reports/reports_screen.dart';
+import 'package:blinq/presentation/profile/widgets/editors/driver/driver_editor_screen.dart';
+import 'package:blinq/presentation/profile/widgets/editors/insurance/insurance_editor_screen.dart';
+import 'package:blinq/presentation/profile/widgets/editors/my_car/my_car_editor_screen.dart';
+import 'package:blinq/presentation/profile/widgets/editors/my_vehicle/my_vehicle_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/policy_holder/policy_holder_editor_screen.dart';
 import 'package:blinq/presentation/profile/widgets/editors/vehicle/vehicle_editor_screen.dart';
+import 'package:blinq/utils/custom_widgets/cupertino_action/cupertino_action.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
-import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/image_crop_helper.dart';
-import 'package:image_cropper/image_cropper.dart';
+import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/services/media/media_service.dart';
+import 'package:blinq/utils/smart_widgets/dialogs/qr_dialog/qr_dialog.dart';
 import 'profile_event.dart';
 
 part 'profile_state.dart';

@@ -11,13 +11,11 @@ class EditorActionButtons extends StatelessWidget {
   //
   final int? id;
 
-
   final VoidCallback onDelete;
   final VoidCallback onSave;
 
   const EditorActionButtons({
     super.key,
-
     this.id,
     //
     required this.onDelete,
@@ -31,7 +29,6 @@ class EditorActionButtons extends StatelessWidget {
       children: [
         if (id != null) ...[
           MyButton.tertiary(
-
             label: 'strDelete'.tr(),
             onTap: onDelete,
             labelStyle: const TextStyle(fontWeight: FontWeight.w500),

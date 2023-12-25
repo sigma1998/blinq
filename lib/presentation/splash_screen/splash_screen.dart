@@ -1,8 +1,13 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:video_player/video_player.dart';
+
+// Project imports:
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/domain/repositories/auth_repository.dart';
 import 'package:blinq/presentation/splash_screen/splash_screen_bloc.dart';
-import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String route = '/';

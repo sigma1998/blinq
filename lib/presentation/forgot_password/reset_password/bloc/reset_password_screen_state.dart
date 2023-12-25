@@ -1,5 +1,8 @@
-import 'package:blinq/utils/generic_bloc_state.dart';
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
+import 'package:blinq/utils/generic_bloc_state.dart';
 
 part 'reset_password_screen_state.freezed.dart';
 

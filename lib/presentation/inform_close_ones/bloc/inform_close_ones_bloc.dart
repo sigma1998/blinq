@@ -1,15 +1,18 @@
 // Package imports:
 
-// Project imports:
+// Dart imports:
 import 'dart:async';
 
-import 'package:blinq/presentation/premade_message_selector_sheet/premade_message_selector_sheet.dart';
-import 'package:blinq/presentation/contacts/pages/contacts/bloc/contacts_bloc.dart';
-import 'package:blinq/data/model/contact/response/contact_response_model.dart';
+// Package imports:
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
+import 'package:blinq/data/model/contact/response/contact_response_model.dart';
+import 'package:blinq/presentation/contacts/pages/contacts/bloc/contacts_bloc.dart';
+import 'package:blinq/presentation/premade_message_selector_sheet/premade_message_selector_sheet.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:blinq/utils/url_helper.dart';
 import 'inform_close_ones_event.dart';
 
@@ -53,6 +56,7 @@ class InformCloseOnesBloc
 
   void onPhoneCall(String phoneNumber) => MyUrlLauncher.call(phoneNumber);
 
+  //
   void _onLoadContacts(
       OnLoadContacts event, Emitter<InformCloseOnesState> emit) {
     emit(

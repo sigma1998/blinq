@@ -1,4 +1,6 @@
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'login_google_request.freezed.dart';
 part 'login_google_request.g.dart';
 @freezed

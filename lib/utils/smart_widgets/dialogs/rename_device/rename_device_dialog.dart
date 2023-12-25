@@ -2,17 +2,17 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 // Project imports:
-import 'package:blinq/utils/custom_widgets/text_fields/rounded/rounded_text_field.dart';
-import 'package:blinq/utils/services/local_storage/shared_preferences.dart';
+import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/info_container.dart';
-import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/utils/custom_widgets/text_fields/rounded/rounded_text_field.dart';
 import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/services/local_storage/shared_preferences.dart';
 
 class RenameDeviceDialog extends StatefulWidget {
   //

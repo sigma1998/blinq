@@ -1,3 +1,7 @@
+// Package imports:
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
@@ -8,8 +12,6 @@ import 'package:blinq/presentation/report/pages/speech_to_text/bloc/speech_to_te
 import 'package:blinq/presentation/report/pages/speech_to_text/speech_to_text_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'circumstance_state.dart';
 
 class CircumstancesBloc extends Cubit<CircumstanceState> {

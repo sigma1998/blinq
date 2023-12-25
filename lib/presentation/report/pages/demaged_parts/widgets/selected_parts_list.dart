@@ -1,8 +1,12 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
 import 'package:blinq/presentation/report/pages/demaged_parts/bloc/damaged_parts_bloc.dart';
 import 'package:blinq/presentation/report/pages/demaged_parts/bloc/damaged_parts_state.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SelectedPartsList extends StatelessWidget {
   final ScrollController controller;

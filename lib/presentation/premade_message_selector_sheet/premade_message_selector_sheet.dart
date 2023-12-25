@@ -6,6 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
+import 'package:blinq/app/locator.dart';
 import 'package:blinq/presentation/contacts/pages/premade_messages/bloc/premade_messages_bloc.dart';
 import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/pop_ups/base_selector_sheet.dart';
@@ -13,7 +14,6 @@ import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/services/permission/permission_service.dart';
 import 'bloc/premade_message_selector_bloc.dart';
 import 'bloc/premade_message_selector_event.dart';
-import 'package:blinq/app/locator.dart';
 import 'widgets/item.dart';
 
 class PremadeMessageSelectorSheet extends StatefulWidget {

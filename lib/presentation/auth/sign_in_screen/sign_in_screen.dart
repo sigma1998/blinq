@@ -1,10 +1,14 @@
-import 'package:blinq/core/drawables/app_drawables.dart';
-import 'package:blinq/utils/custom_widgets/app_btn.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+// Project imports:
+import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/utils/custom_widgets/app_btn.dart';
 import 'sign_in_screen_bloc.dart';
 
 class SignInScreen extends StatelessWidget {

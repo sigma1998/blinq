@@ -1,4 +1,8 @@
 // Flutter imports:
+
+// Flutter imports:
+import 'package:flutter/material.dart';
+
 // Project imports:
 import 'package:blinq/presentation/auth/registration/email_screen/email_screen.dart';
 import 'package:blinq/presentation/auth/registration/registration_screen/registration_screen.dart';
@@ -54,7 +58,6 @@ import 'package:blinq/presentation/report/second_driver_editors/screens/insuranc
 import 'package:blinq/presentation/report/second_driver_editors/screens/policy_holder/policy_holder_screen.dart';
 import 'package:blinq/presentation/splash_screen/splash_screen.dart';
 import 'package:blinq/presentation/success_video/success_video_screen.dart';
-import 'package:flutter/material.dart';
 
 Map<String, WidgetBuilder> getRoutes(BuildContext context) {
   return {

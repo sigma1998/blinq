@@ -1,16 +1,20 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hand_signature/signature.dart';
+
+// Project imports:
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/utils/custom_widgets/app_btn.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
-import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/custom_widgets/step_indicator.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hand_signature/signature.dart';
-
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'sing_screen_bloc.dart';
 
 class SignScreen extends StatefulWidget {
@@ -32,10 +36,11 @@ class _SignScreenState extends State<SignScreen> {
     final User user = args?.user ?? User.A;
 
     bloc = SignScreenBloc(
-        accidentRepository: getIt<AccidentRepositoryImpl>(),
-        breakdownRepository: getIt<BreakdownRepositoryImpl>(),
-        reportBloc: context.read(),
-        user: user);
+      user: user,
+      reportBloc: context.read(),
+      accidentRepository: getIt<AccidentRepositoryImpl>(),
+      breakdownRepository: getIt<BreakdownRepositoryImpl>(),
+    );
     super.didChangeDependencies();
   }
 
@@ -52,22 +57,19 @@ class _SignScreenState extends State<SignScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   StepIndicator(currentStep: bloc.getStep()),
-                  const SizedBox(
-                    height: 16,
-                  ),
+                  const SizedBox(height: 16),
                   Text(
                     'strPleaseSign'.tr() + bloc.driver,
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
-                  const SizedBox(
-                    height: 54,
-                  ),
+                  const SizedBox(height: 54),
                   RepaintBoundary(
                     key: bloc.previewContainer,
                     child: Container(
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: Theme.of(context).colorScheme.secondary),
+                        borderRadius: BorderRadius.circular(12),
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
                       height: 200,
                       width: double.maxFinite,
                       child: HandSignature(
@@ -78,22 +80,20 @@ class _SignScreenState extends State<SignScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  const SizedBox(height: 20),
                   Center(
                     child: AppButton(
                       height: 30,
                       width: 120,
-                      onTap: () => bloc.control.clear(),
                       text: 'strClear'.tr(),
+                      onTap: () => bloc.control.clear(),
                     ),
                   ),
                   const Spacer(),
                   NavigationButton(
+                    padding: 0,
                     loading: state.status == Status.loading,
                     onNextTap: () => bloc.onNextTap(context),
-                    padding: 0,
                   )
                 ],
               ),

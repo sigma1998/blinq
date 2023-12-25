@@ -1,8 +1,12 @@
+// Dart imports:
 import 'dart:async';
 
+// Package imports:
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'main_screen_event.dart';
 
 class MainScreenBloc extends Bloc<MainScreenEvent, GenericBlocState<int>> {

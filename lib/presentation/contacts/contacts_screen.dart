@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
+import 'package:blinq/utils/custom_widgets/tab_bar.dart';
 import 'pages/contacts/bloc/contacts_bloc.dart';
 import 'pages/contacts/bloc/contacts_event.dart';
 import 'pages/contacts/contacts_page.dart';
 import 'pages/premade_messages/bloc/premade_messages_bloc.dart';
 import 'pages/premade_messages/bloc/premade_messages_event.dart';
 import 'pages/premade_messages/premade_messages_page.dart';
-import 'package:blinq/utils/custom_widgets/tab_bar.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ContactsScreen extends StatefulWidget {
   //

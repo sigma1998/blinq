@@ -1,7 +1,12 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+
+// Project imports:
 import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
 import 'package:blinq/utils/custom_widgets/loading/blinq_loading.dart';
-import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class PdfViewScreen extends StatefulWidget {
   static const String route = '/pdf_view_screen';

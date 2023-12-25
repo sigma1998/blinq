@@ -1,8 +1,10 @@
 // ignore_for_file: invalid_annotation_target
 
 // Package imports:
-import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
+import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 
 part 'car_request_model.freezed.dart';
 part 'car_request_model.g.dart';

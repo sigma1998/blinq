@@ -1,6 +1,5 @@
-// Flutter imports:
+// Project imports:
 import 'package:blinq/utils/navigation_service.dart';
-
 import 'screens/faq/faq_screen.dart';
 import 'screens/mast_head_screen.dart';
 import 'screens/registration_screen.dart';

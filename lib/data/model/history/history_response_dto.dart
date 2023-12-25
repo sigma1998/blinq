@@ -1,7 +1,8 @@
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+// Project imports:
 import 'history_item/history_item_dto.dart';
-
 
 part 'history_response_dto.freezed.dart';
 part 'history_response_dto.g.dart';

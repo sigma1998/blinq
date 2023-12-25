@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
+import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/info_container.dart';
-import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/utils/navigation_service.dart';
 
 class MaxFileSizeDialog extends StatelessWidget {

@@ -1,4 +1,11 @@
 // Flutter imports:
+
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+
+// Package imports:
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 // Project imports:
 import 'package:blinq/data/model/report/report_time_and_location/report_time_and_location.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
@@ -11,10 +18,6 @@ import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/services/location/location_service.dart';
 import 'package:blinq/utils/smart_widgets/dialogs/countries_dialog/countries_dialog.dart';
-import 'package:flutter/cupertino.dart';
-
-// Package imports:
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LocationInfoScreenCubit extends Cubit<LocationInfoScreenState> {
   //
@@ -63,7 +66,7 @@ class LocationInfoScreenCubit extends Cubit<LocationInfoScreenState> {
           ReportTimeAndLocationDto(
               country: countryController.text,
               location: placeController.text,
-              createdAt: '${dateController.text}T${timeController.text}:00Z' ),
+              createdAt: '${dateController.text}T${timeController.text}:00Z'),
         );
       } else {
         await breakdownRepository.addBreakdownLocationAndTime(
@@ -71,7 +74,7 @@ class LocationInfoScreenCubit extends Cubit<LocationInfoScreenState> {
           ReportTimeAndLocationDto(
               country: countryController.text,
               location: placeController.text,
-              createdAt: '${dateController.text}T${timeController.text}:00Z' ),
+              createdAt: '${dateController.text}T${timeController.text}:00Z'),
         );
       }
 

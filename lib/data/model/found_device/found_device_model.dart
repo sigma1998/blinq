@@ -1,6 +1,8 @@
+// Dart imports:
 import 'dart:convert';
 import 'dart:typed_data';
 
+// Package imports:
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 
 FoundDeviceModel foundDeviceModelFromJson(String str) =>
@@ -40,10 +42,10 @@ class FoundDeviceModel {
     return DiscoveredDevice(
       id: '',
       name: '',
-      serviceData: {},
+      serviceData: const {},
       manufacturerData: Uint8List.fromList([]),
       rssi: 0,
-      serviceUuids: [],
+      serviceUuids: const [],
     );
   }
 

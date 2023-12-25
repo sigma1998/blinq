@@ -1,14 +1,16 @@
+// Dart imports:
 import 'dart:ui' as ui;
 
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
 import 'floodfill_painter.dart';
 
 class FloodFillImage extends StatefulWidget {
   /// The image to display via [ImageProvider].
   /// <br>You can use [AssetImage] or [NetworkImage].
   final ImageProvider imageProvider;
-
 
   /// Set [false] if you want to disable on touch fill function.
   /// <br>Default value is [true].

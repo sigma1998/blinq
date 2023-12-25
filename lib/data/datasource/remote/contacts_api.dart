@@ -5,11 +5,11 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 
 // Project imports:
-import 'package:blinq/data/model/contact/contact_response_dto.dart';
-import 'package:blinq/data/model/contact/response/contact_response_model.dart';
-import 'package:blinq/data/model/contact/request/contact_request_model.dart';
-import 'package:blinq/core/network/network_constants.dart';
 import 'package:blinq/core/network/api_service.dart';
+import 'package:blinq/core/network/network_constants.dart';
+import 'package:blinq/data/model/contact/contact_response_dto.dart';
+import 'package:blinq/data/model/contact/request/contact_request_model.dart';
+import 'package:blinq/data/model/contact/response/contact_response_model.dart';
 
 abstract class ContactsApi {
   //

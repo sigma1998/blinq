@@ -6,16 +6,16 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:blinq/presentation/my_reports/widgets/views/breakdown_view.dart';
-import 'package:blinq/presentation/my_reports/widgets/views/accident_view.dart';
+import 'package:blinq/app/locator.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
+import 'package:blinq/presentation/my_reports/widgets/views/accident_view.dart';
+import 'package:blinq/presentation/my_reports/widgets/views/breakdown_view.dart';
 import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
 import 'package:blinq/utils/custom_widgets/loading.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
-import 'package:blinq/app/locator.dart';
+import 'bloc/reports_screen_bloc.dart';
 import 'bloc/reports_screen_event.dart';
 import 'bloc/reports_screen_state.dart';
-import 'bloc/reports_screen_bloc.dart';
 import 'widgets/tab_bar.dart';
 
 class ReportsScreen extends StatefulWidget {

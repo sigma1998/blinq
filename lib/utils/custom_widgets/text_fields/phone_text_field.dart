@@ -1,13 +1,13 @@
 // Flutter imports:
-import 'package:blinq/utils/validator.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
 // Project imports:
 import 'package:blinq/utils/string_helper.dart';
+import 'package:blinq/utils/validator.dart';
 import 'default_text_field.dart';
 
 class PhoneTextField extends StatelessWidget {

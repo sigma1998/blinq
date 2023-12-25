@@ -1,6 +1,15 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:io';
 
+// Package imports:
+import 'package:device_info/device_info.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
+
+// Project imports:
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/presentation/main_screen/bloc/main_screen_bloc.dart';
@@ -9,12 +18,6 @@ import 'package:blinq/presentation/my_reports/pdf_view/pdf_view.dart';
 import 'package:blinq/utils/general_functions.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:device_info/device_info.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
-
 import 'reports_screen_event.dart';
 import 'reports_screen_state.dart';
 

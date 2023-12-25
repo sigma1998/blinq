@@ -1,17 +1,20 @@
 // Project imports:
 
+// Package imports:
+import 'package:dio/dio.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
+
+// Project imports:
 import 'package:blinq/core/network/api_service.dart';
 import 'package:blinq/core/network/network_constants.dart';
-import 'package:blinq/data/model/report/report_time_and_location/report_time_and_location.dart';
-import 'package:blinq/data/model/report/injury/injury.dart';
 import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/data/model/insurance/request/insurance_request_model.dart';
 import 'package:blinq/data/model/policy_holder/request/policy_holder_request_model.dart';
 import 'package:blinq/data/model/profile/request/profile_request_model.dart';
 import 'package:blinq/data/model/profile/response/profile_response_model.dart';
+import 'package:blinq/data/model/report/injury/injury.dart';
+import 'package:blinq/data/model/report/report_time_and_location/report_time_and_location.dart';
 import 'package:blinq/data/model/second_driver/car/request/second_driver_car_request_model.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
 abstract class AccidentApi {
   //

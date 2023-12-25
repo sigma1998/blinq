@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:blinq/utils/custom_widgets/loading.dart';
 import 'package:blinq/core/theme/app_colors.dart';
+import 'package:blinq/utils/custom_widgets/loading.dart';
 import 'default_ink_well.dart';
 
 class MyButton extends StatelessWidget {

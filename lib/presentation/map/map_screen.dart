@@ -1,12 +1,17 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+// Project imports:
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/presentation/map/bloc/map_screen_bloc.dart';
 import 'package:blinq/presentation/map/bloc/map_screen_state.dart';
 import 'package:blinq/utils/map_pin.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapScreen extends StatefulWidget {
   static const String route = 'map_screen';
@@ -23,10 +28,11 @@ class _MapScreenState extends State<MapScreen> {
   void didChangeDependencies() {
     bloc = MapScreenBloc(
         position: (ModalRoute.of(context)!.settings.arguments as MapScreenArgs)
-            .initialPosition ?? const CameraPosition(
-          target: LatLng(41.30275284012766, 69.23845700742682),
-          zoom: 14.4746,
-        ));
+                .initialPosition ??
+            const CameraPosition(
+              target: LatLng(41.30275284012766, 69.23845700742682),
+              zoom: 14.4746,
+            ));
     super.didChangeDependencies();
   }
 
@@ -41,7 +47,9 @@ class _MapScreenState extends State<MapScreen> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 14),
+                      horizontal: 16,
+                      vertical: 14,
+                    ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12),
                       child: GoogleMap(
@@ -70,26 +78,27 @@ class _MapScreenState extends State<MapScreen> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .surfaceVariant
-                                      .withOpacity(0.8),
-                                  borderRadius: BorderRadius.circular(16)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: GestureDetector(
-                                    onTap: bloc.onDeterminePosition,
-                                    child: Icon(
-                                      Icons.near_me_outlined,
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
-                                      size: 32,
-                                    )),
+                          padding: const EdgeInsets.all(16),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .surfaceVariant
+                                    .withOpacity(0.8),
+                                borderRadius: BorderRadius.circular(16)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: GestureDetector(
+                                onTap: bloc.onDeterminePosition,
+                                child: Icon(
+                                  Icons.near_me_outlined,
+                                  color: Theme.of(context).colorScheme.primary,
+                                  size: 32,
+                                ),
                               ),
-                            )),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -158,6 +167,5 @@ class _MapScreenState extends State<MapScreen> {
 class MapScreenArgs {
   final CameraPosition? initialPosition;
 
-  MapScreenArgs(
-      {required this.initialPosition});
+  MapScreenArgs({required this.initialPosition});
 }

@@ -1,9 +1,14 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:video_player/video_player.dart';
+
+// Project imports:
 import 'package:blinq/presentation/main_screen/main_screen.dart';
 import 'package:blinq/presentation/success_video/success_video_bloc.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:video_player/video_player.dart';
 
 class SuccessVideoScreen extends StatefulWidget {
   static const String route = 'success_video_screen';

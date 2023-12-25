@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 
 // Project imports:
-import 'package:blinq/presentation/connect_to_blinq/widgets/items/previously_conntected_item.dart';
 import 'package:blinq/presentation/connect_to_blinq/cubit/connect_to_blinq_cubit.dart';
-import 'package:blinq/utils/services/local_storage/shared_preferences.dart';
+import 'package:blinq/presentation/connect_to_blinq/widgets/items/previously_conntected_item.dart';
 import 'package:blinq/utils/custom_widgets/info_container.dart';
-import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
+import 'package:blinq/utils/services/local_storage/shared_preferences.dart';
 
 class PreviouslyConnectedToBlinqCard extends StatefulWidget {
   //
