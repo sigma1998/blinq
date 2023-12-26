@@ -41,6 +41,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     final bloc = context.read<MainScreenBloc>();
 
     return BlocBuilder<MainScreenBloc, GenericBlocState<int>>(
@@ -58,10 +59,10 @@ class _MainScreenState extends State<MainScreen> {
               ],
             ),
             bottomNavigationBar: Padding(
-              padding: const EdgeInsets.only(
-                bottom: 38,
-                right: 16,
+              padding: EdgeInsets.only(
                 left: 16,
+                right: 16,
+                bottom: height <= 800 ? 20 : 38,
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(40),
