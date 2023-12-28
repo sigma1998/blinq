@@ -89,6 +89,7 @@ dependencies:
   sprintf: ^7.0.0
   convert: ^3.1.1
   crypto: ^3.0.3
+  mockito: ^5.4.4
   device_info: ^2.0.3
   # for scan blinq user
   qr_code_scanner: ^1.0.1
