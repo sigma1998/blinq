@@ -27,6 +27,10 @@ mixin _$RegistrationRequestDto {
   String get firstName => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_name')
   String get lastName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'fcm_token')
+  String get fcmToken => throw _privateConstructorUsedError;
+  @JsonKey(name: 'device_type')
+  String get deviceType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +48,9 @@ abstract class $RegistrationRequestDtoCopyWith<$Res> {
       {String email,
       String password,
       @JsonKey(name: 'first_name') String firstName,
-      @JsonKey(name: 'last_name') String lastName});
+      @JsonKey(name: 'last_name') String lastName,
+      @JsonKey(name: 'fcm_token') String fcmToken,
+      @JsonKey(name: 'device_type') String deviceType});
 }
 
 /// @nodoc
@@ -65,6 +71,8 @@ class _$RegistrationRequestDtoCopyWithImpl<$Res,
     Object? password = null,
     Object? firstName = null,
     Object? lastName = null,
+    Object? fcmToken = null,
+    Object? deviceType = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -83,6 +91,14 @@ class _$RegistrationRequestDtoCopyWithImpl<$Res,
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
+      fcmToken: null == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String,
+      deviceType: null == deviceType
+          ? _value.deviceType
+          : deviceType // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -100,7 +116,9 @@ abstract class _$$RegistrationRequestDtoImplCopyWith<$Res>
       {String email,
       String password,
       @JsonKey(name: 'first_name') String firstName,
-      @JsonKey(name: 'last_name') String lastName});
+      @JsonKey(name: 'last_name') String lastName,
+      @JsonKey(name: 'fcm_token') String fcmToken,
+      @JsonKey(name: 'device_type') String deviceType});
 }
 
 /// @nodoc
@@ -120,6 +138,8 @@ class __$$RegistrationRequestDtoImplCopyWithImpl<$Res>
     Object? password = null,
     Object? firstName = null,
     Object? lastName = null,
+    Object? fcmToken = null,
+    Object? deviceType = null,
   }) {
     return _then(_$RegistrationRequestDtoImpl(
       email: null == email
@@ -138,6 +158,14 @@ class __$$RegistrationRequestDtoImplCopyWithImpl<$Res>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
+      fcmToken: null == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String,
+      deviceType: null == deviceType
+          ? _value.deviceType
+          : deviceType // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -149,7 +177,9 @@ class _$RegistrationRequestDtoImpl implements _RegistrationRequestDto {
       {required this.email,
       required this.password,
       @JsonKey(name: 'first_name') required this.firstName,
-      @JsonKey(name: 'last_name') required this.lastName});
+      @JsonKey(name: 'last_name') required this.lastName,
+      @JsonKey(name: 'fcm_token') required this.fcmToken,
+      @JsonKey(name: 'device_type') required this.deviceType});
 
   factory _$RegistrationRequestDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$RegistrationRequestDtoImplFromJson(json);
@@ -164,10 +194,16 @@ class _$RegistrationRequestDtoImpl implements _RegistrationRequestDto {
   @override
   @JsonKey(name: 'last_name')
   final String lastName;
+  @override
+  @JsonKey(name: 'fcm_token')
+  final String fcmToken;
+  @override
+  @JsonKey(name: 'device_type')
+  final String deviceType;
 
   @override
   String toString() {
-    return 'RegistrationRequestDto(email: $email, password: $password, firstName: $firstName, lastName: $lastName)';
+    return 'RegistrationRequestDto(email: $email, password: $password, firstName: $firstName, lastName: $lastName, fcmToken: $fcmToken, deviceType: $deviceType)';
   }
 
   @override
@@ -181,13 +217,17 @@ class _$RegistrationRequestDtoImpl implements _RegistrationRequestDto {
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
-                other.lastName == lastName));
+                other.lastName == lastName) &&
+            (identical(other.fcmToken, fcmToken) ||
+                other.fcmToken == fcmToken) &&
+            (identical(other.deviceType, deviceType) ||
+                other.deviceType == deviceType));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, email, password, firstName, lastName);
+  int get hashCode => Object.hash(
+      runtimeType, email, password, firstName, lastName, fcmToken, deviceType);
 
   @JsonKey(ignore: true)
   @override
@@ -209,7 +249,9 @@ abstract class _RegistrationRequestDto implements RegistrationRequestDto {
           {required final String email,
           required final String password,
           @JsonKey(name: 'first_name') required final String firstName,
-          @JsonKey(name: 'last_name') required final String lastName}) =
+          @JsonKey(name: 'last_name') required final String lastName,
+          @JsonKey(name: 'fcm_token') required final String fcmToken,
+          @JsonKey(name: 'device_type') required final String deviceType}) =
       _$RegistrationRequestDtoImpl;
 
   factory _RegistrationRequestDto.fromJson(Map<String, dynamic> json) =
@@ -225,6 +267,12 @@ abstract class _RegistrationRequestDto implements RegistrationRequestDto {
   @override
   @JsonKey(name: 'last_name')
   String get lastName;
+  @override
+  @JsonKey(name: 'fcm_token')
+  String get fcmToken;
+  @override
+  @JsonKey(name: 'device_type')
+  String get deviceType;
   @override
   @JsonKey(ignore: true)
   _$$RegistrationRequestDtoImplCopyWith<_$RegistrationRequestDtoImpl>

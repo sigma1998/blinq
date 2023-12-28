@@ -8,9 +8,11 @@ import 'package:flutter/material.dart';
 class Loading extends StatelessWidget {
   //
   final Color color;
+  final double? h;
 
   const Loading({
     super.key,
+    this.h,
     this.color = Colors.white,
   });
 

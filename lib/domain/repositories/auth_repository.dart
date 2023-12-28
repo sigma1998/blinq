@@ -8,10 +8,11 @@ import 'package:blinq/data/model/send_email/response/send_email_response.dart';
 import 'package:blinq/data/model/user/user_status.dart';
 
 abstract class AuthRepository {
-  Future<LoginResponseModel> login({
-    required String mail,
-    required String password,
-  });
+  Future<LoginResponseModel> login(
+      {required String mail,
+      required String password,
+      required String deviceType,
+      required String fcmToken});
 
   Future<SendEmailResponse> sendEmail(String mail);
 
@@ -59,12 +60,17 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl({required this.api, required this.localStorage});
 
   @override
-  Future<LoginResponseModel> login({
-    required String mail,
-    required String password,
-  }) async {
+  Future<LoginResponseModel> login(
+      {required String mail,
+      required String password,
+      required String deviceType,
+      required String fcmToken}) async {
     try {
-      return await api.login(mail: mail, password: password);
+      return await api.login(
+          mail: mail,
+          password: password,
+          deviceType: deviceType,
+          fcmToken: fcmToken);
     } catch (e) {
       rethrow;
     }

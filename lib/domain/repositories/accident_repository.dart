@@ -129,6 +129,12 @@ abstract class AccidentRepository {
   Future<VehicleType> getSecondDriverVehicleType(int accidentId);
 
   Future<void> deactivateAccident(int accidentId);
+
+  Future<void> sendNotificationToUserB(
+      {required int accidentId, required int userId});
+
+  Future<void> respondToNotification(
+      {required int accidentId, required bool isAgree});
 }
 
 class AccidentRepositoryImpl implements AccidentRepository {
@@ -510,6 +516,26 @@ class AccidentRepositoryImpl implements AccidentRepository {
   Future<void> deactivateAccident(int accidentId) async {
     try {
       await api.deactivateAccident(accidentId);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> respondToNotification(
+      {required int accidentId, required bool isAgree}) async {
+    try {
+      await api.respondToNotification(accidentId: accidentId, isAgree: isAgree);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> sendNotificationToUserB(
+      {required int accidentId, required int userId}) async {
+    try {
+      await api.sendNotificationToUserB(accidentId: accidentId, userId: userId);
     } catch (e) {
       rethrow;
     }

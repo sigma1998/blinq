@@ -49,43 +49,48 @@ class _SecondDriverScreenState extends State<SecondDriverScreen> {
             child: Scaffold(
               body: Padding(
                 padding: const EdgeInsets.all(32),
-                child: Column(
-                  children: [
-                    Text(
-                      'strIsSecondDriverAccount'.tr(),
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    const SizedBox(height: 60),
-                    MyImage(
-                      state.secondDriver?.image ?? '',
-                      width: 109,
-                      height: 109,
-                    ),
-                    const SizedBox(height: 20),
-                    Text(
-                      cubit.state.secondDriver?.fullName ?? '-',
-                      style: const TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.w700,
+                child: Center(
+                  child: Column(
+                    children: [
+                      Text(
+                        state.status == Status.loading
+                            ? 'strWaitingForRes'.tr()
+                            : 'strIsSecondDriverAccount'.tr(),
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
-                    ),
-                    // const SizedBox(height: 10),
-                    // Text(
-                    //   'strSecondDriverName'.tr(),
-                    //   style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    //         color: Theme.of(context).colorScheme.onSecondary,
-                    //       ),
-                    // ),
-                    const SizedBox(height: 120),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        YesNoButton(
-                          onChanged: cubit.onValueChanged,
+                      const SizedBox(height: 60),
+                      MyImage(
+                        state.secondDriver?.image ?? '',
+                        width: 109,
+                        height: 109,
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        cubit.state.secondDriver?.fullName ?? '-',
+                        style: const TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.w700,
                         ),
-                      ],
-                    ),
-                  ],
+                      ),
+                      // const SizedBox(height: 10),
+                      // Text(
+                      //   'strSecondDriverName'.tr(),
+                      //   style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      //         color: Theme.of(context).colorScheme.onSecondary,
+                      //       ),
+                      // ),
+                      const SizedBox(height: 120),
+                      if (state.status != Status.loading)
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            YesNoButton(
+                              onChanged: cubit.onValueChanged,
+                            ),
+                          ],
+                        ),
+                    ],
+                  ),
                 ),
               ),
               floatingActionButton: NavigationButton(

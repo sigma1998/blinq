@@ -1,5 +1,6 @@
 // Dart imports:
 import 'dart:async';
+import 'dart:io';
 
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
@@ -21,6 +22,13 @@ import 'package:blinq/presentation/main_screen/main_screen.dart';
 import 'package:blinq/presentation/success_video/success_video_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/services/notification/notification_service.dart';
+import 'package:email_validator/email_validator.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+
 import 'login_bottom_sheet_event.dart';
 import 'login_bottom_sheet_state.dart';
 
@@ -46,9 +54,15 @@ class LoginBottomSheetBloc
       if (!EmailValidator.validate(mailController.text)) {
         return;
       }
+      await NotificationService.setupNotificationService();
+      final token = await NotificationService.getFcmToken();
+
       emit(state.copyWith(status: Status.loading));
       final res = await authRepository.login(
-          mail: mailController.text, password: passwordController.text);
+          mail: mailController.text,
+          password: passwordController.text,
+          fcmToken: token ?? '',
+          deviceType: Platform.isAndroid ? 'android' : 'ios');
       _saveData(res);
       emit(state.copyWith(status: Status.initial));
       // NavigationService.newRootScreen(MainScreen.route);
