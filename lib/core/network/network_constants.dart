@@ -174,4 +174,13 @@ class NetworkConstants {
       '/v2/api/breakdown/$breakdownId/sign/';
   static String deactivateBreakdown(int breakdownId) =>
       '/v2/api/update/breakdown/$breakdownId/status/';
+
+
+  ///notifications
+  static String sendNotification(int accidentId) => ''
+      'v2/api/adriver/accident/$accidentId/send_notification';
+  static String confirmNotification(int accidentId) => ''
+      'v2/api/bdriver/accident/$accidentId/confirm_notification';
+
+
 }

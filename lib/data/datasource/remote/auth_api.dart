@@ -7,7 +7,10 @@ import 'package:blinq/data/model/send_email/response/send_email_response.dart';
 
 abstract class AuthApi {
   Future<LoginResponseModel> login(
-      {required String mail, required String password});
+      {required String mail,
+      required String password,
+      required String deviceType,
+      required String fcmToken});
 
   Future<LoginResponseModel> register(
       {required RegistrationRequestDto registrationRequestDto});
@@ -39,10 +42,17 @@ class AuthApiImpl implements AuthApi {
 
   @override
   Future<LoginResponseModel> login(
-      {required String mail, required String password}) async {
+      {required String mail,
+      required String password,
+      required String deviceType,
+      required String fcmToken}) async {
     try {
-      final res = await api.post(NetworkConstants.login,
-          data: {'email': mail, 'password': password});
+      final res = await api.post(NetworkConstants.login, data: {
+        'email': mail,
+        'password': password,
+        'device_type': deviceType,
+        'fcm_token': fcmToken,
+      });
 
       return LoginResponseModel.fromJson(res);
     } catch (e) {

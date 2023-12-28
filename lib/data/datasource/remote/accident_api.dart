@@ -118,6 +118,12 @@ abstract class AccidentApi {
   Future<VehicleType> getSecondDriverVehicleType(int accidentId);
 
   Future<void> deactivateAccident(int accidentId);
+
+  Future<void> sendNotificationToUserB(
+      {required int accidentId, required int userId});
+
+  Future<void> respondToNotification(
+      {required int accidentId, required bool isAgree});
 }
 
 class AccidentApiImpl implements AccidentApi {
@@ -556,6 +562,28 @@ class AccidentApiImpl implements AccidentApi {
     try {
       await api.patch(NetworkConstants.deactivateAccident(accidentId),
           data: {'status': 'rejected'});
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> respondToNotification(
+      {required int accidentId, required bool isAgree}) async {
+    try {
+      await api.post(NetworkConstants.confirmNotification(accidentId),
+          data: {'answer': isAgree ? 'yes' : 'no'});
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> sendNotificationToUserB(
+      {required int accidentId, required int userId}) async {
+    try {
+      await api.post(NetworkConstants.sendNotification(accidentId),
+          data: {'user_id': userId});
     } catch (e) {
       rethrow;
     }

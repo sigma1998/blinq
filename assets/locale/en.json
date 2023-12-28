@@ -752,5 +752,9 @@
   "strBadConnection": "You have a bad connection, make sure your internet is stable",
   "strReportCreatedAt": "Report created at ",
   "strConnectionProblem": "Looks like you are having trouble with internet",
-  "strPleaseConnect": "Please connect to a good\nnetwork and try again."
+  "strPleaseConnect": "Please connect to a good\nnetwork and try again.",
+  "strWantsToConnect": " wants to fill out a report with you!",
+  "strDoYouConfirm": "Do you confirm your participation?",
+  "strWaitingForRes": "Waiting participation...",
+  "strUserBDidNotConfirm": "User B did not confirm participation"
 }

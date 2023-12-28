@@ -93,7 +93,7 @@ class _QrScanScreenState extends State<QrScanScreen> {
         floatingActionButton: MyButton.tertiary(
           width: 100,
           label: 'strCancel'.tr(),
-          onTap: ()=>NavigationService.homeNavigatorKey.currentState?.pop(),
+          onTap: () => NavigationService.homeNavigatorKey.currentState?.pop(),
           padding: const EdgeInsets.symmetric(
             vertical: 12,
             horizontal: 24,
@@ -112,10 +112,9 @@ class _QrScanScreenState extends State<QrScanScreen> {
       final userJson = jsonDecode(data.code?.replaceAll('\'', '"') ?? '{}');
       debugPrint('userJson: $userJson');
       NavigationService.pushReplacement(
-        routeName: SecondDriverScreen.route,
-        arguments: userJson['user_id'],
-        nestedKey: NavigationService.homeNavigatorKey
-      );
+          routeName: SecondDriverScreen.route,
+          arguments: userJson['user_id'],
+          nestedKey: NavigationService.homeNavigatorKey);
       _isScanned = true;
     });
   }
