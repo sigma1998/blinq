@@ -31,7 +31,7 @@ void main() {
         .thenAnswer((_) async => mockResponse.toJson());
 
     // Act
-    await authApiImpl.login(mail: mail, password: password);
+    await authApiImpl.login(mail: mail, password: password, fcmToken: '', deviceType: 'ios');
 
     // Assert
     verify(mockApiService.post(
@@ -47,7 +47,7 @@ void main() {
       email: 'test@mail.com',
       password: 'testpassword',
       firstName: 'test',
-      lastName: 'test',
+      lastName: 'test', fcmToken: '', deviceType: 'ios',
     );
 
     when(mockApiService.post(any, data: anyNamed('data')))
