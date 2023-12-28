@@ -30,6 +30,14 @@
           }
         },
         {
+          "client_id": "573054971190-v7qop5deg4ehfds263bke8iffmid05ag.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blinqx",
+            "certificate_hash": "e8ec10273fc0f04fb3dacc0d2199f56ada7148df"
+          }
+        },
+        {
           "client_id": "573054971190-8scv099a5ot9pkqi7p0ts1fug9sn00r3.apps.googleusercontent.com",
           "client_type": 3
         }

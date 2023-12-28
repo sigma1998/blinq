@@ -13,6 +13,8 @@ _$RegistrationRequestDtoImpl _$$RegistrationRequestDtoImplFromJson(
       password: json['password'] as String,
       firstName: json['first_name'] as String,
       lastName: json['last_name'] as String,
+      fcmToken: json['fcm_token'] as String,
+      deviceType: json['device_type'] as String,
     );
 
 Map<String, dynamic> _$$RegistrationRequestDtoImplToJson(
@@ -22,4 +24,6 @@ Map<String, dynamic> _$$RegistrationRequestDtoImplToJson(
       'password': instance.password,
       'first_name': instance.firstName,
       'last_name': instance.lastName,
+      'fcm_token': instance.fcmToken,
+      'device_type': instance.deviceType,
     };

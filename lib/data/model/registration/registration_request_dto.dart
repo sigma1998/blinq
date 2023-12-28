@@ -11,6 +11,8 @@ class RegistrationRequestDto with _$RegistrationRequestDto {
     required String password,
     @JsonKey(name: 'first_name') required String firstName,
     @JsonKey(name: 'last_name') required String lastName,
+    @JsonKey(name: 'fcm_token') required String fcmToken,
+    @JsonKey(name: 'device_type') required String deviceType,
   }) = _RegistrationRequestDto;
 
   factory RegistrationRequestDto.fromJson(Map<String, dynamic> json) =>

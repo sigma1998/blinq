@@ -63,7 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '573054971190',
     projectId: 'blinq-382713',
     storageBucket: 'blinq-382713.appspot.com',
-    androidClientId: '573054971190-lhnt6afnkg0pr3r9h03pgnlv1eh6n15r.apps.googleusercontent.com',
+    androidClientId: '573054971190-65n0ck033bao4nj5heai46549pd40e07.apps.googleusercontent.com',
     iosClientId: '573054971190-inud9nk3kcpnsgfam3ukadmu5trk45d6.apps.googleusercontent.com',
     iosBundleId: 'com.samuraidevs.blinq',
   );

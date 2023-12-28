@@ -2,11 +2,12 @@
 import 'dart:async';
 
 // Package imports:
+import 'package:blinq/utils/services/notification/notification_service.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:blinq/presentation/report/pages/connect_to_driver/connect_to_driver_screen.dart';
 import 'package:blinq/presentation/report/pages/points_of_impact/points_of_impact_screen.dart';
 import 'package:blinq/data/model/profile/response/profile_response_model.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
@@ -50,14 +51,41 @@ class SecondDriverCubit extends Cubit<SecondDriverState> {
 
   void onNextPressed() async {
     if (!state.isSecondDriverBlinq!) {
-      NavigationService.homeNavigatorKey.currentState?.popUntil(
-        (route) => route.settings.name == ConnectToDriverScreen.route,
-      );
-      return;
+      onBack();
     }
 
     emit(state.copyWith(status: Status.loading));
 
+    await repository.sendNotificationToUserB(
+        accidentId: reportBloc.reportId, userId: state.secondDriver!.id!);
+
+    _listenNotification();
+  }
+
+  Future<bool> onScreenPop() async {
+    reportBloc.setUser(User.A);
+    return true;
+  }
+
+  void onBack() {
+    reportBloc.setUser(User.A);
+    NavigationService.homeNavigatorKey.currentState?.pop();
+  }
+
+  void _listenNotification() {
+    NotificationService.responseNotificationStream.listen((event) {
+      if (event != null) {
+        if (event.answer != 'yes') {
+          NavigationService.showErrorToast('strUserBDidNotConfirm'.tr());
+          onBack();
+        } else {
+          _addUserB();
+        }
+      }
+    });
+  }
+
+  Future<void> _addUserB() async {
     try {
       await repository.addDriverB(
           accidentId: reportBloc.reportId,
@@ -73,15 +101,5 @@ class SecondDriverCubit extends Cubit<SecondDriverState> {
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }
-  }
-
-  Future<bool> onScreenPop() async {
-    reportBloc.setUser(User.A);
-    return true;
-  }
-
-  void onBack() {
-    reportBloc.setUser(User.A);
-    NavigationService.homeNavigatorKey.currentState?.pop();
   }
 }

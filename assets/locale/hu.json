@@ -752,6 +752,11 @@
   "strBadConnection": "Rossz a kapcsolat, ellenőrizze, hogy az internet stabil-e",
   "strReportCreatedAt": "Jelentés készült: ",
   "strConnectionProblem": "Úgy tűnik, problémái vannak az internettel",
-  "strPleaseConnect": "Kérjük, csatlakozzon egy jó\nhálózathoz, és próbálja újra."
+  "strPleaseConnect": "Kérjük, csatlakozzon egy jó\nhálózathoz, és próbálja újra.",
+  "strWantsToConnect": " jelentést szeretne kitölteni veled!",
+  "strDoYouConfirm": "Megerősíti részvételét?",
+  "strWaitingForRes": "Várakozás a részvételre...",
+  "strUserBDidNotConfirm": "B felhasználó nem erősítette meg részvételét"
+
 }
 
