@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -8,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'cards/image_card.dart';
 import 'cards/info_card.dart';

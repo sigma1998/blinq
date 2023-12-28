@@ -2,9 +2,20 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
-
 // Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:path/path.dart' as p;
+import 'package:video_compress/video_compress.dart';
+
+// Project imports:
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/domain/repositories/breakdown_repository.dart';
@@ -17,20 +28,8 @@ import 'package:blinq/utils/image_crop_helper.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/services/media/media_service.dart';
 import 'package:blinq/utils/smart_widgets/dialogs/media_dialogs/file_quality_reduced_dialog.dart';
-
-// Project imports:
 import 'package:blinq/utils/smart_widgets/dialogs/media_dialogs/max_file_size_dialog.dart';
 import 'package:blinq/utils/smart_widgets/dialogs/media_dialogs/success_dialog.dart';
-import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-// Package imports:
-import 'package:flutter_image_compress/flutter_image_compress.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:path/path.dart' as p;
-import 'package:video_compress/video_compress.dart';
 
 part 'damaged_media_cubit.freezed.dart';
 
@@ -80,6 +79,9 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
     }
   }
 
+  /// Upload multipart files to server and get file ids to upload media
+  /// [state.files] are uploaded one by one
+
   Future<void> _uploadFiles() async {
     final files = state.files;
     emit(state.copyWith(uploadedFilesId: []));
@@ -99,6 +101,7 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
     }
   }
 
+  /// Upload file ids depending on user type and report type
   Future<void> _uploadMedia() async {
     final reportId = reportBloc.reportId;
     final uploadedFilesId = state.uploadedFilesId;
@@ -233,6 +236,12 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
   ///
   /// Validation
   ///
+
+  /// Compress video if it's size is more than [_maxVideoSize]
+  /// Show dialog if video quality is reduced
+  /// Show dialog if video size is more than [_maxVideoSize]
+  /// Return compressed file if it's size is less than [_maxVideoSize]
+
   Future<File?> _isVideoValid(File file) async {
     File compressedFile = file;
 
@@ -272,6 +281,9 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
 
     return compressedFile;
   }
+
+  /// Check if file is valid
+  /// Show dialog if the limit [_maxVideoSize] or [_maxImageSize] exceeded
 
   bool _isMaxVideoFiles(int length) => length <= _maxVideoFiles;
 

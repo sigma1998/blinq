@@ -1,7 +1,10 @@
+// Dart imports:
 import 'dart:async';
 
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
 import 'speech_recognition_error.dart';
 import 'speech_recognition_event.dart';
 import 'speech_recognition_result.dart';

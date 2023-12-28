@@ -2,8 +2,6 @@
 import 'dart:async';
 
 // Flutter imports:
-import 'package:blinq/utils/smart_widgets/dialogs/countries_dialog/countries_dialog.dart';
-import 'package:blinq/utils/smart_widgets/dialogs/license_category_dialog/license_category_dialog.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -16,6 +14,8 @@ import 'package:blinq/data/model/profile/request/profile_request_model.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/smart_widgets/dialogs/countries_dialog/countries_dialog.dart';
+import 'package:blinq/utils/smart_widgets/dialogs/license_category_dialog/license_category_dialog.dart';
 import 'package:blinq/utils/string_helper.dart';
 import 'driver_editor_event.dart';
 

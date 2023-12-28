@@ -6,13 +6,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
+import 'package:blinq/app/locator.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/custom_widgets/buttons/yes_no_button.dart';
-import 'package:blinq/domain/repositories/accident_repository.dart';
-import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'cubit/connect_to_driver_cubit.dart';
-import 'package:blinq/app/locator.dart';
 
 class ConnectToDriverScreen extends StatefulWidget {
   //

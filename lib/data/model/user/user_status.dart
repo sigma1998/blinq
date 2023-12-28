@@ -1,3 +1,4 @@
+// Package imports:
 import 'package:hive/hive.dart';
 
 part 'user_status.g.dart';

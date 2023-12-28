@@ -1,11 +1,16 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+// Project imports:
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/presentation/report/pages/demaged_parts/damaged_parts_screen.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class VehicleTypeScreen extends StatelessWidget {
   static const String route = '/vehicle_type_screen';

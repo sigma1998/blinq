@@ -1,15 +1,18 @@
 // Project imports:
 
+// Package imports:
+import 'package:dio/dio.dart';
+
+// Project imports:
 import 'package:blinq/data/datasource/remote/accident_api.dart';
-import 'package:blinq/data/model/report/report_time_and_location/report_time_and_location.dart';
-import 'package:blinq/data/model/report/injury/injury.dart';
 import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/data/model/insurance/request/insurance_request_model.dart';
 import 'package:blinq/data/model/policy_holder/request/policy_holder_request_model.dart';
 import 'package:blinq/data/model/profile/request/profile_request_model.dart';
 import 'package:blinq/data/model/profile/response/profile_response_model.dart';
+import 'package:blinq/data/model/report/injury/injury.dart';
+import 'package:blinq/data/model/report/report_time_and_location/report_time_and_location.dart';
 import 'package:blinq/data/model/second_driver/car/request/second_driver_car_request_model.dart';
-import 'package:dio/dio.dart';
 
 abstract class AccidentRepository {
   ///
@@ -17,24 +20,31 @@ abstract class AccidentRepository {
   ///
   Future<ProfileResponseModel> fetchUserById(int id);
 
-  Future<void> addDriverB(
-      {required int accidentId, required int secondDriverId});
+  Future<void> addDriverB({
+    required int accidentId,
+    required int secondDriverId,
+  });
 
   Future<int> createAccident(String long, String lat);
 
   Future<void> adAccidentLocationAndTime(
-      int accidentId, ReportTimeAndLocationDto accidentTimeAndLocationDto);
+    int accidentId,
+    ReportTimeAndLocationDto accidentTimeAndLocationDto,
+  );
 
   Future<void> accidentSketch(int accidentId, MultipartFile sketch);
 
   Future<int> uploadFile({required MultipartFile file});
 
-  Future<void> sendCircumstances(
-      {required int accidentId,
-      required List<String> a,
-      required List<String> b});
+  Future<void> sendCircumstances({
+    required int accidentId,
+    required List<String> a,
+    required List<String> b,
+  });
 
-  ///for driver a
+  ///
+  /// Driver A
+  ///
   Future<void> accidentInjury(int accidentId, InjuryDto injuryDto);
 
   Future<void> accidentWitnesses(int accidentId, String witnesses);
@@ -45,21 +55,22 @@ abstract class AccidentRepository {
 
   Future<void> myRemarks(int accidentId, String visibleDamage);
 
-  Future<void> damagedPoints(
-      {required MultipartFile? top,
-      required MultipartFile? front,
-      required MultipartFile? back,
-      required MultipartFile? left,
-      required MultipartFile? right,
-      required int accidentId,
-      required List<String> damageParts});
+  Future<void> damagedPoints({
+    required MultipartFile? top,
+    required MultipartFile? front,
+    required MultipartFile? back,
+    required MultipartFile? left,
+    required MultipartFile? right,
+    required int accidentId,
+    required List<String> damageParts,
+  });
 
   Future<void> uploadMedia(int accidentId, List<int> uploadedFilesId);
 
   Future<void> sign(int accidentId, MultipartFile sign);
 
   ///
-  /// Driver b
+  /// Driver B
   ///
   Future<void> connectToNoBlinqDriver(int accidentId);
 
@@ -73,14 +84,15 @@ abstract class AccidentRepository {
 
   Future<void> myRemarksB(int accidentId, String visibleDamage);
 
-  Future<void> damagedPointsB(
-      {required MultipartFile? top,
-      required MultipartFile? front,
-      required MultipartFile? back,
-      required MultipartFile? left,
-      required MultipartFile? right,
-      required int accidentId,
-      required List<String> damageParts});
+  Future<void> damagedPointsB({
+    required MultipartFile? top,
+    required MultipartFile? front,
+    required MultipartFile? back,
+    required MultipartFile? left,
+    required MultipartFile? right,
+    required int accidentId,
+    required List<String> damageParts,
+  });
 
   Future<void> uploadMediaB(int accidentId, List<int> uploadedFilesId);
 
@@ -141,11 +153,15 @@ class AccidentRepositoryImpl implements AccidentRepository {
   }
 
   @override
-  Future<void> addDriverB(
-      {required int accidentId, required int secondDriverId}) async {
+  Future<void> addDriverB({
+    required int accidentId,
+    required int secondDriverId,
+  }) async {
     try {
       await api.addDriverB(
-          accidentId: accidentId, secondDriverId: secondDriverId);
+        accidentId: accidentId,
+        secondDriverId: secondDriverId,
+      );
     } catch (e) {
       rethrow;
     }
@@ -162,7 +178,9 @@ class AccidentRepositoryImpl implements AccidentRepository {
 
   @override
   Future<void> accidentInitialImpactPoint(
-      int accidentId, MultipartFile image) async {
+    int accidentId,
+    MultipartFile image,
+  ) async {
     try {
       return await api.accidentInitialImpactPoint(accidentId, image);
     } catch (e) {
@@ -172,7 +190,9 @@ class AccidentRepositoryImpl implements AccidentRepository {
 
   @override
   Future<void> accidentInitialImpactPointB(
-      int accidentId, MultipartFile image) async {
+    int accidentId,
+    MultipartFile image,
+  ) async {
     try {
       return await api.accidentInitialImpactPointB(accidentId, image);
     } catch (e) {
@@ -286,23 +306,25 @@ class AccidentRepositoryImpl implements AccidentRepository {
   }
 
   @override
-  Future<void> damagedPointsB(
-      {required MultipartFile? top,
-      required MultipartFile? front,
-      required MultipartFile? back,
-      required MultipartFile? left,
-      required MultipartFile? right,
-      required int accidentId,
-      required List<String> damageParts}) async {
+  Future<void> damagedPointsB({
+    required MultipartFile? top,
+    required MultipartFile? front,
+    required MultipartFile? back,
+    required MultipartFile? left,
+    required MultipartFile? right,
+    required int accidentId,
+    required List<String> damageParts,
+  }) async {
     try {
       return await api.damagedPointsB(
-          accidentId: accidentId,
-          top: top,
-          front: front,
-          back: back,
-          left: left,
-          right: right,
-          damageParts: damageParts);
+        accidentId: accidentId,
+        top: top,
+        front: front,
+        back: back,
+        left: left,
+        right: right,
+        damageParts: damageParts,
+      );
     } catch (e) {
       rethrow;
     }

@@ -1,6 +1,6 @@
 // Project imports:
-import 'package:blinq/data/model/contact/response/contact_response_model.dart';
 import 'package:blinq/data/model/contact/contact_response_dto.dart';
+import 'package:blinq/data/model/contact/response/contact_response_model.dart';
 
 sealed class InformCloseOnesEvent {}
 

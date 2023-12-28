@@ -1,5 +1,8 @@
-import 'package:blinq/utils/custom_widgets/loading.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:blinq/utils/custom_widgets/loading.dart';
 
 class AppButton extends StatelessWidget {
   //

@@ -1,6 +1,15 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:io';
 
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
 import 'package:blinq/core/network/dio_client.dart';
 import 'package:blinq/data/model/registration/registration_request_dto.dart';
 import 'package:blinq/data/model/user/user_status.dart';
@@ -73,6 +82,7 @@ class RegistrationScreenBloc
       authRepository.setRefreshToken(res.refresh!);
       authRepository.setUserStatus(UserStatus.signed);
       DioClient.setToken(res.access!);
+
       emit(state.copyWith(status: Status.initial));
       NavigationService.pushNamed(routeName: SuccessVideoScreen.route);
     } catch (e) {

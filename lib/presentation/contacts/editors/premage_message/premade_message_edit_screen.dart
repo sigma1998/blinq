@@ -6,15 +6,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:blinq/presentation/contacts/editors/premage_message/bloc/premade_message_edit_event.dart';
-import 'package:blinq/presentation/contacts/pages/premade_messages/bloc/premade_messages_bloc.dart';
-import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
+import 'package:blinq/app/locator.dart';
 import 'package:blinq/domain/repositories/premade_messages_repository.dart';
+import 'package:blinq/presentation/contacts/editors/premage_message/bloc/premade_message_edit_event.dart';
 import 'package:blinq/presentation/contacts/editors/widgets/card.dart';
+import 'package:blinq/presentation/contacts/pages/premade_messages/bloc/premade_messages_bloc.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
+import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'bloc/premade_message_edit_bloc.dart';
-import 'package:blinq/app/locator.dart';
 
 class PremadeMessageEditScreen extends StatefulWidget {
   //

@@ -6,22 +6,22 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:image_cropper/image_cropper.dart';
 
 // Project imports:
-import 'package:blinq/presentation/contacts/pages/contacts/bloc/contacts_event.dart';
-import 'package:blinq/presentation/contacts/pages/contacts/bloc/contacts_bloc.dart';
-import 'package:blinq/utils/custom_widgets/cupertino_action/cupertino_action.dart';
 import 'package:blinq/data/model/contact/request/contact_request_model.dart';
 import 'package:blinq/domain/repositories/contacts_repository.dart';
-import 'package:blinq/utils/services/media/media_service.dart';
-import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/presentation/contacts/pages/contacts/bloc/contacts_bloc.dart';
+import 'package:blinq/presentation/contacts/pages/contacts/bloc/contacts_event.dart';
+import 'package:blinq/utils/custom_widgets/cupertino_action/cupertino_action.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/image_crop_helper.dart';
+import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/services/media/media_service.dart';
 import 'package:blinq/utils/string_helper.dart';
-import 'package:image_cropper/image_cropper.dart';
 import 'contact_edit_event.dart';
 
 part 'contact_edit_state.dart';
@@ -51,9 +51,8 @@ class ContactEditBloc extends Bloc<ContactEditEvent, ContactEditState> {
     on<OnUpdateContactImage>(_imagePickerPressed);
   }
 
-  void onNavigateBack() {
-    NavigationService.contactsNavigatorKey.currentState?.pop();
-  }
+  void onNavigateBack() =>
+      NavigationService.contactsNavigatorKey.currentState?.pop();
 
   void initializeFields(int id) {
     final contact = contactsBloc.state.contacts?.results
@@ -123,6 +122,7 @@ class ContactEditBloc extends Bloc<ContactEditEvent, ContactEditState> {
     }
   }
 
+  //
   FutureOr<void> _imagePickerPressed(
       OnUpdateContactImage event, Emitter<ContactEditState> emit) async {
     final result = await NavigationService.showMyCupertinoModalPopup(

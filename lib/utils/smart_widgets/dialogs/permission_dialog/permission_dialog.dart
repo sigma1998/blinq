@@ -2,12 +2,12 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:permission_handler/permission_handler.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 // Project imports:
-import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/custom_widgets/dialogs/cupertino_dialog.dart';
+import 'package:blinq/utils/navigation_service.dart';
 
 class PermissionDialog extends StatelessWidget {
   //

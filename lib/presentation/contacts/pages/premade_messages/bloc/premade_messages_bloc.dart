@@ -2,15 +2,15 @@
 import 'dart:async';
 
 // Package imports:
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:blinq/presentation/contacts/editors/premage_message/premade_message_edit_screen.dart';
 import 'package:blinq/data/model/premade_message/premade_message_response_dto.dart';
 import 'package:blinq/domain/repositories/premade_messages_repository.dart';
-import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/presentation/contacts/editors/premage_message/premade_message_edit_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/navigation_service.dart';
 import 'premade_messages_event.dart';
 
 part 'premade_messages_state.dart';

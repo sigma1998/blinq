@@ -6,24 +6,24 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:animate_do/animate_do.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:animate_do/animate_do.dart';
 
 // Project imports:
+import 'package:blinq/app/locator.dart';
+import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/domain/repositories/auth_repository.dart';
+import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/custom_textfield.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
-import 'package:blinq/domain/repositories/auth_repository.dart';
-import 'package:blinq/utils/custom_widgets/app_btn.dart';
-import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/validator.dart';
+import 'bloc/login_bottom_sheet_bloc.dart';
 import 'bloc/login_bottom_sheet_event.dart';
 import 'bloc/login_bottom_sheet_state.dart';
-import 'bloc/login_bottom_sheet_bloc.dart';
-import 'package:blinq/app/locator.dart';
 
 class LogInBottomSheet extends StatefulWidget {
   const LogInBottomSheet({Key? key}) : super(key: key);
@@ -147,12 +147,14 @@ class _LogInBottomSheetState extends State<LogInBottomSheet> {
                         hint: 'strYourPassword'.tr(),
                       ),
                       const SizedBox(height: 30),
-                      AppButton(
+                      MyButton.secondary(
+                        label: 'strLogin'.tr(),
                         onTap: () => bloc.add(OnSubmitted()),
-                        text: 'strLogin'.tr(),
-                        loading: state.status == Status.loading,
-                        btnColor: Colors.white,
-                        txtColor: Colors.black,
+                        isLoading: state.status == Status.loading,
+                        labelStyle:
+                            Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                  color: Colors.black,
+                                ),
                       ),
                       const SizedBox(height: 30),
                       InkWell(

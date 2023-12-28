@@ -1,16 +1,20 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+// Project imports:
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/utils/custom_widgets/arrow_button.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
-import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/custom_widgets/step_indicator.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'bloc/points_of_impact_bloc.dart';
 import 'bloc/points_of_impact_state.dart';
 

@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_svg/svg.dart';
 import 'package:scale_button/scale_button.dart';
 

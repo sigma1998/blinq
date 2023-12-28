@@ -1,12 +1,17 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:io';
 import 'dart:ui' as ui;
 
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+
+// Package imports:
 import 'package:image/image.dart' as img;
 
+// Project imports:
 import 'cache_folder.dart';
 
 Future<File?> captureSocialPng(GlobalKey container, BuildContext context) {

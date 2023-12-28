@@ -2,9 +2,9 @@
 import 'dart:async';
 
 // Package imports:
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:blinq/utils/generic_bloc_state.dart';

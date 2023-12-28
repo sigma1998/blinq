@@ -6,17 +6,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:blinq/presentation/report/second_driver_editors/screens/car/cubit/second_driver_car_cubit.dart';
-import 'package:blinq/utils/custom_widgets/text_fields/number_text_field.dart';
-import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
-import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
-import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
+import 'package:blinq/app/locator.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
+import 'package:blinq/presentation/report/second_driver_editors/screens/car/cubit/second_driver_car_cubit.dart';
+import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
-import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
+import 'package:blinq/utils/custom_widgets/text_fields/number_text_field.dart';
+import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
-import 'package:blinq/app/locator.dart';
 
 class SecondDriverEditorCarScreen extends StatefulWidget {
   //

@@ -1,22 +1,22 @@
 // Flutter imports:
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:blinq/utils/custom_widgets/text_fields/rounded/speech_to_text_field.dart';
-import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
-import 'package:blinq/domain/repositories/breakdown_repository.dart';
-import 'package:blinq/domain/repositories/accident_repository.dart';
-import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
-import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
-import 'package:blinq/utils/custom_widgets/step_indicator.dart';
-import 'package:blinq/utils/generic_bloc_state.dart';
-import 'bloc/speech_to_text_screen_mode.dart';
 import 'package:blinq/app/locator.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/repositories/breakdown_repository.dart';
+import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
+import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
+import 'package:blinq/utils/custom_widgets/step_indicator.dart';
+import 'package:blinq/utils/custom_widgets/text_fields/rounded/speech_to_text_field.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'bloc/speech_to_text_cubit.dart';
+import 'bloc/speech_to_text_screen_mode.dart';
 
 class SpeechToTextScreen extends StatefulWidget {
   //
@@ -63,8 +63,10 @@ class _SpeechToTextScreenState extends State<SpeechToTextScreen> {
                   SpeechToTextField(
                     maxLines: 10,
                     labelText: bloc.title,
+                    soundLevel: state.soundLevel,
                     isRecording: state.isRecording,
                     controller: bloc.textController,
+                    scrollController: bloc.scrollController,
                     toggleRecording: () =>
                         bloc.toggleRecording(context.locale.languageCode),
                   ),

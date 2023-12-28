@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 // Project imports:
-import 'package:blinq/utils/custom_widgets/info_container.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/utils/custom_widgets/info_container.dart';
 
 class CreateReportItem extends StatelessWidget {
   //

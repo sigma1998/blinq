@@ -1,7 +1,7 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-// Flutter imports:
+// Package imports:
 import 'package:flutter_svg/svg.dart';
 
 // Project imports:

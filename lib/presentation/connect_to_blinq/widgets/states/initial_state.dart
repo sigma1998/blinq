@@ -6,10 +6,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:blinq/presentation/connect_to_blinq/widgets/items/bluetooth_item.dart';
 import 'package:blinq/presentation/connect_to_blinq/cubit/connect_to_blinq_cubit.dart';
-import 'package:blinq/presentation/connect_to_blinq/widgets/items/scan_item.dart';
+import 'package:blinq/presentation/connect_to_blinq/widgets/items/bluetooth_item.dart';
 import 'package:blinq/presentation/connect_to_blinq/widgets/items/item.dart';
+import 'package:blinq/presentation/connect_to_blinq/widgets/items/scan_item.dart';
 import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 
 class ConnectToBlinqInitialStateWidget extends StatelessWidget {

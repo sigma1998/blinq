@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 // Project imports:
 import 'package:blinq/core/drawables/app_drawables.dart';
@@ -29,8 +29,9 @@ class HomeMap extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: Container(
               height: 230,
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(20)),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+              ),
               child: Stack(
                 children: [
                   GoogleMap(
@@ -38,7 +39,10 @@ class HomeMap extends StatelessWidget {
                     myLocationButtonEnabled: false,
                     mapType: MapType.normal,
                     initialCameraPosition: const CameraPosition(
-                      target: LatLng(41.30275284012766, 69.23845700742682),
+                      target: LatLng(
+                        41.30275284012766,
+                        69.23845700742682,
+                      ),
                       zoom: 14.4746,
                     ),
                     onMapCreated: bloc.onCameraCreated,

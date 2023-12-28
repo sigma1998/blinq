@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
+import 'package:blinq/app/routes.dart';
 import 'package:blinq/presentation/contacts/contacts_screen.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:blinq/app/routes.dart';
 
 class Contacts extends StatelessWidget {
   //

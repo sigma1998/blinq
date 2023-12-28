@@ -1,6 +1,8 @@
-import 'package:blinq/data/model/map/map_models.dart';
+// Package imports:
 import 'package:equatable/equatable.dart';
 
+// Project imports:
+import 'package:blinq/data/model/map/map_models.dart';
 
 abstract class MapState extends Equatable {
   const MapState();

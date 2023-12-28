@@ -5,16 +5,16 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:blinq/presentation/contacts/pages/premade_messages/bloc/premade_messages_event.dart';
-import 'package:blinq/presentation/contacts/pages/premade_messages/bloc/premade_messages_bloc.dart';
 import 'package:blinq/data/model/premade_message/request/premade_message_request_model.dart';
 import 'package:blinq/domain/repositories/premade_messages_repository.dart';
-import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/presentation/contacts/pages/premade_messages/bloc/premade_messages_bloc.dart';
+import 'package:blinq/presentation/contacts/pages/premade_messages/bloc/premade_messages_event.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/navigation_service.dart';
 import 'premade_message_edit_event.dart';
 
 part 'premade_message_edit_state.dart';
@@ -36,13 +36,12 @@ class PremadeMessageEditorBloc
     required this.repository,
   }) : super(const PreMadeMessageEditorState()) {
     on<OnAddPreMadeMessage>(_onAddContact);
-    on<OnUpdatePreMadeMessage>(_onUpdateContact);
-    on<OnDeletePreMadeMessage>(_onDeleteContact);
+    on<OnUpdatePreMadeMessage>(_onUpdatePreMadeMessage);
+    on<OnDeletePreMadeMessage>(_onDeletePreMadeMessage);
   }
 
-  void onNavigateBack() {
-    NavigationService.contactsNavigatorKey.currentState?.pop();
-  }
+  void onNavigateBack() =>
+      NavigationService.contactsNavigatorKey.currentState?.pop();
 
   void initializeFields(int id) {
     final premadeMessage = preMadeMessagesBloc.state.premadeMessages?.results
@@ -73,7 +72,7 @@ class PremadeMessageEditorBloc
     }
   }
 
-  FutureOr<void> _onUpdateContact(OnUpdatePreMadeMessage event,
+  FutureOr<void> _onUpdatePreMadeMessage(OnUpdatePreMadeMessage event,
       Emitter<PreMadeMessageEditorState> emit) async {
     try {
       final premadeMessage = PreMadeMessageRequestModel(
@@ -91,7 +90,7 @@ class PremadeMessageEditorBloc
     }
   }
 
-  FutureOr<void> _onDeleteContact(OnDeletePreMadeMessage event,
+  FutureOr<void> _onDeletePreMadeMessage(OnDeletePreMadeMessage event,
       Emitter<PreMadeMessageEditorState> emit) async {
     try {
       emit(state.copyWith(status: Status.loading));

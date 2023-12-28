@@ -2,7 +2,6 @@
 import 'dart:async';
 
 // Flutter imports:
-import 'package:blinq/utils/smart_widgets/dialogs/countries_dialog/countries_dialog.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -11,11 +10,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'package:blinq/data/model/policy_holder/request/policy_holder_request_model.dart';
+import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/presentation/profile/bloc/profile_event.dart';
-import 'package:blinq/domain/repositories/profile_repository.dart';
-import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/smart_widgets/dialogs/countries_dialog/countries_dialog.dart';
 import 'policy_holder_editor_event.dart';
 
 part 'policy_holder_editor_state.dart';

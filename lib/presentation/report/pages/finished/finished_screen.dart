@@ -1,24 +1,23 @@
 // Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:lottie/lottie.dart';
+
+// Project imports:
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/presentation/home/home_screen.dart';
 import 'package:blinq/presentation/report/pages/finished/bloc/finishied_screen_bloc.dart';
-
-// Project imports:
 import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/loading/blinq_loading.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
-
-// Package imports:
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:lottie/lottie.dart';
-
 import 'widgets/share_item.dart';
 
 class FinishedScreen extends StatefulWidget {

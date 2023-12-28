@@ -1,21 +1,20 @@
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 // Project imports:
-import 'package:blinq/presentation/delete_account_sheet/delete_account_sheet.dart';
-import 'package:blinq/presentation/email_editor/email_editor_screen.dart';
 import 'package:blinq/core/network/dio_client.dart';
 import 'package:blinq/data/model/user/user_status.dart';
 import 'package:blinq/domain/repositories/auth_repository.dart';
 import 'package:blinq/presentation/auth/sign_in_screen/sign_in_screen.dart';
+import 'package:blinq/presentation/delete_account_sheet/delete_account_sheet.dart';
+import 'package:blinq/presentation/email_editor/email_editor_screen.dart';
 import 'package:blinq/presentation/language/language_screen.dart';
 import 'package:blinq/presentation/password_editor/password_editor_screen.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/services/permission/permission_service.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-
 import 'settings_event.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, GenericBlocState<bool>> {
@@ -47,9 +46,9 @@ class SettingsBloc extends Bloc<SettingsEvent, GenericBlocState<bool>> {
     emit(GenericBlocState.success(event.isEnabled));
   }
 
-  void onDeleteAccount() {
-    NavigationService.showBottomSheet(sheet: const DeleteAccountSheet());
-  }
+  void onDeleteAccount() => NavigationService.showBottomSheet(
+        sheet: const DeleteAccountSheet(),
+      );
 
   void onLogoutPressed() async {
     if (await GoogleSignIn().isSignedIn()) {

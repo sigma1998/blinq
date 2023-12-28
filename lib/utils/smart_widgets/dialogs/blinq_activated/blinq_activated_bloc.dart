@@ -1,7 +1,7 @@
 // Project imports:
-import 'package:blinq/presentation/create_report/create_report_screen.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
+import 'package:blinq/presentation/create_report/create_report_screen.dart';
 import 'package:blinq/utils/navigation_service.dart';
 
 class BlinqActivatedBloc {

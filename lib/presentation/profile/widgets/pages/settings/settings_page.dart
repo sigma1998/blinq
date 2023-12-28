@@ -6,26 +6,26 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
+import 'package:blinq/app/locator.dart';
 import 'package:blinq/domain/repositories/auth_repository.dart';
-import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
+import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/toggle.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/services/permission/permission_service.dart';
-import 'package:blinq/app/locator.dart';
 import 'bloc/settings_bloc.dart';
 import 'bloc/settings_event.dart';
 import 'widgets/item.dart';
 
-class SettingsView extends StatefulWidget {
+class SettingsPage extends StatefulWidget {
   //
-  const SettingsView({super.key});
+  const SettingsPage({super.key});
 
   @override
-  State<SettingsView> createState() => _SettingsViewState();
+  State<SettingsPage> createState() => _SettingsPageState();
 }
 
-class _SettingsViewState extends State<SettingsView> {
+class _SettingsPageState extends State<SettingsPage> {
   //
   late SettingsBloc bloc;
 

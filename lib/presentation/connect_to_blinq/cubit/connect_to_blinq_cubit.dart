@@ -3,26 +3,25 @@ import 'dart:async';
 import 'dart:io';
 
 // Flutter imports:
-import 'package:blinq/utils/smart_widgets/dialogs/permission_dialog/permission_dialog.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:location/location.dart';
 import 'package:sprintf/sprintf.dart';
 
 // Project imports:
-import 'package:blinq/utils/smart_widgets/dialogs/blinq_activated/blinq_activated_dialog.dart';
-import 'package:blinq/utils/smart_widgets/dialogs/rename_device/rename_device_dialog.dart';
-import 'package:blinq/presentation/connect_to_blinq/logger/logger_cubit.dart';
-import 'package:blinq/utils/services/local_storage/shared_preferences.dart';
 import 'package:blinq/presentation/connect_to_blinq/cubit/constants.dart';
-import 'package:blinq/utils/services/permission/permission_service.dart';
-import 'package:blinq/utils/services/location/location_service.dart';
-import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/bluetooth_helper.dart';
+import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/services/local_storage/shared_preferences.dart';
+import 'package:blinq/utils/services/location/location_service.dart';
+import 'package:blinq/utils/services/permission/permission_service.dart';
+import 'package:blinq/utils/smart_widgets/dialogs/blinq_activated/blinq_activated_dialog.dart';
+import 'package:blinq/utils/smart_widgets/dialogs/permission_dialog/permission_dialog.dart';
+import 'package:blinq/utils/smart_widgets/dialogs/rename_device/rename_device_dialog.dart';
 
 part 'connect_to_blinq_cubit.freezed.dart';
 part 'connect_to_blinq_state.dart';
@@ -36,8 +35,6 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
 
   final BluetoothHelper _bluetoothHelper = BluetoothHelper();
 
-  final LoggerCubit loggerCubit = LoggerCubit();
-
   final flutterReactiveBle = FlutterReactiveBle();
   late QualifiedCharacteristic _readCharacteristic;
   late QualifiedCharacteristic _writeCharacteristic;
@@ -47,14 +44,8 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
 
   StreamSubscription<DiscoveredDevice>? _scanStream;
 
-  void checkBLEStatus() async {
-    final status = flutterReactiveBle.status;
-    loggerCubit.logMessage("BLEStatus $status");
-  }
-
-  void onNavigateBack() {
-    NavigationService.homeNavigatorKey.currentState?.pop();
-  }
+  void onNavigateBack() =>
+      NavigationService.homeNavigatorKey.currentState?.pop();
 
   Future<void> onRenameDevice(DiscoveredDevice device) async {
     await NavigationService.showDialog(
@@ -66,24 +57,16 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
 
   Future<void> findPreviouslyPairedDevices() async {
     final savedBleDevices = await LocalStorageService().getDevices;
-    // print("===> SAVED BLE DEVICES $savedBleDevices");
+
     /// saving all available devices from local db to our state
     emit(state.copyWith(savedBleDevices: List.of(savedBleDevices)));
   }
 
   Future<void> connectPreviousDevices() async {
-    loggerCubit.logMessage(
-        "Started in the initial step at ConnectPreviousDevice Function");
-
     /// Clearing board before connection
-    // bleClearPaired();
-
     await findPreviouslyPairedDevices();
-    loggerCubit.logMessage(
-        "After finding previously saved devices No of Devs ${state.savedBleDevices.length}");
 
-    /// If no saved devices are discovered, this function should stop moving
-    /// forward
+    /// If no saved devices are discovered, this function should stop moving forward
     if (state.savedBleDevices.isEmpty &&
         state.boardConnectionState != DeviceConnectionState.disconnected) {
       return;
@@ -91,10 +74,8 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
 
     if (Platform.isAndroid) {
       bool isAndroidPermissions = await checkPermissions();
-      loggerCubit.logMessage("Inside Android Permission Checking");
       if (isAndroidPermissions) _initializeScanningStream();
     } else {
-      loggerCubit.logMessage("Right before initializing scanning stream!");
       _initializeScanningStream();
     }
   }
@@ -108,23 +89,16 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
       _scanStream = null;
     }
 
-    loggerCubit.logMessage("After scanning emit has been triggered!");
     _scanStream = flutterReactiveBle.scanForDevices(
         scanMode: ScanMode.lowPower, withServices: [uuidService]).listen(
       _onDeviceFound,
-      onDone: () => loggerCubit.logMessage("Scanning Stopped Without Reason"),
-      onError: (Object error) {
-        loggerCubit.logMessage("ERROR while scanning:$error \n");
-
+      onError: (e) {
         emit(state.copyWith(scanning: false));
       },
     );
   }
 
   void _onDeviceFound(DiscoveredDevice device) async {
-    loggerCubit
-        .logMessage("Device Found Name:${device.name} and ID:${device.id}");
-
     List<DiscoveredDevice> previouslyScannedDevices = [
       ...state.scannedBleDevices
     ];
@@ -132,11 +106,7 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
     Iterable<DiscoveredDevice> isDeviceAlreadyScanned =
         previouslyScannedDevices.where((element) => element.id == device.id);
 
-    loggerCubit.logMessage(
-        "Is device already scanned? ${isDeviceAlreadyScanned.isEmpty}");
-
     if (isDeviceAlreadyScanned.isEmpty == true) {
-      loggerCubit.logMessage("Device Added to Scan List ${device.name}");
       previouslyScannedDevices.add(device);
       emit(state.copyWith(scannedBleDevices: [...previouslyScannedDevices]));
     }
@@ -193,11 +163,6 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
     if (state.boardConnectionState == DeviceConnectionState.disconnected) {
       restartScanning();
     }
-  }
-
-  Future<void> _resetBoardFunctionality() async {
-    // List<int> resetData = _coreBLEUtility.bleClearPaired();
-    // await sendData(resetData);
   }
 
   Future<void> unpairBoardFunctionality() async {
@@ -259,9 +224,7 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
             _writeCharacteristic =
                 _bluetoothHelper.getWriteCharacteristic(event.deviceId);
 
-            await _resetBoardFunctionality();
-
-            List<int> bleQueryData = await _bluetoothHelper.bleQueryPairState();
+            final bleQueryData = await _bluetoothHelper.bleQueryPairState();
             await sendData(bleQueryData);
             break;
 
@@ -403,12 +366,7 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
   void onNewReceivedData(List<int> data, DiscoveredDevice device) {
     debugPrint('====> On New Received Data');
     debugPrint("RESPONSE: $data");
-    String rev = "";
-    for (int i = 0; i < data.length; i++) {
-      rev += sprintf("%02x ", [data[i]]);
-    }
     List<String> receivedDataLocal = [...state.receivedData];
-    receivedDataLocal.add("${loggerCubit.state.numberOfMessages} BLE: $rev");
     emit(state.copyWith(receivedData: receivedDataLocal));
     debugPrint('Received Data Result: $receivedDataLocal');
     if (state.receivedData.length > 10) {
@@ -423,8 +381,6 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
   void disconnect(bool isUnpairing) async {
     debugPrint('====> Disconnect Called');
     await _connection.cancel();
-    loggerCubit
-        .logMessage("Disconnected from ${state.recentlyConnected?.name} \n");
 
     emit(state.copyWith(
       boardConnectionState: DeviceConnectionState.disconnected,

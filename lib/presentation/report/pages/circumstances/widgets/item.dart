@@ -1,5 +1,8 @@
-import 'package:blinq/presentation/report/pages/circumstances/bloc/circumstances_bloc.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:blinq/presentation/report/pages/circumstances/bloc/circumstances_bloc.dart';
 
 class CircumstanceItem extends StatelessWidget {
   final int index;

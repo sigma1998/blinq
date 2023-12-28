@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:blinq/presentation/inform_close_ones/bloc/inform_close_ones_bloc.dart';
 import 'package:blinq/presentation/contacts/pages/contacts/bloc/contacts_bloc.dart';
-import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
+import 'package:blinq/presentation/inform_close_ones/bloc/inform_close_ones_bloc.dart';
 import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
+import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/loading.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/inform_close_ones_event.dart';
 import 'widgets/item.dart';
 
@@ -31,7 +31,9 @@ class _InformCloseOnesScreenState extends State<InformCloseOnesScreen> {
 
   @override
   void initState() {
-    bloc = InformCloseOnesBloc(contactsBloc: context.read<ContactsBloc>());
+    bloc = InformCloseOnesBloc(
+      contactsBloc: context.read<ContactsBloc>(),
+    );
     bloc.add(OnLoadContacts());
     super.initState();
   }

@@ -1,6 +1,17 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:io';
 
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+
+// Package imports:
+import 'package:email_validator/email_validator.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+
+// Project imports:
 import 'package:blinq/core/network/dio_client.dart';
 import 'package:blinq/data/model/login/google_request/login_google_request.dart';
 import 'package:blinq/data/model/login/response/login_response_model.dart';

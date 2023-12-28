@@ -1,3 +1,4 @@
+// Project imports:
 import 'package:blinq/data/datasource/local/auth_local_db.dart';
 import 'package:blinq/data/datasource/remote/auth_api.dart';
 import 'package:blinq/data/model/login/google_request/login_google_request.dart';
@@ -15,8 +16,9 @@ abstract class AuthRepository {
 
   Future<SendEmailResponse> sendEmail(String mail);
 
-  Future<LoginResponseModel> register(
-      {required RegistrationRequestDto registrationRequestDto});
+  Future<LoginResponseModel> register({
+    required RegistrationRequestDto registrationRequestDto,
+  });
 
   Future<LoginResponseModel> loginWithApple(String token);
 
@@ -38,8 +40,10 @@ abstract class AuthRepository {
 
   Future<void> getVerificationCode(String mail);
 
-  Future<String> confirmMailVerification(
-      {required String mail, required String code});
+  Future<String> confirmMailVerification({
+    required String mail,
+    required String code,
+  });
 
   Future<void> resetPassword(String newPassword);
 
@@ -49,7 +53,8 @@ abstract class AuthRepository {
 }
 
 class AuthRepositoryImpl implements AuthRepository {
-  final AuthApi api; // сохранять отправлять,
+  //
+  final AuthApi api;
   final AuthLocalStorage localStorage;
 
   AuthRepositoryImpl({required this.api, required this.localStorage});
@@ -81,8 +86,9 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<LoginResponseModel> register(
-      {required RegistrationRequestDto registrationRequestDto}) async {
+  Future<LoginResponseModel> register({
+    required RegistrationRequestDto registrationRequestDto,
+  }) async {
     try {
       return await api.register(registrationRequestDto: registrationRequestDto);
     } catch (e) {

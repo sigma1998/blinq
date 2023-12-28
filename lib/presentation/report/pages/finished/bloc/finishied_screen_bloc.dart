@@ -1,3 +1,9 @@
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+// Project imports:
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
@@ -5,9 +11,6 @@ import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class FinishedScreenBloc extends Cubit<GenericBlocState<String>> {
   final AccidentRepository accidentRepository;
@@ -20,7 +23,7 @@ class FinishedScreenBloc extends Cubit<GenericBlocState<String>> {
   FinishedScreenBloc(
       {required this.reportBloc,
       required this.accidentRepository,
-        required this.profileBloc,
+      required this.profileBloc,
       required this.breakdownRepository})
       : super(const GenericBlocState<String>(status: Status.loading)) {
     _getPdf();
@@ -28,11 +31,10 @@ class FinishedScreenBloc extends Cubit<GenericBlocState<String>> {
 
   void _getPdf() async {
     try {
-
       final String pdf;
-      if(reportBloc.reportType == ReportType.accident){
+      if (reportBloc.reportType == ReportType.accident) {
         pdf = await accidentRepository.getPdf(reportBloc.reportId);
-      }else{
+      } else {
         pdf = await breakdownRepository.getPdf(reportBloc.reportId);
       }
 
@@ -42,6 +44,7 @@ class FinishedScreenBloc extends Cubit<GenericBlocState<String>> {
     }
   }
 
+  /// Launches the email application with [url] content.
   void onSendInsurance() async {
     emit(GenericBlocState(status: Status.loading, data: state.data));
     try {
@@ -52,12 +55,8 @@ class FinishedScreenBloc extends Cubit<GenericBlocState<String>> {
       final Uri emailLaunchUri = Uri(
         scheme: 'mailto',
         path: mail,
-        queryParameters: {
-          'subject': 'Damage report',
-          'body': state.data
-        },
+        queryParameters: {'subject': 'Damage report', 'body': state.data},
       );
-
 
       launchUrl(emailLaunchUri);
 
@@ -65,9 +64,7 @@ class FinishedScreenBloc extends Cubit<GenericBlocState<String>> {
       NavigationService.showToast(
           text: 'strSuccess'.tr(), title: 'strReportSent'.tr());
     } catch (e) {
-      NavigationService.showErrorToast(
-        'Can not send mail'
-      );
+      NavigationService.showErrorToast('Can not send mail');
       emit(GenericBlocState(status: Status.initial, data: state.data));
     }
   }

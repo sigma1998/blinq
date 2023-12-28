@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:blinq/utils/custom_widgets/loading.dart';
 import 'package:blinq/core/theme/app_colors.dart';
+import 'package:blinq/utils/custom_widgets/loading.dart';
 import 'default_ink_well.dart';
 
 class MyButton extends StatelessWidget {
@@ -117,6 +117,34 @@ class MyButton extends StatelessWidget {
     this.color,
   })  : enabledColor = AppColors.grey1,
         disabledColor = AppColors.grey1,
+        loaderColor = Colors.white;
+
+  const MyButton.tertiaryVarient({
+    super.key,
+    required this.label,
+    required this.onTap,
+    this.labelStyle = const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+    ),
+    this.onLongPress,
+    //
+    this.iconLeft,
+    this.iconRight,
+    //
+    this.padding = const EdgeInsets.symmetric(
+      vertical: 12,
+      horizontal: 32,
+    ),
+    this.margin = EdgeInsets.zero,
+    //
+    this.isLoading = false,
+    this.enable = true,
+    //
+    this.width,
+    this.color,
+  })  : enabledColor = AppColors.darkGrey,
+        disabledColor = AppColors.darkGrey,
         loaderColor = Colors.white;
 
   //

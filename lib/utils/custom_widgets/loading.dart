@@ -1,5 +1,7 @@
+// Dart imports:
 import 'dart:io';
 
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +20,7 @@ class Loading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Platform.isIOS
-          ? CupertinoActivityIndicator(color: color,)
+          ? CupertinoActivityIndicator(color: color)
           : CircularProgressIndicator(color: color),
     );
   }

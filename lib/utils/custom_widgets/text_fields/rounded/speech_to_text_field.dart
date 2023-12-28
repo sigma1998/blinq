@@ -1,18 +1,22 @@
 // Flutter imports:
-import 'package:avatar_glow/avatar_glow.dart';
+
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:blinq/utils/custom_widgets/loading.dart';
+import 'package:blinq/utils/custom_widgets/wave.dart';
 
 class SpeechToTextField extends StatelessWidget {
   //
   final String? labelText;
 
   final bool isRecording;
+  final double? soundLevel;
   final void Function() toggleRecording;
 
   final TextEditingController? controller;
+  final ScrollController? scrollController;
 
   final TextStyle? labelTextstyle;
   final TextStyle? inputTextstyle;
@@ -38,7 +42,10 @@ class SpeechToTextField extends StatelessWidget {
     //
     required this.isRecording,
     required this.toggleRecording,
+    this.soundLevel,
+    //
     this.controller,
+    this.scrollController,
     //
     this.labelTextstyle = const TextStyle(
       fontSize: 30,
@@ -110,6 +117,7 @@ class SpeechToTextField extends StatelessWidget {
           child: Column(
             children: [
               TextFormField(
+                scrollController: scrollController,
                 controller: controller,
                 //
                 focusNode: focusNode,
@@ -154,27 +162,10 @@ class SpeechToTextField extends StatelessWidget {
                   ),
                 ),
               ),
-              AvatarGlow(
-                repeat: true,
-                endRadius: 75.0,
+              WaveWidget(
                 animate: isRecording,
-                duration: const Duration(seconds: 2),
-                curve: Curves.fastEaseInToSlowEaseOut,
-                glowColor: Theme.of(context).colorScheme.onSecondary,
-                repeatPauseDuration: const Duration(milliseconds: 100),
-                child: SizedBox(
-                  width: 76,
-                  height: 76,
-                  child: FloatingActionButton(
-                    onPressed: toggleRecording,
-                    backgroundColor: Theme.of(context).colorScheme.onSecondary,
-                    child: Icon(
-                      isRecording ? Icons.mic : Icons.mic_none,
-                      size: 48,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+                scale: soundLevel ?? 0,
+                onPressed: toggleRecording,
               ),
             ],
           ),

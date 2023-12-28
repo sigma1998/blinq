@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:blinq/utils/custom_widgets/dialogs/default_dialog.dart';
 import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
+import 'package:blinq/utils/custom_widgets/dialogs/default_dialog.dart';
 
 class VehicleTypeDialog extends StatelessWidget {
   //

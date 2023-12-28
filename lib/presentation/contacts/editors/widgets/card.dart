@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:blinq/utils/custom_widgets/info_container.dart';
-
 import 'action_buttons.dart';
 
 class EditCard extends StatelessWidget {

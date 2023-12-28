@@ -1,24 +1,24 @@
-// Package imports:
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
-import 'package:blinq/presentation/report/second_driver_editors/screens/insurance_company/insurance_company_screen.dart';
-import 'package:blinq/utils/smart_widgets/dialogs/vehicle_type_dialog/vehicle_type_dialog.dart';
 import 'package:blinq/data/model/second_driver/car/request/second_driver_car_request_model.dart';
-import 'package:blinq/utils/custom_widgets/dialogs/default_dialog.dart';
-import 'package:blinq/utils/navigation_service.dart';
-import 'package:blinq/utils/smart_widgets/dialogs/countries_dialog/countries_dialog.dart';
 import 'package:blinq/data/model/vehicle_info/brand/vehicle_info_dto.dart';
 import 'package:blinq/data/model/vehicle_info/color/vehicle_color_dto.dart';
-import 'package:blinq/domain/repositories/profile_repository.dart';
-import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/repositories/profile_repository.dart';
+import 'package:blinq/presentation/report/second_driver_editors/screens/insurance_company/insurance_company_screen.dart';
+import 'package:blinq/utils/custom_widgets/dialogs/default_dialog.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/smart_widgets/dialogs/countries_dialog/countries_dialog.dart';
+import 'package:blinq/utils/smart_widgets/dialogs/vehicle_type_dialog/vehicle_type_dialog.dart';
 
 part 'second_driver_car_state.dart';
 part 'second_driver_car_cubit.freezed.dart';
@@ -105,7 +105,6 @@ class SecondDriverCarCubit extends Cubit<SecondDriverCarState> {
   }
 
   //
-
   void onVehicleTypeTap() async {
     NavigationService.showDialog(dialog: const VehicleTypeDialog())!
         .then((type) {

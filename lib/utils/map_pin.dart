@@ -1,3 +1,4 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 class MapPicker extends StatefulWidget {
@@ -86,6 +87,12 @@ class MapPickerState extends State<MapPicker>
 
   void mapFinishedMoving() {
     animationController.reverse();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    animationController.dispose();
   }
 }
 

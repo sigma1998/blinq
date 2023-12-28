@@ -1,6 +1,11 @@
-import 'package:blinq/core/drawables/app_drawables.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:lottie/lottie.dart';
+
+// Project imports:
+import 'package:blinq/core/drawables/app_drawables.dart';
 
 class BlinqLoading extends StatelessWidget {
   //

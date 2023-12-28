@@ -1,11 +1,16 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+
+// Package imports:
 import 'package:in_date_utils/in_date_utils.dart';
 
+// Project imports:
 import 'speech_recognition_error.dart';
 import 'speech_recognition_result.dart';
 import 'speech_to_text_platform_interface.dart';

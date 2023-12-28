@@ -1,11 +1,17 @@
+// Dart imports:
 import 'dart:async';
-
-import 'package:blinq/data/model/map/map_models.dart';
-import 'package:flutter/foundation.dart';
-import 'package:geolocator/geolocator.dart' as geo;
-import 'package:location/location.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
+
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+
+// Package imports:
+import 'package:geolocator/geolocator.dart' as geo;
+import 'package:http/http.dart' as http;
+import 'package:location/location.dart';
+
+// Project imports:
+import 'package:blinq/data/model/map/map_models.dart';
 
 class LocationService {
   static PermissionStatus _locationPermission = PermissionStatus.granted;

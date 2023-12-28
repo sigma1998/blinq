@@ -1,3 +1,8 @@
+// Package imports:
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
+
+// Project imports:
 import 'package:blinq/core/network/custom_error.dart';
 import 'package:blinq/core/network/network_constants.dart';
 import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
@@ -19,10 +24,9 @@ import 'package:blinq/presentation/report/pages/speech_to_text/speech_to_text_sc
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/services/location/location_service.dart';
 import 'package:blinq/utils/smart_widgets/dialogs/unifnished_report_dialog/unfinished_report_dialog.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart';
 
 class ReportBloc extends Cubit<ReportState> {
+  //
   final AccidentRepository accidentRepository;
   final BreakdownRepository breakdownRepository;
   final ProfileBloc profileBloc;
@@ -31,26 +35,29 @@ class ReportBloc extends Cubit<ReportState> {
 
   int _reportId = 0;
 
-  ReportBloc({required this.accidentRepository,
+  ReportBloc({
+    required this.accidentRepository,
     required this.breakdownRepository,
-    required this.profileBloc})
-      : super(const ReportState());
+    required this.profileBloc,
+  }) : super(const ReportState());
 
+  //
+  ReportType get reportType => _reportType;
   setReportType(ReportType type) => _reportType = type;
 
-  ReportType get reportType => _reportType;
-
+  int get reportId => _reportId;
   setReportId(int reportId) => _reportId = reportId;
 
-  int get reportId => _reportId;
+  //
+  VehicleType get aDriverVehicleType =>
+      profileBloc.vehicleType ?? VehicleType.auto;
 
+  //
   setUser(User user) {
     emit(state.copyWith(user: user));
   }
 
-  VehicleType get aDriverVehicleType =>
-      profileBloc.vehicleType ?? VehicleType.auto;
-
+  //
   Future<RouteAndArgs?> onCreateReport() async {
     final position = await LocationService.determinePosition();
 
@@ -67,8 +74,10 @@ class ReportBloc extends Cubit<ReportState> {
     }
   }
 
-  Future<RouteAndArgs?> getReportStep(int accidentId,
-      ReportType reportType) async {
+  Future<RouteAndArgs?> getReportStep(
+    int accidentId,
+    ReportType reportType,
+  ) async {
     setReportId(accidentId);
 
     final String res;
@@ -78,19 +87,13 @@ class ReportBloc extends Cubit<ReportState> {
       res = await breakdownRepository.getBreakdownStep(reportId);
     }
 
-    if (res
-        .split('/')
-        .first == 'adriver') {
+    if (res.split('/').first == 'adriver') {
       setUser(User.A);
     }
-    if (res
-        .split('/')
-        .first == 'bdriver') {
+    if (res.split('/').first == 'bdriver') {
       setUser(User.B);
     }
-    if (res
-        .split('/')
-        .first == 'breakdown') {
+    if (res.split('/').first == 'breakdown') {
       setReportType(ReportType.breakdown);
     }
 
@@ -130,7 +133,7 @@ class ReportBloc extends Cubit<ReportState> {
           args: DamagedPartsScreenArgs(vehicleType: aDriverVehicleType));
     } else if (step == NetworkConstants.damagePointsB(reportId)) {
       final vehicleType =
-      await accidentRepository.getSecondDriverVehicleType(reportId);
+          await accidentRepository.getSecondDriverVehicleType(reportId);
       return RouteAndArgs(
           route: DamagedPartsScreen.route,
           args: DamagedPartsScreenArgs(vehicleType: vehicleType));
@@ -162,6 +165,10 @@ class ReportBloc extends Cubit<ReportState> {
     return RouteAndArgs(route: LocationInfoScreen.route);
   }
 
+  ///
+  /// Create Report
+  ///
+
   Future<RouteAndArgs?> _createAccident(Position position) async {
     try {
       setUser(User.A);
@@ -175,17 +182,19 @@ class ReportBloc extends Cubit<ReportState> {
 
         final bool? res = await NavigationService.showDialog(
             dialog: UnfinishedReportDialog(
-              dateTime: e.createdAt,
-            ));
+          dateTime: e.createdAt,
+        ));
 
         if (res == null) {
           return RouteAndArgs(route: '');
         }
 
         if (res) {
-          return await getReportStep(e.id,
-              e.reportType == 'breakdown' ? ReportType.breakdown : ReportType
-                  .accident);
+          return await getReportStep(
+              e.id,
+              e.reportType == 'breakdown'
+                  ? ReportType.breakdown
+                  : ReportType.accident);
         } else {
           if (e.reportType == 'breakdown') {
             await breakdownRepository.deactivateBreakdown(e.id);
@@ -212,18 +221,22 @@ class ReportBloc extends Cubit<ReportState> {
 
         final bool? res = await NavigationService.showDialog(
             dialog: UnfinishedReportDialog(
-              dateTime: e.createdAt,
-            ));
+          dateTime: e.createdAt,
+        ));
 
         if (res == null) {
           return RouteAndArgs(route: '');
         }
 
         if (res) {
-          setReportType(e.reportType == 'breakdown' ? ReportType.breakdown : ReportType.accident);
-          return await getReportStep(e.id,
-              e.reportType == 'breakdown' ? ReportType.breakdown : ReportType
-                  .accident);
+          setReportType(e.reportType == 'breakdown'
+              ? ReportType.breakdown
+              : ReportType.accident);
+          return await getReportStep(
+              e.id,
+              e.reportType == 'breakdown'
+                  ? ReportType.breakdown
+                  : ReportType.accident);
         } else {
           if (e.reportType == 'breakdown') {
             await breakdownRepository.deactivateBreakdown(e.id);

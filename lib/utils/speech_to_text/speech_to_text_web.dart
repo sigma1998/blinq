@@ -1,11 +1,14 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:convert';
 import 'dart:html' as html;
 import 'dart:js_util' as js_util;
 import 'dart:math';
 
+// Package imports:
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
+// Project imports:
 import 'balanced_alternates.dart';
 import 'speech_recognition_error.dart';
 import 'speech_recognition_result.dart';

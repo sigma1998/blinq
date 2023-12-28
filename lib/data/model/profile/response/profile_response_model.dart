@@ -7,8 +7,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:blinq/data/model/car/response/car_response_model.dart';
 import 'package:blinq/data/model/insurance/response/insurance_response_model.dart';
 import 'package:blinq/data/model/policy_holder/response/policy_holder_response_model.dart';
-import 'package:blinq/data/model/vehicle/response/vehicle_response_model.dart';
 import 'package:blinq/data/model/profile/driver_license/driver_license_type.dart';
+import 'package:blinq/data/model/vehicle/response/vehicle_response_model.dart';
 
 part 'profile_response_model.freezed.dart';
 part 'profile_response_model.g.dart';

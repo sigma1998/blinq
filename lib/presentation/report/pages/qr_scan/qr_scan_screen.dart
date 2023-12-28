@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:io';
 
 // Flutter imports:
-import 'package:blinq/presentation/report/pages/second_driver/second_driver_screen.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -11,6 +10,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 // Project imports:
+import 'package:blinq/presentation/report/pages/second_driver/second_driver_screen.dart';
 import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/navigation_service.dart';
 

@@ -1,5 +1,7 @@
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+// Project imports:
 import 'brand/vehicle_info_dto.dart';
 
 part 'brand_response.freezed.dart';

@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_svg/svg.dart';
 
 // Project imports:
+import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/core/theme/app_colors.dart';
 import 'package:blinq/data/model/history/history_item/history_item_dto.dart';
 import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/expanded_section.dart';
 import 'package:blinq/utils/custom_widgets/info_container.dart';
-import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/utils/general_functions.dart';
-import 'package:blinq/core/theme/app_colors.dart';
-import 'package:flutter_svg/svg.dart';
 
 class ProfileReportItem extends StatefulWidget {
   //

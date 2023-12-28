@@ -8,9 +8,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // Project imports:
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/custom_widgets/tab_bar.dart';
-import 'widgets/views/profile/profile_view.dart';
-import 'widgets/views/settings/settings_view.dart';
 import 'bloc/profile_event.dart';
+import 'widgets/pages/profile/profile_page.dart';
+import 'widgets/pages/settings/settings_page.dart';
 
 class ProfileScreen extends StatefulWidget {
   //
@@ -61,8 +61,8 @@ class _ProfileScreenState extends State<ProfileScreen>
               controller: _tabController,
               physics: const NeverScrollableScrollPhysics(),
               children: const [
-                ProfileView(),
-                SettingsView(),
+                ProfilePage(),
+                SettingsPage(),
               ],
             ),
           ),

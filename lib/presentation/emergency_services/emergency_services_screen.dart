@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:blinq/utils/url_helper.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -10,6 +9,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
 import 'package:blinq/utils/custom_widgets/info_container.dart';
+import 'package:blinq/utils/url_helper.dart';
 import 'widgets/item.dart';
 
 class EmergencyServicesScreen extends StatelessWidget {

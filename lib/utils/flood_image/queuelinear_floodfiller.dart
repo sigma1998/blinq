@@ -3,9 +3,12 @@
 //Android port by Darrin Smith (Standard Android)
 //Flutter port by Garlen Javier
 
+// Dart imports:
 import 'dart:async';
 import 'dart:collection';
 import 'dart:ui';
+
+// Package imports:
 import 'package:image/image.dart' as img;
 
 class QueueLinearFloodFiller {
@@ -28,8 +31,10 @@ class QueueLinearFloodFiller {
   }
 
   void resize(Size size) {
-    if (_cachedWidth != size.width.toInt() || _cachedHeight != size.height.toInt()) {
-      image = img.copyResize(image!, width: size.width.toInt(), height: size.height.toInt());
+    if (_cachedWidth != size.width.toInt() ||
+        _cachedHeight != size.height.toInt()) {
+      image = img.copyResize(image!,
+          width: size.width.toInt(), height: size.height.toInt());
       _width = image!.width;
       _height = image!.height;
       _cachedWidth = _width;
@@ -204,7 +209,7 @@ class QueueLinearFloodFiller {
 class _FloodFillRange {
   int startX = -1;
   int endX = -1;
-  int y = - 1;
+  int y = -1;
 
   _FloodFillRange(int startX, int endX, int yPos) {
     this.startX = startX;

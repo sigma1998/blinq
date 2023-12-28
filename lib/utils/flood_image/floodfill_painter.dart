@@ -1,10 +1,15 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:ui' as ui;
 
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// Package imports:
 import 'package:image/image.dart' as img;
 
+// Project imports:
 import 'queuelinear_floodfiller.dart';
 
 class FloodFillPainter extends CustomPainter {

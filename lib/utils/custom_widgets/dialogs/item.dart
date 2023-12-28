@@ -1,8 +1,8 @@
 // Flutter imports:
-import 'package:blinq/utils/custom_widgets/buttons/default_ink_well.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
+import 'package:blinq/utils/custom_widgets/buttons/default_ink_well.dart';
 import 'package:blinq/utils/navigation_service.dart';
 
 class DialogItem extends StatelessWidget {

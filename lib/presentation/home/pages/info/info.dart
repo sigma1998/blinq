@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
+import 'package:blinq/app/routes.dart';
 import 'package:blinq/presentation/home/pages/info/info_screen.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:blinq/app/routes.dart';
 
 class HomeInfo extends StatelessWidget {
   //

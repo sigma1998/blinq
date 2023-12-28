@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 // Project imports:
+import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/data/model/premade_message/response/premade_message_response_model.dart';
 import 'package:blinq/utils/custom_widgets/expanded_section.dart';
 import 'package:blinq/utils/custom_widgets/info_container.dart';
-import 'package:blinq/core/drawables/app_drawables.dart';
 
 class PremadeMessageItem extends StatefulWidget {
   //

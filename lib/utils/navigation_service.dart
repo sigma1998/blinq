@@ -1,11 +1,15 @@
-import 'package:another_flushbar/flushbar.dart';
-import 'package:blinq/app.dart';
-import 'package:blinq/core/theme/app_colors.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as material;
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:another_flushbar/flushbar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+// Project imports:
+import 'package:blinq/app.dart';
+import 'package:blinq/core/theme/app_colors.dart';
 import 'custom_widgets/cupertino_action/cupertino_action_sheet.dart';
 
 class NavigationService {

@@ -10,11 +10,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'package:blinq/data/model/vehicle/request/vehicle_request_model.dart';
+import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/presentation/profile/bloc/profile_event.dart';
-import 'package:blinq/domain/repositories/profile_repository.dart';
-import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:blinq/utils/navigation_service.dart';
 import 'my_vehicle_editor_event.dart';
 
 part 'my_vehicle_editor_state.dart';

@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SpeechToTextState {
   Status get status => throw _privateConstructorUsedError;
   bool get isRecording => throw _privateConstructorUsedError;
+  double? get soundLevel => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +32,8 @@ abstract class $SpeechToTextStateCopyWith<$Res> {
           SpeechToTextState value, $Res Function(SpeechToTextState) then) =
       _$SpeechToTextStateCopyWithImpl<$Res, SpeechToTextState>;
   @useResult
-  $Res call({Status status, bool isRecording, Error? error});
+  $Res call(
+      {Status status, bool isRecording, double? soundLevel, Error? error});
 }
 
 /// @nodoc
@@ -49,6 +51,7 @@ class _$SpeechToTextStateCopyWithImpl<$Res, $Val extends SpeechToTextState>
   $Res call({
     Object? status = null,
     Object? isRecording = null,
+    Object? soundLevel = freezed,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -60,6 +63,10 @@ class _$SpeechToTextStateCopyWithImpl<$Res, $Val extends SpeechToTextState>
           ? _value.isRecording
           : isRecording // ignore: cast_nullable_to_non_nullable
               as bool,
+      soundLevel: freezed == soundLevel
+          ? _value.soundLevel
+          : soundLevel // ignore: cast_nullable_to_non_nullable
+              as double?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -76,7 +83,8 @@ abstract class _$$SpeechToTextStateImplCopyWith<$Res>
       __$$SpeechToTextStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Status status, bool isRecording, Error? error});
+  $Res call(
+      {Status status, bool isRecording, double? soundLevel, Error? error});
 }
 
 /// @nodoc
@@ -92,6 +100,7 @@ class __$$SpeechToTextStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? isRecording = null,
+    Object? soundLevel = freezed,
     Object? error = freezed,
   }) {
     return _then(_$SpeechToTextStateImpl(
@@ -103,6 +112,10 @@ class __$$SpeechToTextStateImplCopyWithImpl<$Res>
           ? _value.isRecording
           : isRecording // ignore: cast_nullable_to_non_nullable
               as bool,
+      soundLevel: freezed == soundLevel
+          ? _value.soundLevel
+          : soundLevel // ignore: cast_nullable_to_non_nullable
+              as double?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -115,7 +128,10 @@ class __$$SpeechToTextStateImplCopyWithImpl<$Res>
 
 class _$SpeechToTextStateImpl implements _SpeechToTextState {
   const _$SpeechToTextStateImpl(
-      {this.status = Status.initial, this.isRecording = false, this.error});
+      {this.status = Status.initial,
+      this.isRecording = false,
+      this.soundLevel,
+      this.error});
 
   @override
   @JsonKey()
@@ -124,11 +140,13 @@ class _$SpeechToTextStateImpl implements _SpeechToTextState {
   @JsonKey()
   final bool isRecording;
   @override
+  final double? soundLevel;
+  @override
   final Error? error;
 
   @override
   String toString() {
-    return 'SpeechToTextState(status: $status, isRecording: $isRecording, error: $error)';
+    return 'SpeechToTextState(status: $status, isRecording: $isRecording, soundLevel: $soundLevel, error: $error)';
   }
 
   @override
@@ -139,11 +157,14 @@ class _$SpeechToTextStateImpl implements _SpeechToTextState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.isRecording, isRecording) ||
                 other.isRecording == isRecording) &&
+            (identical(other.soundLevel, soundLevel) ||
+                other.soundLevel == soundLevel) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, isRecording, error);
+  int get hashCode =>
+      Object.hash(runtimeType, status, isRecording, soundLevel, error);
 
   @JsonKey(ignore: true)
   @override
@@ -157,12 +178,15 @@ abstract class _SpeechToTextState implements SpeechToTextState {
   const factory _SpeechToTextState(
       {final Status status,
       final bool isRecording,
+      final double? soundLevel,
       final Error? error}) = _$SpeechToTextStateImpl;
 
   @override
   Status get status;
   @override
   bool get isRecording;
+  @override
+  double? get soundLevel;
   @override
   Error? get error;
   @override

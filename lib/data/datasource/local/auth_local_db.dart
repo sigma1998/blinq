@@ -1,6 +1,8 @@
-import 'package:blinq/data/model/user/user_status.dart';
+// Package imports:
 import 'package:hive/hive.dart';
 
+// Project imports:
+import 'package:blinq/data/model/user/user_status.dart';
 import 'storage_constants.dart';
 
 abstract class AuthLocalStorage {

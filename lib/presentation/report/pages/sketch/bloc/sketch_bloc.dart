@@ -1,3 +1,12 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:dio/dio.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_painter_v2/flutter_painter.dart';
+
+// Project imports:
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
@@ -5,22 +14,17 @@ import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/screenshot_util.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_painter_v2/flutter_painter.dart';
 
 class SketchBloc extends Cubit<GenericBlocState<bool>> {
   final AccidentRepository accidentRepository;
   final BreakdownRepository breakdownRepository;
   final ReportBloc reportBloc;
 
-  SketchBloc(
-      {required this.reportBloc,
-      required this.accidentRepository,
-      required this.breakdownRepository})
-      : super(
-            const GenericBlocState<bool>(status: Status.initial, data: true)) {
+  SketchBloc({
+    required this.reportBloc,
+    required this.accidentRepository,
+    required this.breakdownRepository,
+  }) : super(const GenericBlocState<bool>(status: Status.initial, data: true)) {
     onInit();
   }
 

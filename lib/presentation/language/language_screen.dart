@@ -6,12 +6,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
+import 'package:blinq/app/locator.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/presentation/language/bloc/language_event.dart';
 import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:blinq/app/locator.dart';
 import 'bloc/language_bloc.dart';
 import 'widgets/item.dart';
 

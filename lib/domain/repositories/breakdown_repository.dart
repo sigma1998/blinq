@@ -1,7 +1,10 @@
+// Package imports:
+import 'package:dio/dio.dart';
+
+// Project imports:
 import 'package:blinq/data/datasource/remote/breakdown_api.dart';
 import 'package:blinq/data/model/report/injury/injury.dart';
 import 'package:blinq/data/model/report/report_time_and_location/report_time_and_location.dart';
-import 'package:dio/dio.dart';
 
 abstract class BreakdownRepository {
   Future<int> createBreakdown(String long, String lat);

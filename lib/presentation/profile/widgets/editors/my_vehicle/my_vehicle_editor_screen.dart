@@ -6,17 +6,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:blinq/utils/custom_widgets/text_fields/date_picker_text_field.dart';
-import 'package:blinq/utils/custom_widgets/text_fields/number_text_field.dart';
-import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
-import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
+import 'package:blinq/app/locator.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
+import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
+import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
+import 'package:blinq/utils/custom_widgets/text_fields/date_picker_text_field.dart';
+import 'package:blinq/utils/custom_widgets/text_fields/number_text_field.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
-import 'bloc/my_vehicle_editor_event.dart';
 import 'bloc/my_vehicle_editor_bloc.dart';
-import 'package:blinq/app/locator.dart';
+import 'bloc/my_vehicle_editor_event.dart';
 
 class MyVehicleEditorScreen extends StatefulWidget {
   //

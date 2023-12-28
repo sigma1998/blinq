@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
+import 'package:lottie/lottie.dart';
 
 // Project imports:
+import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/info_container.dart';
-import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:lottie/lottie.dart';
 
 class FileUploadedSuccessfullyDialog extends StatelessWidget {
   //

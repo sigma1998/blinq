@@ -1,15 +1,15 @@
 // Package imports:
-import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
-import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
+import 'package:blinq/data/model/report/injury/injury.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
+import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/repositories/breakdown_repository.dart';
+import 'package:blinq/presentation/report/pages/injury/cubit/injury_screen_state.dart';
 import 'package:blinq/presentation/report/pages/speech_to_text/bloc/speech_to_text_screen_mode.dart';
 import 'package:blinq/presentation/report/pages/speech_to_text/speech_to_text_screen.dart';
-import 'package:blinq/presentation/report/pages/injury/cubit/injury_screen_state.dart';
-import 'package:blinq/domain/repositories/accident_repository.dart';
-import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
-import 'package:blinq/data/model/report/injury/injury.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 
