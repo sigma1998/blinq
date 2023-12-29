@@ -1,10 +1,14 @@
+// Dart imports:
 import 'dart:async';
 
+// Package imports:
+import 'package:firebase_messaging/firebase_messaging.dart';
+
+// Project imports:
 import 'package:blinq/data/model/notification/request_notification.dart';
 import 'package:blinq/data/model/notification/response_notification.dart';
 import 'package:blinq/presentation/notification_dialog/notification_dialog.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 
 class NotificationService {
   NotificationService() {
