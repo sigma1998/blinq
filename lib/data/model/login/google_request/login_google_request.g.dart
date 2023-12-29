@@ -12,6 +12,8 @@ _$LoginGoogleRequestImpl _$$LoginGoogleRequestImplFromJson(
       email: json['email'] as String,
       displayName: json['displayName'] as String,
       id: json['id'] as String,
+      fcmToken: json['fcm_token'] as String,
+      deviceType: json['device_type'] as String,
     );
 
 Map<String, dynamic> _$$LoginGoogleRequestImplToJson(
@@ -20,4 +22,6 @@ Map<String, dynamic> _$$LoginGoogleRequestImplToJson(
       'email': instance.email,
       'displayName': instance.displayName,
       'id': instance.id,
+      'fcm_token': instance.fcmToken,
+      'device_type': instance.deviceType,
     };

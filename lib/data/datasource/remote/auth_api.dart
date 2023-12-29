@@ -18,7 +18,10 @@ abstract class AuthApi {
 
   Future<SendEmailResponse> sendEmail(String mail);
 
-  Future<LoginResponseModel> loginWithApple(String token);
+  Future<LoginResponseModel> loginWithApple(
+      {required String token,
+      required String deviceType,
+      required String fcmToken});
 
   Future<LoginResponseModel> loginWithGoogle(LoginGoogleRequest request);
 
@@ -87,10 +90,16 @@ class AuthApiImpl implements AuthApi {
   }
 
   @override
-  Future<LoginResponseModel> loginWithApple(String token) async {
+  Future<LoginResponseModel> loginWithApple(
+      {required String token,
+      required String deviceType,
+      required String fcmToken}) async {
     try {
-      final res =
-          await api.post(NetworkConstants.loginApple, data: {'token': token});
+      final res = await api.post(NetworkConstants.loginApple, data: {
+        'token': token,
+        'fcm_token': fcmToken,
+        'device_type': deviceType
+      });
 
       return LoginResponseModel.fromJson(res);
     } catch (e) {

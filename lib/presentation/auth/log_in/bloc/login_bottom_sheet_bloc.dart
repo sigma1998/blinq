@@ -23,11 +23,6 @@ import 'package:blinq/presentation/success_video/success_video_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/services/notification/notification_service.dart';
-import 'package:email_validator/email_validator.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import 'login_bottom_sheet_event.dart';
 import 'login_bottom_sheet_state.dart';
@@ -86,9 +81,15 @@ class LoginBottomSheetBloc
       ],
     );
     if (credential.identityToken != null) {
+      await NotificationService.setupNotificationService();
+      final token = await NotificationService.getFcmToken();
+
       emit(state.copyWith(status: Status.loading));
-      final res =
-          await authRepository.loginWithApple(credential.identityToken!);
+      final res = await authRepository.loginWithApple(
+        token: credential.identityToken!,
+        fcmToken: token ?? '',
+        deviceType: Platform.isAndroid ? 'android' : 'ios',
+      );
       _saveData(res);
       emit(state.copyWith(status: Status.initial));
       NavigationService.newRootScreen(MainScreen.route);
@@ -104,11 +105,16 @@ class LoginBottomSheetBloc
           await googleUser?.authentication;
 
       if (googleAuth != null) {
+        await NotificationService.setupNotificationService();
+        final token = await NotificationService.getFcmToken();
+
         emit(state.copyWith(status: Status.loading));
         final model = LoginGoogleRequest(
           email: googleUser?.email ?? '',
           displayName: googleUser?.displayName ?? '',
           id: googleUser?.id ?? '',
+          fcmToken: token ?? '',
+          deviceType: Platform.isAndroid ? 'android' : 'ios',
         );
         final res = await authRepository.loginWithGoogle(model);
         _saveData(res);

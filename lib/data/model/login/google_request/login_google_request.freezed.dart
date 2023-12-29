@@ -23,6 +23,10 @@ mixin _$LoginGoogleRequest {
   String get email => throw _privateConstructorUsedError;
   String get displayName => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'fcm_token')
+  String get fcmToken => throw _privateConstructorUsedError;
+  @JsonKey(name: 'device_type')
+  String get deviceType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +40,12 @@ abstract class $LoginGoogleRequestCopyWith<$Res> {
           LoginGoogleRequest value, $Res Function(LoginGoogleRequest) then) =
       _$LoginGoogleRequestCopyWithImpl<$Res, LoginGoogleRequest>;
   @useResult
-  $Res call({String email, String displayName, String id});
+  $Res call(
+      {String email,
+      String displayName,
+      String id,
+      @JsonKey(name: 'fcm_token') String fcmToken,
+      @JsonKey(name: 'device_type') String deviceType});
 }
 
 /// @nodoc
@@ -55,6 +64,8 @@ class _$LoginGoogleRequestCopyWithImpl<$Res, $Val extends LoginGoogleRequest>
     Object? email = null,
     Object? displayName = null,
     Object? id = null,
+    Object? fcmToken = null,
+    Object? deviceType = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -69,6 +80,14 @@ class _$LoginGoogleRequestCopyWithImpl<$Res, $Val extends LoginGoogleRequest>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      fcmToken: null == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String,
+      deviceType: null == deviceType
+          ? _value.deviceType
+          : deviceType // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -81,7 +100,12 @@ abstract class _$$LoginGoogleRequestImplCopyWith<$Res>
       __$$LoginGoogleRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String displayName, String id});
+  $Res call(
+      {String email,
+      String displayName,
+      String id,
+      @JsonKey(name: 'fcm_token') String fcmToken,
+      @JsonKey(name: 'device_type') String deviceType});
 }
 
 /// @nodoc
@@ -98,6 +122,8 @@ class __$$LoginGoogleRequestImplCopyWithImpl<$Res>
     Object? email = null,
     Object? displayName = null,
     Object? id = null,
+    Object? fcmToken = null,
+    Object? deviceType = null,
   }) {
     return _then(_$LoginGoogleRequestImpl(
       email: null == email
@@ -112,6 +138,14 @@ class __$$LoginGoogleRequestImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      fcmToken: null == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String,
+      deviceType: null == deviceType
+          ? _value.deviceType
+          : deviceType // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -120,7 +154,11 @@ class __$$LoginGoogleRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$LoginGoogleRequestImpl implements _LoginGoogleRequest {
   const _$LoginGoogleRequestImpl(
-      {required this.email, required this.displayName, required this.id});
+      {required this.email,
+      required this.displayName,
+      required this.id,
+      @JsonKey(name: 'fcm_token') required this.fcmToken,
+      @JsonKey(name: 'device_type') required this.deviceType});
 
   factory _$LoginGoogleRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoginGoogleRequestImplFromJson(json);
@@ -131,10 +169,16 @@ class _$LoginGoogleRequestImpl implements _LoginGoogleRequest {
   final String displayName;
   @override
   final String id;
+  @override
+  @JsonKey(name: 'fcm_token')
+  final String fcmToken;
+  @override
+  @JsonKey(name: 'device_type')
+  final String deviceType;
 
   @override
   String toString() {
-    return 'LoginGoogleRequest(email: $email, displayName: $displayName, id: $id)';
+    return 'LoginGoogleRequest(email: $email, displayName: $displayName, id: $id, fcmToken: $fcmToken, deviceType: $deviceType)';
   }
 
   @override
@@ -145,12 +189,17 @@ class _$LoginGoogleRequestImpl implements _LoginGoogleRequest {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.displayName, displayName) ||
                 other.displayName == displayName) &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.fcmToken, fcmToken) ||
+                other.fcmToken == fcmToken) &&
+            (identical(other.deviceType, deviceType) ||
+                other.deviceType == deviceType));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, email, displayName, id);
+  int get hashCode =>
+      Object.hash(runtimeType, email, displayName, id, fcmToken, deviceType);
 
   @JsonKey(ignore: true)
   @override
@@ -169,9 +218,12 @@ class _$LoginGoogleRequestImpl implements _LoginGoogleRequest {
 
 abstract class _LoginGoogleRequest implements LoginGoogleRequest {
   const factory _LoginGoogleRequest(
-      {required final String email,
-      required final String displayName,
-      required final String id}) = _$LoginGoogleRequestImpl;
+          {required final String email,
+          required final String displayName,
+          required final String id,
+          @JsonKey(name: 'fcm_token') required final String fcmToken,
+          @JsonKey(name: 'device_type') required final String deviceType}) =
+      _$LoginGoogleRequestImpl;
 
   factory _LoginGoogleRequest.fromJson(Map<String, dynamic> json) =
       _$LoginGoogleRequestImpl.fromJson;
@@ -182,6 +234,12 @@ abstract class _LoginGoogleRequest implements LoginGoogleRequest {
   String get displayName;
   @override
   String get id;
+  @override
+  @JsonKey(name: 'fcm_token')
+  String get fcmToken;
+  @override
+  @JsonKey(name: 'device_type')
+  String get deviceType;
   @override
   @JsonKey(ignore: true)
   _$$LoginGoogleRequestImplCopyWith<_$LoginGoogleRequestImpl> get copyWith =>
