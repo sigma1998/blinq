@@ -139,16 +139,15 @@ void main() {
     test('loginWithApple calls api.loginWithApple with correct parameters',
         () async {
       // Arrange
-
       when(mockAuthApi.loginWithApple(
-        token: any,
-        deviceType: any,
-        fcmToken: any,
+        token: token,
+        deviceType: deviceType,
+        fcmToken: fcmToken,
       )).thenAnswer((_) async => loginResponseModel);
 
       // Act
       await authRepository.loginWithApple(
-        token: 'mockAppleIdToken',
+        token: token,
         deviceType: deviceType,
         fcmToken: fcmToken,
       );

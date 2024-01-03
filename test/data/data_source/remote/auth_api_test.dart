@@ -24,6 +24,8 @@ void main() {
   const code = 'test';
 
   const token = '123';
+  const fcmToken = 'test';
+  const deviceType = 'ios';
   const refresh = 'test';
 
   const mockResponse = LoginResponseModel(refresh: '', access: '');
@@ -39,7 +41,9 @@ void main() {
   const googleRequest = LoginGoogleRequest(
     email: 'test',
     displayName: 'test test',
-    id: 'test', fcmToken: '', deviceType: '',
+    id: 'test',
+    fcmToken: '',
+    deviceType: '',
   );
 
   const emailResponse = SendEmailResponse(
@@ -150,12 +154,20 @@ void main() {
           .thenAnswer((_) async => mockResponse.toJson());
 
       // Act
-      await authApiImpl.loginWithApple( token: '', deviceType: '', fcmToken: '');
+      await authApiImpl.loginWithApple(
+        token: token,
+        deviceType: deviceType,
+        fcmToken: fcmToken,
+      );
 
       // Assert
       verify(mockApiService.post(
         NetworkConstants.loginApple,
-        data: {'token': token},
+        data: {
+          'token': token,
+          'device_type': deviceType,
+          'fcm_token': fcmToken,
+        },
       ));
     });
   });
