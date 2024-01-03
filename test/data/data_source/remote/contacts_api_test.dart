@@ -16,6 +16,8 @@ void main() {
   late MockAppApi mockApiService;
   late ContactsApiImpl contactsApiImpl;
 
+  const id = 1;
+
   const mockRequest = ContactRequestModel(
     firstName: 'John',
     lastName: 'Doe',
@@ -62,12 +64,14 @@ void main() {
           .thenAnswer((_) async => mockResponse.toJson());
 
       // Act
-      await contactsApiImpl.add(contact: mockRequest);
+      await contactsApiImpl.add(
+        contact: mockRequest,
+      );
 
       // Assert
       verify(mockApiService.post(
         NetworkConstants.contact,
-        data: anyNamed('data'), //TODO: pass formData along with file
+        data: anyNamed('data'),
       ));
     });
 
@@ -77,12 +81,12 @@ void main() {
           .thenAnswer((_) async => mockResponse.toJson());
 
       // Act
-      await contactsApiImpl.update(id: 1, contact: mockRequest);
+      await contactsApiImpl.update(id: id, contact: mockRequest);
 
       // Assert
       verify(mockApiService.put(
         NetworkConstants.editContact(1),
-        data: anyNamed('data'), //TODO: pass formData along with file
+        data: anyNamed('data'),
       ));
     });
 
@@ -91,7 +95,7 @@ void main() {
       when(mockApiService.delete(any)).thenAnswer((_) async => {});
 
       // Act
-      await contactsApiImpl.delete(1);
+      await contactsApiImpl.delete(id);
 
       // Assert
       verify(mockApiService.delete(NetworkConstants.editContact(1)));
