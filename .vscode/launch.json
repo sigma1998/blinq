@@ -22,5 +22,12 @@
             "type": "dart",
             "flutterMode": "release"
         },
+        {
+            "name": "All Tests",
+            "type": "dart",
+            "request": "launch",
+            "program": "test/",
+        }
+
     ]
 }

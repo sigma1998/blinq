@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'login_google_request.freezed.dart';
 part 'login_google_request.g.dart';
+
 @freezed
 class LoginGoogleRequest with _$LoginGoogleRequest {
   const factory LoginGoogleRequest({
@@ -11,7 +12,6 @@ class LoginGoogleRequest with _$LoginGoogleRequest {
     required String id,
     @JsonKey(name: 'fcm_token') required String fcmToken,
     @JsonKey(name: 'device_type') required String deviceType,
-
   }) = _LoginGoogleRequest;
 
   factory LoginGoogleRequest.fromJson(Map<String, dynamic> json) =>
