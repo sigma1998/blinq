@@ -21,19 +21,27 @@ class QrDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final profileBloc = context.read<ProfileBloc>();
 
+    bool qrVisible = (profileBloc.checkAccountResponse?.account == true) &&
+        (profileBloc.checkAccountResponse?.car == true) &&
+        (profileBloc.checkAccountResponse?.insurance == true) &&
+        (profileBloc.checkAccountResponse?.policyHolder == true);
+
     return MyInfoContainer(
       padding: const EdgeInsets.all(36),
-      height: MediaQuery.of(context).size.height * 0.426,
+      // height: MediaQuery.of(context).size.height * 0.426,
       margin: const EdgeInsets.symmetric(horizontal: 51),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CachedNetworkImage(
-            width: 177,
-            height: 177,
-            placeholder: (context, url) => getPlaceholder(),
-            imageUrl: '${profileBloc.state.profile?.qrCode}',
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-          ),
+          qrVisible
+              ? CachedNetworkImage(
+                  width: 177,
+                  height: 177,
+                  placeholder: (context, url) => getPlaceholder(),
+                  imageUrl: '${profileBloc.state.profile?.qrCode}',
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                )
+              : Text('strPleaseFillProfileData'.tr()),
           const SizedBox(height: 40),
           MyButton.secondary(
             label: 'strClose'.tr(),

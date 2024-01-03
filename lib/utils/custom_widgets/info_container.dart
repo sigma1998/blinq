@@ -67,6 +67,7 @@ class MyInfoContainer extends StatelessWidget {
           Padding(
             padding: padding,
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 if (isEdit) ...[
                   const SizedBox(height: 4),

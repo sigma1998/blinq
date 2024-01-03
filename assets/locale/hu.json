@@ -756,7 +756,8 @@
   "strWantsToConnect": " jelentést szeretne kitölteni veled!",
   "strDoYouConfirm": "Megerősíti részvételét?",
   "strWaitingForRes": "Várakozás a részvételre...",
-  "strUserBDidNotConfirm": "B felhasználó nem erősítette meg részvételét"
+  "strUserBDidNotConfirm": "B felhasználó nem erősítette meg részvételét",
+  "strPleaseFillProfileData": "Kérjük, töltse ki profiladatait"
 
 }
 
