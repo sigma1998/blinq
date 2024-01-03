@@ -10,6 +10,8 @@ class LoginGoogleRequest with _$LoginGoogleRequest {
     required String email,
     required String displayName,
     required String id,
+    @JsonKey(name: 'fcm_token') required String fcmToken,
+    @JsonKey(name: 'device_type') required String deviceType,
   }) = _LoginGoogleRequest;
 
   factory LoginGoogleRequest.fromJson(Map<String, dynamic> json) =>

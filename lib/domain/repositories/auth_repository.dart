@@ -20,7 +20,10 @@ abstract class AuthRepository {
     required RegistrationRequestDto registrationRequestDto,
   });
 
-  Future<LoginResponseModel> loginWithApple(String token);
+  Future<LoginResponseModel> loginWithApple(
+      {required String token,
+      required String deviceType,
+      required String fcmToken});
 
   Future<LoginResponseModel> loginWithGoogle(LoginGoogleRequest request);
 
@@ -97,9 +100,13 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<LoginResponseModel> loginWithApple(String token) async {
+  Future<LoginResponseModel> loginWithApple(
+      {required String token,
+      required String deviceType,
+      required String fcmToken}) async {
     try {
-      return await api.loginWithApple(token);
+      return await api.loginWithApple(
+          token: token, fcmToken: fcmToken, deviceType: deviceType);
     } catch (e) {
       rethrow;
     }
