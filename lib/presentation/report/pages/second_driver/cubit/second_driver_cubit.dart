@@ -2,22 +2,19 @@
 import 'dart:async';
 
 // Package imports:
-import 'package:blinq/utils/services/notification/notification_service.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:blinq/presentation/report/pages/points_of_impact/points_of_impact_screen.dart';
 import 'package:blinq/data/model/profile/response/profile_response_model.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
-import 'package:blinq/presentation/report/pages/connect_to_driver/connect_to_driver_screen.dart';
 import 'package:blinq/presentation/report/pages/points_of_impact/points_of_impact_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/services/notification/notification_service.dart';
 
 part 'second_driver_cubit.freezed.dart';
 

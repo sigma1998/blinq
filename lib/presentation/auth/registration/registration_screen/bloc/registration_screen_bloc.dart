@@ -18,10 +18,6 @@ import 'package:blinq/presentation/success_video/success_video_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/services/notification/notification_service.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'registration_screen_event.dart';
 import 'registration_screen_state.dart';
 

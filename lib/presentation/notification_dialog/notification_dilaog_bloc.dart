@@ -1,7 +1,10 @@
+// Package imports:
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NotificationDialogBloc extends Cubit<GenericBlocState<bool>> {
 

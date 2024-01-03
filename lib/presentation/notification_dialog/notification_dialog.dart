@@ -1,3 +1,12 @@
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/data/model/notification/request_notification.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
@@ -5,10 +14,6 @@ import 'package:blinq/presentation/notification_dialog/notification_dilaog_bloc.
 import 'package:blinq/utils/custom_widgets/app_btn.dart';
 import 'package:blinq/utils/custom_widgets/default_image.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NotificationDialog extends StatefulWidget {
   final RequestNotificationDto requestNotificationDto;
