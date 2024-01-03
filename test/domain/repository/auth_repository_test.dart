@@ -27,7 +27,10 @@ void main() {
   const userStatus = UserStatus.signed;
 
   const token = 'mockToken';
+  const fcmToken = 'mockFcmToken';
   const refreshToken = 'mockRefreshToken';
+
+  const deviceType = 'ios';
 
   const sendEmailResponse = SendEmailResponse(
     success: true,
@@ -136,14 +139,26 @@ void main() {
     test('loginWithApple calls api.loginWithApple with correct parameters',
         () async {
       // Arrange
-      when(mockAuthApi.loginWithApple(any))
-          .thenAnswer((_) async => loginResponseModel);
+
+      when(mockAuthApi.loginWithApple(
+        token: any,
+        deviceType: any,
+        fcmToken: any,
+      )).thenAnswer((_) async => loginResponseModel);
 
       // Act
-      await authRepository.loginWithApple(token);
+      await authRepository.loginWithApple(
+        token: 'mockAppleIdToken',
+        deviceType: deviceType,
+        fcmToken: fcmToken,
+      );
 
       // Assert
-      verify(mockAuthApi.loginWithApple(token));
+      verify(mockAuthApi.loginWithApple(
+        token: token,
+        deviceType: deviceType,
+        fcmToken: fcmToken,
+      ));
     });
 
     test('loginWithGoogle calls api.loginWithGoogle with correct parameters',
@@ -153,6 +168,8 @@ void main() {
         id: 'mockGoogleIdToken',
         email: 'mockFcmToken',
         displayName: 'ios',
+        fcmToken: 'mockFcmToken',
+        deviceType: 'ios',
       );
 
       when(mockAuthApi.loginWithGoogle(any))

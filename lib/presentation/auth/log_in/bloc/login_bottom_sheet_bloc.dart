@@ -23,7 +23,6 @@ import 'package:blinq/presentation/success_video/success_video_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/services/notification/notification_service.dart';
-
 import 'login_bottom_sheet_event.dart';
 import 'login_bottom_sheet_state.dart';
 
