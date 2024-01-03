@@ -39,7 +39,7 @@ void main() {
   const googleRequest = LoginGoogleRequest(
     email: 'test',
     displayName: 'test test',
-    id: 'test',
+    id: 'test', fcmToken: '', deviceType: '',
   );
 
   const emailResponse = SendEmailResponse(
@@ -150,7 +150,7 @@ void main() {
           .thenAnswer((_) async => mockResponse.toJson());
 
       // Act
-      await authApiImpl.loginWithApple(token);
+      await authApiImpl.loginWithApple( token: '', deviceType: '', fcmToken: '');
 
       // Assert
       verify(mockApiService.post(
