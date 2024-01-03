@@ -38,24 +38,24 @@ class NotificationService {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       _handleMessage(message);
     });
-    // FirebaseMessaging.onMessageOpenedApp.listen((event) {
-    //   _onAppOpened(event);
-    // });
+    FirebaseMessaging.onMessageOpenedApp.listen((event) {
+      _onAppOpened(event);
+    });
 
+    _getInitialMessage();
     FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
   }
 
-  // static Future<void> _onAppOpened(RemoteMessage message) async {
-  //   final data = message.data;
-  // }
+  static Future<void> _onAppOpened(RemoteMessage message) async {
+    print('_onAppOpened: fkjdnfdskjfndkjfndksjfndksjnfkdsjnfkjsdnfkjsdnfkdsjnf');
+    print(message.data);
+    print(message.notification?.title);
+    print(message.notification?.body);
+    print('fkjdnfdskjfndkjfndksjfndksjnfkdsjnfkjsdnfkjsdnfkdsjnf');
+  }
 
   static _handleMessage(RemoteMessage message) async {
     final data = message.data;
-    // print('fkjdnfdskjfndkjfndksjfndksjnfkdsjnfkjsdnfkjsdnfkdsjnf');
-    // print(message.data);
-    // print(message.notification?.title);
-    // print(message.notification?.body);
-    // print('fkjdnfdskjfndkjfndksjfndksjnfkdsjnfkjsdnfkjsdnfkdsjnf');
 
     if (data.containsKey('image') && data.containsKey('accident_id')) {
       final RequestNotificationDto requestNotificationDto =
@@ -71,6 +71,17 @@ class NotificationService {
           ResponseNotificationDto.fromJson(data);
       _responseNotificationStreamController.add(responseNotificationDto);
     }
+  }
+
+  static void _getInitialMessage() async{
+    final message = await FirebaseMessaging.instance.getInitialMessage();
+
+    print('_getInitialMessage: fkjdnfdskjfndkjfndksjfndksjnfkdsjnfkjsdnfkjsdnfkdsjnf');
+    print(message?.data);
+    print(message?.notification?.title);
+    print(message?.notification?.body);
+    print('fkjdnfdskjfndkjfndksjfndksjnfkdsjnfkjsdnfkjsdnfkdsjnf');
+
   }
 }
 

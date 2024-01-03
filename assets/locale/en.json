@@ -756,5 +756,6 @@
   "strWantsToConnect": " wants to fill out a report with you!",
   "strDoYouConfirm": "Do you confirm your participation?",
   "strWaitingForRes": "Waiting participation...",
-  "strUserBDidNotConfirm": "User B did not confirm participation"
+  "strUserBDidNotConfirm": "User B did not confirm participation",
+  "strPleaseFillProfileData": "Please fill your profile data"
 }

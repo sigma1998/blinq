@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:io';
 
 // Package imports:
+import 'package:blinq/data/model/cheack_account_datas/cheack_account_datas_response.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -29,6 +30,7 @@ import 'package:blinq/utils/smart_widgets/dialogs/qr_dialog/qr_dialog.dart';
 import 'profile_event.dart';
 
 part 'profile_state.dart';
+
 part 'profile_bloc.freezed.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
@@ -40,6 +42,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   ProfileResponseModel? profile;
 
+  CheckAccountResponse? checkAccountResponse;
 
   ProfileBloc({
     required this.repository,
@@ -56,6 +59,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       final data = await repository.fetch();
       vehicleType = data.car?.vehicleType;
       profile = data;
+      checkAccountResponse = await repository.checkAccountData();
       emit(ProfileState(profile: data, status: Status.success));
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
