@@ -14,7 +14,7 @@ import 'premade_messages_api_test.mocks.dart';
 @GenerateMocks([AppApi])
 void main() {
   late MockAppApi mockApiService;
-  late PremadeMessagesApiImpl premadeMessagesApiImpl;
+  late PremadeMessagesApi premadeMessagesApi;
 
   const mockRequest = PreMadeMessageRequestModel(
     message: 'Test',
@@ -29,7 +29,7 @@ void main() {
 
   setUp(() {
     mockApiService = MockAppApi();
-    premadeMessagesApiImpl = PremadeMessagesApiImpl(api: mockApiService);
+    premadeMessagesApi = PremadeMessagesApiImpl(api: mockApiService);
   });
 
   group('PremadeMessagesApi Tests', () {
@@ -43,7 +43,7 @@ void main() {
           });
 
       // Act
-      await premadeMessagesApiImpl.fetchList(1);
+      await premadeMessagesApi.fetchList(1);
 
       // Assert
       verify(mockApiService.get(
@@ -60,7 +60,7 @@ void main() {
       )).thenAnswer((_) async => mockReponse.toJson());
 
       // Act
-      await premadeMessagesApiImpl.add(mockRequest);
+      await premadeMessagesApi.add(mockRequest);
 
       // Assert
       verify(mockApiService.post(
@@ -78,7 +78,7 @@ void main() {
     )).thenAnswer((_) async => mockReponse.toJson());
 
     // Act
-    await premadeMessagesApiImpl.update(id: 1, premadeMessage: mockRequest);
+    await premadeMessagesApi.update(id: 1, premadeMessage: mockRequest);
 
     // Assert
     verify(mockApiService.put(
@@ -94,7 +94,7 @@ void main() {
     )).thenAnswer((_) async => {});
 
     // Act
-    await premadeMessagesApiImpl.delete(1);
+    await premadeMessagesApi.delete(1);
 
     // Assert
     verify(mockApiService.delete(

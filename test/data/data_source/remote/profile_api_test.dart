@@ -23,7 +23,7 @@ import 'profile_api_test.mocks.dart';
 @GenerateMocks([AppApi])
 void main() {
   late MockAppApi mockApiService;
-  late ProfileApiImpl profileApiImpl;
+  late ProfileApi profileApi;
 
   final file = File('assets/images/error_profile_image.png');
 
@@ -68,7 +68,7 @@ void main() {
 
   setUp(() {
     mockApiService = MockAppApi();
-    profileApiImpl = ProfileApiImpl(api: mockApiService);
+    profileApi = ProfileApiImpl(api: mockApiService);
   });
 
   group('Profile api calls', () {
@@ -79,7 +79,7 @@ void main() {
       )).thenAnswer((_) async => profileResponseModel.toJson());
 
       // Act
-      await profileApiImpl.fetch();
+      await profileApi.fetch();
 
       // Assert
       verify(mockApiService.get(NetworkConstants.profileData));
@@ -93,7 +93,7 @@ void main() {
       )).thenAnswer((_) async => profileResponseModel.toJson());
 
       // Act
-      await profileApiImpl.update(profileRequestModel);
+      await profileApi.update(profileRequestModel);
 
       // Assert
       verify(mockApiService.patch(
@@ -110,7 +110,7 @@ void main() {
       )).thenAnswer((_) async => profileResponseModel.toJson());
 
       // Act
-      await profileApiImpl.updateProfileImage(file);
+      await profileApi.updateProfileImage(file);
 
       // Assert
       verify(mockApiService.patch(
@@ -129,7 +129,7 @@ void main() {
       )).thenAnswer((_) async => {});
 
       // Act
-      await profileApiImpl.updatePolicyHolder(policyHolderRequestModel);
+      await profileApi.updatePolicyHolder(policyHolderRequestModel);
 
       // Assert
       verify(mockApiService.patch(
@@ -146,7 +146,7 @@ void main() {
       )).thenAnswer((_) async => {});
 
       // Act
-      await profileApiImpl.updateInsurance(insuranceRequestModel);
+      await profileApi.updateInsurance(insuranceRequestModel);
 
       // Assert
       verify(mockApiService.patch(
@@ -163,7 +163,7 @@ void main() {
       )).thenAnswer((_) async => {});
 
       // Act
-      await profileApiImpl.updateUserVehicle(userVehicleRequestModel);
+      await profileApi.updateUserVehicle(userVehicleRequestModel);
 
       // Assert
       verify(mockApiService.patch(
@@ -180,7 +180,7 @@ void main() {
       )).thenAnswer((_) async => {});
 
       // Act
-      await profileApiImpl.updateMyCar(carRequestModel);
+      await profileApi.updateMyCar(carRequestModel);
 
       // Assert
       verify(mockApiService.patch(
@@ -197,7 +197,7 @@ void main() {
       )).thenAnswer((_) async => {});
 
       // Act
-      profileApiImpl.updateMyCar(carRequestModel);
+      profileApi.updateMyCar(carRequestModel);
 
       // Assert
       verify(mockApiService.patch(
@@ -216,7 +216,7 @@ void main() {
       )).thenAnswer((_) async => {});
 
       // Act
-      await profileApiImpl.updateEmail('test');
+      await profileApi.updateEmail('test');
 
       // Assert
       verify(mockApiService.post(
@@ -233,7 +233,7 @@ void main() {
       )).thenAnswer((_) async => {});
 
       // Act
-      await profileApiImpl.updatePassword('test', 'test');
+      await profileApi.updatePassword('test', 'test');
 
       // Assert
       verify(mockApiService.post(
@@ -250,7 +250,7 @@ void main() {
       )).thenAnswer((_) async => {});
 
       // Act
-      await profileApiImpl.updateLanguage('en');
+      await profileApi.updateLanguage('en');
 
       // Assert
       verify(mockApiService.get(
@@ -267,7 +267,7 @@ void main() {
       )).thenAnswer((_) async => {});
 
       // Act
-      await profileApiImpl.verifyEmail('5555');
+      await profileApi.verifyEmail('5555');
 
       // Assert
       verify(mockApiService.post(
@@ -284,7 +284,7 @@ void main() {
           .thenAnswer((_) async => historyResponseDto.toJson());
 
       // Act
-      await profileApiImpl.fetchHistory();
+      await profileApi.fetchHistory();
 
       // Assert
       verify(mockApiService.get(NetworkConstants.history));
@@ -299,7 +299,7 @@ void main() {
       )).thenAnswer((_) async => {});
 
       // Act
-      await profileApiImpl.downloadReport(
+      await profileApi.downloadReport(
         url: reportUrl,
         localPath: 'assets',
       );
@@ -318,7 +318,7 @@ void main() {
           .thenAnswer((_) async => {});
 
       // Act
-      await profileApiImpl.deleteReport(1);
+      await profileApi.deleteReport(1);
 
       // Assert
       verify(mockApiService.delete('${NetworkConstants.deleteReport}/1/'));

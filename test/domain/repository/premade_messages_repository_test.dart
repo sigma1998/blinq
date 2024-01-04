@@ -18,12 +18,14 @@ void main() {
 
   const id = 1;
 
-  const requestModel =
-      PreMadeMessageRequestModel(message: 'Updated Message', title: '');
+  const requestModel = PreMadeMessageRequestModel(
+    message: 'test',
+    title: 'test',
+  );
 
   const responseModel = PreMadeMessageResponseModel(
-    title: 'ds',
-    message: '',
+    title: 'test',
+    message: 'test',
   );
 
   setUp(() {
@@ -41,9 +43,10 @@ void main() {
       );
 
       // Act
-      await premadeMessagesRepository.fetchList();
+      final result = await premadeMessagesRepository.fetchList();
 
       // Assert
+      expect(result, isA<PreMadeMessageResponseDto>());
       verify(mockPremadeMessagesApi.fetchList());
     });
 
@@ -53,9 +56,10 @@ void main() {
           .thenAnswer((_) async => responseModel);
 
       // Act
-      await premadeMessagesRepository.add(requestModel);
+      final result = await premadeMessagesRepository.add(requestModel);
 
       // Assert
+      expect(result, isA<PreMadeMessageResponseModel>());
       verify(mockPremadeMessagesApi.add(requestModel));
     });
 
@@ -65,12 +69,19 @@ void main() {
           .thenAnswer((_) async => responseModel);
 
       // Act
-      await premadeMessagesRepository.update(
-          id: id, premadeMessage: requestModel);
+      final result = await premadeMessagesRepository.update(
+        id: id,
+        premadeMessage: requestModel,
+      );
 
       // Assert
+      expect(result, isA<PreMadeMessageResponseModel>());
       verify(
-          mockPremadeMessagesApi.update(id: id, premadeMessage: requestModel));
+        mockPremadeMessagesApi.update(
+          id: id,
+          premadeMessage: requestModel,
+        ),
+      );
     });
 
     test('delete calls api.delete with correct parameters', () async {
