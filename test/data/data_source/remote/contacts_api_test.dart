@@ -14,7 +14,7 @@ import 'contacts_api_test.mocks.dart';
 @GenerateMocks([AppApi])
 void main() {
   late MockAppApi mockApiService;
-  late ContactsApiImpl contactsApiImpl;
+  late ContactsApi contactsApi;
 
   const id = 1;
 
@@ -35,7 +35,7 @@ void main() {
 
   setUp(() {
     mockApiService = MockAppApi();
-    contactsApiImpl = ContactsApiImpl(api: mockApiService);
+    contactsApi = ContactsApiImpl(api: mockApiService);
   });
 
   group('ContactsApi Tests', () {
@@ -49,7 +49,7 @@ void main() {
           });
 
       // Act
-      await contactsApiImpl.fetchList(1);
+      await contactsApi.fetchList(1);
 
       // Assert
       verify(mockApiService.get(
@@ -64,7 +64,7 @@ void main() {
           .thenAnswer((_) async => mockResponse.toJson());
 
       // Act
-      await contactsApiImpl.add(
+      await contactsApi.add(
         contact: mockRequest,
       );
 
@@ -81,7 +81,7 @@ void main() {
           .thenAnswer((_) async => mockResponse.toJson());
 
       // Act
-      await contactsApiImpl.update(id: id, contact: mockRequest);
+      await contactsApi.update(id: id, contact: mockRequest);
 
       // Assert
       verify(mockApiService.put(
@@ -95,7 +95,7 @@ void main() {
       when(mockApiService.delete(any)).thenAnswer((_) async => {});
 
       // Act
-      await contactsApiImpl.delete(id);
+      await contactsApi.delete(id);
 
       // Assert
       verify(mockApiService.delete(NetworkConstants.editContact(1)));

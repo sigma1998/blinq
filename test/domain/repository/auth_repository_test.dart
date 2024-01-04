@@ -70,10 +70,11 @@ void main() {
               (_) async => const LoginResponseModel(refresh: '', access: ''));
 
       // Act
-      await authRepository.register(
+      final result = await authRepository.register(
           registrationRequestDto: registrationRequestDto);
 
       // Assert
+      expect(result, isA<LoginResponseModel>());
       verify(
           mockAuthApi.register(registrationRequestDto: registrationRequestDto));
     });
@@ -92,7 +93,7 @@ void main() {
       )).thenAnswer((_) async => loginResponseModel);
 
       // Act
-      await authRepository.login(
+      final result = await authRepository.login(
         mail: mail,
         password: password,
         deviceType: deviceType,
@@ -100,6 +101,7 @@ void main() {
       );
 
       // Assert
+      expect(result, isA<LoginResponseModel>());
       verify(mockAuthApi.login(
         mail: mail,
         password: password,
@@ -116,9 +118,10 @@ void main() {
           .thenAnswer((_) async => loginResponseModel);
 
       // Act
-      await authRepository.refreshToken('mockRefreshToken');
+      final result = await authRepository.refreshToken('mockRefreshToken');
 
       // Assert
+      expect(result, isA<LoginResponseModel>());
       verify(mockAuthApi.refreshToken('mockRefreshToken'));
     });
 
@@ -139,21 +142,21 @@ void main() {
     test('loginWithApple calls api.loginWithApple with correct parameters',
         () async {
       // Arrange
-
       when(mockAuthApi.loginWithApple(
-        token: any,
-        deviceType: any,
-        fcmToken: any,
+        token: token,
+        deviceType: deviceType,
+        fcmToken: fcmToken,
       )).thenAnswer((_) async => loginResponseModel);
 
       // Act
-      await authRepository.loginWithApple(
-        token: 'mockAppleIdToken',
+      final result = await authRepository.loginWithApple(
+        token: token,
         deviceType: deviceType,
         fcmToken: fcmToken,
       );
 
       // Assert
+      expect(result, isA<LoginResponseModel>());
       verify(mockAuthApi.loginWithApple(
         token: token,
         deviceType: deviceType,
@@ -176,9 +179,10 @@ void main() {
           .thenAnswer((_) async => loginResponseModel);
 
       // Act
-      await authRepository.loginWithGoogle(loginGoogleRequest);
+      final result = await authRepository.loginWithGoogle(loginGoogleRequest);
 
       // Assert
+      expect(result, isA<LoginResponseModel>());
       verify(mockAuthApi.loginWithGoogle(loginGoogleRequest));
     });
   });
@@ -191,9 +195,10 @@ void main() {
           .thenAnswer((_) async => sendEmailResponse);
 
       // Act
-      await authRepository.sendEmail(mail);
+      final result = await authRepository.sendEmail(mail);
 
       // Assert
+      expect(result, isA<SendEmailResponse>());
       verify(mockAuthApi.sendEmail(mail));
     });
 

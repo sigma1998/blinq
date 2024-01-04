@@ -52,9 +52,10 @@ void main() {
           (_) async => const ContactResponseDto(results: [responseModel]));
 
       // Act
-      await contactsRepository.fetchList(page);
+      final result = await contactsRepository.fetchList(page);
 
       // Assert
+      expect(result, isA<ContactResponseDto>());
       verify(mockContactsApi.fetchList(page));
     });
 
@@ -64,9 +65,11 @@ void main() {
           .thenAnswer((_) async => responseModel);
 
       // Act
-      await contactsRepository.add(contact: requestModel, file: file);
+      final result =
+          await contactsRepository.add(contact: requestModel, file: file);
 
       // Assert
+      expect(result, isA<ContactResponseModel>());
       verify(mockContactsApi.add(contact: requestModel, file: file));
     });
 
@@ -76,10 +79,14 @@ void main() {
           .thenAnswer((_) async => responseModel);
 
       // Act
-      await contactsRepository.update(
-          id: id, contact: requestModel, file: file);
+      final result = await contactsRepository.update(
+        id: id,
+        contact: requestModel,
+        file: file,
+      );
 
       // Assert
+      expect(result, isA<ContactResponseModel>());
       verify(mockContactsApi.update(id: id, contact: requestModel, file: file));
     });
 

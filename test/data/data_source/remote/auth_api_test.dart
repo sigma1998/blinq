@@ -16,7 +16,7 @@ import 'auth_api_test.mocks.dart';
 @GenerateMocks([AppApi])
 void main() {
   late MockAppApi mockApiService;
-  late AuthApiImpl authApiImpl;
+  late AuthApi authApi;
 
   const email = 'test@mail.com';
   const password = 'testpassword';
@@ -24,6 +24,8 @@ void main() {
   const code = 'test';
 
   const token = '123';
+  const fcmToken = 'test';
+  const deviceType = 'ios';
   const refresh = 'test';
 
   const mockResponse = LoginResponseModel(refresh: '', access: '');
@@ -39,7 +41,9 @@ void main() {
   const googleRequest = LoginGoogleRequest(
     email: 'test',
     displayName: 'test test',
-    id: 'test', fcmToken: '', deviceType: '',
+    id: 'test',
+    fcmToken: '',
+    deviceType: '',
   );
 
   const emailResponse = SendEmailResponse(
@@ -50,7 +54,7 @@ void main() {
 
   setUp(() {
     mockApiService = MockAppApi();
-    authApiImpl = AuthApiImpl(api: mockApiService);
+    authApi = AuthApiImpl(api: mockApiService);
   });
 
   group('Registration', () {
@@ -60,7 +64,7 @@ void main() {
           .thenAnswer((_) async => mockResponse.toJson());
 
       // Act
-      await authApiImpl.register(registrationRequestDto: mockRequest);
+      await authApi.register(registrationRequestDto: mockRequest);
 
       // Assert
       verify(mockApiService.post(
@@ -75,7 +79,7 @@ void main() {
           .thenAnswer((_) async => mockResponse.toJson());
 
       // Act
-      await authApiImpl.login(
+      await authApi.login(
         mail: email,
         password: password,
         fcmToken: 'mockFcmToken',
@@ -100,7 +104,7 @@ void main() {
           .thenAnswer((_) async => mockResponse.toJson());
 
       // Act
-      await authApiImpl.refreshToken(refresh);
+      await authApi.refreshToken(refresh);
 
       // Assert
       verify(mockApiService.post(
@@ -116,7 +120,7 @@ void main() {
           .thenAnswer((_) async => {});
 
       // Act
-      await authApiImpl.resetPassword(password);
+      await authApi.resetPassword(password);
 
       // Assert
       verify(mockApiService.post(
@@ -134,7 +138,7 @@ void main() {
           .thenAnswer((_) async => mockResponse.toJson());
 
       // Act
-      await authApiImpl.loginWithGoogle(googleRequest);
+      await authApi.loginWithGoogle(googleRequest);
 
       // Assert
       verify(mockApiService.post(
@@ -150,12 +154,20 @@ void main() {
           .thenAnswer((_) async => mockResponse.toJson());
 
       // Act
-      await authApiImpl.loginWithApple( token: '', deviceType: '', fcmToken: '');
+      await authApi.loginWithApple(
+        token: token,
+        deviceType: deviceType,
+        fcmToken: fcmToken,
+      );
 
       // Assert
       verify(mockApiService.post(
         NetworkConstants.loginApple,
-        data: {'token': token},
+        data: {
+          'token': token,
+          'device_type': deviceType,
+          'fcm_token': fcmToken,
+        },
       ));
     });
   });
@@ -167,7 +179,7 @@ void main() {
           .thenAnswer((_) async => emailResponse.toJson());
 
       // Act
-      await authApiImpl.sendEmail(email);
+      await authApi.sendEmail(email);
 
       // Assert
       verify(mockApiService.post(
@@ -183,7 +195,7 @@ void main() {
           .thenAnswer((_) async => {});
 
       // Act
-      await authApiImpl.getVerificationCode(email);
+      await authApi.getVerificationCode(email);
 
       // Assert
       verify(mockApiService.post(
@@ -199,7 +211,7 @@ void main() {
           .thenAnswer((_) async => {'token': token});
 
       // Act
-      await authApiImpl.confirmMailVerification(mail: email, code: code);
+      await authApi.confirmMailVerification(mail: email, code: code);
 
       // Assert
       verify(mockApiService.post(
@@ -215,7 +227,7 @@ void main() {
       when(mockApiService.post(any)).thenAnswer((_) async => {});
 
       // Act
-      await authApiImpl.deleteUser();
+      await authApi.deleteUser();
 
       // Assert
       verify(mockApiService.post(NetworkConstants.deleteUser));
@@ -227,7 +239,7 @@ void main() {
       when(mockApiService.delete(any)).thenAnswer((_) async => {});
 
       // Act
-      await authApiImpl.verifyDeleteUser(code);
+      await authApi.verifyDeleteUser(code);
 
       // Assert
       verify(mockApiService.delete(NetworkConstants.verifyDeleteUser(code)));
