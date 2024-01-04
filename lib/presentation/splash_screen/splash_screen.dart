@@ -29,8 +29,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
     _controller.setLooping(false);
     _controller.play();
-    SplashScreenBloc bloc =
-        SplashScreenBloc(authRepository: getIt<AuthRepositoryImpl>());
+    SplashScreenBloc bloc = SplashScreenBloc(
+      authRepository: getIt<AuthRepositoryImpl>(),
+    );
     bloc.checkStatus();
   }
 

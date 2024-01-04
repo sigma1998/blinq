@@ -4,6 +4,7 @@ import 'dart:io';
 
 // Package imports:
 import 'package:blinq/data/model/cheack_account_datas/cheack_account_datas_response.dart';
+import 'package:blinq/domain/repositories/auth_repository.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -36,6 +37,7 @@ part 'profile_bloc.freezed.dart';
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   //
   final ProfileRepository repository;
+  final AuthRepository authRepository;
   final MediaService mediaService;
 
   VehicleType? vehicleType;
@@ -45,6 +47,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   CheckAccountResponse? checkAccountResponse;
 
   ProfileBloc({
+    required this.authRepository,
     required this.repository,
     required this.mediaService,
   }) : super(const ProfileState()) {
@@ -59,6 +62,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       final data = await repository.fetch();
       vehicleType = data.car?.vehicleType;
       profile = data;
+      authRepository.setUserId(data.id);
       checkAccountResponse = await repository.checkAccountData();
       emit(ProfileState(profile: data, status: Status.success));
     } catch (e) {

@@ -14,6 +14,10 @@ abstract class AuthLocalStorage {
 
   String getToken();
 
+  void setFirebaseToken(String token);
+
+  String? getFirebaseToken();
+
   void setRefreshToken(String token);
 
   String getRefreshToken();
@@ -22,9 +26,9 @@ abstract class AuthLocalStorage {
 
   String getUserName();
 
-  void setUserId(int id);
+  void setUserId(int? id);
 
-  int getUserId();
+  int? getUserId();
 
   void setUserPhone(String phone);
 
@@ -76,13 +80,13 @@ class AuthLocalStorageImpl implements AuthLocalStorage {
   }
 
   @override
-  int getUserId() {
+  int? getUserId() {
     final box = Hive.box(StorageConstants.appBox);
-    return box.get(StorageConstants.userId, defaultValue: -1);
+    return box.get(StorageConstants.userId, defaultValue: null);
   }
 
   @override
-  void setUserId(int id) {
+  void setUserId(int? id) {
     final box = Hive.box(StorageConstants.appBox);
     box.put(StorageConstants.userId, id);
   }
@@ -109,5 +113,17 @@ class AuthLocalStorageImpl implements AuthLocalStorage {
   void setUserPhone(String phone) {
     final box = Hive.box(StorageConstants.appBox);
     box.put(StorageConstants.userPhone, phone);
+  }
+
+  @override
+  String? getFirebaseToken() {
+    final box = Hive.box(StorageConstants.appBox);
+    return box.get(StorageConstants.firebaseToken, defaultValue: null);
+  }
+
+  @override
+  void setFirebaseToken(String token) {
+    final box = Hive.box(StorageConstants.appBox);
+    box.put(StorageConstants.firebaseToken, token);
   }
 }

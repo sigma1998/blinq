@@ -57,7 +57,7 @@ class LoginBottomSheetBloc
           password: passwordController.text,
           fcmToken: token ?? '',
           deviceType: Platform.isAndroid ? 'android' : 'ios');
-      _saveData(res);
+      _saveData(res, token??'');
       emit(state.copyWith(status: Status.initial));
       // NavigationService.newRootScreen(MainScreen.route);
       NavigationService.pushNamed(routeName: SuccessVideoScreen.route);
@@ -89,7 +89,7 @@ class LoginBottomSheetBloc
         fcmToken: token ?? '',
         deviceType: Platform.isAndroid ? 'android' : 'ios',
       );
-      _saveData(res);
+      _saveData(res, token??'');
       emit(state.copyWith(status: Status.initial));
       NavigationService.newRootScreen(MainScreen.route);
     }
@@ -116,7 +116,7 @@ class LoginBottomSheetBloc
           deviceType: Platform.isAndroid ? 'android' : 'ios',
         );
         final res = await authRepository.loginWithGoogle(model);
-        _saveData(res);
+        _saveData(res, token??'');
         emit(state.copyWith(status: Status.initial));
         NavigationService.newRootScreen(MainScreen.route);
       }
@@ -127,11 +127,12 @@ class LoginBottomSheetBloc
     }
   }
 
-  void _saveData(LoginResponseModel res) {
+  void _saveData(LoginResponseModel res, String firebaseToken) {
     DioClient.setToken(res.access);
     authRepository.setToken(res.access!);
     authRepository.setRefreshToken(res.refresh!);
     authRepository.setUserStatus(UserStatus.signed);
+    authRepository.setFirebaseToken(firebaseToken);
   }
 
   FutureOr<void> _onForgotPasswordPressed(
