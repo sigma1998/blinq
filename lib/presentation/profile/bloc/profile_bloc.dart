@@ -3,7 +3,6 @@ import 'dart:async';
 import 'dart:io';
 
 // Package imports:
-import 'package:blinq/data/model/cheack_account_datas/cheack_account_datas_response.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -11,6 +10,7 @@ import 'package:image_cropper/image_cropper.dart';
 
 // Project imports:
 import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
+import 'package:blinq/data/model/cheack_account_datas/cheack_account_datas_response.dart';
 import 'package:blinq/data/model/profile/request/profile_request_model.dart';
 import 'package:blinq/data/model/profile/response/profile_response_model.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';

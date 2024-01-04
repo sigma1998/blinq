@@ -32,6 +32,7 @@ abstract class AuthLocalStorage {
 }
 
 class AuthLocalStorageImpl implements AuthLocalStorage {
+  //
   @override
   UserStatus getUserStatus() {
     final box = Hive.box(StorageConstants.userStatusBox);
