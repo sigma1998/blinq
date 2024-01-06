@@ -3,14 +3,23 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+
+// Dart imports:
 import 'dart:async' as _i8;
 import 'dart:io' as _i10;
 
+// Package imports:
+import 'package:mockito/mockito.dart' as _i1;
+
+// Project imports:
 import 'package:blinq/data/datasource/remote/profile_api.dart' as _i7;
 import 'package:blinq/data/model/car/request/car_request_model.dart' as _i12;
+import 'package:blinq/data/model/history/history_response_dto.dart' as _i3;
+import 'package:blinq/data/model/vehicle_info/brand_response.dart' as _i4;
+import 'package:blinq/data/model/vehicle_info/color_response.dart' as _i5;
+
 import 'package:blinq/data/model/cheack_account_datas/cheack_account_datas_response.dart'
     as _i6;
-import 'package:blinq/data/model/history/history_response_dto.dart' as _i3;
 import 'package:blinq/data/model/insurance/request/insurance_request_model.dart'
     as _i14;
 import 'package:blinq/data/model/policy_holder/request/policy_holder_request_model.dart'
@@ -21,9 +30,6 @@ import 'package:blinq/data/model/profile/response/profile_response_model.dart'
     as _i2;
 import 'package:blinq/data/model/vehicle/request/vehicle_request_model.dart'
     as _i13;
-import 'package:blinq/data/model/vehicle_info/brand_response.dart' as _i4;
-import 'package:blinq/data/model/vehicle_info/color_response.dart' as _i5;
-import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

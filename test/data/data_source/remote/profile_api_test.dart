@@ -2,7 +2,6 @@
 import 'dart:io';
 
 // Package imports:
-import 'package:blinq/data/model/history/history_response_dto.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -12,6 +11,7 @@ import 'package:blinq/core/network/api_service.dart';
 import 'package:blinq/core/network/network_constants.dart';
 import 'package:blinq/data/datasource/remote/profile_api.dart';
 import 'package:blinq/data/model/car/request/car_request_model.dart';
+import 'package:blinq/data/model/history/history_response_dto.dart';
 import 'package:blinq/data/model/insurance/request/insurance_request_model.dart';
 import 'package:blinq/data/model/policy_holder/request/policy_holder_request_model.dart';
 import 'package:blinq/data/model/profile/driver_license/driver_license_type.dart';

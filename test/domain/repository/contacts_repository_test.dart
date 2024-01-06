@@ -16,8 +16,8 @@ import 'contacts_repository_test.mocks.dart';
 
 @GenerateMocks([ContactsApi])
 void main() {
-  late ContactsRepository contactsRepository;
   late MockContactsApi mockContactsApi;
+  late ContactsRepository contactsRepository;
 
   const id = 1;
 

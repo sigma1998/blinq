@@ -13,8 +13,8 @@ import 'premade_messages_repository_test.mocks.dart';
 
 @GenerateMocks([PremadeMessagesApi])
 void main() {
-  late PremadeMessagesRepository premadeMessagesRepository;
   late MockPremadeMessagesApi mockPremadeMessagesApi;
+  late PremadeMessagesRepository premadeMessagesRepository;
 
   const id = 1;
 

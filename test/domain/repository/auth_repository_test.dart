@@ -16,9 +16,9 @@ import 'auth_repository_test.mocks.dart';
 
 @GenerateMocks([AuthApi, AuthLocalStorage])
 void main() {
-  late AuthRepository authRepository;
   late MockAuthApi mockAuthApi;
   late MockAuthLocalStorage mockAuthLocalStorage;
+  late AuthRepository authRepository;
 
   const mail = 'test@mail.com';
 

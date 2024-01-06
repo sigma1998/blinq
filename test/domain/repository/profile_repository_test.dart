@@ -1,5 +1,12 @@
+// Dart imports:
 import 'dart:io';
 
+// Package imports:
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+
+// Project imports:
 import 'package:blinq/data/datasource/remote/profile_api.dart';
 import 'package:blinq/data/model/car/request/car_request_model.dart';
 import 'package:blinq/data/model/cheack_account_datas/cheack_account_datas_response.dart';
@@ -12,16 +19,12 @@ import 'package:blinq/data/model/vehicle/request/vehicle_request_model.dart';
 import 'package:blinq/data/model/vehicle_info/brand_response.dart';
 import 'package:blinq/data/model/vehicle_info/color_response.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-
 import 'profile_repository_test.mocks.dart';
 
 @GenerateMocks([ProfileApi])
 void main() {
-  late ProfileRepository repository;
   late MockProfileApi mockApi;
+  late ProfileRepository repository;
 
   const requestModel = ProfileRequestModel();
   const responseModel = ProfileResponseModel();
