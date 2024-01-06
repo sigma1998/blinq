@@ -37,6 +37,9 @@ abstract class AuthApi {
   Future<void> verifyDeleteUser(String code);
 
   Future<LoginResponseModel> refreshToken(String refresh);
+
+  Future<void> updateAuthToken(
+      {required int userId, required String token, required String deviceType});
 }
 
 class AuthApiImpl implements AuthApi {
@@ -176,6 +179,19 @@ class AuthApiImpl implements AuthApi {
         'refresh': refresh,
       });
       return LoginResponseModel.fromJson(res);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> updateAuthToken(
+      {required int userId,
+      required String token,
+      required String deviceType}) async {
+    try {
+      await api.post(NetworkConstants.updateFCMToken(userId),
+          data: {'device_token': token, 'device_type': deviceType});
     } catch (e) {
       rethrow;
     }

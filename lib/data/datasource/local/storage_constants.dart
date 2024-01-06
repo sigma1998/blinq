@@ -7,4 +7,5 @@ class StorageConstants {
   static String userId = 'userId';
   static String userName = 'userName';
   static String userPhone = 'userPhone';
+  static String firebaseToken = 'firebaseToken';
 }

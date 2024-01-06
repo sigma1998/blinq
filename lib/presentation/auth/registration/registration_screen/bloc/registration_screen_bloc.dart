@@ -78,6 +78,7 @@ class RegistrationScreenBloc
       authRepository.setRefreshToken(res.refresh!);
       authRepository.setUserStatus(UserStatus.signed);
       DioClient.setToken(res.access!);
+      authRepository.setFirebaseToken(token ?? '');
 
       emit(state.copyWith(status: Status.initial));
       NavigationService.pushNamed(routeName: SuccessVideoScreen.route);

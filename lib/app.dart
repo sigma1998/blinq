@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/domain/repositories/auth_repository.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -55,6 +56,7 @@ class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     final profileBloc = ProfileBloc(
+      authRepository: getIt<AuthRepositoryImpl>(),
       mediaService: getIt<MediaServiceImpl>(),
       repository: getIt<ProfileRepositoryImpl>(),
     );

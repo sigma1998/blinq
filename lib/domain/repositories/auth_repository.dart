@@ -29,11 +29,18 @@ abstract class AuthRepository {
 
   Future<LoginResponseModel> refreshToken(String refresh);
 
+  Future<void> updateAuthToken(
+      {required int userId, required String token, required String deviceType});
+
   String getToken();
 
   void setToken(String token);
 
   String getRefreshToken();
+
+  void setUserId(int? id);
+
+  int? getUserId();
 
   void setRefreshToken(String token);
 
@@ -53,6 +60,10 @@ abstract class AuthRepository {
   Future<void> deleteUser();
 
   Future<void> verifyDeleteUser(String code);
+
+  void setFirebaseToken(String token);
+
+  String? getFirebaseToken();
 }
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -116,6 +127,19 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<LoginResponseModel> loginWithGoogle(LoginGoogleRequest request) async {
     try {
       return await api.loginWithGoogle(request);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> updateAuthToken(
+      {required int userId,
+      required String token,
+      required String deviceType}) async {
+    try {
+      await api.updateAuthToken(
+          userId: userId, token: token, deviceType: deviceType);
     } catch (e) {
       rethrow;
     }
@@ -204,5 +228,25 @@ class AuthRepositoryImpl implements AuthRepository {
     } catch (e) {
       rethrow;
     }
+  }
+
+  @override
+  String? getFirebaseToken() {
+    return localStorage.getFirebaseToken();
+  }
+
+  @override
+  void setFirebaseToken(String token) {
+    localStorage.setFirebaseToken(token);
+  }
+
+  @override
+  int? getUserId() {
+    return localStorage.getUserId();
+  }
+
+  @override
+  void setUserId(int? id) {
+    localStorage.setUserId(id);
   }
 }
