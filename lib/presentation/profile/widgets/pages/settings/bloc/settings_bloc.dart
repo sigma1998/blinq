@@ -1,3 +1,6 @@
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -51,11 +54,20 @@ class SettingsBloc extends Bloc<SettingsEvent, GenericBlocState<bool>> {
       );
 
   void onLogoutPressed() async {
-    if (await GoogleSignIn().isSignedIn()) {
-      await GoogleSignIn().signOut();
-    }
+    await _signOutGoogle();
     DioClient.setToken(null);
     authRepository.setUserStatus(UserStatus.haveSeenIntro);
     NavigationService.pushReplacement(routeName: SignInScreen.route);
+  }
+
+  Future<void> _signOutGoogle() async {
+    try {
+      if (await GoogleSignIn().isSignedIn()) {
+        await GoogleSignIn().signOut();
+        await GoogleSignIn().disconnect();
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 }

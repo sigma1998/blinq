@@ -95,16 +95,14 @@ class LoginBottomSheetBloc
     }
   }
 
+  /// [_disconnectGoogle]
+  /// Sign out is called to ensure the user is signed out from the app
+  /// [GoogleSignIn().disconnect] allows to open the Google Sign In dialog again
+  /// insead of silently signing in with the last account.
   FutureOr<void> _onGoogleSelected(
       OnGoogleSelected event, Emitter<LoginBottomSheetState> emit) async {
     try {
-      /// Sign out is called to ensure the user is signed out from the app
-      /// [GoogleSignIn().disconnect] allows to open the Google Sign In dialog again
-      /// insead of silently signing in with the last account.
-      if (GoogleSignIn().currentUser != null) {
-        await GoogleSignIn().signOut();
-      }
-      await GoogleSignIn().disconnect();
+      await _disconnectGoogle();
 
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
@@ -132,6 +130,15 @@ class LoginBottomSheetBloc
       debugPrint(e.toString());
       NavigationService.showErrorToast(e.toString());
       emit(state.copyWith(status: Status.initial));
+    }
+  }
+
+  Future<void> _disconnectGoogle() async {
+    try {
+      await GoogleSignIn().signOut();
+      await GoogleSignIn().disconnect();
+    } catch (e) {
+      debugPrint(e.toString());
     }
   }
 
