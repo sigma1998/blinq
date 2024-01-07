@@ -90,15 +90,20 @@ class _QrScanScreenState extends State<QrScanScreen> {
             )
           ],
         ),
-        floatingActionButton: MyButton.tertiary(
-          width: 100,
-          label: 'strCancel'.tr(),
-          onTap: () => NavigationService.homeNavigatorKey.currentState?.pop(),
-          padding: const EdgeInsets.symmetric(
-            vertical: 12,
-            horizontal: 24,
-          ),
-          margin: const EdgeInsets.only(bottom: 50),
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            MyButton.tertiary(
+              label: 'strCancel'.tr(),
+              onTap: () =>
+                  NavigationService.homeNavigatorKey.currentState?.pop(),
+              padding: const EdgeInsets.symmetric(
+                vertical: 12,
+                horizontal: 24,
+              ),
+              margin: const EdgeInsets.only(bottom: 50),
+            ),
+          ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),

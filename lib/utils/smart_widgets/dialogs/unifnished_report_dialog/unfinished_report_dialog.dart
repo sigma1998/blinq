@@ -25,7 +25,6 @@ class UnfinishedReportDialog extends StatelessWidget {
       child: MyInfoContainer(
         padding: const EdgeInsets.all(36),
         margin: const EdgeInsets.symmetric(horizontal: 51),
-        height: 350,
         child: Column(
           children: [
             Text(

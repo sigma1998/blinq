@@ -47,7 +47,8 @@ class NotificationService {
   }
 
   static Future<void> _onAppOpened(RemoteMessage message) async {
-    print('_onAppOpened: fkjdnfdskjfndkjfndksjfndksjnfkdsjnfkjsdnfkjsdnfkdsjnf');
+    print(
+        '_onAppOpened: fkjdnfdskjfndkjfndksjfndksjnfkdsjnfkjsdnfkjsdnfkdsjnf');
     print(message.data);
     print(message.notification?.title);
     print(message.notification?.body);
@@ -73,15 +74,19 @@ class NotificationService {
     }
   }
 
-  static void _getInitialMessage() async{
+  static void _getInitialMessage() async {
     final message = await FirebaseMessaging.instance.getInitialMessage();
 
-    print('_getInitialMessage: fkjdnfdskjfndkjfndksjfndksjnfkdsjnfkjsdnfkjsdnfkdsjnf');
+    print(
+        '_getInitialMessage: fkjdnfdskjfndkjfndksjfndksjnfkdsjnfkjsdnfkjsdnfkdsjnf');
     print(message?.data);
     print(message?.notification?.title);
     print(message?.notification?.body);
     print('fkjdnfdskjfndkjfndksjfndksjnfkdsjnfkjsdnfkjsdnfkdsjnf');
+  }
 
+  static Future<void> deleteToken() async {
+    await _firebaseMessaging.deleteToken();
   }
 }
 

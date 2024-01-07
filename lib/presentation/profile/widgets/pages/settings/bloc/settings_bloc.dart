@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/utils/services/notification/notification_service.dart';
 import 'package:flutter/foundation.dart';
 
 // Package imports:
@@ -56,6 +57,7 @@ class SettingsBloc extends Bloc<SettingsEvent, GenericBlocState<bool>> {
   void onLogoutPressed() async {
     await _signOutGoogle();
     DioClient.setToken(null);
+    NotificationService.deleteToken();
     authRepository.setUserStatus(UserStatus.haveSeenIntro);
     NavigationService.pushReplacement(routeName: SignInScreen.route);
   }

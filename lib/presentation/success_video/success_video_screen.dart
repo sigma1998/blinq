@@ -20,20 +20,23 @@ class SuccessVideoScreen extends StatefulWidget {
 }
 
 class _SuccessVideoScreenState extends State<SuccessVideoScreen> {
+  //
   late final SuccessVideoBloc bloc;
+
   @override
   void initState() {
-     bloc = context.read();
+    super.initState();
+    bloc = context.read();
     bloc.play();
+
     Future.delayed(const Duration(
       seconds: 3,
     )).then((value) => NavigationService.newRootScreen(MainScreen.route));
-    super.initState();
   }
 
   @override
   void dispose() {
-    bloc.dispose();
+    bloc.close();
     super.dispose();
   }
 

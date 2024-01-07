@@ -16,10 +16,11 @@ class SuccessVideoBloc extends Bloc {
 
   void play() {
     controller.play();
-
   }
 
-  void dispose() {
+  @override
+  Future<void> close() {
     controller.dispose();
+    return super.close();
   }
 }
