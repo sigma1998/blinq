@@ -57,7 +57,7 @@ void main() {
     accidentApi = AccidentApiImpl(api: mockApiService);
   });
 
-  group('Accident', () {
+  group('Accident Api', () {
     test('should call fetchUserById with correct parameters', () async {
       // Arrange
       when(mockApiService.get(any))

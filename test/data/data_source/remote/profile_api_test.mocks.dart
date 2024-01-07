@@ -3,16 +3,11 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-
-// Dart imports:
 import 'dart:async' as _i3;
 
-// Package imports:
+import 'package:blinq/core/network/api_service.dart' as _i2;
 import 'package:dio/dio.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
-
-// Project imports:
-import 'package:blinq/core/network/api_service.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

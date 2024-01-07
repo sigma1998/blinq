@@ -14,6 +14,7 @@ import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/custom_textfield.dart';
 import 'package:blinq/utils/custom_widgets/expanded_section.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/validator.dart';
 import 'bloc/email_screen_bloc.dart';
 import 'bloc/email_screen_event.dart';
@@ -59,62 +60,72 @@ class _EmailScreenState extends State<EmailScreen> {
                 vertical: 62,
                 horizontal: 32,
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    AppDrawables.blinq,
-                    width: 62,
-                    colorFilter: ColorFilter.mode(
-                      Theme.of(context).colorScheme.primary,
-                      BlendMode.srcIn,
-                    ),
-                  ),
-                  const SizedBox(height: 32),
-                  Text(
-                    (state.isCodeSent || args.isVerifying)
-                        ? 'strEnterCode'.tr()
-                        : 'strWelcomeBack'.tr(),
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  const SizedBox(height: 32),
-                  TextFieldRoundedWidget(
-                    hint: 'strYourEmail'.tr(),
-                    textController: bloc.emailController,
-                    validate: (value) => Validator.validateEmail(value),
-                    readOnly: state.isCodeSent,
-                  ),
-                  ExpandedSection(
-                    expand: state.isCodeSent,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 30),
-                      child: TextFieldRoundedWidget(
-                        hint: 'strEnterCode'.tr(),
-                        textController: bloc.codeController,
+              child: Form(
+                key: bloc.formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      AppDrawables.blinq,
+                      width: 62,
+                      colorFilter: ColorFilter.mode(
+                        Theme.of(context).colorScheme.primary,
+                        BlendMode.srcIn,
                       ),
                     ),
-                  ),
-                  const Spacer(),
-                  MyButton.secondary(
-                    label: !state.isCodeSent
-                        ? 'strSendCode'.tr()
-                        : 'strSubmit'.tr(),
-                    onTap: () => bloc.add(OnPrimaryButtonPressed()),
-                    labelStyle:
-                        Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              color: Colors.black,
-                            ),
-                  ),
-                  const SizedBox(height: 16),
-                  MyButton.tertiaryVarient(
-                    label: !state.isCodeSent
-                        ? 'strLogin'.tr()
-                        : 'strResendCode'.tr(),
-                    onTap: () => bloc.add(OnSecondaryButtonPressed()),
-                    labelStyle: Theme.of(context).textTheme.bodyMedium!,
-                  ),
-                ],
+                    const SizedBox(height: 32),
+                    Text(
+                      (state.isCodeSent || args.isVerifying)
+                          ? 'strEnterCode'.tr()
+                          : 'strWelcomeBack'.tr(),
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const SizedBox(height: 32),
+                    TextFieldRoundedWidget(
+                      hint: 'strYourEmail'.tr(),
+                      textController: bloc.emailController,
+                      validate: (value) => Validator.validateEmail(value),
+                      readOnly: state.isCodeSent,
+                    ),
+                    ExpandedSection(
+                      expand: state.isCodeSent,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 30),
+                        child: TextFieldRoundedWidget(
+                          hint: 'strEnterCode'.tr(),
+                          textController: bloc.codeController,
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                    MyButton.secondary(
+                      isLoading: state.status == Status.loading &&
+                          !state.isResendCodeLoading,
+                      label: !state.isCodeSent
+                          ? 'strSendCode'.tr()
+                          : 'strSubmit'.tr(),
+                      onTap: () {
+                        if (bloc.validateForm()) {
+                          bloc.add(OnPrimaryButtonPressed());
+                        }
+                      },
+                      labelStyle:
+                          Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                color: Colors.black,
+                              ),
+                    ),
+                    const SizedBox(height: 16),
+                    MyButton.tertiaryVarient(
+                      isLoading: state.isResendCodeLoading,
+                      label: !state.isCodeSent
+                          ? 'strLogin'.tr()
+                          : 'strResendCode'.tr(),
+                      onTap: () => bloc.add(OnSecondaryButtonPressed()),
+                      labelStyle: Theme.of(context).textTheme.bodyMedium!,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

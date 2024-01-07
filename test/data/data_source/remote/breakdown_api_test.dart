@@ -41,7 +41,7 @@ void main() {
     breakdownApi = BreakdownApiImpl(api: mockApiService);
   });
 
-  group('Breakdown', () {
+  group('Breakdown Api', () {
     test('should call addBreakdownLocationAndTime with correct parameters',
         () async {
       // Arrange

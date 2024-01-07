@@ -10,6 +10,7 @@ part 'email_screen_state.freezed.dart';
 class EmailScreenState with _$EmailScreenState {
   const factory EmailScreenState({
     @Default(Status.initial) Status status,
-    @Default(false)bool isCodeSent,
+    @Default(false) bool isResendCodeLoading,
+    @Default(false) bool isCodeSent,
   }) = _EmailScreenState;
 }

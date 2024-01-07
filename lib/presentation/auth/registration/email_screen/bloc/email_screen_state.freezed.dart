@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$EmailScreenState {
   Status get status => throw _privateConstructorUsedError;
+  bool get isResendCodeLoading => throw _privateConstructorUsedError;
   bool get isCodeSent => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +31,7 @@ abstract class $EmailScreenStateCopyWith<$Res> {
           EmailScreenState value, $Res Function(EmailScreenState) then) =
       _$EmailScreenStateCopyWithImpl<$Res, EmailScreenState>;
   @useResult
-  $Res call({Status status, bool isCodeSent});
+  $Res call({Status status, bool isResendCodeLoading, bool isCodeSent});
 }
 
 /// @nodoc
@@ -47,6 +48,7 @@ class _$EmailScreenStateCopyWithImpl<$Res, $Val extends EmailScreenState>
   @override
   $Res call({
     Object? status = null,
+    Object? isResendCodeLoading = null,
     Object? isCodeSent = null,
   }) {
     return _then(_value.copyWith(
@@ -54,6 +56,10 @@ class _$EmailScreenStateCopyWithImpl<$Res, $Val extends EmailScreenState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
+      isResendCodeLoading: null == isResendCodeLoading
+          ? _value.isResendCodeLoading
+          : isResendCodeLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       isCodeSent: null == isCodeSent
           ? _value.isCodeSent
           : isCodeSent // ignore: cast_nullable_to_non_nullable
@@ -70,7 +76,7 @@ abstract class _$$EmailScreenStateImplCopyWith<$Res>
       __$$EmailScreenStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Status status, bool isCodeSent});
+  $Res call({Status status, bool isResendCodeLoading, bool isCodeSent});
 }
 
 /// @nodoc
@@ -85,6 +91,7 @@ class __$$EmailScreenStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? isResendCodeLoading = null,
     Object? isCodeSent = null,
   }) {
     return _then(_$EmailScreenStateImpl(
@@ -92,6 +99,10 @@ class __$$EmailScreenStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
+      isResendCodeLoading: null == isResendCodeLoading
+          ? _value.isResendCodeLoading
+          : isResendCodeLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       isCodeSent: null == isCodeSent
           ? _value.isCodeSent
           : isCodeSent // ignore: cast_nullable_to_non_nullable
@@ -104,18 +115,23 @@ class __$$EmailScreenStateImplCopyWithImpl<$Res>
 
 class _$EmailScreenStateImpl implements _EmailScreenState {
   const _$EmailScreenStateImpl(
-      {this.status = Status.initial, this.isCodeSent = false});
+      {this.status = Status.initial,
+      this.isResendCodeLoading = false,
+      this.isCodeSent = false});
 
   @override
   @JsonKey()
   final Status status;
   @override
   @JsonKey()
+  final bool isResendCodeLoading;
+  @override
+  @JsonKey()
   final bool isCodeSent;
 
   @override
   String toString() {
-    return 'EmailScreenState(status: $status, isCodeSent: $isCodeSent)';
+    return 'EmailScreenState(status: $status, isResendCodeLoading: $isResendCodeLoading, isCodeSent: $isCodeSent)';
   }
 
   @override
@@ -124,12 +140,15 @@ class _$EmailScreenStateImpl implements _EmailScreenState {
         (other.runtimeType == runtimeType &&
             other is _$EmailScreenStateImpl &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.isResendCodeLoading, isResendCodeLoading) ||
+                other.isResendCodeLoading == isResendCodeLoading) &&
             (identical(other.isCodeSent, isCodeSent) ||
                 other.isCodeSent == isCodeSent));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, isCodeSent);
+  int get hashCode =>
+      Object.hash(runtimeType, status, isResendCodeLoading, isCodeSent);
 
   @JsonKey(ignore: true)
   @override
@@ -141,10 +160,14 @@ class _$EmailScreenStateImpl implements _EmailScreenState {
 
 abstract class _EmailScreenState implements EmailScreenState {
   const factory _EmailScreenState(
-      {final Status status, final bool isCodeSent}) = _$EmailScreenStateImpl;
+      {final Status status,
+      final bool isResendCodeLoading,
+      final bool isCodeSent}) = _$EmailScreenStateImpl;
 
   @override
   Status get status;
+  @override
+  bool get isResendCodeLoading;
   @override
   bool get isCodeSent;
   @override

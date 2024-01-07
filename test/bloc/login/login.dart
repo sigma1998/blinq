@@ -1,4 +1,9 @@
 // Package imports:
+import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+
+// Project imports:
 import 'package:blinq/data/datasource/local/auth_local_db.dart';
 import 'package:blinq/data/datasource/remote/auth_api.dart';
 import 'package:blinq/domain/repositories/auth_repository.dart';
@@ -6,10 +11,6 @@ import 'package:blinq/presentation/auth/log_in/bloc/login_bottom_sheet_bloc.dart
 import 'package:blinq/presentation/auth/log_in/bloc/login_bottom_sheet_event.dart';
 import 'package:blinq/presentation/auth/log_in/bloc/login_bottom_sheet_state.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-
 import 'login.mocks.dart';
 
 @GenerateMocks([AuthApi, AuthLocalStorage])

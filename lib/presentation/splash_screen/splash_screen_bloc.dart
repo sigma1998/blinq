@@ -1,6 +1,7 @@
-// Project imports:
+// Dart imports:
 import 'dart:io';
 
+// Project imports:
 import 'package:blinq/core/network/dio_client.dart';
 import 'package:blinq/data/model/user/user_status.dart';
 import 'package:blinq/domain/repositories/auth_repository.dart';

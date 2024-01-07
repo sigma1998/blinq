@@ -186,8 +186,8 @@ class MyButton extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: 18,
-                    width: 18,
+                    height: 19,
+                    width: 19,
                     child: Loading(color: loaderColor),
                   ),
                 ],

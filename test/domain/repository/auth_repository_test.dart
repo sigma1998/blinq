@@ -190,9 +190,9 @@ void main() {
   group('Email', () {
     test('sendEmail calls api.sendEmail with correct parameters', () async {
       // Arrange
-
-      when(mockAuthApi.sendEmail(any))
-          .thenAnswer((_) async => sendEmailResponse);
+      when(mockAuthApi.sendEmail(any)).thenAnswer(
+        (_) async => sendEmailResponse,
+      );
 
       // Act
       final result = await authRepository.sendEmail(mail);

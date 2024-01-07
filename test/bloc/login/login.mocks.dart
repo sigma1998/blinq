@@ -252,6 +252,26 @@ class MockAuthApi extends _i1.Mock implements _i4.AuthApi {
           ),
         )),
       ) as _i5.Future<_i2.LoginResponseModel>);
+
+  @override
+  _i5.Future<void> updateAuthToken({
+    required int? userId,
+    required String? token,
+    required String? deviceType,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateAuthToken,
+          [],
+          {
+            #userId: userId,
+            #token: token,
+            #deviceType: deviceType,
+          },
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }
 
 /// A class which mocks [AuthLocalStorage].
@@ -299,6 +319,15 @@ class MockAuthLocalStorage extends _i1.Mock implements _i8.AuthLocalStorage {
       ) as String);
 
   @override
+  void setFirebaseToken(String? token) => super.noSuchMethod(
+        Invocation.method(
+          #setFirebaseToken,
+          [token],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
   void setRefreshToken(String? token) => super.noSuchMethod(
         Invocation.method(
           #setRefreshToken,
@@ -342,15 +371,6 @@ class MockAuthLocalStorage extends _i1.Mock implements _i8.AuthLocalStorage {
         ),
         returnValueForMissingStub: null,
       );
-
-  @override
-  int getUserId() => (super.noSuchMethod(
-        Invocation.method(
-          #getUserId,
-          [],
-        ),
-        returnValue: 0,
-      ) as int);
 
   @override
   void setUserPhone(String? phone) => super.noSuchMethod(

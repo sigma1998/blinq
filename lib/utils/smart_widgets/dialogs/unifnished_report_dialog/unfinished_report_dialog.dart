@@ -37,10 +37,12 @@ class UnfinishedReportDialog extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            Text('strReportCreatedAt'.tr() + dateTime.substring(0, 10),
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: Theme.of(context).colorScheme.outline
-            ),
+            Text(
+              'strReportCreatedAt'.tr() + dateTime.substring(0, 10),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: Theme.of(context).colorScheme.outline),
             ),
             const SizedBox(height: 16),
             MyButton.secondary(

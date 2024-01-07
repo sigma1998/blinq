@@ -3,19 +3,10 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-
-// Dart imports:
 import 'dart:async' as _i4;
 
-// Package imports:
-import 'package:dio/dio.dart' as _i6;
-import 'package:mockito/mockito.dart' as _i1;
-
-// Project imports:
 import 'package:blinq/data/datasource/remote/accident_api.dart' as _i3;
 import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart' as _i12;
-import 'package:blinq/data/model/report/injury/injury.dart' as _i7;
-
 import 'package:blinq/data/model/insurance/request/insurance_request_model.dart'
     as _i11;
 import 'package:blinq/data/model/policy_holder/request/policy_holder_request_model.dart'
@@ -24,10 +15,13 @@ import 'package:blinq/data/model/profile/request/profile_request_model.dart'
     as _i9;
 import 'package:blinq/data/model/profile/response/profile_response_model.dart'
     as _i2;
+import 'package:blinq/data/model/report/injury/injury.dart' as _i7;
 import 'package:blinq/data/model/report/report_time_and_location/report_time_and_location.dart'
     as _i5;
 import 'package:blinq/data/model/second_driver/car/request/second_driver_car_request_model.dart'
     as _i8;
+import 'package:dio/dio.dart' as _i6;
+import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

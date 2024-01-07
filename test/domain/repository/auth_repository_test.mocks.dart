@@ -3,18 +3,10 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-
-// Dart imports:
 import 'dart:async' as _i5;
 
-// Package imports:
-import 'package:mockito/mockito.dart' as _i1;
-
-// Project imports:
 import 'package:blinq/data/datasource/local/auth_local_db.dart' as _i8;
 import 'package:blinq/data/datasource/remote/auth_api.dart' as _i4;
-import 'package:blinq/data/model/user/user_status.dart' as _i9;
-
 import 'package:blinq/data/model/login/google_request/login_google_request.dart'
     as _i7;
 import 'package:blinq/data/model/login/response/login_response_model.dart'
@@ -23,6 +15,8 @@ import 'package:blinq/data/model/registration/registration_request_dto.dart'
     as _i6;
 import 'package:blinq/data/model/send_email/response/send_email_response.dart'
     as _i3;
+import 'package:blinq/data/model/user/user_status.dart' as _i9;
+import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -258,6 +252,26 @@ class MockAuthApi extends _i1.Mock implements _i4.AuthApi {
           ),
         )),
       ) as _i5.Future<_i2.LoginResponseModel>);
+
+  @override
+  _i5.Future<void> updateAuthToken({
+    required int? userId,
+    required String? token,
+    required String? deviceType,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateAuthToken,
+          [],
+          {
+            #userId: userId,
+            #token: token,
+            #deviceType: deviceType,
+          },
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }
 
 /// A class which mocks [AuthLocalStorage].
@@ -305,6 +319,15 @@ class MockAuthLocalStorage extends _i1.Mock implements _i8.AuthLocalStorage {
       ) as String);
 
   @override
+  void setFirebaseToken(String? token) => super.noSuchMethod(
+        Invocation.method(
+          #setFirebaseToken,
+          [token],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
   void setRefreshToken(String? token) => super.noSuchMethod(
         Invocation.method(
           #setRefreshToken,
@@ -348,15 +371,6 @@ class MockAuthLocalStorage extends _i1.Mock implements _i8.AuthLocalStorage {
         ),
         returnValueForMissingStub: null,
       );
-
-  @override
-  int getUserId() => (super.noSuchMethod(
-        Invocation.method(
-          #getUserId,
-          [],
-        ),
-        returnValue: 0,
-      ) as int);
 
   @override
   void setUserPhone(String? phone) => super.noSuchMethod(

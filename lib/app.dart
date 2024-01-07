@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:blinq/domain/repositories/auth_repository.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -11,6 +10,7 @@ import 'package:blinq/app/locator.dart';
 import 'package:blinq/app/routes.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/domain/repositories/auth_repository.dart';
 import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/domain/repositories/premade_messages_repository.dart';
 import 'package:blinq/presentation/connect_to_blinq/cubit/connect_to_blinq_cubit.dart';

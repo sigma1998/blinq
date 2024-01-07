@@ -28,7 +28,7 @@ class QrDialog extends StatelessWidget {
 
     return MyInfoContainer(
       padding: const EdgeInsets.all(36),
-      // height: MediaQuery.of(context).size.height * 0.426,
+      height: MediaQuery.of(context).size.height * (qrVisible ? 0.426 : 0.22),
       margin: const EdgeInsets.symmetric(horizontal: 51),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

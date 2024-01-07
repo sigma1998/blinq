@@ -131,7 +131,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   MyButton.secondary(
                     label: 'strNext'.tr(),
                     isLoading: state.status == Status.loading,
-                    onTap: () => bloc.add(OnSubmitted(email: email)),
+                    onTap: () {
+                      if (bloc.firstCodeController.text !=
+                          bloc.secondCodeController.text) {
+                        return;
+                      }
+                      bloc.add(OnSubmitted(email: email));
+                    },
                     labelStyle:
                         Theme.of(context).textTheme.bodyMedium!.copyWith(
                               color: Colors.black,

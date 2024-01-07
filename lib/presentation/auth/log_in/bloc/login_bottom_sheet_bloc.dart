@@ -57,7 +57,7 @@ class LoginBottomSheetBloc
           password: passwordController.text,
           fcmToken: token ?? '',
           deviceType: Platform.isAndroid ? 'android' : 'ios');
-      _saveData(res, token??'');
+      _saveData(res, token ?? '');
       emit(state.copyWith(status: Status.initial));
       // NavigationService.newRootScreen(MainScreen.route);
       NavigationService.pushNamed(routeName: SuccessVideoScreen.route);
@@ -89,7 +89,7 @@ class LoginBottomSheetBloc
         fcmToken: token ?? '',
         deviceType: Platform.isAndroid ? 'android' : 'ios',
       );
-      _saveData(res, token??'');
+      _saveData(res, token ?? '');
       emit(state.copyWith(status: Status.initial));
       NavigationService.newRootScreen(MainScreen.route);
     }
@@ -98,6 +98,14 @@ class LoginBottomSheetBloc
   FutureOr<void> _onGoogleSelected(
       OnGoogleSelected event, Emitter<LoginBottomSheetState> emit) async {
     try {
+      /// Sign out is called to ensure the user is signed out from the app
+      /// [GoogleSignIn().disconnect] allows to open the Google Sign In dialog again
+      /// insead of silently signing in with the last account.
+      if (GoogleSignIn().currentUser != null) {
+        await GoogleSignIn().signOut();
+      }
+      await GoogleSignIn().disconnect();
+
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
       final GoogleSignInAuthentication? googleAuth =
@@ -116,7 +124,7 @@ class LoginBottomSheetBloc
           deviceType: Platform.isAndroid ? 'android' : 'ios',
         );
         final res = await authRepository.loginWithGoogle(model);
-        _saveData(res, token??'');
+        _saveData(res, token ?? '');
         emit(state.copyWith(status: Status.initial));
         NavigationService.newRootScreen(MainScreen.route);
       }

@@ -29,6 +29,8 @@ class EmailScreenBloc extends Bloc<EmailScreenEvent, EmailScreenState> {
   late final TextEditingController codeController;
   SendEmailResponse? sendEmailForRegistrationResponse;
 
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   EmailScreenBloc({required this.authRepository, required this.isVerifying})
       : super(const EmailScreenState()) {
     on<OnPrimaryButtonPressed>(_onPrimaryButtonPressed);
@@ -37,6 +39,8 @@ class EmailScreenBloc extends Bloc<EmailScreenEvent, EmailScreenState> {
     emailController = TextEditingController();
     codeController = TextEditingController();
   }
+
+  bool validateForm() => formKey.currentState!.validate();
 
   FutureOr<void> _onPrimaryButtonPressed(
       OnPrimaryButtonPressed event, Emitter<EmailScreenState> emit) async {
@@ -55,8 +59,7 @@ class EmailScreenBloc extends Bloc<EmailScreenEvent, EmailScreenState> {
           NavigationService.pushReplacement(
               routeName: RegistrationScreen.route,
               arguments: sendEmailForRegistrationResponse!.email);
-        }
-        else{
+        } else {
           NavigationService.showErrorToast('strInvalidCode'.tr());
         }
       }
@@ -68,11 +71,13 @@ class EmailScreenBloc extends Bloc<EmailScreenEvent, EmailScreenState> {
     if (!state.isCodeSent) {
       NavigationService.showBottomSheet(sheet: const LogInBottomSheet());
     } else {
+      emit(state.copyWith(isResendCodeLoading: true));
       if (isVerifying) {
         await _sendVerificationMailForCode(emit);
       } else {
         await _sendRegistrationMailForCode(emit);
       }
+      emit(state.copyWith(isResendCodeLoading: false));
     }
   }
 
@@ -87,10 +92,15 @@ class EmailScreenBloc extends Bloc<EmailScreenEvent, EmailScreenState> {
     try {
       final res = await authRepository.sendEmail(emailController.text);
       sendEmailForRegistrationResponse = res;
-      emit(state.copyWith(status: Status.initial, isCodeSent: true));
+      emit(state.copyWith(
+        isCodeSent: true,
+        status: Status.initial,
+      ));
 
       NavigationService.showToast(
-          text: "strCodeSent".tr(), title: 'strCheckMain'.tr());
+        text: "strCodeSent".tr(),
+        title: 'strCheckMain'.tr(),
+      );
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }
@@ -107,10 +117,15 @@ class EmailScreenBloc extends Bloc<EmailScreenEvent, EmailScreenState> {
     try {
       await authRepository.getVerificationCode(emailController.text);
 
-      emit(state.copyWith(status: Status.initial, isCodeSent: true));
+      emit(state.copyWith(
+        status: Status.initial,
+        isCodeSent: true,
+      ));
 
       NavigationService.showToast(
-          text: "strCodeSent".tr(), title: 'strCheckMain'.tr());
+        text: "strCodeSent".tr(),
+        title: 'strCheckMain'.tr(),
+      );
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }
@@ -121,7 +136,9 @@ class EmailScreenBloc extends Bloc<EmailScreenEvent, EmailScreenState> {
 
     try {
       final res = await authRepository.confirmMailVerification(
-          mail: emailController.text, code: codeController.text);
+        mail: emailController.text,
+        code: codeController.text,
+      );
       DioClient.setToken(res);
 
       emit(state.copyWith(status: Status.initial));
