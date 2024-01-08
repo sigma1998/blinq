@@ -1,7 +1,5 @@
 // Flutter imports:
-// Project improts:
-
-// Flutter imports:
+import 'package:blinq/utils/services/notification/notification_service.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -33,6 +31,9 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
+
+    // TODO: this is a temporary solution to work with background notifications when app is terminated
+    NotificationService.setupNotificationService();
     super.initState();
   }
 

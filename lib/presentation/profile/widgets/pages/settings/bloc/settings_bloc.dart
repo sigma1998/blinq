@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:blinq/utils/services/notification/notification_service.dart';
 import 'package:flutter/foundation.dart';
 
 // Package imports:
@@ -18,6 +17,7 @@ import 'package:blinq/presentation/password_editor/password_editor_screen.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/services/notification/notification_service.dart';
 import 'package:blinq/utils/services/permission/permission_service.dart';
 import 'settings_event.dart';
 

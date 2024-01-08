@@ -2,37 +2,33 @@
 import 'dart:async';
 
 // Package imports:
-import 'package:blinq/app/locator.dart';
-import 'package:blinq/utils/services/permission/permission_service.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 // Project imports:
+import 'package:blinq/app/locator.dart';
 import 'package:blinq/data/model/notification/request_notification.dart';
 import 'package:blinq/data/model/notification/response_notification.dart';
 import 'package:blinq/presentation/notification_dialog/notification_dialog.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:blinq/utils/services/permission/permission_service.dart';
 
 const androidChannel = AndroidNotificationChannel(
   'high_importance_channel', // id
   'High Importance Notifications', // title
-  importance: Importance.high,
+  importance: Importance.max,
 );
 
 class NotificationService {
   //
 
-  static final flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-
-  NotificationService() {
-    setupNotificationService();
-  }
-
-  //
   static final FirebaseMessaging _firebaseMessaging =
       FirebaseMessaging.instance;
 
+  static final flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
+  //
   static final StreamController<ResponseNotificationDto?>
       _responseNotificationStreamController =
       StreamController<ResponseNotificationDto?>.broadcast();
@@ -41,19 +37,17 @@ class NotificationService {
       _responseNotificationStreamController.stream;
 
   //
-  static Future<String?> getFcmToken() async {
-    return await _firebaseMessaging.getToken();
-  }
+  static Future<String?> getFcmToken() async =>
+      await _firebaseMessaging.getToken();
 
   /// [setupNotificationService] sets up the notification service
   static Future<void> setupNotificationService() async {
     await onCheckPermission();
 
     _initHeadsUpMode();
-    await _getInitialMessage();
+    _getInitialMessage();
     _onMessage();
     _onAppOpened();
-    FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
   }
 
   static Future<void> onCheckPermission() async {
@@ -78,8 +72,12 @@ class NotificationService {
         ?.createNotificationChannel(androidChannel);
   }
 
-  static Future<void> _getInitialMessage() async {
-    await FirebaseMessaging.instance.getInitialMessage();
+  static void _getInitialMessage() {
+    FirebaseMessaging.instance.getInitialMessage().then(((data) {
+      if (data != null) {
+        _handleMessage(data);
+      }
+    }));
   }
 
   static void _onMessage() {
@@ -98,7 +96,7 @@ class NotificationService {
 
   /// [_handleMessage] checks if the notification contains
   /// image, full_name, car, accident_id, id
-  static void _handleMessage(RemoteMessage message) async {
+  static void _handleMessage(RemoteMessage message) {
     final data = message.data;
 
     if (data.containsKey('image') && data.containsKey('accident_id')) {
@@ -123,12 +121,4 @@ class NotificationService {
   static Future<void> deleteToken() async {
     await _firebaseMessaging.deleteToken();
   }
-}
-
-Future<void> myBackgroundMessageHandler(RemoteMessage message) async {
-  // print('fkjdnfdskjfndkjfndksjfndksjnfkdsjnfkjsdnfkjsdnfkdsjnf');
-  // print(message.data);
-  // print(message.notification?.title);
-  // print(message.notification?.body);
-  // print('fkjdnfdskjfndkjfndksjfndksjnfkdsjnfkjsdnfkjsdnfkdsjnf');
 }
