@@ -4,6 +4,7 @@ import 'dart:io';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -142,8 +143,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   void onMyCarPressed() =>
       NavigationService.pushNamed(routeName: EditorMyCarScreen.route);
 
-  void onQrCodePressed() =>
-      NavigationService.showDialog(dialog: const QrDialog());
+  void onQrCodePressed() => NavigationService.showDialog(
+        dialog: const QrDialog(),
+        barrierColor: Colors.transparent,
+      );
 
   //& My Vehicle
 

@@ -50,9 +50,10 @@ class SplashScreenBloc {
     int? id = authRepository.getUserId();
     if (myFCMToken != firebaseToken && myFCMToken != null && id != null) {
       authRepository.updateAuthToken(
-          userId: id,
-          token: myFCMToken,
-          deviceType: Platform.isAndroid ? 'android' : 'ios');
+        userId: id,
+        token: myFCMToken,
+        deviceType: Platform.isAndroid ? 'android' : 'ios',
+      );
     }
     NavigationService.newRootScreen(MainScreen.route);
   }

@@ -92,6 +92,8 @@ PODS:
     - Mantle
     - SDWebImage
     - SDWebImageWebPCoder
+  - flutter_local_notifications (0.0.1):
+    - Flutter
   - flutter_secure_storage (6.0.0):
     - Flutter
   - flutter_sms (1.1.0):
@@ -238,6 +240,7 @@ DEPENDENCIES:
   - flutter_blue_plus (from `.symlinks/plugins/flutter_blue_plus/ios`)
   - flutter_exif_rotation (from `.symlinks/plugins/flutter_exif_rotation/ios`)
   - flutter_image_compress_common (from `.symlinks/plugins/flutter_image_compress_common/ios`)
+  - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - flutter_sms (from `.symlinks/plugins/flutter_sms/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
@@ -320,6 +323,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_exif_rotation/ios"
   flutter_image_compress_common:
     :path: ".symlinks/plugins/flutter_image_compress_common/ios"
+  flutter_local_notifications:
+    :path: ".symlinks/plugins/flutter_local_notifications/ios"
   flutter_secure_storage:
     :path: ".symlinks/plugins/flutter_secure_storage/ios"
   flutter_sms:
@@ -390,6 +395,7 @@ SPEC CHECKSUMS:
   flutter_blue_plus: 4837da7d00cf5d441fdd6635b3a57f936778ea96
   flutter_exif_rotation: de6b54e8bd54a687f28d6397d1a890391de41111
   flutter_image_compress_common: ec1d45c362c9d30a3f6a0426c297f47c52007e3e
+  flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   flutter_secure_storage: 23fc622d89d073675f2eaa109381aefbcf5a49be
   flutter_sms: 91ce41530f55c85d6524d82307a5d555844c086a
   fluttertoast: 31b00dabfa7fb7bacd9e7dbee580d7a2ff4bf265
@@ -436,6 +442,6 @@ SPEC CHECKSUMS:
   video_player_avfoundation: 81e49bb3d9fb63dccf9fa0f6d877dc3ddbeac126
   video_thumbnail: c4e2a3c539e247d4de13cd545344fd2d26ffafd1
 
-PODFILE CHECKSUM: 2b554439e9d09d549acf038f35d289f20689aba4
+PODFILE CHECKSUM: 28bde31e36233341abfd863fe45c4fa7a4edd6bf
 
 COCOAPODS: 1.14.3

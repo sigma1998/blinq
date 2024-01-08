@@ -2,6 +2,8 @@
 import 'dart:async';
 
 // Package imports:
+import 'package:blinq/app/locator.dart';
+import 'package:blinq/utils/services/permission/permission_service.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 // Project imports:
@@ -9,12 +11,25 @@ import 'package:blinq/data/model/notification/request_notification.dart';
 import 'package:blinq/data/model/notification/response_notification.dart';
 import 'package:blinq/presentation/notification_dialog/notification_dialog.dart';
 import 'package:blinq/utils/navigation_service.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+const androidChannel = AndroidNotificationChannel(
+  'high_importance_channel', // id
+  'High Importance Notifications', // title
+  importance: Importance.high,
+);
 
 class NotificationService {
+  //
+
+  static final flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
   NotificationService() {
     setupNotificationService();
   }
 
+  //
   static final FirebaseMessaging _firebaseMessaging =
       FirebaseMessaging.instance;
 
@@ -25,37 +40,65 @@ class NotificationService {
   static Stream<ResponseNotificationDto?> get responseNotificationStream =>
       _responseNotificationStreamController.stream;
 
+  //
   static Future<String?> getFcmToken() async {
     return await _firebaseMessaging.getToken();
   }
 
+  /// [setupNotificationService] sets up the notification service
   static Future<void> setupNotificationService() async {
-    // iOS notifications setup
-    await _firebaseMessaging.requestPermission(
-        alert: true, badge: true, provisional: true, sound: true);
+    await onCheckPermission();
 
-    // Init firebase notification listeners
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      _handleMessage(message);
-    });
-    FirebaseMessaging.onMessageOpenedApp.listen((event) {
-      _onAppOpened(event);
-    });
-
-    _getInitialMessage();
+    _initHeadsUpMode();
+    await _getInitialMessage();
+    _onMessage();
+    _onAppOpened();
     FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
   }
 
-  static Future<void> _onAppOpened(RemoteMessage message) async {
-    print(
-        '_onAppOpened: fkjdnfdskjfndkjfndksjfndksjnfkdsjnfkjsdnfkjsdnfkdsjnf');
-    print(message.data);
-    print(message.notification?.title);
-    print(message.notification?.body);
-    print('fkjdnfdskjfndkjfndksjfndksjnfkdsjnfkjsdnfkjsdnfkdsjnf');
+  static Future<void> onCheckPermission() async {
+    await getIt<PermissionServiceImpl>().handleNotificationPermission();
   }
 
-  static _handleMessage(RemoteMessage message) async {
+  /// [_initHeadsUpMode] sets up the heads up mode for the notification
+  /// so that notificaiton pops up when app is in background
+  static void _initHeadsUpMode() async {
+    // iOS
+    await FirebaseMessaging.instance
+        .setForegroundNotificationPresentationOptions(
+      alert: false,
+      badge: false,
+      sound: true,
+    );
+
+    // Android
+    await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(androidChannel);
+  }
+
+  static Future<void> _getInitialMessage() async {
+    await FirebaseMessaging.instance.getInitialMessage();
+  }
+
+  static void _onMessage() {
+    FirebaseMessaging.onMessage.listen((data) {
+      _handleMessage(data);
+    });
+  }
+
+  /// [_onAppOpened] called when the app is opened from a notification
+  /// Handle the notification and open the dialog
+  static void _onAppOpened() {
+    FirebaseMessaging.onMessageOpenedApp.listen((data) {
+      _handleMessage(data);
+    });
+  }
+
+  /// [_handleMessage] checks if the notification contains
+  /// image, full_name, car, accident_id, id
+  static void _handleMessage(RemoteMessage message) async {
     final data = message.data;
 
     if (data.containsKey('image') && data.containsKey('accident_id')) {
@@ -63,8 +106,10 @@ class NotificationService {
           RequestNotificationDto.fromJson(data);
 
       NavigationService.showDialog(
-          dialog: NotificationDialog(
-              requestNotificationDto: requestNotificationDto));
+        dialog: NotificationDialog(
+          requestNotificationDto: requestNotificationDto,
+        ),
+      );
     }
 
     if (data.containsKey('answer')) {
@@ -74,17 +119,7 @@ class NotificationService {
     }
   }
 
-  static void _getInitialMessage() async {
-    final message = await FirebaseMessaging.instance.getInitialMessage();
-
-    print(
-        '_getInitialMessage: fkjdnfdskjfndkjfndksjfndksjnfkdsjnfkjsdnfkjsdnfkdsjnf');
-    print(message?.data);
-    print(message?.notification?.title);
-    print(message?.notification?.body);
-    print('fkjdnfdskjfndkjfndksjfndksjnfkdsjnfkjsdnfkjsdnfkdsjnf');
-  }
-
+  /// [deleteToken] deletes the token from firebase
   static Future<void> deleteToken() async {
     await _firebaseMessaging.deleteToken();
   }

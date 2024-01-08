@@ -128,7 +128,6 @@ class LoginBottomSheetBloc
       }
     } catch (e) {
       debugPrint(e.toString());
-      NavigationService.showErrorToast(e.toString());
       emit(state.copyWith(status: Status.initial));
     }
   }
