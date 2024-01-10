@@ -44,7 +44,6 @@ class SplashScreenBloc {
 
     final String? myFCMToken = authRepository.getFirebaseToken();
 
-    await NotificationService.setupNotificationService();
     final firebaseToken = await NotificationService.getFcmToken();
 
     int? id = authRepository.getUserId();

@@ -19,6 +19,7 @@ import 'bloc/points_of_impact_bloc.dart';
 import 'bloc/points_of_impact_state.dart';
 
 class PointsOfImpactScreen extends StatefulWidget {
+  //
   static const String route = 'points_of_impact_screen';
 
   const PointsOfImpactScreen({Key? key}) : super(key: key);
@@ -28,6 +29,7 @@ class PointsOfImpactScreen extends StatefulWidget {
 }
 
 class _PointsOfImpactScreenState extends State<PointsOfImpactScreen> {
+  //
   late final PointsOfImpactBloc bloc;
 
   @override

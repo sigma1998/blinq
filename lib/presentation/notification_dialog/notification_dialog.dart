@@ -16,6 +16,7 @@ import 'package:blinq/utils/custom_widgets/default_image.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 
 class NotificationDialog extends StatefulWidget {
+  //
   final RequestNotificationDto requestNotificationDto;
 
   const NotificationDialog({super.key, required this.requestNotificationDto});
@@ -25,12 +26,14 @@ class NotificationDialog extends StatefulWidget {
 }
 
 class _NotificationDialogState extends State<NotificationDialog> {
+  //
   late NotificationDialogBloc bloc;
 
   @override
   void initState() {
     bloc = NotificationDialogBloc(
-        accidentRepository: getIt<AccidentRepositoryImpl>());
+      accidentRepository: getIt<AccidentRepositoryImpl>(),
+    );
     super.initState();
   }
 
@@ -41,17 +44,19 @@ class _NotificationDialogState extends State<NotificationDialog> {
         builder: (context, state) {
           return Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Theme
-                    .of(context)
-                    .colorScheme
-                    .secondary),
+              borderRadius: BorderRadius.circular(20),
+              color: Theme.of(context).colorScheme.secondary,
+            ),
             margin: const EdgeInsets.symmetric(horizontal: 32),
             child: Stack(
               children: [
                 Padding(
                   padding: const EdgeInsets.only(
-                      top: 61, right: 31, left: 31, bottom: 36),
+                    top: 61,
+                    left: 31,
+                    right: 31,
+                    bottom: 36,
+                  ),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -66,29 +71,19 @@ class _NotificationDialogState extends State<NotificationDialog> {
                       ),
                       Text(
                         widget.requestNotificationDto.fullName,
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .titleSmall,
+                        style: Theme.of(context).textTheme.titleSmall,
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       Text(widget.requestNotificationDto.car,
-                          style: Theme
-                              .of(context)
-                              .textTheme
-                              .bodySmall),
+                          style: Theme.of(context).textTheme.bodySmall),
                       const SizedBox(
                         height: 30,
                       ),
                       Text(
-                        '${widget.requestNotificationDto
-                            .fullName} ${'strWantsToConnect'.tr()}',
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .titleSmall,
+                        '${widget.requestNotificationDto.fullName} ${'strWantsToConnect'.tr()}',
+                        style: Theme.of(context).textTheme.titleSmall,
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(
@@ -104,29 +99,31 @@ class _NotificationDialogState extends State<NotificationDialog> {
                       AppButton(
                           onTap: () {
                             bloc.sendAnswer(
-                                true, widget.requestNotificationDto.accidentId);
+                              true,
+                              widget.requestNotificationDto.accidentId,
+                            );
                           },
                           text: 'strYes'.tr()),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       AppButton(
                         onTap: () {
                           bloc.sendAnswer(
-                              false, widget.requestNotificationDto.accidentId);
+                            false,
+                            widget.requestNotificationDto.accidentId,
+                          );
                         },
                         text: 'strNo'.tr(),
-                        btnColor: Theme
-                            .of(context)
-                            .colorScheme
-                            .onSecondary,
+                        btnColor: Theme.of(context).colorScheme.onSecondary,
                       ),
                     ],
                   ),
                 ),
                 if (state.status == Status.loading)
                   const Positioned(
-                      top: 24, right: 24, child: CupertinoActivityIndicator())
+                    top: 24,
+                    right: 24,
+                    child: CupertinoActivityIndicator(),
+                  )
               ],
             ),
           );

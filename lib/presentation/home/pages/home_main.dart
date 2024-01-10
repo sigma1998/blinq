@@ -9,14 +9,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // Project imports:
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/presentation/connect_to_blinq/cubit/connect_to_blinq_cubit.dart';
-import 'package:blinq/presentation/create_report/create_report_screen.dart';
 import 'package:blinq/presentation/home/bloc/home_screen_cubit.dart';
 import 'package:blinq/presentation/home/bloc/home_screen_state.dart';
 import 'package:blinq/presentation/home/widgets/map.dart';
 import 'package:blinq/presentation/home/widgets/menu_item.dart';
 import 'package:blinq/presentation/main_screen/bloc/main_screen_bloc.dart';
 import 'package:blinq/presentation/main_screen/bloc/main_screen_event.dart';
-import 'package:blinq/utils/navigation_service.dart';
 
 class HomeMain extends StatefulWidget {
   //
@@ -122,13 +120,6 @@ class _HomeMainState extends State<HomeMain>
           ),
         );
       },
-    );
-  }
-
-  void openCreateReportScreen() {
-    NavigationService.pushNamed(
-      routeName: CreateReportScreen.route,
-      nestedKey: NavigationService.homeNavigatorKey,
     );
   }
 }

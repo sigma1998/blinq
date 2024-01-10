@@ -31,7 +31,7 @@ class NotificationService {
   //
   static final StreamController<ResponseNotificationDto?>
       _responseNotificationStreamController =
-      StreamController<ResponseNotificationDto?>.broadcast();
+      StreamController<ResponseNotificationDto?>();
 
   static Stream<ResponseNotificationDto?> get responseNotificationStream =>
       _responseNotificationStreamController.stream;
@@ -62,7 +62,7 @@ class NotificationService {
         .setForegroundNotificationPresentationOptions(
       alert: false,
       badge: false,
-      sound: true,
+      sound: false,
     );
 
     // Android
@@ -82,6 +82,7 @@ class NotificationService {
 
   static void _onMessage() {
     FirebaseMessaging.onMessage.listen((data) {
+      print('motherfucker');
       _handleMessage(data);
     });
   }

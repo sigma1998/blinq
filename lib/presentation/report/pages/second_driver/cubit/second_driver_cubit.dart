@@ -88,16 +88,18 @@ class SecondDriverCubit extends Cubit<SecondDriverState> {
   Future<void> _addUserB() async {
     try {
       await repository.addDriverB(
-          accidentId: reportBloc.reportId,
-          secondDriverId: state.secondDriver!.id!);
+        accidentId: reportBloc.reportId,
+        secondDriverId: state.secondDriver!.id!,
+      );
 
       reportBloc.setUser(User.B);
 
       emit(state.copyWith(status: Status.initial));
 
       NavigationService.pushNamed(
-          routeName: PointsOfImpactScreen.route,
-          nestedKey: NavigationService.homeNavigatorKey);
+        routeName: PointsOfImpactScreen.route,
+        nestedKey: NavigationService.homeNavigatorKey,
+      );
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }

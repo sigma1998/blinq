@@ -28,6 +28,7 @@ class CreateReportScreen extends StatefulWidget {
 }
 
 class _CreateReportScreenState extends State<CreateReportScreen> {
+  //
   late final CreateReportBloc bloc;
 
   @override
@@ -42,11 +43,12 @@ class _CreateReportScreenState extends State<CreateReportScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CreateReportBloc, GenericBlocState>(
-      bloc: bloc,
-      builder: (context, state) {
-        return Scaffold(
-          body: ModalProgressHud(
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: BlocBuilder<CreateReportBloc, GenericBlocState>(
+        bloc: bloc,
+        builder: (context, state) {
+          return ModalProgressHud(
             isLoading: state.status == Status.loading,
             child: Padding(
               padding: const EdgeInsets.symmetric(
@@ -82,12 +84,11 @@ class _CreateReportScreenState extends State<CreateReportScreen> {
                 ],
               ),
             ),
-          ),
-          floatingActionButton: const NavigationButton(height: 135),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerFloat,
-        );
-      },
+          );
+        },
+      ),
+      floatingActionButton: const NavigationButton(height: 135),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

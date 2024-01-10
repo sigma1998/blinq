@@ -710,7 +710,7 @@
     "cargo door right": "cargo door right"
   },
   "auto": {
-    "capot":"capot"  ,
+    "capot":"hood",
     "windscreen": "windscreen",
     "roof":"roof",
     "rear window":  "rear window",

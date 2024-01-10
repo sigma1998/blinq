@@ -140,7 +140,7 @@ class NavigationService {
   static Future<dynamic>? showDialog({
     required Widget dialog,
     double? padding,
-    Color barrierColor = Colors.black45,
+    Color barrierColor = Colors.transparent,
   }) {
     isActiveDialog = true;
 

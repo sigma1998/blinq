@@ -91,30 +91,12 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     ResetPasswordScreen.route: (context) => const ResetPasswordScreen(),
 
     //& Home
-    CreateReportScreen.route: (context) => const CreateReportScreen(),
     MedicalAssistanceScreen.route: (context) => const MedicalAssistanceScreen(),
     EmergencyServicesScreen.route: (context) => const EmergencyServicesScreen(),
     InformCloseOnesScreen.route: (context) => const InformCloseOnesScreen(),
 
-    //^ Report
-    LocationInfoScreen.route: (context) => const LocationInfoScreen(),
-    InjuryScreen.route: (context) => const InjuryScreen(),
-    SpeechToTextScreen.route: (context) => const SpeechToTextScreen(),
-
-    SketchScreen.route: (context) => const SketchScreen(),
-    ConnectToDriverScreen.route: (context) => const ConnectToDriverScreen(),
-    SecondDriverScreen.route: (context) => const SecondDriverScreen(),
-
-    FinishedScreen.route: (context) => const FinishedScreen(),
-
-    ContactEditScreen.route: (context) => const ContactEditScreen(),
-    PremadeMessageEditScreen.route: (context) =>
-        const PremadeMessageEditScreen(),
-    OfflineScreen.route: (context) =>
-        const OfflineScreen(),
-
-
-
+    //^ Contact
+    OfflineScreen.route: (context) => const OfflineScreen(),
   };
 }
 

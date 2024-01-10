@@ -50,18 +50,21 @@ class EditMyCarBloc extends Cubit<EditMyCarState> {
 
     if (profileBloc.state.profile?.car?.brandId != null) {
       selectedBrand = VehicleInfoDto(
-          id: profileBloc.state.profile?.car?.brandId,
-          name: profileBloc.state.profile?.car?.brand);
+        id: profileBloc.state.profile?.car?.brandId,
+        name: profileBloc.state.profile?.car?.brand,
+      );
     }
     if (profileBloc.state.profile?.car?.carId != null) {
       selectedModel = VehicleInfoDto(
-          id: profileBloc.state.profile?.car?.carId,
-          name: profileBloc.state.profile?.car?.car);
+        id: profileBloc.state.profile?.car?.carId,
+        name: profileBloc.state.profile?.car?.car,
+      );
     }
     if (profileBloc.state.profile?.car?.colorId != null) {
       selectedColor = VehicleColorDto(
-          id: profileBloc.state.profile?.car?.colorId,
-          colour: profileBloc.state.profile?.car?.color);
+        id: profileBloc.state.profile?.car?.colorId,
+        colour: profileBloc.state.profile?.car?.color,
+      );
     }
   }
 

@@ -60,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen>
           bloc: homeScreenCubit,
           builder: (context, state) {
             return Scaffold(
+              backgroundColor: Colors.black,
               appBar: AppBar(
                 elevation: 0,
                 toolbarHeight: 0,

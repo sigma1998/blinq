@@ -5,14 +5,10 @@ import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:app_settings/app_settings.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 
 // Project imports:
-import 'package:blinq/utils/navigation_service.dart';
-import 'package:blinq/utils/smart_widgets/dialogs/permission_dialog/permission_dialog.dart';
 import 'device_info_helper.dart';
 import 'md5_helper.dart';
 
@@ -184,17 +180,21 @@ class BluetoothHelper {
 
     if (Platform.isAndroid && !isOn) {
       return await FlutterBluePlus.turnOn();
-    } else if (Platform.isIOS && !isOn) {
-      return await NavigationService.showDialog(
-          dialog: PermissionDialog(
-        onSettingsPressed: () async {
-          await AppSettings.openAppSettings(
-            asAnotherTask: true,
-            type: AppSettingsType.bluetooth,
-          );
-        },
-        title: 'strBleTurnOnPermission'.tr(),
-      ));
     }
+
+    /// On iOS, we cannot check if ble is turned on
+
+    // else if (Platform.isIOS && !isOn) {
+    //   return await NavigationService.showDialog(
+    //       dialog: PermissionDialog(
+    //     onSettingsPressed: () async {
+    //       await AppSettings.openAppSettings(
+    //         asAnotherTask: true,
+    //         type: AppSettingsType.bluetooth,
+    //       );
+    //     },
+    //     title: 'strBleTurnOnPermission'.tr(),
+    //   ));
+    // }
   }
 }

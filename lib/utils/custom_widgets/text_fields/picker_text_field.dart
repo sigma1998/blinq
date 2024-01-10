@@ -23,6 +23,7 @@ class PickerTextField extends StatelessWidget {
 
   final bool enabled;
   final bool isRequired;
+  final bool readonly;
 
   const PickerTextField({
     super.key,
@@ -35,6 +36,7 @@ class PickerTextField extends StatelessWidget {
     this.maxLines = 1,
     //
     this.enabled = true,
+    this.readonly = true,
     this.isRequired = false,
   });
 
@@ -42,14 +44,17 @@ class PickerTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return MyTextField(
       key: key,
-      onTap: onTap,
-      readOnly: true,
       enabled: enabled,
+      readOnly: readonly,
       minLines: minLines,
       maxLines: maxLines,
       labelText: labelText,
       controller: controller,
-      suffixIcon: suffixIcon ?? _suffixIcon,
+      onTap: readonly ? onTap : null,
+      suffixIcon: GestureDetector(
+        onTap: readonly ? null : onTap,
+        child: suffixIcon ?? _suffixIcon,
+      ),
       suffixIconConstraints: const BoxConstraints(
         minWidth: 24,
         minHeight: 24,

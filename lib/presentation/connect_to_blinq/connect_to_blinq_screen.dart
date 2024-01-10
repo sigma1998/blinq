@@ -25,11 +25,11 @@ class ConnectToBlinqScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<ConnectToBlinqCubit>();
 
-    return SafeArea(
-      child: BlocBuilder<ConnectToBlinqCubit, ConnectToBlinqState>(
-        builder: (context, state) {
-          return Scaffold(
-            body: Padding(
+    return Scaffold(
+      body: SafeArea(
+        child: BlocBuilder<ConnectToBlinqCubit, ConnectToBlinqState>(
+          builder: (context, state) {
+            return Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 40,
                 horizontal: 30,
@@ -58,9 +58,9 @@ class ConnectToBlinqScreen extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
