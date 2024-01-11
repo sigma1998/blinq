@@ -1,10 +1,15 @@
+// Dart imports:
+import 'dart:io';
+
 // Package imports:
+import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 // Project imports:
 import 'package:blinq/data/datasource/remote/breakdown_api.dart';
+import 'package:blinq/data/model/report/injury/injury.dart';
 import 'package:blinq/data/model/report/report_time_and_location/report_time_and_location.dart';
 import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'breakdown_repository_test.mocks.dart';
@@ -16,10 +21,18 @@ void main() {
 
   const breakdownId = 1;
 
+  final file = File('assets/images/error_profile_image.png');
+
   const reportTimeAndLocationDto = ReportTimeAndLocationDto(
     country: 'test',
     location: 'test',
     createdAt: '22.04.2023',
+  );
+
+  const injuryDto = InjuryDto(
+    injury: true,
+    otherDamagedVehicles: true,
+    otherDamagedItems: true,
   );
 
   setUp(() {
@@ -49,159 +62,271 @@ void main() {
       ));
     });
 
-    // @override
-    // Future<void> breakdownInitialImpactPoint(
-    //     int breakdownId, MultipartFile image) async {
-    //   try {
-    //     return await breakdownApi.breakdownInitialImpactPoint(
-    //         breakdownId, image);
-    //   } catch (e) {
-    //     rethrow;
-    //   }
-    // }
+    test('should call breakdownInitialImpactPoint with correct parameters',
+        () async {
+      // Arrange
+      final image = await MultipartFile.fromFile(file.path,
+          filename: file.path.split('/').last);
+      when(mockBreakdownApi.breakdownInitialImpactPoint(any, any))
+          .thenAnswer((_) async => {});
 
-    // @override
-    // Future<void> breakdownInjury(int breakdownId, InjuryDto injuryDto) async {
-    //   try {
-    //     return await breakdownApi.breakdownInjury(breakdownId, injuryDto);
-    //   } catch (e) {
-    //     rethrow;
-    //   }
-    // }
+      // Act
+      await breakdownRepository.breakdownInitialImpactPoint(
+        breakdownId,
+        image,
+      );
 
-    // @override
-    // Future<void> breakdownWitnesses(int breakdownId, String witnesses) async {
-    //   try {
-    //     return await breakdownApi.breakdownWitnesses(breakdownId, witnesses);
-    //   } catch (e) {
-    //     rethrow;
-    //   }
-    // }
+      // Assert
+      verify(mockBreakdownApi.breakdownInitialImpactPoint(
+        breakdownId,
+        image,
+      ));
+    });
 
-    // @override
-    // Future<int> createBreakdown(String long, String lat) async {
-    //   try {
-    //     return await breakdownApi.createBreakdown(long, lat);
-    //   } catch (e) {
-    //     rethrow;
-    //   }
-    // }
+    test('should call breakdownInjury with correct parameters', () async {
+      // Arrange
+      when(mockBreakdownApi.breakdownInjury(any, any))
+          .thenAnswer((_) async => {});
 
-    // @override
-    // Future<void> damagedPoints(
-    //     {required MultipartFile? top,
-    //     required MultipartFile? front,
-    //     required MultipartFile? back,
-    //     required MultipartFile? left,
-    //     required MultipartFile? right,
-    //     required int breakdownId,
-    //     required List<String> damageParts}) async {
-    //   try {
-    //     return await breakdownApi.damagedPoints(
-    //         breakdownId: breakdownId,
-    //         top: top,
-    //         front: front,
-    //         right: right,
-    //         left: left,
-    //         back: back,
-    //         damageParts: damageParts);
-    //   } catch (e) {
-    //     rethrow;
-    //   }
-    // }
+      // Act
+      await breakdownRepository.breakdownInjury(
+        breakdownId,
+        injuryDto,
+      );
 
-    // @override
-    // Future<void> deactivateBreakdown(int breakdownId) async {
-    //   try {
-    //     return await breakdownApi.deactivateBreakdown(breakdownId);
-    //   } catch (e) {
-    //     rethrow;
-    //   }
-    // }
+      // Assert
+      verify(mockBreakdownApi.breakdownInjury(
+        breakdownId,
+        injuryDto,
+      ));
+    });
 
-    // @override
-    // Future<String> getBreakdownStep(int breakdownId) async {
-    //   try {
-    //     return await breakdownApi.getBreakdownStep(breakdownId);
-    //   } catch (e) {
-    //     rethrow;
-    //   }
-    // }
+    test('should call breakdownWitnesses with correct parameters', () async {
+      // Arrange
+      when(mockBreakdownApi.breakdownWitnesses(any, any))
+          .thenAnswer((_) async => {});
 
-    // @override
-    // Future<String> getPdf(int breakdownId) async {
-    //   try {
-    //     return await breakdownApi.getPdf(breakdownId);
-    //   } catch (e) {
-    //     rethrow;
-    //   }
-    // }
+      // Act
+      await breakdownRepository.breakdownWitnesses(
+        breakdownId,
+        'test',
+      );
 
-    // @override
-    // Future<void> myRemarks(int breakdownId, String myRemarks) async {
-    //   try {
-    //     return await breakdownApi.myRemarks(breakdownId, myRemarks);
-    //   } catch (e) {
-    //     rethrow;
-    //   }
-    // }
+      // Assert
+      verify(mockBreakdownApi.breakdownWitnesses(
+        breakdownId,
+        'test',
+      ));
+    });
 
-    // @override
-    // Future<void> sendCircumstances(
-    //     {required int breakdownId, required List<String> list}) async {
-    //   try {
-    //     return await breakdownApi.sendCircumstances(
-    //         list: list, breakdownId: breakdownId);
-    //   } catch (e) {
-    //     rethrow;
-    //   }
-    // }
+    test('should call createBreakdown with correct parameters', () async {
+      // Arrange
+      const long = '41.3111';
+      const lat = '69.2796';
+      when(mockBreakdownApi.createBreakdown(any, any))
+          .thenAnswer((_) async => breakdownId);
 
-    // @override
-    // Future<void> sign(int breakdownId, MultipartFile sign) async {
-    //   try {
-    //     return await breakdownApi.sign(breakdownId, sign);
-    //   } catch (e) {
-    //     rethrow;
-    //   }
-    // }
+      // Act
+      await breakdownRepository.createBreakdown(long, lat);
 
-    // @override
-    // Future<void> uploadBreakdownSketch(
-    //     {required int breakdownId, required MultipartFile sketch}) async {
-    //   try {
-    //     return await breakdownApi.uploadBreakdownSketch(
-    //         sketch: sketch, breakdownId: breakdownId);
-    //   } catch (e) {
-    //     rethrow;
-    //   }
-    // }
+      // Assert
+      verify(mockBreakdownApi.createBreakdown(long, lat));
+    });
 
-    // @override
-    // Future<int> uploadFile({required MultipartFile file}) async {
-    //   try {
-    //     return await breakdownApi.uploadFile(file: file);
-    //   } catch (e) {
-    //     rethrow;
-    //   }
-    // }
+    test('should call damagedPoints with correct parameters', () async {
+      // Arrange
+      final top = await MultipartFile.fromFile(file.path,
+          filename: file.path.split('/').last);
+      final front = await MultipartFile.fromFile(file.path,
+          filename: file.path.split('/').last);
+      final back = await MultipartFile.fromFile(file.path,
+          filename: file.path.split('/').last);
+      final left = await MultipartFile.fromFile(file.path,
+          filename: file.path.split('/').last);
+      final right = await MultipartFile.fromFile(file.path,
+          filename: file.path.split('/').last);
 
-    // @override
-    // Future<void> uploadMedia(int breakdownId, List<int> uploadedFilesId) async {
-    //   try {
-    //     return await breakdownApi.uploadMedia(breakdownId, uploadedFilesId);
-    //   } catch (e) {
-    //     rethrow;
-    //   }
-    // }
+      when(mockBreakdownApi.damagedPoints(
+        top: top,
+        front: front,
+        back: back,
+        left: left,
+        right: right,
+        breakdownId: breakdownId,
+        damageParts: ['test'],
+      )).thenAnswer((_) async => {});
 
-    // @override
-    // Future<void> visibleDamage(int breakdownId, String visibleDamage) async {
-    //   try {
-    //     return await breakdownApi.visibleDamage(breakdownId, visibleDamage);
-    //   } catch (e) {
-    //     rethrow;
-    //   }
-    // }
+      // Act
+      await breakdownRepository.damagedPoints(
+        top: top,
+        front: front,
+        back: back,
+        left: left,
+        right: right,
+        breakdownId: breakdownId,
+        damageParts: ['test'],
+      );
+
+      // Assert
+      verify(mockBreakdownApi.damagedPoints(
+        top: top,
+        front: front,
+        back: back,
+        left: left,
+        right: right,
+        breakdownId: breakdownId,
+        damageParts: ['test'],
+      ));
+    });
+
+    test('should call deactivateBreakdown with correct parameters', () async {
+      // Arrange
+      when(mockBreakdownApi.deactivateBreakdown(any))
+          .thenAnswer((_) async => {});
+
+      // Act
+      await breakdownRepository.deactivateBreakdown(breakdownId);
+
+      // Assert
+      verify(mockBreakdownApi.deactivateBreakdown(breakdownId));
+    });
+
+    test('should call getBreakdownStep with correct parameters', () async {
+      // Arrange
+      const endpoint = 'test';
+      when(mockBreakdownApi.getBreakdownStep(any))
+          .thenAnswer((_) async => endpoint);
+
+      // Act
+      final result = await breakdownRepository.getBreakdownStep(breakdownId);
+
+      // Assert
+      verify(mockBreakdownApi.getBreakdownStep(breakdownId));
+      expect(result, endpoint);
+    });
+
+    test('should call getPdf with correct parameters', () async {
+      // Arrange
+      const accidentDocumentPdf = 'test';
+      when(mockBreakdownApi.getPdf(any)).thenAnswer((_) async => 'test');
+
+      // Act
+      final result = await breakdownRepository.getPdf(breakdownId);
+
+      // Assert
+      verify(mockBreakdownApi.getPdf(breakdownId));
+      expect(result, accidentDocumentPdf);
+    });
+
+    test('should call myRemarks with correct parameters', () async {
+      // Arrange
+      when(mockBreakdownApi.myRemarks(any, any)).thenAnswer((_) async => {});
+
+      // Act
+      await breakdownRepository.myRemarks(breakdownId, 'test');
+
+      // Assert
+      verify(mockBreakdownApi.myRemarks(breakdownId, 'test'));
+    });
+
+    test('should call sendCircumstances with correct parameters', () async {
+      // Arrange
+      when(mockBreakdownApi.sendCircumstances(
+        breakdownId: breakdownId,
+        list: ['test'],
+      )).thenAnswer((_) async => {});
+
+      // Act
+      await breakdownRepository.sendCircumstances(
+        breakdownId: breakdownId,
+        list: ['test'],
+      );
+
+      // Assert
+      verify(mockBreakdownApi.sendCircumstances(
+        breakdownId: breakdownId,
+        list: ['test'],
+      ));
+    });
+
+    test('should call sign with correct parameters', () async {
+      // Arrange
+      final sign = await MultipartFile.fromFile(file.path,
+          filename: file.path.split('/').last);
+      when(mockBreakdownApi.sign(any, any)).thenAnswer((_) async => {});
+
+      // Act
+      await breakdownRepository.sign(breakdownId, sign);
+
+      // Assert
+      verify(mockBreakdownApi.sign(breakdownId, sign));
+    });
+
+    test('should call uploadBreakdownSketch with correct parameters', () async {
+      // Arrange
+      final sketch = await MultipartFile.fromFile(file.path,
+          filename: file.path.split('/').last);
+      when(mockBreakdownApi.uploadBreakdownSketch(
+        sketch: sketch,
+        breakdownId: breakdownId,
+      )).thenAnswer((_) async => {});
+
+      // Act
+      await breakdownRepository.uploadBreakdownSketch(
+        sketch: sketch,
+        breakdownId: breakdownId,
+      );
+
+      // Assert
+      verify(mockBreakdownApi.uploadBreakdownSketch(
+        sketch: sketch,
+        breakdownId: breakdownId,
+      ));
+    });
+
+    test('should call uploadFile with correct parameters', () async {
+      // Arrange
+      final image = await MultipartFile.fromFile(file.path,
+          filename: file.path.split('/').last);
+      when(mockBreakdownApi.uploadFile(file: image)).thenAnswer((_) async => 1);
+
+      // Act
+      await breakdownRepository.uploadFile(file: image);
+
+      // Assert
+      verify(mockBreakdownApi.uploadFile(file: image));
+    });
+
+    test('should call uploadMedia with correct parameters', () async {
+      // Arrange
+      when(mockBreakdownApi.uploadMedia(
+        breakdownId,
+        [1],
+      )).thenAnswer((_) async => {});
+
+      // Act
+      await breakdownRepository.uploadMedia(
+        breakdownId,
+        [1],
+      );
+
+      // Assert
+      verify(mockBreakdownApi.uploadMedia(
+        breakdownId,
+        [1],
+      ));
+    });
+
+    test('should call visibleDamage with correct parameters', () async {
+      // Arrange
+      when(mockBreakdownApi.visibleDamage(any, any))
+          .thenAnswer((_) async => {});
+
+      // Act
+      await breakdownRepository.visibleDamage(breakdownId, 'test');
+
+      // Assert
+      verify(mockBreakdownApi.visibleDamage(breakdownId, 'test'));
+    });
   });
 }
