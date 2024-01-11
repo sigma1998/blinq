@@ -10,6 +10,7 @@ class VehicleColorDto with _$VehicleColorDto {
   const factory VehicleColorDto({
     int? id,
     String? colour,
+    int? brandId,
   }) = _VehicleColorDto;
 
   factory VehicleColorDto.fromJson(Map<String, dynamic> json) =>

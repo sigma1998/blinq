@@ -3,25 +3,27 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i8;
-import 'dart:io' as _i10;
+import 'dart:async' as _i9;
+import 'dart:io' as _i11;
 
-import 'package:blinq/data/datasource/remote/profile_api.dart' as _i7;
-import 'package:blinq/data/model/car/request/car_request_model.dart' as _i12;
+import 'package:blinq/data/datasource/remote/profile_api.dart' as _i8;
+import 'package:blinq/data/model/car/request/car_request_model.dart' as _i13;
 import 'package:blinq/data/model/cheack_account_datas/cheack_account_datas_response.dart'
-    as _i6;
+    as _i7;
 import 'package:blinq/data/model/history/history_response_dto.dart' as _i3;
 import 'package:blinq/data/model/insurance/request/insurance_request_model.dart'
-    as _i14;
+    as _i15;
 import 'package:blinq/data/model/policy_holder/request/policy_holder_request_model.dart'
-    as _i11;
+    as _i12;
 import 'package:blinq/data/model/profile/request/profile_request_model.dart'
-    as _i9;
+    as _i10;
 import 'package:blinq/data/model/profile/response/profile_response_model.dart'
     as _i2;
 import 'package:blinq/data/model/vehicle/request/vehicle_request_model.dart'
-    as _i13;
+    as _i14;
 import 'package:blinq/data/model/vehicle_info/brand_response.dart' as _i4;
+import 'package:blinq/data/model/vehicle_info/color/vehicle_color_dto.dart'
+    as _i6;
 import 'package:blinq/data/model/vehicle_info/color_response.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -80,9 +82,20 @@ class _FakeColorResponseDto_3 extends _i1.SmartFake
         );
 }
 
-class _FakeCheckAccountResponse_4 extends _i1.SmartFake
-    implements _i6.CheckAccountResponse {
-  _FakeCheckAccountResponse_4(
+class _FakeVehicleColorDto_4 extends _i1.SmartFake
+    implements _i6.VehicleColorDto {
+  _FakeVehicleColorDto_4(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeCheckAccountResponse_5 extends _i1.SmartFake
+    implements _i7.CheckAccountResponse {
+  _FakeCheckAccountResponse_5(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -94,18 +107,18 @@ class _FakeCheckAccountResponse_4 extends _i1.SmartFake
 /// A class which mocks [ProfileApi].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockProfileApi extends _i1.Mock implements _i7.ProfileApi {
+class MockProfileApi extends _i1.Mock implements _i8.ProfileApi {
   MockProfileApi() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i8.Future<_i2.ProfileResponseModel> fetch() => (super.noSuchMethod(
+  _i9.Future<_i2.ProfileResponseModel> fetch() => (super.noSuchMethod(
         Invocation.method(
           #fetch,
           [],
         ),
-        returnValue: _i8.Future<_i2.ProfileResponseModel>.value(
+        returnValue: _i9.Future<_i2.ProfileResponseModel>.value(
             _FakeProfileResponseModel_0(
           this,
           Invocation.method(
@@ -113,17 +126,17 @@ class MockProfileApi extends _i1.Mock implements _i7.ProfileApi {
             [],
           ),
         )),
-      ) as _i8.Future<_i2.ProfileResponseModel>);
+      ) as _i9.Future<_i2.ProfileResponseModel>);
 
   @override
-  _i8.Future<_i2.ProfileResponseModel> update(
-          _i9.ProfileRequestModel? profile) =>
+  _i9.Future<_i2.ProfileResponseModel> update(
+          _i10.ProfileRequestModel? profile) =>
       (super.noSuchMethod(
         Invocation.method(
           #update,
           [profile],
         ),
-        returnValue: _i8.Future<_i2.ProfileResponseModel>.value(
+        returnValue: _i9.Future<_i2.ProfileResponseModel>.value(
             _FakeProfileResponseModel_0(
           this,
           Invocation.method(
@@ -131,76 +144,76 @@ class MockProfileApi extends _i1.Mock implements _i7.ProfileApi {
             [profile],
           ),
         )),
-      ) as _i8.Future<_i2.ProfileResponseModel>);
+      ) as _i9.Future<_i2.ProfileResponseModel>);
 
   @override
-  _i8.Future<void> updateProfileImage(_i10.File? file) => (super.noSuchMethod(
+  _i9.Future<void> updateProfileImage(_i11.File? file) => (super.noSuchMethod(
         Invocation.method(
           #updateProfileImage,
           [file],
         ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
-  _i8.Future<void> updatePolicyHolder(
-          _i11.PolicyHolderRequestModel? policyHolder) =>
+  _i9.Future<void> updatePolicyHolder(
+          _i12.PolicyHolderRequestModel? policyHolder) =>
       (super.noSuchMethod(
         Invocation.method(
           #updatePolicyHolder,
           [policyHolder],
         ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
-  _i8.Future<void> updateCar(_i12.CarRequestModel? vehicle) =>
+  _i9.Future<void> updateCar(_i13.CarRequestModel? vehicle) =>
       (super.noSuchMethod(
         Invocation.method(
           #updateCar,
           [vehicle],
         ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
-  _i8.Future<void> updateUserVehicle(_i13.UserVehicleRequestModel? myVehicle) =>
+  _i9.Future<void> updateUserVehicle(_i14.UserVehicleRequestModel? myVehicle) =>
       (super.noSuchMethod(
         Invocation.method(
           #updateUserVehicle,
           [myVehicle],
         ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
-  _i8.Future<void> updateInsurance(_i14.InsuranceRequestModel? vehicle) =>
+  _i9.Future<void> updateInsurance(_i15.InsuranceRequestModel? vehicle) =>
       (super.noSuchMethod(
         Invocation.method(
           #updateInsurance,
           [vehicle],
         ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
-  _i8.Future<void> updateMyCar(_i12.CarRequestModel? myCar) =>
+  _i9.Future<void> updateMyCar(_i13.CarRequestModel? myCar) =>
       (super.noSuchMethod(
         Invocation.method(
           #updateMyCar,
           [myCar],
         ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
-  _i8.Future<void> updatePassword(
+  _i9.Future<void> updatePassword(
     String? oldPassword,
     String? newPassword,
   ) =>
@@ -212,68 +225,68 @@ class MockProfileApi extends _i1.Mock implements _i7.ProfileApi {
             newPassword,
           ],
         ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
-  _i8.Future<void> updateEmail(String? email) => (super.noSuchMethod(
+  _i9.Future<void> updateEmail(String? email) => (super.noSuchMethod(
         Invocation.method(
           #updateEmail,
           [email],
         ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
-  _i8.Future<void> verifyEmail(String? code) => (super.noSuchMethod(
+  _i9.Future<void> verifyEmail(String? code) => (super.noSuchMethod(
         Invocation.method(
           #verifyEmail,
           [code],
         ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
-  _i8.Future<void> updateLanguage(String? language) => (super.noSuchMethod(
+  _i9.Future<void> updateLanguage(String? language) => (super.noSuchMethod(
         Invocation.method(
           #updateLanguage,
           [language],
         ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
-  _i8.Future<_i3.HistoryResponseDto> fetchHistory() => (super.noSuchMethod(
+  _i9.Future<_i3.HistoryResponseDto> fetchHistory() => (super.noSuchMethod(
         Invocation.method(
           #fetchHistory,
           [],
         ),
         returnValue:
-            _i8.Future<_i3.HistoryResponseDto>.value(_FakeHistoryResponseDto_1(
+            _i9.Future<_i3.HistoryResponseDto>.value(_FakeHistoryResponseDto_1(
           this,
           Invocation.method(
             #fetchHistory,
             [],
           ),
         )),
-      ) as _i8.Future<_i3.HistoryResponseDto>);
+      ) as _i9.Future<_i3.HistoryResponseDto>);
 
   @override
-  _i8.Future<void> deleteReport(int? docId) => (super.noSuchMethod(
+  _i9.Future<void> deleteReport(int? docId) => (super.noSuchMethod(
         Invocation.method(
           #deleteReport,
           [docId],
         ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
-  _i8.Future<void> downloadReport({
+  _i9.Future<void> downloadReport({
     required String? url,
     required String? localPath,
   }) =>
@@ -286,29 +299,29 @@ class MockProfileApi extends _i1.Mock implements _i7.ProfileApi {
             #localPath: localPath,
           },
         ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
-  _i8.Future<_i4.BrandResponseDto> fetchBrands(int? page) =>
+  _i9.Future<_i4.BrandResponseDto> fetchBrands(int? page) =>
       (super.noSuchMethod(
         Invocation.method(
           #fetchBrands,
           [page],
         ),
         returnValue:
-            _i8.Future<_i4.BrandResponseDto>.value(_FakeBrandResponseDto_2(
+            _i9.Future<_i4.BrandResponseDto>.value(_FakeBrandResponseDto_2(
           this,
           Invocation.method(
             #fetchBrands,
             [page],
           ),
         )),
-      ) as _i8.Future<_i4.BrandResponseDto>);
+      ) as _i9.Future<_i4.BrandResponseDto>);
 
   @override
-  _i8.Future<_i4.BrandResponseDto> fetchModels(
+  _i9.Future<_i4.BrandResponseDto> fetchModels(
     int? page,
     int? brandId,
   ) =>
@@ -321,7 +334,7 @@ class MockProfileApi extends _i1.Mock implements _i7.ProfileApi {
           ],
         ),
         returnValue:
-            _i8.Future<_i4.BrandResponseDto>.value(_FakeBrandResponseDto_2(
+            _i9.Future<_i4.BrandResponseDto>.value(_FakeBrandResponseDto_2(
           this,
           Invocation.method(
             #fetchModels,
@@ -331,10 +344,10 @@ class MockProfileApi extends _i1.Mock implements _i7.ProfileApi {
             ],
           ),
         )),
-      ) as _i8.Future<_i4.BrandResponseDto>);
+      ) as _i9.Future<_i4.BrandResponseDto>);
 
   @override
-  _i8.Future<_i5.ColorResponseDto> fetchColors(
+  _i9.Future<_i5.ColorResponseDto> fetchColors(
     int? page,
     int? brandId,
   ) =>
@@ -347,7 +360,7 @@ class MockProfileApi extends _i1.Mock implements _i7.ProfileApi {
           ],
         ),
         returnValue:
-            _i8.Future<_i5.ColorResponseDto>.value(_FakeColorResponseDto_3(
+            _i9.Future<_i5.ColorResponseDto>.value(_FakeColorResponseDto_3(
           this,
           Invocation.method(
             #fetchColors,
@@ -357,22 +370,48 @@ class MockProfileApi extends _i1.Mock implements _i7.ProfileApi {
             ],
           ),
         )),
-      ) as _i8.Future<_i5.ColorResponseDto>);
+      ) as _i9.Future<_i5.ColorResponseDto>);
 
   @override
-  _i8.Future<_i6.CheckAccountResponse> checkAccountData() =>
+  _i9.Future<_i6.VehicleColorDto> addColor(
+    String? color,
+    int? brandId,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #addColor,
+          [
+            color,
+            brandId,
+          ],
+        ),
+        returnValue:
+            _i9.Future<_i6.VehicleColorDto>.value(_FakeVehicleColorDto_4(
+          this,
+          Invocation.method(
+            #addColor,
+            [
+              color,
+              brandId,
+            ],
+          ),
+        )),
+      ) as _i9.Future<_i6.VehicleColorDto>);
+
+  @override
+  _i9.Future<_i7.CheckAccountResponse> checkAccountData() =>
       (super.noSuchMethod(
         Invocation.method(
           #checkAccountData,
           [],
         ),
-        returnValue: _i8.Future<_i6.CheckAccountResponse>.value(
-            _FakeCheckAccountResponse_4(
+        returnValue: _i9.Future<_i7.CheckAccountResponse>.value(
+            _FakeCheckAccountResponse_5(
           this,
           Invocation.method(
             #checkAccountData,
             [],
           ),
         )),
-      ) as _i8.Future<_i6.CheckAccountResponse>);
+      ) as _i9.Future<_i7.CheckAccountResponse>);
 }

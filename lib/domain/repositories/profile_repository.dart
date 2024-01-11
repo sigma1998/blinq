@@ -12,6 +12,7 @@ import 'package:blinq/data/model/profile/request/profile_request_model.dart';
 import 'package:blinq/data/model/profile/response/profile_response_model.dart';
 import 'package:blinq/data/model/vehicle/request/vehicle_request_model.dart';
 import 'package:blinq/data/model/vehicle_info/brand_response.dart';
+import 'package:blinq/data/model/vehicle_info/color/vehicle_color_dto.dart';
 import 'package:blinq/data/model/vehicle_info/color_response.dart';
 
 abstract class ProfileRepository {
@@ -63,6 +64,8 @@ abstract class ProfileRepository {
   Future<BrandResponseDto> fetchModels(int page, int brandId);
 
   Future<ColorResponseDto> fetchColors(int page, int brandId);
+
+  Future<VehicleColorDto> addColor(String color, int brandId);
 
   Future<CheckAccountResponse> checkAccountData();
 }
@@ -239,6 +242,15 @@ class ProfileRepositoryImpl implements ProfileRepository {
   Future<ColorResponseDto> fetchColors(int page, int brandId) async {
     try {
       return await api.fetchColors(page, brandId);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<VehicleColorDto> addColor(String color, int brandId) async {
+    try {
+      return await api.addColor(color, brandId);
     } catch (e) {
       rethrow;
     }

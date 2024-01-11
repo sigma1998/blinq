@@ -19,6 +19,7 @@ import 'package:blinq/data/model/profile/request/profile_request_model.dart';
 import 'package:blinq/data/model/profile/response/profile_response_model.dart';
 import 'package:blinq/data/model/vehicle/request/vehicle_request_model.dart';
 import 'package:blinq/data/model/vehicle_info/brand_response.dart';
+import 'package:blinq/data/model/vehicle_info/color/vehicle_color_dto.dart';
 import 'package:blinq/data/model/vehicle_info/color_response.dart';
 
 abstract class ProfileApi {
@@ -75,6 +76,8 @@ abstract class ProfileApi {
   Future<BrandResponseDto> fetchModels(int page, int brandId);
 
   Future<ColorResponseDto> fetchColors(int page, int brandId);
+
+  Future<VehicleColorDto> addColor(String color, int brandId);
 
   /// chech profile data
   Future<CheckAccountResponse> checkAccountData();
@@ -271,6 +274,19 @@ class ProfileApiImpl implements ProfileApi {
         queryParameters: {'page': page, 'brand_id': brandId});
 
     return ColorResponseDto.fromJson(res);
+  }
+
+  @override
+  Future<VehicleColorDto> addColor(String color, int brandId) async {
+    final res = await api.post(
+      NetworkConstants.colors,
+      data: {
+        'colour': color,
+        'brand': brandId,
+      },
+    );
+
+    return VehicleColorDto.fromJson(res);
   }
 
   @override

@@ -11,6 +11,7 @@ _$VehicleColorDtoImpl _$$VehicleColorDtoImplFromJson(
     _$VehicleColorDtoImpl(
       id: json['id'] as int?,
       colour: json['colour'] as String?,
+      brandId: json['brandId'] as int?,
     );
 
 Map<String, dynamic> _$$VehicleColorDtoImplToJson(
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$VehicleColorDtoImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'colour': instance.colour,
+      'brandId': instance.brandId,
     };

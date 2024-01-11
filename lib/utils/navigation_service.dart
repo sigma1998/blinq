@@ -21,17 +21,23 @@ class NavigationService {
 
   static bool isActiveDialog = false;
 
-  static Future<dynamic> pushNamed(
-      {required String routeName,
-      Object? arguments,
-      GlobalKey<NavigatorState>? nestedKey}) {
+  static Future<dynamic> pushNamed({
+    required String routeName,
+    Object? arguments,
+    GlobalKey<NavigatorState>? nestedKey,
+  }) {
     Fluttertoast.cancel();
     FocusManager.instance.primaryFocus?.unfocus();
     if (nestedKey != null) {
-      return nestedKey.currentState!.pushNamed(routeName, arguments: arguments);
+      return nestedKey.currentState!.pushNamed(
+        routeName,
+        arguments: arguments,
+      );
     } else {
-      return navigatorKey.currentState!
-          .pushNamed(routeName, arguments: arguments);
+      return navigatorKey.currentState!.pushNamed(
+        routeName,
+        arguments: arguments,
+      );
     }
   }
 

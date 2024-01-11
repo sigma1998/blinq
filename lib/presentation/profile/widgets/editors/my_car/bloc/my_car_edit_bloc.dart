@@ -121,9 +121,14 @@ class EditMyCarBloc extends Cubit<EditMyCarState> {
 
   void onColorTap() async {
     final res = await NavigationService.showDialog(
-        dialog: MyDialog(
-            items: List.generate(
-                colors.length, (index) => colors[index].colour ?? 'whaat?')));
+      dialog: MyDialog(
+        items: List.generate(
+          colors.length,
+          (index) => colors[index].colour ?? 'whaat?',
+        ),
+      ),
+    );
+
     if (res != null) {
       colorController.text = res;
       for (var element in colors) {
@@ -138,19 +143,29 @@ class EditMyCarBloc extends Cubit<EditMyCarState> {
     emit(state.copyWith(status: Status.loading));
 
     try {
-      await profileRepository.updateMyCar(
-        CarRequestModel(
-          vehicleType: VehicleType.values
-              .firstWhere((type) => type.name == vehicleTypeController.text),
-          brandId: selectedBrand?.id,
-          brand: selectedBrand?.name,
-          carId: selectedModel?.id,
-          car: selectedModel?.name,
-          modelSeries: modelController.text,
-          color: selectedColor?.colour,
-          colorId: selectedColor?.id,
+      /// Check if colors contain color from text field and add it if not
+      if (!colors.any((element) => element.colour == colorController.text)) {
+        await _addColor(colorController.text);
+      }
+
+      final model = CarRequestModel(
+        vehicleType: VehicleType.values.firstWhere(
+          (type) => type.name == vehicleTypeController.text,
         ),
+        brandId: selectedBrand?.id,
+        brand: selectedBrand?.name,
+        carId: selectedModel?.id,
+        car: selectedModel?.name,
+        modelSeries: modelSeriesController.text,
+        color: colorController.text,
+        colorId: colors
+            .firstWhere(
+              (element) => element.colour == colorController.text,
+            )
+            .id,
       );
+
+      await profileRepository.updateMyCar(model);
 
       profileBloc.add(OnFetchProfile());
 
@@ -196,6 +211,18 @@ class EditMyCarBloc extends Cubit<EditMyCarState> {
       }
     } catch (e) {
       debugPrint(e.toString());
+    }
+  }
+
+  Future<void> _addColor(String color) async {
+    emit(state.copyWith(status: Status.loading));
+    try {
+      final res = await profileRepository.addColor(color, selectedBrand!.id!);
+      colors.add(res);
+      emit(state.copyWith(status: Status.success));
+    } catch (e) {
+      debugPrint(e.toString());
+      emit(state.copyWith(status: Status.initial));
     }
   }
 }

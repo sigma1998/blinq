@@ -68,14 +68,12 @@ class _EditorMyCarScreenState extends State<EditorMyCarScreen> {
                     ),
                     const SizedBox(height: 16),
                     PickerTextField(
-                      readonly: false,
                       onTap: bloc.onBrandTap,
                       labelText: 'strMark'.tr(),
                       controller: bloc.brandController,
                     ),
                     const SizedBox(height: 16),
                     PickerTextField(
-                      readonly: false,
                       onTap: bloc.onModelTap,
                       labelText: 'strModel'.tr(),
                       controller: bloc.modelController,
@@ -107,8 +105,9 @@ class _EditorMyCarScreenState extends State<EditorMyCarScreen> {
                             vertical: 8,
                             horizontal: 60,
                           ),
-                          labelStyle:
-                              const TextStyle(fontWeight: FontWeight.w500),
+                          labelStyle: const TextStyle(
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ],
                     ),

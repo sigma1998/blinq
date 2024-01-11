@@ -22,6 +22,7 @@ VehicleColorDto _$VehicleColorDtoFromJson(Map<String, dynamic> json) {
 mixin _$VehicleColorDto {
   int? get id => throw _privateConstructorUsedError;
   String? get colour => throw _privateConstructorUsedError;
+  int? get brandId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $VehicleColorDtoCopyWith<$Res> {
           VehicleColorDto value, $Res Function(VehicleColorDto) then) =
       _$VehicleColorDtoCopyWithImpl<$Res, VehicleColorDto>;
   @useResult
-  $Res call({int? id, String? colour});
+  $Res call({int? id, String? colour, int? brandId});
 }
 
 /// @nodoc
@@ -53,6 +54,7 @@ class _$VehicleColorDtoCopyWithImpl<$Res, $Val extends VehicleColorDto>
   $Res call({
     Object? id = freezed,
     Object? colour = freezed,
+    Object? brandId = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -63,6 +65,10 @@ class _$VehicleColorDtoCopyWithImpl<$Res, $Val extends VehicleColorDto>
           ? _value.colour
           : colour // ignore: cast_nullable_to_non_nullable
               as String?,
+      brandId: freezed == brandId
+          ? _value.brandId
+          : brandId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -75,7 +81,7 @@ abstract class _$$VehicleColorDtoImplCopyWith<$Res>
       __$$VehicleColorDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? colour});
+  $Res call({int? id, String? colour, int? brandId});
 }
 
 /// @nodoc
@@ -91,6 +97,7 @@ class __$$VehicleColorDtoImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? colour = freezed,
+    Object? brandId = freezed,
   }) {
     return _then(_$VehicleColorDtoImpl(
       id: freezed == id
@@ -101,6 +108,10 @@ class __$$VehicleColorDtoImplCopyWithImpl<$Res>
           ? _value.colour
           : colour // ignore: cast_nullable_to_non_nullable
               as String?,
+      brandId: freezed == brandId
+          ? _value.brandId
+          : brandId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -108,7 +119,7 @@ class __$$VehicleColorDtoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$VehicleColorDtoImpl implements _VehicleColorDto {
-  const _$VehicleColorDtoImpl({this.id, this.colour});
+  const _$VehicleColorDtoImpl({this.id, this.colour, this.brandId});
 
   factory _$VehicleColorDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$VehicleColorDtoImplFromJson(json);
@@ -117,10 +128,12 @@ class _$VehicleColorDtoImpl implements _VehicleColorDto {
   final int? id;
   @override
   final String? colour;
+  @override
+  final int? brandId;
 
   @override
   String toString() {
-    return 'VehicleColorDto(id: $id, colour: $colour)';
+    return 'VehicleColorDto(id: $id, colour: $colour, brandId: $brandId)';
   }
 
   @override
@@ -129,12 +142,13 @@ class _$VehicleColorDtoImpl implements _VehicleColorDto {
         (other.runtimeType == runtimeType &&
             other is _$VehicleColorDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.colour, colour) || other.colour == colour));
+            (identical(other.colour, colour) || other.colour == colour) &&
+            (identical(other.brandId, brandId) || other.brandId == brandId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, colour);
+  int get hashCode => Object.hash(runtimeType, id, colour, brandId);
 
   @JsonKey(ignore: true)
   @override
@@ -152,8 +166,10 @@ class _$VehicleColorDtoImpl implements _VehicleColorDto {
 }
 
 abstract class _VehicleColorDto implements VehicleColorDto {
-  const factory _VehicleColorDto({final int? id, final String? colour}) =
-      _$VehicleColorDtoImpl;
+  const factory _VehicleColorDto(
+      {final int? id,
+      final String? colour,
+      final int? brandId}) = _$VehicleColorDtoImpl;
 
   factory _VehicleColorDto.fromJson(Map<String, dynamic> json) =
       _$VehicleColorDtoImpl.fromJson;
@@ -162,6 +178,8 @@ abstract class _VehicleColorDto implements VehicleColorDto {
   int? get id;
   @override
   String? get colour;
+  @override
+  int? get brandId;
   @override
   @JsonKey(ignore: true)
   _$$VehicleColorDtoImplCopyWith<_$VehicleColorDtoImpl> get copyWith =>

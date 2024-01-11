@@ -20,7 +20,6 @@ import 'package:blinq/utils/services/local_storage/shared_preferences.dart';
 import 'package:blinq/utils/services/location/location_service.dart';
 import 'package:blinq/utils/services/permission/permission_service.dart';
 import 'package:blinq/utils/smart_widgets/dialogs/blinq_activated/blinq_activated_dialog.dart';
-import 'package:blinq/utils/smart_widgets/dialogs/permission_dialog/permission_dialog.dart';
 import 'package:blinq/utils/smart_widgets/dialogs/rename_device/rename_device_dialog.dart';
 
 part 'connect_to_blinq_cubit.freezed.dart';
@@ -404,11 +403,6 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
     if (location && bleScan && bleConnect) {
       return true;
     } else {
-      NavigationService.showDialog(
-        dialog: const PermissionDialog(
-          title: 'Location permission is required for BLE to function',
-        ),
-      );
       return false;
     }
   }

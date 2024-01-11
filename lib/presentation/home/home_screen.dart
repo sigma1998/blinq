@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:blinq/utils/services/notification/notification_service.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -9,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // Project imports:
 import 'package:blinq/presentation/home/bloc/home_screen_cubit.dart';
 import 'package:blinq/utils/custom_widgets/tab_bar.dart';
+import 'package:blinq/utils/services/notification/notification_service.dart';
 import 'pages/home_main.dart';
 import 'pages/info/info.dart';
 
