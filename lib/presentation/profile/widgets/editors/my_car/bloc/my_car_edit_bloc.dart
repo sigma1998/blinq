@@ -70,6 +70,8 @@ class EditMyCarBloc extends Cubit<EditMyCarState> {
 
   Future<void> init() async {
     await _fetchBrands();
+    await _fetchModels(brandId: selectedBrand?.id ?? 0);
+    await _fetchColors(brandId: selectedBrand?.id ?? 0);
   }
 
   bool validateForm() => formKey.currentState!.validate();
