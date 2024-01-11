@@ -27,7 +27,7 @@ abstract class AccidentRepository {
 
   Future<int> createAccident(String long, String lat);
 
-  Future<void> adAccidentLocationAndTime(
+  Future<void> addAccidentLocationAndTime(
     int accidentId,
     ReportTimeAndLocationDto accidentTimeAndLocationDto,
   );
@@ -250,7 +250,7 @@ class AccidentRepositoryImpl implements AccidentRepository {
   }
 
   @override
-  Future<void> adAccidentLocationAndTime(int accidentId,
+  Future<void> addAccidentLocationAndTime(int accidentId,
       ReportTimeAndLocationDto accidentTimeAndLocationDto) async {
     try {
       return await api.addAccidentLocationAndTime(

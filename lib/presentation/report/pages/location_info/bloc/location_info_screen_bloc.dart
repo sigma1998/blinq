@@ -61,7 +61,7 @@ class LocationInfoScreenCubit extends Cubit<LocationInfoScreenState> {
     emit(state.copyWith(status: Status.loading));
     try {
       if (reportBloc.reportType == ReportType.accident) {
-        await accidentRepository.adAccidentLocationAndTime(
+        await accidentRepository.addAccidentLocationAndTime(
           reportBloc.reportId,
           ReportTimeAndLocationDto(
               country: countryController.text,
