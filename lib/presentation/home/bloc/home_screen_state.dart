@@ -10,5 +10,6 @@ part 'home_screen_state.freezed.dart';
 class HomeScreenState with _$HomeScreenState {
   const factory HomeScreenState({
     @Default(Status.initial) Status status,
+    @Default(false) bool mapHidden,
   }) = _HomeScreenState;
 }

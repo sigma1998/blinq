@@ -15,12 +15,15 @@ import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/services/location/location_service.dart';
 
 class HomeScreenCubit extends Cubit<HomeScreenState> {
+  //
   final ReportBloc reportBloc;
 
   late GoogleMapController? mapController;
   final MapPickerController mapPickerController = MapPickerController();
 
   CameraPosition? position;
+
+  LatLng latlng = const LatLng(41.30275284012766, 69.23845700742682);
 
   HomeScreenCubit({required this.reportBloc}) : super(const HomeScreenState()) {
     _getLocation();
@@ -29,8 +32,9 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
   void _getLocation() async {
     final res = await LocationService.determinePosition();
     if (res != null) {
+      latlng = LatLng(res.latitude, res.longitude);
       position = CameraPosition(
-        target: LatLng(res.latitude, res.longitude),
+        target: latlng,
         zoom: 14.4746,
       );
       mapController!.animateCamera(
@@ -59,26 +63,37 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     );
   }
 
-  void onConnectToBlinqPressed() {
-    NavigationService.pushNamed(
+  void onConnectToBlinqPressed() async {
+    _hideMap();
+    await NavigationService.pushNamed(
       routeName: ConnectToBlinqScreen.route,
       nestedKey: NavigationService.homeNavigatorKey,
     );
   }
 
-  void onAccidentPressed() {
+  void onAccidentPressed() async {
+    _hideMap();
     reportBloc.setReportType(ReportType.accident);
-    NavigationService.pushNamed(
+    await NavigationService.pushNamed(
       routeName: CreateReportScreen.route,
       nestedKey: NavigationService.homeNavigatorKey,
     );
   }
 
-  void onBreakDownPressed() {
+  void onBreakDownPressed() async {
+    _hideMap();
     reportBloc.setReportType(ReportType.breakdown);
-    NavigationService.pushNamed(
+    await NavigationService.pushNamed(
       routeName: CreateReportScreen.route,
       nestedKey: NavigationService.homeNavigatorKey,
     );
+  }
+
+  /// [_hideMap] hides the map to avoid flickering when navigating to another screen
+  void _hideMap() async {
+    emit(state.copyWith(mapHidden: true));
+    await Future.delayed(const Duration(milliseconds: 250), () {
+      emit(state.copyWith(mapHidden: false));
+    });
   }
 }

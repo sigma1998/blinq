@@ -34,20 +34,20 @@ class HomeMap extends StatelessWidget {
               ),
               child: Stack(
                 children: [
-                  GoogleMap(
-                    myLocationEnabled: true,
-                    myLocationButtonEnabled: false,
-                    mapType: MapType.normal,
-                    initialCameraPosition: const CameraPosition(
-                      target: LatLng(
-                        41.30275284012766,
-                        69.23845700742682,
+                  Visibility(
+                    visible: !state.mapHidden,
+                    child: GoogleMap(
+                      myLocationEnabled: true,
+                      myLocationButtonEnabled: false,
+                      mapType: MapType.normal,
+                      initialCameraPosition: CameraPosition(
+                        target: bloc.latlng,
+                        zoom: 14.4746,
                       ),
-                      zoom: 14.4746,
+                      onMapCreated: bloc.onCameraCreated,
+                      onCameraMove: bloc.onCameraMove,
+                      onCameraIdle: bloc.onCameraIdle,
                     ),
-                    onMapCreated: bloc.onCameraCreated,
-                    onCameraMove: bloc.onCameraMove,
-                    onCameraIdle: bloc.onCameraIdle,
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,

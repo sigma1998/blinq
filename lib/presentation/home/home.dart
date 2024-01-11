@@ -1,6 +1,4 @@
 // Flutter imports:
-
-// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -15,7 +13,6 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Navigator(
-      requestFocus: false,
       onGenerateInitialRoutes: (navigator, initialRoute) => [
         MaterialPageRoute(builder: (context) => const HomeScreen()),
       ],

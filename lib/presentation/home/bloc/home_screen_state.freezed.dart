@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$HomeScreenState {
   Status get status => throw _privateConstructorUsedError;
+  bool get mapHidden => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeScreenStateCopyWith<HomeScreenState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $HomeScreenStateCopyWith<$Res> {
           HomeScreenState value, $Res Function(HomeScreenState) then) =
       _$HomeScreenStateCopyWithImpl<$Res, HomeScreenState>;
   @useResult
-  $Res call({Status status});
+  $Res call({Status status, bool mapHidden});
 }
 
 /// @nodoc
@@ -46,12 +47,17 @@ class _$HomeScreenStateCopyWithImpl<$Res, $Val extends HomeScreenState>
   @override
   $Res call({
     Object? status = null,
+    Object? mapHidden = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
+      mapHidden: null == mapHidden
+          ? _value.mapHidden
+          : mapHidden // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -64,7 +70,7 @@ abstract class _$$HomeScreenStateImplCopyWith<$Res>
       __$$HomeScreenStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Status status});
+  $Res call({Status status, bool mapHidden});
 }
 
 /// @nodoc
@@ -79,12 +85,17 @@ class __$$HomeScreenStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? mapHidden = null,
   }) {
     return _then(_$HomeScreenStateImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
+      mapHidden: null == mapHidden
+          ? _value.mapHidden
+          : mapHidden // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -92,15 +103,19 @@ class __$$HomeScreenStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$HomeScreenStateImpl implements _HomeScreenState {
-  const _$HomeScreenStateImpl({this.status = Status.initial});
+  const _$HomeScreenStateImpl(
+      {this.status = Status.initial, this.mapHidden = false});
 
   @override
   @JsonKey()
   final Status status;
+  @override
+  @JsonKey()
+  final bool mapHidden;
 
   @override
   String toString() {
-    return 'HomeScreenState(status: $status)';
+    return 'HomeScreenState(status: $status, mapHidden: $mapHidden)';
   }
 
   @override
@@ -108,11 +123,13 @@ class _$HomeScreenStateImpl implements _HomeScreenState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HomeScreenStateImpl &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.mapHidden, mapHidden) ||
+                other.mapHidden == mapHidden));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status);
+  int get hashCode => Object.hash(runtimeType, status, mapHidden);
 
   @JsonKey(ignore: true)
   @override
@@ -123,10 +140,13 @@ class _$HomeScreenStateImpl implements _HomeScreenState {
 }
 
 abstract class _HomeScreenState implements HomeScreenState {
-  const factory _HomeScreenState({final Status status}) = _$HomeScreenStateImpl;
+  const factory _HomeScreenState({final Status status, final bool mapHidden}) =
+      _$HomeScreenStateImpl;
 
   @override
   Status get status;
+  @override
+  bool get mapHidden;
   @override
   @JsonKey(ignore: true)
   _$$HomeScreenStateImplCopyWith<_$HomeScreenStateImpl> get copyWith =>
