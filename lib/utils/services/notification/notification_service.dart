@@ -80,9 +80,15 @@ class NotificationService {
     }));
   }
 
+  static int semaphore = 0;
+
   static void _onMessage() {
     FirebaseMessaging.onMessage.listen((data) {
-      print('motherfucker');
+      if (semaphore != 0) {
+        return;
+      }
+      semaphore = 1;
+      Future.delayed(const Duration(seconds: 2)).then((_) => semaphore = 0);
       _handleMessage(data);
     });
   }
