@@ -83,6 +83,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>  
         </activity>
+        <activity android:name="ng.com.piccmaq.flutter.flutter_mobile_vision_2.ocr.OcrCaptureActivity" />
 
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"

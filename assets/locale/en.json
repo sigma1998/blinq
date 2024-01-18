@@ -647,6 +647,7 @@
   "strHome": "Home",
   "strContacts": "Contacts",
   "strBleTurnOnPermission" : "Please turn on Bluetooth to connect to BLINQ",
+  "strScanDriverLicense": "Scan driver's license to automatically fill in the data",
   "byke": {
     "windshield": "windshield",
     "handlebars": "handlebars",

@@ -1,9 +1,11 @@
-import 'package:blinq/domain/repositories/premade_messages_repository.dart';
-import 'package:blinq/presentation/contacts/editors/premage_message/bloc/premade_message_edit_bloc.dart';
-import 'package:blinq/presentation/contacts/pages/premade_messages/bloc/premade_messages_bloc.dart';
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 
+// Project imports:
+import 'package:blinq/domain/repositories/premade_messages_repository.dart';
+import 'package:blinq/presentation/contacts/editors/premage_message/bloc/premade_message_edit_bloc.dart';
+import 'package:blinq/presentation/contacts/pages/premade_messages/bloc/premade_messages_bloc.dart';
 import 'premade_message_edit_bloc_test.mocks.dart';
 
 @GenerateMocks([PremadeMessagesRepository, PreMadeMessagesBloc])

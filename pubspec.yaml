@@ -71,6 +71,9 @@ dependencies:
   flutter_multi_formatter: ^2.11.16
   in_date_utils: ^1.2.0+2
 
+  camera: ^0.10.5+9
+  google_mlkit_text_recognition: ^0.11.0
+  
   # state mangment
   flutter_bloc: ^8.1.3
 

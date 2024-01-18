@@ -7,7 +7,7 @@ import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/presentation/report/pages/qr_scan/qr_scan_screen.dart';
-import 'package:blinq/presentation/report/second_driver_editors/screens/policy_holder/policy_holder_screen.dart';
+import 'package:blinq/presentation/report/pages/scan_driver_license/scan_driver_license_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 
@@ -49,7 +49,7 @@ class ConnectToDriverCubit extends Cubit<ConnectToDriverState> {
       emit(state.copyWith(status: Status.success));
 
       NavigationService.pushNamed(
-        routeName: SecondDriverEditorPolicyHolderScreen.route,
+        routeName: ScanDriverLicense.route,
         nestedKey: NavigationService.homeNavigatorKey,
       );
     } catch (e) {

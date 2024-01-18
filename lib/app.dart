@@ -22,6 +22,7 @@ import 'presentation/contacts/pages/contacts/bloc/contacts_bloc.dart';
 import 'presentation/contacts/pages/premade_messages/bloc/premade_messages_bloc.dart';
 import 'presentation/main_screen/bloc/main_screen_bloc.dart';
 import 'presentation/profile/bloc/profile_bloc.dart';
+import 'presentation/report/pages/scan_driver_license/cubit/scan_driver_license_cubit.dart';
 import 'presentation/success_video/success_video_bloc.dart';
 import 'utils/navigation_service.dart';
 import 'utils/services/media/media_service.dart';
@@ -82,9 +83,13 @@ class MyAppState extends State<MyApp> {
           ),
         ),
         BlocProvider<ConnectToBlinqCubit>(
-            create: (context) => ConnectToBlinqCubit(
-                  permissionService: getIt<PermissionServiceImpl>(),
-                )),
+          create: (context) => ConnectToBlinqCubit(
+            permissionService: getIt<PermissionServiceImpl>(),
+          ),
+        ),
+        BlocProvider<ScanDriverLicenseCubit>(
+          create: (context) => ScanDriverLicenseCubit(),
+        ),
         BlocProvider<ReportBloc>(
           create: (context) => ReportBloc(
             accidentRepository: getIt<AccidentRepositoryImpl>(),

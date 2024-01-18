@@ -1,13 +1,15 @@
-import 'package:blinq/data/model/premade_message/premade_message_response_dto.dart';
-import 'package:blinq/domain/repositories/premade_messages_repository.dart';
-import 'package:blinq/presentation/contacts/pages/premade_messages/bloc/premade_messages_bloc.dart';
-import 'package:blinq/presentation/contacts/pages/premade_messages/bloc/premade_messages_event.dart';
-import 'package:blinq/utils/generic_bloc_state.dart';
+// Package imports:
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+// Project imports:
+import 'package:blinq/data/model/premade_message/premade_message_response_dto.dart';
+import 'package:blinq/domain/repositories/premade_messages_repository.dart';
+import 'package:blinq/presentation/contacts/pages/premade_messages/bloc/premade_messages_bloc.dart';
+import 'package:blinq/presentation/contacts/pages/premade_messages/bloc/premade_messages_event.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'premade_messages_bloc_test.mocks.dart';
 
 @GenerateMocks([PremadeMessagesRepository])

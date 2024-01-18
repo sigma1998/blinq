@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
+import 'package:blinq/presentation/report/pages/scan_driver_license/cubit/scan_driver_license_cubit.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/date_picker_text_field.dart';
@@ -39,8 +40,11 @@ class _SecondDriverEditorScreenState extends State<SecondDriverEditorScreen> {
 
     cubit = SecondDriverCubit(
       reportBloc: context.read<ReportBloc>(),
+      scanDriverLicenseCubit: context.read<ScanDriverLicenseCubit>(),
       accidentRepository: getIt<AccidentRepositoryImpl>(),
     );
+
+    cubit.initializeFields();
   }
 
   @override

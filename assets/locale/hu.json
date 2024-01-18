@@ -646,7 +646,7 @@
   "strContacts": "Kapcsolatok",
   "strYouDontHaveReports": "Még nincsenek jelentései",
   "strBleTurnOnPermission": "Kérjük, engedélyezze a Bluetoothot a BLINQ-hoz való csatlakozáshoz",
-
+  "strScanDriverLicense": "A vezetői engedély beolvasása az adatok automatikus kitöltéséhez",
   "byke": {
     "windshield": "szélvédő",
     "handlebars": "kormány",

@@ -1,13 +1,15 @@
-import 'package:blinq/data/model/contact/contact_response_dto.dart';
-import 'package:blinq/domain/repositories/contacts_repository.dart';
-import 'package:blinq/presentation/contacts/pages/contacts/bloc/contacts_bloc.dart';
-import 'package:blinq/presentation/contacts/pages/contacts/bloc/contacts_event.dart';
-import 'package:blinq/utils/generic_bloc_state.dart';
+// Package imports:
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+// Project imports:
+import 'package:blinq/data/model/contact/contact_response_dto.dart';
+import 'package:blinq/domain/repositories/contacts_repository.dart';
+import 'package:blinq/presentation/contacts/pages/contacts/bloc/contacts_bloc.dart';
+import 'package:blinq/presentation/contacts/pages/contacts/bloc/contacts_event.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'contacts_bloc_test.mocks.dart';
 
 @GenerateMocks([ContactsRepository])

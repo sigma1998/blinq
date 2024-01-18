@@ -47,6 +47,7 @@ import 'package:blinq/presentation/report/pages/injury/injury_screen.dart';
 import 'package:blinq/presentation/report/pages/location_info/location_info_screen.dart';
 import 'package:blinq/presentation/report/pages/points_of_impact/points_of_impact_screen.dart';
 import 'package:blinq/presentation/report/pages/qr_scan/qr_scan_screen.dart';
+import 'package:blinq/presentation/report/pages/scan_driver_license/scan_driver_license_screen.dart';
 import 'package:blinq/presentation/report/pages/second_driver/second_driver_screen.dart';
 import 'package:blinq/presentation/report/pages/sign/sign_screen.dart';
 import 'package:blinq/presentation/report/pages/sketch/sketch_screen.dart';
@@ -131,6 +132,8 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
       page = const InjuryScreen();
     case ConnectToDriverScreen.route:
       page = const ConnectToDriverScreen();
+    case ScanDriverLicense.route:
+      page = const ScanDriverLicense();
     case QrScanScreen.route:
       page = const QrScanScreen();
     case SpeechToTextScreen.route:

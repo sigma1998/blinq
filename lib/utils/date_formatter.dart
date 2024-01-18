@@ -15,6 +15,12 @@ class DateFormatter {
         : null;
   }
 
+  static DateTime parseDateString(String dateString) {
+    String cleanedDateString =
+        dateString.replaceAll(RegExp(r'[^\d.]'), '').trim();
+    return DateFormat('yyyy.MM.dd').parse(cleanedDateString);
+  }
+
   /// eg. 24/12/2022
   static String fddMMyyyySlash(DateTime? date) =>
       format(date, DateFormats.ddMMyyyySlash);

@@ -12,6 +12,8 @@ import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/presentation/report/pages/points_of_impact/points_of_impact_screen.dart';
+import 'package:blinq/presentation/report/pages/scan_driver_license/cubit/scan_driver_license_cubit.dart';
+import 'package:blinq/utils/date_formatter.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/smart_widgets/dialogs/countries_dialog/countries_dialog.dart';
@@ -24,6 +26,7 @@ part 'second_driver_cubit.freezed.dart';
 class SecondDriverCubit extends Cubit<SecondDriverState> {
   //
   final ReportBloc reportBloc;
+  final ScanDriverLicenseCubit scanDriverLicenseCubit;
 
   final AccidentRepository accidentRepository;
 
@@ -42,8 +45,24 @@ class SecondDriverCubit extends Cubit<SecondDriverState> {
 
   SecondDriverCubit({
     required this.reportBloc,
+    required this.scanDriverLicenseCubit,
     required this.accidentRepository,
   }) : super(const SecondDriverState());
+
+  //
+
+  void initializeFields() {
+    final driverB = scanDriverLicenseCubit.state.driverLicenseDto;
+    if (driverB == null) return;
+
+    firstNameController.text = driverB.firstName;
+    lastNameController.text = driverB.lastName;
+    dateOfBirthController.text = DateFormatter.fyyyyMMdd(driverB.dateOfBirth);
+    drivingLicenseNumberController.text = driverB.licenseNumber;
+    categoryController.text = driverB.licenseType;
+    licenseDateOfExpiryController.text =
+        DateFormatter.fyyyyMMdd(driverB.expirationDate);
+  }
 
   //
 
