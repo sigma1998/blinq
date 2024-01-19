@@ -28,7 +28,11 @@ class ScanDriverLicenseCubit extends Cubit<ScanDriverLicenseState> {
   void initializeCamera() async {
     emit(state.copyWith(controllerIsInitialized: false));
     cameras = await availableCameras();
-    controller = CameraController(cameras[0], ResolutionPreset.max);
+    controller = CameraController(
+      cameras[0],
+      enableAudio: false,
+      ResolutionPreset.max,
+    );
     controller.initialize().then(
           (value) => {
             emit(state.copyWith(controllerIsInitialized: true)),
