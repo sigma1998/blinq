@@ -44,7 +44,7 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
   final MediaService mediaService;
 
   final _maxVideoFiles = 2;
-  final _maxImageFiles = 6;
+  final _maxImageFiles = 5;
 
   final _maxVideoSize = 80;
   final _maxImageSize = 10;

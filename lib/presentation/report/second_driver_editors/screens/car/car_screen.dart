@@ -122,27 +122,6 @@ class _SecondDriverEditorCarScreenState
                         onTap: cubit.onSelectCountryOfRegistrationPressed,
                         controller: cubit.countryOfRegistrationController,
                       ),
-                      const SizedBox(height: 90),
-
-                      //& Trailer
-
-                      Text(
-                        'strTrailer'.tr(),
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                      const SizedBox(height: 40),
-                      NumberTextField(
-                        labelText: 'strRegistrationNumber'.tr(),
-                        controller: cubit.trailerRegistrationNumberController,
-                      ),
-                      const SizedBox(height: 16),
-                      PickerTextField(
-                        labelText: 'strCountryRegistration'.tr(),
-                        onTap:
-                            cubit.onSelectTrailerCountryOfRegistrationPressed,
-                        controller:
-                            cubit.trailerCountryOfRegistrationController,
-                      ),
                       const SizedBox(height: 36),
                     ],
                   ),
