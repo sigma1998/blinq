@@ -278,8 +278,18 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
         return null;
       }
     }
+    updateFileSize(compressedFile);
 
     return compressedFile;
+  }
+
+  void updateFileSize(File file) {
+    final sizeInBytes = file.lengthSync();
+    double sizeInMb = sizeInBytes / (1024 * 1024);
+    sizeInMb = double.parse(sizeInMb.toStringAsFixed(2));
+    final fileSize = Map.of(state.fileSize);
+    fileSize[file] = '$sizeInMb MB';
+    emit(state.copyWith(fileSize: fileSize));
   }
 
   /// Check if file is valid

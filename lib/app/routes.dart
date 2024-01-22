@@ -96,8 +96,11 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
     EmergencyServicesScreen.route: (context) => const EmergencyServicesScreen(),
     InformCloseOnesScreen.route: (context) => const InformCloseOnesScreen(),
 
-    //^ Contact
+    //^ Offline
     OfflineScreen.route: (context) => const OfflineScreen(),
+
+    // Sketch
+    SketchScreen.route: (context) => const SketchScreen(),
   };
 }
 

@@ -44,7 +44,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
 
   void onCameraCreated(GoogleMapController controller) {
     mapController = controller;
-    mapController!.setMapStyle(mapStyle);
+    // mapController!.setMapStyle(mapStyle);
   }
 
   void onCameraMove(CameraPosition position) {
@@ -92,7 +92,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
   /// [_hideMap] hides the map to avoid flickering when navigating to another screen
   void _hideMap() async {
     emit(state.copyWith(mapHidden: true));
-    await Future.delayed(const Duration(milliseconds: 250), () {
+    await Future.delayed(const Duration(milliseconds: 500), () {
       emit(state.copyWith(mapHidden: false));
     });
   }
