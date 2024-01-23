@@ -8,10 +8,26 @@ List<String> _carsSelect = [
   AppDrawables.carBack,
 ];
 
+List<String> _blankCarsSelect = [
+  AppDrawables.blankCarFront,
+  AppDrawables.blankCarLeft,
+  AppDrawables.blankCarRight,
+  AppDrawables.blankCarTop,
+  AppDrawables.blankCarBack,
+];
+
 List<String> _vanSelect = [
   AppDrawables.vanFront,
   AppDrawables.vanLeft,
   AppDrawables.vanRight,
+  AppDrawables.vanTop,
+  AppDrawables.vanBack,
+];
+
+List<String> _blankVanSelect = [
+  AppDrawables.vanFront,
+  AppDrawables.blankVanLeft,
+  AppDrawables.blankVanRight,
   AppDrawables.vanTop,
   AppDrawables.vanBack,
 ];
