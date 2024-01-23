@@ -36,8 +36,6 @@ class VehicleEditorBloc extends Bloc<VehicleEditorEvent, VehicleEditorState> {
   final engineNumberController = TextEditingController();
   final countryOfRegistrationController = TextEditingController();
   final vehicleTypeController = TextEditingController();
-  final trailerRegistrationNumberController = TextEditingController();
-  final trailerCountryOfRegistrationController = TextEditingController();
 
   VehicleEditorBloc({
     required this.profileBloc,
@@ -52,10 +50,6 @@ class VehicleEditorBloc extends Bloc<VehicleEditorEvent, VehicleEditorState> {
         profileBloc.state.profile?.car?.engineNumber ?? '';
     countryOfRegistrationController.text =
         profileBloc.state.profile?.car?.countryOfRegistration ?? '';
-    trailerRegistrationNumberController.text =
-        profileBloc.state.profile?.car?.trailerRegistrationNumber ?? '';
-    trailerCountryOfRegistrationController.text =
-        profileBloc.state.profile?.car?.trailerCountryOfRegistration ?? '';
     vehicleTypeController.text =
         profileBloc.state.profile?.car?.vehicleType?.name ?? '';
   }
@@ -82,15 +76,6 @@ class VehicleEditorBloc extends Bloc<VehicleEditorEvent, VehicleEditorState> {
     });
   }
 
-  void onSelectTrailerCountryOfRegistrationPressed() {
-    NavigationService.showDialog(dialog: const CountriesDialog())!
-        .then((value) {
-      if (value != null) {
-        trailerCountryOfRegistrationController.text = value;
-      }
-    });
-  }
-
   //
 
   FutureOr<void> _onSubmitVehicle(
@@ -102,9 +87,6 @@ class VehicleEditorBloc extends Bloc<VehicleEditorEvent, VehicleEditorState> {
         makeType: makeTypeController.text,
         engineNumber: engineNumberController.text,
         countryOfRegistration: countryOfRegistrationController.text,
-        trailerRegistrationNumber: trailerRegistrationNumberController.text,
-        trailerCountryOfRegistration:
-            trailerCountryOfRegistrationController.text,
         vehicleType: VehicleType.values
             .firstWhere((type) => type.name == vehicleTypeController.text),
       );

@@ -86,19 +86,6 @@ class _VehicleEditorScreenState extends State<VehicleEditorScreen> {
                     controller: bloc.countryOfRegistrationController,
                     onTap: bloc.onSelectCountryOfRegistrationPressed,
                   ),
-                  const SizedBox(height: 16),
-                  NumberTextField(
-                    controller: bloc.trailerRegistrationNumberController,
-                    labelText:
-                        '${'strRegistrationNumber'.tr()} (${'strTrailer'.tr()})',
-                  ),
-                  const SizedBox(height: 16),
-                  PickerTextField(
-                    onTap: bloc.onSelectTrailerCountryOfRegistrationPressed,
-                    controller: bloc.trailerCountryOfRegistrationController,
-                    labelText:
-                        '${'strCountryRegistration'.tr()} (${'strTrailer'.tr()})',
-                  ),
                   const SizedBox(height: 90),
                 ],
               ),

@@ -41,8 +41,6 @@ class SecondDriverCarCubit extends Cubit<SecondDriverCarState> {
   final makeTypeController = TextEditingController();
   final engineNumberController = TextEditingController();
   final countryOfRegistrationController = TextEditingController();
-  final trailerRegistrationNumberController = TextEditingController();
-  final trailerCountryOfRegistrationController = TextEditingController();
 
   List<VehicleInfoDto> brands = [];
   List<VehicleInfoDto> models = [];
@@ -85,9 +83,6 @@ class SecondDriverCarCubit extends Cubit<SecondDriverCarState> {
         makeType: makeTypeController.text,
         engineNumber: engineNumberController.text,
         countryOfRegistration: countryOfRegistrationController.text,
-        trailerRegistrationNumber: trailerRegistrationNumberController.text,
-        trailerCountryOfRegistration:
-            trailerCountryOfRegistrationController.text,
       );
 
       await accidentRepository.updateCarB(
@@ -184,15 +179,6 @@ class SecondDriverCarCubit extends Cubit<SecondDriverCarState> {
         .then((value) {
       if (value != null) {
         countryOfRegistrationController.text = value;
-      }
-    });
-  }
-
-  void onSelectTrailerCountryOfRegistrationPressed() {
-    NavigationService.showDialog(dialog: const CountriesDialog())!
-        .then((value) {
-      if (value != null) {
-        trailerCountryOfRegistrationController.text = value;
       }
     });
   }

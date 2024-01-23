@@ -52,7 +52,7 @@ class ProfileInfoWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: ProfileInfoCard(
-                    desc: 'Motor, trailer',
+                    desc: 'Motor',
                     title: 'strVehicle'.tr(),
                     onTap: bloc.onVehiclePressed,
                     image: AppDrawables.electricBolt,

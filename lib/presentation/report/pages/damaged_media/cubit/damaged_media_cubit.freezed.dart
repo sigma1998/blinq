@@ -20,6 +20,7 @@ mixin _$DamagedMediaState {
   List<File> get files => throw _privateConstructorUsedError;
   List<int> get uploadedFilesId => throw _privateConstructorUsedError;
   bool get isUploading => throw _privateConstructorUsedError;
+  Map<File, String> get fileSize => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -38,6 +39,7 @@ abstract class $DamagedMediaStateCopyWith<$Res> {
       List<File> files,
       List<int> uploadedFilesId,
       bool isUploading,
+      Map<File, String> fileSize,
       Error? error});
 }
 
@@ -58,6 +60,7 @@ class _$DamagedMediaStateCopyWithImpl<$Res, $Val extends DamagedMediaState>
     Object? files = null,
     Object? uploadedFilesId = null,
     Object? isUploading = null,
+    Object? fileSize = null,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -77,6 +80,10 @@ class _$DamagedMediaStateCopyWithImpl<$Res, $Val extends DamagedMediaState>
           ? _value.isUploading
           : isUploading // ignore: cast_nullable_to_non_nullable
               as bool,
+      fileSize: null == fileSize
+          ? _value.fileSize
+          : fileSize // ignore: cast_nullable_to_non_nullable
+              as Map<File, String>,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -98,6 +105,7 @@ abstract class _$$DamagedMediaStateImplCopyWith<$Res>
       List<File> files,
       List<int> uploadedFilesId,
       bool isUploading,
+      Map<File, String> fileSize,
       Error? error});
 }
 
@@ -116,6 +124,7 @@ class __$$DamagedMediaStateImplCopyWithImpl<$Res>
     Object? files = null,
     Object? uploadedFilesId = null,
     Object? isUploading = null,
+    Object? fileSize = null,
     Object? error = freezed,
   }) {
     return _then(_$DamagedMediaStateImpl(
@@ -135,6 +144,10 @@ class __$$DamagedMediaStateImplCopyWithImpl<$Res>
           ? _value.isUploading
           : isUploading // ignore: cast_nullable_to_non_nullable
               as bool,
+      fileSize: null == fileSize
+          ? _value._fileSize
+          : fileSize // ignore: cast_nullable_to_non_nullable
+              as Map<File, String>,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -151,9 +164,11 @@ class _$DamagedMediaStateImpl implements _DamagedMediaState {
       final List<File> files = const [],
       final List<int> uploadedFilesId = const [],
       this.isUploading = false,
+      final Map<File, String> fileSize = const {},
       this.error})
       : _files = files,
-        _uploadedFilesId = uploadedFilesId;
+        _uploadedFilesId = uploadedFilesId,
+        _fileSize = fileSize;
 
   @override
   @JsonKey()
@@ -179,12 +194,21 @@ class _$DamagedMediaStateImpl implements _DamagedMediaState {
   @override
   @JsonKey()
   final bool isUploading;
+  final Map<File, String> _fileSize;
+  @override
+  @JsonKey()
+  Map<File, String> get fileSize {
+    if (_fileSize is EqualUnmodifiableMapView) return _fileSize;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_fileSize);
+  }
+
   @override
   final Error? error;
 
   @override
   String toString() {
-    return 'DamagedMediaState(status: $status, files: $files, uploadedFilesId: $uploadedFilesId, isUploading: $isUploading, error: $error)';
+    return 'DamagedMediaState(status: $status, files: $files, uploadedFilesId: $uploadedFilesId, isUploading: $isUploading, fileSize: $fileSize, error: $error)';
   }
 
   @override
@@ -198,6 +222,7 @@ class _$DamagedMediaStateImpl implements _DamagedMediaState {
                 .equals(other._uploadedFilesId, _uploadedFilesId) &&
             (identical(other.isUploading, isUploading) ||
                 other.isUploading == isUploading) &&
+            const DeepCollectionEquality().equals(other._fileSize, _fileSize) &&
             (identical(other.error, error) || other.error == error));
   }
 
@@ -208,6 +233,7 @@ class _$DamagedMediaStateImpl implements _DamagedMediaState {
       const DeepCollectionEquality().hash(_files),
       const DeepCollectionEquality().hash(_uploadedFilesId),
       isUploading,
+      const DeepCollectionEquality().hash(_fileSize),
       error);
 
   @JsonKey(ignore: true)
@@ -224,6 +250,7 @@ abstract class _DamagedMediaState implements DamagedMediaState {
       final List<File> files,
       final List<int> uploadedFilesId,
       final bool isUploading,
+      final Map<File, String> fileSize,
       final Error? error}) = _$DamagedMediaStateImpl;
 
   @override
@@ -234,6 +261,8 @@ abstract class _DamagedMediaState implements DamagedMediaState {
   List<int> get uploadedFilesId;
   @override
   bool get isUploading;
+  @override
+  Map<File, String> get fileSize;
   @override
   Error? get error;
   @override
