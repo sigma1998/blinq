@@ -98,6 +98,9 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
 
     //^ Contact
     OfflineScreen.route: (context) => const OfflineScreen(),
+
+    // SketchScreen
+    SketchScreen.route: (context) => const SketchScreen(),
   };
 }
 

@@ -38,6 +38,8 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
 
   List<String> vehicleSelect = [];
 
+  List<String> blankVehicle = [];
+
   List<File?> screenShots = [];
 
   DamagedPartsBloc(
@@ -50,14 +52,17 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
       case VehicleType.moto:
         vehiclePartList = _motoPartList;
         vehicleSelect = _motoSelect;
+        blankVehicle = _motoSelect;
         break;
       case VehicleType.van:
         vehiclePartList = _vanPartList;
         vehicleSelect = _vanSelect;
+        blankVehicle = _blankVanSelect;
         break;
       case VehicleType.auto:
         vehiclePartList = _carPartList;
         vehicleSelect = _carsSelect;
+        blankVehicle = _blankCarsSelect;
         break;
     }
 
@@ -220,7 +225,7 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
 
   Future<MultipartFile> _getMultiPartFile(int index) async {
     if (screenShots[index] == null) {
-      screenShots[index] = await getImageFileFromAssets(vehicleSelect[index]);
+      screenShots[index] = await getImageFileFromAssets(blankVehicle[index]);
     }
 
     return MultipartFile.fromBytes(

@@ -154,6 +154,12 @@ class AppDrawables {
   static const String carLeft = '$cars/left.png';
   static const String carRight = '$cars/right.png';
   static const String carTop = '$cars/top.png';
+  //car blank
+  static const String blankCarBack = '$cars/blank/back.png';
+  static const String blankCarFront = '$cars/blank/front.png';
+  static const String blankCarLeft = '$cars/blank/left.png';
+  static const String blankCarRight = '$cars/blank/right.png';
+  static const String blankCarTop = '$cars/blank/top.png';
 
   //van
   static const String vanBack = '$van/back.png';
@@ -161,6 +167,9 @@ class AppDrawables {
   static const String vanLeft = '$van/left.png';
   static const String vanRight = '$van/right.png';
   static const String vanTop = '$van/top.png';
+  //van blank
+  static const String blankVanLeft = '$van/blank/left.png';
+  static const String blankVanRight = '$van/blank/right.png';
 
   //byke
   static const String motoFront = '$moto/front.png';
