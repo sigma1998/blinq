@@ -27,6 +27,8 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
 
   HomeScreenCubit({required this.reportBloc}) : super(const HomeScreenState()) {
     _getLocation();
+    _hideMap();
+    _showMap();
   }
 
   void _getLocation() async {
@@ -44,7 +46,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
 
   void onCameraCreated(GoogleMapController controller) {
     mapController = controller;
-    // mapController!.setMapStyle(mapStyle);
+    mapController!.setMapStyle(mapStyle);
   }
 
   void onCameraMove(CameraPosition position) {
@@ -55,12 +57,15 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     mapPickerController.mapFinishedMoving!();
   }
 
-  void onMyLocationPressed() {
-    NavigationService.pushNamed(
+  void onMyLocationPressed() async {
+    _hideMap();
+    await NavigationService.pushNamed(
       routeName: MapScreen.route,
       nestedKey: NavigationService.homeNavigatorKey,
-      arguments: MapScreenArgs(initialPosition: position),
+      arguments: MapScreenArgs(
+          initialPosition: position ?? CameraPosition(target: latlng)),
     );
+    _showMap();
   }
 
   void onConnectToBlinqPressed() async {
@@ -69,6 +74,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
       routeName: ConnectToBlinqScreen.route,
       nestedKey: NavigationService.homeNavigatorKey,
     );
+    _showMap();
   }
 
   void onAccidentPressed() async {
@@ -78,6 +84,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
       routeName: CreateReportScreen.route,
       nestedKey: NavigationService.homeNavigatorKey,
     );
+    _showMap();
   }
 
   void onBreakDownPressed() async {
@@ -87,13 +94,21 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
       routeName: CreateReportScreen.route,
       nestedKey: NavigationService.homeNavigatorKey,
     );
+    _showMap();
   }
 
   /// [_hideMap] hides the map to avoid flickering when navigating to another screen
-  void _hideMap() async {
-    emit(state.copyWith(mapHidden: true));
+  void _hideMap() {
+    emit(state.copyWith(mapHidden: true, mapRendered: false));
+  }
+
+  /// [_showMap] shows the map after a delay to avoid flickering when navigating to another screen
+  void _showMap() async {
     await Future.delayed(const Duration(milliseconds: 500), () {
       emit(state.copyWith(mapHidden: false));
+    });
+    await Future.delayed(const Duration(milliseconds: 1000), () {
+      emit(state.copyWith(mapRendered: true));
     });
   }
 }

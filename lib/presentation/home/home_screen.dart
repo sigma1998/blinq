@@ -32,7 +32,6 @@ class _HomeScreenState extends State<HomeScreen>
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
 
-    // TODO: this is a temporary solution to work with background notifications when app is terminated
     NotificationService.setupNotificationService();
     super.initState();
   }

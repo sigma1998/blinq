@@ -11,5 +11,6 @@ class HomeScreenState with _$HomeScreenState {
   const factory HomeScreenState({
     @Default(Status.initial) Status status,
     @Default(false) bool mapHidden,
+    @Default(false) bool mapRendered,
   }) = _HomeScreenState;
 }

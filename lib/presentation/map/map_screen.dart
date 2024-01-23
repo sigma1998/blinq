@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -9,12 +10,14 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 // Project imports:
 import 'package:blinq/core/drawables/app_drawables.dart';
-import 'package:blinq/presentation/map/bloc/map_screen_bloc.dart';
-import 'package:blinq/presentation/map/bloc/map_screen_state.dart';
 import 'package:blinq/utils/map_pin.dart';
 
+import 'cubit/map_cubit.dart';
+
 class MapScreen extends StatefulWidget {
+  //
   static const String route = 'map_screen';
+
   const MapScreen({Key? key}) : super(key: key);
 
   @override
@@ -22,81 +25,71 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
-  late final MapScreenBloc bloc;
+  //
+  late final MapCubit cubit;
+
+  final cameraPosition = const CameraPosition(
+    target: LatLng(41.30275284012766, 69.23845700742682),
+    zoom: 14.4746,
+  );
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   void didChangeDependencies() {
-    bloc = MapScreenBloc(
-        position: (ModalRoute.of(context)!.settings.arguments as MapScreenArgs)
-                .initialPosition ??
-            const CameraPosition(
-              target: LatLng(41.30275284012766, 69.23845700742682),
-              zoom: 14.4746,
-            ));
     super.didChangeDependencies();
+    cubit = MapCubit(
+      position: (ModalRoute.of(context)?.settings.arguments as MapScreenArgs)
+              .initialPosition ??
+          cameraPosition,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MapScreenBloc, MapState>(
-        bloc: bloc,
-        builder: (context, state) {
-          return SafeArea(
-            child: Scaffold(
-              body: FadeInRight(
-                child: Stack(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 14,
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: GoogleMap(
-                          myLocationEnabled: true,
-                          myLocationButtonEnabled: false,
-                          mapType: MapType.normal,
-                          initialCameraPosition: bloc.position,
-                          onMapCreated: bloc.onMapCreated,
-                          onCameraMove: bloc.onCameraMove,
-                          onCameraIdle: bloc.onCameraIdle,
-                        ),
-                      ),
+    return BlocBuilder<MapCubit, MapState>(
+      bloc: cubit,
+      builder: (context, state) {
+        return Scaffold(
+          body: SafeArea(
+            child: FadeInRight(
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 14,
                     ),
-                    MapPicker(
-                      iconWidget: SvgPicture.asset(
-                        AppDrawables.mapLocation,
-                        height: 60,
-                      ),
-                      mapPickerController: bloc.mapPickerController,
-                      padding: const EdgeInsets.only(bottom: 60),
-                    ),
-                    Positioned(
-                      bottom: 16,
-                      left: 16,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Stack(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .surfaceVariant
-                                      .withOpacity(0.8),
-                                  borderRadius: BorderRadius.circular(16)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: GestureDetector(
-                                  onTap: bloc.onDeterminePosition,
-                                  child: Icon(
-                                    Icons.near_me_outlined,
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                    size: 32,
-                                  ),
+                          Visibility(
+                            visible: !state.mapHidden,
+                            child: GoogleMap(
+                              myLocationEnabled: true,
+                              myLocationButtonEnabled: false,
+                              mapType: MapType.normal,
+                              initialCameraPosition: cubit.position,
+                              onMapCreated: cubit.onMapCreated,
+                              onCameraMove: cubit.onCameraMove,
+                              onCameraIdle: cubit.onCameraIdle,
+                            ),
+                          ),
+                          IgnorePointer(
+                            ignoring: !state.mapHidden,
+                            child: AnimatedOpacity(
+                              opacity: state.mapRendered ? 0.0 : 1.0,
+                              duration: const Duration(milliseconds: 1000),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                 ),
                               ),
                             ),
@@ -104,67 +97,102 @@ class _MapScreenState extends State<MapScreen> {
                         ],
                       ),
                     ),
-                    Positioned(
-                      top: 16,
-                      right: 30,
-                      left: 30,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5),
-                            child: GestureDetector(
-                              onTap: bloc.onNavigateBack,
-                              child: Icon(
-                                Icons.close,
-                                color: Theme.of(context).colorScheme.primary,
+                  ),
+                  MapPicker(
+                    iconWidget: SvgPicture.asset(
+                      AppDrawables.mapLocation,
+                      height: 60,
+                    ),
+                    mapPickerController: cubit.mapPickerController,
+                    padding: const EdgeInsets.only(bottom: 60),
+                  ),
+                  Positioned(
+                    bottom: 16,
+                    left: 16,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .surfaceVariant
+                                  .withOpacity(0.8),
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: GestureDetector(
+                                onTap: cubit.onDeterminePosition,
+                                child: Icon(
+                                  Icons.near_me_outlined,
+                                  color: Theme.of(context).colorScheme.primary,
+                                  size: 32,
+                                ),
                               ),
                             ),
                           ),
-                          const SizedBox(height: 10),
-                          Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .surfaceVariant
-                                    .withOpacity(0.8),
-                              ),
-                              child: Builder(
-                                builder: (context) {
-                                  if (state is MapLoaded) {
-                                    return Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        // addressBar(state.placeModel.placeName),
-                                        Expanded(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Text(
-                                              state.placeModel.placeName,
-                                              maxLines: 2,
-                                              textAlign: TextAlign.center,
-                                              overflow: TextOverflow.clip,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    );
-                                  } else {
-                                    return Container();
-                                  }
-                                },
-                              )),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    top: 16,
+                    right: 30,
+                    left: 30,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5),
+                          child: GestureDetector(
+                            onTap: cubit.onNavigateBack,
+                            child: Icon(
+                              Icons.close,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Theme.of(context)
+                                .colorScheme
+                                .surfaceVariant
+                                .withOpacity(0.8),
+                          ),
+                          child: state.status == Status.loading
+                              ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Text(
+                                          state.selectedPlace?.placeName ?? '',
+                                          maxLines: 2,
+                                          textAlign: TextAlign.center,
+                                          overflow: TextOverflow.clip,
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                )
+                              : Container(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }
 

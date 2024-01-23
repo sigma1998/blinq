@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'home_screen_state.dart';
+part of 'map_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,29 +15,33 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$HomeScreenState {
+mixin _$MapState {
   Status get status => throw _privateConstructorUsedError;
+  PlaceModel? get selectedPlace => throw _privateConstructorUsedError;
   bool get mapHidden => throw _privateConstructorUsedError;
   bool get mapRendered => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HomeScreenStateCopyWith<HomeScreenState> get copyWith =>
+  $MapStateCopyWith<MapState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomeScreenStateCopyWith<$Res> {
-  factory $HomeScreenStateCopyWith(
-          HomeScreenState value, $Res Function(HomeScreenState) then) =
-      _$HomeScreenStateCopyWithImpl<$Res, HomeScreenState>;
+abstract class $MapStateCopyWith<$Res> {
+  factory $MapStateCopyWith(MapState value, $Res Function(MapState) then) =
+      _$MapStateCopyWithImpl<$Res, MapState>;
   @useResult
-  $Res call({Status status, bool mapHidden, bool mapRendered});
+  $Res call(
+      {Status status,
+      PlaceModel? selectedPlace,
+      bool mapHidden,
+      bool mapRendered});
 }
 
 /// @nodoc
-class _$HomeScreenStateCopyWithImpl<$Res, $Val extends HomeScreenState>
-    implements $HomeScreenStateCopyWith<$Res> {
-  _$HomeScreenStateCopyWithImpl(this._value, this._then);
+class _$MapStateCopyWithImpl<$Res, $Val extends MapState>
+    implements $MapStateCopyWith<$Res> {
+  _$MapStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -48,6 +52,7 @@ class _$HomeScreenStateCopyWithImpl<$Res, $Val extends HomeScreenState>
   @override
   $Res call({
     Object? status = null,
+    Object? selectedPlace = freezed,
     Object? mapHidden = null,
     Object? mapRendered = null,
   }) {
@@ -56,6 +61,10 @@ class _$HomeScreenStateCopyWithImpl<$Res, $Val extends HomeScreenState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
+      selectedPlace: freezed == selectedPlace
+          ? _value.selectedPlace
+          : selectedPlace // ignore: cast_nullable_to_non_nullable
+              as PlaceModel?,
       mapHidden: null == mapHidden
           ? _value.mapHidden
           : mapHidden // ignore: cast_nullable_to_non_nullable
@@ -69,36 +78,45 @@ class _$HomeScreenStateCopyWithImpl<$Res, $Val extends HomeScreenState>
 }
 
 /// @nodoc
-abstract class _$$HomeScreenStateImplCopyWith<$Res>
-    implements $HomeScreenStateCopyWith<$Res> {
-  factory _$$HomeScreenStateImplCopyWith(_$HomeScreenStateImpl value,
-          $Res Function(_$HomeScreenStateImpl) then) =
-      __$$HomeScreenStateImplCopyWithImpl<$Res>;
+abstract class _$$MapStateImplCopyWith<$Res>
+    implements $MapStateCopyWith<$Res> {
+  factory _$$MapStateImplCopyWith(
+          _$MapStateImpl value, $Res Function(_$MapStateImpl) then) =
+      __$$MapStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Status status, bool mapHidden, bool mapRendered});
+  $Res call(
+      {Status status,
+      PlaceModel? selectedPlace,
+      bool mapHidden,
+      bool mapRendered});
 }
 
 /// @nodoc
-class __$$HomeScreenStateImplCopyWithImpl<$Res>
-    extends _$HomeScreenStateCopyWithImpl<$Res, _$HomeScreenStateImpl>
-    implements _$$HomeScreenStateImplCopyWith<$Res> {
-  __$$HomeScreenStateImplCopyWithImpl(
-      _$HomeScreenStateImpl _value, $Res Function(_$HomeScreenStateImpl) _then)
+class __$$MapStateImplCopyWithImpl<$Res>
+    extends _$MapStateCopyWithImpl<$Res, _$MapStateImpl>
+    implements _$$MapStateImplCopyWith<$Res> {
+  __$$MapStateImplCopyWithImpl(
+      _$MapStateImpl _value, $Res Function(_$MapStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? status = null,
+    Object? selectedPlace = freezed,
     Object? mapHidden = null,
     Object? mapRendered = null,
   }) {
-    return _then(_$HomeScreenStateImpl(
+    return _then(_$MapStateImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
+      selectedPlace: freezed == selectedPlace
+          ? _value.selectedPlace
+          : selectedPlace // ignore: cast_nullable_to_non_nullable
+              as PlaceModel?,
       mapHidden: null == mapHidden
           ? _value.mapHidden
           : mapHidden // ignore: cast_nullable_to_non_nullable
@@ -113,15 +131,18 @@ class __$$HomeScreenStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HomeScreenStateImpl implements _HomeScreenState {
-  const _$HomeScreenStateImpl(
+class _$MapStateImpl implements _MapState {
+  const _$MapStateImpl(
       {this.status = Status.initial,
+      this.selectedPlace,
       this.mapHidden = false,
       this.mapRendered = false});
 
   @override
   @JsonKey()
   final Status status;
+  @override
+  final PlaceModel? selectedPlace;
   @override
   @JsonKey()
   final bool mapHidden;
@@ -131,15 +152,17 @@ class _$HomeScreenStateImpl implements _HomeScreenState {
 
   @override
   String toString() {
-    return 'HomeScreenState(status: $status, mapHidden: $mapHidden, mapRendered: $mapRendered)';
+    return 'MapState(status: $status, selectedPlace: $selectedPlace, mapHidden: $mapHidden, mapRendered: $mapRendered)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeScreenStateImpl &&
+            other is _$MapStateImpl &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.selectedPlace, selectedPlace) ||
+                other.selectedPlace == selectedPlace) &&
             (identical(other.mapHidden, mapHidden) ||
                 other.mapHidden == mapHidden) &&
             (identical(other.mapRendered, mapRendered) ||
@@ -147,30 +170,33 @@ class _$HomeScreenStateImpl implements _HomeScreenState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, mapHidden, mapRendered);
+  int get hashCode =>
+      Object.hash(runtimeType, status, selectedPlace, mapHidden, mapRendered);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HomeScreenStateImplCopyWith<_$HomeScreenStateImpl> get copyWith =>
-      __$$HomeScreenStateImplCopyWithImpl<_$HomeScreenStateImpl>(
-          this, _$identity);
+  _$$MapStateImplCopyWith<_$MapStateImpl> get copyWith =>
+      __$$MapStateImplCopyWithImpl<_$MapStateImpl>(this, _$identity);
 }
 
-abstract class _HomeScreenState implements HomeScreenState {
-  const factory _HomeScreenState(
+abstract class _MapState implements MapState {
+  const factory _MapState(
       {final Status status,
+      final PlaceModel? selectedPlace,
       final bool mapHidden,
-      final bool mapRendered}) = _$HomeScreenStateImpl;
+      final bool mapRendered}) = _$MapStateImpl;
 
   @override
   Status get status;
+  @override
+  PlaceModel? get selectedPlace;
   @override
   bool get mapHidden;
   @override
   bool get mapRendered;
   @override
   @JsonKey(ignore: true)
-  _$$HomeScreenStateImplCopyWith<_$HomeScreenStateImpl> get copyWith =>
+  _$$MapStateImplCopyWith<_$MapStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

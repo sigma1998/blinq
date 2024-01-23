@@ -26,9 +26,7 @@ class HomeMain extends StatefulWidget {
 
 class _HomeMainState extends State<HomeMain>
     with AutomaticKeepAliveClientMixin {
-  @override
-  bool get wantKeepAlive => true;
-
+  //
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -122,4 +120,7 @@ class _HomeMainState extends State<HomeMain>
       },
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

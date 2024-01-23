@@ -1,11 +1,13 @@
-class PlaceModel {
+import 'package:equatable/equatable.dart';
+
+class PlaceModel extends Equatable {
   final String placeId;
   final String placeName;
 
   final double lon;
   final double lat;
 
-  PlaceModel({
+  const PlaceModel({
     this.placeId = '',
     this.placeName = '',
     required this.lon,
@@ -20,6 +22,9 @@ class PlaceModel {
       lat: json['geometry']['location']['lat'],
     );
   }
+
+  @override
+  List<Object?> get props => [placeId, placeName, lon, lat];
 }
 
 class PlaceAutoComplete {

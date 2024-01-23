@@ -27,27 +27,48 @@ class HomeMap extends StatelessWidget {
         builder: (context, state) {
           return ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: Container(
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 500),
               height: 230,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
+                color: Theme.of(context).colorScheme.secondary,
               ),
               child: Stack(
                 children: [
-                  Visibility(
-                    visible: !state.mapHidden,
-                    child: GoogleMap(
-                      myLocationEnabled: true,
-                      myLocationButtonEnabled: false,
-                      mapType: MapType.normal,
-                      initialCameraPosition: CameraPosition(
-                        target: bloc.latlng,
-                        zoom: 14.4746,
+                  Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      Visibility(
+                        visible: !state.mapHidden,
+                        child: GoogleMap(
+                          myLocationEnabled: true,
+                          myLocationButtonEnabled: false,
+                          mapType: MapType.normal,
+                          initialCameraPosition: CameraPosition(
+                            target: bloc.latlng,
+                            zoom: 14.4746,
+                          ),
+                          onMapCreated: bloc.onCameraCreated,
+                          onCameraMove: bloc.onCameraMove,
+                          onCameraIdle: bloc.onCameraIdle,
+                        ),
                       ),
-                      onMapCreated: bloc.onCameraCreated,
-                      onCameraMove: bloc.onCameraMove,
-                      onCameraIdle: bloc.onCameraIdle,
-                    ),
+                      IgnorePointer(
+                        ignoring: !state.mapHidden,
+                        child: AnimatedOpacity(
+                          opacity: state.mapRendered ? 0.0 : 1.0,
+                          duration: const Duration(milliseconds: 500),
+                          child: Container(
+                            height: 240,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
@@ -62,7 +83,7 @@ class HomeMap extends StatelessWidget {
                               .onSecondaryContainer,
                           text: 'strMyLocation'.tr(),
                           txtColor: Colors.black,
-                          onTap: bloc.onMyLocationPressed,
+                          onTap: () => bloc.onMyLocationPressed(),
                         ),
                       ),
                     ),
