@@ -104,10 +104,10 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
 
   /// [_showMap] shows the map after a delay to avoid flickering when navigating to another screen
   void _showMap() async {
-    await Future.delayed(const Duration(milliseconds: 500), () {
+    await Future.delayed(const Duration(milliseconds: 250), () {
       emit(state.copyWith(mapHidden: false));
     });
-    await Future.delayed(const Duration(milliseconds: 1000), () {
+    await Future.delayed(const Duration(milliseconds: 500), () {
       emit(state.copyWith(mapRendered: true));
     });
   }

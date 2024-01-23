@@ -2,7 +2,6 @@
 
 // Flutter imports:
 import 'package:blinq/presentation/map/map_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -107,11 +106,12 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
 
 Route onGenerateHomeRoutes(RouteSettings settings) {
   if (settings.name == MapScreen.route) {
-    return CupertinoPageRoute<dynamic>(
-      builder: (context) {
+    return PageRouteBuilder<dynamic>(
+      settings: settings,
+      pageBuilder: (_, __, ___) {
         return const MapScreen();
       },
-      settings: settings,
+      transitionDuration: const Duration(milliseconds: 500),
     );
   }
 

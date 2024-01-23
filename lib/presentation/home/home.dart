@@ -16,6 +16,9 @@ class Home extends StatelessWidget {
       onGenerateInitialRoutes: (navigator, initialRoute) => [
         MaterialPageRoute(builder: (context) => const HomeScreen()),
       ],
+      observers: [
+        HeroController(),
+      ],
       onGenerateRoute: onGenerateHomeRoutes,
       key: NavigationService.homeNavigatorKey,
     );

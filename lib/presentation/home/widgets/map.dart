@@ -36,39 +36,42 @@ class HomeMap extends StatelessWidget {
               ),
               child: Stack(
                 children: [
-                  Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      Visibility(
-                        visible: !state.mapHidden,
-                        child: GoogleMap(
-                          myLocationEnabled: true,
-                          myLocationButtonEnabled: false,
-                          mapType: MapType.normal,
-                          initialCameraPosition: CameraPosition(
-                            target: bloc.latlng,
-                            zoom: 14.4746,
+                  Hero(
+                    tag: 'mapHero',
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        Visibility(
+                          visible: !state.mapHidden,
+                          child: GoogleMap(
+                            myLocationEnabled: true,
+                            myLocationButtonEnabled: false,
+                            mapType: MapType.normal,
+                            initialCameraPosition: CameraPosition(
+                              target: bloc.latlng,
+                              zoom: 14.4746,
+                            ),
+                            onMapCreated: bloc.onCameraCreated,
+                            onCameraMove: bloc.onCameraMove,
+                            onCameraIdle: bloc.onCameraIdle,
                           ),
-                          onMapCreated: bloc.onCameraCreated,
-                          onCameraMove: bloc.onCameraMove,
-                          onCameraIdle: bloc.onCameraIdle,
                         ),
-                      ),
-                      IgnorePointer(
-                        ignoring: !state.mapHidden,
-                        child: AnimatedOpacity(
-                          opacity: state.mapRendered ? 0.0 : 1.0,
-                          duration: const Duration(milliseconds: 500),
-                          child: Container(
-                            height: 240,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Theme.of(context).colorScheme.secondary,
+                        IgnorePointer(
+                          ignoring: !state.mapHidden,
+                          child: AnimatedOpacity(
+                            opacity: state.mapRendered ? 0.0 : 1.0,
+                            duration: const Duration(milliseconds: 500),
+                            child: Container(
+                              height: 240,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Theme.of(context).colorScheme.secondary,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,

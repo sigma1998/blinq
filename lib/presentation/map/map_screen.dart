@@ -3,7 +3,6 @@ import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -28,11 +27,6 @@ class _MapScreenState extends State<MapScreen> {
   //
   late final MapCubit cubit;
 
-  final cameraPosition = const CameraPosition(
-    target: LatLng(41.30275284012766, 69.23845700742682),
-    zoom: 14.4746,
-  );
-
   @override
   void initState() {
     super.initState();
@@ -44,7 +38,10 @@ class _MapScreenState extends State<MapScreen> {
     cubit = MapCubit(
       position: (ModalRoute.of(context)?.settings.arguments as MapScreenArgs)
               .initialPosition ??
-          cameraPosition,
+          const CameraPosition(
+            target: LatLng(41.30275284012766, 69.23845700742682),
+            zoom: 14.4746,
+          ),
     );
   }
 
@@ -55,17 +52,18 @@ class _MapScreenState extends State<MapScreen> {
       builder: (context, state) {
         return Scaffold(
           body: SafeArea(
-            child: FadeInRight(
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 14,
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 14,
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Hero(
+                      tag: 'mapHero',
                       child: Stack(
                         children: [
                           Visibility(
@@ -84,10 +82,10 @@ class _MapScreenState extends State<MapScreen> {
                             ignoring: !state.mapHidden,
                             child: AnimatedOpacity(
                               opacity: state.mapRendered ? 0.0 : 1.0,
-                              duration: const Duration(milliseconds: 1000),
+                              duration: const Duration(milliseconds: 500),
                               child: Container(
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
+                                  borderRadius: BorderRadius.circular(8),
                                   color:
                                       Theme.of(context).colorScheme.secondary,
                                 ),
@@ -98,96 +96,96 @@ class _MapScreenState extends State<MapScreen> {
                       ),
                     ),
                   ),
-                  MapPicker(
-                    iconWidget: SvgPicture.asset(
-                      AppDrawables.mapLocation,
-                      height: 60,
-                    ),
-                    mapPickerController: cubit.mapPickerController,
-                    padding: const EdgeInsets.only(bottom: 60),
+                ),
+                MapPicker(
+                  iconWidget: SvgPicture.asset(
+                    AppDrawables.mapLocation,
+                    height: 60,
                   ),
-                  Positioned(
-                    bottom: 16,
-                    left: 16,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .surfaceVariant
-                                  .withOpacity(0.8),
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: GestureDetector(
-                                onTap: cubit.onDeterminePosition,
-                                child: Icon(
-                                  Icons.near_me_outlined,
-                                  color: Theme.of(context).colorScheme.primary,
-                                  size: 32,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Positioned(
-                    top: 16,
-                    right: 30,
-                    left: 30,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5),
-                          child: GestureDetector(
-                            onTap: cubit.onNavigateBack,
-                            child: Icon(
-                              Icons.close,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Container(
+                  mapPickerController: cubit.mapPickerController,
+                  padding: const EdgeInsets.only(bottom: 60),
+                ),
+                Positioned(
+                  bottom: 16,
+                  left: 16,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
                             color: Theme.of(context)
                                 .colorScheme
                                 .surfaceVariant
                                 .withOpacity(0.8),
+                            borderRadius: BorderRadius.circular(16),
                           ),
-                          child: state.status == Status.loading
-                              ? Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(10.0),
-                                        child: Text(
-                                          state.selectedPlace?.placeName ?? '',
-                                          maxLines: 2,
-                                          textAlign: TextAlign.center,
-                                          overflow: TextOverflow.clip,
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                )
-                              : Container(),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: GestureDetector(
+                              onTap: cubit.onDeterminePosition,
+                              child: Icon(
+                                Icons.near_me_outlined,
+                                color: Theme.of(context).colorScheme.primary,
+                                size: 32,
+                              ),
+                            ),
+                          ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                Positioned(
+                  top: 16,
+                  right: 30,
+                  left: 30,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: GestureDetector(
+                          onTap: cubit.onNavigateBack,
+                          child: Icon(
+                            Icons.close,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .surfaceVariant
+                              .withOpacity(0.8),
+                        ),
+                        child: state.status == Status.loading
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Text(
+                                        state.selectedPlace?.placeName ?? '',
+                                        maxLines: 2,
+                                        textAlign: TextAlign.center,
+                                        overflow: TextOverflow.clip,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              )
+                            : Container(),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         );
