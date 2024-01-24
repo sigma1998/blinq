@@ -1,15 +1,14 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
 // Flutter imports:
-import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 // Project imports:
 import 'package:blinq/data/model/map/map_models.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/map_pin.dart';
 import 'package:blinq/utils/map_style.dart';
 import 'package:blinq/utils/navigation_service.dart';
@@ -40,7 +39,10 @@ class MapCubit extends Cubit<MapState> {
     if (state.status != Status.loading) {
       emit(state.copyWith(status: Status.loading));
     }
-    position = newPosition;
+    position = CameraPosition(
+      target: newPosition.target,
+      zoom: 14.4746,
+    );
     mapPickerController.mapMoving!();
   }
 

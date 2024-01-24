@@ -4,20 +4,20 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i6;
-import 'dart:io' as _i8;
+import 'dart:io' as _i10;
 
-import 'package:blinq/data/model/contact/contact_response_dto.dart' as _i2;
+import 'package:blinq/data/model/contact/contact_response_dto.dart' as _i4;
 import 'package:blinq/data/model/contact/request/contact_request_model.dart'
-    as _i7;
+    as _i9;
 import 'package:blinq/data/model/contact/response/contact_response_model.dart'
-    as _i3;
-import 'package:blinq/domain/repositories/contacts_repository.dart' as _i4;
-import 'package:blinq/presentation/contacts/pages/contacts/bloc/contacts_bloc.dart'
     as _i5;
+import 'package:blinq/domain/repositories/contacts_repository.dart' as _i2;
+import 'package:blinq/presentation/contacts/pages/contacts/bloc/contacts_bloc.dart'
+    as _i3;
 import 'package:blinq/presentation/contacts/pages/contacts/bloc/contacts_event.dart'
-    as _i10;
-import 'package:blinq/utils/services/media/media_service.dart' as _i9;
-import 'package:flutter_bloc/flutter_bloc.dart' as _i11;
+    as _i7;
+import 'package:blinq/utils/services/media/media_service.dart' as _i11;
+import 'package:flutter_bloc/flutter_bloc.dart' as _i8;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -31,9 +31,9 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeContactResponseDto_0 extends _i1.SmartFake
-    implements _i2.ContactResponseDto {
-  _FakeContactResponseDto_0(
+class _FakeContactsRepository_0 extends _i1.SmartFake
+    implements _i2.ContactsRepository {
+  _FakeContactsRepository_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -42,9 +42,8 @@ class _FakeContactResponseDto_0 extends _i1.SmartFake
         );
 }
 
-class _FakeContactResponseModel_1 extends _i1.SmartFake
-    implements _i3.ContactResponseModel {
-  _FakeContactResponseModel_1(
+class _FakeContactsState_1 extends _i1.SmartFake implements _i3.ContactsState {
+  _FakeContactsState_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -53,9 +52,9 @@ class _FakeContactResponseModel_1 extends _i1.SmartFake
         );
 }
 
-class _FakeContactsRepository_2 extends _i1.SmartFake
-    implements _i4.ContactsRepository {
-  _FakeContactsRepository_2(
+class _FakeContactResponseDto_2 extends _i1.SmartFake
+    implements _i4.ContactResponseDto {
+  _FakeContactResponseDto_2(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -64,46 +63,217 @@ class _FakeContactsRepository_2 extends _i1.SmartFake
         );
 }
 
-class _FakeContactsState_3 extends _i1.SmartFake implements _i5.ContactsState {
-  _FakeContactsState_3(
+class _FakeContactResponseModel_3 extends _i1.SmartFake
+    implements _i5.ContactResponseModel {
+  _FakeContactResponseModel_3(
     Object parent,
     Invocation parentInvocation,
   ) : super(
           parent,
           parentInvocation,
         );
+}
+
+/// A class which mocks [ContactsBloc].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockContactsBloc extends _i1.Mock implements _i3.ContactsBloc {
+  MockContactsBloc() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.ContactsRepository get repository => (super.noSuchMethod(
+        Invocation.getter(#repository),
+        returnValue: _FakeContactsRepository_0(
+          this,
+          Invocation.getter(#repository),
+        ),
+      ) as _i2.ContactsRepository);
+
+  @override
+  _i3.ContactsState get state => (super.noSuchMethod(
+        Invocation.getter(#state),
+        returnValue: _FakeContactsState_1(
+          this,
+          Invocation.getter(#state),
+        ),
+      ) as _i3.ContactsState);
+
+  @override
+  _i6.Stream<_i3.ContactsState> get stream => (super.noSuchMethod(
+        Invocation.getter(#stream),
+        returnValue: _i6.Stream<_i3.ContactsState>.empty(),
+      ) as _i6.Stream<_i3.ContactsState>);
+
+  @override
+  bool get isClosed => (super.noSuchMethod(
+        Invocation.getter(#isClosed),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  void onEditPressed({int? id}) => super.noSuchMethod(
+        Invocation.method(
+          #onEditPressed,
+          [],
+          {#id: id},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onPhoneCall(String? phoneNumber) => super.noSuchMethod(
+        Invocation.method(
+          #onPhoneCall,
+          [phoneNumber],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onMessage(String? phoneNumber) => super.noSuchMethod(
+        Invocation.method(
+          #onMessage,
+          [phoneNumber],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void add(_i7.ContactsEvent? event) => super.noSuchMethod(
+        Invocation.method(
+          #add,
+          [event],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onEvent(_i7.ContactsEvent? event) => super.noSuchMethod(
+        Invocation.method(
+          #onEvent,
+          [event],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void emit(_i3.ContactsState? state) => super.noSuchMethod(
+        Invocation.method(
+          #emit,
+          [state],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void on<E extends _i7.ContactsEvent>(
+    _i8.EventHandler<E, _i3.ContactsState>? handler, {
+    _i8.EventTransformer<E>? transformer,
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #on,
+          [handler],
+          {#transformer: transformer},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onTransition(
+          _i8.Transition<_i7.ContactsEvent, _i3.ContactsState>? transition) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onTransition,
+          [transition],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i6.Future<void> close() => (super.noSuchMethod(
+        Invocation.method(
+          #close,
+          [],
+        ),
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
+
+  @override
+  void onChange(_i8.Change<_i3.ContactsState>? change) => super.noSuchMethod(
+        Invocation.method(
+          #onChange,
+          [change],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void addError(
+    Object? error, [
+    StackTrace? stackTrace,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #addError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onError(
+    Object? error,
+    StackTrace? stackTrace,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
 }
 
 /// A class which mocks [ContactsRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockContactsRepository extends _i1.Mock
-    implements _i4.ContactsRepository {
+    implements _i2.ContactsRepository {
   MockContactsRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.Future<_i2.ContactResponseDto> fetchList([int? page]) =>
+  _i6.Future<_i4.ContactResponseDto> fetchList([int? page]) =>
       (super.noSuchMethod(
         Invocation.method(
           #fetchList,
           [page],
         ),
         returnValue:
-            _i6.Future<_i2.ContactResponseDto>.value(_FakeContactResponseDto_0(
+            _i6.Future<_i4.ContactResponseDto>.value(_FakeContactResponseDto_2(
           this,
           Invocation.method(
             #fetchList,
             [page],
           ),
         )),
-      ) as _i6.Future<_i2.ContactResponseDto>);
+      ) as _i6.Future<_i4.ContactResponseDto>);
 
   @override
-  _i6.Future<_i3.ContactResponseModel> add({
-    required _i7.ContactRequestModel? contact,
-    _i8.File? file,
+  _i6.Future<_i5.ContactResponseModel> add({
+    required _i9.ContactRequestModel? contact,
+    _i10.File? file,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -114,8 +284,8 @@ class MockContactsRepository extends _i1.Mock
             #file: file,
           },
         ),
-        returnValue: _i6.Future<_i3.ContactResponseModel>.value(
-            _FakeContactResponseModel_1(
+        returnValue: _i6.Future<_i5.ContactResponseModel>.value(
+            _FakeContactResponseModel_3(
           this,
           Invocation.method(
             #add,
@@ -126,13 +296,13 @@ class MockContactsRepository extends _i1.Mock
             },
           ),
         )),
-      ) as _i6.Future<_i3.ContactResponseModel>);
+      ) as _i6.Future<_i5.ContactResponseModel>);
 
   @override
-  _i6.Future<_i3.ContactResponseModel> update({
+  _i6.Future<_i5.ContactResponseModel> update({
     required int? id,
-    required _i7.ContactRequestModel? contact,
-    _i8.File? file,
+    required _i9.ContactRequestModel? contact,
+    _i10.File? file,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -144,8 +314,8 @@ class MockContactsRepository extends _i1.Mock
             #file: file,
           },
         ),
-        returnValue: _i6.Future<_i3.ContactResponseModel>.value(
-            _FakeContactResponseModel_1(
+        returnValue: _i6.Future<_i5.ContactResponseModel>.value(
+            _FakeContactResponseModel_3(
           this,
           Invocation.method(
             #update,
@@ -157,7 +327,7 @@ class MockContactsRepository extends _i1.Mock
             },
           ),
         )),
-      ) as _i6.Future<_i3.ContactResponseModel>);
+      ) as _i6.Future<_i5.ContactResponseModel>);
 
   @override
   _i6.Future<void> delete(int? id) => (super.noSuchMethod(
@@ -173,13 +343,13 @@ class MockContactsRepository extends _i1.Mock
 /// A class which mocks [MediaService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockMediaService extends _i1.Mock implements _i9.MediaService {
+class MockMediaService extends _i1.Mock implements _i11.MediaService {
   MockMediaService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.Future<String?> pickImagePath(_i9.AppImageSource? appImageSource) =>
+  _i6.Future<String?> pickImagePath(_i11.AppImageSource? appImageSource) =>
       (super.noSuchMethod(
         Invocation.method(
           #pickImagePath,
@@ -198,7 +368,7 @@ class MockMediaService extends _i1.Mock implements _i9.MediaService {
       ) as _i6.Future<List<String>?>);
 
   @override
-  _i6.Future<String?> pickVideoPath(_i9.AppImageSource? appImageSource) =>
+  _i6.Future<String?> pickVideoPath(_i11.AppImageSource? appImageSource) =>
       (super.noSuchMethod(
         Invocation.method(
           #pickVideoPath,
@@ -244,174 +414,4 @@ class MockMediaService extends _i1.Mock implements _i9.MediaService {
         ),
         returnValue: _i6.Future<List<String>?>.value(),
       ) as _i6.Future<List<String>?>);
-}
-
-/// A class which mocks [ContactsBloc].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockContactsBloc extends _i1.Mock implements _i5.ContactsBloc {
-  MockContactsBloc() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i4.ContactsRepository get repository => (super.noSuchMethod(
-        Invocation.getter(#repository),
-        returnValue: _FakeContactsRepository_2(
-          this,
-          Invocation.getter(#repository),
-        ),
-      ) as _i4.ContactsRepository);
-
-  @override
-  _i5.ContactsState get state => (super.noSuchMethod(
-        Invocation.getter(#state),
-        returnValue: _FakeContactsState_3(
-          this,
-          Invocation.getter(#state),
-        ),
-      ) as _i5.ContactsState);
-
-  @override
-  _i6.Stream<_i5.ContactsState> get stream => (super.noSuchMethod(
-        Invocation.getter(#stream),
-        returnValue: _i6.Stream<_i5.ContactsState>.empty(),
-      ) as _i6.Stream<_i5.ContactsState>);
-
-  @override
-  bool get isClosed => (super.noSuchMethod(
-        Invocation.getter(#isClosed),
-        returnValue: false,
-      ) as bool);
-
-  @override
-  void onEditPressed({int? id}) => super.noSuchMethod(
-        Invocation.method(
-          #onEditPressed,
-          [],
-          {#id: id},
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void onPhoneCall(String? phoneNumber) => super.noSuchMethod(
-        Invocation.method(
-          #onPhoneCall,
-          [phoneNumber],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void onMessage(String? phoneNumber) => super.noSuchMethod(
-        Invocation.method(
-          #onMessage,
-          [phoneNumber],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void add(_i10.ContactsEvent? event) => super.noSuchMethod(
-        Invocation.method(
-          #add,
-          [event],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void onEvent(_i10.ContactsEvent? event) => super.noSuchMethod(
-        Invocation.method(
-          #onEvent,
-          [event],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void emit(_i5.ContactsState? state) => super.noSuchMethod(
-        Invocation.method(
-          #emit,
-          [state],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void on<E extends _i10.ContactsEvent>(
-    _i11.EventHandler<E, _i5.ContactsState>? handler, {
-    _i11.EventTransformer<E>? transformer,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #on,
-          [handler],
-          {#transformer: transformer},
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void onTransition(
-          _i11.Transition<_i10.ContactsEvent, _i5.ContactsState>? transition) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #onTransition,
-          [transition],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  _i6.Future<void> close() => (super.noSuchMethod(
-        Invocation.method(
-          #close,
-          [],
-        ),
-        returnValue: _i6.Future<void>.value(),
-        returnValueForMissingStub: _i6.Future<void>.value(),
-      ) as _i6.Future<void>);
-
-  @override
-  void onChange(_i11.Change<_i5.ContactsState>? change) => super.noSuchMethod(
-        Invocation.method(
-          #onChange,
-          [change],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void addError(
-    Object? error, [
-    StackTrace? stackTrace,
-  ]) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #addError,
-          [
-            error,
-            stackTrace,
-          ],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void onError(
-    Object? error,
-    StackTrace? stackTrace,
-  ) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #onError,
-          [
-            error,
-            stackTrace,
-          ],
-        ),
-        returnValueForMissingStub: null,
-      );
 }
