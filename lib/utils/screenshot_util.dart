@@ -44,17 +44,20 @@ Future<File?> captureSign(GlobalKey container, BuildContext context) {
 
     img.Image? im = img.decodeImage(pngBytes);
 
-    var pixels = im!.getBytes();
-    for (int i = 0, len = pixels.length; i < len; i += 4) {
-      /// print(
-      ///       "r ${pixels[i]} g ${pixels[i + 1]} b ${pixels[i + 2]} a ${pixels[i + 3]} ");
-
-      if (pixels[i] == 27 && pixels[i + 1] == 27 && pixels[i + 2] == 27) {
-        /// pixels[i + 3] = 0;
-        pixels[i] = 255;
-        pixels[i + 1] = 255;
-        pixels[i + 2] = 255;
-      }
+    // var pixels = im!.getBytes();
+    // for (int i = 0, len = pixels.length; i < len; i += 4) {
+    //   /// print(
+    //   ///       "r ${pixels[i]} g ${pixels[i + 1]} b ${pixels[i + 2]} a ${pixels[i + 3]} ");
+    //
+    //   // if (pixels[i] == 27 && pixels[i + 1] == 27 && pixels[i + 2] == 27) {
+    //   //   /// pixels[i + 3] = 0;
+    //   //   pixels[i] = 255;
+    //   //   pixels[i + 1] = 255;
+    //   //   pixels[i + 2] = 255;
+    //   // }
+    // }
+    if(im == null){
+      return null;
     }
 
     final png = img.encodePng(im);

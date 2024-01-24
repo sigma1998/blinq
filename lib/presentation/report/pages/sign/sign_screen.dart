@@ -63,20 +63,24 @@ class _SignScreenState extends State<SignScreen> {
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(height: 54),
-                  RepaintBoundary(
-                    key: bloc.previewContainer,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Theme.of(context).colorScheme.secondary,
-                      ),
-                      height: 200,
-                      width: double.maxFinite,
-                      child: HandSignature(
-                        control: bloc.control,
-                        color: Theme.of(context).colorScheme.primary,
-                        width: 1,
-                        type: SignatureDrawType.line,
+                  Expanded(
+                    child: RepaintBoundary(
+                      key: bloc.previewContainer,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: Theme.of(context).colorScheme.secondary,
+                            width: 2
+                          )
+                        ),
+                        width: double.maxFinite,
+                        child: HandSignature(
+                          control: bloc.control,
+                          color: Theme.of(context).colorScheme.primary,
+                          width: 3,
+                          type: SignatureDrawType.line,
+                        ),
                       ),
                     ),
                   ),
@@ -97,7 +101,7 @@ class _SignScreenState extends State<SignScreen> {
                       ),
                     ],
                   ),
-                  const Spacer(),
+                  const SizedBox(height: 12,),
                   NavigationButton(
                     padding: 0,
                     loading: state.status == Status.loading,
