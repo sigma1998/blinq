@@ -2,6 +2,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 
 // Project imports:
 import 'package:blinq/domain/repositories/auth_repository.dart';
@@ -38,6 +39,9 @@ void main() {
         const DeleteAccountState(status: Status.success),
         const DeleteAccountState(status: Status.initial),
       ],
+      verify: (_) {
+        verify(mockRepository.deleteUser()).called(1);
+      },
     );
 
     blocTest<DeleteAccountBloc, DeleteAccountState>(
@@ -45,12 +49,16 @@ void main() {
       build: () => deleteAccountBloc,
       act: (bloc) => bloc.add(OnVerifyDeleteAccount()),
       setUp: () {
+        // Set up the codeController.text before the test
         deleteAccountBloc.codeController.text = mockCode;
       },
       expect: () => [
         const DeleteAccountState(status: Status.loading),
         const DeleteAccountState(status: Status.success),
       ],
+      verify: (_) async {
+        verify(mockRepository.verifyDeleteUser(mockCode)).called(1);
+      },
     );
   });
 }
