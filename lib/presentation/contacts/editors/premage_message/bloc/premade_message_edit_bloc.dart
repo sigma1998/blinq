@@ -35,7 +35,7 @@ class PremadeMessageEditorBloc
     required this.preMadeMessagesBloc,
     required this.repository,
   }) : super(const PreMadeMessageEditorState()) {
-    on<OnAddPreMadeMessage>(_onAddContact);
+    on<OnAddPreMadeMessage>(_onAddPreMadeMessage);
     on<OnUpdatePreMadeMessage>(_onUpdatePreMadeMessage);
     on<OnDeletePreMadeMessage>(_onDeletePreMadeMessage);
   }
@@ -54,7 +54,7 @@ class PremadeMessageEditorBloc
   bool validateForm() => formKey.currentState!.validate();
 
   //
-  FutureOr<void> _onAddContact(OnAddPreMadeMessage event,
+  FutureOr<void> _onAddPreMadeMessage(OnAddPreMadeMessage event,
       Emitter<PreMadeMessageEditorState> emit) async {
     try {
       final premadeMessage = PreMadeMessageRequestModel(

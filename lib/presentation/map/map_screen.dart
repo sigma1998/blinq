@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -9,8 +8,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 // Project imports:
 import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/map_pin.dart';
-
 import 'cubit/map_cubit.dart';
 
 class MapScreen extends StatefulWidget {

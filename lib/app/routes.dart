@@ -1,7 +1,6 @@
 // Flutter imports:
 
 // Flutter imports:
-import 'package:blinq/presentation/map/map_screen.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -26,6 +25,7 @@ import 'package:blinq/presentation/intro/first_intro_screen/first_intro_screen.d
 import 'package:blinq/presentation/intro/second_intro_screen/second_intro_screen.dart';
 import 'package:blinq/presentation/language/language_screen.dart';
 import 'package:blinq/presentation/main_screen/main_screen.dart';
+import 'package:blinq/presentation/map/map_screen.dart';
 import 'package:blinq/presentation/medical_assistance/medical_assistance_screen.dart';
 import 'package:blinq/presentation/my_reports/pdf_view/pdf_view.dart';
 import 'package:blinq/presentation/my_reports/reports_screen.dart';
