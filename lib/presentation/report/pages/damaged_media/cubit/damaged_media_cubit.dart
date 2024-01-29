@@ -68,8 +68,8 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
       }
 
       emit(state.copyWith(status: Status.loading, isUploading: true));
-      await _uploadFiles();
-      await _uploadMedia();
+      await uploadFiles();
+      await uploadMedia();
 
       _navigate();
 
@@ -81,8 +81,8 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
 
   /// Upload multipart files to server and get file ids to upload media
   /// [state.files] are uploaded one by one
-
-  Future<void> _uploadFiles() async {
+  @visibleForTesting
+  Future<void> uploadFiles() async {
     final files = state.files;
     emit(state.copyWith(uploadedFilesId: []));
 
@@ -102,7 +102,8 @@ class DamagedMediaCubit extends Cubit<DamagedMediaState> {
   }
 
   /// Upload file ids depending on user type and report type
-  Future<void> _uploadMedia() async {
+  @visibleForTesting
+  Future<void> uploadMedia() async {
     final reportId = reportBloc.reportId;
     final uploadedFilesId = state.uploadedFilesId;
 

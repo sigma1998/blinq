@@ -37,6 +37,10 @@ void main() {
     );
   });
 
+  tearDown(() {
+    contactEditBloc.close();
+  });
+
   group('ContactEditBloc', () {
     test('initial state is correct', () {
       expect(contactEditBloc.state, const ContactEditState());
