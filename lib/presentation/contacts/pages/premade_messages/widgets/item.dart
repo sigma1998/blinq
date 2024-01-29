@@ -69,14 +69,8 @@ class _PremadeMessageItemState extends State<PremadeMessageItem> {
             child: Column(
               children: [
                 const SizedBox(height: 24),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      widget.premadeMessage.message ?? '',
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+                Text(
+                  widget.premadeMessage.message ?? '',
                 ),
               ],
             ),

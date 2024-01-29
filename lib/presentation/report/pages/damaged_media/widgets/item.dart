@@ -15,13 +15,11 @@ import 'package:blinq/utils/custom_widgets/loading.dart';
 class DamagedMediaItem extends StatefulWidget {
   //
   final File file;
-  final String fileSize;
   final void Function(File) onRemove;
 
   const DamagedMediaItem({
     super.key,
     required this.file,
-    required this.fileSize,
     required this.onRemove,
   });
 
@@ -96,20 +94,11 @@ class _DamagedMediaItemState extends State<DamagedMediaItem> {
         ],
       );
     } else {
-      return Stack(
-        alignment: Alignment.center,
-        children: [
-          Image.file(
-            file,
-            width: 126,
-            height: 170,
-            fit: BoxFit.cover,
-          ),
-          Text(
-            widget.fileSize,
-            style: const TextStyle(fontWeight: FontWeight.w700),
-          ),
-        ],
+      return Image.file(
+        file,
+        width: 126,
+        height: 170,
+        fit: BoxFit.cover,
       );
     }
   }

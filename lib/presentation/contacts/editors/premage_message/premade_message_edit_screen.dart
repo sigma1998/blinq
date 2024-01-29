@@ -80,6 +80,8 @@ class _PremadeMessageEditScreenState extends State<PremadeMessageEditScreen> {
                   const SizedBox(height: 40),
                   NameTextField(
                     labelText: 'strMessages'.tr(),
+                    minLines: 1,
+                    maxLines: 5,
                     controller: bloc.messageController,
                   ),
                 ],
