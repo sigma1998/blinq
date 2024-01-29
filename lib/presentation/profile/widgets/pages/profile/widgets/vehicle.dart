@@ -77,7 +77,7 @@ class ProfileVehicleWidget extends StatelessWidget {
                     title: 'strOilReplacement'.tr(),
                     value: '${state.profile?.userVehicle?.oilReplacement}',
                     desc:
-                        '${'strLastReplacement'.tr()} ${state.profile?.userVehicle?.oilReplacementUpdatedDate ?? ''}',
+                        '${'strLastReplacement'.tr()}\n${state.profile?.userVehicle?.oilReplacementUpdatedDate ?? ''}',
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -88,7 +88,7 @@ class ProfileVehicleWidget extends StatelessWidget {
                     icon: AppDrawables.batteryReplacement,
                     value: '${state.profile?.userVehicle?.batteryReplacement}',
                     desc:
-                        '${'strLastReplacement'.tr()} ${state.profile?.userVehicle?.batteryReplacementUpdatedDate ?? ''}',
+                        '${'strLastReplacement'.tr()}\n${state.profile?.userVehicle?.batteryReplacementUpdatedDate ?? ''}',
                   ),
                 ),
               ],
