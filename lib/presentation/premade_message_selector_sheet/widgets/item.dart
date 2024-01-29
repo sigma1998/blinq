@@ -29,33 +29,32 @@ class PremadeMessageSelectorItem extends StatelessWidget {
           ? Theme.of(context).colorScheme.onSecondary
           : Theme.of(context).colorScheme.secondaryContainer,
       margin: const EdgeInsets.only(bottom: 12),
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                premadeMessage.title ?? '',
-                style: isSelected
-                    ? Theme.of(context).textTheme.titleSmall!.copyWith(
-                          color: Colors.white,
-                        )
-                    : Theme.of(context).textTheme.titleSmall!.copyWith(
-                          color: Theme.of(context).colorScheme.outline,
-                        ),
-              ),
-              const SizedBox(height: 24),
-              Text(
-                premadeMessage.message ?? '',
-                style: isSelected
-                    ? Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Colors.white,
-                        )
-                    : Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Theme.of(context).colorScheme.outline,
-                        ),
-              ),
-            ],
+          Text(
+            premadeMessage.title ?? '',
+            maxLines: 2,
+            style: isSelected
+                ? Theme.of(context).textTheme.titleSmall!.copyWith(
+                      color: Colors.white,
+                    )
+                : Theme.of(context).textTheme.titleSmall!.copyWith(
+                      color: Theme.of(context).colorScheme.outline,
+                    ),
+          ),
+          const SizedBox(height: 24),
+          Text(
+            premadeMessage.message ?? '',
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+            style: isSelected
+                ? Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: Colors.white,
+                    )
+                : Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: Theme.of(context).colorScheme.outline,
+                    ),
           ),
         ],
       ),

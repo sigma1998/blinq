@@ -90,7 +90,6 @@ class _DamagedMediaScreenState extends State<DamagedMediaScreen> {
 
                                 return DamagedMediaItem(
                                   file: file,
-                                  fileSize: state.fileSize[file] ?? '',
                                   onRemove: cubit.removeDamagedMediaPressed,
                                 );
                               },

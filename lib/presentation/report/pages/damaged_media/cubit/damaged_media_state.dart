@@ -7,7 +7,6 @@ class DamagedMediaState with _$DamagedMediaState {
     @Default([]) List<File> files,
     @Default([]) List<int> uploadedFilesId,
     @Default(false) bool isUploading,
-    @Default({}) Map<File, String> fileSize,
     Error? error,
   }) = _DamagedMediaState;
 }
