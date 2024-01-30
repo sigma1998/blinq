@@ -177,15 +177,16 @@ class AppApi {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      DioClient.myDioOptions.headers = {};
-      final Response response = await DioClient.myDio.download(uri, savePath,
-          data: data,
-          queryParameters: queryParameters,
-          cancelToken: cancelToken,
-          onReceiveProgress: onReceiveProgress);
-      DioClient.myDioOptions.headers = {
-        'Content-Type': 'application/json; charset=utf-8'
-      };
+      final Response response = await Dio(BaseOptions(
+              baseUrl: 'http://blinqbackend.samuraidev.uz/',
+              connectTimeout: 20000,
+              receiveTimeout: 20000,
+              responseType: ResponseType.json))
+          .download(uri, savePath,
+              data: data,
+              queryParameters: queryParameters,
+              cancelToken: cancelToken,
+              onReceiveProgress: onReceiveProgress);
       return response.data;
     } catch (e) {
       throw 'common.file_downloading_error'.tr();
