@@ -214,11 +214,13 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
       }
     }
 
-    listController.animateTo(
-      listController.position.maxScrollExtent,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.fastOutSlowIn,
-    );
+    if(color != null){
+      listController.animateTo(
+        listController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.fastOutSlowIn,
+      );
+    }
 
     return color ?? active;
   }
