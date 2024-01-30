@@ -32,7 +32,7 @@ class EmergencyServicesScreen extends StatelessWidget {
         child: Column(
           children: [
             MyInfoContainer(
-              onTap: onCall,
+              onTap: () => onCall('112'),
               padding: const EdgeInsets.symmetric(vertical: 18),
               child: Column(
                 children: [
@@ -69,19 +69,19 @@ class EmergencyServicesScreen extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             EmergencyServicesItem(
-              onTap: onCall,
+              onTap: () => onCall('107'),
               title: 'strPoliceCall'.tr(),
               icon: AppDrawables.policeCar,
             ),
             const SizedBox(height: 12),
             EmergencyServicesItem(
-              onTap: onCall,
+              onTap: () => onCall('104'),
               title: 'strEmergencyCall'.tr(),
               icon: AppDrawables.emergencyCar,
             ),
             const SizedBox(height: 12),
             EmergencyServicesItem(
-              onTap: onCall,
+              onTap: () => onCall('105'),
               icon: AppDrawables.fireTruck,
               title: 'strFireFighterscall'.tr(),
             ),
@@ -91,7 +91,7 @@ class EmergencyServicesScreen extends StatelessWidget {
     );
   }
 
-  void onCall() {
-    MyUrlLauncher.call('112');
+  void onCall(String number) {
+    MyUrlLauncher.call(number);
   }
 }
