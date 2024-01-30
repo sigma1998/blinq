@@ -1,4 +1,10 @@
 // Flutter imports:
+import 'dart:io';
+
+import 'package:blinq/utils/custom_widgets/cupertino_action/cupertino_action.dart';
+import 'package:blinq/utils/image_crop_helper.dart';
+import 'package:blinq/utils/services/media/media_service.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -16,22 +22,30 @@ import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/screenshot_util.dart';
 
 class SketchBloc extends Cubit<GenericBlocState<bool>> {
-  final AccidentRepository accidentRepository;
-  final BreakdownRepository breakdownRepository;
+  //
   final ReportBloc reportBloc;
 
-  SketchBloc({
-    required this.reportBloc,
-    required this.accidentRepository,
-    required this.breakdownRepository,
-  }) : super(const GenericBlocState<bool>(status: Status.initial, data: true)) {
-    onInit();
-  }
+  final AccidentRepository accidentRepository;
+  final BreakdownRepository breakdownRepository;
+
+  final MediaService mediaService;
 
   late PainterController painterController;
   FocusNode textFocusNode = FocusNode();
 
   final GlobalKey key = GlobalKey();
+
+  SketchBloc({
+    required this.reportBloc,
+    required this.accidentRepository,
+    required this.breakdownRepository,
+    required this.mediaService,
+  }) : super(const GenericBlocState<bool>(
+          status: Status.initial,
+          data: true,
+        )) {
+    onInit();
+  }
 
   void onInit() {
     painterController = PainterController(
@@ -85,14 +99,50 @@ class SketchBloc extends Cubit<GenericBlocState<bool>> {
     painterController.addText();
   }
 
+  void onCameraPressed() async {
+    final result = await NavigationService.showMyCupertinoModalPopup(
+      actions: [
+        MyCupertinoActionSheetAction(
+          label: 'strTakeImage'.tr(),
+          onPressed: () {
+            mediaService
+                .pickImagePath(AppImageSource.camera)
+                .then((value) async {
+              final croppedImage = await ImageCropHelper.cropImage(value!);
+              NavigationService.back(result: croppedImage);
+            });
+          },
+        ),
+        MyCupertinoActionSheetAction(
+          label: 'strSelectFromGallery'.tr(),
+          onPressed: () {
+            mediaService
+                .pickImagePath(AppImageSource.gallery)
+                .then((value) async {
+              final croppedImage = await ImageCropHelper.cropImage(value!);
+              NavigationService.back(result: croppedImage);
+            });
+          },
+        ),
+      ],
+    );
+
+    if (result != null) {
+      _uploadSketch(result);
+    }
+  }
+
   void onSubmitted(BuildContext context) async {
+    final file = await captureSocialPng(key, context);
+    _uploadSketch(file!);
+  }
+
+  void _uploadSketch(File file) async {
     emit(const GenericBlocState(status: Status.initial, data: false));
 
     try {
-      final file = await captureSocialPng(key, context);
-
       final multipartFile = MultipartFile.fromBytes(
-        file!.readAsBytesSync(),
+        file.readAsBytesSync(),
         filename: file.path.split('/').last,
       );
 
@@ -100,10 +150,14 @@ class SketchBloc extends Cubit<GenericBlocState<bool>> {
 
       if (reportBloc.reportType == ReportType.accident) {
         await accidentRepository.accidentSketch(
-            reportBloc.reportId, multipartFile);
+          reportBloc.reportId,
+          multipartFile,
+        );
       } else {
         await breakdownRepository.uploadBreakdownSketch(
-            breakdownId: reportBloc.reportId, sketch: multipartFile);
+          breakdownId: reportBloc.reportId,
+          sketch: multipartFile,
+        );
       }
 
       emit(const GenericBlocState(status: Status.initial, data: true));

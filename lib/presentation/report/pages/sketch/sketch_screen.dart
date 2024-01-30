@@ -14,6 +14,7 @@ import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
+import 'package:blinq/utils/services/media/media_service.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
@@ -34,9 +35,11 @@ class _SketchScreenState extends State<SketchScreen> {
   @override
   void didChangeDependencies() {
     bloc = SketchBloc(
-        accidentRepository: getIt<AccidentRepositoryImpl>(),
-        breakdownRepository: getIt<BreakdownRepositoryImpl>(),
-        reportBloc: context.read<ReportBloc>());
+      accidentRepository: getIt<AccidentRepositoryImpl>(),
+      breakdownRepository: getIt<BreakdownRepositoryImpl>(),
+      reportBloc: context.read<ReportBloc>(),
+      mediaService: getIt<MediaServiceImpl>(),
+    );
     SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
     super.didChangeDependencies();
   }
@@ -53,6 +56,7 @@ class _SketchScreenState extends State<SketchScreen> {
       bloc: bloc,
       builder: (context, state) {
         final bool visible = state.data ?? false;
+
         return KeyboardEscape(
           child: Scaffold(
             body: Padding(
@@ -161,9 +165,7 @@ class _SketchScreenState extends State<SketchScreen> {
                                               : null),
                                       onPressed: bloc.toggleFreeStyleErase,
                                     ),
-                                    const SizedBox(
-                                      width: 24,
-                                    ),
+                                    const SizedBox(width: 24),
                                     // Free-style drawing
                                     IconButton(
                                         icon: Icon(
@@ -178,10 +180,7 @@ class _SketchScreenState extends State<SketchScreen> {
                                         ),
                                         onPressed: bloc.toggleFreeStyleDraw),
                                     // Add text
-                                    const SizedBox(
-                                      width: 24,
-                                    ),
-
+                                    const SizedBox(width: 24),
                                     IconButton(
                                       icon: Icon(
                                         PhosphorIcons.fill.textT,
@@ -191,6 +190,17 @@ class _SketchScreenState extends State<SketchScreen> {
                                             : null,
                                       ),
                                       onPressed: bloc.addText,
+                                    ),
+                                    const SizedBox(width: 24),
+                                    IconButton(
+                                      icon: Icon(
+                                        PhosphorIcons.fill.camera,
+                                        color: bloc.textFocusNode.hasFocus
+                                            ? Theme.of(context)
+                                                .secondaryHeaderColor
+                                            : null,
+                                      ),
+                                      onPressed: bloc.onCameraPressed,
                                     ),
                                   ],
                                 ),
