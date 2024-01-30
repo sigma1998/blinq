@@ -9,7 +9,8 @@ class DioClient {
   static Dio? _myDio;
 
   static final myDioOptions = BaseOptions(
-      baseUrl: 'http://testingblinq.urinboev.uz/',
+      // baseUrl: 'http://testingblinq.urinboev.uz/',
+      baseUrl: 'http://blinqbackend.samuraidev.uz/',
       connectTimeout: 20000,
       receiveTimeout: 20000,
       // queryParameters: {
