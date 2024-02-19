@@ -49,7 +49,7 @@
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Allow &quot;BLINQ&quot; to access your Bluetooth in order to scan, connect and pair to BLINQ emergency triangles around you</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Need camera access for uploading images</string>
+	<string>We need camera permission to take photos of accident, your profile photo and sketch</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>We require access to the user&apos;s geolocation to set the clients geolocation in the app and help them identify the nearest photographers. Our app estimates distances between users in order to connect them locally, therefore the location is required.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

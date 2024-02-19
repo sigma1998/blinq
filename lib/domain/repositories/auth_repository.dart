@@ -7,6 +7,8 @@ import 'package:blinq/data/model/registration/registration_request_dto.dart';
 import 'package:blinq/data/model/send_email/response/send_email_response.dart';
 import 'package:blinq/data/model/user/user_status.dart';
 
+import '../../presentation/auth/log_in/bloc/login_bottom_sheet_bloc.dart';
+
 abstract class AuthRepository {
   Future<LoginResponseModel> login(
       {required String mail,
