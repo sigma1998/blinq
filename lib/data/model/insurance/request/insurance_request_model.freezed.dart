@@ -12,7 +12,7 @@ part of 'insurance_request_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 InsuranceRequestModel _$InsuranceRequestModelFromJson(
     Map<String, dynamic> json) {
@@ -33,8 +33,11 @@ mixin _$InsuranceRequestModel {
   String? get certificateValidTo => throw _privateConstructorUsedError;
   @JsonKey(name: 'agency')
   String? get agency => throw _privateConstructorUsedError;
-  @JsonKey(name: 'address')
-  String? get address => throw _privateConstructorUsedError;
+  String? get city => throw _privateConstructorUsedError;
+  String? get state => throw _privateConstructorUsedError;
+  String? get street => throw _privateConstructorUsedError;
+  @JsonKey(name: 'postal_code')
+  String? get postalCode => throw _privateConstructorUsedError;
   @JsonKey(name: 'phone_number')
   String? get phoneNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'email')
@@ -63,7 +66,10 @@ abstract class $InsuranceRequestModelCopyWith<$Res> {
       @JsonKey(name: 'certificate_valid_from') String? certificateValidFrom,
       @JsonKey(name: 'certificate_valid_to') String? certificateValidTo,
       @JsonKey(name: 'agency') String? agency,
-      @JsonKey(name: 'address') String? address,
+      String? city,
+      String? state,
+      String? street,
+      @JsonKey(name: 'postal_code') String? postalCode,
       @JsonKey(name: 'phone_number') String? phoneNumber,
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'policy_cover') String? policyCover,
@@ -90,7 +96,10 @@ class _$InsuranceRequestModelCopyWithImpl<$Res,
     Object? certificateValidFrom = freezed,
     Object? certificateValidTo = freezed,
     Object? agency = freezed,
-    Object? address = freezed,
+    Object? city = freezed,
+    Object? state = freezed,
+    Object? street = freezed,
+    Object? postalCode = freezed,
     Object? phoneNumber = freezed,
     Object? email = freezed,
     Object? policyCover = freezed,
@@ -121,9 +130,21 @@ class _$InsuranceRequestModelCopyWithImpl<$Res,
           ? _value.agency
           : agency // ignore: cast_nullable_to_non_nullable
               as String?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
+      state: freezed == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as String?,
+      street: freezed == street
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String?,
+      postalCode: freezed == postalCode
+          ? _value.postalCode
+          : postalCode // ignore: cast_nullable_to_non_nullable
               as String?,
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
@@ -161,7 +182,10 @@ abstract class _$$InsuranceRequestModelImplCopyWith<$Res>
       @JsonKey(name: 'certificate_valid_from') String? certificateValidFrom,
       @JsonKey(name: 'certificate_valid_to') String? certificateValidTo,
       @JsonKey(name: 'agency') String? agency,
-      @JsonKey(name: 'address') String? address,
+      String? city,
+      String? state,
+      String? street,
+      @JsonKey(name: 'postal_code') String? postalCode,
       @JsonKey(name: 'phone_number') String? phoneNumber,
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'policy_cover') String? policyCover,
@@ -186,7 +210,10 @@ class __$$InsuranceRequestModelImplCopyWithImpl<$Res>
     Object? certificateValidFrom = freezed,
     Object? certificateValidTo = freezed,
     Object? agency = freezed,
-    Object? address = freezed,
+    Object? city = freezed,
+    Object? state = freezed,
+    Object? street = freezed,
+    Object? postalCode = freezed,
     Object? phoneNumber = freezed,
     Object? email = freezed,
     Object? policyCover = freezed,
@@ -217,9 +244,21 @@ class __$$InsuranceRequestModelImplCopyWithImpl<$Res>
           ? _value.agency
           : agency // ignore: cast_nullable_to_non_nullable
               as String?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
+      state: freezed == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as String?,
+      street: freezed == street
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String?,
+      postalCode: freezed == postalCode
+          ? _value.postalCode
+          : postalCode // ignore: cast_nullable_to_non_nullable
               as String?,
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
@@ -251,7 +290,10 @@ class _$InsuranceRequestModelImpl implements _InsuranceRequestModel {
       @JsonKey(name: 'certificate_valid_from') this.certificateValidFrom,
       @JsonKey(name: 'certificate_valid_to') this.certificateValidTo,
       @JsonKey(name: 'agency') this.agency,
-      @JsonKey(name: 'address') this.address,
+      this.city,
+      this.state,
+      this.street,
+      @JsonKey(name: 'postal_code') this.postalCode,
       @JsonKey(name: 'phone_number') this.phoneNumber,
       @JsonKey(name: 'email') this.email,
       @JsonKey(name: 'policy_cover') this.policyCover,
@@ -279,8 +321,14 @@ class _$InsuranceRequestModelImpl implements _InsuranceRequestModel {
   @JsonKey(name: 'agency')
   final String? agency;
   @override
-  @JsonKey(name: 'address')
-  final String? address;
+  final String? city;
+  @override
+  final String? state;
+  @override
+  final String? street;
+  @override
+  @JsonKey(name: 'postal_code')
+  final String? postalCode;
   @override
   @JsonKey(name: 'phone_number')
   final String? phoneNumber;
@@ -296,11 +344,11 @@ class _$InsuranceRequestModelImpl implements _InsuranceRequestModel {
 
   @override
   String toString() {
-    return 'InsuranceRequestModel(name: $name, policyNumber: $policyNumber, greenCardNumber: $greenCardNumber, certificateValidFrom: $certificateValidFrom, certificateValidTo: $certificateValidTo, agency: $agency, address: $address, phoneNumber: $phoneNumber, email: $email, policyCover: $policyCover, country: $country)';
+    return 'InsuranceRequestModel(name: $name, policyNumber: $policyNumber, greenCardNumber: $greenCardNumber, certificateValidFrom: $certificateValidFrom, certificateValidTo: $certificateValidTo, agency: $agency, city: $city, state: $state, street: $street, postalCode: $postalCode, phoneNumber: $phoneNumber, email: $email, policyCover: $policyCover, country: $country)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InsuranceRequestModelImpl &&
@@ -314,7 +362,11 @@ class _$InsuranceRequestModelImpl implements _InsuranceRequestModel {
             (identical(other.certificateValidTo, certificateValidTo) ||
                 other.certificateValidTo == certificateValidTo) &&
             (identical(other.agency, agency) || other.agency == agency) &&
-            (identical(other.address, address) || other.address == address) &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.state, state) || other.state == state) &&
+            (identical(other.street, street) || other.street == street) &&
+            (identical(other.postalCode, postalCode) ||
+                other.postalCode == postalCode) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
             (identical(other.email, email) || other.email == email) &&
@@ -333,7 +385,10 @@ class _$InsuranceRequestModelImpl implements _InsuranceRequestModel {
       certificateValidFrom,
       certificateValidTo,
       agency,
-      address,
+      city,
+      state,
+      street,
+      postalCode,
       phoneNumber,
       email,
       policyCover,
@@ -363,7 +418,10 @@ abstract class _InsuranceRequestModel implements InsuranceRequestModel {
       final String? certificateValidFrom,
       @JsonKey(name: 'certificate_valid_to') final String? certificateValidTo,
       @JsonKey(name: 'agency') final String? agency,
-      @JsonKey(name: 'address') final String? address,
+      final String? city,
+      final String? state,
+      final String? street,
+      @JsonKey(name: 'postal_code') final String? postalCode,
       @JsonKey(name: 'phone_number') final String? phoneNumber,
       @JsonKey(name: 'email') final String? email,
       @JsonKey(name: 'policy_cover') final String? policyCover,
@@ -392,8 +450,14 @@ abstract class _InsuranceRequestModel implements InsuranceRequestModel {
   @JsonKey(name: 'agency')
   String? get agency;
   @override
-  @JsonKey(name: 'address')
-  String? get address;
+  String? get city;
+  @override
+  String? get state;
+  @override
+  String? get street;
+  @override
+  @JsonKey(name: 'postal_code')
+  String? get postalCode;
   @override
   @JsonKey(name: 'phone_number')
   String? get phoneNumber;

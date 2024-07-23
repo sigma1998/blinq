@@ -39,7 +39,10 @@ class InsuranceEditorBloc
   final certificateValidToController = TextEditingController();
   final agencyController = TextEditingController();
   final countryController = TextEditingController();
-  final addressController = TextEditingController();
+  final cityController = TextEditingController();
+  final stateController = TextEditingController();
+  final streetController = TextEditingController();
+  final zipController = TextEditingController();
   final emailController = TextEditingController();
   final policyCoverController = TextEditingController();
 
@@ -63,8 +66,14 @@ class InsuranceEditorBloc
     agencyController.text = profileBloc.state.profile?.insurance?.agency ?? '';
     countryController.text =
         profileBloc.state.profile?.insurance?.country ?? '';
-    addressController.text =
-        profileBloc.state.profile?.insurance?.address ?? '';
+    cityController.text =
+        profileBloc.state.profile?.insurance?.city ?? '';
+    stateController.text =
+        profileBloc.state.profile?.insurance?.state ?? '';
+    streetController.text =
+        profileBloc.state.profile?.insurance?.street ?? '';
+    zipController.text =
+        profileBloc.state.profile?.insurance?.postalCode ?? '';
     emailController.text = profileBloc.state.profile?.insurance?.email ?? '';
     policyCoverController.text =
         profileBloc.state.profile?.insurance?.policyCover ?? '';
@@ -106,7 +115,10 @@ class InsuranceEditorBloc
         certificateValidTo: certificateValidToController.text,
         agency: agencyController.text,
         country: countryController.text,
-        address: addressController.text,
+        city: cityController.text,
+        state: stateController.text,
+        street: streetController.text,
+        postalCode: zipController.text,
         email: emailController.text,
         policyCover: policyCoverController.text,
       );
@@ -118,6 +130,28 @@ class InsuranceEditorBloc
       NavigationService.back(result: true);
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
+    }
+  }
+
+  String? isEmail({bool isEmail = true, bool isPhone = false}) {
+    // Regular expressions for phone number and email validation
+    RegExp phoneRegex = RegExp(r'^\d{10}$'); // Matches 10 digits
+    RegExp emailRegex = RegExp(
+        r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'); // Matches valid email format
+
+    // Check if input matches either phone number or email format
+    if (isEmail) {
+      if (emailRegex.hasMatch(emailController.text)) {
+        return emailController.text;
+      } else {
+        return null;
+      }
+    } else {
+      if (phoneRegex.hasMatch(emailController.text)) {
+        return emailController.text;
+      } else {
+        return null;
+      }
     }
   }
 }

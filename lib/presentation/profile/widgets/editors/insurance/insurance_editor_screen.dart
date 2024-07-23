@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/core/locale/app_locale.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -104,15 +105,30 @@ class _InsuranceEditorScreenState extends State<InsuranceEditorScreen> {
                     controller: bloc.agencyController,
                   ),
                   const SizedBox(height: 16),
-                  NameTextField(
-                    labelText: 'strAddress'.tr(),
-                    controller: bloc.addressController,
-                  ),
-                  const SizedBox(height: 16),
                   PickerTextField(
                     labelText: 'strCountry'.tr(),
                     controller: bloc.countryController,
                     onTap: bloc.onSelectCountriesPressed,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: AppLocale.city.tr(),
+                    controller: bloc.cityController,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: AppLocale.stateRegion.tr(),
+                    controller: bloc.stateController,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: AppLocale.street.tr(),
+                    controller: bloc.streetController,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: AppLocale.zipPostal.tr(),
+                    controller: bloc.zipController,
                   ),
                   const SizedBox(height: 16),
                   EmailTextField(

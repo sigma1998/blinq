@@ -19,6 +19,7 @@ import 'package:blinq/utils/smart_widgets/dialogs/countries_dialog/countries_dia
 import 'policy_holder_editor_event.dart';
 
 part 'policy_holder_editor_state.dart';
+
 part 'policy_holder_editor_bloc.freezed.dart';
 
 class PolicyHolderEditorBloc
@@ -28,12 +29,15 @@ class PolicyHolderEditorBloc
   final ProfileRepository repository;
 
   final formKey = GlobalKey<FormState>();
+  bool sameAsDriver = false;
 
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
-  final addressController = TextEditingController();
-  final postalCodeController = TextEditingController();
   final countryController = TextEditingController();
+  final cityController = TextEditingController();
+  final stateController = TextEditingController();
+  final streetController = TextEditingController();
+  final postalCodeController = TextEditingController();
   final emailController = TextEditingController();
 
   PolicyHolderEditorBloc({
@@ -48,16 +52,47 @@ class PolicyHolderEditorBloc
         profileBloc.state.profile?.policyHolder?.firstName ?? '';
     lastNameController.text =
         profileBloc.state.profile?.policyHolder?.lastName ?? '';
-    addressController.text =
-        profileBloc.state.profile?.policyHolder?.address ?? '';
-    postalCodeController.text =
-        profileBloc.state.profile?.policyHolder?.postalCode ?? '';
     countryController.text =
         profileBloc.state.profile?.policyHolder?.country ?? '';
-    emailController.text = profileBloc.state.profile?.policyHolder?.email ?? '';
+    cityController.text = profileBloc.state.profile?.policyHolder?.city ?? '';
+    stateController.text = profileBloc.state.profile?.policyHolder?.state ?? '';
+    streetController.text =
+        profileBloc.state.profile?.policyHolder?.street ?? '';
+    postalCodeController.text =
+        profileBloc.state.profile?.policyHolder?.postalCode ?? '';
+    emailController.text =
+        profileBloc.state.profile?.policyHolder?.phoneEmail ??
+            profileBloc.state.profile?.policyHolder?.phoneNumber ??
+            profileBloc.state.profile?.policyHolder?.email ??
+            '';
   }
 
   bool validateForm() => formKey.currentState!.validate();
+
+  makeSameAsDriver(bool val) async {
+    sameAsDriver = val;
+    if (val) {
+      firstNameController.text = profileBloc.state.profile?.firstName ?? '';
+      lastNameController.text = profileBloc.state.profile?.lastName ?? '';
+      countryController.text = profileBloc.state.profile?.country ?? '';
+      cityController.text = profileBloc.state.profile?.city ?? '';
+      stateController.text = profileBloc.state.profile?.state ?? '';
+      streetController.text = profileBloc.state.profile?.street ?? '';
+      postalCodeController.text = profileBloc.state.profile?.postalCode ?? '';
+      emailController.text = profileBloc.state.profile?.phoneNumber ??
+          profileBloc.state.profile?.email ??
+          '';
+    } else {
+      firstNameController.clear();
+      lastNameController.clear();
+      countryController.clear();
+      cityController.clear();
+      stateController.clear();
+      streetController.clear();
+      postalCodeController.clear();
+      emailController.clear();
+    }
+  }
 
   //
 
@@ -78,10 +113,14 @@ class PolicyHolderEditorBloc
       final policyHolder = PolicyHolderRequestModel(
         firstName: firstNameController.text,
         lastName: lastNameController.text,
-        address: addressController.text,
-        postalCode: postalCodeController.text,
         country: countryController.text,
-        email: emailController.text,
+        city: cityController.text,
+        state: stateController.text,
+        street: streetController.text,
+        postalCode: postalCodeController.text,
+        email: isEmail(isEmail: true, isPhone: false),
+        phoneNumber: isEmail(isEmail: false, isPhone: true),
+        sameAsDriver: sameAsDriver,
       );
 
       emit(const PolicyHolderEditorState(status: Status.loading));
@@ -91,6 +130,28 @@ class PolicyHolderEditorBloc
       NavigationService.back(result: true);
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
+    }
+  }
+
+  String? isEmail({bool isEmail = true, bool isPhone = false}) {
+    // Regular expressions for phone number and email validation
+    RegExp phoneRegex = RegExp(r'^\d{10}$'); // Matches 10 digits
+    RegExp emailRegex = RegExp(
+        r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'); // Matches valid email format
+
+    // Check if input matches either phone number or email format
+    if (isEmail) {
+      if (emailRegex.hasMatch(emailController.text)) {
+        return emailController.text;
+      } else {
+        return null;
+      }
+    } else {
+      if (phoneRegex.hasMatch(emailController.text)) {
+        return emailController.text;
+      } else {
+        return null;
+      }
     }
   }
 }

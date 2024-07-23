@@ -17,7 +17,10 @@ class InsuranceResponseModel with _$InsuranceResponseModel {
     @JsonKey(name: 'certificate_valid_to') String? certificateValidTo,
     @JsonKey(name: 'agency') String? agency,
     @JsonKey(name: 'country') String? country,
-    @JsonKey(name: 'address') String? address,
+    String? city,
+    String? state,
+    String? street,
+    @JsonKey(name: 'postal_code') String? postalCode,
     @JsonKey(name: 'email') String? email,
     @JsonKey(name: 'policy_cover') String? policyCover,
   }) = _InsuranceResponseModel;

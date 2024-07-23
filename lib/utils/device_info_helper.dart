@@ -23,6 +23,23 @@ class DeviceInfoHelper {
     return appId;
   }
 
+  static Future<String> getDeviceId() async {
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    String id;
+
+    if (Platform.isAndroid) {
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      id = androidInfo.androidId;
+    } else if (Platform.isIOS) {
+      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      id = iosInfo.identifierForVendor;
+    } else {
+      id = 'Unsupported platform';
+    }
+
+    return id;
+  }
+
   static void _produceUUID(String name, String version, String identifier) {
     appId = Md5Helper.toMD5_16(name + version + identifier);
     debugPrint('APPUUID:$appId');

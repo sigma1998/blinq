@@ -127,6 +127,8 @@ abstract class AccidentApi {
 
   Future<void> respondToNotification(
       {required int accidentId, required bool isAgree});
+
+  Future<PolicyHolderRequestModel?> sameAsDriver({required int accidentId, required bool sameAsDriver});
 }
 
 class AccidentApiImpl implements AccidentApi {
@@ -517,7 +519,18 @@ class AccidentApiImpl implements AccidentApi {
     try {
       await api.patch(
         NetworkConstants.updatePolicyHolderB(accidentId),
-        data: policyHolderRequestModel.toJson(),
+        data: {
+          "first_name": policyHolderRequestModel.firstName,
+          "last_name":policyHolderRequestModel.lastName,
+          "postal_code": policyHolderRequestModel.postalCode,
+          "country": policyHolderRequestModel.country,
+          "city": policyHolderRequestModel.city,
+          "state": policyHolderRequestModel.state,
+          "street": policyHolderRequestModel.street,
+          "phone_number":policyHolderRequestModel.phoneNumber,
+          "email": policyHolderRequestModel.email,
+          "same_as_driver": policyHolderRequestModel.sameAsDriver
+        },
       );
     } catch (e) {
       rethrow;
@@ -589,6 +602,22 @@ class AccidentApiImpl implements AccidentApi {
           data: {'user_id': userId});
     } catch (e) {
       rethrow;
+    }
+  }
+
+  @override
+  Future<PolicyHolderRequestModel?> sameAsDriver(
+      {required int accidentId, required bool sameAsDriver}) async {
+    try {
+      await api.patch(
+        NetworkConstants.updatePolicyHolderB(accidentId),
+        data: {'same_as_driver': sameAsDriver},
+      );
+      final res =
+          await api.get(NetworkConstants.updatePolicyHolderB(accidentId));
+      return PolicyHolderRequestModel.fromJson(res);
+    } catch (e) {
+      return null;
     }
   }
 }

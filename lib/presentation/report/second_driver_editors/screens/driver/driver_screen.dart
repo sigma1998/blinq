@@ -17,6 +17,8 @@ import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/phone_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import '../../../../../core/locale/app_locale.dart';
+import '../../../../../core/theme/app_colors.dart';
 import 'cubit/second_driver_cubit.dart';
 
 class SecondDriverEditorScreen extends StatefulWidget {
@@ -84,26 +86,62 @@ class _SecondDriverEditorScreenState extends State<SecondDriverEditorScreen> {
                       maxDate: DateTime.now(),
                       controller: cubit.dateOfBirthController,
                     ),
-                    const SizedBox(height: 16),
-                    NameTextField(
-                      labelText: 'strAddress'.tr(),
-                      controller: cubit.addressController,
+                    const SizedBox(height: 40),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'strAddress'.tr(),
+                          style: const TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 40),
                     PickerTextField(
                       labelText: 'strCountry'.tr(),
                       controller: cubit.countryController,
                       onTap: cubit.onSelectCountriesPressed,
                     ),
                     const SizedBox(height: 16),
-                    PhoneTextField(
-                      labelText: 'strPhoneNumber'.tr(),
-                      controller: cubit.phoneNumberController,
+                    NameTextField(
+                      labelText: AppLocale.city.tr(),
+                      controller: cubit.cityController,
                     ),
                     const SizedBox(height: 16),
                     NameTextField(
-                      labelText: 'strPostalCode'.tr(),
+                      labelText: AppLocale.stateRegion.tr(),
+                      controller: cubit.stateController,
+                    ),
+                    const SizedBox(height: 16),
+                    NameTextField(
+                      labelText: AppLocale.street.tr(),
+                      controller: cubit.streetController,
+                    ),
+                    const SizedBox(height: 16),
+                    PickerTextField(
+                      labelText: AppLocale.driverLicenseCountry.tr(),
+                      controller: cubit.driverLicenseCountryController,
+                      onTap: cubit.onSelectLicenceCountriesPressed,
+                    ),
+                    const SizedBox(height: 16),
+                    NameTextField(
+                      labelText: 'Zip/${'strPostalCode'.tr()}',
                       controller: cubit.postalCodeController,
+                    ),
+                    const SizedBox(height: 16),
+                    PhoneTextField(
+                      labelText: AppLocale.plateNumber.tr(),
+                      controller: cubit.phoneNumberController,
+                    ),
+                    const SizedBox(height: 16),
+                    PickerTextField(
+                      labelText: 'strCategory'.tr(),
+                      controller: cubit.categoryController,
+                      onTap: cubit.onSelectCategoryPressed,
                     ),
                     const SizedBox(height: 16),
                     NameTextField(
@@ -111,10 +149,40 @@ class _SecondDriverEditorScreenState extends State<SecondDriverEditorScreen> {
                       controller: cubit.drivingLicenseNumberController,
                     ),
                     const SizedBox(height: 16),
-                    PickerTextField(
-                      labelText: 'strCategory'.tr(),
-                      controller: cubit.categoryController,
-                      onTap: cubit.onSelectCategoryPressed,
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            AppLocale.noValidityDate.tr(),
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        Switch(
+                          activeColor: AppColors.grey2,
+                          // Set transparent so the active track color shows through
+                          activeTrackColor: AppColors.grey2,
+                          thumbColor: MaterialStateProperty.resolveWith<Color?>(
+                            (Set<MaterialState> states) {
+                              return Colors.white;
+                            },
+                          ),
+                          // Background color when switch is on
+                          inactiveThumbColor: AppColors.grey2,
+                          // Round color when switch is off
+                          inactiveTrackColor: AppColors.grey1,
+                          // Set transparent so the inactive thumb color shows through
+                          value: cubit.noValidity,
+                          onChanged: (bool val) {
+                            setState(() {
+                              cubit.setNoValidity(val);
+                            });
+                          },
+                        )
+                      ],
                     ),
                     const SizedBox(height: 16),
                     DatePickerTextField(

@@ -56,7 +56,7 @@ class CustomInterceptor extends Interceptor {
     if (statusCode == 400 &&
         (err.requestOptions.path == NetworkConstants.createAccident ||
             err.requestOptions.path == NetworkConstants.createBreakdown)) {
-      final data = err.response!.data;
+      final data = err.response?.data;
       final list = data['active_reports'];
 
       return handler.next(HaveActiveReportException(
@@ -65,10 +65,22 @@ class CustomInterceptor extends Interceptor {
           createdAt: list[0]['created_datetime'],
           requestOptions: err.requestOptions));
     } else if (statusCode >= 400 && statusCode < 500) {
-      final text = err.response!.data?['message'] ??
-          err.response!.data['detail'] ??
-          err.response!.data['error'];
-      NavigationService.showErrorToast((text).toString());
+      String? text;
+      try {
+        final map = err.response?.data as Map<String, dynamic>;
+        map.forEach((key, value) {
+          text = value.toString();
+        });
+      } catch (e) {
+        print('ERROR INTERCEPTOR_________$e');
+      }
+      text ??= 'Error';
+      NavigationService.showErrorToast(
+          (text! == 'Null' || text! == 'null') ? 'Error' : text!);
+      // final text = err.response?.data?['message'] ??
+      //     err.response?.data['detail'] ??
+      //     err.response?.data['error'];
+      // NavigationService.showErrorToast((text).toString());
     }
 
     return handler.next(err);

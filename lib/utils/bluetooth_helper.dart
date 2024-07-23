@@ -39,6 +39,34 @@ final uuidReadShort = Uuid.parse("8902");
 class BluetoothHelper {
   //
   String _deviceAddress = '';
+  final FlutterReactiveBle _ble = FlutterReactiveBle();
+
+  // BluetoothDevice convertToBluetoothDevice(DiscoveredDevice device) {
+  //   return BluetoothDevice(remoteId: DeviceIdentifier(device.id));
+  // }
+  //
+  // Future<void> clearPairedDevicesOnGadget(DiscoveredDevice device) async {
+  //   BluetoothDevice btDevice = convertToBluetoothDevice(device);
+  //   var writeCharacteristic = getWriteCharacteristic(btDevice.id.toString());
+  //   var value = bleClearPaired();
+  //   await writeCharacteristicWithRetry(writeCharacteristic, value);
+  // }
+  //
+  // Future<void> writeCharacteristicWithRetry(QualifiedCharacteristic characteristic, List<int> value, {int retryCount = 3}) async {
+  //   int attempt = 0;
+  //   while (attempt < retryCount) {
+  //     try {
+  //       await _ble.writeCharacteristicWithResponse(characteristic, value: value);
+  //       return;
+  //     } catch (e) {
+  //       attempt++;
+  //       if (attempt >= retryCount) {
+  //         rethrow;
+  //       }
+  //       await Future.delayed(Duration(seconds: 1));
+  //     }
+  //   }
+  // }
 
   set setDeviceAddress(DiscoveredDevice device) {
     if (Platform.isIOS) {
@@ -95,7 +123,7 @@ class BluetoothHelper {
   }
 
   Future<List<int>> bleQueryPairState() async {
-    String uuid = await DeviceInfoHelper.getAppId();
+    String uuid = await DeviceInfoHelper.getDeviceId();
     List<int> uuidBytes = uuid.codeUnits;
     List<int> value = List<int>.filled(16 + 1, 0);
     value[0] = appCmdQueryPairState;

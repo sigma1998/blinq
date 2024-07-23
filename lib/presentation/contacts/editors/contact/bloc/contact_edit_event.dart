@@ -1,6 +1,8 @@
 // Dart imports:
 import 'dart:io';
 
+import 'package:flutter_contacts/contact.dart';
+
 sealed class ContactEditEvent {}
 
 class OnAddContact extends ContactEditEvent {

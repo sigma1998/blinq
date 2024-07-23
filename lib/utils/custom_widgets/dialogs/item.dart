@@ -1,17 +1,20 @@
 // Flutter imports:
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:blinq/utils/custom_widgets/buttons/default_ink_well.dart';
-import 'package:blinq/utils/navigation_service.dart';
 
 class DialogItem extends StatelessWidget {
   //
   final String title;
+  final VoidCallback onSelect;
+
 
   const DialogItem({
     super.key,
     required this.title,
+    required this.onSelect,
   });
 
   @override
@@ -20,17 +23,20 @@ class DialogItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         MyInkWell(
-          onTap: onSelect,
+          onTap: () {
+            onSelect.call();
+          },
           padding: const EdgeInsets.symmetric(
             vertical: 16,
             horizontal: 14,
           ),
           child: Row(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 8),
+              const SizedBox(width: 8),
+              Expanded(
                 child: Text(
                   title,
+                  overflow: TextOverflow.fade,
                   style: const TextStyle(
                     fontWeight: FontWeight.w700,
                   ),
@@ -50,5 +56,4 @@ class DialogItem extends StatelessWidget {
     );
   }
 
-  void onSelect() => NavigationService.back(result: title);
 }

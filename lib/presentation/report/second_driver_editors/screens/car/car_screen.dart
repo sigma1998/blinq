@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/core/locale/app_locale.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -69,16 +70,16 @@ class _SecondDriverEditorCarScreenState
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       const SizedBox(height: 40),
-                      PickerTextField(
-                        labelText: 'strVehicleType'.tr(),
-                        onTap: cubit.onVehicleTypeTap,
-                        controller: cubit.vehicleTypeController,
-                      ),
-                      const SizedBox(height: 16),
+                      // PickerTextField(
+                      //   labelText: 'strVehicleType'.tr(),
+                      //   onTap: cubit.onVehicleTypeTap,
+                      //   controller: cubit.vehicleTypeController,
+                      // ),
+                      // const SizedBox(height: 16),
                       PickerTextField(
                         labelText: 'strMark'.tr(),
                         onTap: cubit.onBrandTap,
-                        controller: cubit.brandController,
+                        controller: cubit.markController,
                       ),
                       const SizedBox(height: 16),
                       PickerTextField(
@@ -109,6 +110,11 @@ class _SecondDriverEditorCarScreenState
                       NameTextField(
                         labelText: 'strMakeType'.tr(),
                         controller: cubit.makeTypeController,
+                      ),
+                      const SizedBox(height: 16),
+                      NameTextField(
+                        labelText: AppLocale.plateNumber.tr(),
+                        controller: cubit.plateNumberController,
                       ),
                       const SizedBox(height: 16),
                       NumberTextField(

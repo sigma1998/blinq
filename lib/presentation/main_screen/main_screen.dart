@@ -2,6 +2,7 @@
 import 'dart:ui';
 
 // Flutter imports:
+import 'package:blinq/utils/navigation_service.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -31,12 +32,31 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  //
+  int currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
     context.read<ConnectToBlinqCubit>().connectPreviousDevices();
+  }
+
+  bool canPop() {
+    if (currentIndex == 0) {
+      if (NavigationService.homeNavigatorKey.currentState?.canPop() ?? false) {
+        NavigationService.homeNavigatorKey.currentState?.pop();
+        return false;
+      }
+      return true;
+    } else if (currentIndex == 1) {
+      if (NavigationService.contactsNavigatorKey.currentState?.canPop() ??
+          false) {
+        NavigationService.contactsNavigatorKey.currentState?.pop();
+        return false;
+      }
+      return true;
+    } else {
+      return true;
+    }
   }
 
   @override
@@ -47,7 +67,23 @@ class _MainScreenState extends State<MainScreen> {
     return BlocBuilder<MainScreenBloc, GenericBlocState<int>>(
       builder: (context, state) {
         return WillPopScope(
-          onWillPop: bloc.onWillPop,
+          onWillPop: () async {
+            if (currentIndex == 0) {
+              if (NavigationService.homeNavigatorKey.currentState?.canPop() ?? false) {
+                NavigationService.homeNavigatorKey.currentState?.pop();
+                return false;
+              }
+              return true;
+            } else if (currentIndex == 1) {
+              if (NavigationService.contactsNavigatorKey.currentState?.canPop() ?? false) {
+                NavigationService.contactsNavigatorKey.currentState?.pop();
+                return false;
+              }
+              return true;
+            } else {
+              return true;
+            }
+          },
           child: Scaffold(
             extendBody: true,
             body: IndexedStack(
@@ -96,8 +132,16 @@ class _MainScreenState extends State<MainScreen> {
                           vertical: 10,
                           horizontal: 24,
                         ),
-                        onTap: (index) =>
-                            bloc.add(OnItemPressed(newIndex: index)),
+                        onTap: (index) {
+                          setState(() {
+                            currentIndex = index;
+                            bloc.add(OnItemPressed(newIndex: index));
+                            if (index == state.data) {
+                              final res = bloc.onWillPop();
+                              print('HERE___________________________$res');
+                            }
+                          });
+                        },
                         items: [
                           _buildBottomBarItem(
                             title: 'strHome'.tr(),

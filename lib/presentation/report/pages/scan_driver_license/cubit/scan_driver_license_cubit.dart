@@ -9,10 +9,11 @@ import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart
 
 // Project imports:
 import 'package:blinq/data/model/driver_license/driver_license_dto.dart';
-import 'package:blinq/presentation/report/second_driver_editors/screens/policy_holder/policy_holder_screen.dart';
 import 'package:blinq/utils/date_formatter.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
+
+import '../../../second_driver_editors/screens/driver/driver_screen.dart';
 
 part 'scan_driver_license_state.dart';
 part 'scan_driver_license_cubit.freezed.dart';
@@ -61,7 +62,7 @@ class ScanDriverLicenseCubit extends Cubit<ScanDriverLicenseState> {
 
   void onSkipPressed() {
     NavigationService.pushReplacement(
-      routeName: SecondDriverEditorPolicyHolderScreen.route,
+      routeName: SecondDriverEditorScreen.route,
       nestedKey: NavigationService.homeNavigatorKey,
     );
   }
@@ -115,11 +116,11 @@ class ScanDriverLicenseCubit extends Cubit<ScanDriverLicenseState> {
               expirationDate = DateFormatter.parseDateString(fieldValue);
               break;
             case '5':
-              // Extract license number
+              // Extract license_model number
               licenseNumber = fieldValue.replaceAll('.', '');
               break;
             case '9':
-              // Extract license type
+              // Extract license_model type
               licenseType =
                   fieldValue.replaceAll(licenseTypePattern, '').substring(0, 2);
               break;

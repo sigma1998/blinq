@@ -12,9 +12,11 @@ import 'package:blinq/presentation/contacts/editors/contact/contact_edit_screen.
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/url_helper.dart';
+import '../../../../../data/model/contact/request/contact_request_model.dart';
 import 'contacts_event.dart';
 
 part 'contacts_state.dart';
+
 part 'contacts_bloc.freezed.dart';
 
 class ContactsBloc extends Bloc<ContactsEvent, ContactsState> {
@@ -23,6 +25,21 @@ class ContactsBloc extends Bloc<ContactsEvent, ContactsState> {
 
   ContactsBloc({required this.repository}) : super(const ContactsState()) {
     on<OnFetchContacts>(_onFetchContacts);
+    on<OnAddContactsList>((event, emit) async {
+      final list = event.contacts.map<ContactRequestModel>((e) {
+        return ContactRequestModel(
+          firstName: e.name.first,
+          lastName: e.name.last,
+          phoneNumber:
+              e.phones.isNotEmpty && e.phones.first.normalizedNumber.isNotEmpty
+                  ? e.phones.first.normalizedNumber
+                  : e.phones.first.number,
+          isEmergency: false,
+        );
+      }).toList();
+      await repository.addList(contact: list);
+      add(OnFetchContacts());
+    });
   }
 
   FutureOr<void> _onFetchContacts(

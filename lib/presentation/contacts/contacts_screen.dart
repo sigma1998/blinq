@@ -56,11 +56,11 @@ class _ContactsScreenState extends State<ContactsScreen>
         children: [
           MyTabBar(
             tabLabels: [
-              'strMyContacts'.tr(),
-              'strPreMadeSms'.tr(),
+              '  ${'strMyContacts'.tr()}  ',
+              '  ${'strPreMadeSms'.tr()}  ',
             ],
             tabController: _tabController,
-            margin: const EdgeInsets.symmetric(horizontal: 72),
+            margin: const EdgeInsets.symmetric(horizontal: 40),
           ),
           Expanded(
             child: TabBarView(

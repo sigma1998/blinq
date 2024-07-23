@@ -13,7 +13,7 @@ class ContactRequestModel with _$ContactRequestModel {
     @JsonKey(name: 'name') String? firstName,
     @JsonKey(name: 'last_name') String? lastName,
     @JsonKey(name: 'phone_number') String? phoneNumber,
-    @JsonKey(name: 'is_emergency') String? isEmergency,
+    @JsonKey(name: 'is_emergency') bool? isEmergency,
   }) = _ContactRequestModel;
 
   factory ContactRequestModel.fromJson(Map<String, dynamic> json) =>

@@ -12,7 +12,7 @@ part of 'profile_request_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ProfileRequestModel _$ProfileRequestModelFromJson(Map<String, dynamic> json) {
   return _ProfileRequestModel.fromJson(json);
@@ -28,16 +28,20 @@ mixin _$ProfileRequestModel {
   String? get birthDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'country')
   String? get country => throw _privateConstructorUsedError;
-  @JsonKey(name: 'address')
-  String? get address => throw _privateConstructorUsedError;
-  @JsonKey(name: 'phone_number')
-  String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get city => throw _privateConstructorUsedError;
+  String? get street => throw _privateConstructorUsedError;
+  String? get state => throw _privateConstructorUsedError;
   @JsonKey(name: 'postal_code')
   String? get postalCode => throw _privateConstructorUsedError;
-  @JsonKey(name: 'driver_license')
-  DriverLicenseType? get driverLicense => throw _privateConstructorUsedError;
+  @JsonKey(name: 'phone_number')
+  String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  @JsonKey(name: 'driver_licenses')
+  List<int>? get driverLicense => throw _privateConstructorUsedError;
   @JsonKey(name: 'driver_license_number')
   String? get driverLicenseNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'driver_license_country')
+  String? get driverLicenseCountry => throw _privateConstructorUsedError;
   @JsonKey(name: 'driver_license_expired_date')
   String? get driverLicenseExpiredDate => throw _privateConstructorUsedError;
 
@@ -58,11 +62,15 @@ abstract class $ProfileRequestModelCopyWith<$Res> {
       @JsonKey(name: 'last_name') String? lastName,
       @JsonKey(name: 'birth_date') String? birthDate,
       @JsonKey(name: 'country') String? country,
-      @JsonKey(name: 'address') String? address,
-      @JsonKey(name: 'phone_number') String? phoneNumber,
+      String? city,
+      String? street,
+      String? state,
       @JsonKey(name: 'postal_code') String? postalCode,
-      @JsonKey(name: 'driver_license') DriverLicenseType? driverLicense,
+      @JsonKey(name: 'phone_number') String? phoneNumber,
+      String? email,
+      @JsonKey(name: 'driver_licenses') List<int>? driverLicense,
       @JsonKey(name: 'driver_license_number') String? driverLicenseNumber,
+      @JsonKey(name: 'driver_license_country') String? driverLicenseCountry,
       @JsonKey(name: 'driver_license_expired_date')
       String? driverLicenseExpiredDate});
 }
@@ -84,11 +92,15 @@ class _$ProfileRequestModelCopyWithImpl<$Res, $Val extends ProfileRequestModel>
     Object? lastName = freezed,
     Object? birthDate = freezed,
     Object? country = freezed,
-    Object? address = freezed,
-    Object? phoneNumber = freezed,
+    Object? city = freezed,
+    Object? street = freezed,
+    Object? state = freezed,
     Object? postalCode = freezed,
+    Object? phoneNumber = freezed,
+    Object? email = freezed,
     Object? driverLicense = freezed,
     Object? driverLicenseNumber = freezed,
+    Object? driverLicenseCountry = freezed,
     Object? driverLicenseExpiredDate = freezed,
   }) {
     return _then(_value.copyWith(
@@ -108,25 +120,41 @@ class _$ProfileRequestModelCopyWithImpl<$Res, $Val extends ProfileRequestModel>
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as String?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
               as String?,
-      phoneNumber: freezed == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
+      street: freezed == street
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String?,
+      state: freezed == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
               as String?,
       postalCode: freezed == postalCode
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
               as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
       driverLicense: freezed == driverLicense
           ? _value.driverLicense
           : driverLicense // ignore: cast_nullable_to_non_nullable
-              as DriverLicenseType?,
+              as List<int>?,
       driverLicenseNumber: freezed == driverLicenseNumber
           ? _value.driverLicenseNumber
           : driverLicenseNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      driverLicenseCountry: freezed == driverLicenseCountry
+          ? _value.driverLicenseCountry
+          : driverLicenseCountry // ignore: cast_nullable_to_non_nullable
               as String?,
       driverLicenseExpiredDate: freezed == driverLicenseExpiredDate
           ? _value.driverLicenseExpiredDate
@@ -149,11 +177,15 @@ abstract class _$$ProfileRequestModelImplCopyWith<$Res>
       @JsonKey(name: 'last_name') String? lastName,
       @JsonKey(name: 'birth_date') String? birthDate,
       @JsonKey(name: 'country') String? country,
-      @JsonKey(name: 'address') String? address,
-      @JsonKey(name: 'phone_number') String? phoneNumber,
+      String? city,
+      String? street,
+      String? state,
       @JsonKey(name: 'postal_code') String? postalCode,
-      @JsonKey(name: 'driver_license') DriverLicenseType? driverLicense,
+      @JsonKey(name: 'phone_number') String? phoneNumber,
+      String? email,
+      @JsonKey(name: 'driver_licenses') List<int>? driverLicense,
       @JsonKey(name: 'driver_license_number') String? driverLicenseNumber,
+      @JsonKey(name: 'driver_license_country') String? driverLicenseCountry,
       @JsonKey(name: 'driver_license_expired_date')
       String? driverLicenseExpiredDate});
 }
@@ -173,11 +205,15 @@ class __$$ProfileRequestModelImplCopyWithImpl<$Res>
     Object? lastName = freezed,
     Object? birthDate = freezed,
     Object? country = freezed,
-    Object? address = freezed,
-    Object? phoneNumber = freezed,
+    Object? city = freezed,
+    Object? street = freezed,
+    Object? state = freezed,
     Object? postalCode = freezed,
+    Object? phoneNumber = freezed,
+    Object? email = freezed,
     Object? driverLicense = freezed,
     Object? driverLicenseNumber = freezed,
+    Object? driverLicenseCountry = freezed,
     Object? driverLicenseExpiredDate = freezed,
   }) {
     return _then(_$ProfileRequestModelImpl(
@@ -197,25 +233,41 @@ class __$$ProfileRequestModelImplCopyWithImpl<$Res>
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as String?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
               as String?,
-      phoneNumber: freezed == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
+      street: freezed == street
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String?,
+      state: freezed == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
               as String?,
       postalCode: freezed == postalCode
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
               as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
       driverLicense: freezed == driverLicense
-          ? _value.driverLicense
+          ? _value._driverLicense
           : driverLicense // ignore: cast_nullable_to_non_nullable
-              as DriverLicenseType?,
+              as List<int>?,
       driverLicenseNumber: freezed == driverLicenseNumber
           ? _value.driverLicenseNumber
           : driverLicenseNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      driverLicenseCountry: freezed == driverLicenseCountry
+          ? _value.driverLicenseCountry
+          : driverLicenseCountry // ignore: cast_nullable_to_non_nullable
               as String?,
       driverLicenseExpiredDate: freezed == driverLicenseExpiredDate
           ? _value.driverLicenseExpiredDate
@@ -233,13 +285,18 @@ class _$ProfileRequestModelImpl implements _ProfileRequestModel {
       @JsonKey(name: 'last_name') this.lastName,
       @JsonKey(name: 'birth_date') this.birthDate,
       @JsonKey(name: 'country') this.country,
-      @JsonKey(name: 'address') this.address,
-      @JsonKey(name: 'phone_number') this.phoneNumber,
+      this.city,
+      this.street,
+      this.state,
       @JsonKey(name: 'postal_code') this.postalCode,
-      @JsonKey(name: 'driver_license') this.driverLicense,
+      @JsonKey(name: 'phone_number') this.phoneNumber,
+      this.email,
+      @JsonKey(name: 'driver_licenses') final List<int>? driverLicense,
       @JsonKey(name: 'driver_license_number') this.driverLicenseNumber,
+      @JsonKey(name: 'driver_license_country') this.driverLicenseCountry,
       @JsonKey(name: 'driver_license_expired_date')
-      this.driverLicenseExpiredDate});
+      this.driverLicenseExpiredDate})
+      : _driverLicense = driverLicense;
 
   factory _$ProfileRequestModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProfileRequestModelImplFromJson(json);
@@ -257,31 +314,47 @@ class _$ProfileRequestModelImpl implements _ProfileRequestModel {
   @JsonKey(name: 'country')
   final String? country;
   @override
-  @JsonKey(name: 'address')
-  final String? address;
+  final String? city;
   @override
-  @JsonKey(name: 'phone_number')
-  final String? phoneNumber;
+  final String? street;
+  @override
+  final String? state;
   @override
   @JsonKey(name: 'postal_code')
   final String? postalCode;
   @override
-  @JsonKey(name: 'driver_license')
-  final DriverLicenseType? driverLicense;
+  @JsonKey(name: 'phone_number')
+  final String? phoneNumber;
+  @override
+  final String? email;
+  final List<int>? _driverLicense;
+  @override
+  @JsonKey(name: 'driver_licenses')
+  List<int>? get driverLicense {
+    final value = _driverLicense;
+    if (value == null) return null;
+    if (_driverLicense is EqualUnmodifiableListView) return _driverLicense;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey(name: 'driver_license_number')
   final String? driverLicenseNumber;
+  @override
+  @JsonKey(name: 'driver_license_country')
+  final String? driverLicenseCountry;
   @override
   @JsonKey(name: 'driver_license_expired_date')
   final String? driverLicenseExpiredDate;
 
   @override
   String toString() {
-    return 'ProfileRequestModel(firstName: $firstName, lastName: $lastName, birthDate: $birthDate, country: $country, address: $address, phoneNumber: $phoneNumber, postalCode: $postalCode, driverLicense: $driverLicense, driverLicenseNumber: $driverLicenseNumber, driverLicenseExpiredDate: $driverLicenseExpiredDate)';
+    return 'ProfileRequestModel(firstName: $firstName, lastName: $lastName, birthDate: $birthDate, country: $country, city: $city, street: $street, state: $state, postalCode: $postalCode, phoneNumber: $phoneNumber, email: $email, driverLicense: $driverLicense, driverLicenseNumber: $driverLicenseNumber, driverLicenseCountry: $driverLicenseCountry, driverLicenseExpiredDate: $driverLicenseExpiredDate)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProfileRequestModelImpl &&
@@ -292,15 +365,20 @@ class _$ProfileRequestModelImpl implements _ProfileRequestModel {
             (identical(other.birthDate, birthDate) ||
                 other.birthDate == birthDate) &&
             (identical(other.country, country) || other.country == country) &&
-            (identical(other.address, address) || other.address == address) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber) &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.street, street) || other.street == street) &&
+            (identical(other.state, state) || other.state == state) &&
             (identical(other.postalCode, postalCode) ||
                 other.postalCode == postalCode) &&
-            (identical(other.driverLicense, driverLicense) ||
-                other.driverLicense == driverLicense) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.email, email) || other.email == email) &&
+            const DeepCollectionEquality()
+                .equals(other._driverLicense, _driverLicense) &&
             (identical(other.driverLicenseNumber, driverLicenseNumber) ||
                 other.driverLicenseNumber == driverLicenseNumber) &&
+            (identical(other.driverLicenseCountry, driverLicenseCountry) ||
+                other.driverLicenseCountry == driverLicenseCountry) &&
             (identical(
                     other.driverLicenseExpiredDate, driverLicenseExpiredDate) ||
                 other.driverLicenseExpiredDate == driverLicenseExpiredDate));
@@ -314,11 +392,15 @@ class _$ProfileRequestModelImpl implements _ProfileRequestModel {
       lastName,
       birthDate,
       country,
-      address,
-      phoneNumber,
+      city,
+      street,
+      state,
       postalCode,
-      driverLicense,
+      phoneNumber,
+      email,
+      const DeepCollectionEquality().hash(_driverLicense),
       driverLicenseNumber,
+      driverLicenseCountry,
       driverLicenseExpiredDate);
 
   @JsonKey(ignore: true)
@@ -342,11 +424,16 @@ abstract class _ProfileRequestModel implements ProfileRequestModel {
       @JsonKey(name: 'last_name') final String? lastName,
       @JsonKey(name: 'birth_date') final String? birthDate,
       @JsonKey(name: 'country') final String? country,
-      @JsonKey(name: 'address') final String? address,
-      @JsonKey(name: 'phone_number') final String? phoneNumber,
+      final String? city,
+      final String? street,
+      final String? state,
       @JsonKey(name: 'postal_code') final String? postalCode,
-      @JsonKey(name: 'driver_license') final DriverLicenseType? driverLicense,
+      @JsonKey(name: 'phone_number') final String? phoneNumber,
+      final String? email,
+      @JsonKey(name: 'driver_licenses') final List<int>? driverLicense,
       @JsonKey(name: 'driver_license_number') final String? driverLicenseNumber,
+      @JsonKey(name: 'driver_license_country')
+      final String? driverLicenseCountry,
       @JsonKey(name: 'driver_license_expired_date')
       final String? driverLicenseExpiredDate}) = _$ProfileRequestModelImpl;
 
@@ -366,20 +453,28 @@ abstract class _ProfileRequestModel implements ProfileRequestModel {
   @JsonKey(name: 'country')
   String? get country;
   @override
-  @JsonKey(name: 'address')
-  String? get address;
+  String? get city;
   @override
-  @JsonKey(name: 'phone_number')
-  String? get phoneNumber;
+  String? get street;
+  @override
+  String? get state;
   @override
   @JsonKey(name: 'postal_code')
   String? get postalCode;
   @override
-  @JsonKey(name: 'driver_license')
-  DriverLicenseType? get driverLicense;
+  @JsonKey(name: 'phone_number')
+  String? get phoneNumber;
+  @override
+  String? get email;
+  @override
+  @JsonKey(name: 'driver_licenses')
+  List<int>? get driverLicense;
   @override
   @JsonKey(name: 'driver_license_number')
   String? get driverLicenseNumber;
+  @override
+  @JsonKey(name: 'driver_license_country')
+  String? get driverLicenseCountry;
   @override
   @JsonKey(name: 'driver_license_expired_date')
   String? get driverLicenseExpiredDate;

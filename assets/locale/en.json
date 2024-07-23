@@ -5,6 +5,7 @@
   "strBlinqActivatedQuestions": "Hey! Are you OK? \nHow can we help you?",
   "strUnpair": "Unpair",
   "strStartScan": "Start Scan",
+  "strLicense": "License",
   "strStopScan": "Stop scan",
   "strSearching": "Searching",
   "strConnecting": "Connecting...",
@@ -117,7 +118,7 @@
   "strMasthead": "Masthead",
   "strHowtoUseBlinq": "How to use BLINQ",
   "strRegistration": "Registration",
-  "strRegistrationNumberr": "Registration number",
+  "strRegistrationNumberr": "VIN number",
   "strRegister": "Register",
   "strRepresendtedBy": "Represented by",
   "strTechnicalData": "Technical Data",
@@ -758,5 +759,23 @@
   "strDoYouConfirm": "Do you confirm your participation?",
   "strWaitingForRes": "Waiting participation...",
   "strUserBDidNotConfirm": "User B did not confirm participation",
-  "strPleaseFillProfileData": "Please fill your profile data"
+  "strPleaseFillProfileData": "Please fill your profile data",
+
+
+  "0001" : "Add Emergency contacts",
+  "0002" : "Choose from my contacts",
+  "0003" : "Create new one",
+  "0004" : "City",
+  "0005" : "State/Region",
+  "0006" : "Street",
+  "0007" : "Zip/Postal code",
+  "0008" : "Driver license country",
+  "0009" : "No validity date",
+  "0010" : "My car",
+  "0011" : "Make, type",
+  "0012" : "Plate number",
+  "0013" : "VIN number",
+  "0014" : "Same as driver",
+  "0015" : "Phone number/Email",
+  "0016" : "Phone number"
 }

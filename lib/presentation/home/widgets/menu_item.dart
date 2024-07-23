@@ -43,11 +43,9 @@ class HomeScreenMenuItem extends StatelessWidget {
                 ),
               ),
             Padding(
-              padding: EdgeInsets.all(padding),
+              padding: EdgeInsets.symmetric(horizontal: padding),
               child: Column(
-                mainAxisAlignment: icon != null
-                    ? MainAxisAlignment.spaceBetween
-                    : MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   if (icon != null)
                     SvgPicture.asset(

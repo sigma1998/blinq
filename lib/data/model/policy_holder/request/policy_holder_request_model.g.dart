@@ -11,11 +11,14 @@ _$PolicyHolderRequestModelImpl _$$PolicyHolderRequestModelImplFromJson(
     _$PolicyHolderRequestModelImpl(
       firstName: json['first_name'] as String?,
       lastName: json['last_name'] as String?,
-      country: json['country'] as String?,
-      address: json['address'] as String?,
       postalCode: json['postal_code'] as String?,
+      country: json['country'] as String?,
+      city: json['city'] as String?,
+      state: json['state'] as String?,
+      street: json['street'] as String?,
       phoneNumber: json['phone_number'] as String?,
       email: json['email'] as String?,
+      sameAsDriver: json['sameAsDriver'] as bool?,
     );
 
 Map<String, dynamic> _$$PolicyHolderRequestModelImplToJson(
@@ -23,9 +26,12 @@ Map<String, dynamic> _$$PolicyHolderRequestModelImplToJson(
     <String, dynamic>{
       'first_name': instance.firstName,
       'last_name': instance.lastName,
-      'country': instance.country,
-      'address': instance.address,
       'postal_code': instance.postalCode,
+      'country': instance.country,
+      'city': instance.city,
+      'state': instance.state,
+      'street': instance.street,
       'phone_number': instance.phoneNumber,
       'email': instance.email,
+      'sameAsDriver': instance.sameAsDriver,
     };

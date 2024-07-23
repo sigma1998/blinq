@@ -135,6 +135,8 @@ abstract class AccidentRepository {
 
   Future<void> respondToNotification(
       {required int accidentId, required bool isAgree});
+
+  Future<PolicyHolderRequestModel?> sameAsDriver({required int accidentId, required bool sameAsDriver});
 }
 
 class AccidentRepositoryImpl implements AccidentRepository {
@@ -539,5 +541,10 @@ class AccidentRepositoryImpl implements AccidentRepository {
     } catch (e) {
       rethrow;
     }
+  }
+
+  @override
+  Future<PolicyHolderRequestModel?> sameAsDriver({required int accidentId, required bool sameAsDriver}) async {
+    return await api.sameAsDriver(accidentId: accidentId, sameAsDriver: sameAsDriver);
   }
 }

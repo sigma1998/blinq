@@ -20,7 +20,6 @@ class QrDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final profileBloc = context.read<ProfileBloc>();
-
     bool qrVisible = (profileBloc.checkAccountResponse?.account == true) &&
         (profileBloc.checkAccountResponse?.car == true) &&
         (profileBloc.checkAccountResponse?.insurance == true) &&
@@ -42,7 +41,7 @@ class QrDialog extends StatelessWidget {
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 )
               : Text('strPleaseFillProfileData'.tr()),
-          const SizedBox(height: 40),
+          const SizedBox(height: 30),
           MyButton.secondary(
             label: 'strClose'.tr(),
             onTap: NavigationService.back,

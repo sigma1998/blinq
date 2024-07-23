@@ -19,6 +19,8 @@ import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/utils/services/media/media_service.dart';
 import 'package:blinq/utils/services/permission/permission_service.dart';
 
+import '../utils/services/db/driving_license_type.dart';
+
 final getIt = GetIt.instance;
 
 void setUpLocator() {
@@ -29,6 +31,7 @@ void setUpLocator() {
   ///
   getIt.registerLazySingleton<AppApi>(() => AppApi());
   getIt.registerLazySingleton(() => AuthLocalStorageImpl());
+  getIt.registerLazySingleton(() => DrivingLicenceTypeDb(getIt()));
 
   ///
   /// Apis
@@ -45,8 +48,6 @@ void setUpLocator() {
   getIt.registerLazySingleton<BreakdownApiImpl>(
       () => BreakdownApiImpl(api: getIt()));
 
-
-
   ///
   /// Repositories
   ///
@@ -62,7 +63,6 @@ void setUpLocator() {
       () => AccidentRepositoryImpl(api: getIt<AccidentApiImpl>()));
   getIt.registerLazySingleton<BreakdownRepositoryImpl>(
       () => BreakdownRepositoryImpl(breakdownApi: getIt<BreakdownApiImpl>()));
-
 
   ///
   /// Permission

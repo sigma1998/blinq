@@ -12,7 +12,7 @@ _$ContactRequestModelImpl _$$ContactRequestModelImplFromJson(
       firstName: json['name'] as String?,
       lastName: json['last_name'] as String?,
       phoneNumber: json['phone_number'] as String?,
-      isEmergency: json['is_emergency'] as String?,
+      isEmergency: json['is_emergency'] as bool?,
     );
 
 Map<String, dynamic> _$$ContactRequestModelImplToJson(

@@ -19,20 +19,31 @@ class MainScreenBloc extends Bloc<MainScreenEvent, GenericBlocState<int>> {
     emit(GenericBlocState.success(event.newIndex));
   }
 
-  Future<bool> onWillPop() async {
+  bool onWillPop({bool clearAll = false}) {
+    print(
+        'CAN POP_________________${NavigationService.homeNavigatorKey.currentState?.canPop()}');
     if (state.data == 0) {
       if (NavigationService.homeNavigatorKey.currentState?.canPop() ?? false) {
-        NavigationService.homeNavigatorKey.currentState?.pop();
+        if (clearAll) {
+          NavigationService.homeNavigatorKey.currentState
+              ?.popUntil((route) => false);
+        } else {
+          NavigationService.homeNavigatorKey.currentState?.pop();
+        }
         return false;
       }
     } else if (state.data == 1) {
       if (NavigationService.contactsNavigatorKey.currentState?.canPop() ??
           false) {
-        NavigationService.contactsNavigatorKey.currentState?.pop();
+        if (clearAll) {
+          NavigationService.contactsNavigatorKey.currentState
+              ?.popUntil((route) => false);
+        } else {
+          NavigationService.contactsNavigatorKey.currentState?.pop();
+        }
         return false;
       }
     }
-
     return true;
   }
 }

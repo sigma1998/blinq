@@ -12,7 +12,7 @@ part of 'profile_response_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ProfileResponseModel _$ProfileResponseModelFromJson(Map<String, dynamic> json) {
   return _ProfileResponseModel.fromJson(json);
@@ -30,6 +30,11 @@ mixin _$ProfileResponseModel {
   String? get birthDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'country')
   String? get country => throw _privateConstructorUsedError;
+  String? get city => throw _privateConstructorUsedError;
+  String? get state => throw _privateConstructorUsedError;
+  String? get street => throw _privateConstructorUsedError;
+  @JsonKey(name: 'postal_code')
+  String? get postalCode => throw _privateConstructorUsedError;
   @JsonKey(name: 'address')
   String? get address => throw _privateConstructorUsedError;
   @JsonKey(name: 'phone_number')
@@ -38,22 +43,21 @@ mixin _$ProfileResponseModel {
   String? get email => throw _privateConstructorUsedError;
   @JsonKey(name: 'qr_code')
   String? get qrCode => throw _privateConstructorUsedError;
-  @JsonKey(name: 'driver_license')
-  DriverLicenseType? get driverLicense => throw _privateConstructorUsedError;
+  @JsonKey(name: 'driver_licenses')
+  List<String>? get driverLicense => throw _privateConstructorUsedError;
   @JsonKey(name: 'driver_license_number')
   String? get driverLicenseNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'driver_license_country')
+  String? get driverLicenseCountry => throw _privateConstructorUsedError;
   @JsonKey(name: 'driver_license_expired_date')
   String? get driverLicenseExpiredDate => throw _privateConstructorUsedError;
-  @JsonKey()
+  @JsonKey(name: 'usersvehicledatas')
   CarResponseModel? get car => throw _privateConstructorUsedError;
   @JsonKey(name: 'policy_holder')
   PolicyHolderResponseModel? get policyHolder =>
       throw _privateConstructorUsedError;
   @JsonKey()
   InsuranceResponseModel? get insurance => throw _privateConstructorUsedError;
-  @JsonKey(name: 'usersvehicledatas')
-  UserVehicleResponseModel? get userVehicle =>
-      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -74,24 +78,26 @@ abstract class $ProfileResponseModelCopyWith<$Res> {
       @JsonKey(name: 'last_name') String? lastName,
       @JsonKey(name: 'birth_date') String? birthDate,
       @JsonKey(name: 'country') String? country,
+      String? city,
+      String? state,
+      String? street,
+      @JsonKey(name: 'postal_code') String? postalCode,
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'phone_number') String? phoneNumber,
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'qr_code') String? qrCode,
-      @JsonKey(name: 'driver_license') DriverLicenseType? driverLicense,
+      @JsonKey(name: 'driver_licenses') List<String>? driverLicense,
       @JsonKey(name: 'driver_license_number') String? driverLicenseNumber,
+      @JsonKey(name: 'driver_license_country') String? driverLicenseCountry,
       @JsonKey(name: 'driver_license_expired_date')
       String? driverLicenseExpiredDate,
-      @JsonKey() CarResponseModel? car,
+      @JsonKey(name: 'usersvehicledatas') CarResponseModel? car,
       @JsonKey(name: 'policy_holder') PolicyHolderResponseModel? policyHolder,
-      @JsonKey() InsuranceResponseModel? insurance,
-      @JsonKey(name: 'usersvehicledatas')
-      UserVehicleResponseModel? userVehicle});
+      @JsonKey() InsuranceResponseModel? insurance});
 
   $CarResponseModelCopyWith<$Res>? get car;
   $PolicyHolderResponseModelCopyWith<$Res>? get policyHolder;
   $InsuranceResponseModelCopyWith<$Res>? get insurance;
-  $UserVehicleResponseModelCopyWith<$Res>? get userVehicle;
 }
 
 /// @nodoc
@@ -114,17 +120,21 @@ class _$ProfileResponseModelCopyWithImpl<$Res,
     Object? lastName = freezed,
     Object? birthDate = freezed,
     Object? country = freezed,
+    Object? city = freezed,
+    Object? state = freezed,
+    Object? street = freezed,
+    Object? postalCode = freezed,
     Object? address = freezed,
     Object? phoneNumber = freezed,
     Object? email = freezed,
     Object? qrCode = freezed,
     Object? driverLicense = freezed,
     Object? driverLicenseNumber = freezed,
+    Object? driverLicenseCountry = freezed,
     Object? driverLicenseExpiredDate = freezed,
     Object? car = freezed,
     Object? policyHolder = freezed,
     Object? insurance = freezed,
-    Object? userVehicle = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -151,6 +161,22 @@ class _$ProfileResponseModelCopyWithImpl<$Res,
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as String?,
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
+      state: freezed == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as String?,
+      street: freezed == street
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String?,
+      postalCode: freezed == postalCode
+          ? _value.postalCode
+          : postalCode // ignore: cast_nullable_to_non_nullable
+              as String?,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -170,10 +196,14 @@ class _$ProfileResponseModelCopyWithImpl<$Res,
       driverLicense: freezed == driverLicense
           ? _value.driverLicense
           : driverLicense // ignore: cast_nullable_to_non_nullable
-              as DriverLicenseType?,
+              as List<String>?,
       driverLicenseNumber: freezed == driverLicenseNumber
           ? _value.driverLicenseNumber
           : driverLicenseNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      driverLicenseCountry: freezed == driverLicenseCountry
+          ? _value.driverLicenseCountry
+          : driverLicenseCountry // ignore: cast_nullable_to_non_nullable
               as String?,
       driverLicenseExpiredDate: freezed == driverLicenseExpiredDate
           ? _value.driverLicenseExpiredDate
@@ -191,10 +221,6 @@ class _$ProfileResponseModelCopyWithImpl<$Res,
           ? _value.insurance
           : insurance // ignore: cast_nullable_to_non_nullable
               as InsuranceResponseModel?,
-      userVehicle: freezed == userVehicle
-          ? _value.userVehicle
-          : userVehicle // ignore: cast_nullable_to_non_nullable
-              as UserVehicleResponseModel?,
     ) as $Val);
   }
 
@@ -234,19 +260,6 @@ class _$ProfileResponseModelCopyWithImpl<$Res,
       return _then(_value.copyWith(insurance: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserVehicleResponseModelCopyWith<$Res>? get userVehicle {
-    if (_value.userVehicle == null) {
-      return null;
-    }
-
-    return $UserVehicleResponseModelCopyWith<$Res>(_value.userVehicle!,
-        (value) {
-      return _then(_value.copyWith(userVehicle: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -264,19 +277,22 @@ abstract class _$$ProfileResponseModelImplCopyWith<$Res>
       @JsonKey(name: 'last_name') String? lastName,
       @JsonKey(name: 'birth_date') String? birthDate,
       @JsonKey(name: 'country') String? country,
+      String? city,
+      String? state,
+      String? street,
+      @JsonKey(name: 'postal_code') String? postalCode,
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'phone_number') String? phoneNumber,
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'qr_code') String? qrCode,
-      @JsonKey(name: 'driver_license') DriverLicenseType? driverLicense,
+      @JsonKey(name: 'driver_licenses') List<String>? driverLicense,
       @JsonKey(name: 'driver_license_number') String? driverLicenseNumber,
+      @JsonKey(name: 'driver_license_country') String? driverLicenseCountry,
       @JsonKey(name: 'driver_license_expired_date')
       String? driverLicenseExpiredDate,
-      @JsonKey() CarResponseModel? car,
+      @JsonKey(name: 'usersvehicledatas') CarResponseModel? car,
       @JsonKey(name: 'policy_holder') PolicyHolderResponseModel? policyHolder,
-      @JsonKey() InsuranceResponseModel? insurance,
-      @JsonKey(name: 'usersvehicledatas')
-      UserVehicleResponseModel? userVehicle});
+      @JsonKey() InsuranceResponseModel? insurance});
 
   @override
   $CarResponseModelCopyWith<$Res>? get car;
@@ -284,8 +300,6 @@ abstract class _$$ProfileResponseModelImplCopyWith<$Res>
   $PolicyHolderResponseModelCopyWith<$Res>? get policyHolder;
   @override
   $InsuranceResponseModelCopyWith<$Res>? get insurance;
-  @override
-  $UserVehicleResponseModelCopyWith<$Res>? get userVehicle;
 }
 
 /// @nodoc
@@ -305,17 +319,21 @@ class __$$ProfileResponseModelImplCopyWithImpl<$Res>
     Object? lastName = freezed,
     Object? birthDate = freezed,
     Object? country = freezed,
+    Object? city = freezed,
+    Object? state = freezed,
+    Object? street = freezed,
+    Object? postalCode = freezed,
     Object? address = freezed,
     Object? phoneNumber = freezed,
     Object? email = freezed,
     Object? qrCode = freezed,
     Object? driverLicense = freezed,
     Object? driverLicenseNumber = freezed,
+    Object? driverLicenseCountry = freezed,
     Object? driverLicenseExpiredDate = freezed,
     Object? car = freezed,
     Object? policyHolder = freezed,
     Object? insurance = freezed,
-    Object? userVehicle = freezed,
   }) {
     return _then(_$ProfileResponseModelImpl(
       id: freezed == id
@@ -342,6 +360,22 @@ class __$$ProfileResponseModelImplCopyWithImpl<$Res>
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as String?,
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
+      state: freezed == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as String?,
+      street: freezed == street
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String?,
+      postalCode: freezed == postalCode
+          ? _value.postalCode
+          : postalCode // ignore: cast_nullable_to_non_nullable
+              as String?,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -359,12 +393,16 @@ class __$$ProfileResponseModelImplCopyWithImpl<$Res>
           : qrCode // ignore: cast_nullable_to_non_nullable
               as String?,
       driverLicense: freezed == driverLicense
-          ? _value.driverLicense
+          ? _value._driverLicense
           : driverLicense // ignore: cast_nullable_to_non_nullable
-              as DriverLicenseType?,
+              as List<String>?,
       driverLicenseNumber: freezed == driverLicenseNumber
           ? _value.driverLicenseNumber
           : driverLicenseNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      driverLicenseCountry: freezed == driverLicenseCountry
+          ? _value.driverLicenseCountry
+          : driverLicenseCountry // ignore: cast_nullable_to_non_nullable
               as String?,
       driverLicenseExpiredDate: freezed == driverLicenseExpiredDate
           ? _value.driverLicenseExpiredDate
@@ -382,10 +420,6 @@ class __$$ProfileResponseModelImplCopyWithImpl<$Res>
           ? _value.insurance
           : insurance // ignore: cast_nullable_to_non_nullable
               as InsuranceResponseModel?,
-      userVehicle: freezed == userVehicle
-          ? _value.userVehicle
-          : userVehicle // ignore: cast_nullable_to_non_nullable
-              as UserVehicleResponseModel?,
     ));
   }
 }
@@ -400,19 +434,24 @@ class _$ProfileResponseModelImpl extends _ProfileResponseModel {
       @JsonKey(name: 'last_name') this.lastName,
       @JsonKey(name: 'birth_date') this.birthDate,
       @JsonKey(name: 'country') this.country,
+      this.city,
+      this.state,
+      this.street,
+      @JsonKey(name: 'postal_code') this.postalCode,
       @JsonKey(name: 'address') this.address,
       @JsonKey(name: 'phone_number') this.phoneNumber,
       @JsonKey(name: 'email') this.email,
       @JsonKey(name: 'qr_code') this.qrCode,
-      @JsonKey(name: 'driver_license') this.driverLicense,
+      @JsonKey(name: 'driver_licenses') final List<String>? driverLicense,
       @JsonKey(name: 'driver_license_number') this.driverLicenseNumber,
+      @JsonKey(name: 'driver_license_country') this.driverLicenseCountry,
       @JsonKey(name: 'driver_license_expired_date')
       this.driverLicenseExpiredDate,
-      @JsonKey() this.car,
+      @JsonKey(name: 'usersvehicledatas') this.car,
       @JsonKey(name: 'policy_holder') this.policyHolder,
-      @JsonKey() this.insurance,
-      @JsonKey(name: 'usersvehicledatas') this.userVehicle})
-      : super._();
+      @JsonKey() this.insurance})
+      : _driverLicense = driverLicense,
+        super._();
 
   factory _$ProfileResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProfileResponseModelImplFromJson(json);
@@ -434,6 +473,15 @@ class _$ProfileResponseModelImpl extends _ProfileResponseModel {
   @JsonKey(name: 'country')
   final String? country;
   @override
+  final String? city;
+  @override
+  final String? state;
+  @override
+  final String? street;
+  @override
+  @JsonKey(name: 'postal_code')
+  final String? postalCode;
+  @override
   @JsonKey(name: 'address')
   final String? address;
   @override
@@ -445,17 +493,28 @@ class _$ProfileResponseModelImpl extends _ProfileResponseModel {
   @override
   @JsonKey(name: 'qr_code')
   final String? qrCode;
+  final List<String>? _driverLicense;
   @override
-  @JsonKey(name: 'driver_license')
-  final DriverLicenseType? driverLicense;
+  @JsonKey(name: 'driver_licenses')
+  List<String>? get driverLicense {
+    final value = _driverLicense;
+    if (value == null) return null;
+    if (_driverLicense is EqualUnmodifiableListView) return _driverLicense;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey(name: 'driver_license_number')
   final String? driverLicenseNumber;
   @override
+  @JsonKey(name: 'driver_license_country')
+  final String? driverLicenseCountry;
+  @override
   @JsonKey(name: 'driver_license_expired_date')
   final String? driverLicenseExpiredDate;
   @override
-  @JsonKey()
+  @JsonKey(name: 'usersvehicledatas')
   final CarResponseModel? car;
   @override
   @JsonKey(name: 'policy_holder')
@@ -463,17 +522,14 @@ class _$ProfileResponseModelImpl extends _ProfileResponseModel {
   @override
   @JsonKey()
   final InsuranceResponseModel? insurance;
-  @override
-  @JsonKey(name: 'usersvehicledatas')
-  final UserVehicleResponseModel? userVehicle;
 
   @override
   String toString() {
-    return 'ProfileResponseModel(id: $id, image: $image, firstName: $firstName, lastName: $lastName, birthDate: $birthDate, country: $country, address: $address, phoneNumber: $phoneNumber, email: $email, qrCode: $qrCode, driverLicense: $driverLicense, driverLicenseNumber: $driverLicenseNumber, driverLicenseExpiredDate: $driverLicenseExpiredDate, car: $car, policyHolder: $policyHolder, insurance: $insurance, userVehicle: $userVehicle)';
+    return 'ProfileResponseModel(id: $id, image: $image, firstName: $firstName, lastName: $lastName, birthDate: $birthDate, country: $country, city: $city, state: $state, street: $street, postalCode: $postalCode, address: $address, phoneNumber: $phoneNumber, email: $email, qrCode: $qrCode, driverLicense: $driverLicense, driverLicenseNumber: $driverLicenseNumber, driverLicenseCountry: $driverLicenseCountry, driverLicenseExpiredDate: $driverLicenseExpiredDate, car: $car, policyHolder: $policyHolder, insurance: $insurance)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProfileResponseModelImpl &&
@@ -486,15 +542,22 @@ class _$ProfileResponseModelImpl extends _ProfileResponseModel {
             (identical(other.birthDate, birthDate) ||
                 other.birthDate == birthDate) &&
             (identical(other.country, country) || other.country == country) &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.state, state) || other.state == state) &&
+            (identical(other.street, street) || other.street == street) &&
+            (identical(other.postalCode, postalCode) ||
+                other.postalCode == postalCode) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.qrCode, qrCode) || other.qrCode == qrCode) &&
-            (identical(other.driverLicense, driverLicense) ||
-                other.driverLicense == driverLicense) &&
+            const DeepCollectionEquality()
+                .equals(other._driverLicense, _driverLicense) &&
             (identical(other.driverLicenseNumber, driverLicenseNumber) ||
                 other.driverLicenseNumber == driverLicenseNumber) &&
+            (identical(other.driverLicenseCountry, driverLicenseCountry) ||
+                other.driverLicenseCountry == driverLicenseCountry) &&
             (identical(
                     other.driverLicenseExpiredDate, driverLicenseExpiredDate) ||
                 other.driverLicenseExpiredDate == driverLicenseExpiredDate) &&
@@ -502,32 +565,35 @@ class _$ProfileResponseModelImpl extends _ProfileResponseModel {
             (identical(other.policyHolder, policyHolder) ||
                 other.policyHolder == policyHolder) &&
             (identical(other.insurance, insurance) ||
-                other.insurance == insurance) &&
-            (identical(other.userVehicle, userVehicle) ||
-                other.userVehicle == userVehicle));
+                other.insurance == insurance));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      image,
-      firstName,
-      lastName,
-      birthDate,
-      country,
-      address,
-      phoneNumber,
-      email,
-      qrCode,
-      driverLicense,
-      driverLicenseNumber,
-      driverLicenseExpiredDate,
-      car,
-      policyHolder,
-      insurance,
-      userVehicle);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        image,
+        firstName,
+        lastName,
+        birthDate,
+        country,
+        city,
+        state,
+        street,
+        postalCode,
+        address,
+        phoneNumber,
+        email,
+        qrCode,
+        const DeepCollectionEquality().hash(_driverLicense),
+        driverLicenseNumber,
+        driverLicenseCountry,
+        driverLicenseExpiredDate,
+        car,
+        policyHolder,
+        insurance
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -553,21 +619,25 @@ abstract class _ProfileResponseModel extends ProfileResponseModel {
       @JsonKey(name: 'last_name') final String? lastName,
       @JsonKey(name: 'birth_date') final String? birthDate,
       @JsonKey(name: 'country') final String? country,
+      final String? city,
+      final String? state,
+      final String? street,
+      @JsonKey(name: 'postal_code') final String? postalCode,
       @JsonKey(name: 'address') final String? address,
       @JsonKey(name: 'phone_number') final String? phoneNumber,
       @JsonKey(name: 'email') final String? email,
       @JsonKey(name: 'qr_code') final String? qrCode,
-      @JsonKey(name: 'driver_license') final DriverLicenseType? driverLicense,
+      @JsonKey(name: 'driver_licenses') final List<String>? driverLicense,
       @JsonKey(name: 'driver_license_number') final String? driverLicenseNumber,
+      @JsonKey(name: 'driver_license_country')
+      final String? driverLicenseCountry,
       @JsonKey(name: 'driver_license_expired_date')
       final String? driverLicenseExpiredDate,
-      @JsonKey() final CarResponseModel? car,
+      @JsonKey(name: 'usersvehicledatas') final CarResponseModel? car,
       @JsonKey(name: 'policy_holder')
       final PolicyHolderResponseModel? policyHolder,
-      @JsonKey() final InsuranceResponseModel? insurance,
-      @JsonKey(name: 'usersvehicledatas')
-      final UserVehicleResponseModel?
-          userVehicle}) = _$ProfileResponseModelImpl;
+      @JsonKey()
+      final InsuranceResponseModel? insurance}) = _$ProfileResponseModelImpl;
   const _ProfileResponseModel._() : super._();
 
   factory _ProfileResponseModel.fromJson(Map<String, dynamic> json) =
@@ -590,6 +660,15 @@ abstract class _ProfileResponseModel extends ProfileResponseModel {
   @JsonKey(name: 'country')
   String? get country;
   @override
+  String? get city;
+  @override
+  String? get state;
+  @override
+  String? get street;
+  @override
+  @JsonKey(name: 'postal_code')
+  String? get postalCode;
+  @override
   @JsonKey(name: 'address')
   String? get address;
   @override
@@ -602,16 +681,19 @@ abstract class _ProfileResponseModel extends ProfileResponseModel {
   @JsonKey(name: 'qr_code')
   String? get qrCode;
   @override
-  @JsonKey(name: 'driver_license')
-  DriverLicenseType? get driverLicense;
+  @JsonKey(name: 'driver_licenses')
+  List<String>? get driverLicense;
   @override
   @JsonKey(name: 'driver_license_number')
   String? get driverLicenseNumber;
   @override
+  @JsonKey(name: 'driver_license_country')
+  String? get driverLicenseCountry;
+  @override
   @JsonKey(name: 'driver_license_expired_date')
   String? get driverLicenseExpiredDate;
   @override
-  @JsonKey()
+  @JsonKey(name: 'usersvehicledatas')
   CarResponseModel? get car;
   @override
   @JsonKey(name: 'policy_holder')
@@ -619,9 +701,6 @@ abstract class _ProfileResponseModel extends ProfileResponseModel {
   @override
   @JsonKey()
   InsuranceResponseModel? get insurance;
-  @override
-  @JsonKey(name: 'usersvehicledatas')
-  UserVehicleResponseModel? get userVehicle;
   @override
   @JsonKey(ignore: true)
   _$$ProfileResponseModelImplCopyWith<_$ProfileResponseModelImpl>

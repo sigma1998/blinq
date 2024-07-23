@@ -145,7 +145,7 @@ class ProfileApiImpl implements ProfileApi {
   @override
   Future<void> updateCar(CarRequestModel vehicle) {
     try {
-      return api.patch(NetworkConstants.car, data: vehicle.toJson());
+      return api.patch(NetworkConstants.userVehicle, data: vehicle.toJson());
     } catch (e) {
       rethrow;
     }

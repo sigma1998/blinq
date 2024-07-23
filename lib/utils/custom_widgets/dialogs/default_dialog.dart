@@ -26,6 +26,7 @@ class _MyDialogState extends State<MyDialog> {
   //
   List<String> filteredItems = [];
 
+
   final _controller = TextEditingController();
 
   @override
@@ -81,6 +82,9 @@ class _MyDialogState extends State<MyDialog> {
 
                 return DialogItem(
                   title: item,
+                  onSelect: () {
+                   Navigator.of(context).pop(item);
+                  },
                 );
               },
             ),

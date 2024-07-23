@@ -15,10 +15,14 @@ class PolicyHolderResponseModel with _$PolicyHolderResponseModel {
     @JsonKey(name: 'first_name') String? firstName,
     @JsonKey(name: 'last_name') String? lastName,
     @JsonKey(name: 'country') String? country,
+    String? city,
+    String? state,
+    String? street,
     @JsonKey(name: 'address') String? address,
     @JsonKey(name: 'postal_code') String? postalCode,
-    @JsonKey(name: 'phone_number') String? phoneNumber,
+    @JsonKey(name: 'phone_email') String? phoneEmail,
     @JsonKey(name: 'email') String? email,
+    @JsonKey(name: 'phone_number') String? phoneNumber,
   }) = _PolicyHolderResponseModel;
 
   String get fullName => '${firstName ?? '-'} ${lastName ?? ''}';

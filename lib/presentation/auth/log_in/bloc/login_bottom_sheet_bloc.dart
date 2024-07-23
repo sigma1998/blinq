@@ -103,7 +103,6 @@ class LoginBottomSheetBloc
       OnGoogleSelected event, Emitter<LoginBottomSheetState> emit) async {
     try {
       await _disconnectGoogle();
-
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
       final GoogleSignInAuthentication? googleAuth =

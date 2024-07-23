@@ -25,9 +25,7 @@ void main() async {
 
   await _setUpHive();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp();
 
   runApp(const MyLocalization(child: MyApp()));
 }

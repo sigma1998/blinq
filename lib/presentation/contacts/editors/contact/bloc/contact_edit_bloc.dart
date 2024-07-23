@@ -25,6 +25,7 @@ import 'package:blinq/utils/string_helper.dart';
 import 'contact_edit_event.dart';
 
 part 'contact_edit_state.dart';
+
 part 'contact_edit_bloc.freezed.dart';
 
 class ContactEditBloc extends Bloc<ContactEditEvent, ContactEditState> {

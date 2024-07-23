@@ -47,123 +47,119 @@ class _LogInBottomSheetState extends State<LogInBottomSheet> {
       bloc: bloc,
       builder: (context, state) {
         return KeyboardEscape(
-          child: FadeInUp(
-            child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            ),
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              margin: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
               ),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 80, sigmaY: 80),
-                child: Container(
-                  padding: const EdgeInsets.all(16),
-                  margin: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).viewInsets.bottom,
-                  ),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 1,
-                      color: Theme.of(context).colorScheme.secondary,
-                    ),
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30),
-                    ),
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  width: 1,
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
+                color: Colors.black,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const SizedBox(width: 30),
-                          Text(
-                            'strLogin'.tr(),
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          InkWell(
-                            onTap: () => NavigationService.back(),
-                            child: Icon(
-                              Icons.keyboard_arrow_down,
-                              color: Theme.of(context).colorScheme.primary,
-                              size: 30,
-                            ),
-                          )
-                        ],
+                      const SizedBox(width: 30),
+                      Text(
+                        'strLogin'.tr(),
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
-                      const SizedBox(
-                        height: 24,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          if (Platform.isIOS)
-                            InkWell(
-                              onTap: () => bloc.add(OnAppleSelected()),
-                              child: Image.asset(
-                                AppDrawables.apple,
-                                height: 40,
-                              ),
-                            ),
-                          if (Platform.isIOS) const SizedBox(width: 30),
-                          InkWell(
-                            onTap: () => bloc.add(OnGoogleSelected()),
-                            child: Image.asset(
-                              AppDrawables.google,
-                              height: 40,
-                            ),
-                          )
-                        ],
-                      ),
-                      const SizedBox(height: 30),
-                      Row(
-                        children: [
-                          _dividerLine(),
-                          const SizedBox(width: 16),
-                          Text('strOr'.tr()),
-                          const SizedBox(width: 16),
-                          _dividerLine(),
-                        ],
-                      ),
-                      const SizedBox(height: 30),
-                      TextFieldRoundedWidget(
-                        hint: 'strYourEmail'.tr(),
-                        inputType: TextInputType.emailAddress,
-                        textController: bloc.mailController,
-                        validate: (value) => Validator.validateEmail(value),
-                      ),
-                      const SizedBox(height: 30),
-                      TextFieldRoundedWidget(
-                        obscureText: !state.isCodeVisible,
-                        textController: bloc.passwordController,
-                        suffix: IconButton(
-                          onPressed: () =>
-                              bloc.add(OnPasswordVisibilityChanged()),
-                          icon: state.isCodeVisible
-                              ? SvgPicture.asset(AppDrawables.eyeOpened)
-                              : SvgPicture.asset(AppDrawables.eyeClosed),
-                        ),
-                        hint: 'strYourPassword'.tr(),
-                      ),
-                      const SizedBox(height: 30),
-                      MyButton.secondary(
-                        label: 'strLogin'.tr(),
-                        onTap: () => bloc.add(OnSubmitted()),
-                        isLoading: state.status == Status.loading,
-                        labelStyle:
-                            Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                  color: Colors.black,
-                                ),
-                      ),
-                      const SizedBox(height: 30),
                       InkWell(
-                        onTap: () => bloc.add(OnForgotPasswordPressed()),
-                        child: Text('strForgotpasswordOrEmail'.tr()),
-                      ),
+                        onTap: () => NavigationService.back(),
+                        child: Icon(
+                          Icons.keyboard_arrow_down,
+                          color: Theme.of(context).colorScheme.primary,
+                          size: 30,
+                        ),
+                      )
                     ],
                   ),
-                ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (Platform.isIOS)
+                        InkWell(
+                          onTap: () => bloc.add(OnAppleSelected()),
+                          child: Image.asset(
+                            AppDrawables.apple,
+                            height: 40,
+                          ),
+                        ),
+                      if (Platform.isIOS) const SizedBox(width: 30),
+                      InkWell(
+                        onTap: () => bloc.add(OnGoogleSelected()),
+                        child: Image.asset(
+                          AppDrawables.google,
+                          height: 40,
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 30),
+                  Row(
+                    children: [
+                      _dividerLine(),
+                      const SizedBox(width: 16),
+                      Text('strOr'.tr()),
+                      const SizedBox(width: 16),
+                      _dividerLine(),
+                    ],
+                  ),
+                  const SizedBox(height: 30),
+                  TextFieldRoundedWidget(
+                    hint: 'strYourEmail'.tr(),
+                    inputType: TextInputType.emailAddress,
+                    textController: bloc.mailController,
+                    validate: (value) => Validator.validateEmail(value),
+                  ),
+                  const SizedBox(height: 30),
+                  TextFieldRoundedWidget(
+                    obscureText: !state.isCodeVisible,
+                    textController: bloc.passwordController,
+                    suffix: IconButton(
+                      onPressed: () =>
+                          bloc.add(OnPasswordVisibilityChanged()),
+                      icon: state.isCodeVisible
+                          ? SvgPicture.asset(AppDrawables.eyeOpened)
+                          : SvgPicture.asset(AppDrawables.eyeClosed),
+                    ),
+                    hint: 'strYourPassword'.tr(),
+                  ),
+                  const SizedBox(height: 30),
+                  MyButton.secondary(
+                    label: 'strLogin'.tr(),
+                    onTap: () => bloc.add(OnSubmitted()),
+                    isLoading: state.status == Status.loading,
+                    labelStyle:
+                        Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              color: Colors.black,
+                            ),
+                  ),
+                  const SizedBox(height: 30),
+                  InkWell(
+                    onTap: () => bloc.add(OnForgotPasswordPressed()),
+                    child: Text('strForgotpasswordOrEmail'.tr()),
+                  ),
+                ],
               ),
             ),
           ),

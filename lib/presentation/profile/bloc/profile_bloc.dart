@@ -63,7 +63,11 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     try {
       emit(const ProfileState(status: Status.loading));
       final data = await repository.fetch();
-      vehicleType = data.car?.vehicleType;
+      for (var element in VehicleType.values) {
+        if(data.car?.vehicleType == element.name){
+          vehicleType = element;
+        }
+      }
       profile = data;
       authRepository.setUserId(data.id);
       checkAccountResponse = await repository.checkAccountData();

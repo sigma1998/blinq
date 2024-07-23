@@ -19,6 +19,8 @@ import 'package:blinq/utils/custom_widgets/text_fields/phone_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 
+import '../../../../../core/locale/app_locale.dart';
+
 class SecondDriverEditorInsuranceScreen extends StatefulWidget {
   //
   static const String route = '/second_driver_editor_insurance';
@@ -106,25 +108,44 @@ class _SecondDriverEditorInsuranceScreenState
                       controller: cubit.agencyController,
                     ),
                     const SizedBox(height: 16),
-                    NameTextField(
-                      labelText: 'strAddress'.tr(),
-                      controller: cubit.addressController,
-                    ),
-                    const SizedBox(height: 16),
                     PickerTextField(
                       labelText: 'strCountry'.tr(),
                       controller: cubit.countryController,
                       onTap: cubit.onSelectCountriesPressed,
                     ),
                     const SizedBox(height: 16),
-                    PhoneTextField(
-                      labelText: 'strPhoneNumber'.tr(),
-                      controller: cubit.phoneNumberController,
+                    NameTextField(
+                      labelText: AppLocale.city.tr(), //'strAddress'.tr(),
+                      controller: cubit.cityController,
                     ),
                     const SizedBox(height: 16),
-                    EmailTextField(
-                      controller: cubit.emailController,
+                    NameTextField(
+                      labelText: AppLocale.stateRegion.tr(),
+                      controller: cubit.stateController,
                     ),
+                    const SizedBox(height: 16),
+                    NameTextField(
+                      labelText: AppLocale.street.tr(),
+                      controller: cubit.streetController,
+                    ),
+                    const SizedBox(height: 16),
+                    NameTextField(
+                      labelText: AppLocale.zipPostal.tr(),
+                      controller: cubit.zipController,
+                    ),
+                    const SizedBox(height: 16),
+                    NameTextField(
+                      labelText: AppLocale.phoneNumberEmail.tr(),
+                      controller: cubit.phoneNumberController,
+                    ),
+                    // PhoneTextField(
+                    //   labelText: 'strPhoneNumber'.tr(),
+                    //   controller: cubit.phoneNumberController,
+                    // ),
+                    // const SizedBox(height: 16),
+                    // EmailTextField(
+                    //   controller: cubit.emailController,
+                    // ),
                     const SizedBox(height: 16),
                     PickerTextField(
                       labelText: 'strPolicCover'.tr(),

@@ -15,17 +15,24 @@ _$ProfileResponseModelImpl _$$ProfileResponseModelImplFromJson(
       lastName: json['last_name'] as String?,
       birthDate: json['birth_date'] as String?,
       country: json['country'] as String?,
+      city: json['city'] as String?,
+      state: json['state'] as String?,
+      street: json['street'] as String?,
+      postalCode: json['postal_code'] as String?,
       address: json['address'] as String?,
       phoneNumber: json['phone_number'] as String?,
       email: json['email'] as String?,
       qrCode: json['qr_code'] as String?,
-      driverLicense: $enumDecodeNullable(
-          _$DriverLicenseTypeEnumMap, json['driver_license']),
+      driverLicense: (json['driver_licenses'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
       driverLicenseNumber: json['driver_license_number'] as String?,
+      driverLicenseCountry: json['driver_license_country'] as String?,
       driverLicenseExpiredDate: json['driver_license_expired_date'] as String?,
-      car: json['car'] == null
+      car: json['usersvehicledatas'] == null
           ? null
-          : CarResponseModel.fromJson(json['car'] as Map<String, dynamic>),
+          : CarResponseModel.fromJson(
+              json['usersvehicledatas'] as Map<String, dynamic>),
       policyHolder: json['policy_holder'] == null
           ? null
           : PolicyHolderResponseModel.fromJson(
@@ -34,10 +41,6 @@ _$ProfileResponseModelImpl _$$ProfileResponseModelImplFromJson(
           ? null
           : InsuranceResponseModel.fromJson(
               json['insurance'] as Map<String, dynamic>),
-      userVehicle: json['usersvehicledatas'] == null
-          ? null
-          : UserVehicleResponseModel.fromJson(
-              json['usersvehicledatas'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ProfileResponseModelImplToJson(
@@ -49,33 +52,19 @@ Map<String, dynamic> _$$ProfileResponseModelImplToJson(
       'last_name': instance.lastName,
       'birth_date': instance.birthDate,
       'country': instance.country,
+      'city': instance.city,
+      'state': instance.state,
+      'street': instance.street,
+      'postal_code': instance.postalCode,
       'address': instance.address,
       'phone_number': instance.phoneNumber,
       'email': instance.email,
       'qr_code': instance.qrCode,
-      'driver_license': _$DriverLicenseTypeEnumMap[instance.driverLicense],
+      'driver_licenses': instance.driverLicense,
       'driver_license_number': instance.driverLicenseNumber,
+      'driver_license_country': instance.driverLicenseCountry,
       'driver_license_expired_date': instance.driverLicenseExpiredDate,
-      'car': instance.car,
+      'usersvehicledatas': instance.car,
       'policy_holder': instance.policyHolder,
       'insurance': instance.insurance,
-      'usersvehicledatas': instance.userVehicle,
     };
-
-const _$DriverLicenseTypeEnumMap = {
-  DriverLicenseType.am: 'AM',
-  DriverLicenseType.a1: 'A1',
-  DriverLicenseType.a2: 'A2',
-  DriverLicenseType.a: 'A',
-  DriverLicenseType.b1: 'B1',
-  DriverLicenseType.b: 'B',
-  DriverLicenseType.c1: 'C1',
-  DriverLicenseType.c: 'C',
-  DriverLicenseType.d1: 'D1',
-  DriverLicenseType.d: 'D',
-  DriverLicenseType.be: 'C1E',
-  DriverLicenseType.c1e: 'CE',
-  DriverLicenseType.ce: 'D1E',
-  DriverLicenseType.d1e: 'DE',
-  DriverLicenseType.de: 'T',
-};

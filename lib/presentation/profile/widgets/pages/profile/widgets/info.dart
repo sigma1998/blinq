@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/core/locale/app_locale.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -7,7 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:blinq/core/drawables/app_drawables.dart';
-import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'cards/image_card.dart';
 import 'cards/info_card.dart';
@@ -22,8 +22,6 @@ class ProfileInfoWidget extends StatelessWidget {
 
     return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
-        final vehicleType = state.profile?.car?.vehicleType;
-
         return Column(
           children: [
             Row(
@@ -31,7 +29,10 @@ class ProfileInfoWidget extends StatelessWidget {
                 Expanded(
                   child: ProfileInfoCard(
                     title: 'strDriver'.tr(),
-                    onTap: bloc.onDriverPressed,
+                    onTap: () {
+                      print('CAME_HERE________________');
+                      bloc.onDriverPressed();
+                    },
                     image: AppDrawables.policyHolder,
                     desc: '${state.profile?.fullName}',
                   ),
@@ -52,8 +53,8 @@ class ProfileInfoWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: ProfileInfoCard(
-                    desc: 'Motor',
-                    title: 'strVehicle'.tr(),
+                    desc: state.profile?.car?.brand ?? '-',
+                    title: AppLocale.myCar.tr(),
                     onTap: bloc.onVehiclePressed,
                     image: AppDrawables.electricBolt,
                   ),
@@ -68,28 +69,6 @@ class ProfileInfoWidget extends StatelessWidget {
                   ),
                 ),
               ],
-            ),
-            const SizedBox(height: 10),
-            ProfileImageCard(
-              title: '${vehicleType?.title}',
-              onTap: bloc.onMyCarPressed,
-              desc: '${state.profile?.car?.brand}',
-              image: SizedBox(
-                height: 163,
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                      bottomRight: Radius.circular(20),
-                    ),
-                    child: Image.asset(
-                      '${vehicleType?.image}',
-                      width: vehicleType?.width,
-                      height: vehicleType?.height,
-                    ),
-                  ),
-                ),
-              ),
             ),
             const SizedBox(height: 10),
             ProfileImageCard(

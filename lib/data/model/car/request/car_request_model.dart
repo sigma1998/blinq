@@ -15,21 +15,27 @@ class CarRequestModel with _$CarRequestModel {
   const factory CarRequestModel({
     @JsonKey(name: 'car_id') int? carId,
     @JsonKey(name: 'color_id') int? colorId,
-    @JsonKey(name: 'model_series') String? modelSeries,
+    @JsonKey(name: 'model_series') List<String>? modelSeries,
     @JsonKey(name: 'make_type') String? makeType,
-    @JsonKey(name: 'vehicle_type') VehicleType? vehicleType,
     @JsonKey(name: 'engine_number') String? engineNumber,
     @JsonKey(name: 'country_of_registration') String? countryOfRegistration,
-    @JsonKey(name: 'brand_id') int? brandId,
-    @JsonKey(name: 'trailer_registration_number')
-    String? trailerRegistrationNumber,
-    @JsonKey(name: 'trailer_country_of_registration')
-    String? trailerCountryOfRegistration,
-    String? car,
-    String? color,
+    @JsonKey(name: 'trailer_country_of_registration') String? trailerCountryOfRegistration,
+    @JsonKey(name: 'trailer_registration_number') String? trailerRegistrationNumber,
+    @JsonKey(name: 'vehicle_type') String? vehicleType,
+    @JsonKey(name: 'traveled_km') String? traveledKm,
+    @JsonKey(name: 'next_technical') String? nextTechnical,
+    @JsonKey(name: 'oil_replacement') String? oilReplacement,
+    @JsonKey(name: 'battery_replacement_date') String? batteryReplacementDate,
+    @JsonKey(name: 'custom_brand') String? customBrand,
+    @JsonKey(name: 'custom_car') String? customCar,
+    @JsonKey(name: 'custom_car_colour') String? customCarColour,
+    @JsonKey(name: 'plate_number') String? plateNumber,
+    int? car,
+    int? color,
     String? brand,
   }) = _CarRequestModel;
 
   factory CarRequestModel.fromJson(Map<String, dynamic> json) =>
       _$CarRequestModelFromJson(json);
 }
+

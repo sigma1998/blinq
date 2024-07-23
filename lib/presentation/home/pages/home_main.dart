@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -81,9 +82,11 @@ class _HomeMainState extends State<HomeMain>
                   ],
                 ),
                 const SizedBox(height: 10),
-                FadeInDown(
-                  duration: const Duration(milliseconds: 500),
-                  child: const HomeMap(),
+                Expanded(
+                  child: FadeInDown(
+                    duration: const Duration(milliseconds: 500),
+                    child: const HomeMap(),
+                  ),
                 ),
                 const SizedBox(height: 10),
                 Row(

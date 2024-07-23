@@ -19,6 +19,9 @@ abstract class ContactsRepository {
     File? file,
   });
 
+  Future<void> addList(
+      {required List<ContactRequestModel> contact});
+
   Future<ContactResponseModel> update({
     required int id,
     required ContactRequestModel contact,
@@ -82,5 +85,10 @@ class ContactsRepositoryImpl implements ContactsRepository {
     } catch (e) {
       rethrow;
     }
+  }
+
+  @override
+  Future<void> addList({required List<ContactRequestModel>contact}) async {
+    await api.addList(contact: contact);
   }
 }
