@@ -13,12 +13,17 @@ _$ProfileRequestModelImpl _$$ProfileRequestModelImplFromJson(
       lastName: json['last_name'] as String?,
       birthDate: json['birth_date'] as String?,
       country: json['country'] as String?,
-      address: json['address'] as String?,
-      phoneNumber: json['phone_number'] as String?,
+      city: json['city'] as String?,
+      street: json['street'] as String?,
+      state: json['state'] as String?,
       postalCode: json['postal_code'] as String?,
-      driverLicense: $enumDecodeNullable(
-          _$DriverLicenseTypeEnumMap, json['driver_license']),
+      phoneNumber: json['phone_number'] as String?,
+      email: json['email'] as String?,
+      driverLicense: (json['driver_licenses'] as List<dynamic>?)
+          ?.map((e) => e as int)
+          .toList(),
       driverLicenseNumber: json['driver_license_number'] as String?,
+      driverLicenseCountry: json['driver_license_country'] as String?,
       driverLicenseExpiredDate: json['driver_license_expired_date'] as String?,
     );
 
@@ -29,28 +34,14 @@ Map<String, dynamic> _$$ProfileRequestModelImplToJson(
       'last_name': instance.lastName,
       'birth_date': instance.birthDate,
       'country': instance.country,
-      'address': instance.address,
-      'phone_number': instance.phoneNumber,
+      'city': instance.city,
+      'street': instance.street,
+      'state': instance.state,
       'postal_code': instance.postalCode,
-      'driver_license': _$DriverLicenseTypeEnumMap[instance.driverLicense],
+      'phone_number': instance.phoneNumber,
+      'email': instance.email,
+      'driver_licenses': instance.driverLicense,
       'driver_license_number': instance.driverLicenseNumber,
+      'driver_license_country': instance.driverLicenseCountry,
       'driver_license_expired_date': instance.driverLicenseExpiredDate,
     };
-
-const _$DriverLicenseTypeEnumMap = {
-  DriverLicenseType.am: 'AM',
-  DriverLicenseType.a1: 'A1',
-  DriverLicenseType.a2: 'A2',
-  DriverLicenseType.a: 'A',
-  DriverLicenseType.b1: 'B1',
-  DriverLicenseType.b: 'B',
-  DriverLicenseType.c1: 'C1',
-  DriverLicenseType.c: 'C',
-  DriverLicenseType.d1: 'D1',
-  DriverLicenseType.d: 'D',
-  DriverLicenseType.be: 'C1E',
-  DriverLicenseType.c1e: 'CE',
-  DriverLicenseType.ce: 'D1E',
-  DriverLicenseType.d1e: 'DE',
-  DriverLicenseType.de: 'T',
-};

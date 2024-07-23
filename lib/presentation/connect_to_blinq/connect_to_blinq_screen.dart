@@ -26,6 +26,20 @@ class ConnectToBlinqScreen extends StatelessWidget {
     final cubit = context.read<ConnectToBlinqCubit>();
 
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 100,
+        leadingWidth: 60,
+        backgroundColor: Colors.transparent,
+        leading: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const SizedBox(),
+            MyCloseButton(
+              onTap: cubit.onNavigateBack,
+            ),
+          ],
+        ),
+      ),
       body: SafeArea(
         child: BlocBuilder<ConnectToBlinqCubit, ConnectToBlinqState>(
           builder: (context, state) {
@@ -34,29 +48,22 @@ class ConnectToBlinqScreen extends StatelessWidget {
                 vertical: 40,
                 horizontal: 30,
               ),
-              child: Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: ListView(
-                      shrinkWrap: true,
-                      physics: const BouncingScrollPhysics(),
-                      children: [
-                        _buildStateWidget(state),
-                        const SizedBox(height: 50),
-                        if (!state.scanning &&
-                            state.boardConnectionState !=
-                                DeviceConnectionState.connected &&
-                            state.savedBleDevices.isNotEmpty) ...[
-                          const PreviouslyConnectedToBlinqCard(),
-                        ],
-                      ],
-                    ),
-                  ),
-                  MyCloseButton(
-                    onTap: cubit.onNavigateBack,
-                  ),
-                ],
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: ListView(
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  children: [
+                    _buildStateWidget(state),
+                    const SizedBox(height: 50),
+                    if (!state.scanning &&
+                        state.boardConnectionState !=
+                            DeviceConnectionState.connected &&
+                        state.savedBleDevices.isNotEmpty) ...[
+                      const PreviouslyConnectedToBlinqCard(),
+                    ],
+                  ],
+                ),
               ),
             );
           },

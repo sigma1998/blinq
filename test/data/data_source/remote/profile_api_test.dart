@@ -32,12 +32,10 @@ void main() {
     lastName: 'test',
     birthDate: 'test',
     country: 'test',
-    address: 'test',
     phoneNumber: 'test',
     postalCode: 'test',
     driverLicenseNumber: 'test',
     driverLicenseExpiredDate: 'test',
-    driverLicense: DriverLicenseType.a,
   );
 
   const carRequestModel = CarRequestModel();
@@ -56,7 +54,6 @@ void main() {
     phoneNumber: '',
     email: '',
     qrCode: '',
-    driverLicense: DriverLicenseType.a,
     driverLicenseNumber: '',
     driverLicenseExpiredDate: '',
   );

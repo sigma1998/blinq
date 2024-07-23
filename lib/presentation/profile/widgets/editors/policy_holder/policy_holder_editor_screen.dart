@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/core/locale/app_locale.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -16,6 +17,7 @@ import 'package:blinq/utils/custom_widgets/text_fields/email_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import '../../../../../core/theme/app_colors.dart';
 import 'bloc/policy_holder_editor_bloc.dart';
 import 'bloc/policy_holder_editor_event.dart';
 
@@ -33,6 +35,7 @@ class PolicyHolderEditorScreen extends StatefulWidget {
 class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
   //
   late final PolicyHolderEditorBloc bloc;
+  bool sameAsDriver = false;
 
   @override
   void initState() {
@@ -64,6 +67,44 @@ class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
                 ),
                 physics: const BouncingScrollPhysics(),
                 children: [
+                  const SizedBox(height: 40),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          AppLocale.sameAsDriver.tr(),
+                          style: const TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      Switch(
+                        activeColor: AppColors.grey2,
+                        // Set transparent so the active track color shows through
+                        activeTrackColor: AppColors.grey2,
+                        thumbColor: MaterialStateProperty.resolveWith<Color?>(
+                          (Set<MaterialState> states) {
+                            return Colors.white;
+                          },
+                        ),
+                        // Background color when switch is on
+                        inactiveThumbColor: AppColors.grey2,
+                        // Round color when switch is off
+                        inactiveTrackColor: AppColors.grey1,
+                        // Set transparent so the inactive thumb color shows through
+                        value: sameAsDriver,
+                        onChanged: (bool val) {
+                          setState(() {
+                            sameAsDriver = !sameAsDriver;
+                            bloc.makeSameAsDriver(sameAsDriver);
+                          });
+                        },
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 40),
                   NameTextField(
                     labelText: 'strFirstName'.tr(),
                     controller: bloc.firstNameController,
@@ -74,25 +115,40 @@ class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
                     controller: bloc.lastNameController,
                   ),
                   const SizedBox(height: 16),
-                  NameTextField(
-                    labelText: 'strAddress'.tr(),
-                    controller: bloc.addressController,
-                  ),
-                  const SizedBox(height: 16),
-                  NameTextField(
-                    labelText: 'strPostalCode'.tr(),
-                    controller: bloc.postalCodeController,
-                  ),
-                  const SizedBox(height: 16),
                   PickerTextField(
                     labelText: 'strCountry'.tr(),
                     controller: bloc.countryController,
                     onTap: bloc.onSelectCountriesPressed,
                   ),
                   const SizedBox(height: 16),
-                  EmailTextField(
+                  NameTextField(
+                    labelText: AppLocale.city.tr(), //'strAddress'.tr(),
+                    controller: bloc.cityController,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: AppLocale.stateRegion.tr(), //'strAddress'.tr(),
+                    controller: bloc.stateController,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: AppLocale.street.tr(), //'strAddress'.tr(),
+                    controller: bloc.streetController,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: AppLocale.zipPostal.tr(),
+                    controller: bloc.postalCodeController,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: AppLocale.phoneNumberEmail.tr(), //'strAddress'.tr(),
                     controller: bloc.emailController,
                   ),
+                  // const SizedBox(height: 16),
+                  // EmailTextField(
+                  //   controller: bloc.emailController,
+                  // ),
                   const SizedBox(height: 90),
                 ],
               ),

@@ -12,7 +12,7 @@ part of 'insurance_response_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 InsuranceResponseModel _$InsuranceResponseModelFromJson(
     Map<String, dynamic> json) {
@@ -35,8 +35,11 @@ mixin _$InsuranceResponseModel {
   String? get agency => throw _privateConstructorUsedError;
   @JsonKey(name: 'country')
   String? get country => throw _privateConstructorUsedError;
-  @JsonKey(name: 'address')
-  String? get address => throw _privateConstructorUsedError;
+  String? get city => throw _privateConstructorUsedError;
+  String? get state => throw _privateConstructorUsedError;
+  String? get street => throw _privateConstructorUsedError;
+  @JsonKey(name: 'postal_code')
+  String? get postalCode => throw _privateConstructorUsedError;
   @JsonKey(name: 'email')
   String? get email => throw _privateConstructorUsedError;
   @JsonKey(name: 'policy_cover')
@@ -62,7 +65,10 @@ abstract class $InsuranceResponseModelCopyWith<$Res> {
       @JsonKey(name: 'certificate_valid_to') String? certificateValidTo,
       @JsonKey(name: 'agency') String? agency,
       @JsonKey(name: 'country') String? country,
-      @JsonKey(name: 'address') String? address,
+      String? city,
+      String? state,
+      String? street,
+      @JsonKey(name: 'postal_code') String? postalCode,
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'policy_cover') String? policyCover});
 }
@@ -88,7 +94,10 @@ class _$InsuranceResponseModelCopyWithImpl<$Res,
     Object? certificateValidTo = freezed,
     Object? agency = freezed,
     Object? country = freezed,
-    Object? address = freezed,
+    Object? city = freezed,
+    Object? state = freezed,
+    Object? street = freezed,
+    Object? postalCode = freezed,
     Object? email = freezed,
     Object? policyCover = freezed,
   }) {
@@ -121,9 +130,21 @@ class _$InsuranceResponseModelCopyWithImpl<$Res,
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as String?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
+      state: freezed == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as String?,
+      street: freezed == street
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String?,
+      postalCode: freezed == postalCode
+          ? _value.postalCode
+          : postalCode // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
           ? _value.email
@@ -154,7 +175,10 @@ abstract class _$$InsuranceResponseModelImplCopyWith<$Res>
       @JsonKey(name: 'certificate_valid_to') String? certificateValidTo,
       @JsonKey(name: 'agency') String? agency,
       @JsonKey(name: 'country') String? country,
-      @JsonKey(name: 'address') String? address,
+      String? city,
+      String? state,
+      String? street,
+      @JsonKey(name: 'postal_code') String? postalCode,
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'policy_cover') String? policyCover});
 }
@@ -179,7 +203,10 @@ class __$$InsuranceResponseModelImplCopyWithImpl<$Res>
     Object? certificateValidTo = freezed,
     Object? agency = freezed,
     Object? country = freezed,
-    Object? address = freezed,
+    Object? city = freezed,
+    Object? state = freezed,
+    Object? street = freezed,
+    Object? postalCode = freezed,
     Object? email = freezed,
     Object? policyCover = freezed,
   }) {
@@ -212,9 +239,21 @@ class __$$InsuranceResponseModelImplCopyWithImpl<$Res>
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as String?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
+      state: freezed == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as String?,
+      street: freezed == street
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String?,
+      postalCode: freezed == postalCode
+          ? _value.postalCode
+          : postalCode // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
           ? _value.email
@@ -239,7 +278,10 @@ class _$InsuranceResponseModelImpl implements _InsuranceResponseModel {
       @JsonKey(name: 'certificate_valid_to') this.certificateValidTo,
       @JsonKey(name: 'agency') this.agency,
       @JsonKey(name: 'country') this.country,
-      @JsonKey(name: 'address') this.address,
+      this.city,
+      this.state,
+      this.street,
+      @JsonKey(name: 'postal_code') this.postalCode,
       @JsonKey(name: 'email') this.email,
       @JsonKey(name: 'policy_cover') this.policyCover});
 
@@ -268,8 +310,14 @@ class _$InsuranceResponseModelImpl implements _InsuranceResponseModel {
   @JsonKey(name: 'country')
   final String? country;
   @override
-  @JsonKey(name: 'address')
-  final String? address;
+  final String? city;
+  @override
+  final String? state;
+  @override
+  final String? street;
+  @override
+  @JsonKey(name: 'postal_code')
+  final String? postalCode;
   @override
   @JsonKey(name: 'email')
   final String? email;
@@ -279,11 +327,11 @@ class _$InsuranceResponseModelImpl implements _InsuranceResponseModel {
 
   @override
   String toString() {
-    return 'InsuranceResponseModel(name: $name, policyNumber: $policyNumber, greenCardNumber: $greenCardNumber, certificateValidFrom: $certificateValidFrom, certificateValidTo: $certificateValidTo, agency: $agency, country: $country, address: $address, email: $email, policyCover: $policyCover)';
+    return 'InsuranceResponseModel(name: $name, policyNumber: $policyNumber, greenCardNumber: $greenCardNumber, certificateValidFrom: $certificateValidFrom, certificateValidTo: $certificateValidTo, agency: $agency, country: $country, city: $city, state: $state, street: $street, postalCode: $postalCode, email: $email, policyCover: $policyCover)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InsuranceResponseModelImpl &&
@@ -298,7 +346,11 @@ class _$InsuranceResponseModelImpl implements _InsuranceResponseModel {
                 other.certificateValidTo == certificateValidTo) &&
             (identical(other.agency, agency) || other.agency == agency) &&
             (identical(other.country, country) || other.country == country) &&
-            (identical(other.address, address) || other.address == address) &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.state, state) || other.state == state) &&
+            (identical(other.street, street) || other.street == street) &&
+            (identical(other.postalCode, postalCode) ||
+                other.postalCode == postalCode) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.policyCover, policyCover) ||
                 other.policyCover == policyCover));
@@ -315,7 +367,10 @@ class _$InsuranceResponseModelImpl implements _InsuranceResponseModel {
       certificateValidTo,
       agency,
       country,
-      address,
+      city,
+      state,
+      street,
+      postalCode,
       email,
       policyCover);
 
@@ -344,7 +399,10 @@ abstract class _InsuranceResponseModel implements InsuranceResponseModel {
       @JsonKey(name: 'certificate_valid_to') final String? certificateValidTo,
       @JsonKey(name: 'agency') final String? agency,
       @JsonKey(name: 'country') final String? country,
-      @JsonKey(name: 'address') final String? address,
+      final String? city,
+      final String? state,
+      final String? street,
+      @JsonKey(name: 'postal_code') final String? postalCode,
       @JsonKey(name: 'email') final String? email,
       @JsonKey(name: 'policy_cover')
       final String? policyCover}) = _$InsuranceResponseModelImpl;
@@ -374,8 +432,14 @@ abstract class _InsuranceResponseModel implements InsuranceResponseModel {
   @JsonKey(name: 'country')
   String? get country;
   @override
-  @JsonKey(name: 'address')
-  String? get address;
+  String? get city;
+  @override
+  String? get state;
+  @override
+  String? get street;
+  @override
+  @JsonKey(name: 'postal_code')
+  String? get postalCode;
   @override
   @JsonKey(name: 'email')
   String? get email;

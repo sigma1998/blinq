@@ -143,7 +143,7 @@ class _SketchScreenState extends State<SketchScreen> {
                                   builder: (context, _, child) {
                                     return IconButton(
                                       icon: Icon(PhosphorIcons
-                                          .fill.arrowCounterClockwise),
+                                          .arrowCounterClockwise()),
                                       onPressed: bloc.painterController.canUndo
                                           ? bloc.undo
                                           : null,
@@ -156,7 +156,7 @@ class _SketchScreenState extends State<SketchScreen> {
                                   children: [
                                     // Free-style eraser
                                     IconButton(
-                                      icon: Icon(PhosphorIcons.fill.eraser,
+                                      icon: Icon(PhosphorIcons.eraser(),
                                           color: bloc.painterController
                                                       .freeStyleMode ==
                                                   FreeStyleMode.erase
@@ -169,7 +169,7 @@ class _SketchScreenState extends State<SketchScreen> {
                                     // Free-style drawing
                                     IconButton(
                                         icon: Icon(
-                                          PhosphorIcons.fill.scribbleLoop,
+                                          PhosphorIcons.scribbleLoop(),
                                           color: bloc.painterController
                                                       .freeStyleMode ==
                                                   FreeStyleMode.draw
@@ -183,7 +183,7 @@ class _SketchScreenState extends State<SketchScreen> {
                                     const SizedBox(width: 24),
                                     IconButton(
                                       icon: Icon(
-                                        PhosphorIcons.fill.textT,
+                                        PhosphorIcons.textT(),
                                         color: bloc.textFocusNode.hasFocus
                                             ? Theme.of(context)
                                                 .secondaryHeaderColor
@@ -194,7 +194,7 @@ class _SketchScreenState extends State<SketchScreen> {
                                     const SizedBox(width: 24),
                                     IconButton(
                                       icon: Icon(
-                                        PhosphorIcons.fill.camera,
+                                        PhosphorIcons.camera(),
                                         color: bloc.textFocusNode.hasFocus
                                             ? Theme.of(context)
                                                 .secondaryHeaderColor

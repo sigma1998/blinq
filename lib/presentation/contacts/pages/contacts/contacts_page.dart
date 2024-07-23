@@ -1,4 +1,8 @@
 // Flutter imports:
+import 'package:blinq/presentation/contacts/editors/contact/bloc/contact_edit_bloc.dart';
+import 'package:blinq/presentation/contacts/editors/contact/bloc/contact_edit_event.dart';
+import 'package:blinq/presentation/contacts/pages/contacts/widgets/add_contact_dialog.dart';
+import 'package:blinq/presentation/contacts/pages/import_contacts/import_contacts_screen.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -10,6 +14,7 @@ import 'package:blinq/presentation/contacts/pages/widgets/empty_state.dart';
 import 'package:blinq/utils/custom_widgets/buttons/add_button.dart';
 import 'package:blinq/utils/custom_widgets/loading.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:flutter_contacts/contact.dart';
 import 'bloc/contacts_bloc.dart';
 import 'widgets/item.dart';
 
@@ -33,7 +38,26 @@ class ContactsPage extends StatelessWidget {
                   if (contacts.isEmpty)
                     Expanded(
                       child: ContactsEmptyStateWidget(
-                        onTap: bloc.onEditPressed,
+                        onTap: () {
+                          showBottomSheet(
+                            backgroundColor: Colors.transparent,
+                            context: context,
+                            builder: (_) {
+                              return AddContactDialog(
+                                onEdit: bloc.onEditPressed,
+                                onImport: ()  {
+                               Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ImportContactsScreen(),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          );
+                        },
                         title: 'strNoContactAdded'.tr(),
                       ),
                     )
@@ -61,7 +85,26 @@ class ContactsPage extends StatelessWidget {
                   const SizedBox(height: 4),
                   if (contacts.isNotEmpty)
                     AddButton(
-                      onTap: bloc.onEditPressed,
+                      onTap: () {
+                        showBottomSheet(
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (_) {
+                            return AddContactDialog(
+                              onEdit: bloc.onEditPressed,
+                              onImport: ()  {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ImportContactsScreen(),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        );
+                      },
                     ),
                   const SafeArea(
                     top: false,

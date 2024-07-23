@@ -12,7 +12,7 @@ part of 'vehicle_request_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 UserVehicleRequestModel _$UserVehicleRequestModelFromJson(
     Map<String, dynamic> json) {
@@ -21,16 +21,39 @@ UserVehicleRequestModel _$UserVehicleRequestModelFromJson(
 
 /// @nodoc
 mixin _$UserVehicleRequestModel {
+  @JsonKey(name: 'car_id')
+  int? get carId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'color_id')
+  int? get colorId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'model_series')
+  List<String>? get modelSeries => throw _privateConstructorUsedError;
+  @JsonKey(name: 'make_type')
+  String? get makeType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'engine_number')
+  String? get engineNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'country_of_registration')
+  String? get countryOfRegistration => throw _privateConstructorUsedError;
+  @JsonKey(name: 'trailer_country_of_registration')
+  String? get trailerCountryOfRegistration =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'vehicle_type')
+  VehicleType? get vehicleType => throw _privateConstructorUsedError;
   @JsonKey(name: 'traveled_km')
   String? get traveledKm => throw _privateConstructorUsedError;
   @JsonKey(name: 'next_technical')
   String? get nextTechnical => throw _privateConstructorUsedError;
   @JsonKey(name: 'oil_replacement')
   String? get oilReplacement => throw _privateConstructorUsedError;
-  @JsonKey(name: 'vehicle_type')
-  VehicleType? get vehicleType => throw _privateConstructorUsedError;
   @JsonKey(name: 'battery_replacement_date')
   String? get batteryReplacementDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'custom_brand')
+  String? get customBrand => throw _privateConstructorUsedError;
+  @JsonKey(name: 'custom_car')
+  String? get customCar => throw _privateConstructorUsedError;
+  @JsonKey(name: 'custom_car_colour')
+  String? get customCarColour => throw _privateConstructorUsedError;
+  int? get car => throw _privateConstructorUsedError;
+  int? get color => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,12 +68,24 @@ abstract class $UserVehicleRequestModelCopyWith<$Res> {
       _$UserVehicleRequestModelCopyWithImpl<$Res, UserVehicleRequestModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'traveled_km') String? traveledKm,
+      {@JsonKey(name: 'car_id') int? carId,
+      @JsonKey(name: 'color_id') int? colorId,
+      @JsonKey(name: 'model_series') List<String>? modelSeries,
+      @JsonKey(name: 'make_type') String? makeType,
+      @JsonKey(name: 'engine_number') String? engineNumber,
+      @JsonKey(name: 'country_of_registration') String? countryOfRegistration,
+      @JsonKey(name: 'trailer_country_of_registration')
+      String? trailerCountryOfRegistration,
+      @JsonKey(name: 'vehicle_type') VehicleType? vehicleType,
+      @JsonKey(name: 'traveled_km') String? traveledKm,
       @JsonKey(name: 'next_technical') String? nextTechnical,
       @JsonKey(name: 'oil_replacement') String? oilReplacement,
-      @JsonKey(name: 'vehicle_type') VehicleType? vehicleType,
-      @JsonKey(name: 'battery_replacement_date')
-      String? batteryReplacementDate});
+      @JsonKey(name: 'battery_replacement_date') String? batteryReplacementDate,
+      @JsonKey(name: 'custom_brand') String? customBrand,
+      @JsonKey(name: 'custom_car') String? customCar,
+      @JsonKey(name: 'custom_car_colour') String? customCarColour,
+      int? car,
+      int? color});
 }
 
 /// @nodoc
@@ -67,13 +102,57 @@ class _$UserVehicleRequestModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? carId = freezed,
+    Object? colorId = freezed,
+    Object? modelSeries = freezed,
+    Object? makeType = freezed,
+    Object? engineNumber = freezed,
+    Object? countryOfRegistration = freezed,
+    Object? trailerCountryOfRegistration = freezed,
+    Object? vehicleType = freezed,
     Object? traveledKm = freezed,
     Object? nextTechnical = freezed,
     Object? oilReplacement = freezed,
-    Object? vehicleType = freezed,
     Object? batteryReplacementDate = freezed,
+    Object? customBrand = freezed,
+    Object? customCar = freezed,
+    Object? customCarColour = freezed,
+    Object? car = freezed,
+    Object? color = freezed,
   }) {
     return _then(_value.copyWith(
+      carId: freezed == carId
+          ? _value.carId
+          : carId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      colorId: freezed == colorId
+          ? _value.colorId
+          : colorId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      modelSeries: freezed == modelSeries
+          ? _value.modelSeries
+          : modelSeries // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      makeType: freezed == makeType
+          ? _value.makeType
+          : makeType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      engineNumber: freezed == engineNumber
+          ? _value.engineNumber
+          : engineNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      countryOfRegistration: freezed == countryOfRegistration
+          ? _value.countryOfRegistration
+          : countryOfRegistration // ignore: cast_nullable_to_non_nullable
+              as String?,
+      trailerCountryOfRegistration: freezed == trailerCountryOfRegistration
+          ? _value.trailerCountryOfRegistration
+          : trailerCountryOfRegistration // ignore: cast_nullable_to_non_nullable
+              as String?,
+      vehicleType: freezed == vehicleType
+          ? _value.vehicleType
+          : vehicleType // ignore: cast_nullable_to_non_nullable
+              as VehicleType?,
       traveledKm: freezed == traveledKm
           ? _value.traveledKm
           : traveledKm // ignore: cast_nullable_to_non_nullable
@@ -86,14 +165,30 @@ class _$UserVehicleRequestModelCopyWithImpl<$Res,
           ? _value.oilReplacement
           : oilReplacement // ignore: cast_nullable_to_non_nullable
               as String?,
-      vehicleType: freezed == vehicleType
-          ? _value.vehicleType
-          : vehicleType // ignore: cast_nullable_to_non_nullable
-              as VehicleType?,
       batteryReplacementDate: freezed == batteryReplacementDate
           ? _value.batteryReplacementDate
           : batteryReplacementDate // ignore: cast_nullable_to_non_nullable
               as String?,
+      customBrand: freezed == customBrand
+          ? _value.customBrand
+          : customBrand // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customCar: freezed == customCar
+          ? _value.customCar
+          : customCar // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customCarColour: freezed == customCarColour
+          ? _value.customCarColour
+          : customCarColour // ignore: cast_nullable_to_non_nullable
+              as String?,
+      car: freezed == car
+          ? _value.car
+          : car // ignore: cast_nullable_to_non_nullable
+              as int?,
+      color: freezed == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -108,12 +203,24 @@ abstract class _$$UserVehicleRequestModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'traveled_km') String? traveledKm,
+      {@JsonKey(name: 'car_id') int? carId,
+      @JsonKey(name: 'color_id') int? colorId,
+      @JsonKey(name: 'model_series') List<String>? modelSeries,
+      @JsonKey(name: 'make_type') String? makeType,
+      @JsonKey(name: 'engine_number') String? engineNumber,
+      @JsonKey(name: 'country_of_registration') String? countryOfRegistration,
+      @JsonKey(name: 'trailer_country_of_registration')
+      String? trailerCountryOfRegistration,
+      @JsonKey(name: 'vehicle_type') VehicleType? vehicleType,
+      @JsonKey(name: 'traveled_km') String? traveledKm,
       @JsonKey(name: 'next_technical') String? nextTechnical,
       @JsonKey(name: 'oil_replacement') String? oilReplacement,
-      @JsonKey(name: 'vehicle_type') VehicleType? vehicleType,
-      @JsonKey(name: 'battery_replacement_date')
-      String? batteryReplacementDate});
+      @JsonKey(name: 'battery_replacement_date') String? batteryReplacementDate,
+      @JsonKey(name: 'custom_brand') String? customBrand,
+      @JsonKey(name: 'custom_car') String? customCar,
+      @JsonKey(name: 'custom_car_colour') String? customCarColour,
+      int? car,
+      int? color});
 }
 
 /// @nodoc
@@ -129,13 +236,57 @@ class __$$UserVehicleRequestModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? carId = freezed,
+    Object? colorId = freezed,
+    Object? modelSeries = freezed,
+    Object? makeType = freezed,
+    Object? engineNumber = freezed,
+    Object? countryOfRegistration = freezed,
+    Object? trailerCountryOfRegistration = freezed,
+    Object? vehicleType = freezed,
     Object? traveledKm = freezed,
     Object? nextTechnical = freezed,
     Object? oilReplacement = freezed,
-    Object? vehicleType = freezed,
     Object? batteryReplacementDate = freezed,
+    Object? customBrand = freezed,
+    Object? customCar = freezed,
+    Object? customCarColour = freezed,
+    Object? car = freezed,
+    Object? color = freezed,
   }) {
     return _then(_$UserVehicleRequestModelImpl(
+      carId: freezed == carId
+          ? _value.carId
+          : carId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      colorId: freezed == colorId
+          ? _value.colorId
+          : colorId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      modelSeries: freezed == modelSeries
+          ? _value._modelSeries
+          : modelSeries // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      makeType: freezed == makeType
+          ? _value.makeType
+          : makeType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      engineNumber: freezed == engineNumber
+          ? _value.engineNumber
+          : engineNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      countryOfRegistration: freezed == countryOfRegistration
+          ? _value.countryOfRegistration
+          : countryOfRegistration // ignore: cast_nullable_to_non_nullable
+              as String?,
+      trailerCountryOfRegistration: freezed == trailerCountryOfRegistration
+          ? _value.trailerCountryOfRegistration
+          : trailerCountryOfRegistration // ignore: cast_nullable_to_non_nullable
+              as String?,
+      vehicleType: freezed == vehicleType
+          ? _value.vehicleType
+          : vehicleType // ignore: cast_nullable_to_non_nullable
+              as VehicleType?,
       traveledKm: freezed == traveledKm
           ? _value.traveledKm
           : traveledKm // ignore: cast_nullable_to_non_nullable
@@ -148,14 +299,30 @@ class __$$UserVehicleRequestModelImplCopyWithImpl<$Res>
           ? _value.oilReplacement
           : oilReplacement // ignore: cast_nullable_to_non_nullable
               as String?,
-      vehicleType: freezed == vehicleType
-          ? _value.vehicleType
-          : vehicleType // ignore: cast_nullable_to_non_nullable
-              as VehicleType?,
       batteryReplacementDate: freezed == batteryReplacementDate
           ? _value.batteryReplacementDate
           : batteryReplacementDate // ignore: cast_nullable_to_non_nullable
               as String?,
+      customBrand: freezed == customBrand
+          ? _value.customBrand
+          : customBrand // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customCar: freezed == customCar
+          ? _value.customCar
+          : customCar // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customCarColour: freezed == customCarColour
+          ? _value.customCarColour
+          : customCarColour // ignore: cast_nullable_to_non_nullable
+              as String?,
+      car: freezed == car
+          ? _value.car
+          : car // ignore: cast_nullable_to_non_nullable
+              as int?,
+      color: freezed == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -164,15 +331,61 @@ class __$$UserVehicleRequestModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserVehicleRequestModelImpl implements _UserVehicleRequestModel {
   const _$UserVehicleRequestModelImpl(
-      {@JsonKey(name: 'traveled_km') this.traveledKm,
+      {@JsonKey(name: 'car_id') this.carId,
+      @JsonKey(name: 'color_id') this.colorId,
+      @JsonKey(name: 'model_series') final List<String>? modelSeries,
+      @JsonKey(name: 'make_type') this.makeType,
+      @JsonKey(name: 'engine_number') this.engineNumber,
+      @JsonKey(name: 'country_of_registration') this.countryOfRegistration,
+      @JsonKey(name: 'trailer_country_of_registration')
+      this.trailerCountryOfRegistration,
+      @JsonKey(name: 'vehicle_type') this.vehicleType,
+      @JsonKey(name: 'traveled_km') this.traveledKm,
       @JsonKey(name: 'next_technical') this.nextTechnical,
       @JsonKey(name: 'oil_replacement') this.oilReplacement,
-      @JsonKey(name: 'vehicle_type') this.vehicleType,
-      @JsonKey(name: 'battery_replacement_date') this.batteryReplacementDate});
+      @JsonKey(name: 'battery_replacement_date') this.batteryReplacementDate,
+      @JsonKey(name: 'custom_brand') this.customBrand,
+      @JsonKey(name: 'custom_car') this.customCar,
+      @JsonKey(name: 'custom_car_colour') this.customCarColour,
+      this.car,
+      this.color})
+      : _modelSeries = modelSeries;
 
   factory _$UserVehicleRequestModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserVehicleRequestModelImplFromJson(json);
 
+  @override
+  @JsonKey(name: 'car_id')
+  final int? carId;
+  @override
+  @JsonKey(name: 'color_id')
+  final int? colorId;
+  final List<String>? _modelSeries;
+  @override
+  @JsonKey(name: 'model_series')
+  List<String>? get modelSeries {
+    final value = _modelSeries;
+    if (value == null) return null;
+    if (_modelSeries is EqualUnmodifiableListView) return _modelSeries;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'make_type')
+  final String? makeType;
+  @override
+  @JsonKey(name: 'engine_number')
+  final String? engineNumber;
+  @override
+  @JsonKey(name: 'country_of_registration')
+  final String? countryOfRegistration;
+  @override
+  @JsonKey(name: 'trailer_country_of_registration')
+  final String? trailerCountryOfRegistration;
+  @override
+  @JsonKey(name: 'vehicle_type')
+  final VehicleType? vehicleType;
   @override
   @JsonKey(name: 'traveled_km')
   final String? traveledKm;
@@ -183,38 +396,87 @@ class _$UserVehicleRequestModelImpl implements _UserVehicleRequestModel {
   @JsonKey(name: 'oil_replacement')
   final String? oilReplacement;
   @override
-  @JsonKey(name: 'vehicle_type')
-  final VehicleType? vehicleType;
-  @override
   @JsonKey(name: 'battery_replacement_date')
   final String? batteryReplacementDate;
+  @override
+  @JsonKey(name: 'custom_brand')
+  final String? customBrand;
+  @override
+  @JsonKey(name: 'custom_car')
+  final String? customCar;
+  @override
+  @JsonKey(name: 'custom_car_colour')
+  final String? customCarColour;
+  @override
+  final int? car;
+  @override
+  final int? color;
 
   @override
   String toString() {
-    return 'UserVehicleRequestModel(traveledKm: $traveledKm, nextTechnical: $nextTechnical, oilReplacement: $oilReplacement, vehicleType: $vehicleType, batteryReplacementDate: $batteryReplacementDate)';
+    return 'UserVehicleRequestModel(carId: $carId, colorId: $colorId, modelSeries: $modelSeries, makeType: $makeType, engineNumber: $engineNumber, countryOfRegistration: $countryOfRegistration, trailerCountryOfRegistration: $trailerCountryOfRegistration, vehicleType: $vehicleType, traveledKm: $traveledKm, nextTechnical: $nextTechnical, oilReplacement: $oilReplacement, batteryReplacementDate: $batteryReplacementDate, customBrand: $customBrand, customCar: $customCar, customCarColour: $customCarColour, car: $car, color: $color)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserVehicleRequestModelImpl &&
+            (identical(other.carId, carId) || other.carId == carId) &&
+            (identical(other.colorId, colorId) || other.colorId == colorId) &&
+            const DeepCollectionEquality()
+                .equals(other._modelSeries, _modelSeries) &&
+            (identical(other.makeType, makeType) ||
+                other.makeType == makeType) &&
+            (identical(other.engineNumber, engineNumber) ||
+                other.engineNumber == engineNumber) &&
+            (identical(other.countryOfRegistration, countryOfRegistration) ||
+                other.countryOfRegistration == countryOfRegistration) &&
+            (identical(other.trailerCountryOfRegistration,
+                    trailerCountryOfRegistration) ||
+                other.trailerCountryOfRegistration ==
+                    trailerCountryOfRegistration) &&
+            (identical(other.vehicleType, vehicleType) ||
+                other.vehicleType == vehicleType) &&
             (identical(other.traveledKm, traveledKm) ||
                 other.traveledKm == traveledKm) &&
             (identical(other.nextTechnical, nextTechnical) ||
                 other.nextTechnical == nextTechnical) &&
             (identical(other.oilReplacement, oilReplacement) ||
                 other.oilReplacement == oilReplacement) &&
-            (identical(other.vehicleType, vehicleType) ||
-                other.vehicleType == vehicleType) &&
             (identical(other.batteryReplacementDate, batteryReplacementDate) ||
-                other.batteryReplacementDate == batteryReplacementDate));
+                other.batteryReplacementDate == batteryReplacementDate) &&
+            (identical(other.customBrand, customBrand) ||
+                other.customBrand == customBrand) &&
+            (identical(other.customCar, customCar) ||
+                other.customCar == customCar) &&
+            (identical(other.customCarColour, customCarColour) ||
+                other.customCarColour == customCarColour) &&
+            (identical(other.car, car) || other.car == car) &&
+            (identical(other.color, color) || other.color == color));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, traveledKm, nextTechnical,
-      oilReplacement, vehicleType, batteryReplacementDate);
+  int get hashCode => Object.hash(
+      runtimeType,
+      carId,
+      colorId,
+      const DeepCollectionEquality().hash(_modelSeries),
+      makeType,
+      engineNumber,
+      countryOfRegistration,
+      trailerCountryOfRegistration,
+      vehicleType,
+      traveledKm,
+      nextTechnical,
+      oilReplacement,
+      batteryReplacementDate,
+      customBrand,
+      customCar,
+      customCarColour,
+      car,
+      color);
 
   @JsonKey(ignore: true)
   @override
@@ -233,16 +495,54 @@ class _$UserVehicleRequestModelImpl implements _UserVehicleRequestModel {
 
 abstract class _UserVehicleRequestModel implements UserVehicleRequestModel {
   const factory _UserVehicleRequestModel(
-      {@JsonKey(name: 'traveled_km') final String? traveledKm,
+      {@JsonKey(name: 'car_id') final int? carId,
+      @JsonKey(name: 'color_id') final int? colorId,
+      @JsonKey(name: 'model_series') final List<String>? modelSeries,
+      @JsonKey(name: 'make_type') final String? makeType,
+      @JsonKey(name: 'engine_number') final String? engineNumber,
+      @JsonKey(name: 'country_of_registration')
+      final String? countryOfRegistration,
+      @JsonKey(name: 'trailer_country_of_registration')
+      final String? trailerCountryOfRegistration,
+      @JsonKey(name: 'vehicle_type') final VehicleType? vehicleType,
+      @JsonKey(name: 'traveled_km') final String? traveledKm,
       @JsonKey(name: 'next_technical') final String? nextTechnical,
       @JsonKey(name: 'oil_replacement') final String? oilReplacement,
-      @JsonKey(name: 'vehicle_type') final VehicleType? vehicleType,
       @JsonKey(name: 'battery_replacement_date')
-      final String? batteryReplacementDate}) = _$UserVehicleRequestModelImpl;
+      final String? batteryReplacementDate,
+      @JsonKey(name: 'custom_brand') final String? customBrand,
+      @JsonKey(name: 'custom_car') final String? customCar,
+      @JsonKey(name: 'custom_car_colour') final String? customCarColour,
+      final int? car,
+      final int? color}) = _$UserVehicleRequestModelImpl;
 
   factory _UserVehicleRequestModel.fromJson(Map<String, dynamic> json) =
       _$UserVehicleRequestModelImpl.fromJson;
 
+  @override
+  @JsonKey(name: 'car_id')
+  int? get carId;
+  @override
+  @JsonKey(name: 'color_id')
+  int? get colorId;
+  @override
+  @JsonKey(name: 'model_series')
+  List<String>? get modelSeries;
+  @override
+  @JsonKey(name: 'make_type')
+  String? get makeType;
+  @override
+  @JsonKey(name: 'engine_number')
+  String? get engineNumber;
+  @override
+  @JsonKey(name: 'country_of_registration')
+  String? get countryOfRegistration;
+  @override
+  @JsonKey(name: 'trailer_country_of_registration')
+  String? get trailerCountryOfRegistration;
+  @override
+  @JsonKey(name: 'vehicle_type')
+  VehicleType? get vehicleType;
   @override
   @JsonKey(name: 'traveled_km')
   String? get traveledKm;
@@ -253,11 +553,21 @@ abstract class _UserVehicleRequestModel implements UserVehicleRequestModel {
   @JsonKey(name: 'oil_replacement')
   String? get oilReplacement;
   @override
-  @JsonKey(name: 'vehicle_type')
-  VehicleType? get vehicleType;
-  @override
   @JsonKey(name: 'battery_replacement_date')
   String? get batteryReplacementDate;
+  @override
+  @JsonKey(name: 'custom_brand')
+  String? get customBrand;
+  @override
+  @JsonKey(name: 'custom_car')
+  String? get customCar;
+  @override
+  @JsonKey(name: 'custom_car_colour')
+  String? get customCarColour;
+  @override
+  int? get car;
+  @override
+  int? get color;
   @override
   @JsonKey(ignore: true)
   _$$UserVehicleRequestModelImplCopyWith<_$UserVehicleRequestModelImpl>

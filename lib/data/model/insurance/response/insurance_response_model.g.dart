@@ -16,7 +16,10 @@ _$InsuranceResponseModelImpl _$$InsuranceResponseModelImplFromJson(
       certificateValidTo: json['certificate_valid_to'] as String?,
       agency: json['agency'] as String?,
       country: json['country'] as String?,
-      address: json['address'] as String?,
+      city: json['city'] as String?,
+      state: json['state'] as String?,
+      street: json['street'] as String?,
+      postalCode: json['postal_code'] as String?,
       email: json['email'] as String?,
       policyCover: json['policy_cover'] as String?,
     );
@@ -31,7 +34,10 @@ Map<String, dynamic> _$$InsuranceResponseModelImplToJson(
       'certificate_valid_to': instance.certificateValidTo,
       'agency': instance.agency,
       'country': instance.country,
-      'address': instance.address,
+      'city': instance.city,
+      'state': instance.state,
+      'street': instance.street,
+      'postal_code': instance.postalCode,
       'email': instance.email,
       'policy_cover': instance.policyCover,
     };

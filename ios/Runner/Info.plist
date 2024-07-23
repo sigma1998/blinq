@@ -19,9 +19,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>$(FLUTTER_BUILD_NAME)</string>
+	<string>3.0.21</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>NSContactsUsageDescription</key>
+    <string>We need access to your contacts</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

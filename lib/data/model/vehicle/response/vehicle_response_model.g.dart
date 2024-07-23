@@ -9,6 +9,7 @@ part of 'vehicle_response_model.dart';
 _$UserVehicleResponseModelImpl _$$UserVehicleResponseModelImplFromJson(
         Map<String, dynamic> json) =>
     _$UserVehicleResponseModelImpl(
+      carId: json['car_id'] as int?,
       traveledKm: json['traveled_km'] as int?,
       nextTechnical: json['next_technical'] as int?,
       nextTechnicalUpdatedDate: json['next_technical_updated_date'] as String?,
@@ -24,6 +25,7 @@ _$UserVehicleResponseModelImpl _$$UserVehicleResponseModelImplFromJson(
 Map<String, dynamic> _$$UserVehicleResponseModelImplToJson(
         _$UserVehicleResponseModelImpl instance) =>
     <String, dynamic>{
+      'car_id': instance.carId,
       'traveled_km': instance.traveledKm,
       'next_technical': instance.nextTechnical,
       'next_technical_updated_date': instance.nextTechnicalUpdatedDate,

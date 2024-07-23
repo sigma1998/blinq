@@ -65,6 +65,8 @@ class NetworkConstants {
   ///
   static String contact = 'v1/api/contact/';
 
+  static String addContactList = 'v1/api/contact-list-create/';
+
   static String editContact(int id) => '$contact$id/';
 
   static String premadeMessage = 'v1/api/pre/made/message/';

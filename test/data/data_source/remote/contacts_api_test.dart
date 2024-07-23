@@ -22,7 +22,6 @@ void main() {
     firstName: 'John',
     lastName: 'Doe',
     phoneNumber: '123456789',
-    isEmergency: 'true',
   );
 
   const mockResponse = ContactResponseModel(

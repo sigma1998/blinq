@@ -757,7 +757,24 @@
   "strDoYouConfirm": "Megerősíti részvételét?",
   "strWaitingForRes": "Várakozás a részvételre...",
   "strUserBDidNotConfirm": "B felhasználó nem erősítette meg részvételét",
-  "strPleaseFillProfileData": "Kérjük, töltse ki profiladatait"
+  "strPleaseFillProfileData": "Kérjük, töltse ki profiladatait",
+
+  "0001" : "Vészhelyzeti kapcsolatok hozzáadása",
+  "0002" : "Válasszon az elérhetőségeim közül",
+  "0003" : "Hozzon létre újat",
+  "0004" : "Város",
+  "0005" : "állam/régió",
+  "0006" : "utca",
+  "0007" : "Irányítószám",
+  "0008" : "A jogosítvány országa",
+  "0009" : "Nincs érvényességi dátum",
+  "0010" : "Autóm",
+  "0011" : "Készíts, gépelj",
+  "0012" : "Rendszám",
+  "0013" : "VIN szám",
+  "0014" : "Ugyanaz, mint a sofőr",
+  "0015" : "Telefonszám/E-mail",
+  "0016" : "Telefonszám"
 
 }
 

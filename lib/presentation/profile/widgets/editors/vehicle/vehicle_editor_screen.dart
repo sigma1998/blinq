@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/core/locale/app_locale.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -30,7 +31,9 @@ class VehicleEditorScreen extends StatefulWidget {
 }
 
 class _VehicleEditorScreenState extends State<VehicleEditorScreen> {
-  //
+  /// MY CAR
+  /// /// Screen is changed from vehicle to my car
+  ///
   late VehicleEditorBloc bloc;
 
   @override
@@ -40,7 +43,6 @@ class _VehicleEditorScreenState extends State<VehicleEditorScreen> {
       profileBloc: profileBloc,
       repository: getIt<ProfileRepositoryImpl>(),
     );
-    bloc.initializeFields();
     super.initState();
   }
 
@@ -52,7 +54,7 @@ class _VehicleEditorScreenState extends State<VehicleEditorScreen> {
         builder: (context, state) {
           return Scaffold(
             extendBody: true,
-            appBar: MyAppBar(title: 'strVehicle'.tr()),
+            appBar: MyAppBar(title: 'strMyCar'.tr()),
             body: Form(
               key: bloc.formKey,
               child: ListView(
@@ -63,21 +65,53 @@ class _VehicleEditorScreenState extends State<VehicleEditorScreen> {
                 physics: const BouncingScrollPhysics(),
                 children: [
                   PickerTextField(
-                    labelText: 'strVehicleType'.tr(),
-                    controller: bloc.vehicleTypeController,
-                    onTap: bloc.onVehicleTypePressed,
+                    labelText: 'strMark'.tr(),
+                    controller: bloc.markController,
+                    onTap: bloc.onVehicleMarkPressed,
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
+                  const SizedBox(height: 16),
                   NameTextField(
-                    labelText: 'strMakeType'.tr(),
+                    labelText: 'strLicense'.tr(),
+                    controller: bloc.licenseController,
+                  ),
+                  const SizedBox(height: 16),
+                  PickerTextField(
+                    onTap: bloc.onModelTap,
+                    labelText: 'strModel'.tr(),
+                    controller: bloc.modelController,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: 'strModelSeries'.tr(),
+                    controller: bloc.modelSeriesController,
+                  ),
+                  const SizedBox(height: 16),
+                  PickerTextField(
+                    readonly: true,
+                    onTap: bloc.onColorTap,
+                    labelText: 'strColour'.tr(),
+                    controller: bloc.colorController,
+                  ),
+                  const SizedBox(height: 60),
+                  // PickerTextField(
+                  //   labelText: 'strVehicleType'.tr(),
+                  //   controller: bloc.vehicleTypeController,
+                  //   onTap: bloc.onVehicleTypePressed,
+                  // ),
+                  // const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: AppLocale.makeType.tr(),
                     controller: bloc.makeTypeController,
+                  ),
+                  const SizedBox(height: 16),
+                  NameTextField(
+                    labelText: AppLocale.plateNumber.tr(),
+                    controller: bloc.plateNumberController,
                   ),
                   const SizedBox(height: 16),
                   NumberTextField(
                     labelText:
-                        '${'strRegistrationNumber'.tr()} (${'strMotor'.tr()})',
+                        AppLocale.vinNumber.tr(),
                     controller: bloc.engineNumberController,
                   ),
                   const SizedBox(height: 16),

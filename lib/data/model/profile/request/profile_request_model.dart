@@ -17,11 +17,15 @@ class ProfileRequestModel with _$ProfileRequestModel {
     @JsonKey(name: 'last_name') String? lastName,
     @JsonKey(name: 'birth_date') String? birthDate,
     @JsonKey(name: 'country') String? country,
-    @JsonKey(name: 'address') String? address,
-    @JsonKey(name: 'phone_number') String? phoneNumber,
+    String? city,
+    String? street,
+    String? state,
     @JsonKey(name: 'postal_code') String? postalCode,
-    @JsonKey(name: 'driver_license') DriverLicenseType? driverLicense,
+    @JsonKey(name: 'phone_number') String? phoneNumber,
+    String? email,
+    @JsonKey(name: 'driver_licenses') List<int>? driverLicense,
     @JsonKey(name: 'driver_license_number') String? driverLicenseNumber,
+    @JsonKey(name: 'driver_license_country') String? driverLicenseCountry,
     @JsonKey(name: 'driver_license_expired_date')
     String? driverLicenseExpiredDate,
   }) = _ProfileRequestModel;

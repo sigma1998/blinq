@@ -69,14 +69,24 @@ class _PreviouslyConnectedToBlinqCardState
                 itemBuilder: (context, index) {
                   final device = list[index];
 
-                  return PreviouslyConntectedToBlinqItem(
-                    name: device.name,
-                    hasDivider: index != list.length - 1,
-                    onEdit: () async {
-                      await cubit.onRenameDevice(device);
-                      await getDevice();
-                    },
-                    onConnect: () => cubit.onConnectDevice(device),
+                  return Column(
+                    children: [
+                      PreviouslyConntectedToBlinqItem(
+                        name: device.name,
+                        hasDivider: index != list.length - 1,
+                        onEdit: () async {
+                          await cubit.onRenameDevice(device);
+                          await getDevice();
+                        },
+                        onConnect: () => cubit.onConnectDevice(device),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          cubit.bleClearPaired(device);
+                        },
+                        child: const Text('Clear'),
+                      ),
+                    ],
                   );
                 },
               );

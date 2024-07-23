@@ -12,7 +12,6 @@ import 'package:blinq/data/datasource/remote/accident_api.dart';
 import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/data/model/insurance/request/insurance_request_model.dart';
 import 'package:blinq/data/model/policy_holder/request/policy_holder_request_model.dart';
-import 'package:blinq/data/model/profile/driver_license/driver_license_type.dart';
 import 'package:blinq/data/model/profile/request/profile_request_model.dart';
 import 'package:blinq/data/model/profile/response/profile_response_model.dart';
 import 'package:blinq/data/model/report/injury/injury.dart';
@@ -39,7 +38,6 @@ void main() {
     phoneNumber: '998999999999',
     email: 'test@test.com',
     qrCode: 'test',
-    driverLicense: DriverLicenseType.a,
     driverLicenseNumber: 'test',
     driverLicenseExpiredDate: 'test',
   );
@@ -59,10 +57,7 @@ void main() {
   const secondDriverCarRequestModel = SecondDriverCarRequestModel(
     car: 1,
     color: 1,
-    modelSeries: 'test',
-    mark: 'test',
     makeType: 'test',
-    vehicleType: VehicleType.auto,
     engineNumber: 'test',
     countryOfRegistration: 'test',
     trailerRegistrationNumber: 'test',
@@ -74,10 +69,8 @@ void main() {
     lastName: 'test',
     birthDate: 'test',
     country: 'test',
-    address: 'test',
     phoneNumber: 'test',
     postalCode: 'test',
-    driverLicense: DriverLicenseType.a,
     driverLicenseNumber: 'test',
     driverLicenseExpiredDate: 'test',
   );
@@ -89,7 +82,6 @@ void main() {
     certificateValidFrom: 'test',
     certificateValidTo: 'test',
     agency: 'test',
-    address: 'test',
     phoneNumber: 'test',
     email: 'test',
     policyCover: 'test',
@@ -100,7 +92,6 @@ void main() {
     firstName: 'test',
     lastName: 'test',
     country: 'test',
-    address: 'test',
     postalCode: 'test',
     phoneNumber: 'test',
     email: 'test',

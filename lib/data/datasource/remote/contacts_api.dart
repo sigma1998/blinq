@@ -21,6 +21,8 @@ abstract class ContactsApi {
     File? file,
   });
 
+  Future<void> addList({required List<ContactRequestModel> contact});
+
   Future<ContactResponseModel> update({
     required int id,
     required ContactRequestModel contact,
@@ -110,5 +112,15 @@ class ContactsApiImpl implements ContactsApi {
     } catch (e) {
       rethrow;
     }
+  }
+
+  @override
+  Future<void> addList({required List<ContactRequestModel> contact}) async {
+    try {
+      List<Map<String, dynamic>> jsonList = contact.map((e) {
+        return e.toJson();
+      }).toList();
+      await api.post(NetworkConstants.addContactList, data: jsonList);
+    } catch (e) {}
   }
 }

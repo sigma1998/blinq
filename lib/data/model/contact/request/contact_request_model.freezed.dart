@@ -12,7 +12,7 @@ part of 'contact_request_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ContactRequestModel _$ContactRequestModelFromJson(Map<String, dynamic> json) {
   return _ContactRequestModel.fromJson(json);
@@ -27,7 +27,7 @@ mixin _$ContactRequestModel {
   @JsonKey(name: 'phone_number')
   String? get phoneNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_emergency')
-  String? get isEmergency => throw _privateConstructorUsedError;
+  bool? get isEmergency => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +45,7 @@ abstract class $ContactRequestModelCopyWith<$Res> {
       {@JsonKey(name: 'name') String? firstName,
       @JsonKey(name: 'last_name') String? lastName,
       @JsonKey(name: 'phone_number') String? phoneNumber,
-      @JsonKey(name: 'is_emergency') String? isEmergency});
+      @JsonKey(name: 'is_emergency') bool? isEmergency});
 }
 
 /// @nodoc
@@ -82,7 +82,7 @@ class _$ContactRequestModelCopyWithImpl<$Res, $Val extends ContactRequestModel>
       isEmergency: freezed == isEmergency
           ? _value.isEmergency
           : isEmergency // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
     ) as $Val);
   }
 }
@@ -99,7 +99,7 @@ abstract class _$$ContactRequestModelImplCopyWith<$Res>
       {@JsonKey(name: 'name') String? firstName,
       @JsonKey(name: 'last_name') String? lastName,
       @JsonKey(name: 'phone_number') String? phoneNumber,
-      @JsonKey(name: 'is_emergency') String? isEmergency});
+      @JsonKey(name: 'is_emergency') bool? isEmergency});
 }
 
 /// @nodoc
@@ -134,7 +134,7 @@ class __$$ContactRequestModelImplCopyWithImpl<$Res>
       isEmergency: freezed == isEmergency
           ? _value.isEmergency
           : isEmergency // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
     ));
   }
 }
@@ -162,7 +162,7 @@ class _$ContactRequestModelImpl implements _ContactRequestModel {
   final String? phoneNumber;
   @override
   @JsonKey(name: 'is_emergency')
-  final String? isEmergency;
+  final bool? isEmergency;
 
   @override
   String toString() {
@@ -170,7 +170,7 @@ class _$ContactRequestModelImpl implements _ContactRequestModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ContactRequestModelImpl &&
@@ -209,7 +209,7 @@ abstract class _ContactRequestModel implements ContactRequestModel {
           {@JsonKey(name: 'name') final String? firstName,
           @JsonKey(name: 'last_name') final String? lastName,
           @JsonKey(name: 'phone_number') final String? phoneNumber,
-          @JsonKey(name: 'is_emergency') final String? isEmergency}) =
+          @JsonKey(name: 'is_emergency') final bool? isEmergency}) =
       _$ContactRequestModelImpl;
 
   factory _ContactRequestModel.fromJson(Map<String, dynamic> json) =
@@ -226,7 +226,7 @@ abstract class _ContactRequestModel implements ContactRequestModel {
   String? get phoneNumber;
   @override
   @JsonKey(name: 'is_emergency')
-  String? get isEmergency;
+  bool? get isEmergency;
   @override
   @JsonKey(ignore: true)
   _$$ContactRequestModelImplCopyWith<_$ContactRequestModelImpl> get copyWith =>

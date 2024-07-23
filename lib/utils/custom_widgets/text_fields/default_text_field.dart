@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
 
-class MyTextField extends StatelessWidget {
+class MyTextField extends StatefulWidget {
   //
   final String? labelText;
   final String? hintText;
@@ -110,64 +110,81 @@ class MyTextField extends StatelessWidget {
   });
 
   @override
+  State<MyTextField> createState() => _MyTextFieldState();
+}
+
+class _MyTextFieldState extends State<MyTextField> {
+  @override
+  void initState() {
+    widget.controller?.addListener(() {
+      if (widget.keyboardType == TextInputType.phone) {
+        setState(() {});
+      }
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (labelText != null)
+        if (widget.labelText != null)
           Text(
-            labelText!,
-            style: labelTextstyle,
+            widget.labelText!,
+            style: widget.labelTextstyle,
           ),
         Stack(
           children: [
             TextFormField(
-              validator: validator ??
+              validator: widget.validator ??
                   (value) {
                     if (value.toString().isEmpty) {
-                      return '${'strEnter'.tr()} $labelText';
+                      return '${'strEnter'.tr()} ${widget.labelText}';
                     }
                     return null;
                   },
-              controller: controller,
+              controller: widget.controller,
               //
-              enabled: enabled,
-              readOnly: readOnly,
-              focusNode: focusNode,
-              autofocus: autofocus,
-              textAlign: textAlign,
+              enabled: widget.enabled,
+              readOnly: widget.readOnly,
+              focusNode: widget.focusNode,
+              autofocus: widget.autofocus,
+              textAlign: widget.textAlign,
               obscuringCharacter: '*',
-              obscureText: obscureText,
-              keyboardType: keyboardType,
-              textInputAction: textInputAction,
-              textCapitalization: textCapitalization,
+              obscureText: widget.obscureText,
+              keyboardType: widget.keyboardType,
+              textInputAction: widget.textInputAction,
+              textCapitalization: widget.textCapitalization,
               //
-              minLines: minLines,
-              maxLines: maxLines,
-              maxLength: maxLength,
-              inputFormatters: inputFormatters,
+              minLines: widget.minLines,
+              maxLines: widget.maxLines,
+              maxLength: widget.maxLength,
+              inputFormatters: widget.inputFormatters,
               //
-              onTap: onTap,
-              onChanged: onChanged,
-              onEditingComplete: onEditingComplete,
+              onTap: widget.onTap,
+              onChanged: widget.onChanged,
+              onEditingComplete: widget.onEditingComplete,
               //
-              style: inputTextstyle,
+              style: widget.inputTextstyle,
               decoration: InputDecoration(
                 isDense: true,
                 counterText: '',
-                contentPadding: contentPadding,
+                contentPadding: widget.contentPadding,
                 //
-                floatingLabelBehavior: floatingLabelBehavior,
-                hintText: enabled ? '${'strEnter'.tr()} $labelText' : null,
-                hintStyle: hintTextstyle,
+                floatingLabelBehavior: widget.floatingLabelBehavior,
+                hintText: widget.enabled
+                    ? '${'strEnter'.tr()} ${widget.labelText}'
+                    : null,
+                hintStyle: widget.hintTextstyle,
                 //
                 filled: false,
                 //
-                prefixIcon: prefixIcon,
-                prefixIconConstraints: prefixIconConstraints,
+                prefixIcon: widget.prefixIcon,
+                prefixIconConstraints: widget.prefixIconConstraints,
                 //
-                suffixIcon: suffixIcon,
-                suffixIconConstraints: suffixIconConstraints,
+                suffixIcon: widget.suffixIcon,
+                suffixIconConstraints: widget.suffixIconConstraints,
                 //
                 errorStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       fontSize: 10,

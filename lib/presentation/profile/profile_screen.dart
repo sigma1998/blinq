@@ -50,8 +50,8 @@ class _ProfileScreenState extends State<ProfileScreen>
         children: [
           MyTabBar(
             tabLabels: [
-              'strMyProfile'.tr(),
-              'strSettings'.tr(),
+              '  ${'strMyProfile'.tr()}  ',
+              '  ${'strSettings'.tr()}  ',
             ],
             tabController: _tabController,
             margin: const EdgeInsets.symmetric(horizontal: 72),

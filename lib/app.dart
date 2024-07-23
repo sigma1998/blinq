@@ -39,6 +39,8 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
+  late final ProfileBloc profileBloc;
+
   //
   void updateLocale(String lang) {
     context.setLocale(Locale(lang));
@@ -55,12 +57,17 @@ class MyAppState extends State<MyApp> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final profileBloc = ProfileBloc(
+  void initState() {
+    profileBloc = ProfileBloc(
       authRepository: getIt<AuthRepositoryImpl>(),
       mediaService: getIt<MediaServiceImpl>(),
       repository: getIt<ProfileRepositoryImpl>(),
     );
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<MainScreenBloc>(

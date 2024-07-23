@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -69,8 +70,8 @@ class _HomeScreenState extends State<HomeScreen>
                 children: [
                   MyTabBar(
                     tabLabels: [
-                      'strMyBlinq'.tr(),
-                      'strInfo'.tr(),
+                      '  ${'strMyBlinq'.tr()}  ',
+                      '     ${'strInfo'.tr()}     ',
                     ],
                     tabController: _tabController,
                     margin: const EdgeInsets.symmetric(horizontal: 72),
@@ -79,7 +80,10 @@ class _HomeScreenState extends State<HomeScreen>
                     child: TabBarView(
                       controller: _tabController,
                       physics: const NeverScrollableScrollPhysics(),
-                      children: const [HomeMain(), HomeInfo()],
+                      children: const [
+                        HomeMain(),
+                        HomeInfo(),
+                      ],
                     ),
                   ),
                 ],

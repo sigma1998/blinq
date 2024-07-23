@@ -10,6 +10,7 @@ part 'vehicle_response_model.g.dart';
 class UserVehicleResponseModel with _$UserVehicleResponseModel {
   //
   const factory UserVehicleResponseModel({
+    @JsonKey(name: 'car_id') int? carId,
     @JsonKey(name: 'traveled_km') int? traveledKm,
     @JsonKey(name: 'next_technical') int? nextTechnical,
     @JsonKey(name: 'next_technical_updated_date')

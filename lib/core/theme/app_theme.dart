@@ -6,6 +6,9 @@ import 'app_colors.dart';
 
 class AppTheme {
   static final ThemeData darkTheme = ThemeData(
+    tabBarTheme: const TabBarTheme(
+      dividerColor: Colors.transparent,
+    ),
     colorScheme: const ColorScheme(
       brightness: Brightness.dark,
       primary: AppColors.primaryColor,
@@ -27,12 +30,6 @@ class AppTheme {
       inversePrimary: AppColors.darkRedColor,
       onSurfaceVariant: AppColors.lightGrey3,
     ),
-    appBarTheme: const AppBarTheme(
-        backgroundColor: AppColors.darkGrey, centerTitle: true, elevation: 0
-
-        //titleTextStyle:,
-
-        ),
     scaffoldBackgroundColor: Colors.black,
     fontFamily: 'SFUIDisplay',
     textTheme: const TextTheme(

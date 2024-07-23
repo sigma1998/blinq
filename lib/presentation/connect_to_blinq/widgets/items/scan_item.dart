@@ -28,8 +28,22 @@ class ConnectToBlinqScanItem extends StatelessWidget {
     return Stack(
       alignment: Alignment.center,
       children: [
+        if (animate)
+          Lottie.asset(
+            AppDrawables.scanAnim,
+            repeat: true,
+            animate: animate,
+          ),
         Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            if (description.isNotEmpty) ...[
+              const Text(
+                '',
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20)
+            ],
             Padding(
               padding: const EdgeInsets.only(left: 14),
               child: SvgPicture.asset(
@@ -41,20 +55,14 @@ class ConnectToBlinqScanItem extends StatelessWidget {
               ),
             ),
             if (description.isNotEmpty) ...[
-              const SizedBox(height: 36),
+              const SizedBox(height: 20),
               Text(
                 description,
                 textAlign: TextAlign.center,
               ),
-            ],
+            ]
           ],
         ),
-        if (animate)
-          Lottie.asset(
-            AppDrawables.scanAnim,
-            repeat: true,
-            animate: animate,
-          ),
       ],
     );
   }

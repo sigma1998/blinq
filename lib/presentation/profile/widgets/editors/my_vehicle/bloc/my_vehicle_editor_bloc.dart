@@ -42,13 +42,13 @@ class MyVehicleEditorBloc
 
   void initializeFields() {
     traveledKmController.text =
-        profileBloc.state.profile?.userVehicle?.traveledKm.toString() ?? '';
+        profileBloc.state.profile?.car?.traveledKm.toString() ?? '';
     nextTechnicalController.text =
-        profileBloc.state.profile?.userVehicle?.nextTechnical.toString() ?? '';
+        profileBloc.state.profile?.car?.nextTechnical.toString() ?? '';
     oilReplacementController.text =
-        profileBloc.state.profile?.userVehicle?.oilReplacement.toString() ?? '';
+        profileBloc.state.profile?.car?.oilReplacement.toString() ?? '';
     batteryReplacementDateController.text =
-        profileBloc.state.profile?.userVehicle?.batteryReplacementDate ?? '';
+        profileBloc.state.profile?.car?.batteryReplacementDate.toString() ?? '';
   }
 
   bool validateForm() => formKey.currentState!.validate();

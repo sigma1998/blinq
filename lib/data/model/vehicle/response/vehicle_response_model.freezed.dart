@@ -12,7 +12,7 @@ part of 'vehicle_response_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 UserVehicleResponseModel _$UserVehicleResponseModelFromJson(
     Map<String, dynamic> json) {
@@ -21,6 +21,8 @@ UserVehicleResponseModel _$UserVehicleResponseModelFromJson(
 
 /// @nodoc
 mixin _$UserVehicleResponseModel {
+  @JsonKey(name: 'car_id')
+  int? get carId => throw _privateConstructorUsedError;
   @JsonKey(name: 'traveled_km')
   int? get traveledKm => throw _privateConstructorUsedError;
   @JsonKey(name: 'next_technical')
@@ -52,7 +54,8 @@ abstract class $UserVehicleResponseModelCopyWith<$Res> {
       _$UserVehicleResponseModelCopyWithImpl<$Res, UserVehicleResponseModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'traveled_km') int? traveledKm,
+      {@JsonKey(name: 'car_id') int? carId,
+      @JsonKey(name: 'traveled_km') int? traveledKm,
       @JsonKey(name: 'next_technical') int? nextTechnical,
       @JsonKey(name: 'next_technical_updated_date')
       String? nextTechnicalUpdatedDate,
@@ -79,6 +82,7 @@ class _$UserVehicleResponseModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? carId = freezed,
     Object? traveledKm = freezed,
     Object? nextTechnical = freezed,
     Object? nextTechnicalUpdatedDate = freezed,
@@ -89,6 +93,10 @@ class _$UserVehicleResponseModelCopyWithImpl<$Res,
     Object? batteryReplacementUpdatedDate = freezed,
   }) {
     return _then(_value.copyWith(
+      carId: freezed == carId
+          ? _value.carId
+          : carId // ignore: cast_nullable_to_non_nullable
+              as int?,
       traveledKm: freezed == traveledKm
           ? _value.traveledKm
           : traveledKm // ignore: cast_nullable_to_non_nullable
@@ -135,7 +143,8 @@ abstract class _$$UserVehicleResponseModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'traveled_km') int? traveledKm,
+      {@JsonKey(name: 'car_id') int? carId,
+      @JsonKey(name: 'traveled_km') int? traveledKm,
       @JsonKey(name: 'next_technical') int? nextTechnical,
       @JsonKey(name: 'next_technical_updated_date')
       String? nextTechnicalUpdatedDate,
@@ -161,6 +170,7 @@ class __$$UserVehicleResponseModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? carId = freezed,
     Object? traveledKm = freezed,
     Object? nextTechnical = freezed,
     Object? nextTechnicalUpdatedDate = freezed,
@@ -171,6 +181,10 @@ class __$$UserVehicleResponseModelImplCopyWithImpl<$Res>
     Object? batteryReplacementUpdatedDate = freezed,
   }) {
     return _then(_$UserVehicleResponseModelImpl(
+      carId: freezed == carId
+          ? _value.carId
+          : carId // ignore: cast_nullable_to_non_nullable
+              as int?,
       traveledKm: freezed == traveledKm
           ? _value.traveledKm
           : traveledKm // ignore: cast_nullable_to_non_nullable
@@ -211,7 +225,8 @@ class __$$UserVehicleResponseModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserVehicleResponseModelImpl implements _UserVehicleResponseModel {
   const _$UserVehicleResponseModelImpl(
-      {@JsonKey(name: 'traveled_km') this.traveledKm,
+      {@JsonKey(name: 'car_id') this.carId,
+      @JsonKey(name: 'traveled_km') this.traveledKm,
       @JsonKey(name: 'next_technical') this.nextTechnical,
       @JsonKey(name: 'next_technical_updated_date')
       this.nextTechnicalUpdatedDate,
@@ -226,6 +241,9 @@ class _$UserVehicleResponseModelImpl implements _UserVehicleResponseModel {
   factory _$UserVehicleResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserVehicleResponseModelImplFromJson(json);
 
+  @override
+  @JsonKey(name: 'car_id')
+  final int? carId;
   @override
   @JsonKey(name: 'traveled_km')
   final int? traveledKm;
@@ -253,14 +271,15 @@ class _$UserVehicleResponseModelImpl implements _UserVehicleResponseModel {
 
   @override
   String toString() {
-    return 'UserVehicleResponseModel(traveledKm: $traveledKm, nextTechnical: $nextTechnical, nextTechnicalUpdatedDate: $nextTechnicalUpdatedDate, oilReplacement: $oilReplacement, oilReplacementUpdatedDate: $oilReplacementUpdatedDate, batteryReplacementDate: $batteryReplacementDate, batteryReplacement: $batteryReplacement, batteryReplacementUpdatedDate: $batteryReplacementUpdatedDate)';
+    return 'UserVehicleResponseModel(carId: $carId, traveledKm: $traveledKm, nextTechnical: $nextTechnical, nextTechnicalUpdatedDate: $nextTechnicalUpdatedDate, oilReplacement: $oilReplacement, oilReplacementUpdatedDate: $oilReplacementUpdatedDate, batteryReplacementDate: $batteryReplacementDate, batteryReplacement: $batteryReplacement, batteryReplacementUpdatedDate: $batteryReplacementUpdatedDate)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserVehicleResponseModelImpl &&
+            (identical(other.carId, carId) || other.carId == carId) &&
             (identical(other.traveledKm, traveledKm) ||
                 other.traveledKm == traveledKm) &&
             (identical(other.nextTechnical, nextTechnical) ||
@@ -287,6 +306,7 @@ class _$UserVehicleResponseModelImpl implements _UserVehicleResponseModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      carId,
       traveledKm,
       nextTechnical,
       nextTechnicalUpdatedDate,
@@ -313,7 +333,8 @@ class _$UserVehicleResponseModelImpl implements _UserVehicleResponseModel {
 
 abstract class _UserVehicleResponseModel implements UserVehicleResponseModel {
   const factory _UserVehicleResponseModel(
-          {@JsonKey(name: 'traveled_km') final int? traveledKm,
+          {@JsonKey(name: 'car_id') final int? carId,
+          @JsonKey(name: 'traveled_km') final int? traveledKm,
           @JsonKey(name: 'next_technical') final int? nextTechnical,
           @JsonKey(name: 'next_technical_updated_date')
           final String? nextTechnicalUpdatedDate,
@@ -330,6 +351,9 @@ abstract class _UserVehicleResponseModel implements UserVehicleResponseModel {
   factory _UserVehicleResponseModel.fromJson(Map<String, dynamic> json) =
       _$UserVehicleResponseModelImpl.fromJson;
 
+  @override
+  @JsonKey(name: 'car_id')
+  int? get carId;
   @override
   @JsonKey(name: 'traveled_km')
   int? get traveledKm;

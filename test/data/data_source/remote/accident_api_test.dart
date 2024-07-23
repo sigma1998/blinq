@@ -35,7 +35,6 @@ void main() {
     phoneNumber: '998999999999',
     email: 'test@test.com',
     qrCode: 'test',
-    driverLicense: DriverLicenseType.a,
     driverLicenseNumber: 'test',
     driverLicenseExpiredDate: 'test',
   );

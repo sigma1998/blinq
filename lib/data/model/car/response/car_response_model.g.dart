@@ -18,13 +18,31 @@ _$CarResponseModelImpl _$$CarResponseModelImplFromJson(
       trailerRegistrationNumber: json['trailer_registration_number'] as String?,
       trailerCountryOfRegistration:
           json['trailer_country_of_registration'] as String?,
+      vehicleType: json['vehicle_type'] as String?,
+      traveledKm: json['traveled_km'] as int?,
+      nextTechnical: json['next_technical'] as int?,
+      nextTechnicalUpdatedDate: json['next_technical_updated_date'] == null
+          ? null
+          : DateTime.parse(json['next_technical_updated_date'] as String),
+      oilReplacement: json['oil_replacement'] as int?,
+      oilReplacementUpdatedDate: json['oil_replacement_updated_date'] == null
+          ? null
+          : DateTime.parse(json['oil_replacement_updated_date'] as String),
+      batteryReplacementDate: json['battery_replacement_date'] == null
+          ? null
+          : DateTime.parse(json['battery_replacement_date'] as String),
+      batterReplacement: json['battery_replacement'] as int?,
+      batteryReplacementUpdatedDate: json['battery_replacement_updated_date'] ==
+              null
+          ? null
+          : DateTime.parse(json['battery_replacement_updated_date'] as String),
+      customBrand: json['custom_brand'] as String?,
+      customCar: json['custom_car'] as String?,
+      customCarColour: json['custom_car_colour'] as String?,
+      plateNumber: json['plate_number'] as String?,
       car: json['car'] as String?,
       color: json['color'] as String?,
-      brandId: json['brand_id'] as int?,
       brand: json['brand'] as String?,
-      vehicleType:
-          $enumDecodeNullable(_$VehicleTypeEnumMap, json['vehicle_type']) ??
-              VehicleType.auto,
     );
 
 Map<String, dynamic> _$$CarResponseModelImplToJson(
@@ -38,15 +56,24 @@ Map<String, dynamic> _$$CarResponseModelImplToJson(
       'country_of_registration': instance.countryOfRegistration,
       'trailer_registration_number': instance.trailerRegistrationNumber,
       'trailer_country_of_registration': instance.trailerCountryOfRegistration,
+      'vehicle_type': instance.vehicleType,
+      'traveled_km': instance.traveledKm,
+      'next_technical': instance.nextTechnical,
+      'next_technical_updated_date':
+          instance.nextTechnicalUpdatedDate?.toIso8601String(),
+      'oil_replacement': instance.oilReplacement,
+      'oil_replacement_updated_date':
+          instance.oilReplacementUpdatedDate?.toIso8601String(),
+      'battery_replacement_date':
+          instance.batteryReplacementDate?.toIso8601String(),
+      'battery_replacement': instance.batterReplacement,
+      'battery_replacement_updated_date':
+          instance.batteryReplacementUpdatedDate?.toIso8601String(),
+      'custom_brand': instance.customBrand,
+      'custom_car': instance.customCar,
+      'custom_car_colour': instance.customCarColour,
+      'plate_number': instance.plateNumber,
       'car': instance.car,
       'color': instance.color,
-      'brand_id': instance.brandId,
       'brand': instance.brand,
-      'vehicle_type': _$VehicleTypeEnumMap[instance.vehicleType],
     };
-
-const _$VehicleTypeEnumMap = {
-  VehicleType.auto: 'sedan',
-  VehicleType.van: 'van',
-  VehicleType.moto: 'bike',
-};
