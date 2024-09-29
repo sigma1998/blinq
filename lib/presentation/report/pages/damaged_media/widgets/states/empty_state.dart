@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/core/drawables/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -13,15 +14,8 @@ class DamagedMediaEmptyStateWidget extends StatelessWidget {
     return Column(
       children: [
         Text(
-          'strTakePicture'.tr(),
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-        const SizedBox(height: 12),
-        Text(
-          'strTakeDifferentPicture'.tr(),
-          style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                color: Theme.of(context).colorScheme.outline,
-              ),
+          '11. ${'strTakePicture'.tr()}',
+          style: AppTextStyles.s22W600,
         ),
       ],
     );

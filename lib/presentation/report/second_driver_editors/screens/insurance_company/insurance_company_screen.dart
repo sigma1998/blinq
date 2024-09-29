@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/utils/components/app_bar/progress_app_bar.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -55,18 +57,19 @@ class _SecondDriverEditorInsuranceScreenState
         return SafeArea(
           child: KeyboardEscape(
             child: Scaffold(
+              appBar: ProgressAppBar(step: 3),
               body: Form(
                 key: cubit.formKey,
                 child: ListView(
                   padding: const EdgeInsets.symmetric(
-                    vertical: 40,
-                    horizontal: 32,
+                    vertical: 24,
+                    horizontal: 16,
                   ),
                   physics: const BouncingScrollPhysics(),
                   children: [
                     Text(
                       'strInformationAboutInsuranceCompany'.tr(),
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: AppTextStyles.s22W600,
                     ),
                     const SizedBox(height: 40),
                     NameTextField(
@@ -83,16 +86,12 @@ class _SecondDriverEditorInsuranceScreenState
                       labelText: 'strGreenCardNumber'.tr(),
                       controller: cubit.greenCardNumberController,
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 40),
                     Text(
                       'strInsuranceCertificateGreenCardValid'.tr(),
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                        color: Theme.of(context).colorScheme.onSecondary,
-                      ),
+                      style: AppTextStyles.s22W600,
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 36),
                     DatePickerTextField(
                       labelText: 'strFrom'.tr(),
                       controller: cubit.certificateValidFromController,
@@ -107,7 +106,12 @@ class _SecondDriverEditorInsuranceScreenState
                       labelText: 'strAgency'.tr(),
                       controller: cubit.agencyController,
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 40),
+                    const Text(
+                      'Address',
+                      style: AppTextStyles.s22W600,
+                    ),
+                    const SizedBox(height: 36),
                     PickerTextField(
                       labelText: 'strCountry'.tr(),
                       controller: cubit.countryController,
@@ -146,13 +150,18 @@ class _SecondDriverEditorInsuranceScreenState
                     // EmailTextField(
                     //   controller: cubit.emailController,
                     // ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 40),
+                    const Text(
+                      'Does the policy cover material damage to the vehicle?',
+                      style: AppTextStyles.s22W600,
+                    ),
+                    const SizedBox(height: 36),
                     PickerTextField(
                       labelText: 'strPolicCover'.tr(),
                       onTap: cubit.onPolicyCoverPressed,
                       controller: cubit.policyCoverController,
                     ),
-                    const SizedBox(height: 36),
+                    const SizedBox(height: 136),
                   ],
                 ),
               ),

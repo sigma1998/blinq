@@ -15,6 +15,7 @@ import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/domain/repositories/premade_messages_repository.dart';
 import 'package:blinq/presentation/connect_to_blinq/cubit/connect_to_blinq_cubit.dart';
 import 'package:blinq/utils/services/permission/permission_service.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/theme/app_theme.dart';
 import 'domain/repositories/contacts_repository.dart';
 import 'domain/repositories/profile_repository.dart';
@@ -105,13 +106,16 @@ class MyAppState extends State<MyApp> {
           ),
         ),
       ],
-      child: MaterialApp(
-        locale: context.locale,
-        theme: AppTheme.darkTheme,
-        routes: getRoutes(context),
-        supportedLocales: context.supportedLocales,
-        navigatorKey: NavigationService.navigatorKey,
-        localizationsDelegates: context.localizationDelegates,
+      child: ScreenUtilInit(
+        designSize: const Size(392, 852),
+        child: MaterialApp(
+          locale: context.locale,
+          theme: AppTheme.darkTheme,
+          routes: getRoutes(context),
+          supportedLocales: context.supportedLocales,
+          navigatorKey: NavigationService.navigatorKey,
+          localizationsDelegates: context.localizationDelegates,
+        ),
       ),
     );
   }

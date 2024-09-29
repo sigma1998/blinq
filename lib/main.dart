@@ -11,7 +11,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:blinq/app.dart';
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/data/model/profile/driver_license/driver_license_type.dart';
-import 'package:blinq/firebase_options.dart';
 import 'package:blinq/localization.dart';
 import 'data/datasource/local/storage_constants.dart';
 import 'data/model/user/user_status.dart';
@@ -29,6 +28,7 @@ void main() async {
 
   runApp(const MyLocalization(child: MyApp()));
 }
+
 
 Future<void> _setUpHive() async {
   Hive.init((await getApplicationDocumentsDirectory()).path);

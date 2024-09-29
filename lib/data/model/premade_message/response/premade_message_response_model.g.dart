@@ -9,7 +9,7 @@ part of 'premade_message_response_model.dart';
 _$PreMadeMessageResponseModelImpl _$$PreMadeMessageResponseModelImplFromJson(
         Map<String, dynamic> json) =>
     _$PreMadeMessageResponseModelImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
       message: json['message'] as String?,
     );

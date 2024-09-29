@@ -35,6 +35,18 @@ class SketchBloc extends Cubit<GenericBlocState<bool>> {
 
   final GlobalKey key = GlobalKey();
 
+  final List<Color> customColors = const [
+    Color(0xFFFF0000), // Red at 0%
+    Color(0xFFFF912C), // Orange at 11.31%
+    Color(0xFFFFED4C), // Yellow at 23.67%
+    Color(0xFF68FF77), // Light Green at 37.09%
+    Color(0xFF00F0FF), // Cyan at 50.51%
+    Color(0xFF001AFF), // Blue at 65.51%
+    Color(0xFFAD00FF), // Purple at 76.64%
+    Color(0xFFE80D9E), // Pink at 88.65%
+    Color(0xFFFF0000), // Red at 100%
+  ];
+
   SketchBloc({
     required this.reportBloc,
     required this.accidentRepository,
@@ -61,6 +73,7 @@ class SketchBloc extends Cubit<GenericBlocState<bool>> {
         ),
       ),
     );
+    painterController.freeStyleColor = customColors[0];
 
     textFocusNode.addListener(onFocus);
   }
@@ -99,6 +112,36 @@ class SketchBloc extends Cubit<GenericBlocState<bool>> {
     painterController.addText();
   }
 
+  Future<File?> getImageFromGallery() async{
+    final result = await NavigationService.showMyCupertinoModalPopup(
+      actions: [
+        MyCupertinoActionSheetAction(
+          label: 'strTakeImage'.tr(),
+          onPressed: () {
+            mediaService
+                .pickImagePath(AppImageSource.camera)
+                .then((value) async {
+              final croppedImage = await ImageCropHelper.cropImage(value!);
+              NavigationService.back(result: croppedImage);
+            });
+          },
+        ),
+        MyCupertinoActionSheetAction(
+          label: 'strSelectFromGallery'.tr(),
+          onPressed: () {
+            mediaService
+                .pickImagePath(AppImageSource.gallery)
+                .then((value) async {
+              final croppedImage = await ImageCropHelper.cropImage(value!);
+              NavigationService.back(result: croppedImage);
+            });
+          },
+        ),
+      ],
+    );
+    return result;
+  }
+
   void onCameraPressed() async {
     final result = await NavigationService.showMyCupertinoModalPopup(
       actions: [
@@ -128,16 +171,16 @@ class SketchBloc extends Cubit<GenericBlocState<bool>> {
     );
 
     if (result != null) {
-      _uploadSketch(result);
+      uploadSketch(result);
     }
   }
 
-  void onSubmitted(BuildContext context) async {
+  Future<void> onSubmitted(BuildContext context) async {
     final file = await captureSocialPng(key, context);
-    _uploadSketch(file!);
+    await uploadSketch(file!);
   }
 
-  void _uploadSketch(File file) async {
+  Future<void> uploadSketch(File file) async {
     emit(const GenericBlocState(status: Status.initial, data: false));
 
     try {

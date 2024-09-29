@@ -27,7 +27,7 @@ class BlinqActivatedDialog extends StatelessWidget {
       closeButtonColor: Colors.white,
       padding: const EdgeInsets.all(18),
       color: Theme.of(context).colorScheme.primary,
-      height: MediaQuery.of(context).size.height * 0.54,
+      height: MediaQuery.of(context).size.height * 0.7,
       margin: const EdgeInsets.symmetric(horizontal: 52),
       child: Column(
         children: [

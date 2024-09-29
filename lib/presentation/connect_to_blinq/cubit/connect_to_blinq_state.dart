@@ -15,7 +15,7 @@ class ConnectToBlinqState with _$ConnectToBlinqState {
     @Default('N/A') String stateTexts,
     @Default([]) List<String> receivedData,
     @Default(0) int connectAttempt,
-    @Default(null) DiscoveredDevice? recentlyConnected,
+    DiscoveredDevice? recentlyConnected,
   }) = _ConnectToBlinqState;
 }
 
@@ -28,3 +28,4 @@ enum BleConnectionState {
   disconnected,
   error,
 }
+

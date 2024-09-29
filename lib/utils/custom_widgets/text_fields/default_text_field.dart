@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -121,105 +123,106 @@ class _MyTextFieldState extends State<MyTextField> {
         setState(() {});
       }
     });
+    widget.focusNode?.addListener(() {
+      setState(() {});
+    });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (widget.labelText != null)
-          Text(
-            widget.labelText!,
-            style: widget.labelTextstyle,
-          ),
-        Stack(
-          children: [
-            TextFormField(
-              validator: widget.validator ??
-                  (value) {
-                    if (value.toString().isEmpty) {
-                      return '${'strEnter'.tr()} ${widget.labelText}';
-                    }
-                    return null;
-                  },
-              controller: widget.controller,
-              //
-              enabled: widget.enabled,
-              readOnly: widget.readOnly,
-              focusNode: widget.focusNode,
-              autofocus: widget.autofocus,
-              textAlign: widget.textAlign,
-              obscuringCharacter: '*',
-              obscureText: widget.obscureText,
-              keyboardType: widget.keyboardType,
-              textInputAction: widget.textInputAction,
-              textCapitalization: widget.textCapitalization,
-              //
-              minLines: widget.minLines,
-              maxLines: widget.maxLines,
-              maxLength: widget.maxLength,
-              inputFormatters: widget.inputFormatters,
-              //
-              onTap: widget.onTap,
-              onChanged: widget.onChanged,
-              onEditingComplete: widget.onEditingComplete,
-              //
-              style: widget.inputTextstyle,
-              decoration: InputDecoration(
-                isDense: true,
-                counterText: '',
-                contentPadding: widget.contentPadding,
-                //
-                floatingLabelBehavior: widget.floatingLabelBehavior,
-                hintText: widget.enabled
-                    ? '${'strEnter'.tr()} ${widget.labelText}'
-                    : null,
-                hintStyle: widget.hintTextstyle,
-                //
-                filled: false,
-                //
-                prefixIcon: widget.prefixIcon,
-                prefixIconConstraints: widget.prefixIconConstraints,
-                //
-                suffixIcon: widget.suffixIcon,
-                suffixIconConstraints: widget.suffixIconConstraints,
-                //
-                errorStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.red,
-                    ),
-                errorBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Theme.of(context).colorScheme.error,
-                    width: 2.0,
-                  ),
-                ),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    width: 2.0,
-                    color: Theme.of(context).colorScheme.onSecondary,
-                  ),
-                ),
-                disabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Theme.of(context).colorScheme.onSecondary,
-                    width: 2.0,
-                  ),
-                ),
-                focusedBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.white,
-                    width: 2.0,
-                  ),
-                ),
-              ),
-            ),
-          ],
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: (widget.focusNode?.hasFocus ?? false) ? AppColors.activeReportColor : AppColors.grey2,
         ),
-      ],
+        color: AppColors.darkGrey,
+      ),
+      child: TextFormField(
+        validator: widget.validator ??
+            (value) {
+              if (value.toString().isEmpty) {
+                return '${'strEnter'.tr()} ${widget.labelText}';
+              }
+              return null;
+            },
+        controller: widget.controller,
+        //
+        enabled: widget.enabled,
+        readOnly: widget.readOnly,
+        focusNode: widget.focusNode,
+        autofocus: widget.autofocus,
+        textAlign: widget.textAlign,
+        obscuringCharacter: '*',
+        obscureText: widget.obscureText,
+        keyboardType: widget.keyboardType,
+        textInputAction: widget.textInputAction,
+        textCapitalization: widget.textCapitalization,
+        //
+        minLines: widget.minLines,
+        maxLines: widget.maxLines,
+        maxLength: widget.maxLength,
+        inputFormatters: widget.inputFormatters,
+        //
+        onTap: widget.onTap,
+        onChanged: widget.onChanged,
+        onEditingComplete: widget.onEditingComplete,
+        //
+        style: AppTextStyles.s17W400,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          isDense: true,
+          counterText: '',
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+          //
+          floatingLabelBehavior: widget.floatingLabelBehavior,
+          hintText: widget.enabled
+              ? '${'strEnter'.tr()} ${widget.labelText}'
+              : null,
+          hintStyle: AppTextStyles.s17W400.copyWith(color: AppColors.grey1),
+          //
+          filled: false,
+          //
+          prefixIcon: widget.prefixIcon,
+          prefixIconConstraints: widget.prefixIconConstraints,
+          //
+          suffixIcon: widget.suffixIcon,
+          suffixIconConstraints: widget.suffixIconConstraints,
+          //
+          // errorStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
+          //       fontSize: 10,
+          //       fontWeight: FontWeight.w500,
+          //       color: Colors.red,
+          //     ),
+          // errorBorder: UnderlineInputBorder(
+          //   borderSide: BorderSide(
+          //     color: Theme.of(context).colorScheme.error,
+          //     width: 2.0,
+          //   ),
+          // ),
+          // enabledBorder: UnderlineInputBorder(
+          //   borderSide: BorderSide(
+          //     width: 2.0,
+          //     color: Theme.of(context).colorScheme.onSecondary,
+          //   ),
+          // ),
+          // disabledBorder: UnderlineInputBorder(
+          //   borderSide: BorderSide(
+          //     color: Theme.of(context).colorScheme.onSecondary,
+          //     width: 2.0,
+          //   ),
+          // ),
+          // focusedBorder: const UnderlineInputBorder(
+          //   borderSide: BorderSide(
+          //     color: Colors.white,
+          //     width: 2.0,
+          //   ),
+          // ),
+        ),
+      ),
     );
   }
 }

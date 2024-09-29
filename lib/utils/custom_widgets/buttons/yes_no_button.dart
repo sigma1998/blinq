@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -33,32 +35,56 @@ class _YesNoButtonState extends State<YesNoButton> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        MyInkWell(
-          onTap: onNoTap,
-          padding: const EdgeInsets.symmetric(
-            vertical: 12,
-            horizontal: 26,
-          ),
-          borderRadius: BorderRadius.circular(50),
-          color: isNoSelected
-              ? Theme.of(context).colorScheme.primary
-              : Theme.of(context).colorScheme.onSecondary,
-          child: Text('strNo'.tr()),
-        ),
-        const SizedBox(width: 18),
-        MyInkWell(
+        getButton(
           onTap: onYesTap,
-          padding: const EdgeInsets.symmetric(
-            vertical: 12,
-            horizontal: 26,
-          ),
-          borderRadius: BorderRadius.circular(50),
-          color: isYesSelected
-              ? Theme.of(context).colorScheme.primary
-              : Theme.of(context).colorScheme.onSecondary,
-          child: Text('strYes'.tr()),
-        )
+          clicked: isYesSelected,
+          text: 'strYes'.tr(),
+        ),
+        const SizedBox(width: 24),
+        getButton(
+          clicked: isNoSelected,
+          text: 'strNo'.tr(),
+          onTap: onNoTap,
+        ),
       ],
+    );
+  }
+
+  getButton({
+    required bool clicked,
+    required String text,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Row(
+        children: [
+          Container(
+            width: 24,
+            height: 24,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: clicked ? AppColors.primaryColor : Colors.transparent,
+              border: Border.all(
+                color: AppColors.primaryColor,
+                width: 1.5,
+              ),
+            ),
+            padding: const EdgeInsets.all(6),
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: clicked ? AppColors.white : Colors.transparent,
+              ),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Text(
+            text,
+            style: AppTextStyles.s20W400,
+          )
+        ],
+      ),
     );
   }
 

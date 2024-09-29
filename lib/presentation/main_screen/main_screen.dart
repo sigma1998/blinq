@@ -2,12 +2,14 @@
 import 'dart:ui';
 
 // Flutter imports:
+import 'package:blinq/utils/components/bot_navs/main_bot_navs.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 // Project imports:
@@ -61,7 +63,6 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     final bloc = context.read<MainScreenBloc>();
 
     return BlocBuilder<MainScreenBloc, GenericBlocState<int>>(
@@ -69,13 +70,16 @@ class _MainScreenState extends State<MainScreen> {
         return WillPopScope(
           onWillPop: () async {
             if (currentIndex == 0) {
-              if (NavigationService.homeNavigatorKey.currentState?.canPop() ?? false) {
+              if (NavigationService.homeNavigatorKey.currentState?.canPop() ??
+                  false) {
                 NavigationService.homeNavigatorKey.currentState?.pop();
                 return false;
               }
               return true;
             } else if (currentIndex == 1) {
-              if (NavigationService.contactsNavigatorKey.currentState?.canPop() ?? false) {
+              if (NavigationService.contactsNavigatorKey.currentState
+                      ?.canPop() ??
+                  false) {
                 NavigationService.contactsNavigatorKey.currentState?.pop();
                 return false;
               }
@@ -95,106 +99,20 @@ class _MainScreenState extends State<MainScreen> {
               ],
             ),
             bottomNavigationBar: Padding(
-              padding: EdgeInsets.only(
-                left: 16,
-                right: 16,
-                bottom: height <= 800 ? 20 : 38,
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(40),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(
-                    sigmaX: 10.0,
-                    sigmaY: 10.0,
-                  ),
-                  child: Container(
-                    height: 64,
-                    width: double.maxFinite,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      border: Border.all(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .outline
-                            .withOpacity(0.4),
-                      ),
-                      color: Theme.of(context)
-                          .colorScheme
-                          .secondary
-                          .withOpacity(0.8),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: SalomonBottomBar(
-                        currentIndex: state.data!,
-                        curve: Curves.linearToEaseOut,
-                        itemPadding: const EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 24,
-                        ),
-                        onTap: (index) {
-                          setState(() {
-                            currentIndex = index;
-                            bloc.add(OnItemPressed(newIndex: index));
-                            if (index == state.data) {
-                              final res = bloc.onWillPop();
-                              print('HERE___________________________$res');
-                            }
-                          });
-                        },
-                        items: [
-                          _buildBottomBarItem(
-                            title: 'strHome'.tr(),
-                            icon: AppDrawables.blinq,
-                            activeIcon: AppDrawables.blinq,
-                          ),
-                          _buildBottomBarItem(
-                            title: 'strContacts'.tr(),
-                            icon: AppDrawables.contacts,
-                            activeIcon: AppDrawables.contacts,
-                          ),
-                          _buildBottomBarItem(
-                            title: 'strProfile'.tr(),
-                            icon: AppDrawables.profile,
-                            activeIcon: AppDrawables.profile,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+              padding:  EdgeInsets.only(bottom: 16.h),
+              child: MainBotNav(
+                currentIndex: state.data ?? currentIndex,
+                onTap: (int index) {
+                  setState(() {
+                    currentIndex = index;
+                    bloc.add(OnItemPressed(newIndex: index));
+                  });
+                },
               ),
             ),
           ),
         );
       },
-    );
-  }
-
-  SalomonBottomBarItem _buildBottomBarItem({
-    required String icon,
-    required String title,
-    required String activeIcon,
-  }) {
-    return SalomonBottomBarItem(
-      title: Text(
-        title,
-        style: const TextStyle(
-          fontSize: 14,
-          color: Colors.white,
-        ),
-      ),
-      icon: SvgPicture.asset(
-        icon,
-      ),
-      activeIcon: SvgPicture.asset(
-        activeIcon,
-        colorFilter: ColorFilter.mode(
-          Theme.of(context).colorScheme.primary,
-          BlendMode.srcIn,
-        ),
-      ),
-      selectedColor: Theme.of(context).colorScheme.outline,
     );
   }
 }

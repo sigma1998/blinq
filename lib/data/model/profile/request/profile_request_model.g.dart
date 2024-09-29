@@ -20,7 +20,7 @@ _$ProfileRequestModelImpl _$$ProfileRequestModelImplFromJson(
       phoneNumber: json['phone_number'] as String?,
       email: json['email'] as String?,
       driverLicense: (json['driver_licenses'] as List<dynamic>?)
-          ?.map((e) => e as int)
+          ?.map((e) => (e as num).toInt())
           .toList(),
       driverLicenseNumber: json['driver_license_number'] as String?,
       driverLicenseCountry: json['driver_license_country'] as String?,

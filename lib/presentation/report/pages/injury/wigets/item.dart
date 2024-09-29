@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -24,12 +26,18 @@ class InjuryItem extends StatelessWidget {
       children: [
         Text(
           title,
-          style: Theme.of(context).textTheme.titleSmall,
+          style: AppTextStyles.s20W400,
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 16),
         YesNoButton(
           onChanged: onChanged,
         ),
+        const SizedBox(height: 20),
+        Container(
+          width: double.infinity,
+          height: 1,
+          color: AppColors.darkGrey,
+        )
       ],
     );
   }

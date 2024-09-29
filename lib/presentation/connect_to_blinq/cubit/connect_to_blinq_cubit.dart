@@ -23,6 +23,8 @@ import 'package:blinq/utils/services/permission/permission_service.dart';
 import 'package:blinq/utils/smart_widgets/dialogs/blinq_activated/blinq_activated_dialog.dart';
 import 'package:blinq/utils/smart_widgets/dialogs/rename_device/rename_device_dialog.dart';
 
+import '../../../utils/components/dialogs/modal/breakdown_accident.dart';
+
 part 'connect_to_blinq_cubit.freezed.dart';
 
 part 'connect_to_blinq_state.dart';
@@ -33,6 +35,8 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
 
   //akhror added
   BluetoothCharacteristic? resetCharacteristic;
+  bool connecting = false;
+  Timer? connectionCounter;
 
   ConnectToBlinqCubit({required this.permissionService})
       : super(ConnectToBlinqState());
@@ -47,6 +51,13 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
   late StreamSubscription<ConnectionStateUpdate> _connection;
 
   StreamSubscription<DiscoveredDevice>? _scanStream;
+
+  setTimer() {
+    connecting = true;
+    connectionCounter = Timer(const Duration(seconds: 1), () {
+      connecting = false;
+    });
+  }
 
   setInitialState() {
     emit(state.copyWith(
@@ -69,8 +80,19 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
     );
   }
 
+  Future<void> renameCurrentDevice(DiscoveredDevice device) async {
+    emit(state.copyWith(recentlyConnected: device));
+    await LocalStorageService().renameSavedDevice(device);
+    findPreviouslyPairedDevices();
+  }
+
+  Future<void> renameDevice(DiscoveredDevice device) async {
+    await LocalStorageService().renameSavedDevice(device);
+    emit(state.copyWith(savedBleDevices: []));
+    findPreviouslyPairedDevices();
+  }
+
   Future<void> findPreviouslyPairedDevices() async {
-    print('CAME HERE____________________________findPreviouslyPairedDevices');
     final savedBleDevices = await LocalStorageService().getDevices;
 
     /// saving all available devices from local db to our state
@@ -78,7 +100,7 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
   }
 
   Future<void> connectPreviousDevices() async {
-    print('CAME HERE____________________________connectPreviousDevices');
+    print('connectPreviousDevices__________________');
 
     /// Clearing board before connection
     await findPreviouslyPairedDevices();
@@ -97,8 +119,8 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
     }
   }
 
-  void _initializeScanningStream() async {
-    print('CAME HERE____________________________initializeScanningStream');
+  Future<void> _initializeScanningStream() async {
+    print('_initializeScanningStream__________________');
     await _bluetoothHelper.checkBleConnectionStatus();
 
     emit(state.copyWith(scanning: true));
@@ -117,60 +139,70 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
   }
 
   void _onDeviceFound(DiscoveredDevice device) async {
-    print('CAME HERE___________________________onDeviceFound');
+    print('DEVICE FOUND_______________ ${state.boardConnectionState}');
+
+    ///matching current found with saved items
+    final LocalStorageService storage = LocalStorageService();
+    DiscoveredDevice? edited = await storage.getDeviceById(device.id);
+    edited ??= device;
+    emit(state.copyWith(recentlyConnected: edited));
+
     List<DiscoveredDevice> previouslyScannedDevices = [
       ...state.scannedBleDevices
     ];
 
     Iterable<DiscoveredDevice> isDeviceAlreadyScanned =
-        previouslyScannedDevices.where((element) => element.id == device.id);
+        previouslyScannedDevices.where((element) => element.id == edited!.id);
 
-    if (isDeviceAlreadyScanned.isEmpty == true) {
-      previouslyScannedDevices.add(device);
+    if (isDeviceAlreadyScanned.isEmpty) {
+      previouslyScannedDevices.add(edited);
       emit(state.copyWith(scannedBleDevices: [...previouslyScannedDevices]));
     }
 
-    await stopScanning();
     await Future.delayed(const Duration(seconds: 1));
-    debugPrint("BEFORE CONNECTING TO DISCOVERED DEVICE");
-    _connectToDetectedDevice(device);
+    if (!connecting &&
+        state.boardConnectionState == DeviceConnectionState.disconnected) {
+      connectToDetectedDevice(edited);
+      setTimer();
+    }
+    // if (state.bleConnectionState != BleConnectionState.paired) {
+    //   connectToDetectedDevice(edited);
+    // }
   }
 
   Future<void> stopScanning() async {
+    print('stopScanning__________________');
     if (_scanStream == null) return;
-
     await _scanStream!.cancel();
     _scanStream = null;
     emit(state.copyWith(scanning: false));
   }
 
-  void restartScanning() {
-    debugPrint("START OF RESTARRT SCANNING");
+  Future<void> restartScanning() async {
+    print('restartScanning__________________');
+    emit(
+      state.copyWith(
+        scanning: true,
+        scannedBleDevices: [],
+      ),
+    );
+    await Future.delayed(const Duration(seconds: 1));
     if (_scanStream == null) {
-      debugPrint("SCANNING IS INITIALIZED");
       _initializeScanningStream();
       return;
     }
-
-    debugPrint('recentlyConnected: ${state.recentlyConnected}');
-    debugPrint("SCANNING IS RESUMED");
     _scanStream!.resume();
-    emit(state.copyWith(scanning: true));
   }
 
   void removeDeviceFromScannedList(DiscoveredDevice device) {
-    print('CAME HERE__________________________removeDeviceFromScannedList');
-    debugPrint("THIS IS BEING CALLED");
     List<DiscoveredDevice> scannedDevices = [...state.scannedBleDevices];
     scannedDevices.removeWhere((element) => element.id == device.id);
-    debugPrint('Scanned Devices: $scannedDevices');
     emit(state.copyWith(scannedBleDevices: [...scannedDevices]));
     restartScanning();
   }
 
-  void _connectToDetectedDevice(DiscoveredDevice device) async {
-    //await _bluetoothHelper.clearPairedDevicesOnGadget(device);
-    print('CAME HERE__________________________connectToDetectedDevice');
+  void connectToDetectedDevice(DiscoveredDevice device) async {
+    print('CONNECT TO BLINQ DEVICE__________________');
     await findPreviouslyPairedDevices();
 
     if (state.savedBleDevices.isEmpty) return;
@@ -178,39 +210,50 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
     final pairedDevices =
         state.savedBleDevices.where((element) => element.id == device.id);
 
-    if (pairedDevices.isNotEmpty) {
+    print('ENTERED HERE ____________________${pairedDevices.isNotEmpty}');
+    print(
+        'ENTERED HERE ____________________${state.recentlyConnected == null}');
+    print('ENTERED HERE ____________________${state.bleConnectionState}');
+    if (pairedDevices.isNotEmpty &&
+        state.bleConnectionState != BleConnectionState.pairing) {
+      //second and third, akhror added
       await onConnectDevice(device);
     }
 
-    if (state.boardConnectionState == DeviceConnectionState.disconnected) {
-      restartScanning();
-    }
+    // if (state.boardConnectionState == DeviceConnectionState.disconnected) {
+    //   restartScanning();
+    // }
   }
 
   Future<void> unpairBoardFunctionality() async {
-    print('CAME HERE__________________________unpairBoardFunctionality');
     List<int> unPairData = _bluetoothHelper.bleUnpair();
     await sendData(unPairData);
   }
 
   void _handleSuccessfulPairing(DiscoveredDevice device) async {
-    print('CAME HERE__________________________handleSuccessfulPairing');
+    print('_handleSuccessfulPairing__________________');
     emit(state.copyWith(recentlyConnected: device));
 
     await LocalStorageService().saveDevice(device);
+    findPreviouslyPairedDevices();
 
     NavigationService.showDialog(
-      dialog: const BlinqActivatedDialog(),
+      dialog: const BreakdownAccident(),
     );
+
+    // NavigationService.showDialog(
+    //   dialog: const BlinqActivatedDialog(),
+    // );
   }
 
   Future<void> onConnectDevice(DiscoveredDevice device) async {
-    print('CAME HERE__________________________onConnectDevice');
     emit(state.copyWith(
       pairedState: kNa,
       stateTexts: "Paired: N/A",
       receivedData: [],
     ));
+
+    await Future.delayed(const Duration(seconds: 3));
 
     /// This sets the base device inside core ble utility
     /// which will serve us the pairing functionality.
@@ -228,13 +271,19 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
         emit(state.copyWith(boardConnectionState: event.connectionState));
         switch (event.connectionState) {
           case DeviceConnectionState.connecting:
-            emit(
-                state.copyWith(bleConnectionState: BleConnectionState.pairing));
+            print('CONNECTING_________________');
+            emit(state.copyWith(
+              bleConnectionState: BleConnectionState.pairing,
+              recentlyConnected: device,
+            ));
             break;
 
           case DeviceConnectionState.connected:
-            emit(
-                state.copyWith(bleConnectionState: BleConnectionState.pairing));
+            print('CONNECTED_________________');
+            emit(state.copyWith(
+              bleConnectionState: BleConnectionState.paired,
+              recentlyConnected: device,
+            ));
             _readCharacteristic =
                 _bluetoothHelper.getReadCharacteristic(event.deviceId);
 
@@ -250,25 +299,37 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
                 _bluetoothHelper.getWriteCharacteristic(event.deviceId);
 
             final bleQueryData = await _bluetoothHelper.bleQueryPairState();
+            await stopScanning(); //akhror  added
             await sendData(bleQueryData);
             break;
 
           case DeviceConnectionState.disconnecting:
-            emit(state.copyWith(
-                bleConnectionState: BleConnectionState.disconnected));
+            print('Dis CONNECTING_________________');
+            emit(
+              state.copyWith(
+                bleConnectionState: BleConnectionState.disconnected,
+                recentlyConnected: null,
+                scannedBleDevices: [],
+              ),
+            );
             break;
 
           case DeviceConnectionState.disconnected:
-            emit(state.copyWith(
-                bleConnectionState: BleConnectionState.disconnected));
+            print('DISCONNECTED_________________');
+            emit(
+              state.copyWith(
+                bleConnectionState: BleConnectionState.disconnected,
+                recentlyConnected: null,
+                scannedBleDevices: [],
+              ),
+            );
+            restartScanning(); //akhror added
             removeDeviceFromScannedList(device);
 
             break;
         }
       },
     );
-
-    await Future.delayed(const Duration(seconds: 5));
   }
 
   Future<void> bleClearPaired(DiscoveredDevice device) async {
@@ -277,35 +338,31 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
   }
 
   void onReceiveBLEData(List<int> data, DiscoveredDevice device) async {
-    print('CAME HERE__________________________onReceiveBLEData');
-    debugPrint('====> Receiving BLE Data');
+    print('ON RECEIVE BLE DATA_________________');
     int cmd = data[0];
-    debugPrint("IN RECEIVE DATA: $data");
-    debugPrint('cmd == bleCmdPairState: ${cmd == bleCmdPairState}');
 
     if (cmd == bleCmdMsg) {
       int len = data.length - 1;
       if (len > 0) {
-        debugPrint("msg:$data.length");
         List<int> msgAckData = _bluetoothHelper.bleMsgAck(data);
         await sendData(msgAckData);
+        print('ON Sending new data_________________');
       }
     } else if (cmd == bleCmdPairState && data.length >= 2) {
       int localState = data[1];
       if (localState == 0x00) {
-        debugPrint('Paired: Yes');
         emit(state.copyWith(
           pairedState: kPaired,
           stateTexts: "Paired: Yes",
           bleConnectionState: BleConnectionState.paired,
         ));
-
+        print('onReceiveBLEData___________________PAIRed');
         _handleSuccessfulPairing(device);
       } else if (localState == 0x01) {
         /// This triggers pairing mechanism.
         List<int> doPairData = await _bluetoothHelper.bleDoPair();
         await sendData(doPairData);
-        debugPrint('Paired: No: In Triggers pairing mechanism');
+        print('onReceiveBLEData___________________PAIRING');
         emit(state.copyWith(
           pairedState: kUnpaired,
           stateTexts: "Paired: No",
@@ -313,32 +370,36 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
         ));
       } else {
         if (localState == 0x02) {
-          debugPrint('Paired: Full');
-          emit(state.copyWith(
-            pairedState: kFull,
-            stateTexts: "Paired: Full",
-            bleConnectionState: BleConnectionState.full,
-          ));
-          NavigationService.showErrorToast(
-              'The device is already paired to 2 other devices.');
+          // debugPrint('Paired: Full');
+          // emit(state.copyWith(
+          //   pairedState: kFull,
+          //   stateTexts: "Paired: Full",
+          //   bleConnectionState: BleConnectionState.full,
+          // ));
+          // NavigationService.showErrorToast(
+          //     'The device is already paired to 2 other devices.');
+          await bleClearPaired(device);
+          print('onReceiveBLEData___________________CLEARED');
+          onConnectDevice(device);
         } else {
-          debugPrint('Paired: N/A');
+          print('Paired: N/A');
           emit(state.copyWith(
             pairedState: kNa,
             stateTexts: "Paired: N/A",
             bleConnectionState: BleConnectionState.error,
           ));
+          print('onReceiveBLEData___________________ERROR');
         }
       }
     } else if (cmd == bleCmdPairStart && data.length >= 20) {
-      debugPrint('Length greater than 20');
+      print('Length greater than 20_________________');
       List<int> blePairAckData = _bluetoothHelper.blePairAck(data);
       await sendData(blePairAckData);
       // blePairAck(bleData, state.mDeviceAddress);
     } else if (cmd == bleCmdPairAck && data.length >= 2) {
       int localState = data[1];
       if (localState == 0x00) {
-        debugPrint("Pair succ!");
+        print("Pair succ!__________________");
         emit(state.copyWith(
           pairedState: kPaired,
           stateTexts: "Paired: Yes",
@@ -346,7 +407,7 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
         ));
         _handleSuccessfulPairing(device);
       } else {
-        debugPrint("Pair fail!");
+        print("Pair fail!____________________");
         emit(state.copyWith(
           pairedState: kUnpaired,
           stateTexts: "Paired: No",
@@ -354,7 +415,7 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
         ));
       }
     } else if (cmd == bleCmdUnpair) {
-      debugPrint('AT BLE CMD unpair');
+      print('AT BLE CMD unpair___________________');
 
       List<int> bleUnpairAckData = _bluetoothHelper.bleUnpairAck(data);
       await sendData(bleUnpairAckData);
@@ -362,8 +423,8 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
     } else if (cmd == bleCmdUnpairAck && data.length >= 2) {
       int localState = data[1];
       if (localState == 0x00) {
-        debugPrint("Unpair success!");
-        debugPrint('At Un pair');
+        print("Unpair success!_____________________");
+        print('At Un pair');
         await LocalStorageService().removeSavedDevice(device);
         await findPreviouslyPairedDevices();
         disconnect(true);
@@ -372,7 +433,6 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
   }
 
   Future<void> sendData(List<int> data) async {
-    print('CAME HERE__________________________sendData');
     debugPrint('====> Sending Data');
     String rev = "";
     for (int i = 0; i < data.length; i++) {
@@ -396,14 +456,13 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
   }
 
   void onNewReceivedData(List<int> data, DiscoveredDevice device) {
-    print('CAME HERE__________________________onNewReceivedData________$data');
-    debugPrint('====> On New Received Data');
-    debugPrint("RESPONSE: $data");
+    print('On New Received Data_________________________');
+    print("RESPONSE_______onNewReceivedData_________________________: $data");
     List<String> receivedDataLocal = [...state.receivedData];
     emit(state.copyWith(receivedData: receivedDataLocal));
-    debugPrint('Received Data Result: $receivedDataLocal');
+    print('Received Data Result: $receivedDataLocal');
     if (state.receivedData.length > 10) {
-      debugPrint('Receive data is greater than 10');
+      print('Receive data is greater than 10');
       List<String> receivedDataLocal = [...state.receivedData];
       receivedDataLocal.removeAt(0);
       emit(state.copyWith(receivedData: receivedDataLocal));
@@ -411,9 +470,8 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
     onReceiveBLEData(data, device);
   }
 
-  void disconnect(bool isUnpairing) async {
-    print('CAME HERE__________________________disconnect');
-    debugPrint('====> Disconnect Called');
+  Future<void> disconnect(bool isUnpairing) async {
+    print('DISCONNECT___________________________');
     await _connection.cancel();
 
     emit(state.copyWith(
@@ -421,8 +479,9 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
       bleConnectionState: BleConnectionState.disconnected,
       pairedState: kNa,
       stateTexts: "Paired: N/A",
-      recentlyConnected: isUnpairing == true ? null : state.recentlyConnected,
+      recentlyConnected: isUnpairing ? null : state.recentlyConnected,
     ));
+    restartScanning();
   }
 
   Future<bool> checkPermissions() async {

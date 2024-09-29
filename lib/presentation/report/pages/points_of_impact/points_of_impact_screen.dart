@@ -1,4 +1,7 @@
 // Flutter imports:
+import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
+import 'package:blinq/utils/components/app_bar/progress_app_bar.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -13,7 +16,6 @@ import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/utils/custom_widgets/arrow_button.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
-import 'package:blinq/utils/custom_widgets/step_indicator.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'bloc/points_of_impact_bloc.dart';
 import 'bloc/points_of_impact_state.dart';
@@ -22,7 +24,7 @@ class PointsOfImpactScreen extends StatefulWidget {
   //
   static const String route = 'points_of_impact_screen';
 
-  const PointsOfImpactScreen({Key? key}) : super(key: key);
+  const PointsOfImpactScreen({super.key});
 
   @override
   State<PointsOfImpactScreen> createState() => _PointsOfImpactScreenState();
@@ -32,8 +34,10 @@ class _PointsOfImpactScreenState extends State<PointsOfImpactScreen> {
   //
   late final PointsOfImpactBloc bloc;
 
+
   @override
   void didChangeDependencies() {
+
     bloc = PointsOfImpactBloc(
       reportBloc: context.read(),
       accidentRepository: getIt<AccidentRepositoryImpl>(),
@@ -49,21 +53,21 @@ class _PointsOfImpactScreenState extends State<PointsOfImpactScreen> {
       builder: (context, state) {
         final primary = Theme.of(context).colorScheme.primary;
         return Scaffold(
+          appBar: ProgressAppBar(
+            step: 4,
+            onSaveTap: () => bloc.onNextPressed(context),
+          ),
           body: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.all(24.0),
+              padding: const EdgeInsets.symmetric(
+                vertical: 24.0,
+                horizontal: 16,
+              ),
               child: Column(
                 children: [
-                  StepIndicator(
-                    currentStep: bloc.getStep(),
-                    showTrailingTitle: true,
-                  ),
-                  const SizedBox(
-                    height: 32,
-                  ),
                   Text(
-                    'strIndicateDescription'.tr(),
-                    style: Theme.of(context).textTheme.titleMedium,
+                    '4. ${'strIndicateDescription'.tr()}',
+                    style: AppTextStyles.s22W600,
                   ),
                   const SizedBox(
                     height: 24,
@@ -72,6 +76,7 @@ class _PointsOfImpactScreenState extends State<PointsOfImpactScreen> {
                     child: Container(
                       margin: const EdgeInsets.symmetric(horizontal: 24),
                       color: Theme.of(context).colorScheme.background,
+                      alignment: Alignment.center,
                       child: RepaintBoundary(
                         key: bloc.key,
                         child: Column(

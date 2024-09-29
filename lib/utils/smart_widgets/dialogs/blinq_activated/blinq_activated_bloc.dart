@@ -4,6 +4,8 @@ import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/presentation/create_report/create_report_screen.dart';
 import 'package:blinq/utils/navigation_service.dart';
 
+import '../../../../presentation/break_down/break_down_type/presentation/break_down_type_screen.dart';
+
 class BlinqActivatedBloc {
   //
   final ReportBloc reportBloc;
@@ -15,10 +17,6 @@ class BlinqActivatedBloc {
     NavigationService.back();
 
     reportBloc.setReportType(ReportType.accident);
-    NavigationService.pushNamed(
-      routeName: CreateReportScreen.route,
-      nestedKey: NavigationService.homeNavigatorKey,
-    );
   }
 
   void onBreakDownPressed() {
@@ -26,7 +24,7 @@ class BlinqActivatedBloc {
 
     reportBloc.setReportType(ReportType.breakdown);
     NavigationService.pushNamed(
-      routeName: CreateReportScreen.route,
+      routeName: BreakDownTypeScreen.route,
       nestedKey: NavigationService.homeNavigatorKey,
     );
   }

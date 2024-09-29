@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/utils/components/app_bar/progress_app_bar.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -15,6 +16,7 @@ import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 import 'package:blinq/utils/custom_widgets/step_indicator.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/rounded/speech_to_text_field.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import '../../../../domain/bloc/report_bloc/report_type.dart';
 import 'bloc/speech_to_text_cubit.dart';
 import 'bloc/speech_to_text_screen_mode.dart';
 
@@ -31,11 +33,14 @@ class SpeechToTextScreen extends StatefulWidget {
 class _SpeechToTextScreenState extends State<SpeechToTextScreen> {
   //
   late SpeechToTextCubit bloc;
+  bool focus = false;
+  int? step;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     final args = ModalRoute.of(context)!.settings.arguments as SpeechToTextArgs;
+    step = args.step;
     bloc = SpeechToTextCubit(
       speechToTextScreenMode: args.mode,
       accidentRepository: getIt<AccidentRepositoryImpl>(),
@@ -52,15 +57,16 @@ class _SpeechToTextScreenState extends State<SpeechToTextScreen> {
         return KeyboardEscape(
           child: SafeArea(
             child: Scaffold(
+              appBar: ProgressAppBar(
+                step: step ?? 3,
+                onSaveTap: bloc.onNextTap,
+              ),
               body: ListView(
-                padding: const EdgeInsets.all(32),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 children: [
-                  StepIndicator(
-                    currentStep: bloc.getStep(),
-                    showTrailingTitle: true,
-                  ),
-                  const SizedBox(height: 52),
+                  const SizedBox(height: 24),
                   SpeechToTextField(
+                    autofocus: focus,
                     maxLines: 10,
                     labelText: bloc.title,
                     soundLevel: state.soundLevel,
@@ -69,10 +75,16 @@ class _SpeechToTextScreenState extends State<SpeechToTextScreen> {
                     scrollController: bloc.scrollController,
                     toggleRecording: () =>
                         bloc.toggleRecording(context.locale.languageCode),
+                    onKeyBoardTap: () {
+                      setState(() {
+                        focus = !focus;
+                      });
+                    },
                   ),
                 ],
               ),
               floatingActionButton: NavigationButton(
+                padding: 16,
                 loading: state.status == Status.loading,
                 onNextTap: bloc.onNextTap,
               ),
@@ -88,6 +100,10 @@ class _SpeechToTextScreenState extends State<SpeechToTextScreen> {
 
 class SpeechToTextArgs {
   final SpeechToTextScreenMode mode;
+  final int? step;
 
-  SpeechToTextArgs({required this.mode});
+  SpeechToTextArgs({
+    required this.mode,
+    this.step,
+  });
 }

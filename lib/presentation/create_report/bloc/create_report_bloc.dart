@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:blinq/utils/states/action_type.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
@@ -82,7 +83,9 @@ class CreateReportBloc extends Cubit<GenericBlocState> {
 
   /// Navigate to the editor screen and check if the user filled the data
   Future<bool> _navigateAndCheckResult(String routeName) async {
-    final result = await NavigationService.pushNamed(routeName: routeName);
+    final result = await NavigationService.pushNamed(
+      routeName: routeName,
+    );
 
     if (result == true) {
       return true;

@@ -1,4 +1,7 @@
 // Flutter imports:
+import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/utils/components/app_bar/progress_app_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -57,18 +60,16 @@ class _SecondDriverEditorPolicyHolderScreenState
         return SafeArea(
           child: KeyboardEscape(
             child: Scaffold(
+              appBar: const ProgressAppBar(step: 2),
               body: Form(
                 key: cubit.formKey,
                 child: ListView(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 40,
-                    horizontal: 32,
-                  ),
-                  physics: const BouncingScrollPhysics(),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   children: [
+                    const SizedBox(height: 24),
                     Text(
                       'strInformationPolicyHolder'.tr(),
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: AppTextStyles.s22W600,
                     ),
                     const SizedBox(height: 40),
                     Row(
@@ -76,26 +77,22 @@ class _SecondDriverEditorPolicyHolderScreenState
                         Expanded(
                           child: Text(
                             AppLocale.sameAsDriver.tr(),
-                            style: const TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
-                            ),
+                            style: AppTextStyles.s20W400,
                           ),
                         ),
-                        Switch(
+                        CupertinoSwitch(
                           activeColor: AppColors.grey2,
                           // Set transparent so the active track color shows through
-                          activeTrackColor: AppColors.grey2,
-                          thumbColor: MaterialStateProperty.resolveWith<Color?>(
-                            (Set<MaterialState> states) {
-                              return Colors.white;
-                            },
-                          ),
-                          // Background color when switch is on
-                          inactiveThumbColor: AppColors.grey2,
-                          // Round color when switch is off
-                          inactiveTrackColor: AppColors.grey1,
+                          // activeTrackColor: AppColors.grey2,
+                          // thumbColor: MaterialStateProperty.resolveWith<Color?>(
+                          //   (Set<MaterialState> states) {
+                          //     return Colors.white;
+                          //   },
+                          // ),
+                          // // Background color when switch is on
+                          // inactiveThumbColor: AppColors.grey2,
+                          // // Round color when switch is off
+                          // inactiveTrackColor: AppColors.grey1,
                           // Set transparent so the inactive thumb color shows through
                           value: sameAsDriver,
                           onChanged: (bool val) {
@@ -108,6 +105,11 @@ class _SecondDriverEditorPolicyHolderScreenState
                       ],
                     ),
                     const SizedBox(height: 40),
+                    const Text(
+                      'Personal info',
+                      style: AppTextStyles.s22W600,
+                    ),
+                    const SizedBox(height: 32),
                     NameTextField(
                       labelText: 'strFirstName'.tr(),
                       controller: cubit.firstNameController,
@@ -117,7 +119,12 @@ class _SecondDriverEditorPolicyHolderScreenState
                       labelText: 'strLastName'.tr(),
                       controller: cubit.lastNameController,
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 40),
+                    const Text(
+                      'Address',
+                      style: AppTextStyles.s22W600,
+                    ),
+                    const SizedBox(height: 32),
                     PickerTextField(
                       labelText: 'strCountry'.tr(),
                       controller: cubit.countryController,
@@ -152,7 +159,7 @@ class _SecondDriverEditorPolicyHolderScreenState
                     //   labelText: 'Tel/Email',
                     //   controller: cubit.phoneEmailController,
                     // ),
-                    const SizedBox(height: 36),
+                    const SizedBox(height: 136),
                   ],
                 ),
               ),

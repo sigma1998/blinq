@@ -71,6 +71,17 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
     }
   }
 
+  getList() {
+    switch (vehicleType) {
+      case VehicleType.auto:
+        return state.carParts;
+      case VehicleType.van:
+        return state.bigCarParts;
+      case VehicleType.moto:
+        return state.motorcycleParts;
+    }
+  }
+
   Set<String> damagedParts = {};
 
   GlobalKey imagePreview = GlobalKey();
@@ -102,22 +113,6 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
         _timer.cancel();
       });
 
-  void selectPartFunc(String indexPart) {
-    Set<String> selectedPart = {...state.carParts};
-    if (!state.carParts.contains(indexPart)) {
-      selectedPart.add(indexPart);
-      debugPrint("If: $selectedPart");
-    } else {
-      for (var i = 0; i < selectedPart.length; i++) {
-        if (selectedPart.toList()[i] == indexPart) {
-          selectedPart.remove(indexPart);
-        }
-      }
-      debugPrint("Else: $selectedPart");
-    }
-    damagedParts = selectedPart;
-    emit(state.copyWith(carParts: selectedPart));
-  }
 
   void onNextTap(BuildContext context) async {
     emit(state.copyWith(status: Status.loading));
@@ -168,12 +163,13 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
     }
   }
 
-  Color onFColor(
-      {required Offset position,
-      required Color active,
-      required Color inActive,
-      required int index,
-      required ScrollController listController}) {
+  Color onFColor({
+    required Offset position,
+    required Color active,
+    required Color inActive,
+    required int index,
+    required ScrollController listController,
+  }) {
     Color? color;
     if (vehicleType == VehicleType.auto) {
       switch (index) {
@@ -214,7 +210,7 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
       }
     }
 
-    if(color != null){
+    if (color != null) {
       listController.animateTo(
         listController.position.maxScrollExtent,
         duration: const Duration(milliseconds: 300),
@@ -273,6 +269,29 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
         damageParts: state.carParts.toList(),
       );
     }
+  }
+
+  removePart(String part) {
+    Set<String> mewDamagedParts = Set.from(damagedParts);
+    mewDamagedParts.remove(part);
+    emit(state.copyWith(carParts: mewDamagedParts));
+  }
+
+  void selectPartFunc(String indexPart) {
+    Set<String> selectedPart = {...state.carParts};
+    if (!state.carParts.contains(indexPart)) {
+      selectedPart.add(indexPart);
+      debugPrint("If: $selectedPart");
+    } else {
+      for (var i = 0; i < selectedPart.length; i++) {
+        if (selectedPart.toList()[i] == indexPart) {
+          selectedPart.remove(indexPart);
+        }
+      }
+      debugPrint("Else: $selectedPart");
+    }
+    damagedParts = selectedPart;
+    emit(state.copyWith(carParts: selectedPart));
   }
 
   ///getActiveColorForCar for cars

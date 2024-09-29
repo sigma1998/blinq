@@ -1,4 +1,11 @@
 // Flutter imports:
+
+import 'package:ai_barcode_scanner/ai_barcode_scanner.dart';
+import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/core/theme/app_colors.dart';
+import 'package:blinq/utils/components/app_bar/accident_app_bar.dart';
+import 'package:blinq/utils/components/buttons/regular_button.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -9,9 +16,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_bloc.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
-import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
-import 'package:blinq/utils/custom_widgets/buttons/yes_no_button.dart';
-import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'cubit/connect_to_driver_cubit.dart';
 
 class ConnectToDriverScreen extends StatefulWidget {
@@ -36,6 +41,7 @@ class _ConnectToDriverScreenState extends State<ConnectToDriverScreen> {
     super.didChangeDependencies();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ConnectToDriverCubit, ConnectToDriverState>(
@@ -45,35 +51,65 @@ class _ConnectToDriverScreenState extends State<ConnectToDriverScreen> {
           onWillPop: cubit.onWillPop,
           child: SafeArea(
             child: Scaffold(
-              body: ListView(
-                padding: const EdgeInsets.all(32),
-                physics: const ClampingScrollPhysics(),
-                children: [
-                  const SizedBox(height: 50),
-                  Text(
-                    'strSecondDriverBlinq'.tr(),
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  const SizedBox(height: 118),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      YesNoButton(
-                        onChanged: cubit.onHasBlinqChanged,
-                      ),
-                    ],
-                  ),
-                ],
+              appBar: const AccidentAppBar(),
+              body: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  children: [
+                    const Spacer(),
+                    SvgPicture.asset(
+                      AppDrawables.haveBlinqIcon,
+                      width: 96,
+                      height: 96,
+                    ),
+                    const SizedBox(height: 24),
+                    Text(
+                      'strSecondDriverBlinq'.tr(),
+                      textAlign: TextAlign.center,
+                      style: AppTextStyles.s34W600,
+                    ),
+                    // const SizedBox(height: 118),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     YesNoButton(
+                    //       onChanged: cubit.onHasBlinqChanged,
+                    //     ),
+                    //   ],
+                    // ),
+                    const Spacer(),
+                    RegularButton(
+                      title: 'strYes'.tr(),
+                      padding: 0,
+                      onTap: () {
+                        cubit.onHasBlinqChanged(true);
+                        cubit.onNextPressed();
+                      },
+                    ),
+                    const SizedBox(height: 8),
+                    RegularButton(
+                      padding: 0,
+                      title: 'strNo'.tr(),
+                      background: AppColors.darkGrey,
+                      onTap: () {
+                        cubit.onHasBlinqChanged(false);
+                        cubit.onNextPressed();
+                      },
+                    ),
+                    const SizedBox(height: 8),
+                  ],
+                ),
               ),
               resizeToAvoidBottomInset: false,
-              floatingActionButton: NavigationButton(
-                onBack: cubit.onBack,
-                onNextTap: cubit.onNextPressed,
-                canGoForward: cubit.isNextEnabled,
-                loading: state.status == Status.loading,
-              ),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerFloat,
+              // floatingActionButton: NavigationButton(
+              //   padding: 16,
+              //   onBack: cubit.onBack,
+              //   onNextTap: cubit.onNextPressed,
+              //   canGoForward: cubit.isNextEnabled,
+              //   loading: state.status == Status.loading,
+              // ),
+              // floatingActionButtonLocation:
+              //     FloatingActionButtonLocation.centerFloat,
             ),
           ),
         );

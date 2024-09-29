@@ -1,4 +1,7 @@
 // Flutter imports:
+import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/core/theme/app_colors.dart';
+import 'package:blinq/utils/components/app_bar/progress_app_bar.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -45,77 +48,114 @@ class _CircumstancesScreenState extends State<CircumstancesScreen> {
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
-            body: ListView(padding: const EdgeInsets.all(24.0), children: [
-              StepIndicator(currentStep: bloc.getStep()),
-              const SizedBox(
-                height: 32,
+            appBar: ProgressAppBar(
+              step: bloc.getStep(),
+            ),
+            body: ListView(
+              padding: const EdgeInsets.symmetric(
+                vertical: 24.0,
+                horizontal: 16,
               ),
-              Text(
-                'strCircumstance'.tr(),
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              const SizedBox(height: 20),
-              Text(
-                (bloc.isAccident ? 'strBigTxt'.tr() : 'strBigTxt2'.tr()),
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium
-                    ?.copyWith(color: Theme.of(context).colorScheme.outline),
-              ),
-              const SizedBox(height: 20),
-              bloc.isAccident
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          children: [
-                            Text('A',
-                                style: Theme.of(context).textTheme.titleLarge),
-                            const Icon(
-                              Icons.arrow_drop_down_sharp,
-                              color: Colors.white,
-                              size: 32,
-                            )
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Text('B',
-                                style: Theme.of(context).textTheme.titleLarge),
-                            const Icon(
-                              Icons.arrow_drop_down_sharp,
-                              color: Colors.white,
-                            )
-                          ],
-                        ),
-                      ],
-                    )
-                  : const SizedBox.shrink(),
-              ListView.separated(
-                padding: const EdgeInsets.only(top: 10, bottom: 192),
-                physics: const ClampingScrollPhysics(),
-                itemCount: Circumstances.values.length,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return CircumstanceItem(
-                    isAccident: bloc.isAccident,
-                    index: index,
-                    driverAActive: bloc.driverAActive(index),
-                    driverBActive: bloc.driverBActive(index),
-                    onCheckedA: () => bloc.onCheckedA(index),
-                    onCheckedB: () => bloc.onCheckedB(index),
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return const SizedBox(
-                    height: 12,
-                  );
-                },
-              ),
-            ]),
+              children: [
+                Text(
+                  '6. ${'strCircumstance'.tr()}',
+                  style: AppTextStyles.s20W600,
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  (bloc.isAccident ? 'strBigTxt'.tr() : 'strBigTxt2'.tr()),
+                  style: AppTextStyles.s15W400,
+                ),
+                const SizedBox(height: 32),
+                bloc.isAccident
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            width: 38,
+                            padding: const EdgeInsets.symmetric(vertical: 4),
+                            decoration: BoxDecoration(
+                              color: AppColors.primaryColor,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Column(
+                              children: [
+                                const Text(
+                                  'A',
+                                  style: AppTextStyles.s20W600,
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: AppColors.activeReportColor,
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  child: const Icon(
+                                    Icons.arrow_downward_rounded,
+                                    color: AppColors.black,
+                                    size: 18,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 38,
+                            padding: const EdgeInsets.symmetric(vertical: 4),
+                            decoration: BoxDecoration(
+                              color: AppColors.primaryColor,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Column(
+                              children: [
+                                const Text(
+                                  'B',
+                                  style: AppTextStyles.s20W600,
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: AppColors.activeReportColor,
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  child: const Icon(
+                                    Icons.arrow_downward_rounded,
+                                    color: AppColors.black,
+                                    size: 18,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      )
+                    : const SizedBox.shrink(),
+                const SizedBox(height: 24),
+                ListView.separated(
+                  padding: const EdgeInsets.only(bottom: 192),
+                  physics: const ClampingScrollPhysics(),
+                  itemCount: Circumstances.values.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return CircumstanceItem(
+                      isAccident: bloc.isAccident,
+                      index: index,
+                      driverAActive: bloc.driverAActive(index),
+                      driverBActive: bloc.driverBActive(index),
+                      onCheckedA: () => bloc.onCheckedA(index),
+                      onCheckedB: () => bloc.onCheckedB(index),
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return const SizedBox(
+                      height: 12,
+                    );
+                  },
+                ),
+              ],
+            ),
             bottomNavigationBar: Padding(
               padding: const EdgeInsets.only(bottom: 24.0),
               child: NavigationButton(
+                padding: 16,
                 loading: state.status == Status.loading,
                 onNextTap: bloc.onSubmit,
               ),

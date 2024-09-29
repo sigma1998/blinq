@@ -9,7 +9,7 @@ part of 'premade_message_response_dto.dart';
 _$PremadeMessageResponseDtoImpl _$$PremadeMessageResponseDtoImplFromJson(
         Map<String, dynamic> json) =>
     _$PremadeMessageResponseDtoImpl(
-      count: json['count'] as int?,
+      count: (json['count'] as num?)?.toInt(),
       next: json['next'] as String?,
       previous: json['previous'] as String?,
       results: (json['results'] as List<dynamic>?)

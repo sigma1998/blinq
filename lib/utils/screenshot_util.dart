@@ -17,7 +17,7 @@ import 'cache_folder.dart';
 Future<File?> captureSocialPng(GlobalKey container, BuildContext context) {
   return Future.delayed(const Duration(milliseconds: 20), () async {
     RenderRepaintBoundary? boundary =
-        container.currentContext!.findRenderObject() as RenderRepaintBoundary?;
+        container.currentContext?.findRenderObject() as RenderRepaintBoundary?;
 
     ui.Image image = await boundary!.toImage();
     final directory = await FileUtil.createFolderInAppDocDir();

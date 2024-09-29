@@ -16,7 +16,6 @@ import 'package:blinq/presentation/report/pages/injury/injury_screen.dart';
 import 'package:blinq/presentation/report/pages/location_info/bloc/location_info_screen_state.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:blinq/utils/services/location/location_service.dart';
 import 'package:blinq/utils/smart_widgets/dialogs/countries_dialog/countries_dialog.dart';
 
 class LocationInfoScreenCubit extends Cubit<LocationInfoScreenState> {
@@ -25,11 +24,6 @@ class LocationInfoScreenCubit extends Cubit<LocationInfoScreenState> {
   final BreakdownRepository breakdownRepository;
   final ReportBloc reportBloc;
 
-  final TextEditingController dateController = TextEditingController();
-  final TextEditingController timeController = TextEditingController();
-  final TextEditingController countryController = TextEditingController();
-  final TextEditingController placeController = TextEditingController();
-
   LocationInfoScreenCubit({
     required this.accidentRepository,
     required this.breakdownRepository,
@@ -37,44 +31,38 @@ class LocationInfoScreenCubit extends Cubit<LocationInfoScreenState> {
   }) : super(const LocationInfoScreenState());
 
   void init() async {
-    emit(state.copyWith(status: Status.loading));
-    await LocationService.getAddressFromLatLng(
-      LocationService.myPosition!.latitude,
-      LocationService.myPosition!.longitude,
-    ).then((value) {
-      placeController.text = value ?? '';
-      countryController.text = value!.split(',').last;
-    });
     emit(state.copyWith(status: Status.initial));
   }
 
-  void onCountryPressed() {
-    NavigationService.showDialog(dialog: const CountriesDialog())!
-        .then((value) {
-      if (value != null) {
-        countryController.text = value;
-      }
-    });
+  Future<String?> onCountryPressed() async {
+    final res =
+        await NavigationService.showDialog(dialog: const CountriesDialog());
+    return res;
   }
 
-  Future<void> onSubmit() async {
+  Future<void> onSubmit({
+    required String date,
+    required String time,
+    required String place,
+    required String country,
+  }) async {
     emit(state.copyWith(status: Status.loading));
     try {
       if (reportBloc.reportType == ReportType.accident) {
         await accidentRepository.addAccidentLocationAndTime(
           reportBloc.reportId,
           ReportTimeAndLocationDto(
-              country: countryController.text,
-              location: placeController.text,
-              createdAt: '${dateController.text}T${timeController.text}:00Z'),
+              country: country,
+              location: place,
+              createdAt: '${date}T$time:00Z'),
         );
       } else {
         await breakdownRepository.addBreakdownLocationAndTime(
           reportBloc.reportId,
           ReportTimeAndLocationDto(
-              country: countryController.text,
-              location: placeController.text,
-              createdAt: '${dateController.text}T${timeController.text}:00Z'),
+              country: country,
+              location: place,
+              createdAt: '${date}T$time:00Z'),
         );
       }
 

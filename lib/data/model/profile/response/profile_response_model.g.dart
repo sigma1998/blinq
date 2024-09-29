@@ -9,7 +9,7 @@ part of 'profile_response_model.dart';
 _$ProfileResponseModelImpl _$$ProfileResponseModelImplFromJson(
         Map<String, dynamic> json) =>
     _$ProfileResponseModelImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       image: json['image'] as String?,
       firstName: json['first_name'] as String?,
       lastName: json['last_name'] as String?,

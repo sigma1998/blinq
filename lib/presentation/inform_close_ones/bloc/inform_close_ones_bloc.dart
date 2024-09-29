@@ -17,6 +17,7 @@ import 'package:blinq/utils/url_helper.dart';
 import 'inform_close_ones_event.dart';
 
 part 'inform_close_ones_bloc.freezed.dart';
+
 part 'inform_close_ones_state.dart';
 
 class InformCloseOnesBloc
@@ -29,6 +30,7 @@ class InformCloseOnesBloc
     on<OnLoadContacts>(_onLoadContacts);
     on<OnContactsLoaded>(_onPreMadeMessagesLoaded);
     on<OnSelectContact>(_onSelectContact);
+    on<AllContactsSelected>(_allContactsSelected);
 
     contactsBloc.stream.listen((event) {
       if (event.contacts != null) {
@@ -86,5 +88,14 @@ class InformCloseOnesBloc
       list.add(event.contact);
     }
     emit(state.copyWith(selectedContacts: list));
+  }
+
+  void _allContactsSelected(
+      AllContactsSelected event, Emitter<InformCloseOnesState> emit) {
+    if (event.all) {
+      emit(state.copyWith(selectedContacts: [...state.contacts]));
+    } else {
+      emit(state.copyWith(selectedContacts: []));
+    }
   }
 }

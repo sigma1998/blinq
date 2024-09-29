@@ -4,6 +4,8 @@ import 'dart:math';
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+import '../../core/theme/app_colors.dart';
+
 class WaveWidget extends StatefulWidget {
   //
   final double scale;
@@ -50,6 +52,7 @@ class _WaveWidgetState extends State<WaveWidget> with TickerProviderStateMixin {
 
   void _updateRotation() =>
       _rotationFactor = _rotationController.value * 2 * pi;
+
   void _updateScale() => _scaleFactor = (_scaleController.value * 0.2) + 0.70;
 
   @override
@@ -92,16 +95,27 @@ class _WaveWidgetState extends State<WaveWidget> with TickerProviderStateMixin {
           ),
         ),
         Container(
-          width: 76,
-          height: 76,
-          margin: const EdgeInsets.all(16),
-          child: FloatingActionButton(
-            onPressed: () {
+          width: 112,
+          height: 112,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Colors.white.withOpacity(0.3),
+                Colors.white.withOpacity(0.2),
+                Colors.white.withOpacity(0.1),
+              ],
+            ),
+          ),
+          child: GestureDetector(
+            onTap: () {
               _scaleController.forward();
 
               widget.onPressed();
             },
-            backgroundColor: Theme.of(context).colorScheme.onSecondary,
             child: Icon(
               widget.animate ? Icons.mic : Icons.mic_none,
               size: 48,

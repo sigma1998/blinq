@@ -1,6 +1,9 @@
 // Flutter imports:
+import 'package:blinq/core/drawables/app_text_styles.dart';
 import 'package:blinq/core/locale/app_locale.dart';
 import 'package:blinq/core/theme/app_colors.dart';
+import 'package:blinq/utils/components/buttons/regular_button.dart';
+import 'package:blinq/utils/states/action_type.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -47,7 +50,6 @@ class _DriverEditorScreenState extends State<DriverEditorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('CAME_hERE_______________________1');
     return KeyboardEscape(
       child: BlocBuilder<DriverEditorBloc, DriverEditorState>(
         bloc: bloc,
@@ -59,11 +61,21 @@ class _DriverEditorScreenState extends State<DriverEditorScreen> {
               key: bloc.formKey,
               child: ListView(
                 padding: const EdgeInsets.symmetric(
-                  vertical: 40,
-                  horizontal: 32,
+                  vertical: 24,
+                  horizontal: 16,
                 ),
                 physics: const BouncingScrollPhysics(),
                 children: [
+                  const Text(
+                    'Information about the driver',
+                    style: AppTextStyles.s22W600,
+                  ),
+                  const SizedBox(height: 40),
+                  const Text(
+                    'Personal info',
+                    style: AppTextStyles.s22W600,
+                  ),
+                  const SizedBox(height: 32),
                   NameTextField(
                     labelText: 'strFirstName'.tr(),
                     controller: bloc.firstNameController,
@@ -79,7 +91,12 @@ class _DriverEditorScreenState extends State<DriverEditorScreen> {
                     maxDate: DateTime.now(),
                     controller: bloc.dateOfBirthController,
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 40),
+                  const Text(
+                    'Address',
+                    style: AppTextStyles.s22W600,
+                  ),
+                  const SizedBox(height: 32),
                   PickerTextField(
                     labelText: 'strCountry'.tr(),
                     controller: bloc.countryController,
@@ -116,7 +133,12 @@ class _DriverEditorScreenState extends State<DriverEditorScreen> {
                     labelText: 'strPhoneNumber'.tr(),
                     controller: bloc.phoneNumberController,
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 40),
+                  const Text(
+                    'Machine information',
+                    style: AppTextStyles.s22W600,
+                  ),
+                  const SizedBox(height: 36),
                   PickerTextField(
                     labelText: 'strCategory'.tr(),
                     controller: bloc.categoryController,
@@ -169,32 +191,44 @@ class _DriverEditorScreenState extends State<DriverEditorScreen> {
                     labelText: 'strDrivingLicenceValidTill'.tr(),
                     controller: bloc.licenseDateOfExpiryController,
                   ),
-                  const SizedBox(height: 90),
+                  const SizedBox(height: 120),
                 ],
               ),
             ),
             bottomNavigationBar: Padding(
-              padding: const EdgeInsets.only(bottom: 60),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  MyButton.primary(
-                    label: 'strSave'.tr(),
-                    onTap: () {
-                      if (bloc.validateForm()) {
-                        bloc.add(OnSubmitDriver());
-                      }
-                    },
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 8,
-                      horizontal: 60,
-                    ),
-                    isLoading: state.status == Status.loading,
-                    labelStyle: const TextStyle(fontWeight: FontWeight.w500),
-                  ),
-                ],
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: RegularButton(
+                loading: state.status == Status.loading,
+                title: 'strSave'.tr(),
+                onTap: () {
+                  if (bloc.validateForm()) {
+                    bloc.add(OnSubmitDriver());
+                  }
+                },
               ),
             ),
+            // bottomNavigationBar: Padding(
+            //   padding: const EdgeInsets.only(bottom: 60),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       MyButton.primary(
+            //         label: 'strSave'.tr(),
+            //         onTap: () {
+            //           if (bloc.validateForm()) {
+            //             bloc.add(OnSubmitDriver());
+            //           }
+            //         },
+            //         padding: const EdgeInsets.symmetric(
+            //           vertical: 8,
+            //           horizontal: 60,
+            //         ),
+            //         isLoading: state.status == Status.loading,
+            //         labelStyle: const TextStyle(fontWeight: FontWeight.w500),
+            //       ),
+            //     ],
+            //   ),
+            // ),
           );
         },
       ),

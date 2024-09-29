@@ -8,7 +8,7 @@ part of 'vehicle_info_dto.dart';
 
 _$VehicleInfoDtoImpl _$$VehicleInfoDtoImplFromJson(Map<String, dynamic> json) =>
     _$VehicleInfoDtoImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
     );
 

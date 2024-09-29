@@ -25,6 +25,8 @@ import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/services/location/location_service.dart';
 import 'package:blinq/utils/smart_widgets/dialogs/unifnished_report_dialog/unfinished_report_dialog.dart';
 
+import '../../../data/model/profile/response/profile_response_model.dart';
+
 class ReportBloc extends Cubit<ReportState> {
   //
   final AccidentRepository accidentRepository;
@@ -32,6 +34,7 @@ class ReportBloc extends Cubit<ReportState> {
   final ProfileBloc profileBloc;
 
   ReportType _reportType = ReportType.accident;
+  ProfileResponseModel? secondUser;
 
   int _reportId = 0;
 
@@ -43,9 +46,11 @@ class ReportBloc extends Cubit<ReportState> {
 
   //
   ReportType get reportType => _reportType;
+
   setReportType(ReportType type) => _reportType = type;
 
   int get reportId => _reportId;
+
   setReportId(int reportId) => _reportId = reportId;
 
   //
@@ -53,8 +58,13 @@ class ReportBloc extends Cubit<ReportState> {
       profileBloc.vehicleType ?? VehicleType.auto;
 
   //
-  setUser(User user) {
+  Future<void> setUser(User user) async {
     emit(state.copyWith(user: user));
+  }
+
+  //user data for email added by akhror
+  Future<void> fetchUserData(ProfileResponseModel user) async {
+    secondUser = user;
   }
 
   //

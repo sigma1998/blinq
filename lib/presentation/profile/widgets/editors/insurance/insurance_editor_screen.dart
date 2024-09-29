@@ -11,13 +11,14 @@ import 'package:blinq/app/locator.dart';
 import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'package:blinq/utils/custom_widgets/app_bar/app_bar.dart';
-import 'package:blinq/utils/custom_widgets/buttons/default_button.dart';
 import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/date_picker_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/email_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import '../../../../../core/drawables/app_text_styles.dart';
+import '../../../../../utils/components/buttons/regular_button.dart';
 import 'bloc/insurance_editor_bloc.dart';
 import 'bloc/insurance_editor_event.dart';
 
@@ -61,11 +62,17 @@ class _InsuranceEditorScreenState extends State<InsuranceEditorScreen> {
               key: bloc.formKey,
               child: ListView(
                 padding: const EdgeInsets.symmetric(
-                  vertical: 40,
-                  horizontal: 32,
+                  vertical: 24,
+                  horizontal: 16,
                 ),
                 physics: const BouncingScrollPhysics(),
                 children: [
+                  const SizedBox(height: 40),
+                  const Text(
+                    'Insurance company information',
+                    style: AppTextStyles.s20W600,
+                  ),
+                  const SizedBox(height: 32),
                   NameTextField(
                     labelText: 'strName'.tr(),
                     controller: bloc.nameController,
@@ -80,16 +87,12 @@ class _InsuranceEditorScreenState extends State<InsuranceEditorScreen> {
                     labelText: 'strGreenCardNumber'.tr(),
                     controller: bloc.greenCardNumberController,
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 40),
                   Text(
                     'strInsuranceCertificateGreenCardValid'.tr(),
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                      color: Theme.of(context).colorScheme.onSecondary,
-                    ),
+                    style: AppTextStyles.s20W600,
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 32),
                   DatePickerTextField(
                     labelText: 'strFrom'.tr(),
                     controller: bloc.certificateValidFromController,
@@ -104,7 +107,12 @@ class _InsuranceEditorScreenState extends State<InsuranceEditorScreen> {
                     labelText: 'strAgency'.tr(),
                     controller: bloc.agencyController,
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 40),
+                  const Text(
+                    'Address',
+                    style: AppTextStyles.s20W600,
+                  ),
+                  const SizedBox(height: 32),
                   PickerTextField(
                     labelText: 'strCountry'.tr(),
                     controller: bloc.countryController,
@@ -134,37 +142,31 @@ class _InsuranceEditorScreenState extends State<InsuranceEditorScreen> {
                   EmailTextField(
                     controller: bloc.emailController,
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 40),
+                  const Text(
+                    'Does the policy cover material damage to the vehicle?',
+                    style: AppTextStyles.s20W600,
+                  ),
+                  const SizedBox(height: 32),
                   PickerTextField(
                     labelText: 'strPolicCover'.tr(),
                     onTap: bloc.onPolicyCoverPressed,
                     controller: bloc.policyCoverController,
                   ),
-                  const SizedBox(height: 90),
+                  const SizedBox(height: 110),
                 ],
               ),
             ),
-            bottomNavigationBar: Padding(
-              padding: const EdgeInsets.only(bottom: 60),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  MyButton.primary(
-                    onTap: () {
-                      if (bloc.validateForm()) {
-                        bloc.add(OnSubmitInsurance());
-                      }
-                    },
-                    label: 'strSave'.tr(),
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 8,
-                      horizontal: 60,
-                    ),
-                    isLoading: state.status == Status.loading,
-                    labelStyle: const TextStyle(fontWeight: FontWeight.w500),
-                  ),
-                ],
-              ),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerFloat,
+            floatingActionButton: RegularButton(
+              title: 'strSave'.tr(),
+              loading: state.status == Status.loading,
+              onTap: () {
+                if (bloc.validateForm()) {
+                  bloc.add(OnSubmitInsurance());
+                }
+              },
             ),
           );
         },

@@ -2,11 +2,11 @@
 import 'dart:io' show Platform;
 
 // Flutter imports:
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // Package imports:
-import 'package:device_info/device_info.dart';
 
 // Project imports:
 import 'package:blinq/utils/md5_helper.dart';
@@ -29,10 +29,10 @@ class DeviceInfoHelper {
 
     if (Platform.isAndroid) {
       AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-      id = androidInfo.androidId;
+      id = androidInfo.id;
     } else if (Platform.isIOS) {
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-      id = iosInfo.identifierForVendor;
+      id = iosInfo.identifierForVendor ?? '';
     } else {
       id = 'Unsupported platform';
     }
@@ -52,11 +52,11 @@ class DeviceInfoHelper {
       if (Platform.isAndroid) {
         var build = await deviceInfoPlugin.androidInfo;
         _produceUUID(build.model, build.version.toString(),
-            build.androidId); //UUID for Android
+            build.id); //UUID for Android
       } else if (Platform.isIOS) {
         var data = await deviceInfoPlugin.iosInfo;
         _produceUUID(data.name, data.systemVersion,
-            data.identifierForVendor); //UUID for iOS
+            data.identifierForVendor ?? ''); //UUID for iOS
       }
     } on PlatformException {
       debugPrint('Failed to get platform version');

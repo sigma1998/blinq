@@ -3,7 +3,6 @@ import 'dart:async';
 
 // Package imports:
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 // Project imports:
 import 'package:blinq/app/locator.dart';
@@ -13,11 +12,11 @@ import 'package:blinq/presentation/notification_dialog/notification_dialog.dart'
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/services/permission/permission_service.dart';
 
-const androidChannel = AndroidNotificationChannel(
-  'high_importance_channel', // id
-  'High Importance Notifications', // title
-  importance: Importance.max,
-);
+// const androidChannel = AndroidNotificationChannel(
+//   'high_importance_channel', // id
+//   'High Importance Notifications', // title
+//   importance: Importance.max,
+// );
 
 class NotificationService {
   //
@@ -25,8 +24,8 @@ class NotificationService {
   static final FirebaseMessaging _firebaseMessaging =
       FirebaseMessaging.instance;
 
-  static final flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
+  // static final flutterLocalNotificationsPlugin =
+  //     FlutterLocalNotificationsPlugin();
 
   //
   static final StreamController<ResponseNotificationDto?>
@@ -66,10 +65,10 @@ class NotificationService {
     );
 
     // Android
-    await flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.createNotificationChannel(androidChannel);
+    // await flutterLocalNotificationsPlugin
+    //     .resolvePlatformSpecificImplementation<
+    //         AndroidFlutterLocalNotificationsPlugin>()
+    //     ?.createNotificationChannel(androidChannel);
   }
 
   static void _getInitialMessage() {

@@ -17,3 +17,9 @@ class OnSelectContact extends InformCloseOnesEvent {
 
   OnSelectContact({required this.contact});
 }
+
+class AllContactsSelected extends InformCloseOnesEvent {
+  final bool all;
+
+  AllContactsSelected(this.all);
+}

@@ -1,4 +1,6 @@
 // Package imports:
+
+import 'package:blinq/presentation/break_down/break_down_type/presentation/break_down_type_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -80,18 +82,22 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
   void onAccidentPressed() async {
     _hideMap();
     reportBloc.setReportType(ReportType.accident);
-    await NavigationService.pushNamed(
-      routeName: CreateReportScreen.route,
-      nestedKey: NavigationService.homeNavigatorKey,
-    );
+    // await NavigationService.pushNamed(
+    //   routeName: CreateReportScreen.route,
+    //   nestedKey: NavigationService.homeNavigatorKey,
+    // );
     _showMap();
   }
 
   void onBreakDownPressed() async {
     _hideMap();
     reportBloc.setReportType(ReportType.breakdown);
+    // await NavigationService.pushNamed(
+    //   routeName: CreateReportScreen.route,
+    //   nestedKey: NavigationService.homeNavigatorKey,
+    // );
     await NavigationService.pushNamed(
-      routeName: CreateReportScreen.route,
+      routeName: BreakDownTypeScreen.route,
       nestedKey: NavigationService.homeNavigatorKey,
     );
     _showMap();

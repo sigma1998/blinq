@@ -2,12 +2,12 @@
 import 'dart:async';
 
 // Flutter imports:
+import 'package:blinq/utils/url_helper.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_sms/flutter_sms.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
@@ -16,6 +16,7 @@ import 'package:blinq/presentation/contacts/pages/premade_messages/bloc/premade_
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/services/permission/permission_service.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'premade_message_selector_event.dart';
 
 part 'premade_message_selector_bloc.freezed.dart';
@@ -61,24 +62,29 @@ class PreMadeMessageSelectorBloc
     ));
   }
 
-  Future<void> sendMessage(List<String> recipients) async {
-    final isGranted = await permissionService.handleSendSmsPermission();
+  Future<void> sendMessage(List<String> recipients, {String? message}) async {
+    final Uri smsLaunchUri = Uri(
+      scheme: 'sms',
+      pathSegments: recipients,
+      queryParameters: <String, String>{
+        'body': message ?? state.selectedMessage?.message ?? ''
+      },
+    );
 
-    if (!isGranted) {
-      NavigationService.showErrorToast('strPermissionDenied'.tr());
-      return;
+    if (await canLaunchUrl(smsLaunchUri)) {
+      final result = await launchUrl(smsLaunchUri);
+      debugPrint('result: $result');
+      await NavigationService.showToast(
+        text: 'strYourInformMessageSent'.tr(),
+        title: 'strSuccess'.tr(),
+      );
+    } else {
+      permissionService.handleSendSmsPermission();
+      sendMessage(
+        recipients,
+        message: message,
+      );
     }
-
-    final result = await sendSMS(
-      sendDirect: true,
-      recipients: recipients,
-      message: state.selectedMessage?.message ?? '',
-    );
-    debugPrint('result: $result');
-    await NavigationService.showToast(
-      text: 'strYourInformMessageSent'.tr(),
-      title: 'strSuccess'.tr(),
-    );
   }
 
   FutureOr<void> _onPreMadeMessagesLoaded(OnPreMadeMessagesLoaded event,

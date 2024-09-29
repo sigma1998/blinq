@@ -1,5 +1,7 @@
 // Flutter imports:
+import 'package:blinq/core/drawables/app_text_styles.dart';
 import 'package:blinq/core/locale/app_locale.dart';
+import 'package:blinq/utils/components/app_bar/progress_app_bar.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -54,20 +56,19 @@ class _SecondDriverEditorCarScreenState
         return SafeArea(
           child: KeyboardEscape(
             child: Scaffold(
+              appBar: const ProgressAppBar(step: 4),
               body: Form(
                 key: cubit.formKey,
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 40,
-                    horizontal: 32,
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   physics: const BouncingScrollPhysics(),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox(height: 24),
                       Text(
                         'strInformationCar'.tr(),
-                        style: Theme.of(context).textTheme.titleMedium,
+                        style: AppTextStyles.s22W600,
                       ),
                       const SizedBox(height: 40),
                       // PickerTextField(
@@ -98,15 +99,15 @@ class _SecondDriverEditorCarScreenState
                         onTap: cubit.onColorTap,
                         controller: cubit.colorController,
                       ),
-                      const SizedBox(height: 90),
+                      const SizedBox(height: 16),
 
-                      //~ Motor
-
-                      Text(
-                        'strMotor'.tr(),
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                      const SizedBox(height: 40),
+                      // //~ Motor
+                      //
+                      // Text(
+                      //   'strMotor'.tr(),
+                      //   style: Theme.of(context).textTheme.titleMedium,
+                      // ),
+                      // const SizedBox(height: 40),
                       NameTextField(
                         labelText: 'strMakeType'.tr(),
                         controller: cubit.makeTypeController,
@@ -128,7 +129,7 @@ class _SecondDriverEditorCarScreenState
                         onTap: cubit.onSelectCountryOfRegistrationPressed,
                         controller: cubit.countryOfRegistrationController,
                       ),
-                      const SizedBox(height: 36),
+                      const SizedBox(height: 116),
                     ],
                   ),
                 ),

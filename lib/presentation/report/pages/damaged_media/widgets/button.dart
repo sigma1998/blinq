@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -16,16 +17,31 @@ class DamagedMediaButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: MyInkWell(
-        onTap: onTap,
-        padding: const EdgeInsets.all(24),
-        borderRadius: BorderRadius.circular(100),
-        color: Theme.of(context).colorScheme.primary,
-        child: SvgPicture.asset(
-          AppDrawables.camera,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 144,
+        height: 144,
+        alignment: Alignment.center,
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppColors.darkGrey,
+        ),
+        child: Container(
+          width: 112,
+          height: 112,
+          alignment: Alignment.center,
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            color: AppColors.grey1,
+          ),
+          child: SvgPicture.asset(
+            AppDrawables.camerNew,
+            width: 48,
+          ),
         ),
       ),
     );
+
   }
 }

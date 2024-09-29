@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -14,6 +15,7 @@ import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/custom_widgets/modal_progress_hud.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'bloc/create_report_bloc.dart';
 import 'widgets/item.dart';
 
@@ -52,10 +54,10 @@ class _CreateReportScreenState extends State<CreateReportScreen> {
             isLoading: state.status == Status.loading,
             child: Padding(
               padding: const EdgeInsets.symmetric(
-                vertical: 64,
+                vertical: 24,
                 horizontal: 18,
               ),
-              child: Column(
+              child: ListView(
                 children: [
                   CreateReportItem(
                     icon: AppDrawables.heartPulse,
@@ -81,14 +83,36 @@ class _CreateReportScreenState extends State<CreateReportScreen> {
                     onTap: bloc.onCreateReportPressed,
                     color: Theme.of(context).colorScheme.primary,
                   ),
+                  const SizedBox(height: 20),
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          alignment: Alignment.center,
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle, color: AppColors.darkGrey),
+                          child: SvgPicture.asset(
+                            AppDrawables.arrowLeft,
+                            colorFilter: const ColorFilter.mode(
+                              AppColors.white,
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
           );
         },
       ),
-      floatingActionButton: const NavigationButton(height: 135),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

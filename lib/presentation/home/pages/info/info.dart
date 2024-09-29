@@ -15,7 +15,7 @@ class HomeInfo extends StatelessWidget {
     return Navigator(
       initialRoute: HomeInfoScreen.route,
       onGenerateRoute: onGenerateInfoRoutes,
-      key: NavigationService.homeInfoNavigatorKey,
+       key: NavigationService.homeInfoNavigatorKey,
     );
   }
 }

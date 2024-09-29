@@ -17,6 +17,7 @@ import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/number_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import '../../../../../utils/states/action_type.dart';
 import 'bloc/vehicle_editor_bloc.dart';
 import 'bloc/vehicle_editor_event.dart';
 
@@ -35,6 +36,7 @@ class _VehicleEditorScreenState extends State<VehicleEditorScreen> {
   /// /// Screen is changed from vehicle to my car
   ///
   late VehicleEditorBloc bloc;
+
 
   @override
   void initState() {

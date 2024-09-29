@@ -9,9 +9,9 @@ part of 'vehicle_color_dto.dart';
 _$VehicleColorDtoImpl _$$VehicleColorDtoImplFromJson(
         Map<String, dynamic> json) =>
     _$VehicleColorDtoImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       colour: json['colour'] as String?,
-      brandId: json['brandId'] as int?,
+      brandId: (json['brandId'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$VehicleColorDtoImplToJson(

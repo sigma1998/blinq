@@ -68,16 +68,17 @@ class PointsOfImpactBloc extends Cubit<PointsOfImpactScreenState> {
         filename: file.path.split('/').last,
       );
 
-     await _sendData(multipartFile );
-
+      await _sendData(multipartFile);
 
       emit(state.copyWith(
         status: Status.initial,
       ));
       NavigationService.pushNamed(
           routeName: SpeechToTextScreen.route,
-          arguments:
-              SpeechToTextArgs(mode: SpeechToTextScreenMode.visibleDamage),
+          arguments: SpeechToTextArgs(
+            mode: SpeechToTextScreenMode.visibleDamage,
+            step: 5,
+          ),
           nestedKey: NavigationService.homeNavigatorKey);
     } catch (e) {
       emit(state.copyWith(

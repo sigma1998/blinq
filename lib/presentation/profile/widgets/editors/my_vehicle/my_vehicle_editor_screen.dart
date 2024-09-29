@@ -15,6 +15,7 @@ import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/date_picker_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/number_text_field.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import '../../../../../utils/components/buttons/regular_button.dart';
 import 'bloc/my_vehicle_editor_bloc.dart';
 import 'bloc/my_vehicle_editor_event.dart';
 
@@ -56,8 +57,8 @@ class _MyVehicleEditorScreenState extends State<MyVehicleEditorScreen> {
               key: bloc.formKey,
               child: ListView(
                 padding: const EdgeInsets.symmetric(
-                  vertical: 40,
-                  horizontal: 32,
+                  vertical: 24,
+                  horizontal: 16,
                 ),
                 physics: const BouncingScrollPhysics(),
                 children: [
@@ -82,25 +83,14 @@ class _MyVehicleEditorScreenState extends State<MyVehicleEditorScreen> {
                     controller: bloc.batteryReplacementDateController,
                   ),
                   const SizedBox(height: 40),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      MyButton.primary(
-                        label: 'strSave'.tr(),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8,
-                          horizontal: 60,
-                        ),
-                        isLoading: state.status == Status.loading,
-                        onTap: () {
-                          if (bloc.validateForm()) {
-                            bloc.add(OnSubmitMyVehicle());
-                          }
-                        },
-                        labelStyle:
-                            const TextStyle(fontWeight: FontWeight.w500),
-                      ),
-                    ],
+                  RegularButton(
+                    title: 'strSave'.tr(),
+                    loading: state.status == Status.loading,
+                    onTap: () {
+                      if (bloc.validateForm()) {
+                        bloc.add(OnSubmitMyVehicle());
+                      }
+                    },
                   ),
                   const SizedBox(height: 24),
                 ],

@@ -82,6 +82,17 @@ class LocalStorageService {
     return false;
   }
 
+  Future<DiscoveredDevice?> getDeviceById(String id) async {
+    DiscoveredDevice? device;
+    List<DiscoveredDevice> alreadySaveDevices = await getDevices;
+    for (var element in alreadySaveDevices) {
+      if(element.id == id){
+        device = element;
+      }
+    }
+    return device;
+  }
+
   Future<void> renameSavedDevice(DiscoveredDevice device) async {
     // List<DiscoveredDevice> alreadySaveDevices = await getDevices;
     // int indexOfDevice =

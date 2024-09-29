@@ -154,6 +154,7 @@ class AppDrawables {
   static const String carLeft = '$cars/left.png';
   static const String carRight = '$cars/right.png';
   static const String carTop = '$cars/top.png';
+  static const String newImage = '$cars/Left side.svg';
   //car blank
   static const String blankCarBack = '$cars/blank/back.png';
   static const String blankCarFront = '$cars/blank/front.png';
@@ -180,4 +181,64 @@ class AppDrawables {
   static const String carSvg = '$icons/car.svg';
   static const String bykeSvg = '$icons/byke.svg';
   static const String bigCarSvg = '$icons/big_car.svg';
+
+
+
+  //new2,1
+  static const String homeContainer = 'assets/images/new2,1/home_container.png';
+  static const String bluetoothConnected = 'assets/images/new2,1/blutooth_connected.png';
+  static const String bluetoothNotConnected = 'assets/images/new2,1/blutooth_not_connected.png';
+  static const String mainButton = 'assets/images/new2,1/main_button.png';
+  static const String mainBottomImage = 'assets/images/new2,1/main_bottom_image.png';
+  static const String mainHelpButton = 'assets/images/new2,1/main_help_button.png';
+  static const String botNavContainer = 'assets/images/new2,1/bot_nav_container.png';
+  static const String botNavItem = 'assets/images/new2,1/home_bot_nav_item.png';
+  static const String appLogoSVG = 'assets/images/new2,1/Logo.svg';
+  static const String contact = 'assets/images/new2,1/phone-contact.svg';
+  static const String profileIcon = 'assets/images/new2,1/profile.svg';
+  static const String emergency = 'assets/images/new2,1/emergency.png';
+  static const String accidentImage = 'assets/images/new2,1/accident.png';
+  static const String breakdownImage = 'assets/images/new2,1/breakdown.png';
+  static const String animFirst = 'assets/images/new2,1/anim_first.svg';
+  static const String animSecond = 'assets/images/new2,1/anim_second.svg';
+  static const String animThird = 'assets/images/new2,1/anim_third.svg';
+  static const String bluetoothIcon = 'assets/images/new2,1/bluetooth_icon.svg';
+  static const String one = 'assets/images/new2,1/first.svg';
+  static const String two = 'assets/images/new2,1/second.svg';
+  static const String three = 'assets/images/new2,1/third.svg';
+  static const String connecting = 'assets/images/new2,1/connecting.svg';
+  static const String edit2 = 'assets/images/new2,1/edit-2.svg';
+  static const String link = 'assets/images/new2,1/link.svg';
+  static const String power = 'assets/images/new2,1/power.svg';
+  static const String breakDownTypeContainer = 'assets/images/new2,1/type_container.png';
+  static const String flatTire = 'assets/images/new2,1/flat_tire.svg';
+  static const String fuel = 'assets/images/new2,1/fuel.svg';
+  static const String engine = 'assets/images/new2,1/engine.svg';
+  static const String empty = 'assets/images/new2,1/empty.svg';
+  static const String phoneRed = 'assets/images/new2,1/phone_red.svg';
+  static const String messageYellow = 'assets/images/new2,1/message_yellow.svg';
+  static const String globe = 'assets/images/new2,1/globe.svg';
+  static const String camerNew = 'assets/images/new2,1/camer_new.svg';
+  static const String keyboard = 'assets/images/new2,1/keeyboard.svg';
+  static const String cornerUpRight = 'assets/images/new2,1/corner-up-right.svg';
+  static const String cornerUpLeft = 'assets/images/new2,1/corner-up-left.svg';
+  static const String penBig = 'assets/images/new2,1/Qalam.svg';
+  static const String eraser = 'assets/images/new2,1/Text input.svg';
+  static const String sketch = 'assets/images/new2,1/sketch.svg';
+  static const String cameraFilled = 'assets/images/new2,1/camera_filled.svg';
+  static const String ems = 'assets/images/new2,1/EMS.svg';
+  static const String fire = 'assets/images/new2,1/fire.svg';
+  static const String police = 'assets/images/new2,1/police.svg';
+  static const String right = 'assets/images/new2,1/right.svg';
+  static const String myEmail = 'assets/images/new2,1/email_1.svg';
+  static const String insuranceEmail = 'assets/images/new2,1/insurance_email.svg';
+  static const String messageSend = 'assets/images/new2,1/message_send.svg';
+  static const String call = 'assets/images/new2,1/call.svg';
+  static const String sendMessage = 'assets/images/new2,1/send_message.svg';
+  static const String galleryNew = 'assets/images/new2,1/gallery.svg';
+  static const String haveBlinqIcon = 'assets/images/new2,1/have_blinq_icon.svg';
+  static const String accidentCar = 'assets/images/new2,1/accident_car.png';
+  static const String sketchBack = 'assets/images/new2,1/sketch_back.png';
+  static const String twoPeople = 'assets/images/new2,1/two_people.svg';
+  static const String leftCar = 'assets/images/car/ZUyo2h01.svg';
 }

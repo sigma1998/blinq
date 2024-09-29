@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:another_flushbar/flushbar.dart';
+import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 // Project imports:
@@ -13,8 +14,6 @@ import 'package:blinq/core/theme/app_colors.dart';
 import 'custom_widgets/cupertino_action/cupertino_action_sheet.dart';
 
 class NavigationService {
-
-
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   static final GlobalKey<NavigatorState> homeNavigatorKey = GlobalKey();
@@ -23,13 +22,19 @@ class NavigationService {
 
   static bool isActiveDialog = false;
 
+  static Future<dynamic> push(
+      {required BuildContext context, required Widget screen}) async {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => screen),
+    );
+  }
 
   static Future<dynamic> pushNamed({
     required String routeName,
     Object? arguments,
     GlobalKey<NavigatorState>? nestedKey,
   }) {
-
     Fluttertoast.cancel();
     FocusManager.instance.primaryFocus?.unfocus();
     if (nestedKey != null) {
@@ -126,9 +131,7 @@ class NavigationService {
               topRight: Radius.circular(36),
             ))
           : null,
-      backgroundColor: isScrollable
-          ? AppColors.darkGrey
-          : Colors.transparent,
+      backgroundColor: isScrollable ? AppColors.darkGrey : Colors.transparent,
       barrierColor: barierColor ?? AppColors.darkGrey.withOpacity(0.3),
       builder: (context) => sheet,
     );
@@ -163,27 +166,26 @@ class NavigationService {
         return Theme(
           data: Theme.of(context).copyWith(
               colorScheme: const ColorScheme(
-                brightness: Brightness.dark,
-                primary: Colors.black,
-                onPrimary: Colors.white,
-                secondary: AppColors.darkGrey,
-                onSecondary: AppColors.grey1,
-                onSecondaryContainer: AppColors.lightGrey2,
-                error: Colors.red,
-                onError: Colors.white,
-                background: Colors.black,
-                onBackground: AppColors.darkGrey,
-                surface: AppColors.darkGrey,
-                onSurface: Colors.white,
-                outline: AppColors.grey2,
-                outlineVariant: AppColors.lightGrey,
-                tertiary: AppColors.lightGreyVariant,
-                secondaryContainer: AppColors.darkGreyVarient,
-                surfaceVariant: AppColors.messageBackgroundColor,
-                inversePrimary: AppColors.darkRedColor,
-                onSurfaceVariant: AppColors.lightGrey3,
-              )
-          ),
+            brightness: Brightness.dark,
+            primary: Colors.black,
+            onPrimary: Colors.white,
+            secondary: AppColors.darkGrey,
+            onSecondary: AppColors.grey1,
+            onSecondaryContainer: AppColors.lightGrey2,
+            error: Colors.red,
+            onError: Colors.white,
+            background: Colors.black,
+            onBackground: AppColors.darkGrey,
+            surface: AppColors.darkGrey,
+            onSurface: Colors.white,
+            outline: AppColors.grey2,
+            outlineVariant: AppColors.lightGrey,
+            tertiary: AppColors.lightGreyVariant,
+            secondaryContainer: AppColors.darkGreyVarient,
+            surfaceVariant: AppColors.messageBackgroundColor,
+            inversePrimary: AppColors.darkRedColor,
+            onSurfaceVariant: AppColors.lightGrey3,
+          )),
           child: Dialog(
             insetPadding: EdgeInsets.zero,
             backgroundColor: barrierColor,

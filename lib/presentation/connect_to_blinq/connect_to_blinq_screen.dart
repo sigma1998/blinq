@@ -1,4 +1,9 @@
 // Flutter imports:
+import 'package:blinq/presentation/connect_to_blinq/pages/bluetooth_history_page.dart';
+import 'package:blinq/presentation/connect_to_blinq/pages/bluetooth_scan_page.dart';
+import 'package:blinq/presentation/connect_to_blinq/widgets/bluetooth_page_indicator.dart';
+import 'package:blinq/utils/components/app_bar/back_app_bar.dart';
+import 'package:blinq/utils/components/app_bar/progress_app_bar.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -15,16 +20,68 @@ import 'widgets/states/connecting_state.dart';
 import 'widgets/states/scanning_state.dart';
 import 'widgets/states/select_state.dart';
 
-class ConnectToBlinqScreen extends StatelessWidget {
+class ConnectToBlinqScreen extends StatefulWidget {
   //
   static const route = '/connect_to_blinq';
 
   const ConnectToBlinqScreen({super.key});
 
   @override
+  State<ConnectToBlinqScreen> createState() => _ConnectToBlinqScreenState();
+}
+
+class _ConnectToBlinqScreenState extends State<ConnectToBlinqScreen> {
+  final PageController controller = PageController();
+  int currentIndex = 0;
+
+  @override
   Widget build(BuildContext context) {
     final cubit = context.read<ConnectToBlinqCubit>();
-
+    return Scaffold(
+      appBar: BackAppBar(
+        title: 'Connection to BLINQ',
+        onTap: () {
+          cubit.onNavigateBack();
+        },
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(height: 16),
+          BluetoothPageIndicator(
+            currentIndex: currentIndex,
+            onTap: (int index) {
+              controller.animateToPage(
+                index,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.linear,
+              );
+            },
+          ),
+          Expanded(
+            child: PageView(
+              controller: controller,
+              onPageChanged: (int index) {
+                setState(() {
+                  currentIndex = index;
+                });
+              },
+              children: [
+                const BluetoothScanPage(),
+                BluetoothHistoryPage(
+                  onConnectToSavedItem: () {
+                    controller.previousPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.linear,
+                    );
+                  },
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100,
@@ -96,5 +153,11 @@ class ConnectToBlinqScreen extends StatelessWidget {
       default:
         return const ConnectToBlinqInitialStateWidget();
     }
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }

@@ -1,4 +1,7 @@
 // Flutter imports:
+import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/presentation/report/pages/demaged_parts/widgets/car_positions_section.dart';
+import 'package:blinq/utils/components/app_bar/progress_app_bar.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -7,16 +10,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:blinq/app/locator.dart';
-import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/data/model/car/vehicle_type/vehicle_type.dart';
 import 'package:blinq/domain/repositories/accident_repository.dart';
 import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
-import 'package:blinq/utils/custom_widgets/step_indicator.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../domain/bloc/report_bloc/report_type.dart';
 import 'bloc/damaged_parts_bloc.dart';
 import 'bloc/damaged_parts_state.dart';
-import 'widgets/arrows.dart';
 import 'widgets/selected_parts_list.dart';
 import 'widgets/vehicles.dart';
 
@@ -33,12 +35,13 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
   late DamagedPartsBloc bloc;
   final ScrollController pageController = ScrollController();
   final ScrollController listScrollController = ScrollController();
+  ValueNotifier<int> valueNotifier = ValueNotifier<int>(0);
+
 
   @override
   void didChangeDependencies() {
     final args =
         ModalRoute.of(context)?.settings.arguments as DamagedPartsScreenArgs?;
-
     bloc = DamagedPartsBloc(
       vehicleType: args?.vehicleType ?? VehicleType.auto,
       accidentRepository: getIt<AccidentRepositoryImpl>(),
@@ -50,7 +53,6 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
     return BlocProvider(
       create: (_) {
         return bloc;
@@ -59,29 +61,35 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
         bloc: bloc,
         builder: (context, state) {
           return Scaffold(
+            appBar: ProgressAppBar(
+              step: 10,
+              onSaveTap: () => bloc.onNextTap(context),
+            ),
             body: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.only(
+                  top: 24.0,
+                ),
                 child: Column(
                   children: [
-                    StepIndicator(
-                      currentStep: bloc.getStep(),
-                      showTrailingTitle: true,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Text(
+                        '10. ${'strSelectDamage'.tr()}',
+                        style: AppTextStyles.s22W600,
+                      ),
                     ),
-                    const SizedBox(
-                      height: 24,
+                    SizedBox(
+                      height: 24.h,
                     ),
-                    Text(
-                      'strSelectDamage'.tr(),
-                      style: Theme.of(context).textTheme.titleMedium,
+                    SelectedPartsList(
+                      controller: listScrollController,
                     ),
-                    const SizedBox(
-                      height: 24,
+                    SizedBox(height: 24.h),
+                    CarPositionsSection(
+                      valueNotifier: valueNotifier,
                     ),
-                    SelectedPartsList(controller: listScrollController,),
-                    const SizedBox(
-                      height: 24,
-                    ),
+                    SizedBox(height: 12.h),
                     Expanded(
                       child: Stack(
                         children: [
@@ -90,38 +98,19 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
                             child: VehiclesList(
                               pageController: pageController,
                               listController: listScrollController,
+                              valueNotifier: valueNotifier,
                             ),
                           ),
-                          if (state.pageIndex < bloc.vehicleSelect.length - 1)
-                            Arrow(
-                              alignment: Alignment.centerRight,
-                              icon: AppDrawables.leftArrow,
-                              onTap: () => bloc.setPageIndex(
-                                  index: state.pageIndex + 1,
-                                  width:width,
-                                  context:context,
-                                  pageController: pageController,
-                              ),
-                            ),
-                          if (state.pageIndex > 0)
-                            Arrow(
-                              alignment: Alignment.centerLeft,
-                              icon: AppDrawables.rightArrow,
-                              onTap: () => bloc.setPageIndex(
-                                  index: state.pageIndex - 1,
-                                  width:width,
-                                  context:context,
-                                  pageController: pageController,
-                              ),
-                            ),
                         ],
                       ),
                     ),
+                    SizedBox(height: 20.h),
                     NavigationButton(
-                      padding: 0,
+                      padding: 16,
                       loading: state.status == Status.loading,
                       onNextTap: () => bloc.onNextTap(context),
                     ),
+                    SizedBox(height: 20.h),
                   ],
                 ),
               ),
@@ -130,6 +119,12 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    valueNotifier.dispose();
+    super.dispose();
   }
 }
 

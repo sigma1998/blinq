@@ -20,8 +20,6 @@ class MainScreenBloc extends Bloc<MainScreenEvent, GenericBlocState<int>> {
   }
 
   bool onWillPop({bool clearAll = false}) {
-    print(
-        'CAN POP_________________${NavigationService.homeNavigatorKey.currentState?.canPop()}');
     if (state.data == 0) {
       if (NavigationService.homeNavigatorKey.currentState?.canPop() ?? false) {
         if (clearAll) {

@@ -39,7 +39,6 @@ final uuidReadShort = Uuid.parse("8902");
 class BluetoothHelper {
   //
   String _deviceAddress = '';
-  final FlutterReactiveBle _ble = FlutterReactiveBle();
 
   // BluetoothDevice convertToBluetoothDevice(DiscoveredDevice device) {
   //   return BluetoothDevice(remoteId: DeviceIdentifier(device.id));

@@ -136,7 +136,8 @@ abstract class AccidentRepository {
   Future<void> respondToNotification(
       {required int accidentId, required bool isAgree});
 
-  Future<PolicyHolderRequestModel?> sameAsDriver({required int accidentId, required bool sameAsDriver});
+  Future<PolicyHolderRequestModel?> sameAsDriver(
+      {required int accidentId, required bool sameAsDriver});
 }
 
 class AccidentRepositoryImpl implements AccidentRepository {
@@ -266,7 +267,9 @@ class AccidentRepositoryImpl implements AccidentRepository {
   Future<void> accidentSketch(int accidentId, MultipartFile sketch) async {
     try {
       return await api.uploadAccidentSketch(
-          accidentId: accidentId, sketch: sketch);
+        accidentId: accidentId,
+        sketch: sketch,
+      );
     } catch (e) {
       rethrow;
     }
@@ -544,7 +547,9 @@ class AccidentRepositoryImpl implements AccidentRepository {
   }
 
   @override
-  Future<PolicyHolderRequestModel?> sameAsDriver({required int accidentId, required bool sameAsDriver}) async {
-    return await api.sameAsDriver(accidentId: accidentId, sameAsDriver: sameAsDriver);
+  Future<PolicyHolderRequestModel?> sameAsDriver(
+      {required int accidentId, required bool sameAsDriver}) async {
+    return await api.sameAsDriver(
+        accidentId: accidentId, sameAsDriver: sameAsDriver);
   }
 }

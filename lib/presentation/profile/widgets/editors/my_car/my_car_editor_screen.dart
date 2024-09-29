@@ -19,6 +19,9 @@ import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 
+import '../../../../../core/drawables/app_text_styles.dart';
+import '../../../../../utils/components/buttons/regular_button.dart';
+
 class EditorMyCarScreen extends StatefulWidget {
   //
   static const String route = '/my_car_editor';
@@ -55,12 +58,18 @@ class _EditorMyCarScreenState extends State<EditorMyCarScreen> {
               key: bloc.formKey,
               child: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(
-                  vertical: 40,
-                  horizontal: 32,
+                  vertical: 24,
+                  horizontal: 26,
                 ),
                 physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
+                    const SizedBox(height: 40),
+                    const Text(
+                      'Information about car',
+                      style: AppTextStyles.s20W600,
+                    ),
+                    const SizedBox(height: 32),
                     PickerTextField(
                       labelText: 'strVehicleType'.tr(),
                       onTap: bloc.onVehicleTypeTap,
@@ -91,25 +100,14 @@ class _EditorMyCarScreenState extends State<EditorMyCarScreen> {
                       controller: bloc.colorController,
                     ),
                     const SizedBox(height: 40),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        MyButton.primary(
-                          onTap: () {
-                            if (bloc.validateForm()) {
-                              bloc.onSubmit();
-                            }
-                          },
-                          label: 'strSave'.tr(),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 8,
-                            horizontal: 60,
-                          ),
-                          labelStyle: const TextStyle(
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
+                    RegularButton(
+                      title: 'strSave'.tr(),
+                      loading: state.status == Status.loading,
+                      onTap:() {
+                        if (bloc.validateForm()) {
+                          bloc.onSubmit();
+                        }
+                      },
                     ),
                     const SizedBox(height: 24),
                   ],

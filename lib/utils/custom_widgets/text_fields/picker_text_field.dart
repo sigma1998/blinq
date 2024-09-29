@@ -59,19 +59,22 @@ class PickerTextField extends StatelessWidget {
         minWidth: 24,
         minHeight: 24,
         maxHeight: 24,
-        maxWidth: 24,
+        maxWidth: 32,
       ),
     );
   }
 
   Widget get _suffixIcon {
-    return SvgPicture.asset(
-      AppDrawables.arrowDown,
-      width: 24,
-      height: 24,
-      colorFilter: const ColorFilter.mode(
-        Colors.white,
-        BlendMode.srcIn,
+    return Padding(
+      padding: const EdgeInsets.only(right: 8.0),
+      child: SvgPicture.asset(
+        AppDrawables.arrowDown,
+        width: 16,
+        height: 20,
+        colorFilter: const ColorFilter.mode(
+          Colors.white,
+          BlendMode.srcIn,
+        ),
       ),
     );
   }

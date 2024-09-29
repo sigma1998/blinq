@@ -9,8 +9,8 @@ part of 'car_response_model.dart';
 _$CarResponseModelImpl _$$CarResponseModelImplFromJson(
         Map<String, dynamic> json) =>
     _$CarResponseModelImpl(
-      carId: json['car_id'] as int?,
-      colorId: json['color_id'] as int?,
+      carId: (json['car_id'] as num?)?.toInt(),
+      colorId: (json['color_id'] as num?)?.toInt(),
       modelSeries: json['model_series'] as String?,
       makeType: json['make_type'] as String?,
       engineNumber: json['engine_number'] as String?,
@@ -19,19 +19,19 @@ _$CarResponseModelImpl _$$CarResponseModelImplFromJson(
       trailerCountryOfRegistration:
           json['trailer_country_of_registration'] as String?,
       vehicleType: json['vehicle_type'] as String?,
-      traveledKm: json['traveled_km'] as int?,
-      nextTechnical: json['next_technical'] as int?,
+      traveledKm: (json['traveled_km'] as num?)?.toInt(),
+      nextTechnical: (json['next_technical'] as num?)?.toInt(),
       nextTechnicalUpdatedDate: json['next_technical_updated_date'] == null
           ? null
           : DateTime.parse(json['next_technical_updated_date'] as String),
-      oilReplacement: json['oil_replacement'] as int?,
+      oilReplacement: (json['oil_replacement'] as num?)?.toInt(),
       oilReplacementUpdatedDate: json['oil_replacement_updated_date'] == null
           ? null
           : DateTime.parse(json['oil_replacement_updated_date'] as String),
       batteryReplacementDate: json['battery_replacement_date'] == null
           ? null
           : DateTime.parse(json['battery_replacement_date'] as String),
-      batterReplacement: json['battery_replacement'] as int?,
+      batterReplacement: (json['battery_replacement'] as num?)?.toInt(),
       batteryReplacementUpdatedDate: json['battery_replacement_updated_date'] ==
               null
           ? null

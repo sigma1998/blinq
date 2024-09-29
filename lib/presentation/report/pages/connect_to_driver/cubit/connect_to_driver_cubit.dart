@@ -11,6 +11,8 @@ import 'package:blinq/presentation/report/pages/scan_driver_license/scan_driver_
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 
+import '../../../second_driver_editors/screens/driver/driver_screen.dart';
+
 part 'connect_to_driver_cubit.freezed.dart';
 part 'connect_to_driver_state.dart';
 
@@ -49,7 +51,7 @@ class ConnectToDriverCubit extends Cubit<ConnectToDriverState> {
       emit(state.copyWith(status: Status.success));
 
       NavigationService.pushNamed(
-        routeName: ScanDriverLicense.route,
+        routeName: SecondDriverEditorScreen.route,
         nestedKey: NavigationService.homeNavigatorKey,
       );
     } catch (e) {

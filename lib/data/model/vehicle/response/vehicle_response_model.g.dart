@@ -9,15 +9,15 @@ part of 'vehicle_response_model.dart';
 _$UserVehicleResponseModelImpl _$$UserVehicleResponseModelImplFromJson(
         Map<String, dynamic> json) =>
     _$UserVehicleResponseModelImpl(
-      carId: json['car_id'] as int?,
-      traveledKm: json['traveled_km'] as int?,
-      nextTechnical: json['next_technical'] as int?,
+      carId: (json['car_id'] as num?)?.toInt(),
+      traveledKm: (json['traveled_km'] as num?)?.toInt(),
+      nextTechnical: (json['next_technical'] as num?)?.toInt(),
       nextTechnicalUpdatedDate: json['next_technical_updated_date'] as String?,
-      oilReplacement: json['oil_replacement'] as int?,
+      oilReplacement: (json['oil_replacement'] as num?)?.toInt(),
       oilReplacementUpdatedDate:
           json['oil_replacement_updated_date'] as String?,
       batteryReplacementDate: json['battery_replacement_date'] as String?,
-      batteryReplacement: json['battery_replacement'] as int?,
+      batteryReplacement: (json['battery_replacement'] as num?)?.toInt(),
       batteryReplacementUpdatedDate:
           json['battery_replacement_updated_date'] as String?,
     );

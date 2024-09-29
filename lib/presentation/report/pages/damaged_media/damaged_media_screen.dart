@@ -1,4 +1,7 @@
 // Flutter imports:
+import 'package:blinq/core/theme/app_colors.dart';
+import 'package:blinq/presentation/report/pages/damaged_media/widgets/photo_item.dart';
+import 'package:blinq/utils/components/app_bar/progress_app_bar.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -15,6 +18,8 @@ import 'package:blinq/utils/custom_widgets/loading.dart';
 import 'package:blinq/utils/custom_widgets/step_indicator.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/services/media/media_service.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../domain/bloc/report_bloc/report_type.dart';
 import 'cubit/damaged_media_cubit.dart';
 import 'widgets/button.dart';
 import 'widgets/item.dart';
@@ -38,7 +43,6 @@ class _DamagedMediaScreenState extends State<DamagedMediaScreen> {
   @override
   void initState() {
     super.initState();
-
     cubit = DamagedMediaCubit(
       reportBloc: context.read<ReportBloc>(),
       accidentRepository: getIt<AccidentRepositoryImpl>(),
@@ -63,61 +67,78 @@ class _DamagedMediaScreenState extends State<DamagedMediaScreen> {
             children: [
               SafeArea(
                 child: Scaffold(
+                  appBar: ProgressAppBar(
+                    step: 11,
+                    onSaveTap: cubit.onUploadDamagedMediaFiles,
+                  ),
                   extendBody: true,
                   body: Padding(
-                    padding: const EdgeInsets.all(32),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 24.0,
+                      horizontal: 16,
+                    ),
                     child: Column(
                       children: [
-                        StepIndicator(
-                          currentStep: cubit.step(),
-                          showTrailingTitle: true,
+                        Expanded(
+                          child: ListView(
+                            children: [
+                              const DamagedMediaEmptyStateWidget(),
+                              const SizedBox(height: 32),
+                              if (list.isNotEmpty)
+                                GridView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: list.length + 1,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemBuilder: (_, index) {
+                                    if (index == list.length) {
+                                      return PhotoItem(
+                                        onTap: cubit.imagePickerPressed,
+                                      );
+                                    } else {
+                                      final file = list[index];
+                                      return DamagedMediaItem(
+                                        file: file,
+                                        onRemove:
+                                            cubit.removeDamagedMediaPressed,
+                                      );
+                                    }
+                                  },
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    childAspectRatio: 172 / 200,
+                                    crossAxisSpacing: 8,
+                                    mainAxisSpacing: 8,
+                                  ),
+                                ),
+                            ],
+                          ),
                         ),
-                        const SizedBox(height: 20),
-                        if (list.isEmpty)
-                          const Expanded(
-                            flex: 2,
-                            child: DamagedMediaEmptyStateWidget(),
-                          )
-                        else
-                          Expanded(
-                            flex: 7,
-                            child: GridView.builder(
-                              shrinkWrap: true,
-                              itemCount: list.length,
-                              physics: const ClampingScrollPhysics(),
-                              itemBuilder: (_, index) {
-                                final file = list[index];
-
-                                return DamagedMediaItem(
-                                  file: file,
-                                  onRemove: cubit.removeDamagedMediaPressed,
-                                );
-                              },
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                childAspectRatio: 126 / 170,
-                              ),
+                        if (state.files.isEmpty)
+                          Padding(
+                            padding: EdgeInsets.only(bottom: 160.0.h),
+                            child: DamagedMediaButton(
+                              onTap: cubit.imagePickerPressed,
                             ),
                           ),
-                        if (state.files.length < 8)
-                          DamagedMediaButton(
-                            onTap: cubit.imagePickerPressed,
-                          ),
-                        const Expanded(flex: 1, child: SizedBox(height: 20)),
+                        const SizedBox(height: 10),
+                        NavigationButton(
+                          padding: 0,
+                          onNextTap: cubit.onUploadDamagedMediaFiles,
+                          label: state.files.isEmpty
+                              ? 'strNo'.tr()
+                              : 'strNext'.tr(),
+                        ),
                       ],
                     ),
                   ),
-                  floatingActionButton: NavigationButton(
-                    onNextTap: cubit.onUploadDamagedMediaFiles,
-                    label: state.files.isEmpty ? 'strNo'.tr() : 'strNext'.tr(),
-                  ),
-                  floatingActionButtonLocation:
-                      FloatingActionButtonLocation.centerFloat,
                 ),
               ),
               isUploading
-                  ? const DamagedMediaLoadingStateWidget()
+                  ? Container(
+                      color: AppColors.grey2.withOpacity(0.4),
+                      child: const DamagedMediaLoadingStateWidget(),
+                    )
                   : const SizedBox(),
             ],
           );

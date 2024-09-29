@@ -1,6 +1,10 @@
 enum ReportType{
-  accident,
-  breakdown,
+  accident('Accident part'),
+  breakdown('Create a report');
+
+  const ReportType(this.description);
+
+  final String description;
 }
 
 enum User{

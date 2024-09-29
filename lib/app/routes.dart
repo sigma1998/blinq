@@ -60,6 +60,10 @@ import 'package:blinq/presentation/report/second_driver_editors/screens/policy_h
 import 'package:blinq/presentation/splash_screen/splash_screen.dart';
 import 'package:blinq/presentation/success_video/success_video_screen.dart';
 
+import '../presentation/break_down/break_down_type/presentation/break_down_type_screen.dart';
+import '../presentation/report/pages/sketch/sketch_photo_screen.dart';
+import '../utils/speech_to_text/speech_to_text.dart';
+
 Map<String, WidgetBuilder> getRoutes(BuildContext context) {
   return {
     SplashScreen.route: (context) => const SplashScreen(),
@@ -101,6 +105,7 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
 
     // Sketch
     SketchScreen.route: (context) => const SketchScreen(),
+    SketchPhotoScreen.route: (context) => const SketchPhotoScreen(),
   };
 }
 
@@ -122,6 +127,8 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
       page = const HomeScreen();
     case CreateReportScreen.route:
       page = const CreateReportScreen();
+    case BreakDownTypeScreen.route:
+      page = const BreakDownTypeScreen();
     case ConnectToBlinqScreen.route:
       page = const ConnectToBlinqScreen();
     case PointsOfImpactScreen.route:
@@ -130,6 +137,8 @@ Route onGenerateHomeRoutes(RouteSettings settings) {
       page = const CircumstancesScreen();
     case SketchScreen.route:
       page = const SketchScreen();
+    case SketchPhotoScreen.route:
+      page = const SketchPhotoScreen();
     case DamagedPartsScreen.route:
       page = const DamagedPartsScreen();
     case DamagedMediaScreen.route:

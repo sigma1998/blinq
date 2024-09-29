@@ -16,7 +16,8 @@ class Contacts extends StatelessWidget {
       onGenerateRoute: onGenerateContactRoutes,
       onGenerateInitialRoutes: (navigator, initialRoute) => [
         MaterialPageRoute(builder: (context) => const ContactsScreen()),
-      ],      key: NavigationService.contactsNavigatorKey,
+      ],
+      key: NavigationService.contactsNavigatorKey,
     );
   }
 }

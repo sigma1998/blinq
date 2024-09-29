@@ -94,7 +94,10 @@ class CircumstancesBloc extends Cubit<CircumstanceState> {
           NavigationService.pushNamed(
             routeName: SpeechToTextScreen.route,
             nestedKey: NavigationService.homeNavigatorKey,
-            arguments: SpeechToTextArgs(mode: SpeechToTextScreenMode.remarks),
+            arguments: SpeechToTextArgs(
+              mode: SpeechToTextScreenMode.remarks,
+              step: 7,
+            ),
           );
         }
       }
@@ -104,7 +107,7 @@ class CircumstancesBloc extends Cubit<CircumstanceState> {
   }
 
   int getStep() {
-    if(reportBloc.reportType == ReportType.accident){
+    if (reportBloc.reportType == ReportType.accident) {
       return 15;
     }
     return 6;

@@ -1,17 +1,25 @@
 // Flutter imports:
-import 'package:blinq/core/theme/app_colors.dart';
+
+import 'package:blinq/presentation/home/widgets/main_bluetooth_section.dart';
+import 'package:blinq/presentation/inform_close_ones/inform_close_ones_screen.dart';
+import 'package:blinq/utils/components/buttons/main_help_button.dart';
+import 'package:blinq/utils/components/dialogs/modal/breakdown_accident.dart';
+import 'package:blinq/utils/navigation_service.dart';
+import 'package:blinq/utils/services/dialogs/custom_dialog.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:blinq/presentation/home/bloc/home_screen_cubit.dart';
-import 'package:blinq/utils/custom_widgets/tab_bar.dart';
 import 'package:blinq/utils/services/notification/notification_service.dart';
-import 'pages/home_main.dart';
-import 'pages/info/info.dart';
+import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../core/drawables/app_drawables.dart';
+import '../../utils/components/dialogs/bottom_sheet/service_types.dart';
+import '../../utils/services/dialogs/bottom_sheet.dart';
+import '../connect_to_blinq/cubit/connect_to_blinq_cubit.dart';
 
 class HomeScreen extends StatefulWidget {
   //
@@ -60,29 +68,61 @@ class _HomeScreenState extends State<HomeScreen>
           bloc: homeScreenCubit,
           builder: (context, state) {
             return Scaffold(
-              backgroundColor: Colors.black,
-              appBar: AppBar(
-                elevation: 0,
-                toolbarHeight: 0,
-                backgroundColor: Colors.transparent,
-              ),
-              body: Column(
+              body: Stack(
                 children: [
-                  MyTabBar(
-                    tabLabels: [
-                      '  ${'strMyBlinq'.tr()}  ',
-                      '     ${'strInfo'.tr()}     ',
+                  ///bottom rounded image
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const SizedBox(width: double.infinity),
+                      Image.asset(
+                        height: 434.h,
+                        width: double.infinity,
+                        AppDrawables.mainBottomImage,
+                        fit: BoxFit.fitWidth,
+                      ),
                     ],
-                    tabController: _tabController,
-                    margin: const EdgeInsets.symmetric(horizontal: 72),
                   ),
-                  Expanded(
-                    child: TabBarView(
-                      controller: _tabController,
-                      physics: const NeverScrollableScrollPhysics(),
-                      children: const [
-                        HomeMain(),
-                        HomeInfo(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        SizedBox(height: 32.h),
+                        BlocBuilder<ConnectToBlinqCubit, ConnectToBlinqState>(
+                          builder: (context, state) {
+                            final paired = state.recentlyConnected != null &&
+                                state.bleConnectionState ==
+                                    BleConnectionState.paired;
+
+                            ///bluetooth
+                            return MainBluetoothSection(
+                              recentlyConnected: state.recentlyConnected,
+                              onConnectTap:
+                                  homeScreenCubit.onConnectToBlinqPressed,
+                              paired: paired,
+                            );
+                          },
+                        ),
+                        SizedBox(height: 30.h),
+
+                        ///help button
+                        MainHelpButton(
+                          onTap: () {
+                            showCustomBottomSheet(
+                              context: context,
+                              child: ServiceTypes(
+                                onAccidentPressed:
+                                    homeScreenCubit.onAccidentPressed,
+                                onBreakdownPressed:
+                                    homeScreenCubit.onBreakDownPressed,
+                                onEmergencyPressed: () {
+                                  NavigationService.pushNamed(
+                                      routeName: InformCloseOnesScreen.route);
+                                },
+                              ),
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ),

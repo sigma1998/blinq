@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 3.0.1+15
+version: 3.0.24+2
 
 environment:
   sdk: '>=3.1.5 <4.0.0'
@@ -42,15 +42,14 @@ dependencies:
 
   shimmer: ^3.0.0
   cached_network_image: ^3.3.0
-  location_permissions: ^4.0.1
   shared_preferences: ^2.2.2
   lottie: ^2.2.0
   image: 3.2.0
   image_picker: ^1.0.4
   video_player: ^2.7.2
-  video_compress: ^3.1.2
+  video_compress: ^3.1.3
   flutter_image_compress: ^2.1.0
-  speech_to_text: ^6.5.1
+  speech_to_text: ^6.6.0
   flutter_painter_v2: ^2.0.1
   image_cropper: ^5.0.0
   flutter_screenutil: 5.9.0
@@ -65,14 +64,14 @@ dependencies:
   in_date_utils: ^1.2.0+2
 
   camera: ^0.10.5+9
-  google_mlkit_text_recognition: ^0.11.0
+  google_mlkit_text_recognition: ^0.13.1
 
   #pickers
-  flutter_contacts: ^1.1.7+1
+  flutter_contacts: ^1.1.9+2
   file_picker: ^6.0.0
 
   # state mangment
-  flutter_bloc: ^8.1.3
+  flutter_bloc: ^8.1.6
 
   # Flutter plugin for local db for small data
   hive: ^2.2.3
@@ -80,57 +79,57 @@ dependencies:
 
   # country code
   country_code_picker: ^3.0.0
+
   # for bluetooth modules
-  flutter_reactive_ble: ^5.1.1
+  flutter_reactive_ble: ^5.3.1
   step_progress_indicator: ^1.0.2
   sprintf: ^7.0.0
-  device_info: ^2.0.3
+
   # for scan blinq user
-  qr_code_scanner: ^1.0.1
-  #
-  permission_handler: ^10.2.0
-  open_file: ^3.3.1
+  ai_barcode_scanner: ^5.2.1
+
+  permission_handler: ^11.3.1
+  open_file: ^3.5.4
 
   # for map
-  google_maps_flutter: ^2.4.0
+  google_maps_flutter: ^2.9.0
   # take user permission to location
   geolocator: ^10.0.0
   location: ^5.0.3
   # for datetime and internationalization
-  intl: ^0.18.0
+  intl: ^0.19.0
   # for animation the widget
   animate_do: ^3.0.2
   # for pdf view in app
-  syncfusion_flutter_pdfviewer: ^22.2.10
-  # for send message in background
-  flutter_sms: ^2.3.3
+  syncfusion_flutter_pdfviewer: ^27.1.48
+
   # for google and apple sign in
   google_sign_in: ^6.2.1
-  sign_in_with_apple: ^5.0.0
+  sign_in_with_apple: ^6.1.2
   flutter_secure_storage: ^9.0.0
   # for signature
   hand_signature: ^3.0.1
   # for animation button
   scale_button: ^2.1.2
 
-  freezed_annotation: ^2.4.1
-  json_annotation: ^4.8.1
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
   equatable: ^2.0.5
 
   #  localization
-  easy_localization: ^3.0.3
+  easy_localization: ^3.0.7
   #  ui utils
   email_validator: ^2.1.17
   another_flushbar: ^1.12.30
-  carousel_slider: ^4.2.1
-  device_info_plus: ^9.1.0
+  carousel_slider: ^5.0.0
+  device_info_plus: ^10.1.2
   phosphor_flutter: 2.0.1
 
 
   #notifications
-  firebase_core: ^2.24.2
-  firebase_messaging: ^14.7.9
-  flutter_local_notifications: ^16.3.0
+  firebase_core: ^2.31.1
+  firebase_messaging: ^14.9.2
+  #flutter_local_notifications: ^17.2.2
 
 dev_dependencies:
   flutter_test:
@@ -141,15 +140,16 @@ dev_dependencies:
   # activated in the analysis_options.yaml file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.0
 
-  freezed: ^2.4.5
-  json_serializable: ^6.7.1
-  build_runner: ^2.4.6
+  freezed: ^2.5.7
+  json_serializable: ^6.8.0
+  build_runner: ^2.4.11
   hive_generator: ^2.0.1
   import_sorter: ^4.6.0
   mockito: any
   bloc_test: ^9.1.5
+  analyzer: ^6.7.0
 
 
 
@@ -167,6 +167,7 @@ flutter:
   assets:
     - assets/animations/
     - assets/fonts/
+    - assets/fonts/archivo/
     - assets/icons/
     - assets/icons/arrows/
     - assets/images/
@@ -176,6 +177,7 @@ flutter:
     - assets/images/van/
     - assets/images/van/blank/
     - assets/images/info/
+    - assets/images/new2,1/
     - assets/locale/
     - assets/video/
   # To add assets to your application, add an assets section, like this:
@@ -220,4 +222,24 @@ flutter:
         - asset: assets/fonts/SF UI Display Bold.otf
           weight: 700
         - asset: assets/fonts/SF UI Display Extra Bold.otf
+          weight: 900
+    - family: Archivo
+      fonts:
+        - asset: assets/fonts/archivo/Archivo-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/archivo/Archivo-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/archivo/Archivo-Light.ttf
+          weight: 300
+        - asset: assets/fonts/archivo/Archivo-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/archivo/Archivo-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/archivo/Archivo-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/archivo/Archivo-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/archivo/Archivo-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/archivo/Archivo-Black.ttf
           weight: 900

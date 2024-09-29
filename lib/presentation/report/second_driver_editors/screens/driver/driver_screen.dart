@@ -1,4 +1,7 @@
 // Flutter imports:
+import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/utils/components/app_bar/progress_app_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -57,18 +60,17 @@ class _SecondDriverEditorScreenState extends State<SecondDriverEditorScreen> {
         return SafeArea(
           child: KeyboardEscape(
             child: Scaffold(
+              appBar: const ProgressAppBar(step: 1),
               body: Form(
                 key: cubit.formKey,
                 child: ListView(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 40,
-                    horizontal: 32,
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   physics: const BouncingScrollPhysics(),
                   children: [
+                    const SizedBox(height: 24),
                     Text(
                       'strInformationDriver'.tr(),
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: AppTextStyles.s22W600,
                     ),
                     const SizedBox(height: 40),
                     NameTextField(
@@ -92,11 +94,7 @@ class _SecondDriverEditorScreenState extends State<SecondDriverEditorScreen> {
                       children: [
                         Text(
                           'strAddress'.tr(),
-                          style: const TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white,
-                          ),
+                          style:AppTextStyles.s22W600,
                         ),
                       ],
                     ),
@@ -137,7 +135,17 @@ class _SecondDriverEditorScreenState extends State<SecondDriverEditorScreen> {
                       labelText: AppLocale.plateNumber.tr(),
                       controller: cubit.phoneNumberController,
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 40),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Machine information',
+                          style:AppTextStyles.s20W600,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 32),
                     PickerTextField(
                       labelText: 'strCategory'.tr(),
                       controller: cubit.categoryController,
@@ -148,7 +156,7 @@ class _SecondDriverEditorScreenState extends State<SecondDriverEditorScreen> {
                       labelText: 'strDrivingLicenseNumber'.tr(),
                       controller: cubit.drivingLicenseNumberController,
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 40),
                     Row(
                       children: [
                         Expanded(
@@ -161,19 +169,19 @@ class _SecondDriverEditorScreenState extends State<SecondDriverEditorScreen> {
                             ),
                           ),
                         ),
-                        Switch(
+                        CupertinoSwitch(
                           activeColor: AppColors.grey2,
                           // Set transparent so the active track color shows through
-                          activeTrackColor: AppColors.grey2,
-                          thumbColor: MaterialStateProperty.resolveWith<Color?>(
-                            (Set<MaterialState> states) {
-                              return Colors.white;
-                            },
-                          ),
-                          // Background color when switch is on
-                          inactiveThumbColor: AppColors.grey2,
-                          // Round color when switch is off
-                          inactiveTrackColor: AppColors.grey1,
+                          // activeTrackColor: AppColors.grey2,
+                          // thumbColor: MaterialStateProperty.resolveWith<Color?>(
+                          //   (Set<MaterialState> states) {
+                          //     return Colors.white;
+                          //   },
+                          // ),
+                          // // Background color when switch is on
+                          // inactiveThumbColor: AppColors.grey2,
+                          // // Round color when switch is off
+                          // inactiveTrackColor: AppColors.grey1,
                           // Set transparent so the inactive thumb color shows through
                           value: cubit.noValidity,
                           onChanged: (bool val) {
@@ -184,13 +192,13 @@ class _SecondDriverEditorScreenState extends State<SecondDriverEditorScreen> {
                         )
                       ],
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 32),
                     DatePickerTextField(
                       minDate: DateTime.now(),
                       labelText: 'strDrivingLicenceValidTill'.tr(),
                       controller: cubit.licenseDateOfExpiryController,
                     ),
-                    const SizedBox(height: 36),
+                    const SizedBox(height: 136),
                   ],
                 ),
               ),

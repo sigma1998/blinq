@@ -1,5 +1,8 @@
 // Flutter imports:
+import 'package:blinq/core/drawables/app_text_styles.dart';
 import 'package:blinq/core/locale/app_locale.dart';
+import 'package:blinq/utils/components/buttons/regular_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -18,6 +21,7 @@ import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import '../../../../../core/theme/app_colors.dart';
+import '../../../../../utils/states/action_type.dart';
 import 'bloc/policy_holder_editor_bloc.dart';
 import 'bloc/policy_holder_editor_event.dart';
 
@@ -62,8 +66,8 @@ class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
               key: bloc.formKey,
               child: ListView(
                 padding: const EdgeInsets.symmetric(
-                  vertical: 40,
-                  horizontal: 32,
+                  vertical: 24,
+                  horizontal: 16,
                 ),
                 physics: const BouncingScrollPhysics(),
                 children: [
@@ -80,19 +84,19 @@ class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
                           ),
                         ),
                       ),
-                      Switch(
+                      CupertinoSwitch(
                         activeColor: AppColors.grey2,
                         // Set transparent so the active track color shows through
-                        activeTrackColor: AppColors.grey2,
-                        thumbColor: MaterialStateProperty.resolveWith<Color?>(
-                          (Set<MaterialState> states) {
-                            return Colors.white;
-                          },
-                        ),
-                        // Background color when switch is on
-                        inactiveThumbColor: AppColors.grey2,
-                        // Round color when switch is off
-                        inactiveTrackColor: AppColors.grey1,
+                        // activeTrackColor: AppColors.grey2,
+                        // thumbColor: MaterialStateProperty.resolveWith<Color?>(
+                        //   (Set<MaterialState> states) {
+                        //     return Colors.white;
+                        //   },
+                        // ),
+                        // // Background color when switch is on
+                        // inactiveThumbColor: AppColors.grey2,
+                        // // Round color when switch is off
+                        // inactiveTrackColor: AppColors.grey1,
                         // Set transparent so the inactive thumb color shows through
                         value: sameAsDriver,
                         onChanged: (bool val) {
@@ -105,6 +109,11 @@ class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
                     ],
                   ),
                   const SizedBox(height: 40),
+                  const Text(
+                    'Personal info',
+                    style: AppTextStyles.s20W600,
+                  ),
+                  const SizedBox(height: 32),
                   NameTextField(
                     labelText: 'strFirstName'.tr(),
                     controller: bloc.firstNameController,
@@ -114,7 +123,12 @@ class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
                     labelText: 'strLastName'.tr(),
                     controller: bloc.lastNameController,
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 40),
+                  const Text(
+                    'Address',
+                    style: AppTextStyles.s20W600,
+                  ),
+                  const SizedBox(height: 32),
                   PickerTextField(
                     labelText: 'strCountry'.tr(),
                     controller: bloc.countryController,
@@ -142,7 +156,8 @@ class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
                   ),
                   const SizedBox(height: 16),
                   NameTextField(
-                    labelText: AppLocale.phoneNumberEmail.tr(), //'strAddress'.tr(),
+                    labelText: AppLocale.phoneNumberEmail.tr(),
+                    //'strAddress'.tr(),
                     controller: bloc.emailController,
                   ),
                   // const SizedBox(height: 16),
@@ -153,27 +168,15 @@ class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
                 ],
               ),
             ),
-            bottomNavigationBar: Padding(
-              padding: const EdgeInsets.only(bottom: 60),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  MyButton.primary(
-                    label: 'strSave'.tr(),
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 8,
-                      horizontal: 60,
-                    ),
-                    isLoading: state.status == Status.loading,
-                    onTap: () {
-                      if (bloc.validateForm()) {
-                        bloc.add(OnSubmitPolicyHolder());
-                      }
-                    },
-                    labelStyle: const TextStyle(fontWeight: FontWeight.w500),
-                  ),
-                ],
-              ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+            floatingActionButton: RegularButton(
+              title: 'strSave'.tr(),
+              loading: state.status == Status.loading,
+              onTap:() {
+                if (bloc.validateForm()) {
+                  bloc.add(OnSubmitPolicyHolder());
+                }
+              },
             ),
           );
         },

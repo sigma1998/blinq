@@ -16,6 +16,8 @@ import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/services/notification/notification_service.dart';
 
+import '../../qr_scan/qr_scan_screen.dart';
+
 part 'second_driver_cubit.freezed.dart';
 
 part 'second_driver_state.dart';
@@ -43,10 +45,18 @@ class SecondDriverCubit extends Cubit<SecondDriverState> {
     try {
       emit(state.copyWith(status: Status.loading));
       final data = await repository.fetchUserById(id);
+      reportBloc.fetchUserData(data);
       emit(state.copyWith(secondDriver: data, status: Status.success));
     } catch (e) {
       emit(state.copyWith(status: Status.initial));
     }
+  }
+
+  void toQrScanning() {
+    NavigationService.pushReplacement(
+      routeName: QrScanScreen.route,
+      nestedKey: NavigationService.homeNavigatorKey,
+    );
   }
 
   void onNextPressed() async {
@@ -72,17 +82,20 @@ class SecondDriverCubit extends Cubit<SecondDriverState> {
     NavigationService.homeNavigatorKey.currentState?.pop();
   }
 
-  void _listenNotification() {
-    NotificationService.responseNotificationStream.listen((event) {
-      if (event != null) {
-        if (event.answer != 'yes') {
-          NavigationService.showErrorToast('strUserBDidNotConfirm'.tr());
-          onBack();
-        } else {
-          _addUserB();
-        }
-      }
+  void _listenNotification() async {
+    await Future.delayed(const Duration(seconds: 4), () {
+      _addUserB();
     });
+    // NotificationService.responseNotificationStream.listen((event) {
+    //   if (event != null) {
+    //     if (event.answer != 'yes') {
+    //       NavigationService.showErrorToast('strUserBDidNotConfirm'.tr());
+    //       onBack();
+    //     } else {
+    //       _addUserB();
+    //     }
+    //   }
+    // });
   }
 
   Future<void> _addUserB() async {
@@ -99,6 +112,7 @@ class SecondDriverCubit extends Cubit<SecondDriverState> {
       NavigationService.pushNamed(
         routeName: PointsOfImpactScreen.route,
         nestedKey: NavigationService.homeNavigatorKey,
+        arguments: User.B,
       );
     } catch (e) {
       emit(state.copyWith(status: Status.initial));

@@ -1,15 +1,19 @@
 // Dart imports:
 import 'dart:io';
+import 'dart:ui';
 
 // Flutter imports:
+import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 // Package imports:
 import 'package:path/path.dart' as p;
 import 'package:video_player/video_player.dart';
 
 // Project imports:
-import 'package:blinq/utils/custom_widgets/buttons/default_ink_well.dart';
 import 'package:blinq/utils/custom_widgets/loading.dart';
 
 class DamagedMediaItem extends StatefulWidget {
@@ -48,26 +52,66 @@ class _DamagedMediaItemState extends State<DamagedMediaItem> {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      alignment: Alignment.center,
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
-          child: fileWidget(widget.file),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: AppColors.darkGrey,
+            border: Border.all(color: AppColors.grey1),
+          ),
         ),
+        fileWidget(widget.file),
         Positioned(
-          top: 0,
           right: 0,
-          child: MyInkWell(
-            onTap: () => widget.onRemove.call(widget.file),
-            padding: const EdgeInsets.all(4),
-            borderRadius: BorderRadius.circular(100),
-            color: Theme.of(context).colorScheme.secondary,
-            child: const Icon(
-              Icons.close,
-              color: Colors.white,
-              size: 12,
+          bottom: 0,
+          child: Padding(
+            padding: const EdgeInsets.only(
+              bottom: 8.0,
+              right: 8,
+            ),
+            child: ClipOval(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                child: Container(
+                  width: 36,
+                  height: 36,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: AppColors.grey2,
+                    ),
+                  ),
+                  child: SvgPicture.asset(
+                    width: 20,
+                    height: 20,
+                    AppDrawables.delete,
+                    colorFilter: const ColorFilter.mode(
+                      AppColors.white,
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
         ),
+        // Positioned(
+        //   right: 0,
+        //   bottom: 0,
+        //   child: MyInkWell(
+        //     onTap: () => widget.onRemove.call(widget.file),
+        //     padding: const EdgeInsets.all(4),
+        //     borderRadius: BorderRadius.circular(100),
+        //     color: Theme.of(context).colorScheme.secondary,
+        //     child: const Icon(
+        //       Icons.close,
+        //       color: Colors.white,
+        //       size: 12,
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }
@@ -79,13 +123,39 @@ class _DamagedMediaItemState extends State<DamagedMediaItem> {
       return Stack(
         children: [
           if (_controller != null) ...[
-            VideoPlayer(_controller!),
+            Padding(
+              padding: const EdgeInsets.all(1.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: VideoPlayer(_controller!),
+              ),
+            ),
             Positioned(
+              left: 10,
               bottom: 10,
-              right: 10,
-              child: Text(
-                _formatDuration(_controller!.value.duration),
-                style: const TextStyle(fontWeight: FontWeight.w700),
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: AppColors.primaryColor,
+                  borderRadius: BorderRadius.circular(98),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 4,
+                      height: 4,
+                      decoration: const BoxDecoration(
+                        color: AppColors.white,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      _formatDuration(_controller!.value.duration),
+                      style: AppTextStyles.s13W400,
+                    ),
+                  ],
+                ),
               ),
             ),
           ] else ...[
@@ -94,11 +164,16 @@ class _DamagedMediaItemState extends State<DamagedMediaItem> {
         ],
       );
     } else {
-      return Image.file(
-        file,
-        width: 126,
-        height: 170,
-        fit: BoxFit.cover,
+      return Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(1),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Image.file(
+            file,
+            fit: BoxFit.cover,
+          ),
+        ),
       );
     }
   }

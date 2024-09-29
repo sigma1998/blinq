@@ -22,6 +22,7 @@ import 'package:blinq/utils/speech_to_text/speech_to_text.dart';
 import 'speech_to_text_screen_mode.dart';
 
 part 'speech_to_text_cubit.freezed.dart';
+
 part 'speech_to_text_state.dart';
 
 class SpeechToTextCubit extends Cubit<SpeechToTextState> {
@@ -36,7 +37,7 @@ class SpeechToTextCubit extends Cubit<SpeechToTextState> {
   TextEditingController textController = TextEditingController();
   ScrollController scrollController = ScrollController();
 
-  late SpeechToText? speechToText;
+  SpeechToText speechToText = SpeechToText();
 
   SpeechToTextCubit({
     required this.speechToTextScreenMode,
@@ -62,43 +63,49 @@ class SpeechToTextCubit extends Cubit<SpeechToTextState> {
   //
 
   void initializeSpeechToText() async {
-    speechToText = SpeechToText();
-    await speechToText?.initialize(
+    await speechToText.initialize(
       finalTimeout: const Duration(milliseconds: 500),
       onStatus: (String status) {
+        print('INITIALIZED________________$status');
         if (status == 'listening') {
           emit(state.copyWith(isRecording: true));
         } else {
           emit(state.copyWith(isRecording: false, soundLevel: 0));
         }
       },
-      onError: (e) => debugPrint('Error speech: $e'),
+      onError: (e) => print('Error speech:____________________ $e'),
     );
   }
 
   /// Starts or stops the speech recognition service.
   Future<void> toggleRecording(String? localeId) async {
-    if (!speechToText!.isAvailable) return;
-
-    if (speechToText!.isListening) {
-      speechToText?.stop();
+    if (!speechToText.isAvailable) return;
+    print('CAME HERE_______________________1');
+    if (speechToText.isListening) {
+      print('CAME HERE_______________________2');
+      speechToText.stop();
       emit(state.copyWith(isRecording: false, soundLevel: 0));
     } else {
+      print('CAME HERE_______________________3');
       emit(state.copyWith(isRecording: true));
-      await startSpeechListening(localeId);
+      startSpeechListening(localeId);
     }
   }
 
   Future<void> startSpeechListening(String? localeId) async {
     String recognizedText = '${textController.text}\n';
-
-    await speechToText!.listen(
+    print('CAME HERE_______________________4${speechToText.hasPermission}');
+    print('CAME HERE_______________________4${speechToText.hasError}');
+    print('CAME HERE_______________________4${speechToText.isAvailable}');
+    speechToText.listen(
       localeId: localeId,
-      cancelOnError: true,
+      onDevice: false,
       onSoundLevelChange: (double level) {
+        print('CAME HERE_______________________5');
         emit(state.copyWith(soundLevel: level));
       },
       onResult: (value) {
+        print('RESULT__________startSpeechListening_____$value');
         textController.text = recognizedText + value.recognizedWords;
         textController.selection = TextSelection.fromPosition(
           TextPosition(
@@ -112,6 +119,7 @@ class SpeechToTextCubit extends Cubit<SpeechToTextState> {
         );
       },
     );
+    print('CAME HERE_______________________6');
   }
 
   /// Cancels the speech recognition service.
@@ -121,8 +129,7 @@ class SpeechToTextCubit extends Cubit<SpeechToTextState> {
       NavigationService.showErrorToast('strEmpty'.tr());
       return;
     }
-    speechToText?.cancel();
-    speechToText = null;
+    speechToText.cancel();
 
     switch (speechToTextScreenMode) {
       case SpeechToTextScreenMode.remarks:
@@ -172,7 +179,10 @@ class SpeechToTextCubit extends Cubit<SpeechToTextState> {
         NavigationService.pushNamed(
           routeName: SpeechToTextScreen.route,
           nestedKey: NavigationService.homeNavigatorKey,
-          arguments: SpeechToTextArgs(mode: SpeechToTextScreenMode.remarks),
+          arguments: SpeechToTextArgs(
+            mode: SpeechToTextScreenMode.remarks,
+            step: 6,
+          ),
         );
       } else {
         NavigationService.pushNamed(

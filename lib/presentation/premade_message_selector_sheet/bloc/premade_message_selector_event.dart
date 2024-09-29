@@ -13,7 +13,7 @@ class OnPreMadeMessagesLoaded extends PreMadeMessageSelectorEvent {
 }
 
 class OnSelectPreMadeMessage extends PreMadeMessageSelectorEvent {
-  final PreMadeMessageResponseModel message;
+  final PreMadeMessageResponseModel? message;
 
   OnSelectPreMadeMessage({required this.message});
 }

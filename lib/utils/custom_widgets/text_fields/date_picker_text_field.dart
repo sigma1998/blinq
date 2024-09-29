@@ -1,10 +1,12 @@
 // Flutter imports:
+import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:blinq/utils/date_formatter.dart';
 import 'package:blinq/utils/date_helper.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'default_text_field.dart';
 
 class DatePickerTextField extends StatefulWidget {
@@ -56,14 +58,23 @@ class _DatePickerTextFieldState extends State<DatePickerTextField> {
     return MyTextField(
       onTap: onTap,
       readOnly: true,
+      suffixIconConstraints: const BoxConstraints(maxWidth: 32, maxHeight: 24),
       enabled: widget.enabled,
       labelText: widget.labelText,
       controller: widget.controller,
+      suffixIcon: Padding(
+        padding: const EdgeInsets.only(right: 8.0),
+        child: SvgPicture.asset(
+          AppDrawables.calendar,
+          width: 20,
+          height: 20,
+        ),
+      ),
     );
   }
 
   void onTap() async {
-    if(widget.controller?.text == 'no validity') return;
+    if (widget.controller?.text == 'no validity') return;
 
     final today = MyDateHelper.today;
 
@@ -76,28 +87,27 @@ class _DatePickerTextFieldState extends State<DatePickerTextField> {
       builder: (BuildContext context, Widget? child) {
         return Theme(
           data: Theme.of(context).copyWith(
-            colorScheme: const ColorScheme(
-              brightness: Brightness.dark,
-              primary: Colors.white,
-              onPrimary: Colors.black,
-              secondary: AppColors.darkGrey,
-              onSecondary: AppColors.grey1,
-              onSecondaryContainer: AppColors.lightGrey2,
-              error: Colors.red,
-              onError: Colors.white,
-              background: Colors.black,
-              onBackground: AppColors.darkGrey,
-              surface: AppColors.darkGrey,
-              onSurface: Colors.white,
-              outline: AppColors.grey2,
-              outlineVariant: AppColors.lightGrey,
-              tertiary: AppColors.lightGreyVariant,
-              secondaryContainer: AppColors.darkGreyVarient,
-              surfaceVariant: AppColors.messageBackgroundColor,
-              inversePrimary: AppColors.darkRedColor,
-              onSurfaceVariant: AppColors.lightGrey3,
-            )
-          ),
+              colorScheme: const ColorScheme(
+            brightness: Brightness.dark,
+            primary: Colors.white,
+            onPrimary: Colors.black,
+            secondary: AppColors.darkGrey,
+            onSecondary: AppColors.grey1,
+            onSecondaryContainer: AppColors.lightGrey2,
+            error: Colors.red,
+            onError: Colors.white,
+            background: Colors.black,
+            onBackground: AppColors.darkGrey,
+            surface: AppColors.darkGrey,
+            onSurface: Colors.white,
+            outline: AppColors.grey2,
+            outlineVariant: AppColors.lightGrey,
+            tertiary: AppColors.lightGreyVariant,
+            secondaryContainer: AppColors.darkGreyVarient,
+            surfaceVariant: AppColors.messageBackgroundColor,
+            inversePrimary: AppColors.darkRedColor,
+            onSurfaceVariant: AppColors.lightGrey3,
+          )),
           child: child ?? Container(),
         );
       },

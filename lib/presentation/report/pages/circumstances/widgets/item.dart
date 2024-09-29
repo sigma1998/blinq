@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -27,9 +29,17 @@ class CircumstanceItem extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Theme.of(context).colorScheme.secondary,
+        color: driverAActive || driverBActive
+            ? AppColors.black
+            : AppColors.darkGrey,
+        border: Border.all(
+          color: AppColors.darkGrey,
+        ),
       ),
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8,
+        vertical: 10,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -48,7 +58,7 @@ class CircumstanceItem extends StatelessWidget {
             child: Text(
               Circumstances.values[index].title,
               textAlign: isAccident ? TextAlign.center : TextAlign.start,
-              // style: textStyleBody1(),
+              style: AppTextStyles.s16W400,
             ),
           ),
           Checkbox(
@@ -61,7 +71,7 @@ class CircumstanceItem extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primary, width: 2),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
-            onChanged: (value) => onCheckedB() ,
+            onChanged: (value) => onCheckedB(),
           ),
         ],
       ),

@@ -1,9 +1,14 @@
 // Flutter imports:
+import 'package:blinq/core/drawables/app_drawables.dart';
+import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/core/theme/app_colors.dart';
+import 'package:blinq/utils/components/app_bar/progress_app_bar.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hand_signature/signature.dart';
 
 // Project imports:
@@ -51,64 +56,69 @@ class _SignScreenState extends State<SignScreen> {
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
-            body: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  StepIndicator(currentStep: bloc.getStep()),
-                  const SizedBox(height: 16),
-                  Text(
-                    'strPleaseSign'.tr() + bloc.driver,
-                    style: Theme.of(context).textTheme.titleMedium,
+            appBar: const ProgressAppBar(step: 12),
+            body: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 18),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: Text(
+                    '12. ${'strPleaseSign'.tr() + bloc.driver}',
+                    style: AppTextStyles.s22W600,
                   ),
-                  const SizedBox(height: 54),
-                  Expanded(
-                    child: RepaintBoundary(
-                      key: bloc.previewContainer,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Theme.of(context).colorScheme.secondary,
-                            width: 2
-                          )
-                        ),
-                        width: double.maxFinite,
-                        child: HandSignature(
-                          control: bloc.control,
-                          color: Theme.of(context).colorScheme.primary,
-                          width: 3,
-                          type: SignatureDrawType.line,
-                        ),
+                ),
+                const SizedBox(height: 18),
+                Container(
+                  width: double.infinity,
+                  height: 1,
+                  color: AppColors.darkGrey,
+                ),
+                Expanded(
+                  child: RepaintBoundary(
+                    key: bloc.previewContainer,
+                    child: Container(
+                      width: double.maxFinite,
+                      child: HandSignature(
+                        control: bloc.control,
+                        color: Theme.of(context).colorScheme.primary,
+                        width: 3,
+                        type: SignatureDrawType.line,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Center(
-                        child: MyButton.primary(
-                          label: 'strClear'.tr(),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 5,
-                            horizontal: 40,
-                          ),
-                          onTap: () => bloc.control.clear(),
-                          labelStyle: Theme.of(context).textTheme.bodyMedium!,
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 1,
+                  color: AppColors.darkGrey,
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      onPressed: () => bloc.control.clear(),
+                      icon: SvgPicture.asset(
+                        AppDrawables.delete,
+                        colorFilter: const ColorFilter.mode(
+                          AppColors.white,
+                          BlendMode.srcIn,
                         ),
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 12,),
-                  NavigationButton(
-                    padding: 0,
-                    loading: state.status == Status.loading,
-                    onNextTap: () => bloc.onNextTap(context),
-                  )
-                ],
-              ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                NavigationButton(
+                  padding: 16,
+                  loading: state.status == Status.loading,
+                  onNextTap: () => bloc.onNextTap(context),
+                ),
+                const SizedBox(height: 20),
+              ],
             ),
           ),
         );

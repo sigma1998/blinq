@@ -80,9 +80,10 @@ class FinishedScreenBloc extends Cubit<GenericBlocState<String>> {
         Uri.parse("whatsapp://send?text=Check out my report ${state.data}"));
   }
 
-  void onSendEmail() {
+  void onSendEmail({String? email}) {
     launchUrl(
       Uri(
+        path: email,
         scheme: 'mailto',
         query: _encodeQueryParameters(
           <String, String>{

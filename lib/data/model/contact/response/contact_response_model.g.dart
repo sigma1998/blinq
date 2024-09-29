@@ -9,7 +9,7 @@ part of 'contact_response_model.dart';
 _$ContactResponseModelImpl _$$ContactResponseModelImplFromJson(
         Map<String, dynamic> json) =>
     _$ContactResponseModelImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       image: json['image'] as String?,
       firstName: json['name'] as String?,
       lastName: json['last_name'] as String?,

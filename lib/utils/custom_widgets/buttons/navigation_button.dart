@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:blinq/core/theme/app_colors.dart';
+import 'package:blinq/utils/components/buttons/regular_button.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -44,50 +46,25 @@ class NavigationButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox(
-            width: 45,
-            height: 45,
-            child: GestureDetector(
+          Expanded(
+            child: RegularButton(
+              padding: 0,
+              background: AppColors.darkGrey,
+              title: 'Back',
               onTap: onBack ??
-                  () => NavigationService.homeNavigatorKey.currentState?.pop(),
-              child: Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: Theme.of(context).colorScheme.secondary,
-                ),
-                child: SvgPicture.asset(
-                  AppDrawables.arrowLeft,
-                  width: 24,
-                  height: 24,
-                  colorFilter: const ColorFilter.mode(
-                    Colors.white,
-                    BlendMode.srcIn,
-                  ),
-                ),
-              ),
+                      () => NavigationService.homeNavigatorKey.currentState?.pop(),
             ),
           ),
+          const SizedBox(width: 8),
           if (onNextTap != null)
-            MyButton.primary(
-              onTap: onNextTap!,
-              isLoading: loading,
+          Expanded(
+            child: RegularButton(
               enable: canGoForward,
-              label: label ?? 'strNext'.tr(),
-              padding: const EdgeInsets.symmetric(
-                vertical: 12,
-                horizontal: 24,
-              ),
-              iconRight: SvgPicture.asset(
-                AppDrawables.arrowRight,
-                width: 24,
-                height: 24,
-                colorFilter: const ColorFilter.mode(
-                  Colors.white,
-                  BlendMode.srcIn,
-                ),
-              ),
-            )
+              padding: 0,
+              title: 'Next',
+              onTap: onNextTap!,
+            ),
+          ),
         ],
       ),
     );
