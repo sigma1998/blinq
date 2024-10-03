@@ -101,6 +101,7 @@ class LoginBottomSheetBloc
   /// insead of silently signing in with the last account.
   FutureOr<void> _onGoogleSelected(
       OnGoogleSelected event, Emitter<LoginBottomSheetState> emit) async {
+        print('CAME HERE____________________');
     try {
       await _disconnectGoogle();
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -111,6 +112,7 @@ class LoginBottomSheetBloc
       if (googleAuth != null) {
         await NotificationService.setupNotificationService();
         final token = await NotificationService.getFcmToken();
+        print('TOKEN___________________$token');
 
         emit(state.copyWith(status: Status.loading));
         final model = LoginGoogleRequest(

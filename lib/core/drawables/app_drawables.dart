@@ -240,5 +240,50 @@ class AppDrawables {
   static const String accidentCar = 'assets/images/new2,1/accident_car.png';
   static const String sketchBack = 'assets/images/new2,1/sketch_back.png';
   static const String twoPeople = 'assets/images/new2,1/two_people.svg';
-  static const String leftCar = 'assets/images/car/ZUyo2h01.svg';
+  static const String leftCar = 'assets/images/car/Left side.svg';
+
+
+  ///car
+  //vehicle front
+  static const String front = 'assets/images/car/new/front/Front.svg';
+  static const String frontBumpers = 'assets/images/car/new/front/Front bumpers.svg';
+  static const String hood = 'assets/images/car/new/front/Hood.svg';
+  static const String leftMirror = 'assets/images/car/new/front/Left mirror.svg';
+  static const String rightMirror = 'assets/images/car/new/front/Right mirror.svg';
+  //vehicle left
+  static const String left = 'assets/images/car/new/left/Left side.svg';
+  static const String leftLeftTire = 'assets/images/car/new/left/Left Front left tire.svg';
+  static const String leftLeftWindow = 'assets/images/car/new/left/Left Front left window.svg';
+  static const String leftLeftWing = 'assets/images/car/new/left/Left Front left wing.svg';
+  static const String leftLeftDoor = 'assets/images/car/new/left/Left left door.svg';
+  static const String leftRightDoor = 'assets/images/car/new/left/Left Rear left door.svg';
+  static const String leftRightWindow = 'assets/images/car/new/left/Left Rear left window.svg';
+  static const String leftRearLeftWing = 'assets/images/car/new/left/Left Rear left wing.svg';
+  static const String leftRightTire = 'assets/images/car/new/left/Left right tire.svg';
+  //vehicle right
+  static const String rightSide = 'assets/images/car/new/right/Right.svg';
+  static const String rightBackDoor = 'assets/images/car/new/right/right back door.svg';
+  static const String rightBackTire = 'assets/images/car/new/right/Right back tire.svg';
+  static const String rightBackWindow = 'assets/images/car/new/right/Right back window.svg';
+  static const String rightBackWing = 'assets/images/car/new/right/right back wing.svg';
+  static const String rightFrontDoor = 'assets/images/car/new/right/right fornt door.svg';
+  static const String rightFrontTire = 'assets/images/car/new/right/Right front tire.svg';
+  static const String rightFrontWindow = 'assets/images/car/new/right/Right front window.svg';
+  static const String rightRightWing = 'assets/images/car/new/right/right right wing.svg';
+
+  //vehicle back
+  static const String back = 'assets/images/car/new/back/back.svg';
+  static const String backLeftHeadLight = 'assets/images/car/new/back/left head light.svg';
+  static const String backRightHeadLight = 'assets/images/car/new/back/right head light.svg';
+  static const String backRearBumper = 'assets/images/car/new/back/rear bumpers.svg';
+  static const String backRearWindow = 'assets/images/car/new/back/rear window.svg';
+
+  //vehicle top
+  static const String top = 'assets/images/car/new/top/Top.svg';
+  static const String frontHood = 'assets/images/car/new/top/frontHood.svg';
+  static const String rearWindow = 'assets/images/car/new/top/rearWindow.svg';
+  static const String roof = 'assets/images/car/new/top/roof.svg';
+  static const String windScreen = 'assets/images/car/new/top/wind screen.svg';
+  static const String backWindScreen = 'assets/images/car/new/top/backWindScreen.svg';
+
 }

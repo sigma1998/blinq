@@ -1,6 +1,5 @@
 // Flutter imports:
 
-import 'package:ai_barcode_scanner/ai_barcode_scanner.dart';
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/core/drawables/app_text_styles.dart';
 import 'package:blinq/core/theme/app_colors.dart';

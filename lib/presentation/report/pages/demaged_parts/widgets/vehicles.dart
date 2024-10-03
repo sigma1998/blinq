@@ -1,6 +1,13 @@
 // Flutter imports:
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/core/theme/app_colors.dart';
+import 'package:blinq/utils/components/cars/vehicle/vehicle_back_side.dart';
+import 'package:blinq/utils/components/cars/vehicle/vehicle_front_side.dart';
+import 'package:blinq/utils/components/cars/vehicle/vehicle_left_side.dart';
+import 'package:blinq/utils/components/cars/vehicle/vehicle_side_selector.dart';
+import 'package:blinq/utils/components/cars/vehicle/vehicle_top_side.dart';
+import 'package:blinq/utils/services/broken_parts/broken_parts.dart';
+import 'package:blinq/utils/states/vehicle_parts.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -12,6 +19,8 @@ import 'package:blinq/presentation/report/pages/demaged_parts/bloc/damaged_parts
 import 'package:blinq/utils/flood_image/floodfill_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../../../utils/components/cars/vehicle/vehicle_right_side.dart';
 
 class VehiclesList extends StatefulWidget {
   final ScrollController pageController;
@@ -30,6 +39,8 @@ class VehiclesList extends StatefulWidget {
 }
 
 class _VehiclesListState extends State<VehiclesList> {
+  final brokenParts = BrokenParts();
+
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<DamagedPartsBloc>();
@@ -57,24 +68,12 @@ class _VehiclesListState extends State<VehiclesList> {
                           width: 1.5,
                         ),
                       ),
-                      child: SizedBox(
-                        child: Stack(
-                          children: [
-                            SvgPicture.asset(AppDrawables.leftCar),
-                            Positioned(
-                              right: 0,
-                              top: 0,
-                              child: Padding(
-                                padding: EdgeInsets.only(right: 75.w, top: 85.h),
-                                child: Container(
-                                  width: 40.w,
-                                  height: 40.h,
-                                  color: AppColors.white.withOpacity(0.2),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
+                      child: VehicleSideSelector(
+                        index: index,
+                        parts: bloc.parts,
+                        onPartPressed: (CarParts part) {
+                          bloc.onPartPressed(part);
+                        },
                       ),
                       //   child: FloodFillImage(
                       //     imageProvider: AssetImage(bloc.vehicleSelect[index]),
@@ -92,7 +91,7 @@ class _VehiclesListState extends State<VehiclesList> {
                       //         listController: widget.listController,
                       //       );
                       //     },
-                      //     // tolerance: 8,
+                      //     tolerance: 8,
                       //   ),
                     ),
                   );

@@ -5,6 +5,7 @@ import 'dart:async';
 import 'dart:io';
 
 // Flutter imports:
+import 'package:blinq/utils/states/vehicle_parts.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -42,6 +43,8 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
 
   List<File?> screenShots = [];
 
+  List<CarParts> parts = []; //akhror added
+
   DamagedPartsBloc(
       {required this.vehicleType,
       required this.accidentRepository,
@@ -69,6 +72,17 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
     for (var _ in vehicleSelect) {
       screenShots.add(null);
     }
+  }
+
+  onPartPressed(CarParts part) {
+    if (parts.contains(part)) {
+      parts.remove(part);
+    } else {
+      parts.add(part);
+    }
+    emit(state.copyWith(
+      carParts: state.carParts.isEmpty ? {'no'} : {},
+    ));
   }
 
   getList() {
@@ -112,7 +126,6 @@ class DamagedPartsBloc extends Cubit<DamagedPartsState> {
         isClicked = false;
         _timer.cancel();
       });
-
 
   void onNextTap(BuildContext context) async {
     emit(state.copyWith(status: Status.loading));
