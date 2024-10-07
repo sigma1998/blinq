@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/utils/speech_to_text/speech_to_text.dart';
 import 'package:flutter/cupertino.dart';
 
 // Package imports:
@@ -18,7 +19,6 @@ import 'package:blinq/presentation/report/pages/points_of_impact/points_of_impac
 import 'package:blinq/presentation/report/pages/speech_to_text/speech_to_text_screen.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
-import 'package:blinq/utils/speech_to_text/speech_to_text.dart';
 import 'speech_to_text_screen_mode.dart';
 
 part 'speech_to_text_cubit.freezed.dart';
@@ -45,7 +45,6 @@ class SpeechToTextCubit extends Cubit<SpeechToTextState> {
     required this.accidentRepository,
     required this.breakdownRepository,
   }) : super(const SpeechToTextState()) {
-    initializeSpeechToText();
 
     switch (speechToTextScreenMode) {
       case SpeechToTextScreenMode.remarks:
@@ -60,33 +59,14 @@ class SpeechToTextCubit extends Cubit<SpeechToTextState> {
     }
   }
 
-  //
-
-  void initializeSpeechToText() async {
-    await speechToText.initialize(
-      finalTimeout: const Duration(milliseconds: 500),
-      onStatus: (String status) {
-        print('INITIALIZED________________$status');
-        if (status == 'listening') {
-          emit(state.copyWith(isRecording: true));
-        } else {
-          emit(state.copyWith(isRecording: false, soundLevel: 0));
-        }
-      },
-      onError: (e) => print('Error speech:____________________ $e'),
-    );
-  }
 
   /// Starts or stops the speech recognition service.
   Future<void> toggleRecording(String? localeId) async {
     if (!speechToText.isAvailable) return;
-    print('CAME HERE_______________________1');
     if (speechToText.isListening) {
-      print('CAME HERE_______________________2');
       speechToText.stop();
       emit(state.copyWith(isRecording: false, soundLevel: 0));
     } else {
-      print('CAME HERE_______________________3');
       emit(state.copyWith(isRecording: true));
       startSpeechListening(localeId);
     }
@@ -94,32 +74,37 @@ class SpeechToTextCubit extends Cubit<SpeechToTextState> {
 
   Future<void> startSpeechListening(String? localeId) async {
     String recognizedText = '${textController.text}\n';
-    print('CAME HERE_______________________4${speechToText.hasPermission}');
-    print('CAME HERE_______________________4${speechToText.hasError}');
-    print('CAME HERE_______________________4${speechToText.isAvailable}');
-    speechToText.listen(
-      localeId: localeId,
-      onDevice: false,
-      onSoundLevelChange: (double level) {
-        print('CAME HERE_______________________5');
-        emit(state.copyWith(soundLevel: level));
-      },
-      onResult: (value) {
-        print('RESULT__________startSpeechListening_____$value');
-        textController.text = recognizedText + value.recognizedWords;
-        textController.selection = TextSelection.fromPosition(
-          TextPosition(
-            offset: textController.text.length,
-          ),
-        );
-        scrollController.animateTo(
-          scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeInOut,
-        );
-      },
-    );
-    print('CAME HERE_______________________6');
+    try {
+      await speechToText.listen(
+        partialResults: true,
+        listenMode: ListenMode.dictation,
+        onDevice: false,
+        sampleRate: 16000,
+        onSoundLevelChange: (double level) {
+          print('SOUND LEVEL_____________$level');
+          emit(state.copyWith(soundLevel: level));
+        },
+        onResult: (value) {
+          textController.text = recognizedText + value.recognizedWords;
+          textController.selection = TextSelection.fromPosition(
+            TextPosition(
+              offset: textController.text.length,
+            ),
+          );
+          scrollController.animateTo(
+            scrollController.position.maxScrollExtent,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+          );
+        },
+      );
+    } catch (e) {
+      if (e is ListenFailedException) {
+        print('ERROR__________startSpeechListening    ${e.details}');
+        print('ERROR__________startSpeechListening    ${e.message}');
+        print('ERROR__________startSpeechListening    ${e.stackTrace}');
+      }
+    }
   }
 
   /// Cancels the speech recognition service.

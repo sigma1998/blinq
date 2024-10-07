@@ -208,17 +208,26 @@ class _LocationInfoScreenState extends State<LocationInfoScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      getPlace();
+      getLocationData();
     });
     super.initState();
   }
 
-  Future<void> getPlace() async {
-    final res = await LocationService.getAddressFromLatLng(
-      LocationService.myPosition!.latitude,
-      LocationService.myPosition!.longitude,
-    );
-    print('PLACE__________$res');
+  getLocationData() {
+    final lat = LocationService.myPosition!.latitude;
+    final long = LocationService.myPosition!.longitude;
+
+    getCountry(lat: lat, long: long);
+    getPlace(lat: lat, long: long);
+  }
+
+  getCountry({required double lat, required long}) async {
+    country = await LocationService.getCountry(lat, long);
+    setState(() {});
+  }
+
+  Future<void> getPlace({required double lat, required long}) async {
+    final res = await LocationService.getAddressFromLatLng(lat, long);
     setState(() {
       placeController.text = res ?? '';
     });

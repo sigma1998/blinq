@@ -63,32 +63,10 @@ class _VehicleLeftSideState extends State<VehicleLeftSide> {
             AppDrawables.leftRightTire,
           ),
         Positioned(
-          bottom: 115.h,
-          left: 52.w,
-          child: CircleTransparentButton(
-            width: 44.w,
-            height: 44.w,
-            onTap: () {
-              widget.onPartPressed(CarParts.leftLeftTire);
-            },
-          ),
-        ),
-        Positioned(
-          bottom: 115.h,
+          top: 84.h,
           right: 60.w,
-          child: CircleTransparentButton(
-            width: 44.w,
-            height: 44.w,
-            onTap: () {
-              widget.onPartPressed(CarParts.leftRightTire);
-            },
-          ),
-        ),
-        Positioned(
-          top: 124.h,
-          right: 20.w,
           child: RectTransparentButton(
-            width: 74.w,
+            width: 54.w,
             height: 44.h,
             onTap: () {
               widget.onPartPressed(CarParts.leftRearLeftWing);
@@ -96,57 +74,79 @@ class _VehicleLeftSideState extends State<VehicleLeftSide> {
           ),
         ),
         Positioned(
-          top: 104.h,
-          right: 100.w,
+          top: 74.h,
+          right: 104.w,
           child: RectTransparentButton(
-            width: 64.w,
-            height: 44.h,
+            width: 60.w,
+            height: 34.h,
             onTap: () {
               widget.onPartPressed(CarParts.leftRightWindow);
             },
           ),
         ),
         Positioned(
-          top: 104.h,
+          top: 74.h,
           right: 164.w,
           child: RectTransparentButton(
-            width: 74.w,
-            height: 44.h,
+            width: 70.w,
+            height: 34.h,
             onTap: () {
               widget.onPartPressed(CarParts.leftLeftWindow);
             },
           ),
         ),
         Positioned(
-          bottom: 130.h,
+          bottom: 90.h,
           right: 164.w,
           child: RectTransparentButton(
-            width: 74.w,
-            height: 54.h,
+            width: 64.w,
+            height: 44.h,
             onTap: () {
               widget.onPartPressed(CarParts.leftLeftDoor);
             },
           ),
         ),
         Positioned(
-          bottom: 130.h,
-          right: 100.w,
+          bottom: 90.h,
+          right: 110.w,
           child: RectTransparentButton(
-            width: 64.w,
-            height: 54.h,
+            width: 54.w,
+            height: 50.h,
             onTap: () {
               widget.onPartPressed(CarParts.leftRightDoor);
             },
           ),
         ),
         Positioned(
-          top: 130.h,
-          left: 36.w,
+          top: 100.h,
+          left: 66.w,
           child: RectTransparentButton(
-            width: 74.w,
+            width: 54.w,
             height: 44.h,
             onTap: () {
               widget.onPartPressed(CarParts.leftLeftWing);
+            },
+          ),
+        ),
+        Positioned(
+          bottom: 84.h,
+          left: 82.w,
+          child: CircleTransparentButton(
+            width: 34.w,
+            height: 34.w,
+            onTap: () {
+              widget.onPartPressed(CarParts.leftLeftTire);
+            },
+          ),
+        ),
+        Positioned(
+          bottom: 84.h,
+          right: 90.w,
+          child: CircleTransparentButton(
+            width: 34.w,
+            height: 34.w,
+            onTap: () {
+              widget.onPartPressed(CarParts.leftRightTire);
             },
           ),
         ),

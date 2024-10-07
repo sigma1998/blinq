@@ -53,37 +53,37 @@ class _VehicleTopSideState extends State<VehicleTopSide> {
           top: 0,
           child: RectTransparentButton(
             width: 120.w,
-            height: 76.h,
+            height: 56.h,
             onTap: () {
               widget.onPartPressed(CarParts.frontHood);
             },
           ),
         ),
         Positioned(
-          top: 77.h,
+          top: 57.h,
           child: RectTransparentButton(
             width: 120.w,
-            height: 60.h,
+            height: 40.h,
             onTap: () {
               widget.onPartPressed(CarParts.windScreen);
             },
           ),
         ),
         Positioned(
-          top: 140.h,
+          top: 100.h,
           child: RectTransparentButton(
             width: 120.w,
-            height: 110.h,
+            height: 86.h,
             onTap: () {
               widget.onPartPressed(CarParts.roof);
             },
           ),
         ),
         Positioned(
-          bottom: 31.h,
+          bottom: 20.h,
           child: RectTransparentButton(
             width: 120.w,
-            height: 50.h,
+            height: 40.h,
             onTap: () {
               widget.onPartPressed(CarParts.backWindScreen);
             },
@@ -93,7 +93,7 @@ class _VehicleTopSideState extends State<VehicleTopSide> {
           bottom: 0.h,
           child: RectTransparentButton(
             width: 120.w,
-            height: 26.h,
+            height: 16.h,
             onTap: () {
               widget.onPartPressed(CarParts.rearWindow);
             },

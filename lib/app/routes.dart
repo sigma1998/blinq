@@ -66,7 +66,7 @@ import '../utils/speech_to_text/speech_to_text.dart';
 
 Map<String, WidgetBuilder> getRoutes(BuildContext context) {
   return {
-    SplashScreen.route: (context) => const DamagedPartsScreen(),
+    SplashScreen.route: (context) => const SplashScreen(),
     MainScreen.route: (context) => const MainScreen(),
     SignInScreen.route: (context) => SignInScreen(),
     EmailScreen.route: (context) => const EmailScreen(),

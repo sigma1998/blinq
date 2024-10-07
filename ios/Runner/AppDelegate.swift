@@ -10,9 +10,9 @@ import AVFoundation
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
+    configureAudioSession()
     FirebaseApp.configure()
     GMSServices.provideAPIKey("AIzaSyAfbxHPjQ_PlRCzzvKRPqaoc55uh4DNEvQ")
-    configureAudioSession()
 
     if #available(iOS 10.0, *) {
       UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
@@ -22,14 +22,12 @@ import AVFoundation
   }
 
   func configureAudioSession() {
-      let audioSession = AVAudioSession.sharedInstance()
-      do {
-          // Set the audio session category for recording and playback
-          try audioSession.setCategory(.playAndRecord, options: [.defaultToSpeaker, .mixWithOthers])
-          try audioSession.setActive(true)
-          print("Audio session configured successfully")
-      } catch {
-          print("Failed to configure audio session: \(error.localizedDescription)")
+          let session = AVAudioSession.sharedInstance()
+          do {
+              try session.setCategory(.record, mode: .measurement, options: .duckOthers)
+              try session.setActive(true, options: .notifyOthersOnDeactivation)
+          } catch {
+              print("Failed to set up audio session")
+          }
       }
-  }
 }

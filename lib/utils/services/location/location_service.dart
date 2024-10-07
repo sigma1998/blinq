@@ -92,6 +92,27 @@ class LocationService {
     return PlaceModel.fromJson(result);
   }
 
+  static Future<String?> getCountry(double lat, double lng) async {
+    String? country;
+    String host = 'https://maps.google.com/maps/api/geocode/json';
+    final url = '$host?key=$key&language=en&latlng=$lat,$lng';
+    var response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      Map data = convert.jsonDecode(response.body);
+      if (data['results'] != null && data['results'].isNotEmpty) {
+        final results = data['results'];
+        for (var result in results) {
+          for (var component in result['address_components']) {
+            if (component['types'].contains('country')) {
+              country = component['long_name'];
+            }
+          }
+        }
+      }
+    }
+    return country;
+  }
+
   static Future<String?> getAddressFromLatLng(double lat, double lng) async {
     String host = 'https://maps.google.com/maps/api/geocode/json';
     final url = '$host?key=$key&language=en&latlng=$lat,$lng';

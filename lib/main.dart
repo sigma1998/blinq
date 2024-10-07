@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/utils/speech_to_text/speech_to_text.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -22,13 +23,14 @@ void main() async {
 
   setUpLocator();
 
+  await setUpSpeechRecognition();
+
   await _setUpHive();
 
   await Firebase.initializeApp();
 
   runApp(const MyLocalization(child: MyApp()));
 }
-
 
 Future<void> _setUpHive() async {
   Hive.init((await getApplicationDocumentsDirectory()).path);
@@ -37,4 +39,14 @@ Future<void> _setUpHive() async {
 
   await Hive.openBox(StorageConstants.appBox);
   await Hive.openBox(StorageConstants.userStatusBox);
+}
+
+Future<void> setUpSpeechRecognition() async {
+  await SpeechToText().initialize(
+    finalTimeout: const Duration(milliseconds: 500),
+    onStatus: (String status) {
+      print('STATUS___________________$status');
+    },
+    onError: (e) => print('Error speech:____________________ ${e}'),
+  );
 }

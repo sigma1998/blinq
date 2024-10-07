@@ -46,42 +46,42 @@ class _VehicleFrontSideEditorState extends State<VehicleFrontSideEditor> {
             AppDrawables.frontBumpers,
           ),
         Positioned(
-          bottom: 80.h,
+          bottom: 60.h,
           child: RectTransparentButton(
-            width: 300.w,
-            height: 96.h,
+            width: 240.w,
+            height: 76.h,
             onTap: () {
               widget.onPartPressed(CarParts.frontBumpers);
             },
           ),
         ),
         Positioned(
-          bottom: 176.h,
+          bottom: 136.h,
           child: RectTransparentButton(
-            width: 210.w,
-            height: 50.h,
+            width: 200.w,
+            height: 40.h,
             onTap: () {
               widget.onPartPressed(CarParts.hood);
             },
           ),
         ),
         Positioned(
-          right: 10.w,
-          top: 90.h,
+          right: 50.w,
+          top: 64.h,
           child: RectTransparentButton(
-            width: 50.w,
-            height: 50.h,
+            width: 40.w,
+            height: 40.h,
             onTap: () {
               widget.onPartPressed(CarParts.rightMirror);
             },
           ),
         ),
         Positioned(
-          left: 10.w,
-          top: 90.h,
+          left: 50.w,
+          top: 64.h,
           child: RectTransparentButton(
-            width: 50.w,
-            height: 50.h,
+            width: 40.w,
+            height: 40.h,
             onTap: () {
               widget.onPartPressed(CarParts.leftMirror);
             },

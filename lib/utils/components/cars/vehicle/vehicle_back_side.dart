@@ -46,19 +46,19 @@ class _VehicleBackSideState extends State<VehicleBackSide> {
             AppDrawables.backRearWindow,
           ),
         Positioned(
-          top: 50.h,
+          top: 40.h,
           child: RectTransparentButton(
-            width: 200.w,
-            height: 60.h,
+            width: 160.w,
+            height: 46.h,
             onTap: () {
               widget.onPartPressed(CarParts.backRearWindow);
             },
           ),
         ),
         Positioned(
-          bottom: 90.h,
+          bottom: 60.h,
           child: RectTransparentButton(
-            width: 280.w,
+            width: 220.w,
             height: 90.h,
             onTap: () {
               widget.onPartPressed(CarParts.backRearBumper);
@@ -66,10 +66,10 @@ class _VehicleBackSideState extends State<VehicleBackSide> {
           ),
         ),
         Positioned(
-          top: 110.h,
-          left: 40.w,
+          top: 80.h,
+          left: 70.w,
           child: RectTransparentButton(
-            width: 80.w,
+            width: 70.w,
             height: 40.h,
             onTap: () {
               widget.onPartPressed(CarParts.backLeftHeadLight);
@@ -77,10 +77,10 @@ class _VehicleBackSideState extends State<VehicleBackSide> {
           ),
         ),
         Positioned(
-          top: 110.h,
-          right: 40.w,
+          top: 80.h,
+          right: 70.w,
           child: RectTransparentButton(
-            width: 80.w,
+            width: 70.w,
             height: 40.h,
             onTap: () {
               widget.onPartPressed(CarParts.backRightHeadLight);
