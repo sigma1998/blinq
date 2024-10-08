@@ -16,7 +16,6 @@ import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../domain/bloc/report_bloc/report_type.dart';
 import 'bloc/damaged_parts_bloc.dart';
 import 'bloc/damaged_parts_state.dart';
 import 'widgets/selected_parts_list.dart';
@@ -43,7 +42,7 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
     final args =
         ModalRoute.of(context)?.settings.arguments as DamagedPartsScreenArgs?;
     bloc = DamagedPartsBloc(
-      vehicleType: args?.vehicleType ?? VehicleType.auto,
+      vehicleType: args?.vehicleType ?? VehicleType.van,
       accidentRepository: getIt<AccidentRepositoryImpl>(),
       breakdownRepository: getIt<BreakdownRepositoryImpl>(),
       reportBloc: context.read(),
