@@ -28,6 +28,7 @@ class Assets {
   static const String backRear bumpers = 'assets/images/car/new/back/rear bumpers.svg';
   static const String backRear window = 'assets/images/car/new/back/rear window.svg';
   static const String backRight head light = 'assets/images/car/new/back/right head light.svg';
+  static const String backVan back = 'assets/images/car/van/back/Van back.svg';
   static const String blankBack = 'assets/images/car/blank/back.png';
   static const String blankFront = 'assets/images/car/blank/front.png';
   static const String blankLeft = 'assets/images/car/blank/left.png';
@@ -55,6 +56,14 @@ class Assets {
   static const String frontHood = 'assets/images/car/new/front/Hood.svg';
   static const String frontLeft mirror = 'assets/images/car/new/front/Left mirror.svg';
   static const String frontRight mirror = 'assets/images/car/new/front/Right mirror.svg';
+  static const String frontVan Front = 'assets/images/car/van/front/Van Front.svg';
+  static const String frontVan aero bumper = 'assets/images/car/van/front/Van aero bumper.svg';
+  static const String frontVan aero bumper 2 = 'assets/images/car/van/front/Van aero bumper 2.svg';
+  static const String frontVan front grill = 'assets/images/car/van/front/Van front grill.svg';
+  static const String frontVan left light = 'assets/images/car/van/front/Van left light.svg';
+  static const String frontVan left side mirror = 'assets/images/car/van/front/Van left side mirror.svg';
+  static const String frontVan right light = 'assets/images/car/van/front/Van right light.svg';
+  static const String frontVan right side mirror = 'assets/images/car/van/front/Van right side mirror.svg';
   static const String iconsAccident = 'assets/icons/accident.svg';
   static const String iconsAmbulanceCar = 'assets/icons/ambulance_car.svg';
   static const String iconsArrowDown = 'assets/icons/arrow_down.svg';
@@ -150,6 +159,7 @@ class Assets {
   static const String leftLeft left door = 'assets/images/car/new/left/Left left door.svg';
   static const String leftLeft right tire = 'assets/images/car/new/left/Left right tire.svg';
   static const String leftLeft side = 'assets/images/car/new/left/Left side.svg';
+  static const String leftVan Left = 'assets/images/car/van/left/Van Left.svg';
   static const String localeEn = 'assets/locale/en.json';
   static const String localeHu = 'assets/locale/hu.json';
   static const String motoFront = 'assets/images/moto/front.png';
@@ -220,6 +230,7 @@ class Assets {
   static const String rightRight front window = 'assets/images/car/new/right/Right front window.svg';
   static const String rightRight right wing = 'assets/images/car/new/right/right right wing.svg';
   static const String topBackWindScreen = 'assets/images/car/new/top/backWindScreen.svg';
+  static const String topBonnet = 'assets/images/car/van/top/bonnet.svg';
   static const String topFrontHood = 'assets/images/car/new/top/frontHood.svg';
   static const String topRearWindow = 'assets/images/car/new/top/rearWindow.svg';
   static const String topRoof = 'assets/images/car/new/top/roof.svg';
@@ -232,6 +243,9 @@ class Assets {
   static const String vanLeft = 'assets/images/van/left.png';
   static const String vanRight = 'assets/images/van/right.png';
   static const String vanTop = 'assets/images/van/top.png';
+  static const String vanTopRoof = 'assets/images/car/van/top/roof.svg';
+  static const String vanTopTop = 'assets/images/car/van/top/Top.svg';
+  static const String vanTopWind screen = 'assets/images/car/van/top/wind screen.svg';
   static const String videoBakgroundVideo = 'assets/video/bakground_video.mp4';
   static const String videoLogo = 'assets/video/logo.mp4';
   static const String videoVid2 = 'assets/video/vid2.mp4';

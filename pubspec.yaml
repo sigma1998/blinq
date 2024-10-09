@@ -172,6 +172,11 @@ flutter:
     - assets/icons/arrows/
     - assets/images/
     - assets/images/car/
+    - assets/images/car/van/top/
+    - assets/images/car/van/left/
+    - assets/images/car/van/right/
+    - assets/images/car/van/front/
+    - assets/images/car/van/back/
     - assets/images/car/new/front/
     - assets/images/car/new/left/
     - assets/images/car/new/right/

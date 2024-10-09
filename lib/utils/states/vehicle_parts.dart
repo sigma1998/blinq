@@ -38,4 +38,18 @@ enum CarParts {
   roof,
   backWindScreen,
   rearWindow,
+
+  ///VAN
+  //top
+  vanRoof,
+  vanWindScreen,
+  vanBonnet,
+  vanFrontRightLight,
+  vanFrontLeftLight,
+  vanFrontLeftMirror,
+  vanFrontRightMirror,
+  vanFrontGrill,
+  vanFrontBumper,
+
+
 }

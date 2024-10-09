@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/core/theme/app_colors.dart';
+import 'package:blinq/presentation/report/pages/demaged_parts/widgets/type_selector.dart';
 import 'package:blinq/utils/components/cars/vehicle/vehicle_back_side.dart';
 import 'package:blinq/utils/components/cars/vehicle/vehicle_front_side.dart';
 import 'package:blinq/utils/components/cars/vehicle/vehicle_left_side.dart';
@@ -68,31 +69,32 @@ class _VehiclesListState extends State<VehiclesList> {
                           width: 1.5,
                         ),
                       ),
-                      child: VehicleSideSelector(
+                      child: TypeSelector(
                         index: index,
                         parts: bloc.parts,
+                        type: bloc.vehicleType,
                         onPartPressed: (CarParts part) {
                           bloc.onPartPressed(part);
                         },
                       ),
-                      //   child: FloodFillImage(
-                      //     imageProvider: AssetImage(bloc.vehicleSelect[index]),
-                      //     fColor: (position) {
-                      //       const inActive = Color(0xff2d2d2d);
+                      // child: FloodFillImage(
+                      //   imageProvider: AssetImage(bloc.vehicleSelect[index]),
+                      //   fColor: (position) {
+                      //     const inActive = Color(0xff2d2d2d);
                       //
-                      //       if (position == null) {
-                      //         return active;
-                      //       }
-                      //       return bloc.onFColor(
-                      //         position: position,
-                      //         active: active,
-                      //         inActive: inActive,
-                      //         index: index,
-                      //         listController: widget.listController,
-                      //       );
-                      //     },
-                      //     tolerance: 8,
-                      //   ),
+                      //     if (position == null) {
+                      //       return active;
+                      //     }
+                      //     return bloc.onFColor(
+                      //       position: position,
+                      //       active: active,
+                      //       inActive: inActive,
+                      //       index: index,
+                      //       listController: widget.listController,
+                      //     );
+                      //   },
+                      //   tolerance: 8,
+                      // ),
                     ),
                   );
                 }).toList());

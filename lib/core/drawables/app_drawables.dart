@@ -286,4 +286,22 @@ class AppDrawables {
   static const String windScreen = 'assets/images/car/new/top/wind screen.svg';
   static const String backWindScreen = 'assets/images/car/new/top/backWindScreen.svg';
 
+
+  ///van
+  //top
+  static const String vanTopSide = 'assets/images/car/van/top/Top.svg';
+  static const String vanRoof = 'assets/images/car/van/top/roof.svg';
+  static const String vanWindScreen = 'assets/images/car/van/top/wind screen.svg';
+  static const String vanBonnet = 'assets/images/car/van/top/bonnet.svg';
+
+  //front
+  static const String vanAeroBumper = 'assets/images/car/van/front/Van aero bumper.svg';
+  static const String vanAeroBumper2 = 'assets/images/car/van/front/Van aero bumper2.svg';
+  static const String vanFrontSide = 'assets/images/car/van/front/Van aero bumper2.svg';
+  static const String vanFrontGrill = 'assets/images/car/van/front/Van aero bumper2.svg';
+  static const String vanFrontLeftLight = 'assets/images/car/van/front/Van left light.svg';
+  static const String vanFrontRightLight = 'assets/images/car/van/front/Van right light.svg';
+  static const String vanFrontRightMirror = 'assets/images/car/van/front/Van right side mirror.svg';
+  static const String vanFrontLeftMirror = 'assets/images/car/van/front/Van left side mirror.svg';
+
 }
