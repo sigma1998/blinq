@@ -22,7 +22,7 @@ class RectTransparentButton extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-          color: AppColors.primaryColor.withOpacity(0.3),
+          color: AppColors.primaryColor.withOpacity(0),
         ),
       ),
     );

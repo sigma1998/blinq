@@ -28,6 +28,7 @@ class CarPositionsSection extends StatelessWidget {
               child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: VehiclePositions(
+                  vehicleType: bloc.vehicleType,
                   parts: bloc.parts,
                   index: value,
                   onTap: (int index) {

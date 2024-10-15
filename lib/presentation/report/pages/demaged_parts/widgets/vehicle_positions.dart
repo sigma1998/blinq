@@ -1,7 +1,15 @@
+import 'package:blinq/utils/components/cars/moto/moto_left_side.dart';
+import 'package:blinq/utils/components/cars/van/van_front_side.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/theme/app_colors.dart';
+import '../../../../../data/model/car/vehicle_type/vehicle_type.dart';
+import '../../../../../utils/components/cars/moto/moto_front_side.dart';
+import '../../../../../utils/components/cars/van/van_back_side.dart';
+import '../../../../../utils/components/cars/van/van_left_side.dart';
+import '../../../../../utils/components/cars/van/van_right_side.dart';
+import '../../../../../utils/components/cars/van/van_top_side.dart';
 import '../../../../../utils/components/cars/vehicle/vehicle_back_side.dart';
 import '../../../../../utils/components/cars/vehicle/vehicle_front_side.dart';
 import '../../../../../utils/components/cars/vehicle/vehicle_left_side.dart';
@@ -13,12 +21,14 @@ class VehiclePositions extends StatefulWidget {
   final Function onTap;
   final int index;
   final List<CarParts> parts;
+  final VehicleType vehicleType;
 
   const VehiclePositions({
     super.key,
     required this.onTap,
     required this.index,
     required this.parts,
+    required this.vehicleType,
   });
 
   @override
@@ -29,7 +39,9 @@ class _VehiclePositionsState extends State<VehiclePositions> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: Iterable.generate(5).map<Widget>((e) {
+      children:
+          Iterable.generate(widget.vehicleType == VehicleType.moto ? 2 : 5)
+              .map<Widget>((e) {
         return Expanded(
           child: Padding(
             padding: EdgeInsets.only(left: e == 0 ? 0 : 8.0.w),
@@ -47,7 +59,7 @@ class _VehiclePositionsState extends State<VehiclePositions> {
                           : Colors.transparent,
                     ),
                   ),
-                  child: getList()[e],
+                  child: getLists()[e],
                 ),
                 GestureDetector(
                   onTap: () {
@@ -66,7 +78,55 @@ class _VehiclePositionsState extends State<VehiclePositions> {
     );
   }
 
-  getList() {
+  getLists() {
+    if (widget.vehicleType == VehicleType.moto) {
+      return getMotoList();
+    }
+    if (widget.vehicleType == VehicleType.van) {
+      return getVanList();
+    }
+    return getAutoList();
+  }
+
+  getVanList() {
+    return [
+      VanFrontSide(
+        onPartPressed: () {},
+        parts: widget.parts,
+      ),
+      VanLeftSide(
+        onPartPressed: () {},
+        parts: widget.parts,
+      ),
+      VanRightSide(
+        onPartPressed: () {},
+        parts: widget.parts,
+      ),
+      VanTopSide(
+        onPartPressed: () {},
+        parts: widget.parts,
+      ),
+      VanBackSide(
+        onPartPressed: () {},
+        parts: widget.parts,
+      ),
+    ];
+  }
+
+  getMotoList() {
+    return [
+      MotoFrontSide(
+        onPartPressed: () {},
+        parts: widget.parts,
+      ),
+      MotoLeftSide(
+        onPartPressed: () {},
+        parts: widget.parts,
+      ),
+    ];
+  }
+
+  getAutoList() {
     return [
       VehicleLeftSide(
         onPartPressed: () {},

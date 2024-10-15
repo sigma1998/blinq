@@ -42,8 +42,7 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
     final args =
         ModalRoute.of(context)?.settings.arguments as DamagedPartsScreenArgs?;
     bloc = DamagedPartsBloc(
-      //vehicleType: args?.vehicleType ?? VehicleType.auto,
-      vehicleType:  VehicleType.van,
+      vehicleType: args?.vehicleType ?? VehicleType.auto,
       accidentRepository: getIt<AccidentRepositoryImpl>(),
       breakdownRepository: getIt<BreakdownRepositoryImpl>(),
       reportBloc: context.read(),

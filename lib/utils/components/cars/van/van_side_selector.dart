@@ -1,4 +1,7 @@
+import 'package:blinq/utils/components/cars/van/van_back_side.dart';
 import 'package:blinq/utils/components/cars/van/van_front_side.dart';
+import 'package:blinq/utils/components/cars/van/van_left_side.dart';
+import 'package:blinq/utils/components/cars/van/van_right_side.dart';
 import 'package:blinq/utils/components/cars/van/van_top_side.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -21,6 +24,34 @@ class VanSideSelector extends StatelessWidget {
     if (index == 0) {
       ///FRONT
       return VanFrontSide(
+        onPartPressed: onPartPressed,
+        parts: parts,
+      );
+    }
+    if (index == 1) {
+      ///LEFT
+      return VanLeftSide(
+        onPartPressed: onPartPressed,
+        parts: parts,
+      );
+    }
+    if (index == 2) {
+      ///RIGHT
+      return VanRightSide(
+        onPartPressed: onPartPressed,
+        parts: parts,
+      );
+    }
+    if (index == 3) {
+      ///TOP
+      return VanTopSide(
+        onPartPressed: onPartPressed,
+        parts: parts,
+      );
+    }
+    if (index == 4) {
+      ///Back
+      return VanBackSide(
         onPartPressed: onPartPressed,
         parts: parts,
       );

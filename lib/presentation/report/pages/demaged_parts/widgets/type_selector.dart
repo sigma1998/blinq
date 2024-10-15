@@ -1,3 +1,4 @@
+import 'package:blinq/utils/components/cars/moto/moto_side_selector.dart';
 import 'package:blinq/utils/components/cars/van/van_side_selector.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -21,9 +22,18 @@ class TypeSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ///VAN
     if (type == VehicleType.van) {
-      ///VAN
       return VanSideSelector(
+        onPartPressed: onPartPressed,
+        index: index,
+        parts: parts,
+      );
+    }
+
+    ///MOTO
+    if (type == VehicleType.moto) {
+      return MotoSideSelector(
         onPartPressed: onPartPressed,
         index: index,
         parts: parts,

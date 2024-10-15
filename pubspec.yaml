@@ -183,6 +183,7 @@ flutter:
     - assets/images/car/new/back/
     - assets/images/car/new/top/
     - assets/images/car/blank/
+    - assets/images/car/moto/
     - assets/images/moto/
     - assets/images/van/
     - assets/images/van/blank/
