@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:ui';
 
 // Flutter imports:
+import 'package:blinq/core/drawables/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -16,6 +17,7 @@ import 'package:blinq/core/drawables/app_drawables.dart';
 class MyImage extends StatelessWidget {
   //
   final String imgUrl;
+  final String? userName;
 
   final File? file;
 
@@ -35,11 +37,13 @@ class MyImage extends StatelessWidget {
     this.file,
     this.width,
     this.height,
+    this.userName = 'A',
     //
     this.minWidth,
     this.minHeight,
     this.maxHeight,
     this.onChangeImage,
+
     //
     this.errorImage = AppDrawables.errorProfileImage,
     this.fit = BoxFit.cover,
@@ -103,9 +107,14 @@ class MyImage extends StatelessWidget {
       highlightColor: Colors.grey[100]!,
       direction: ShimmerDirection.ltr,
       child: Container(
+        alignment: Alignment.center,
         width: width ?? minWidth,
         color: Colors.grey[300],
         height: height ?? minHeight,
+        child: Text(
+          userName?[0] ?? 'A',
+          style: AppTextStyles.s56W600,
+        ),
       ),
     );
   }

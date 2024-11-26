@@ -19,6 +19,7 @@ import 'package:blinq/domain/repositories/profile_repository.dart';
 import 'package:blinq/utils/services/media/media_service.dart';
 import 'package:blinq/utils/services/permission/permission_service.dart';
 
+import '../core/services/background_bluetooth_service/bluetooth_service.dart';
 import '../utils/services/db/driving_license_type.dart';
 
 final getIt = GetIt.instance;
@@ -71,4 +72,10 @@ void setUpLocator() {
       () => PermissionServiceImpl());
   getIt.registerLazySingleton<MediaServiceImpl>(() =>
       MediaServiceImpl(permissionService: getIt<PermissionServiceImpl>()));
+
+  ///
+  /// Services
+  ///
+  getIt.registerLazySingleton<BluetoothBackgroundService>(
+      () => BluetoothBackgroundService(getIt<PermissionServiceImpl>()));
 }

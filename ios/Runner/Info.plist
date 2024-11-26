@@ -56,12 +56,12 @@
 	<string>We require access to the user's geolocation to set the clients geolocation in the app and help them identify the nearest photographers. Our app estimates distances between users in order to connect them locally, therefore the location is required.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We require access to the user's geolocation to set the clients geolocation in the app and help them identify the nearest photographers. Our app estimates distances between users in order to connect them locally, therefore the location is required.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We need access to the microphone for speech recognition.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We require access to the gallery so that the user could choose an image from their gallery to set their profile picture in the app. Also, the user can send images in the chat with creators by choosing the images from their gallery.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
-    <string>We need access to speech recognition for converting your speech to text.</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>We need access to the microphone for speech recognition.</string>
+	<string>We need access to speech recognition for converting your speech to text.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>

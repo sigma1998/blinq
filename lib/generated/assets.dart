@@ -255,6 +255,11 @@ class Assets {
   static const String new2,1Third = 'assets/images/new2,1/third.svg';
   static const String new2,1TwoPeople = 'assets/images/new2,1/two_people.svg';
   static const String new2,1TypeContainer = 'assets/images/new2,1/type_container.png';
+  static const String profileDriver = 'assets/images/profile/driver.png';
+  static const String profileInsurance = 'assets/images/profile/insurance.png';
+  static const String profileMy car = 'assets/images/profile/my car.png';
+  static const String profilePolicy holder = 'assets/images/profile/policy holder.png';
+  static const String profileQr code = 'assets/images/profile/qr code.png';
   static const String rightFront right door = 'assets/images/car/van/right/front right door.svg';
   static const String rightFront right tire = 'assets/images/car/van/right/front right tire.svg';
   static const String rightFront right window = 'assets/images/car/van/right/front right window.svg';

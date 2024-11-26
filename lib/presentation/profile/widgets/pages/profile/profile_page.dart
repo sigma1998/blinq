@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -30,26 +32,29 @@ class ProfilePage extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 padding: const EdgeInsets.all(16),
                 children: [
-                  const SizedBox(height: 38),
+                  const SizedBox(height: 64),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        width: 96,
+                        width: 150,
                         child: MyImage(
                           state.profile?.image ?? '',
-                          width: 86,
-                          height: 86,
-                          onChangeImage: bloc.imagePickerPressed,
+                          width: 150,
+                          height: 150,
+                          userName: state.profile?.firstName,
+                          //onChangeImage: bloc.imagePickerPressed,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 6),
+                  const SizedBox(height: 24),
                   Text(
                     '${state.profile?.firstName} ${state.profile?.lastName}',
                     textAlign: TextAlign.center,
                   ),
+                  const SizedBox(height: 8),
+                  carInformationBtn(state),
                   const SizedBox(height: 54),
 
                   //& Info & Policy
@@ -69,6 +74,50 @@ class ProfilePage extends StatelessWidget {
                 ],
               );
       },
+    );
+  }
+
+  carInformationBtn(ProfileState state) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          height: 36,
+          alignment: Alignment.center,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          decoration: BoxDecoration(
+            color: AppColors.activeReportColor,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Row(
+            children: [
+              if (state.profile?.car?.brand == null)
+                Container(
+                  width: 24,
+                  height: 24,
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.primaryColor,
+                  ),
+                  child: const Icon(
+                    Icons.add,
+                    size: 18,
+                  ),
+                ),
+              if (state.profile?.car?.brand == null) const SizedBox(width: 8),
+              Text(
+                state.profile?.car?.brand != null
+                    ? state.profile!.car!.brand!
+                    : 'Add car information',
+                style: AppTextStyles.s15W600.copyWith(
+                  color: AppColors.black,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

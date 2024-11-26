@@ -4,6 +4,12 @@ class AppTextStyles {
   const AppTextStyles._();
   static const _archivo = 'Archivo';
 
+  static const s56W600 = TextStyle(
+    fontFamily: _archivo,
+    fontWeight: FontWeight.w600,
+    fontSize: 56,
+  );
+
   static const s34W600 = TextStyle(
     fontFamily: _archivo,
     fontWeight: FontWeight.w600,

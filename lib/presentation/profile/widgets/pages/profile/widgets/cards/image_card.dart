@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -28,41 +30,26 @@ class ProfileImageCard extends StatelessWidget {
       height: 163,
       width: double.infinity,
       padding: EdgeInsets.zero,
-      child: Stack(
+      child: Row(
         children: [
-          image,
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 20,
-              horizontal: 24,
-            ),
+          const SizedBox(width: 24),
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      title,
-                      textAlign: TextAlign.left,
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                            color: Theme.of(context).colorScheme.onSecondary,
-                          ),
-                    ),
-                  ],
+                Text(
+                  desc,
+                  style: AppTextStyles.s28W600,
                 ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    Text(
-                      desc,
-                      textAlign: TextAlign.left,
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                  ],
+                const SizedBox(height: 4),
+                Text(
+                  title,
+                  style:AppTextStyles.s13W400.copyWith(color: AppColors.grey1),
                 ),
               ],
             ),
           ),
+          image,
         ],
       ),
     );

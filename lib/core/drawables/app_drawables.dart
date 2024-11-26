@@ -358,4 +358,13 @@ class AppDrawables {
   static const String motoExhaustSystem = 'assets/images/car/moto/exhaust system.svg';
   static const String motoRareTire = 'assets/images/car/moto/rare tire.svg';
 
+
+  ///new
+  //profile
+  static const String driverImage = 'assets/images/profile/driver.png';
+  static const String insuranceImage = 'assets/images/profile/insurance.png';
+  static const String myCarImage = 'assets/images/profile/my car.png';
+  static const String policyHolderImage = 'assets/images/profile/policy holder.png';
+  static const String qrCodeImage = 'assets/images/profile/qr code.png';
+
 }

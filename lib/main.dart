@@ -13,10 +13,12 @@ import 'package:blinq/app.dart';
 import 'package:blinq/app/locator.dart';
 import 'package:blinq/data/model/profile/driver_license/driver_license_type.dart';
 import 'package:blinq/localization.dart';
+import 'core/services/background_bluetooth_service/background_bluetooth_sevice.dart';
 import 'data/datasource/local/storage_constants.dart';
 import 'data/model/user/user_status.dart';
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
 
   await EasyLocalization.ensureInitialized();
@@ -29,7 +31,13 @@ void main() async {
 
   await Firebase.initializeApp();
 
-  runApp(const MyLocalization(child: MyApp()));
+  await initializeService();
+
+  runApp(
+    const MyLocalization(
+      child: MyApp(),
+    ),
+  );
 }
 
 Future<void> _setUpHive() async {

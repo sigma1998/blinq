@@ -33,7 +33,7 @@ class ProfileInfoWidget extends StatelessWidget {
 
                       bloc.onDriverPressed();
                     },
-                    image: AppDrawables.policyHolder,
+                    image: AppDrawables.myCarImage,
                     desc: '${state.profile?.fullName}',
                   ),
                 ),
@@ -41,7 +41,7 @@ class ProfileInfoWidget extends StatelessWidget {
                 Expanded(
                   child: ProfileInfoCard(
                     title: 'strPolicyHolder'.tr(),
-                    image: AppDrawables.policyHolder,
+                    image: AppDrawables.policyHolderImage,
                     onTap: bloc.onPolicyHolderPressed,
                     desc: '${state.profile?.policyHolder?.fullName}',
                   ),
@@ -56,14 +56,14 @@ class ProfileInfoWidget extends StatelessWidget {
                     desc: state.profile?.car?.brand ?? '-',
                     title: AppLocale.myCar.tr(),
                     onTap: bloc.onVehiclePressed,
-                    image: AppDrawables.electricBolt,
+                    image: AppDrawables.driverImage,
                   ),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: ProfileInfoCard(
                     title: 'strInsurance'.tr(),
-                    image: AppDrawables.insurance,
+                    image: AppDrawables.insuranceImage,
                     onTap: bloc.onInsurancePressed,
                     desc: state.profile?.insurance?.name ?? '-',
                   ),
@@ -82,7 +82,7 @@ class ProfileInfoWidget extends StatelessWidget {
                     bottomRight: Radius.circular(20),
                   ),
                   child: Image.asset(
-                    AppDrawables.scanningQr,
+                    AppDrawables.qrCodeImage,
                     height: 163,
                   ),
                 ),
