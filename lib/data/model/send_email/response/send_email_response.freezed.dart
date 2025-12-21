@@ -25,8 +25,12 @@ mixin _$SendEmailResponse {
   @JsonKey(name: 'verification_code')
   String get verificationCode => throw _privateConstructorUsedError;
 
+  /// Serializes this SendEmailResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SendEmailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SendEmailResponseCopyWith<SendEmailResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,6 +57,8 @@ class _$SendEmailResponseCopyWithImpl<$Res, $Val extends SendEmailResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SendEmailResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -99,6 +105,8 @@ class __$$SendEmailResponseImplCopyWithImpl<$Res>
       $Res Function(_$SendEmailResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SendEmailResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -158,12 +166,14 @@ class _$SendEmailResponseImpl implements _SendEmailResponse {
                 other.verificationCode == verificationCode));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, success, email, verificationCode);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SendEmailResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SendEmailResponseImplCopyWith<_$SendEmailResponseImpl> get copyWith =>
@@ -195,8 +205,11 @@ abstract class _SendEmailResponse implements SendEmailResponse {
   @override
   @JsonKey(name: 'verification_code')
   String get verificationCode;
+
+  /// Create a copy of SendEmailResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SendEmailResponseImplCopyWith<_$SendEmailResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

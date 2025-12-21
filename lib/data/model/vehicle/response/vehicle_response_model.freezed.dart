@@ -41,8 +41,12 @@ mixin _$UserVehicleResponseModel {
   String? get batteryReplacementUpdatedDate =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this UserVehicleResponseModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UserVehicleResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UserVehicleResponseModelCopyWith<UserVehicleResponseModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -79,6 +83,8 @@ class _$UserVehicleResponseModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UserVehicleResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -167,6 +173,8 @@ class __$$UserVehicleResponseModelImplCopyWithImpl<$Res>
       $Res Function(_$UserVehicleResponseModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserVehicleResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -302,7 +310,7 @@ class _$UserVehicleResponseModelImpl implements _UserVehicleResponseModel {
                     batteryReplacementUpdatedDate));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -316,7 +324,9 @@ class _$UserVehicleResponseModelImpl implements _UserVehicleResponseModel {
       batteryReplacement,
       batteryReplacementUpdatedDate);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserVehicleResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserVehicleResponseModelImplCopyWith<_$UserVehicleResponseModelImpl>
@@ -378,8 +388,11 @@ abstract class _UserVehicleResponseModel implements UserVehicleResponseModel {
   @override
   @JsonKey(name: 'battery_replacement_updated_date')
   String? get batteryReplacementUpdatedDate;
+
+  /// Create a copy of UserVehicleResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserVehicleResponseModelImplCopyWith<_$UserVehicleResponseModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

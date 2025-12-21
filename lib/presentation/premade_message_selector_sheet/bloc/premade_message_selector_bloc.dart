@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_sms/flutter_sms.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
@@ -69,12 +68,12 @@ class PreMadeMessageSelectorBloc
       return;
     }
 
-    final result = await sendSMS(
-      sendDirect: true,
-      recipients: recipients,
-      message: state.selectedMessage?.message ?? '',
-    );
-    debugPrint('result: $result');
+    // final result = await sendSMS(
+    //   sendDirect: true,
+    //   recipients: recipients,
+    //   message: state.selectedMessage?.message ?? '',
+    // );
+    //debugPrint('result: $result');
     await NavigationService.showToast(
       text: 'strYourInformMessageSent'.tr(),
       title: 'strSuccess'.tr(),

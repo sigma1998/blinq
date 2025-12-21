@@ -20,7 +20,9 @@ mixin _$LoginBottomSheetState {
   Error? get error => throw _privateConstructorUsedError;
   bool get isCodeVisible => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LoginBottomSheetState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LoginBottomSheetStateCopyWith<LoginBottomSheetState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$LoginBottomSheetStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LoginBottomSheetState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -90,6 +94,8 @@ class __$$LoginBottomSheetStateImplCopyWithImpl<$Res>
       $Res Function(_$LoginBottomSheetStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LoginBottomSheetState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -148,7 +154,9 @@ class _$LoginBottomSheetStateImpl implements _LoginBottomSheetState {
   @override
   int get hashCode => Object.hash(runtimeType, status, error, isCodeVisible);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LoginBottomSheetState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoginBottomSheetStateImplCopyWith<_$LoginBottomSheetStateImpl>
@@ -168,8 +176,11 @@ abstract class _LoginBottomSheetState implements LoginBottomSheetState {
   Error? get error;
   @override
   bool get isCodeVisible;
+
+  /// Create a copy of LoginBottomSheetState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoginBottomSheetStateImplCopyWith<_$LoginBottomSheetStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

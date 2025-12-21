@@ -20,7 +20,9 @@ mixin _$RegistrationScreenState {
   dynamic get firstCodeVisible => throw _privateConstructorUsedError;
   dynamic get secondCodeVisible => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RegistrationScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RegistrationScreenStateCopyWith<RegistrationScreenState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -46,6 +48,8 @@ class _$RegistrationScreenStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RegistrationScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +97,8 @@ class __$$RegistrationScreenStateImplCopyWithImpl<$Res>
       $Res Function(_$RegistrationScreenStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RegistrationScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -157,7 +163,9 @@ class _$RegistrationScreenStateImpl implements _RegistrationScreenState {
       const DeepCollectionEquality().hash(firstCodeVisible),
       const DeepCollectionEquality().hash(secondCodeVisible));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RegistrationScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RegistrationScreenStateImplCopyWith<_$RegistrationScreenStateImpl>
@@ -177,8 +185,11 @@ abstract class _RegistrationScreenState implements RegistrationScreenState {
   dynamic get firstCodeVisible;
   @override
   dynamic get secondCodeVisible;
+
+  /// Create a copy of RegistrationScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RegistrationScreenStateImplCopyWith<_$RegistrationScreenStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

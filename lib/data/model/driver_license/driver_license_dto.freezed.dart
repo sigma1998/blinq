@@ -28,8 +28,12 @@ mixin _$DriverLicenseDto {
   String get licenseNumber => throw _privateConstructorUsedError;
   String get licenseType => throw _privateConstructorUsedError;
 
+  /// Serializes this DriverLicenseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DriverLicenseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DriverLicenseDtoCopyWith<DriverLicenseDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -60,6 +64,8 @@ class _$DriverLicenseDtoCopyWithImpl<$Res, $Val extends DriverLicenseDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DriverLicenseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -130,6 +136,8 @@ class __$$DriverLicenseDtoImplCopyWithImpl<$Res>
       $Res Function(_$DriverLicenseDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DriverLicenseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -230,12 +238,14 @@ class _$DriverLicenseDtoImpl implements _DriverLicenseDto {
                 other.licenseType == licenseType));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, firstName, lastName, dateOfBirth,
       issueDate, expirationDate, licenseNumber, licenseType);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DriverLicenseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DriverLicenseDtoImplCopyWith<_$DriverLicenseDtoImpl> get copyWith =>
@@ -277,8 +287,11 @@ abstract class _DriverLicenseDto implements DriverLicenseDto {
   String get licenseNumber;
   @override
   String get licenseType;
+
+  /// Create a copy of DriverLicenseDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DriverLicenseDtoImplCopyWith<_$DriverLicenseDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

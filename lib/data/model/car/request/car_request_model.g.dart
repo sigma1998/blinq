@@ -9,8 +9,8 @@ part of 'car_request_model.dart';
 _$CarRequestModelImpl _$$CarRequestModelImplFromJson(
         Map<String, dynamic> json) =>
     _$CarRequestModelImpl(
-      carId: json['car_id'] as int?,
-      colorId: json['color_id'] as int?,
+      carId: (json['car_id'] as num?)?.toInt(),
+      colorId: (json['color_id'] as num?)?.toInt(),
       modelSeries: (json['model_series'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
@@ -29,8 +29,8 @@ _$CarRequestModelImpl _$$CarRequestModelImplFromJson(
       customCar: json['custom_car'] as String?,
       customCarColour: json['custom_car_colour'] as String?,
       plateNumber: json['plate_number'] as String?,
-      car: json['car'] as int?,
-      color: json['color'] as int?,
+      car: (json['car'] as num?)?.toInt(),
+      color: (json['color'] as num?)?.toInt(),
       brand: json['brand'] as String?,
     );
 

@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$EditMyCarState {
   Status get status => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EditMyCarState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EditMyCarStateCopyWith<EditMyCarState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -42,6 +44,8 @@ class _$EditMyCarStateCopyWithImpl<$Res, $Val extends EditMyCarState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EditMyCarState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -75,6 +79,8 @@ class __$$EditMyCarStateImplCopyWithImpl<$Res>
       _$EditMyCarStateImpl _value, $Res Function(_$EditMyCarStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EditMyCarState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -114,7 +120,9 @@ class _$EditMyCarStateImpl implements _EditMyCarState {
   @override
   int get hashCode => Object.hash(runtimeType, status);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EditMyCarState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EditMyCarStateImplCopyWith<_$EditMyCarStateImpl> get copyWith =>
@@ -127,8 +135,11 @@ abstract class _EditMyCarState implements EditMyCarState {
 
   @override
   Status get status;
+
+  /// Create a copy of EditMyCarState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EditMyCarStateImplCopyWith<_$EditMyCarStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

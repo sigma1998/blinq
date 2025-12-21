@@ -24,8 +24,12 @@ mixin _$VehicleColorDto {
   String? get colour => throw _privateConstructorUsedError;
   int? get brandId => throw _privateConstructorUsedError;
 
+  /// Serializes this VehicleColorDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VehicleColorDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VehicleColorDtoCopyWith<VehicleColorDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$VehicleColorDtoCopyWithImpl<$Res, $Val extends VehicleColorDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VehicleColorDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$VehicleColorDtoImplCopyWithImpl<$Res>
       _$VehicleColorDtoImpl _value, $Res Function(_$VehicleColorDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VehicleColorDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -146,11 +154,13 @@ class _$VehicleColorDtoImpl implements _VehicleColorDto {
             (identical(other.brandId, brandId) || other.brandId == brandId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, colour, brandId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VehicleColorDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VehicleColorDtoImplCopyWith<_$VehicleColorDtoImpl> get copyWith =>
@@ -180,8 +190,11 @@ abstract class _VehicleColorDto implements VehicleColorDto {
   String? get colour;
   @override
   int? get brandId;
+
+  /// Create a copy of VehicleColorDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VehicleColorDtoImplCopyWith<_$VehicleColorDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

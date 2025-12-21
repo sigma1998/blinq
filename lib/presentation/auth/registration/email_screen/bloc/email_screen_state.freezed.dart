@@ -20,7 +20,9 @@ mixin _$EmailScreenState {
   bool get isResendCodeLoading => throw _privateConstructorUsedError;
   bool get isCodeSent => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EmailScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EmailScreenStateCopyWith<EmailScreenState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +46,8 @@ class _$EmailScreenStateCopyWithImpl<$Res, $Val extends EmailScreenState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EmailScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -87,6 +91,8 @@ class __$$EmailScreenStateImplCopyWithImpl<$Res>
       $Res Function(_$EmailScreenStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EmailScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -150,7 +156,9 @@ class _$EmailScreenStateImpl implements _EmailScreenState {
   int get hashCode =>
       Object.hash(runtimeType, status, isResendCodeLoading, isCodeSent);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EmailScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EmailScreenStateImplCopyWith<_$EmailScreenStateImpl> get copyWith =>
@@ -170,8 +178,11 @@ abstract class _EmailScreenState implements EmailScreenState {
   bool get isResendCodeLoading;
   @override
   bool get isCodeSent;
+
+  /// Create a copy of EmailScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EmailScreenStateImplCopyWith<_$EmailScreenStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

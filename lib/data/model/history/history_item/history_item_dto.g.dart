@@ -9,7 +9,7 @@ part of 'history_item_dto.dart';
 _$HistoryItemModelDtoImpl _$$HistoryItemModelDtoImplFromJson(
         Map<String, dynamic> json) =>
     _$HistoryItemModelDtoImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       type: json['type'] as String?,
       status: json['status'] as String?,
       createdAt: json['created_at'] as String?,

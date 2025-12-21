@@ -26,8 +26,12 @@ mixin _$CheckAccountResponse {
   @JsonKey(name: "policy_holder")
   bool get policyHolder => throw _privateConstructorUsedError;
 
+  /// Serializes this CheckAccountResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CheckAccountResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CheckAccountResponseCopyWith<CheckAccountResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -56,6 +60,8 @@ class _$CheckAccountResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CheckAccountResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -108,6 +114,8 @@ class __$$CheckAccountResponseImplCopyWithImpl<$Res>
       $Res Function(_$CheckAccountResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CheckAccountResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -177,12 +185,14 @@ class _$CheckAccountResponseImpl implements _CheckAccountResponse {
                 other.policyHolder == policyHolder));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, account, car, insurance, policyHolder);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CheckAccountResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CheckAccountResponseImplCopyWith<_$CheckAccountResponseImpl>
@@ -218,8 +228,11 @@ abstract class _CheckAccountResponse implements CheckAccountResponse {
   @override
   @JsonKey(name: "policy_holder")
   bool get policyHolder;
+
+  /// Create a copy of CheckAccountResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CheckAccountResponseImplCopyWith<_$CheckAccountResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

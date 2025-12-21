@@ -21,7 +21,9 @@ mixin _$PreMadeMessagesState {
       throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PreMadeMessagesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PreMadeMessagesStateCopyWith<PreMadeMessagesState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +53,8 @@ class _$PreMadeMessagesStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PreMadeMessagesState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -74,6 +78,8 @@ class _$PreMadeMessagesStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of PreMadeMessagesState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PreMadeMessageResponseDtoCopyWith<$Res>? get premadeMessages {
@@ -113,6 +119,8 @@ class __$$PremadeMessagesStateImplCopyWithImpl<$Res>
       $Res Function(_$PremadeMessagesStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PreMadeMessagesState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -170,7 +178,9 @@ class _$PremadeMessagesStateImpl implements _PremadeMessagesState {
   @override
   int get hashCode => Object.hash(runtimeType, status, premadeMessages, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PreMadeMessagesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PremadeMessagesStateImplCopyWith<_$PremadeMessagesStateImpl>
@@ -191,8 +201,11 @@ abstract class _PremadeMessagesState implements PreMadeMessagesState {
   PreMadeMessageResponseDto? get premadeMessages;
   @override
   Error? get error;
+
+  /// Create a copy of PreMadeMessagesState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PremadeMessagesStateImplCopyWith<_$PremadeMessagesStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

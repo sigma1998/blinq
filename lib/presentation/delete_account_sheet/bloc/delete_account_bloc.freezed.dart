@@ -20,7 +20,9 @@ mixin _$DeleteAccountState {
   Error? get error => throw _privateConstructorUsedError; //
   bool get isCodeSent => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeleteAccountState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DeleteAccountStateCopyWith<DeleteAccountState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +46,8 @@ class _$DeleteAccountStateCopyWithImpl<$Res, $Val extends DeleteAccountState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DeleteAccountState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -87,6 +91,8 @@ class __$$DeleteAccountStateImplCopyWithImpl<$Res>
       $Res Function(_$DeleteAccountStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeleteAccountState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -146,7 +152,9 @@ class _$DeleteAccountStateImpl implements _DeleteAccountState {
   @override
   int get hashCode => Object.hash(runtimeType, status, error, isCodeSent);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeleteAccountState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DeleteAccountStateImplCopyWith<_$DeleteAccountStateImpl> get copyWith =>
@@ -163,11 +171,14 @@ abstract class _DeleteAccountState implements DeleteAccountState {
   @override
   Status get status;
   @override
-  Error? get error;
-  @override //
-  bool get isCodeSent;
+  Error? get error; //
   @override
-  @JsonKey(ignore: true)
+  bool get isCodeSent;
+
+  /// Create a copy of DeleteAccountState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeleteAccountStateImplCopyWith<_$DeleteAccountStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

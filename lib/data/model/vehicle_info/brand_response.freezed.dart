@@ -25,8 +25,12 @@ mixin _$BrandResponseDto {
   String? get previous => throw _privateConstructorUsedError;
   List<VehicleInfoDto>? get results => throw _privateConstructorUsedError;
 
+  /// Serializes this BrandResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BrandResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BrandResponseDtoCopyWith<BrandResponseDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,6 +58,8 @@ class _$BrandResponseDtoCopyWithImpl<$Res, $Val extends BrandResponseDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BrandResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -106,6 +112,8 @@ class __$$BrandResponseDtoImplCopyWithImpl<$Res>
       $Res Function(_$BrandResponseDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BrandResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -181,12 +189,14 @@ class _$BrandResponseDtoImpl implements _BrandResponseDto {
             const DeepCollectionEquality().equals(other._results, _results));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, count, next, previous,
       const DeepCollectionEquality().hash(_results));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BrandResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BrandResponseDtoImplCopyWith<_$BrandResponseDtoImpl> get copyWith =>
@@ -219,8 +229,11 @@ abstract class _BrandResponseDto implements BrandResponseDto {
   String? get previous;
   @override
   List<VehicleInfoDto>? get results;
+
+  /// Create a copy of BrandResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BrandResponseDtoImplCopyWith<_$BrandResponseDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

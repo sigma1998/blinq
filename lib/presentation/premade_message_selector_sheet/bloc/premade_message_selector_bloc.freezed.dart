@@ -23,7 +23,9 @@ mixin _$PremadeMessageSelectorState {
       throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PremadeMessageSelectorState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PremadeMessageSelectorStateCopyWith<PremadeMessageSelectorState>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -56,6 +58,8 @@ class _$PremadeMessageSelectorStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PremadeMessageSelectorState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -84,6 +88,8 @@ class _$PremadeMessageSelectorStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of PremadeMessageSelectorState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PreMadeMessageResponseModelCopyWith<$Res>? get selectedMessage {
@@ -127,6 +133,8 @@ class __$$PremadeMessageSelectorStateImplCopyWithImpl<$Res>
       $Res Function(_$PremadeMessageSelectorStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PremadeMessageSelectorState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -210,7 +218,9 @@ class _$PremadeMessageSelectorStateImpl
       selectedMessage,
       error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PremadeMessageSelectorState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PremadeMessageSelectorStateImplCopyWith<_$PremadeMessageSelectorStateImpl>
@@ -234,8 +244,11 @@ abstract class _PremadeMessageSelectorState
   PreMadeMessageResponseModel? get selectedMessage;
   @override
   Error? get error;
+
+  /// Create a copy of PremadeMessageSelectorState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PremadeMessageSelectorStateImplCopyWith<_$PremadeMessageSelectorStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

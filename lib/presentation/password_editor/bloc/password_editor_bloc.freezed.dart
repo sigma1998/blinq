@@ -21,7 +21,9 @@ mixin _$PasswordEditorState {
   bool get isCodeVisible => throw _privateConstructorUsedError;
   bool get isConfirmCodeVisible => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PasswordEditorState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PasswordEditorStateCopyWith<PasswordEditorState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +51,8 @@ class _$PasswordEditorStateCopyWithImpl<$Res, $Val extends PasswordEditorState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PasswordEditorState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -101,6 +105,8 @@ class __$$PasswordEditorStateImplCopyWithImpl<$Res>
       $Res Function(_$PasswordEditorStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PasswordEditorState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -174,7 +180,9 @@ class _$PasswordEditorStateImpl implements _PasswordEditorState {
   int get hashCode => Object.hash(
       runtimeType, status, error, isCodeVisible, isConfirmCodeVisible);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PasswordEditorState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PasswordEditorStateImplCopyWith<_$PasswordEditorStateImpl> get copyWith =>
@@ -192,13 +200,16 @@ abstract class _PasswordEditorState implements PasswordEditorState {
   @override
   Status get status;
   @override
-  Error? get error;
-  @override //
+  Error? get error; //
+  @override
   bool get isCodeVisible;
   @override
   bool get isConfirmCodeVisible;
+
+  /// Create a copy of PasswordEditorState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PasswordEditorStateImplCopyWith<_$PasswordEditorStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

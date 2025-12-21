@@ -22,7 +22,9 @@ mixin _$InformCloseOnesState {
       throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of InformCloseOnesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $InformCloseOnesStateCopyWith<InformCloseOnesState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +53,8 @@ class _$InformCloseOnesStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of InformCloseOnesState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -103,6 +107,8 @@ class __$$InformCloseOnesStateImplCopyWithImpl<$Res>
       $Res Function(_$InformCloseOnesStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of InformCloseOnesState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -193,7 +199,9 @@ class _$InformCloseOnesStateImpl implements _InformCloseOnesState {
       const DeepCollectionEquality().hash(_selectedContacts),
       error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of InformCloseOnesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InformCloseOnesStateImplCopyWith<_$InformCloseOnesStateImpl>
@@ -217,8 +225,11 @@ abstract class _InformCloseOnesState implements InformCloseOnesState {
   List<ContactResponseModel> get selectedContacts;
   @override
   Error? get error;
+
+  /// Create a copy of InformCloseOnesState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InformCloseOnesStateImplCopyWith<_$InformCloseOnesStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

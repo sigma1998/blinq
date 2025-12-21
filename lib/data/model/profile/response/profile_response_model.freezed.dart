@@ -59,8 +59,12 @@ mixin _$ProfileResponseModel {
   @JsonKey()
   InsuranceResponseModel? get insurance => throw _privateConstructorUsedError;
 
+  /// Serializes this ProfileResponseModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProfileResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProfileResponseModelCopyWith<ProfileResponseModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -111,6 +115,8 @@ class _$ProfileResponseModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProfileResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -224,6 +230,8 @@ class _$ProfileResponseModelCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ProfileResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CarResponseModelCopyWith<$Res>? get car {
@@ -236,6 +244,8 @@ class _$ProfileResponseModelCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ProfileResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PolicyHolderResponseModelCopyWith<$Res>? get policyHolder {
@@ -249,6 +259,8 @@ class _$ProfileResponseModelCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ProfileResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $InsuranceResponseModelCopyWith<$Res>? get insurance {
@@ -310,6 +322,8 @@ class __$$ProfileResponseModelImplCopyWithImpl<$Res>
       $Res Function(_$ProfileResponseModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProfileResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -568,7 +582,7 @@ class _$ProfileResponseModelImpl extends _ProfileResponseModel {
                 other.insurance == insurance));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -595,7 +609,9 @@ class _$ProfileResponseModelImpl extends _ProfileResponseModel {
         insurance
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProfileResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProfileResponseModelImplCopyWith<_$ProfileResponseModelImpl>
@@ -701,8 +717,11 @@ abstract class _ProfileResponseModel extends ProfileResponseModel {
   @override
   @JsonKey()
   InsuranceResponseModel? get insurance;
+
+  /// Create a copy of ProfileResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProfileResponseModelImplCopyWith<_$ProfileResponseModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

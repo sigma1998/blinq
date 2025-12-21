@@ -19,7 +19,9 @@ mixin _$PreMadeMessageEditorState {
   Status get status => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PreMadeMessageEditorState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PreMadeMessageEditorStateCopyWith<PreMadeMessageEditorState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +46,8 @@ class _$PreMadeMessageEditorStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PreMadeMessageEditorState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -85,6 +89,8 @@ class __$$PreMadeMessageEditorStateImplCopyWithImpl<$Res>
       $Res Function(_$PreMadeMessageEditorStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PreMadeMessageEditorState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -133,7 +139,9 @@ class _$PreMadeMessageEditorStateImpl implements _PreMadeMessageEditorState {
   @override
   int get hashCode => Object.hash(runtimeType, status, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PreMadeMessageEditorState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PreMadeMessageEditorStateImplCopyWith<_$PreMadeMessageEditorStateImpl>
@@ -150,8 +158,11 @@ abstract class _PreMadeMessageEditorState implements PreMadeMessageEditorState {
   Status get status;
   @override
   Error? get error;
+
+  /// Create a copy of PreMadeMessageEditorState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PreMadeMessageEditorStateImplCopyWith<_$PreMadeMessageEditorStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

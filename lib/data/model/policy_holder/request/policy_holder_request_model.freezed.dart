@@ -36,8 +36,12 @@ mixin _$PolicyHolderRequestModel {
   String? get email => throw _privateConstructorUsedError;
   bool? get sameAsDriver => throw _privateConstructorUsedError;
 
+  /// Serializes this PolicyHolderRequestModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PolicyHolderRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PolicyHolderRequestModelCopyWith<PolicyHolderRequestModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -72,6 +76,8 @@ class _$PolicyHolderRequestModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PolicyHolderRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -163,6 +169,8 @@ class __$$PolicyHolderRequestModelImplCopyWithImpl<$Res>
       $Res Function(_$PolicyHolderRequestModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PolicyHolderRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -292,12 +300,14 @@ class _$PolicyHolderRequestModelImpl implements _PolicyHolderRequestModel {
                 other.sameAsDriver == sameAsDriver));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, firstName, lastName, postalCode,
       country, city, state, street, phoneNumber, email, sameAsDriver);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PolicyHolderRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PolicyHolderRequestModelImplCopyWith<_$PolicyHolderRequestModelImpl>
@@ -352,8 +362,11 @@ abstract class _PolicyHolderRequestModel implements PolicyHolderRequestModel {
   String? get email;
   @override
   bool? get sameAsDriver;
+
+  /// Create a copy of PolicyHolderRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PolicyHolderRequestModelImplCopyWith<_$PolicyHolderRequestModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

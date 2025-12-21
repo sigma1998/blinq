@@ -20,7 +20,9 @@ mixin _$CircumstanceState {
   Set<String> get driverA => throw _privateConstructorUsedError;
   Set<String> get driverB => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CircumstanceState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CircumstanceStateCopyWith<CircumstanceState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +46,8 @@ class _$CircumstanceStateCopyWithImpl<$Res, $Val extends CircumstanceState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CircumstanceState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -87,6 +91,8 @@ class __$$CircumstanceStateImplCopyWithImpl<$Res>
       $Res Function(_$CircumstanceStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CircumstanceState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -164,7 +170,9 @@ class _$CircumstanceStateImpl implements _CircumstanceState {
       const DeepCollectionEquality().hash(_driverA),
       const DeepCollectionEquality().hash(_driverB));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CircumstanceState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CircumstanceStateImplCopyWith<_$CircumstanceStateImpl> get copyWith =>
@@ -184,8 +192,11 @@ abstract class _CircumstanceState implements CircumstanceState {
   Set<String> get driverA;
   @override
   Set<String> get driverB;
+
+  /// Create a copy of CircumstanceState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CircumstanceStateImplCopyWith<_$CircumstanceStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

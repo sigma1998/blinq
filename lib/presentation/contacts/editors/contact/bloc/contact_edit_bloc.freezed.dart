@@ -20,7 +20,9 @@ mixin _$ContactEditState {
   File? get image => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContactEditState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContactEditStateCopyWith<ContactEditState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +46,8 @@ class _$ContactEditStateCopyWithImpl<$Res, $Val extends ContactEditState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ContactEditState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -87,6 +91,8 @@ class __$$ContactEditStateImplCopyWithImpl<$Res>
       $Res Function(_$ContactEditStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ContactEditState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -143,7 +149,9 @@ class _$ContactEditStateImpl implements _ContactEditState {
   @override
   int get hashCode => Object.hash(runtimeType, status, image, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContactEditState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContactEditStateImplCopyWith<_$ContactEditStateImpl> get copyWith =>
@@ -163,8 +171,11 @@ abstract class _ContactEditState implements ContactEditState {
   File? get image;
   @override
   Error? get error;
+
+  /// Create a copy of ContactEditState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContactEditStateImplCopyWith<_$ContactEditStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -9,7 +9,7 @@ part of 'color_response.dart';
 _$ColorResponseDtoImpl _$$ColorResponseDtoImplFromJson(
         Map<String, dynamic> json) =>
     _$ColorResponseDtoImpl(
-      count: json['count'] as int?,
+      count: (json['count'] as num?)?.toInt(),
       next: json['next'] as String?,
       previous: json['previous'] as String?,
       results: (json['results'] as List<dynamic>?)

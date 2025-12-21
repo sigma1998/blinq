@@ -59,8 +59,12 @@ mixin _$CarRequestModel {
   int? get color => throw _privateConstructorUsedError;
   String? get brand => throw _privateConstructorUsedError;
 
+  /// Serializes this CarRequestModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CarRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CarRequestModelCopyWith<CarRequestModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -106,6 +110,8 @@ class _$CarRequestModelCopyWithImpl<$Res, $Val extends CarRequestModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CarRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -256,6 +262,8 @@ class __$$CarRequestModelImplCopyWithImpl<$Res>
       _$CarRequestModelImpl _value, $Res Function(_$CarRequestModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CarRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -512,7 +520,7 @@ class _$CarRequestModelImpl implements _CarRequestModel {
             (identical(other.brand, brand) || other.brand == brand));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -538,7 +546,9 @@ class _$CarRequestModelImpl implements _CarRequestModel {
         brand
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CarRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CarRequestModelImplCopyWith<_$CarRequestModelImpl> get copyWith =>
@@ -640,8 +650,11 @@ abstract class _CarRequestModel implements CarRequestModel {
   int? get color;
   @override
   String? get brand;
+
+  /// Create a copy of CarRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CarRequestModelImplCopyWith<_$CarRequestModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

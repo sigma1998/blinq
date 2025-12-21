@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 // Project imports:
 import 'package:blinq/presentation/report/pages/second_driver/second_driver_screen.dart';
@@ -27,24 +26,24 @@ class QrScanScreen extends StatefulWidget {
 class _QrScanScreenState extends State<QrScanScreen> {
   //
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  QRViewController? controller;
+  //QRViewController? controller;
   bool _isScanned = false;
 
-  @override
-  void reassemble() {
-    super.reassemble();
-    if (Platform.isAndroid) {
-      controller!.pauseCamera();
-    } else if (Platform.isIOS) {
-      controller!.resumeCamera();
-    }
-  }
-
-  @override
-  void dispose() {
-    controller?.dispose();
-    super.dispose();
-  }
+  // @override
+  // void reassemble() {
+  //   super.reassemble();
+  //   if (Platform.isAndroid) {
+  //     controller!.pauseCamera();
+  //   } else if (Platform.isIOS) {
+  //     controller!.resumeCamera();
+  //   }
+  // }
+  //
+  // @override
+  // void dispose() {
+  //   controller?.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -52,20 +51,20 @@ class _QrScanScreenState extends State<QrScanScreen> {
       child: Scaffold(
         body: Stack(
           children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              child: QRView(
-                key: qrKey,
-                onQRViewCreated: _onQRViewCreated,
-                overlay: QrScannerOverlayShape(
-                  borderWidth: 8,
-                  cutOutSize: 266,
-                  borderLength: 30,
-                  borderColor: Theme.of(context).colorScheme.primary,
-                ),
-              ),
-            ),
+            // SizedBox(
+            //   width: MediaQuery.of(context).size.width,
+            //   height: MediaQuery.of(context).size.height,
+            //   child: QRView(
+            //     key: qrKey,
+            //     onQRViewCreated: _onQRViewCreated,
+            //     overlay: QrScannerOverlayShape(
+            //       borderWidth: 8,
+            //       cutOutSize: 266,
+            //       borderLength: 30,
+            //       borderColor: Theme.of(context).colorScheme.primary,
+            //     ),
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 32,
@@ -110,17 +109,17 @@ class _QrScanScreenState extends State<QrScanScreen> {
     );
   }
 
-  void _onQRViewCreated(QRViewController controller) {
-    this.controller = controller;
-    controller.scannedDataStream.listen((data) {
-      if (_isScanned) return;
-      final userJson = jsonDecode(data.code?.replaceAll('\'', '"') ?? '{}');
-      debugPrint('userJson: $userJson');
-      NavigationService.pushReplacement(
-          routeName: SecondDriverScreen.route,
-          arguments: userJson['user_id'],
-          nestedKey: NavigationService.homeNavigatorKey);
-      _isScanned = true;
-    });
-  }
+  // void _onQRViewCreated(QRViewController controller) {
+  //   this.controller = controller;
+  //   controller.scannedDataStream.listen((data) {
+  //     if (_isScanned) return;
+  //     final userJson = jsonDecode(data.code?.replaceAll('\'', '"') ?? '{}');
+  //     debugPrint('userJson: $userJson');
+  //     NavigationService.pushReplacement(
+  //         routeName: SecondDriverScreen.route,
+  //         arguments: userJson['user_id'],
+  //         nestedKey: NavigationService.homeNavigatorKey);
+  //     _isScanned = true;
+  //   });
+  // }
 }

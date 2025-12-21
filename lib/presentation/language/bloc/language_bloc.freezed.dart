@@ -20,7 +20,9 @@ mixin _$LanguageState {
   ProfileLanguage? get lang => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LanguageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LanguageStateCopyWith<LanguageState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +46,8 @@ class _$LanguageStateCopyWithImpl<$Res, $Val extends LanguageState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LanguageState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -87,6 +91,8 @@ class __$$LanguageStateImplCopyWithImpl<$Res>
       _$LanguageStateImpl _value, $Res Function(_$LanguageStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LanguageState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -146,7 +152,9 @@ class _$LanguageStateImpl implements _LanguageState {
   @override
   int get hashCode => Object.hash(runtimeType, status, lang, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LanguageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LanguageStateImplCopyWith<_$LanguageStateImpl> get copyWith =>
@@ -165,8 +173,11 @@ abstract class _LanguageState implements LanguageState {
   ProfileLanguage? get lang;
   @override
   Error? get error;
+
+  /// Create a copy of LanguageState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LanguageStateImplCopyWith<_$LanguageStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -22,7 +22,9 @@ mixin _$InjuryScreenState {
   bool? get damageBesideVehicle => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of InjuryScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $InjuryScreenStateCopyWith<InjuryScreenState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +53,8 @@ class _$InjuryScreenStateCopyWithImpl<$Res, $Val extends InjuryScreenState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of InjuryScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -109,6 +113,8 @@ class __$$InjuryScreenStateImplCopyWithImpl<$Res>
       $Res Function(_$InjuryScreenStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of InjuryScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -189,7 +195,9 @@ class _$InjuryScreenStateImpl implements _InjuryScreenState {
   int get hashCode => Object.hash(runtimeType, status, anyInjuries,
       damagedVehicles, damageBesideVehicle, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of InjuryScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InjuryScreenStateImplCopyWith<_$InjuryScreenStateImpl> get copyWith =>
@@ -215,8 +223,11 @@ abstract class _InjuryScreenState implements InjuryScreenState {
   bool? get damageBesideVehicle;
   @override
   Error? get error;
+
+  /// Create a copy of InjuryScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InjuryScreenStateImplCopyWith<_$InjuryScreenStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

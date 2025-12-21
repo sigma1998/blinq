@@ -28,8 +28,12 @@ mixin _$HistoryItemModelDto {
   @JsonKey(name: 'accident_document_pdf')
   String? get accidentDocumentPdf => throw _privateConstructorUsedError;
 
+  /// Serializes this HistoryItemModelDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of HistoryItemModelDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $HistoryItemModelDtoCopyWith<HistoryItemModelDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +62,8 @@ class _$HistoryItemModelDtoCopyWithImpl<$Res, $Val extends HistoryItemModelDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of HistoryItemModelDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -116,6 +122,8 @@ class __$$HistoryItemModelDtoImplCopyWithImpl<$Res>
       $Res Function(_$HistoryItemModelDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HistoryItemModelDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -195,12 +203,14 @@ class _$HistoryItemModelDtoImpl implements _HistoryItemModelDto {
                 other.accidentDocumentPdf == accidentDocumentPdf));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, type, status, createdAt, accidentDocumentPdf);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HistoryItemModelDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HistoryItemModelDtoImplCopyWith<_$HistoryItemModelDtoImpl> get copyWith =>
@@ -239,8 +249,11 @@ abstract class _HistoryItemModelDto implements HistoryItemModelDto {
   @override
   @JsonKey(name: 'accident_document_pdf')
   String? get accidentDocumentPdf;
+
+  /// Create a copy of HistoryItemModelDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HistoryItemModelDtoImplCopyWith<_$HistoryItemModelDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

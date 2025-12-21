@@ -27,8 +27,12 @@ mixin _$PreMadeMessageResponseDto {
   List<PreMadeMessageResponseModel>? get results =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this PreMadeMessageResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PreMadeMessageResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PreMadeMessageResponseDtoCopyWith<PreMadeMessageResponseDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -57,6 +61,8 @@ class _$PreMadeMessageResponseDtoCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PreMadeMessageResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -112,6 +118,8 @@ class __$$PremadeMessageResponseDtoImplCopyWithImpl<$Res>
       $Res Function(_$PremadeMessageResponseDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PreMadeMessageResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -187,12 +195,14 @@ class _$PremadeMessageResponseDtoImpl implements _PremadeMessageResponseDto {
             const DeepCollectionEquality().equals(other._results, _results));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, count, next, previous,
       const DeepCollectionEquality().hash(_results));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PreMadeMessageResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PremadeMessageResponseDtoImplCopyWith<_$PremadeMessageResponseDtoImpl>
@@ -226,8 +236,11 @@ abstract class _PremadeMessageResponseDto implements PreMadeMessageResponseDto {
   String? get previous;
   @override
   List<PreMadeMessageResponseModel>? get results;
+
+  /// Create a copy of PreMadeMessageResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PremadeMessageResponseDtoImplCopyWith<_$PremadeMessageResponseDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

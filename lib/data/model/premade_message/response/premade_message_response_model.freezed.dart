@@ -25,8 +25,12 @@ mixin _$PreMadeMessageResponseModel {
   String? get title => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
+  /// Serializes this PreMadeMessageResponseModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PreMadeMessageResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PreMadeMessageResponseModelCopyWith<PreMadeMessageResponseModel>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -53,6 +57,8 @@ class _$PreMadeMessageResponseModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PreMadeMessageResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -99,6 +105,8 @@ class __$$PreMadeMessageResponseModelImplCopyWithImpl<$Res>
       $Res Function(_$PreMadeMessageResponseModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PreMadeMessageResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -155,11 +163,13 @@ class _$PreMadeMessageResponseModelImpl
             (identical(other.message, message) || other.message == message));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, title, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PreMadeMessageResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PreMadeMessageResponseModelImplCopyWith<_$PreMadeMessageResponseModelImpl>
@@ -190,8 +200,11 @@ abstract class _PreMadeMessageResponseModel
   String? get title;
   @override
   String? get message;
+
+  /// Create a copy of PreMadeMessageResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PreMadeMessageResponseModelImplCopyWith<_$PreMadeMessageResponseModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -55,8 +55,12 @@ mixin _$UserVehicleRequestModel {
   int? get car => throw _privateConstructorUsedError;
   int? get color => throw _privateConstructorUsedError;
 
+  /// Serializes this UserVehicleRequestModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UserVehicleRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UserVehicleRequestModelCopyWith<UserVehicleRequestModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -99,6 +103,8 @@ class _$UserVehicleRequestModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UserVehicleRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -233,6 +239,8 @@ class __$$UserVehicleRequestModelImplCopyWithImpl<$Res>
       $Res Function(_$UserVehicleRequestModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserVehicleRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -456,7 +464,7 @@ class _$UserVehicleRequestModelImpl implements _UserVehicleRequestModel {
             (identical(other.color, color) || other.color == color));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -478,7 +486,9 @@ class _$UserVehicleRequestModelImpl implements _UserVehicleRequestModel {
       car,
       color);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserVehicleRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserVehicleRequestModelImplCopyWith<_$UserVehicleRequestModelImpl>
@@ -568,8 +578,11 @@ abstract class _UserVehicleRequestModel implements UserVehicleRequestModel {
   int? get car;
   @override
   int? get color;
+
+  /// Create a copy of UserVehicleRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserVehicleRequestModelImplCopyWith<_$UserVehicleRequestModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

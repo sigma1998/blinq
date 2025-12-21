@@ -19,7 +19,9 @@ mixin _$DriverEditorState {
   Status get status => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DriverEditorState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DriverEditorStateCopyWith<DriverEditorState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -43,6 +45,8 @@ class _$DriverEditorStateCopyWithImpl<$Res, $Val extends DriverEditorState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DriverEditorState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -81,6 +85,8 @@ class __$$DriverEditorStateImplCopyWithImpl<$Res>
       $Res Function(_$DriverEditorStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DriverEditorState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -128,7 +134,9 @@ class _$DriverEditorStateImpl implements _DriverEditorState {
   @override
   int get hashCode => Object.hash(runtimeType, status, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DriverEditorState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DriverEditorStateImplCopyWith<_$DriverEditorStateImpl> get copyWith =>
@@ -144,8 +152,11 @@ abstract class _DriverEditorState implements DriverEditorState {
   Status get status;
   @override
   Error? get error;
+
+  /// Create a copy of DriverEditorState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DriverEditorStateImplCopyWith<_$DriverEditorStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

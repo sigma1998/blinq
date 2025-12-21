@@ -45,8 +45,12 @@ mixin _$ProfileRequestModel {
   @JsonKey(name: 'driver_license_expired_date')
   String? get driverLicenseExpiredDate => throw _privateConstructorUsedError;
 
+  /// Serializes this ProfileRequestModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProfileRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProfileRequestModelCopyWith<ProfileRequestModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -85,6 +89,8 @@ class _$ProfileRequestModelCopyWithImpl<$Res, $Val extends ProfileRequestModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProfileRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -198,6 +204,8 @@ class __$$ProfileRequestModelImplCopyWithImpl<$Res>
       $Res Function(_$ProfileRequestModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProfileRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -384,7 +392,7 @@ class _$ProfileRequestModelImpl implements _ProfileRequestModel {
                 other.driverLicenseExpiredDate == driverLicenseExpiredDate));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -403,7 +411,9 @@ class _$ProfileRequestModelImpl implements _ProfileRequestModel {
       driverLicenseCountry,
       driverLicenseExpiredDate);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProfileRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProfileRequestModelImplCopyWith<_$ProfileRequestModelImpl> get copyWith =>
@@ -478,8 +488,11 @@ abstract class _ProfileRequestModel implements ProfileRequestModel {
   @override
   @JsonKey(name: 'driver_license_expired_date')
   String? get driverLicenseExpiredDate;
+
+  /// Create a copy of ProfileRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProfileRequestModelImplCopyWith<_$ProfileRequestModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

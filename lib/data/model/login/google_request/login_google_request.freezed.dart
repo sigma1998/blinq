@@ -28,8 +28,12 @@ mixin _$LoginGoogleRequest {
   @JsonKey(name: 'device_type')
   String get deviceType => throw _privateConstructorUsedError;
 
+  /// Serializes this LoginGoogleRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LoginGoogleRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LoginGoogleRequestCopyWith<LoginGoogleRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +62,8 @@ class _$LoginGoogleRequestCopyWithImpl<$Res, $Val extends LoginGoogleRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LoginGoogleRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -116,6 +122,8 @@ class __$$LoginGoogleRequestImplCopyWithImpl<$Res>
       $Res Function(_$LoginGoogleRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LoginGoogleRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -196,12 +204,14 @@ class _$LoginGoogleRequestImpl implements _LoginGoogleRequest {
                 other.deviceType == deviceType));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, email, displayName, id, fcmToken, deviceType);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LoginGoogleRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoginGoogleRequestImplCopyWith<_$LoginGoogleRequestImpl> get copyWith =>
@@ -240,8 +250,11 @@ abstract class _LoginGoogleRequest implements LoginGoogleRequest {
   @override
   @JsonKey(name: 'device_type')
   String get deviceType;
+
+  /// Create a copy of LoginGoogleRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoginGoogleRequestImplCopyWith<_$LoginGoogleRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

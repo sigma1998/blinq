@@ -19,7 +19,9 @@ mixin _$SecondDriverPolicyHolderState {
   Status get status => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SecondDriverPolicyHolderState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SecondDriverPolicyHolderStateCopyWith<SecondDriverPolicyHolderState>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -46,6 +48,8 @@ class _$SecondDriverPolicyHolderStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SecondDriverPolicyHolderState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -87,6 +91,8 @@ class __$$SecondDriverPolicyHolderStateImplCopyWithImpl<$Res>
       $Res Function(_$SecondDriverPolicyHolderStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SecondDriverPolicyHolderState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -136,7 +142,9 @@ class _$SecondDriverPolicyHolderStateImpl
   @override
   int get hashCode => Object.hash(runtimeType, status, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SecondDriverPolicyHolderState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SecondDriverPolicyHolderStateImplCopyWith<
@@ -155,8 +163,11 @@ abstract class _SecondDriverPolicyHolderState
   Status get status;
   @override
   Error? get error;
+
+  /// Create a copy of SecondDriverPolicyHolderState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SecondDriverPolicyHolderStateImplCopyWith<
           _$SecondDriverPolicyHolderStateImpl>
       get copyWith => throw _privateConstructorUsedError;

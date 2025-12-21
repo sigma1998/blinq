@@ -31,8 +31,12 @@ mixin _$ContactResponseModel {
   @JsonKey(name: 'is_emergency')
   bool? get isEmergency => throw _privateConstructorUsedError;
 
+  /// Serializes this ContactResponseModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ContactResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContactResponseModelCopyWith<ContactResponseModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -63,6 +67,8 @@ class _$ContactResponseModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ContactResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -127,6 +133,8 @@ class __$$ContactResponseModelImplCopyWithImpl<$Res>
       $Res Function(_$ContactResponseModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ContactResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -220,12 +228,14 @@ class _$ContactResponseModelImpl extends _ContactResponseModel {
                 other.isEmergency == isEmergency));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, image, firstName, lastName, phoneNumber, isEmergency);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContactResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContactResponseModelImplCopyWith<_$ContactResponseModelImpl>
@@ -271,8 +281,11 @@ abstract class _ContactResponseModel extends ContactResponseModel {
   @override
   @JsonKey(name: 'is_emergency')
   bool? get isEmergency;
+
+  /// Create a copy of ContactResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContactResponseModelImplCopyWith<_$ContactResponseModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

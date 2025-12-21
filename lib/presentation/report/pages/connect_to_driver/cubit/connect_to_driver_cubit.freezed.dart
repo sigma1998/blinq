@@ -20,7 +20,9 @@ mixin _$ConnectToDriverState {
   bool? get hasBlinq => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ConnectToDriverState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ConnectToDriverStateCopyWith<ConnectToDriverState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$ConnectToDriverStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ConnectToDriverState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -88,6 +92,8 @@ class __$$ConnectToDriverStateImplCopyWithImpl<$Res>
       $Res Function(_$ConnectToDriverStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ConnectToDriverState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -145,7 +151,9 @@ class _$ConnectToDriverStateImpl implements _ConnectToDriverState {
   @override
   int get hashCode => Object.hash(runtimeType, status, hasBlinq, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ConnectToDriverState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ConnectToDriverStateImplCopyWith<_$ConnectToDriverStateImpl>
@@ -166,8 +174,11 @@ abstract class _ConnectToDriverState implements ConnectToDriverState {
   bool? get hasBlinq;
   @override
   Error? get error;
+
+  /// Create a copy of ConnectToDriverState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConnectToDriverStateImplCopyWith<_$ConnectToDriverStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -20,7 +20,9 @@ mixin _$CountriesState {
   List<String> get countries => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CountriesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CountriesStateCopyWith<CountriesState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +46,8 @@ class _$CountriesStateCopyWithImpl<$Res, $Val extends CountriesState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CountriesState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -87,6 +91,8 @@ class __$$CountriesStateImplCopyWithImpl<$Res>
       _$CountriesStateImpl _value, $Res Function(_$CountriesStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CountriesState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -155,7 +161,9 @@ class _$CountriesStateImpl implements _CountriesState {
   int get hashCode => Object.hash(runtimeType, status,
       const DeepCollectionEquality().hash(_countries), error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CountriesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CountriesStateImplCopyWith<_$CountriesStateImpl> get copyWith =>
@@ -175,8 +183,11 @@ abstract class _CountriesState implements CountriesState {
   List<String> get countries;
   @override
   Error? get error;
+
+  /// Create a copy of CountriesState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CountriesStateImplCopyWith<_$CountriesStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

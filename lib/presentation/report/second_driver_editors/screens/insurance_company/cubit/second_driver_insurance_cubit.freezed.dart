@@ -19,7 +19,9 @@ mixin _$SecondDriverInsuranceState {
   Status get status => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SecondDriverInsuranceState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SecondDriverInsuranceStateCopyWith<SecondDriverInsuranceState>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$SecondDriverInsuranceStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SecondDriverInsuranceState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +90,8 @@ class __$$SecondDriverInsuranceStateImplCopyWithImpl<$Res>
       $Res Function(_$SecondDriverInsuranceStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SecondDriverInsuranceState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -134,7 +140,9 @@ class _$SecondDriverInsuranceStateImpl implements _SecondDriverInsuranceState {
   @override
   int get hashCode => Object.hash(runtimeType, status, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SecondDriverInsuranceState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SecondDriverInsuranceStateImplCopyWith<_$SecondDriverInsuranceStateImpl>
@@ -152,8 +160,11 @@ abstract class _SecondDriverInsuranceState
   Status get status;
   @override
   Error? get error;
+
+  /// Create a copy of SecondDriverInsuranceState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SecondDriverInsuranceStateImplCopyWith<_$SecondDriverInsuranceStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

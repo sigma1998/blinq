@@ -19,7 +19,9 @@ mixin _$LocationInfoScreenState {
   Status get status => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LocationInfoScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LocationInfoScreenStateCopyWith<LocationInfoScreenState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +46,8 @@ class _$LocationInfoScreenStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LocationInfoScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -85,6 +89,8 @@ class __$$LocationInfoScreenStateImplCopyWithImpl<$Res>
       $Res Function(_$LocationInfoScreenStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LocationInfoScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -133,7 +139,9 @@ class _$LocationInfoScreenStateImpl implements _LocationInfoScreenState {
   @override
   int get hashCode => Object.hash(runtimeType, status, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LocationInfoScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LocationInfoScreenStateImplCopyWith<_$LocationInfoScreenStateImpl>
@@ -150,8 +158,11 @@ abstract class _LocationInfoScreenState implements LocationInfoScreenState {
   Status get status;
   @override
   Error? get error;
+
+  /// Create a copy of LocationInfoScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LocationInfoScreenStateImplCopyWith<_$LocationInfoScreenStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

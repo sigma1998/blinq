@@ -21,7 +21,9 @@ mixin _$ContactsState {
   bool get isEdit => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContactsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContactsStateCopyWith<ContactsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +50,8 @@ class _$ContactsStateCopyWithImpl<$Res, $Val extends ContactsState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ContactsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -76,6 +80,8 @@ class _$ContactsStateCopyWithImpl<$Res, $Val extends ContactsState>
     ) as $Val);
   }
 
+  /// Create a copy of ContactsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ContactResponseDtoCopyWith<$Res>? get contacts {
@@ -112,6 +118,8 @@ class __$$ContactsStateImplCopyWithImpl<$Res>
       _$ContactsStateImpl _value, $Res Function(_$ContactsStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ContactsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -181,7 +189,9 @@ class _$ContactsStateImpl implements _ContactsState {
   @override
   int get hashCode => Object.hash(runtimeType, status, contacts, isEdit, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContactsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContactsStateImplCopyWith<_$ContactsStateImpl> get copyWith =>
@@ -203,8 +213,11 @@ abstract class _ContactsState implements ContactsState {
   bool get isEdit;
   @override
   Error? get error;
+
+  /// Create a copy of ContactsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContactsStateImplCopyWith<_$ContactsStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

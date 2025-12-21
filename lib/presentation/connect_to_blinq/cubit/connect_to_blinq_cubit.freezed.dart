@@ -31,7 +31,9 @@ mixin _$ConnectToBlinqState {
   int get connectAttempt => throw _privateConstructorUsedError;
   DiscoveredDevice? get recentlyConnected => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ConnectToBlinqState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ConnectToBlinqStateCopyWith<ConnectToBlinqState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -65,6 +67,8 @@ class _$ConnectToBlinqStateCopyWithImpl<$Res, $Val extends ConnectToBlinqState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ConnectToBlinqState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -153,6 +157,8 @@ class __$$ConnectToBlinqStateImplCopyWithImpl<$Res>
       $Res Function(_$ConnectToBlinqStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ConnectToBlinqState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -326,7 +332,9 @@ class _$ConnectToBlinqStateImpl implements _ConnectToBlinqState {
       connectAttempt,
       recentlyConnected);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ConnectToBlinqState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ConnectToBlinqStateImplCopyWith<_$ConnectToBlinqStateImpl> get copyWith =>
@@ -367,8 +375,11 @@ abstract class _ConnectToBlinqState implements ConnectToBlinqState {
   int get connectAttempt;
   @override
   DiscoveredDevice? get recentlyConnected;
+
+  /// Create a copy of ConnectToBlinqState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConnectToBlinqStateImplCopyWith<_$ConnectToBlinqStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -41,8 +41,12 @@ mixin _$PolicyHolderResponseModel {
   @JsonKey(name: 'phone_number')
   String? get phoneNumber => throw _privateConstructorUsedError;
 
+  /// Serializes this PolicyHolderResponseModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PolicyHolderResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PolicyHolderResponseModelCopyWith<PolicyHolderResponseModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -78,6 +82,8 @@ class _$PolicyHolderResponseModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PolicyHolderResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -175,6 +181,8 @@ class __$$PolicyHolderResponseModelImplCopyWithImpl<$Res>
       $Res Function(_$PolicyHolderResponseModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PolicyHolderResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -318,12 +326,14 @@ class _$PolicyHolderResponseModelImpl extends _PolicyHolderResponseModel {
                 other.phoneNumber == phoneNumber));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, firstName, lastName, country,
       city, state, street, address, postalCode, phoneEmail, email, phoneNumber);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PolicyHolderResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PolicyHolderResponseModelImplCopyWith<_$PolicyHolderResponseModelImpl>
@@ -387,8 +397,11 @@ abstract class _PolicyHolderResponseModel extends PolicyHolderResponseModel {
   @override
   @JsonKey(name: 'phone_number')
   String? get phoneNumber;
+
+  /// Create a copy of PolicyHolderResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PolicyHolderResponseModelImplCopyWith<_$PolicyHolderResponseModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

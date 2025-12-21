@@ -22,7 +22,9 @@ mixin _$ReportsScreenState {
   List<HistoryItemModelDto> get breakdowns =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ReportsScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ReportsScreenStateCopyWith<ReportsScreenState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +52,8 @@ class _$ReportsScreenStateCopyWithImpl<$Res, $Val extends ReportsScreenState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ReportsScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -102,6 +106,8 @@ class __$$ReportsScreenStateImplCopyWithImpl<$Res>
       $Res Function(_$ReportsScreenStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ReportsScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -193,7 +199,9 @@ class _$ReportsScreenStateImpl implements _ReportsScreenState {
       const DeepCollectionEquality().hash(_accidents),
       const DeepCollectionEquality().hash(_breakdowns));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ReportsScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ReportsScreenStateImplCopyWith<_$ReportsScreenStateImpl> get copyWith =>
@@ -216,8 +224,11 @@ abstract class _ReportsScreenState implements ReportsScreenState {
   List<HistoryItemModelDto> get accidents;
   @override
   List<HistoryItemModelDto> get breakdowns;
+
+  /// Create a copy of ReportsScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ReportsScreenStateImplCopyWith<_$ReportsScreenStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

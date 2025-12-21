@@ -19,7 +19,9 @@ mixin _$MyVehicleEditorState {
   Status get status => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MyVehicleEditorState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MyVehicleEditorStateCopyWith<MyVehicleEditorState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +46,8 @@ class _$MyVehicleEditorStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MyVehicleEditorState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -82,6 +86,8 @@ class __$$MyVehicleEditorStateImplCopyWithImpl<$Res>
       $Res Function(_$MyVehicleEditorStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MyVehicleEditorState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -129,7 +135,9 @@ class _$MyVehicleEditorStateImpl implements _MyVehicleEditorState {
   @override
   int get hashCode => Object.hash(runtimeType, status, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MyVehicleEditorState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MyVehicleEditorStateImplCopyWith<_$MyVehicleEditorStateImpl>
@@ -146,8 +154,11 @@ abstract class _MyVehicleEditorState implements MyVehicleEditorState {
   Status get status;
   @override
   Error? get error;
+
+  /// Create a copy of MyVehicleEditorState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MyVehicleEditorStateImplCopyWith<_$MyVehicleEditorStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

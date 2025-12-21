@@ -45,8 +45,12 @@ mixin _$InsuranceResponseModel {
   @JsonKey(name: 'policy_cover')
   String? get policyCover => throw _privateConstructorUsedError;
 
+  /// Serializes this InsuranceResponseModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of InsuranceResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $InsuranceResponseModelCopyWith<InsuranceResponseModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -84,6 +88,8 @@ class _$InsuranceResponseModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of InsuranceResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -193,6 +199,8 @@ class __$$InsuranceResponseModelImplCopyWithImpl<$Res>
       $Res Function(_$InsuranceResponseModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of InsuranceResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -356,7 +364,7 @@ class _$InsuranceResponseModelImpl implements _InsuranceResponseModel {
                 other.policyCover == policyCover));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -374,7 +382,9 @@ class _$InsuranceResponseModelImpl implements _InsuranceResponseModel {
       email,
       policyCover);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of InsuranceResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InsuranceResponseModelImplCopyWith<_$InsuranceResponseModelImpl>
@@ -446,8 +456,11 @@ abstract class _InsuranceResponseModel implements InsuranceResponseModel {
   @override
   @JsonKey(name: 'policy_cover')
   String? get policyCover;
+
+  /// Create a copy of InsuranceResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InsuranceResponseModelImplCopyWith<_$InsuranceResponseModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

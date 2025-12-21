@@ -47,8 +47,12 @@ mixin _$InsuranceRequestModel {
   @JsonKey(name: 'country')
   String? get country => throw _privateConstructorUsedError;
 
+  /// Serializes this InsuranceRequestModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of InsuranceRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $InsuranceRequestModelCopyWith<InsuranceRequestModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -87,6 +91,8 @@ class _$InsuranceRequestModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of InsuranceRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -201,6 +207,8 @@ class __$$InsuranceRequestModelImplCopyWithImpl<$Res>
       $Res Function(_$InsuranceRequestModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of InsuranceRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -375,7 +383,7 @@ class _$InsuranceRequestModelImpl implements _InsuranceRequestModel {
             (identical(other.country, country) || other.country == country));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -394,7 +402,9 @@ class _$InsuranceRequestModelImpl implements _InsuranceRequestModel {
       policyCover,
       country);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of InsuranceRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InsuranceRequestModelImplCopyWith<_$InsuranceRequestModelImpl>
@@ -470,8 +480,11 @@ abstract class _InsuranceRequestModel implements InsuranceRequestModel {
   @override
   @JsonKey(name: 'country')
   String? get country;
+
+  /// Create a copy of InsuranceRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InsuranceRequestModelImplCopyWith<_$InsuranceRequestModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

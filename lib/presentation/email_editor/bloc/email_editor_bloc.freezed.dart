@@ -20,7 +20,9 @@ mixin _$EmailEditorState {
   Error? get error => throw _privateConstructorUsedError; //
   bool get isCodeSent => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EmailEditorState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EmailEditorStateCopyWith<EmailEditorState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +46,8 @@ class _$EmailEditorStateCopyWithImpl<$Res, $Val extends EmailEditorState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EmailEditorState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -87,6 +91,8 @@ class __$$EmailEditorStateImplCopyWithImpl<$Res>
       $Res Function(_$EmailEditorStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EmailEditorState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -146,7 +152,9 @@ class _$EmailEditorStateImpl implements _EmailEditorState {
   @override
   int get hashCode => Object.hash(runtimeType, status, error, isCodeSent);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EmailEditorState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EmailEditorStateImplCopyWith<_$EmailEditorStateImpl> get copyWith =>
@@ -163,11 +171,14 @@ abstract class _EmailEditorState implements EmailEditorState {
   @override
   Status get status;
   @override
-  Error? get error;
-  @override //
-  bool get isCodeSent;
+  Error? get error; //
   @override
-  @JsonKey(ignore: true)
+  bool get isCodeSent;
+
+  /// Create a copy of EmailEditorState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EmailEditorStateImplCopyWith<_$EmailEditorStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

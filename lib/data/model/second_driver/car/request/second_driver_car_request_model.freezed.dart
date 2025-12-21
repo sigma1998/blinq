@@ -60,8 +60,12 @@ mixin _$SecondDriverCarRequestModel {
   int? get color => throw _privateConstructorUsedError;
   String? get brand => throw _privateConstructorUsedError;
 
+  /// Serializes this SecondDriverCarRequestModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SecondDriverCarRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SecondDriverCarRequestModelCopyWith<SecondDriverCarRequestModel>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -110,6 +114,8 @@ class _$SecondDriverCarRequestModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SecondDriverCarRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -263,6 +269,8 @@ class __$$SecondDriverCarRequestModelImplCopyWithImpl<$Res>
       $Res Function(_$SecondDriverCarRequestModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SecondDriverCarRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -521,7 +529,7 @@ class _$SecondDriverCarRequestModelImpl
             (identical(other.brand, brand) || other.brand == brand));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -547,7 +555,9 @@ class _$SecondDriverCarRequestModelImpl
         brand
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SecondDriverCarRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SecondDriverCarRequestModelImplCopyWith<_$SecondDriverCarRequestModelImpl>
@@ -650,8 +660,11 @@ abstract class _SecondDriverCarRequestModel
   int? get color;
   @override
   String? get brand;
+
+  /// Create a copy of SecondDriverCarRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SecondDriverCarRequestModelImplCopyWith<_$SecondDriverCarRequestModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -25,8 +25,12 @@ mixin _$ColorResponseDto {
   String? get previous => throw _privateConstructorUsedError;
   List<VehicleColorDto>? get results => throw _privateConstructorUsedError;
 
+  /// Serializes this ColorResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ColorResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ColorResponseDtoCopyWith<ColorResponseDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,6 +58,8 @@ class _$ColorResponseDtoCopyWithImpl<$Res, $Val extends ColorResponseDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ColorResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -106,6 +112,8 @@ class __$$ColorResponseDtoImplCopyWithImpl<$Res>
       $Res Function(_$ColorResponseDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ColorResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -181,12 +189,14 @@ class _$ColorResponseDtoImpl implements _ColorResponseDto {
             const DeepCollectionEquality().equals(other._results, _results));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, count, next, previous,
       const DeepCollectionEquality().hash(_results));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ColorResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ColorResponseDtoImplCopyWith<_$ColorResponseDtoImpl> get copyWith =>
@@ -219,8 +229,11 @@ abstract class _ColorResponseDto implements ColorResponseDto {
   String? get previous;
   @override
   List<VehicleColorDto>? get results;
+
+  /// Create a copy of ColorResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ColorResponseDtoImplCopyWith<_$ColorResponseDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

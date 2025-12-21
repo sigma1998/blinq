@@ -22,7 +22,9 @@ mixin _$DamagedPartsState {
   Set<String> get motorcycleParts => throw _privateConstructorUsedError;
   int get pageIndex => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DamagedPartsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DamagedPartsStateCopyWith<DamagedPartsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +53,8 @@ class _$DamagedPartsStateCopyWithImpl<$Res, $Val extends DamagedPartsState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DamagedPartsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -109,6 +113,8 @@ class __$$DamagedPartsStateImplCopyWithImpl<$Res>
       $Res Function(_$DamagedPartsStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DamagedPartsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -219,7 +225,9 @@ class _$DamagedPartsStateImpl implements _DamagedPartsState {
       const DeepCollectionEquality().hash(_motorcycleParts),
       pageIndex);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DamagedPartsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DamagedPartsStateImplCopyWith<_$DamagedPartsStateImpl> get copyWith =>
@@ -245,8 +253,11 @@ abstract class _DamagedPartsState implements DamagedPartsState {
   Set<String> get motorcycleParts;
   @override
   int get pageIndex;
+
+  /// Create a copy of DamagedPartsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DamagedPartsStateImplCopyWith<_$DamagedPartsStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

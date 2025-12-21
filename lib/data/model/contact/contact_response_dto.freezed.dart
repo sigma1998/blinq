@@ -25,8 +25,12 @@ mixin _$ContactResponseDto {
   String? get previous => throw _privateConstructorUsedError;
   List<ContactResponseModel>? get results => throw _privateConstructorUsedError;
 
+  /// Serializes this ContactResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ContactResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContactResponseDtoCopyWith<ContactResponseDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,6 +58,8 @@ class _$ContactResponseDtoCopyWithImpl<$Res, $Val extends ContactResponseDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ContactResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -106,6 +112,8 @@ class __$$ContactResponseDtoImplCopyWithImpl<$Res>
       $Res Function(_$ContactResponseDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ContactResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -181,12 +189,14 @@ class _$ContactResponseDtoImpl implements _ContactResponseDto {
             const DeepCollectionEquality().equals(other._results, _results));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, count, next, previous,
       const DeepCollectionEquality().hash(_results));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContactResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContactResponseDtoImplCopyWith<_$ContactResponseDtoImpl> get copyWith =>
@@ -219,8 +229,11 @@ abstract class _ContactResponseDto implements ContactResponseDto {
   String? get previous;
   @override
   List<ContactResponseModel>? get results;
+
+  /// Create a copy of ContactResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContactResponseDtoImplCopyWith<_$ContactResponseDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

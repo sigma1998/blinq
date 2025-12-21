@@ -1,20 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'vehicle_info_dto.dart';
+part of 'license_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VehicleInfoDtoImpl _$$VehicleInfoDtoImplFromJson(Map<String, dynamic> json) =>
-    _$VehicleInfoDtoImpl(
+_$LicenseModelImpl _$$LicenseModelImplFromJson(Map<String, dynamic> json) =>
+    _$LicenseModelImpl(
       id: (json['id'] as num?)?.toInt(),
-      name: json['name'] as String?,
+      driverLicense: json['driver_license'] as String?,
     );
 
-Map<String, dynamic> _$$VehicleInfoDtoImplToJson(
-        _$VehicleInfoDtoImpl instance) =>
+Map<String, dynamic> _$$LicenseModelImplToJson(_$LicenseModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
+      'driver_license': instance.driverLicense,
     };

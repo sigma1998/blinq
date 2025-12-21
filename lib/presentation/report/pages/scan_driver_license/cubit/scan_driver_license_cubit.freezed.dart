@@ -23,7 +23,9 @@ mixin _$ScanDriverLicenseState {
   File? get file => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ScanDriverLicenseState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ScanDriverLicenseStateCopyWith<ScanDriverLicenseState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -56,6 +58,8 @@ class _$ScanDriverLicenseStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ScanDriverLicenseState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -94,6 +98,8 @@ class _$ScanDriverLicenseStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ScanDriverLicenseState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $DriverLicenseDtoCopyWith<$Res>? get driverLicenseDto {
@@ -138,6 +144,8 @@ class __$$ScanDriverLicenseStateImplCopyWithImpl<$Res>
       $Res Function(_$ScanDriverLicenseStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ScanDriverLicenseState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -230,7 +238,9 @@ class _$ScanDriverLicenseStateImpl implements _ScanDriverLicenseState {
   int get hashCode => Object.hash(runtimeType, status, driverLicenseDto,
       scannedText, controllerIsInitialized, file, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ScanDriverLicenseState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ScanDriverLicenseStateImplCopyWith<_$ScanDriverLicenseStateImpl>
@@ -259,8 +269,11 @@ abstract class _ScanDriverLicenseState implements ScanDriverLicenseState {
   File? get file;
   @override
   Error? get error;
+
+  /// Create a copy of ScanDriverLicenseState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ScanDriverLicenseStateImplCopyWith<_$ScanDriverLicenseStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

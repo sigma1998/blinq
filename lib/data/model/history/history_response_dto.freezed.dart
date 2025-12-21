@@ -24,8 +24,12 @@ mixin _$HistoryResponseDto {
       throw _privateConstructorUsedError;
   List<HistoryItemModelDto> get accidents => throw _privateConstructorUsedError;
 
+  /// Serializes this HistoryResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of HistoryResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $HistoryResponseDtoCopyWith<HistoryResponseDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$HistoryResponseDtoCopyWithImpl<$Res, $Val extends HistoryResponseDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of HistoryResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -91,6 +97,8 @@ class __$$HistoryResponseDtoImplCopyWithImpl<$Res>
       $Res Function(_$HistoryResponseDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HistoryResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -156,14 +164,16 @@ class _$HistoryResponseDtoImpl implements _HistoryResponseDto {
                 .equals(other._accidents, _accidents));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_breakdowns),
       const DeepCollectionEquality().hash(_accidents));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HistoryResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HistoryResponseDtoImplCopyWith<_$HistoryResponseDtoImpl> get copyWith =>
@@ -190,8 +200,11 @@ abstract class _HistoryResponseDto implements HistoryResponseDto {
   List<HistoryItemModelDto> get breakdowns;
   @override
   List<HistoryItemModelDto> get accidents;
+
+  /// Create a copy of HistoryResponseDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HistoryResponseDtoImplCopyWith<_$HistoryResponseDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -22,7 +22,9 @@ mixin _$DamagedMediaState {
   bool get isUploading => throw _privateConstructorUsedError;
   Error? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DamagedMediaState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DamagedMediaStateCopyWith<DamagedMediaState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +53,8 @@ class _$DamagedMediaStateCopyWithImpl<$Res, $Val extends DamagedMediaState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DamagedMediaState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -109,6 +113,8 @@ class __$$DamagedMediaStateImplCopyWithImpl<$Res>
       $Res Function(_$DamagedMediaStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DamagedMediaState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -210,7 +216,9 @@ class _$DamagedMediaStateImpl implements _DamagedMediaState {
       isUploading,
       error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DamagedMediaState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DamagedMediaStateImplCopyWith<_$DamagedMediaStateImpl> get copyWith =>
@@ -236,8 +244,11 @@ abstract class _DamagedMediaState implements DamagedMediaState {
   bool get isUploading;
   @override
   Error? get error;
+
+  /// Create a copy of DamagedMediaState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DamagedMediaStateImplCopyWith<_$DamagedMediaStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

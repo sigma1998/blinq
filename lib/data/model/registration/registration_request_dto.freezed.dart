@@ -32,8 +32,12 @@ mixin _$RegistrationRequestDto {
   @JsonKey(name: 'device_type')
   String get deviceType => throw _privateConstructorUsedError;
 
+  /// Serializes this RegistrationRequestDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RegistrationRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RegistrationRequestDtoCopyWith<RegistrationRequestDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -64,6 +68,8 @@ class _$RegistrationRequestDtoCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RegistrationRequestDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -131,6 +137,8 @@ class __$$RegistrationRequestDtoImplCopyWithImpl<$Res>
       $Res Function(_$RegistrationRequestDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RegistrationRequestDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -224,12 +232,14 @@ class _$RegistrationRequestDtoImpl implements _RegistrationRequestDto {
                 other.deviceType == deviceType));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, email, password, firstName, lastName, fcmToken, deviceType);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RegistrationRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RegistrationRequestDtoImplCopyWith<_$RegistrationRequestDtoImpl>
@@ -273,8 +283,11 @@ abstract class _RegistrationRequestDto implements RegistrationRequestDto {
   @override
   @JsonKey(name: 'device_type')
   String get deviceType;
+
+  /// Create a copy of RegistrationRequestDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RegistrationRequestDtoImplCopyWith<_$RegistrationRequestDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
