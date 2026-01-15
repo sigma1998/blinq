@@ -6,7 +6,7 @@ import 'app_colors.dart';
 
 class AppTheme {
   static final ThemeData darkTheme = ThemeData(
-    tabBarTheme: const TabBarTheme(
+    tabBarTheme: const TabBarThemeData(
       dividerColor: Colors.transparent,
     ),
     colorScheme: const ColorScheme(

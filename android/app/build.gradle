@@ -44,8 +44,8 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace "com.blinqx"
-    compileSdkVersion 34
-    ndkVersion "26.1.10909125"
+    compileSdkVersion 36
+    ndkVersion "27.0.12077973"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -62,8 +62,8 @@ android {
 
     defaultConfig {
         applicationId "com.blinqx"
-        minSdkVersion 23
-        targetSdkVersion 34
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion 36
         multiDexEnabled true
         versionCode 23
         versionName flutterVersionName

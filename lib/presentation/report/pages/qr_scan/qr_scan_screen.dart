@@ -28,10 +28,10 @@ class _QrScanScreenState extends State<QrScanScreen> {
               height: 800,
               child: Scaffold(
                 body: AiBarcodeScanner(
-                  showSuccess: true,
-                  cutOutBottomOffset: 0,
-                  hideSheetDragHandler: true,
-                  hideSheetTitle: true,
+                  // showSuccess: true,
+                  // cutOutBottomOffset: 0,
+                  // hideSheetDragHandler: true,
+                  // hideSheetTitle: true,
                   galleryButtonAlignment: Alignment.bottomCenter,
                   controller: MobileScannerController(
                     detectionSpeed: DetectionSpeed.noDuplicates,
