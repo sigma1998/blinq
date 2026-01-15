@@ -101,10 +101,9 @@ class LoginBottomSheetBloc
   /// insead of silently signing in with the last account.
   FutureOr<void> _onGoogleSelected(
       OnGoogleSelected event, Emitter<LoginBottomSheetState> emit) async {
-        print('CAME HERE____________________');
+    print('CAME HERE____________________');
     try {
-      await _disconnectGoogle();
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAccount? googleUser = await GoogleSignIn.instance.authenticate();
 
       final GoogleSignInAuthentication? googleAuth =
           await googleUser?.authentication;
@@ -130,15 +129,6 @@ class LoginBottomSheetBloc
     } catch (e) {
       debugPrint(e.toString());
       emit(state.copyWith(status: Status.initial));
-    }
-  }
-
-  Future<void> _disconnectGoogle() async {
-    try {
-      await GoogleSignIn().signOut();
-      await GoogleSignIn().disconnect();
-    } catch (e) {
-      debugPrint(e.toString());
     }
   }
 

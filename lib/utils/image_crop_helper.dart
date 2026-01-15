@@ -20,8 +20,6 @@ class ImageCropHelper {
   }) async {
     CroppedFile? croppedFile = await ImageCropper().cropImage(
       sourcePath: imagePath ?? '',
-      cropStyle: cropStyle,
-      aspectRatioPresets: [CropAspectRatioPreset.original],
       aspectRatio: CropAspectRatio(ratioX: ratioX, ratioY: ratioY),
       compressQuality: 100,
       uiSettings: [
@@ -31,9 +29,13 @@ class ImageCropHelper {
           toolbarWidgetColor: Colors.white,
           toolbarColor: AppColors.primaryColor,
           initAspectRatio: CropAspectRatioPreset.original,
+          cropStyle: cropStyle,
+          aspectRatioPresets: [CropAspectRatioPreset.original],
         ),
         IOSUiSettings(
           title: 'Cropper',
+          cropStyle: cropStyle,
+          aspectRatioPresets: [CropAspectRatioPreset.original],
         ),
       ],
     );

@@ -53,10 +53,7 @@ class DeleteAccountBloc extends Bloc<DeleteAccountEvent, DeleteAccountState> {
     try {
       emit(state.copyWith(status: Status.loading));
       await repository.verifyDeleteUser(codeController.text);
-      emit(state.copyWith(status: Status.success));
-      if (await GoogleSignIn().isSignedIn()) {
-        await GoogleSignIn().signOut();
-      }
+      emit(state.copyWith(status: Status.success));  
       DioClient.setToken(null);
       NavigationService.pushReplacement(routeName: SignInScreen.route);
     } catch (e) {
