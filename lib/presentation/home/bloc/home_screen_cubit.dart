@@ -20,7 +20,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
   //
   final ReportBloc reportBloc;
 
-  late GoogleMapController? mapController;
+  GoogleMapController? mapController;
   final MapPickerController mapPickerController = MapPickerController();
 
   CameraPosition? position;
@@ -41,7 +41,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
         target: latlng,
         zoom: 14.4746,
       );
-      mapController!.animateCamera(
+      mapController?.animateCamera(
           CameraUpdate.newLatLng(LatLng(res.latitude, res.longitude)));
     }
   }
