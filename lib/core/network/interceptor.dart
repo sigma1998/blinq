@@ -16,10 +16,10 @@ class CustomInterceptor extends Interceptor {
   CustomInterceptor({required this.dio});
 
   @override
-  Future onError(DioError err, ErrorInterceptorHandler handler) async {
-    if (err.type == DioErrorType.connectTimeout ||
-        err.type == DioErrorType.sendTimeout ||
-        err.type == DioErrorType.receiveTimeout ||
+  Future onError(DioException err, ErrorInterceptorHandler handler) async {
+    if (err.type == DioExceptionType.connectionTimeout ||
+        err.type == DioExceptionType.sendTimeout ||
+        err.type == DioExceptionType.receiveTimeout ||
         err.error is SocketException) {
       // NavigationService.showErrorToast('strBadConnection'.tr());
       // return handler.next(err);

@@ -11,8 +11,8 @@ class DioClient {
   static final myDioOptions = BaseOptions(
       // baseUrl: 'http://testingblinq.urinboev.uz/',
       baseUrl: 'http://blinqbackend.samuraidev.uz/',
-      connectTimeout: 20000,
-      receiveTimeout: 20000,
+      connectTimeout: Duration(milliseconds: 20000),
+      receiveTimeout: Duration(milliseconds: 20000),
       // queryParameters: {
       //   'lang': NavigationService
       //           .navigatorKey.currentContext?.locale.languageCode ??

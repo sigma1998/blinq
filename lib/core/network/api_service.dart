@@ -179,8 +179,8 @@ class AppApi {
     try {
       final Response response = await Dio(BaseOptions(
               baseUrl: 'http://blinqbackend.samuraidev.uz/',
-              connectTimeout: 20000,
-              receiveTimeout: 20000,
+              connectTimeout: Duration(milliseconds: 20000),
+              receiveTimeout: Duration(milliseconds: 20000),
               responseType: ResponseType.json))
           .download(uri, savePath,
               data: data,
