@@ -120,11 +120,11 @@ class _MyTextFieldState extends State<MyTextField> {
   void initState() {
     widget.controller?.addListener(() {
       if (widget.keyboardType == TextInputType.phone) {
-        setState(() {});
+        if (mounted) setState(() {});
       }
     });
     widget.focusNode?.addListener(() {
-      setState(() {});
+      if (mounted) setState(() {});
     });
     super.initState();
   }
@@ -137,7 +137,9 @@ class _MyTextFieldState extends State<MyTextField> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: (widget.focusNode?.hasFocus ?? false) ? AppColors.activeReportColor : AppColors.grey2,
+          color: (widget.focusNode?.hasFocus ?? false)
+              ? AppColors.activeReportColor
+              : AppColors.grey2,
         ),
         color: AppColors.darkGrey,
       ),
@@ -179,9 +181,8 @@ class _MyTextFieldState extends State<MyTextField> {
           contentPadding: const EdgeInsets.symmetric(horizontal: 16),
           //
           floatingLabelBehavior: widget.floatingLabelBehavior,
-          hintText: widget.enabled
-              ? '${'strEnter'.tr()} ${widget.labelText}'
-              : null,
+          hintText:
+              widget.enabled ? '${'strEnter'.tr()} ${widget.labelText}' : null,
           hintStyle: AppTextStyles.s17W400.copyWith(color: AppColors.grey1),
           //
           filled: false,

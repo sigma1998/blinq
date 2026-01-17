@@ -157,16 +157,16 @@ class _InsuranceEditorScreenState extends State<InsuranceEditorScreen> {
                 ],
               ),
             ),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerFloat,
-            floatingActionButton: RegularButton(
-              title: 'strSave'.tr(),
-              loading: state.status == Status.loading,
-              onTap: () {
-                if (bloc.validateForm()) {
-                  bloc.add(OnSubmitInsurance());
-                }
-              },
+            bottomNavigationBar: SafeArea(
+              child: RegularButton(
+                title: 'strSave'.tr(),
+                loading: state.status == Status.loading,
+                onTap: () {
+                  if (bloc.validateForm()) {
+                    bloc.add(OnSubmitInsurance());
+                  }
+                },
+              ),
             ),
           );
         },
