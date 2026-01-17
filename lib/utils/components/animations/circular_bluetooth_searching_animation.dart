@@ -25,6 +25,12 @@ class _CircularBluetoothSearchingAnimationState
   int range = 0;
 
   @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
+
+  @override
   void initState() {
     timer = Timer.periodic(
       const Duration(milliseconds: 500),
