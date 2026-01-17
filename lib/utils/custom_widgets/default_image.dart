@@ -112,7 +112,9 @@ class MyImage extends StatelessWidget {
         color: Colors.grey[300],
         height: height ?? minHeight,
         child: Text(
-          userName?[0] ?? 'A',
+          userName != null && userName!.isNotEmpty
+              ? userName!.substring(0, 1).toUpperCase()
+              : 'A',
           style: AppTextStyles.s56W600,
         ),
       ),
