@@ -202,7 +202,8 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
 
     await Future.delayed(const Duration(seconds: 1));
     if (!connecting &&
-        state.boardConnectionState == DeviceConnectionState.disconnected) {
+        state.boardConnectionState == DeviceConnectionState.disconnected &&
+        state.scannedBleDevices.isNotEmpty) {
       connectToDetectedDevice(edited);
       setTimer();
     }
@@ -245,6 +246,9 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
     List<DiscoveredDevice> scannedDevices = [...state.scannedBleDevices];
     scannedDevices.removeWhere((element) => element.id == device.id);
     emit(state.copyWith(scannedBleDevices: [...scannedDevices]));
+    NavigationService.showToast(
+        text: "Device ${device.name} is disconnected",
+        title: 'Blinq disconnected');
     restartScanning();
   }
 
@@ -378,7 +382,6 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
                 scannedBleDevices: [],
               ),
             );
-            restartScanning(); //akhror added
             removeDeviceFromScannedList(device);
 
             break;
@@ -534,7 +537,7 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
   }
 
   Future<void> disconnect(bool isUnpairing) async {
-   // await bluetoothBackgroundService.disconnect(isUnpairing);
+    // await bluetoothBackgroundService.disconnect(isUnpairing);
 
     print('DISCONNECT___________________________');
     await _connection.cancel();
