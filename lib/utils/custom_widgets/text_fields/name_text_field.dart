@@ -20,6 +20,7 @@ class NameTextField extends StatelessWidget {
   final bool enabled;
   final bool autofocus;
   final bool isRequired;
+  final TextInputAction? textInputAction;
 
   const NameTextField({
     super.key,
@@ -35,6 +36,7 @@ class NameTextField extends StatelessWidget {
     this.enabled = true,
     this.autofocus = false,
     this.isRequired = false,
+    this.textInputAction,
   });
 
   @override
@@ -52,6 +54,7 @@ class NameTextField extends StatelessWidget {
       initialValue: initialValue,
       keyboardType: TextInputType.text,
       textCapitalization: TextCapitalization.words,
+      textInputAction: textInputAction,
     );
   }
 }

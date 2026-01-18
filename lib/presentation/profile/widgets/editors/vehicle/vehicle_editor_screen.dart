@@ -37,7 +37,6 @@ class _VehicleEditorScreenState extends State<VehicleEditorScreen> {
   ///
   late VehicleEditorBloc bloc;
 
-
   @override
   void initState() {
     final profileBloc = context.read<ProfileBloc>();
@@ -104,16 +103,17 @@ class _VehicleEditorScreenState extends State<VehicleEditorScreen> {
                   NameTextField(
                     labelText: AppLocale.makeType.tr(),
                     controller: bloc.makeTypeController,
+                    textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 16),
                   NameTextField(
                     labelText: AppLocale.plateNumber.tr(),
                     controller: bloc.plateNumberController,
+                    textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 16),
                   NumberTextField(
-                    labelText:
-                        AppLocale.vinNumber.tr(),
+                    labelText: AppLocale.vinNumber.tr(),
                     controller: bloc.engineNumberController,
                   ),
                   const SizedBox(height: 16),
