@@ -43,7 +43,7 @@ class ProfilePage extends StatelessWidget {
                           width: 150,
                           height: 150,
                           userName: state.profile?.firstName,
-                          //onChangeImage: bloc.imagePickerPressed,
+                          onChangeImage: bloc.imagePickerPressed,
                         ),
                       ),
                     ],
@@ -54,7 +54,7 @@ class ProfilePage extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8),
-                  carInformationBtn(state),
+                  carInformationBtn(state, bloc),
                   const SizedBox(height: 54),
 
                   //& Info & Policy
@@ -77,44 +77,52 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  carInformationBtn(ProfileState state) {
+  carInformationBtn(ProfileState state, ProfileBloc bloc) {
+    final hasBrand =
+        state.profile?.car?.brand != null && state.profile?.car?.brand != '';
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          height: 36,
-          alignment: Alignment.center,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          decoration: BoxDecoration(
-            color: AppColors.activeReportColor,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(
-            children: [
-              if (state.profile?.car?.brand == null)
-                Container(
-                  width: 24,
-                  height: 24,
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.primaryColor,
+        GestureDetector(
+          onTap: () {
+            if (!hasBrand) {
+              bloc.onVehiclePressed();
+            }
+          },
+          child: Container(
+            height: 36,
+            alignment: Alignment.center,
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            decoration: BoxDecoration(
+              color: AppColors.activeReportColor,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Row(
+              children: [
+                if (!hasBrand) ...[
+                  Container(
+                    width: 24,
+                    height: 24,
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.primaryColor,
+                    ),
+                    child: const Icon(
+                      Icons.add,
+                      size: 18,
+                    ),
                   ),
-                  child: const Icon(
-                    Icons.add,
-                    size: 18,
+                  const SizedBox(width: 8),
+                ],
+                Text(
+                  hasBrand ? state.profile!.car!.brand! : 'Add car information',
+                  style: AppTextStyles.s15W600.copyWith(
+                    color: AppColors.black,
                   ),
                 ),
-              if (state.profile?.car?.brand == null) const SizedBox(width: 8),
-              Text(
-                state.profile?.car?.brand != null
-                    ? state.profile!.car!.brand!
-                    : 'Add car information',
-                style: AppTextStyles.s15W600.copyWith(
-                  color: AppColors.black,
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ],
