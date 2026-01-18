@@ -76,11 +76,13 @@ class _InsuranceEditorScreenState extends State<InsuranceEditorScreen> {
                   NameTextField(
                     labelText: 'strName'.tr(),
                     controller: bloc.nameController,
+                    textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 16),
                   NameTextField(
                     labelText: 'strPolicyNumber'.tr(),
                     controller: bloc.policyNumberController,
+                    textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 16),
                   NameTextField(
@@ -122,21 +124,25 @@ class _InsuranceEditorScreenState extends State<InsuranceEditorScreen> {
                   NameTextField(
                     labelText: AppLocale.city.tr(),
                     controller: bloc.cityController,
+                    textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 16),
                   NameTextField(
                     labelText: AppLocale.stateRegion.tr(),
                     controller: bloc.stateController,
+                    textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 16),
                   NameTextField(
                     labelText: AppLocale.street.tr(),
                     controller: bloc.streetController,
+                    textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 16),
                   NameTextField(
                     labelText: AppLocale.zipPostal.tr(),
                     controller: bloc.zipController,
+                    textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 16),
                   EmailTextField(
