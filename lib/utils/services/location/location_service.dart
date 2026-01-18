@@ -66,7 +66,7 @@ class LocationService {
     return null;
   }
 
-  static const String key = 'AIzaSyAfbxHPjQ_PlRCzzvKRPqaoc55uh4DNEvQ';
+  static const String key = 'AIzaSyDkHEdUWI0mOHI_kMQNMCBTvYv1VVga6o0';
 
   //'AIzaSyAK7VMIjDJ8ofaBi_KR3or3DB9bjGt8jTs'; old
   static const String types = 'geocode';
