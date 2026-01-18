@@ -79,6 +79,7 @@ class _DriverEditorScreenState extends State<DriverEditorScreen> {
                   NameTextField(
                     labelText: 'strFirstName'.tr(),
                     controller: bloc.firstNameController,
+                    textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 16),
                   NameTextField(
@@ -106,16 +107,19 @@ class _DriverEditorScreenState extends State<DriverEditorScreen> {
                   NameTextField(
                     labelText: AppLocale.city.tr(),
                     controller: bloc.cityController,
+                    textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 16),
                   NameTextField(
                     labelText: AppLocale.stateRegion.tr(),
                     controller: bloc.stateController,
+                    textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 16),
                   NameTextField(
                     labelText: AppLocale.street.tr(),
                     controller: bloc.streetController,
+                    textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 16),
                   NameTextField(
