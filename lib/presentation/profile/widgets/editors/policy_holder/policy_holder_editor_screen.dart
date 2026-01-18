@@ -117,6 +117,7 @@ class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
                   NameTextField(
                     labelText: 'strFirstName'.tr(),
                     controller: bloc.firstNameController,
+                    textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 16),
                   NameTextField(
@@ -138,21 +139,25 @@ class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
                   NameTextField(
                     labelText: AppLocale.city.tr(), //'strAddress'.tr(),
                     controller: bloc.cityController,
+                    textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 16),
                   NameTextField(
                     labelText: AppLocale.stateRegion.tr(), //'strAddress'.tr(),
                     controller: bloc.stateController,
+                    textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 16),
                   NameTextField(
                     labelText: AppLocale.street.tr(), //'strAddress'.tr(),
                     controller: bloc.streetController,
+                    textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 16),
                   NameTextField(
                     labelText: AppLocale.zipPostal.tr(),
                     controller: bloc.postalCodeController,
+                    textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 16),
                   NameTextField(
@@ -168,15 +173,16 @@ class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
                 ],
               ),
             ),
-            floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-            floatingActionButton: RegularButton(
-              title: 'strSave'.tr(),
-              loading: state.status == Status.loading,
-              onTap:() {
-                if (bloc.validateForm()) {
-                  bloc.add(OnSubmitPolicyHolder());
-                }
-              },
+            bottomNavigationBar: SafeArea(
+              child: RegularButton(
+                title: 'strSave'.tr(),
+                loading: state.status == Status.loading,
+                onTap: () {
+                  if (bloc.validateForm()) {
+                    bloc.add(OnSubmitPolicyHolder());
+                  }
+                },
+              ),
             ),
           );
         },
