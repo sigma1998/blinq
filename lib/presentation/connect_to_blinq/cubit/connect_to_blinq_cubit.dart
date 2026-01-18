@@ -294,9 +294,11 @@ class ConnectToBlinqCubit extends Cubit<ConnectToBlinqState> {
     await LocalStorageService().saveDevice(device);
     findPreviouslyPairedDevices();
 
-    NavigationService.showDialog(
-      dialog: const BreakdownAccident(),
-    );
+    if (!isBreakdownAccidentDialogShown) {
+      NavigationService.showDialog(
+        dialog: const BreakdownAccident(),
+      );
+    }
 
     // NavigationService.showDialog(
     //   dialog: const BlinqActivatedDialog(),

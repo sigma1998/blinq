@@ -17,6 +17,7 @@ import 'package:blinq/utils/generic_bloc_state.dart';
 import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/services/notification/notification_service.dart';
 import 'package:blinq/utils/services/permission/permission_service.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'settings_event.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, GenericBlocState<bool>> {
@@ -53,6 +54,7 @@ class SettingsBloc extends Bloc<SettingsEvent, GenericBlocState<bool>> {
       );
 
   void onLogoutPressed() async {
+    GoogleSignIn.instance.signOut();
     DioClient.setToken(null);
     NotificationService.deleteToken();
     authRepository.setUserStatus(UserStatus.haveSeenIntro);

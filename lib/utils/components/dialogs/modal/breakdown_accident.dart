@@ -16,6 +16,8 @@ import '../../../../domain/repositories/profile_repository.dart';
 import '../../../../presentation/create_report/bloc/create_report_bloc.dart';
 import '../../../smart_widgets/dialogs/blinq_activated/blinq_activated_bloc.dart';
 
+bool isBreakdownAccidentDialogShown = false;
+
 class BreakdownAccident extends StatefulWidget {
   const BreakdownAccident({super.key});
 
@@ -25,6 +27,18 @@ class BreakdownAccident extends StatefulWidget {
 
 class _BreakdownAccidentState extends State<BreakdownAccident> {
   late final CreateReportBloc rBloc;
+
+  @override
+  void initState() {
+    isBreakdownAccidentDialogShown = true;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    isBreakdownAccidentDialogShown = false;
+    super.dispose();
+  }
 
   @override
   void didChangeDependencies() {

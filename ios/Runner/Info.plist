@@ -29,10 +29,15 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.573054971190-inud9nk3kcpnsgfam3ukadmu5trk45d6</string>
+				<string>com.googleusercontent.apps.525019772489-1j4it7akgsebav2erpmbtj231vkhp4ej</string>
 			</array>
 		</dict>
 	</array>
+
+	<!-- Google Sign-In Client IDs -->
+	<key>GIDClientID</key>
+	<string>525019772489-1j4it7akgsebav2erpmbtj231vkhp4ej.apps.googleusercontent.com</string>
+
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>GIDClientID</key>

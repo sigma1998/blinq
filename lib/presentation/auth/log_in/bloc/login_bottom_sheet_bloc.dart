@@ -103,7 +103,9 @@ class LoginBottomSheetBloc
       OnGoogleSelected event, Emitter<LoginBottomSheetState> emit) async {
     print('CAME HERE____________________');
     try {
-      final GoogleSignInAccount? googleUser = await GoogleSignIn.instance.authenticate();
+      GoogleSignIn.instance.initialize();
+      final GoogleSignInAccount? googleUser =
+          await GoogleSignIn.instance.authenticate();
 
       final GoogleSignInAuthentication? googleAuth =
           await googleUser?.authentication;
