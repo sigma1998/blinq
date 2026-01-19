@@ -6,6 +6,7 @@ import 'dart:ui';
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/core/drawables/app_text_styles.dart';
 import 'package:blinq/core/theme/app_colors.dart';
+import 'package:blinq/utils/custom_widgets/buttons/default_ink_well.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -70,26 +71,29 @@ class _DamagedMediaItemState extends State<DamagedMediaItem> {
               bottom: 8.0,
               right: 8,
             ),
-            child: ClipOval(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                child: Container(
-                  width: 36,
-                  height: 36,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: AppColors.grey2,
+            child: MyInkWell(
+              onTap: () => widget.onRemove.call(widget.file),
+              child: ClipOval(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                  child: Container(
+                    width: 36,
+                    height: 36,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: AppColors.grey2,
+                      ),
                     ),
-                  ),
-                  child: SvgPicture.asset(
-                    width: 20,
-                    height: 20,
-                    AppDrawables.delete,
-                    colorFilter: const ColorFilter.mode(
-                      AppColors.white,
-                      BlendMode.srcIn,
+                    child: SvgPicture.asset(
+                      width: 20,
+                      height: 20,
+                      AppDrawables.delete,
+                      colorFilter: const ColorFilter.mode(
+                        AppColors.white,
+                        BlendMode.srcIn,
+                      ),
                     ),
                   ),
                 ),

@@ -128,7 +128,8 @@ abstract class AccidentApi {
   Future<void> respondToNotification(
       {required int accidentId, required bool isAgree});
 
-  Future<PolicyHolderRequestModel?> sameAsDriver({required int accidentId, required bool sameAsDriver});
+  Future<PolicyHolderRequestModel?> sameAsDriver(
+      {required int accidentId, required bool sameAsDriver});
 }
 
 class AccidentApiImpl implements AccidentApi {
@@ -452,7 +453,7 @@ class AccidentApiImpl implements AccidentApi {
   Future<String> getPdf(int accidentId) async {
     try {
       final res = await api.get(NetworkConstants.getAccidentPdf(accidentId));
-      return res['accident_document_pdf'];
+      return res['pdf_url'];
     } catch (e) {
       rethrow;
     }
@@ -521,13 +522,13 @@ class AccidentApiImpl implements AccidentApi {
         NetworkConstants.updatePolicyHolderB(accidentId),
         data: {
           "first_name": policyHolderRequestModel.firstName,
-          "last_name":policyHolderRequestModel.lastName,
+          "last_name": policyHolderRequestModel.lastName,
           "postal_code": policyHolderRequestModel.postalCode,
           "country": policyHolderRequestModel.country,
           "city": policyHolderRequestModel.city,
           "state": policyHolderRequestModel.state,
           "street": policyHolderRequestModel.street,
-          "phone_number":policyHolderRequestModel.phoneNumber,
+          "phone_number": policyHolderRequestModel.phoneNumber,
           "email": policyHolderRequestModel.email,
           "same_as_driver": policyHolderRequestModel.sameAsDriver
         },
