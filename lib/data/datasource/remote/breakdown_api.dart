@@ -159,7 +159,8 @@ class BreakdownApiImpl implements BreakdownApi {
   @override
   Future<String> getBreakdownStep(int breakdownId) async {
     try {
-      final res = await api.get(NetworkConstants.getBreakdownStatus(breakdownId));
+      final res =
+          await api.get(NetworkConstants.getBreakdownStatus(breakdownId));
       return res['endpoint'];
     } catch (e) {
       rethrow;
@@ -170,7 +171,7 @@ class BreakdownApiImpl implements BreakdownApi {
   Future<String> getPdf(int breakdownId) async {
     try {
       final res = await api.get(NetworkConstants.getBreakdownPdf(breakdownId));
-      return res['accident_document_pdf'];
+      return res['pdf_url'];
     } catch (e) {
       rethrow;
     }
