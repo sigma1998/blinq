@@ -16,6 +16,8 @@ class QrScanScreen extends StatefulWidget {
 }
 
 class _QrScanScreenState extends State<QrScanScreen> {
+  bool isDetected = false;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -37,11 +39,16 @@ class _QrScanScreenState extends State<QrScanScreen> {
                     detectionSpeed: DetectionSpeed.noDuplicates,
                   ),
                   onDetect: (BarcodeCapture barcodeCapture) {
+                    if (isDetected) return;
+
+                    isDetected = true;
                     final map = barcodeCapture.raw as Map;
                     final list = map['data'] as List;
                     final res = list.first as Map;
                     final displayValue = res['displayValue'] as String;
-                    final userId = int.parse(displayValue.replaceAll("{'user_id':", '').replaceAll('}', ''));
+                    final userId = int.parse(displayValue
+                        .replaceAll("{'user_id':", '')
+                        .replaceAll('}', ''));
                     NavigationService.pushReplacement(
                       routeName: SecondDriverScreen.route,
                       arguments: userId,

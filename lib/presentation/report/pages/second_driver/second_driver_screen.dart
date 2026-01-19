@@ -32,11 +32,13 @@ class SecondDriverScreen extends StatefulWidget {
 
 class _SecondDriverScreenState extends State<SecondDriverScreen> {
   //
-  late SecondDriverCubit cubit;
+  SecondDriverCubit? cubit;
 
   @override
   void didChangeDependencies() {
     final id = ModalRoute.of(context)!.settings.arguments as int;
+
+    if (cubit != null) return;
 
     cubit = SecondDriverCubit(
         repository: getIt<AccidentRepositoryImpl>(), reportBloc: context.read())
@@ -50,7 +52,7 @@ class _SecondDriverScreenState extends State<SecondDriverScreen> {
       bloc: cubit,
       builder: (context, state) {
         return WillPopScope(
-          onWillPop: cubit.onScreenPop,
+          onWillPop: cubit?.onScreenPop,
           child: SafeArea(
             child: Scaffold(
               appBar: const AccidentAppBar(),
@@ -147,7 +149,8 @@ class _SecondDriverScreenState extends State<SecondDriverScreen> {
                                     ),
                                     const SizedBox(height: 24),
                                     Text(
-                                      cubit.state.secondDriver?.fullName ?? '-',
+                                      cubit?.state.secondDriver?.fullName ??
+                                          '-',
                                       style: AppTextStyles.s28W600,
                                     ),
                                   ],
@@ -162,11 +165,11 @@ class _SecondDriverScreenState extends State<SecondDriverScreen> {
                             : 'Yes',
                         onTap: state.status == Status.failure
                             ? () {
-                                cubit.toQrScanning();
+                                cubit?.toQrScanning();
                               }
                             : () {
-                                cubit.onValueChanged(true);
-                                cubit.onNextPressed();
+                                cubit?.onValueChanged(true);
+                                cubit?.onNextPressed();
                               },
                       ),
                       SizedBox(height: 12.h),
@@ -178,11 +181,11 @@ class _SecondDriverScreenState extends State<SecondDriverScreen> {
                             : 'No',
                         onTap: state.status == Status.failure
                             ? () {
-                                cubit.onBack();
+                                cubit?.onBack();
                               }
                             : () {
-                                cubit.onValueChanged(false);
-                                cubit.onBack();
+                                cubit?.onValueChanged(false);
+                                cubit?.onBack();
                               },
                       ),
                       SizedBox(height: 12.h),
