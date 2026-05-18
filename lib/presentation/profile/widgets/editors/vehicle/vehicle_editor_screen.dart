@@ -71,11 +71,6 @@ class _VehicleEditorScreenState extends State<VehicleEditorScreen> {
                     onTap: bloc.onVehicleMarkPressed,
                   ),
                   const SizedBox(height: 16),
-                  NameTextField(
-                    labelText: 'strLicense'.tr(),
-                    controller: bloc.licenseController,
-                  ),
-                  const SizedBox(height: 16),
                   PickerTextField(
                     onTap: bloc.onModelTap,
                     labelText: 'strModel'.tr(),

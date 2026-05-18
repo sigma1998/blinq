@@ -35,7 +35,6 @@ class VehicleEditorBloc extends Bloc<VehicleEditorEvent, VehicleEditorState> {
   final formKey = GlobalKey<FormState>();
 
   final markController = TextEditingController();
-  final licenseController = TextEditingController();
   final modelController = TextEditingController();
   final modelSeriesController = TextEditingController();
   final colorController = TextEditingController();
@@ -111,8 +110,6 @@ class VehicleEditorBloc extends Bloc<VehicleEditorEvent, VehicleEditorState> {
     markController.text = profileBloc.state.profile?.car?.brand ?? '';
     plateNumberController.text =
         profileBloc.state.profile?.car?.plateNumber ?? '';
-    licenseController.text =
-        profileBloc.state.profile?.driverLicenseNumber ?? '';
     modelController.text = profileBloc.state.profile?.car?.car ?? '';
   }
 
@@ -214,6 +211,7 @@ class VehicleEditorBloc extends Bloc<VehicleEditorEvent, VehicleEditorState> {
       plateNumber: plateNumberController.text,
       car: selectedModel?.id,
       color: selectedColor?.id,
+      
     );
 
     emit(const VehicleEditorState(status: Status.loading));
