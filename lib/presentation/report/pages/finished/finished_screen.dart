@@ -117,15 +117,15 @@ class _FinishedScreenState extends State<FinishedScreen> with TickerProviderStat
                                     textAlign: TextAlign.center,
                                     style: AppTextStyles.s34W600,
                                   ),
-                                  SizedBox(height: 200.h),
-                                  GlassButton(
-                                    onTap: () {
-                                      setState(() {
-                                        completed = true;
-                                      });
-                                    },
-                                    title: 'Complete',
-                                  ),
+                                  // SizedBox(height: 200.h),
+                                  // GlassButton(
+                                  //   onTap: () {
+                                  //     setState(() {
+                                  //       completed = true;
+                                  //     });
+                                  //   },
+                                  //   title: 'Complete',
+                                  // ),
                                 ],
                               )
                             : BlocBuilder<ProfileBloc, ProfileState>(
