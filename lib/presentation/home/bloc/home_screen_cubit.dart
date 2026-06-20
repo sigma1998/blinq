@@ -41,8 +41,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
         target: latlng,
         zoom: 14.4746,
       );
-      mapController?.animateCamera(
-          CameraUpdate.newLatLng(LatLng(res.latitude, res.longitude)));
+      mapController?.animateCamera(CameraUpdate.newLatLng(LatLng(res.latitude, res.longitude)));
     }
   }
 
@@ -64,8 +63,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     await NavigationService.pushNamed(
       routeName: MapScreen.route,
       nestedKey: NavigationService.homeNavigatorKey,
-      arguments: MapScreenArgs(
-          initialPosition: position ?? CameraPosition(target: latlng)),
+      arguments: MapScreenArgs(initialPosition: position ?? CameraPosition(target: latlng)),
     );
     _showMap();
   }

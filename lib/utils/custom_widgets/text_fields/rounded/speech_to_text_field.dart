@@ -4,6 +4,7 @@
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/core/drawables/app_text_styles.dart';
 import 'package:blinq/core/theme/app_colors.dart';
+import 'package:blinq/utils/components/wrappers/glass_container.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -41,6 +42,7 @@ class SpeechToTextField extends StatefulWidget {
 
   final void Function()? onTap;
   final VoidCallback? onKeyBoardTap;
+  final String? hint;
 
   const SpeechToTextField({
     super.key,
@@ -77,6 +79,7 @@ class SpeechToTextField extends StatefulWidget {
     //
     this.onTap,
     this.onKeyBoardTap,
+    this.hint,
   });
 
   @override
@@ -114,104 +117,101 @@ class _SpeechToTextFieldState extends State<SpeechToTextField> {
           ),
           const SizedBox(height: 36),
         ],
-        Container(
+        SizedBox(
           height: 120.h,
           width: double.infinity,
-          padding: const EdgeInsets.only(
-            left: 16,
-            top: 12,
-          ),
-          decoration: BoxDecoration(
-            color: widget.enabled
-                ? Theme.of(context).colorScheme.onBackground
-                : Theme.of(context).colorScheme.onSecondary,
-            border: Border.all(
-              color: Theme.of(context).colorScheme.onSecondary,
+          child: GlassContainer(
+            radius: 10,
+            padding: const EdgeInsets.only(
+              left: 16,
+              top: 12,
             ),
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
-          ),
-          child: Column(
-            children: [
-              Expanded(
-                child: TextFormField(
-                  scrollController: widget.scrollController,
-                  controller: widget.controller,
-                  //
-                  focusNode: widget.focusNode ?? focus,
-                  enabled: widget.enabled,
-                  readOnly: widget.readOnly,
-                  autofocus: widget.autofocus,
-                  textAlign: TextAlign.start,
-                  cursorColor: Colors.white,
-                  keyboardType: TextInputType.text,
-                  textInputAction: TextInputAction.done,
-                  textCapitalization: TextCapitalization.none,
-                  //
-                  minLines: widget.minLines,
-                  maxLines: widget.maxLines,
-                  maxLength: widget.maxLength,
-                  //
-                  onTap: widget.onTap,
-                  //
-                  style: widget.inputTextstyle,
-                  decoration: InputDecoration(
-                    isDense: true,
+            child: Column(
+              children: [
+                Expanded(
+                  child: TextFormField(
+                    scrollController: widget.scrollController,
+                    controller: widget.controller,
                     //
-                    contentPadding: EdgeInsets.zero,
-                    floatingLabelBehavior: widget.floatingLabelBehavior,
+                    focusNode: widget.focusNode ?? focus,
+                    enabled: widget.enabled,
+                    readOnly: widget.readOnly,
+                    autofocus: widget.autofocus,
+                    textAlign: TextAlign.start,
+                    cursorColor: Colors.white,
+                    keyboardType: TextInputType.text,
+                    textInputAction: TextInputAction.done,
+                    textCapitalization: TextCapitalization.none,
                     //
-                    filled: true,
-                    hintText: 'Type here..',
-                    fillColor: widget.enabled
-                        ? Theme.of(context).colorScheme.onBackground
-                        : Theme.of(context).colorScheme.onSecondary,
+                    minLines: widget.minLines,
+                    maxLines: widget.maxLines,
+                    maxLength: widget.maxLength,
                     //
-                    suffixIconConstraints: const BoxConstraints(
-                      maxWidth: 24,
-                      maxHeight: 24,
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide.none,
+                    onTap: widget.onTap,
+                    //
+                    style: widget.inputTextstyle,
+                    decoration: InputDecoration(
+                      isDense: true,
+                      //
+                      contentPadding: EdgeInsets.zero,
+                      floatingLabelBehavior: widget.floatingLabelBehavior,
+                      //
+                      filled: true,
+                      hintText: widget.hint,
+                      hintStyle: AppTextStyles.s17W600.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xff737373),
+                      ),
+                      fillColor: Colors.transparent,
+                      //
+                      suffixIconConstraints: const BoxConstraints(
+                        maxWidth: 24,
+                        maxHeight: 24,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      FocusScope.of(context).requestFocus(widget.focusNode ?? focus);
-                    },
-                    icon: SvgPicture.asset(
-                      AppDrawables.keyboard,
-                    ),
-                  ),
-                ],
-              )
-            ],
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.end,
+                //   children: [
+                //     IconButton(
+                //       onPressed: () {
+                //         FocusScope.of(context).requestFocus(widget.focusNode ?? focus);
+                //       },
+                //       icon: SvgPicture.asset(
+                //         AppDrawables.keyboard,
+                //       ),
+                //     ),
+                //   ],
+                // )
+              ],
+            ),
           ),
         ),
         SizedBox(height: 80.h),
-        AnimatedContainer(
-          width: 154.h,
-          alignment: Alignment.center,
-          duration: const Duration(milliseconds: 300),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: widget.enabled
-                ? AppColors.darkGrey
-                : Theme.of(context).colorScheme.onSecondary,
-          ),
-          child: WaveWidget(
-            animate: widget.isRecording,
-            scale: widget.soundLevel ?? 0,
-            onPressed: widget.toggleRecording,
+        SizedBox(
+          width: 114.h,
+          child: AnimatedContainer(
+            width: 112.h,
+            alignment: Alignment.center,
+            duration: const Duration(milliseconds: 300),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: widget.enabled ? AppColors.darkGrey : Theme.of(context).colorScheme.onSecondary,
+            ),
+            child: WaveWidget(
+              animate: widget.isRecording,
+              scale: widget.soundLevel ?? 0,
+              onPressed: widget.toggleRecording,
+            ),
           ),
         ),
       ],

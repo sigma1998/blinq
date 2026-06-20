@@ -7,6 +7,9 @@ class AppColors {
   static const Color darkGreyVarient = Color(0xFF212121);
   static const Color black2 = Color(0xff161616);
   static const Color black = Colors.black;
+  static const Color blue = Color(0xff007AFF);
+  static const Color neutralGrey = Color(0xff5B5B5B);
+  static const Color neutralLight = Color(0xffFCFCFC);
   static const Color grey1 = Color(0xff4d4d4d);
   static const Color grey2 = Color(0xff5b5b5b);
   static const Color lightGrey = Color(0xff7a7a7a);
@@ -17,4 +20,5 @@ class AppColors {
   static const Color messageBackgroundColor = Color(0xFF1D1D1D);
   static const Color darkRedColor = Color(0xFF510D09);
   static const Color activeReportColor = Color(0xffFFF200);
+  static const Color c_808080 = Color(0xff808080);
 }

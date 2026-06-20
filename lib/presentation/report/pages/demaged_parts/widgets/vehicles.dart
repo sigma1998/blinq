@@ -7,6 +7,7 @@ import 'package:blinq/utils/components/cars/vehicle/vehicle_front_side.dart';
 import 'package:blinq/utils/components/cars/vehicle/vehicle_left_side.dart';
 import 'package:blinq/utils/components/cars/vehicle/vehicle_side_selector.dart';
 import 'package:blinq/utils/components/cars/vehicle/vehicle_top_side.dart';
+import 'package:blinq/utils/components/wrappers/glass_container.dart';
 import 'package:blinq/utils/services/broken_parts/broken_parts.dart';
 import 'package:blinq/utils/states/vehicle_parts.dart';
 import 'package:flutter/material.dart';
@@ -58,43 +59,38 @@ class _VehiclesListState extends State<VehiclesList> {
                 children: bloc.vehicleSelect.map<Widget>((e) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Container(
+                    child: SizedBox(
                       width: double.infinity,
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(
-                          color: AppColors.grey1,
-                          width: 1.5,
+                      child: GlassContainer(
+                        radius: 8,
+                        tint: 0.08,
+                        child: TypeSelector(
+                          index: index,
+                          parts: bloc.parts,
+                          type: bloc.vehicleType,
+                          onPartPressed: (CarParts part) {
+                            bloc.onPartPressed(part);
+                          },
                         ),
+                        // child: FloodFillImage(
+                        //   imageProvider: AssetImage(bloc.vehicleSelect[index]),
+                        //   fColor: (position) {
+                        //     const inActive = Color(0xff2d2d2d);
+                        //
+                        //     if (position == null) {
+                        //       return active;
+                        //     }
+                        //     return bloc.onFColor(
+                        //       position: position,
+                        //       active: active,
+                        //       inActive: inActive,
+                        //       index: index,
+                        //       listController: widget.listController,
+                        //     );
+                        //   },
+                        //   tolerance: 8,
+                        // ),
                       ),
-                      child: TypeSelector(
-                        index: index,
-                        parts: bloc.parts,
-                        type: bloc.vehicleType,
-                        onPartPressed: (CarParts part) {
-                          bloc.onPartPressed(part);
-                        },
-                      ),
-                      // child: FloodFillImage(
-                      //   imageProvider: AssetImage(bloc.vehicleSelect[index]),
-                      //   fColor: (position) {
-                      //     const inActive = Color(0xff2d2d2d);
-                      //
-                      //     if (position == null) {
-                      //       return active;
-                      //     }
-                      //     return bloc.onFColor(
-                      //       position: position,
-                      //       active: active,
-                      //       inActive: inActive,
-                      //       index: index,
-                      //       listController: widget.listController,
-                      //     );
-                      //   },
-                      //   tolerance: 8,
-                      // ),
                     ),
                   );
                 }).toList());

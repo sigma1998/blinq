@@ -13,12 +13,10 @@ class CircularBluetoothSearchingAnimation extends StatefulWidget {
   });
 
   @override
-  State<CircularBluetoothSearchingAnimation> createState() =>
-      _CircularBluetoothSearchingAnimationState();
+  State<CircularBluetoothSearchingAnimation> createState() => _CircularBluetoothSearchingAnimationState();
 }
 
-class _CircularBluetoothSearchingAnimationState
-    extends State<CircularBluetoothSearchingAnimation> {
+class _CircularBluetoothSearchingAnimationState extends State<CircularBluetoothSearchingAnimation> {
   final period = const Duration(milliseconds: 300);
   late final Timer timer;
   final double size = 110;
@@ -38,7 +36,7 @@ class _CircularBluetoothSearchingAnimationState
         if (widget.scanning) {
           setState(
             () {
-              if (range >= 4) {
+              if (range >= 5) {
                 range = 0;
               } else {
                 range++;
@@ -59,50 +57,63 @@ class _CircularBluetoothSearchingAnimationState
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 312.w,
-      height: 312.w,
+      width: 360.w,
+      height: 360.w,
       child: Stack(
         alignment: Alignment.center,
         children: [
           AnimatedContainer(
-            width: getBiggestCircleSize(),
-            height: getBiggestCircleSize(),
+            width: getFourthCircleSize(),
+            height: getFourthCircleSize(),
             duration: period,
             decoration: BoxDecoration(
-              color: AppColors.white.withOpacity(0.1),
-              shape: BoxShape.circle,
+                color: AppColors.white.withOpacity(0.05),
+                shape: BoxShape.circle,
+                border: Border.all(color: AppColors.white.withAlpha(25))
             ),
           ),
           AnimatedContainer(
-            width: getMiddleCircleSize(),
-            height: getMiddleCircleSize(),
+            width: getThirdCircleSize(),
+            height: getThirdCircleSize(),
             duration: period,
             decoration: BoxDecoration(
-              color: AppColors.white.withOpacity(0.1),
+              color: AppColors.white.withOpacity(0.06),
               shape: BoxShape.circle,
+              border: Border.all(color: AppColors.white.withAlpha(25))
             ),
           ),
           AnimatedContainer(
-            width: getSmallestCircleSize(),
-            height: getSmallestCircleSize(),
+            width: getSecondCircleSize(),
+            height: getSecondCircleSize(),
             duration: period,
             decoration: BoxDecoration(
-              color: AppColors.white.withOpacity(0.1),
+              color: AppColors.white.withOpacity(0.07),
               shape: BoxShape.circle,
+                border: Border.all(color: AppColors.white.withAlpha(25))
+            ),
+          ),
+          AnimatedContainer(
+            width: getFirstCircleSize(),
+            height: getFirstCircleSize(),
+            duration: period,
+            decoration: BoxDecoration(
+              color: AppColors.white.withOpacity(0.08),
+              shape: BoxShape.circle,
+                border: Border.all(color: AppColors.white.withAlpha(25))
             ),
           ),
           Container(
-            width: 72.w,
-            height: 72.w,
+            width: 112.w,
+            height:112.w,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: widget.scanning ? AppColors.white : AppColors.darkGrey,
+              color: AppColors.primaryColor,
             ),
             child: Icon(
               Icons.bluetooth_sharp,
-              size: 34,
-              color: widget.scanning ? AppColors.primaryColor : AppColors.grey2,
+              size: 40,
+              color: AppColors.white,
             ),
           ),
         ],
@@ -110,23 +121,35 @@ class _CircularBluetoothSearchingAnimationState
     );
   }
 
-  double getBiggestCircleSize() {
-    return size.w * range;
-  }
-
-  double getMiddleCircleSize() {
-    if (range <= 2) {
-      return size.w * range;
+  double getFourthCircleSize() {
+    if (range < 4) {
+      return 0;
     } else {
-      return size.w * 2;
+      return 360.w;
     }
   }
 
-  double getSmallestCircleSize() {
-    if (range <= 1) {
-      return size.w * range;
+  double getThirdCircleSize() {
+    if (range < 3) {
+      return 0;
     } else {
-      return size.w;
+      return 300.w;
+    }
+  }
+
+  double getSecondCircleSize() {
+    if (range < 2) {
+      return 0;
+    } else {
+      return 240.w;
+    }
+  }
+
+  double getFirstCircleSize() {
+    if (range < 1) {
+      return 0;
+    } else {
+      return 180.w;
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:blinq/utils/components/cars/moto/moto_left_side.dart';
 import 'package:blinq/utils/components/cars/van/van_front_side.dart';
+import 'package:blinq/utils/components/wrappers/glass_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -39,27 +40,19 @@ class _VehiclePositionsState extends State<VehiclePositions> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children:
-          Iterable.generate(widget.vehicleType == VehicleType.moto ? 2 : 5)
-              .map<Widget>((e) {
+      children: Iterable.generate(widget.vehicleType == VehicleType.moto ? 2 : 5).map<Widget>((e) {
         return Expanded(
           child: Padding(
             padding: EdgeInsets.only(left: e == 0 ? 0 : 8.0.w),
             child: Stack(
               children: [
-                Container(
+                SizedBox(
                   height: 96.h,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: AppColors.darkGrey,
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                      color: e == widget.index
-                          ? AppColors.primaryColor
-                          : Colors.transparent,
-                    ),
+                  child: GlassContainer(
+                    radius: 8,
+                    tint: widget.index == e ? 0.3 : 0.1,
+                    child: getLists()[e],
                   ),
-                  child: getLists()[e],
                 ),
                 GestureDetector(
                   onTap: () {

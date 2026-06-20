@@ -2,6 +2,7 @@
 import 'package:blinq/core/drawables/app_text_styles.dart';
 import 'package:blinq/presentation/report/pages/demaged_parts/widgets/car_positions_section.dart';
 import 'package:blinq/utils/components/app_bar/progress_app_bar.dart';
+import 'package:blinq/utils/components/wrappers/screen_background.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -36,11 +37,9 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
   final ScrollController listScrollController = ScrollController();
   ValueNotifier<int> valueNotifier = ValueNotifier<int>(0);
 
-
   @override
   void didChangeDependencies() {
-    final args =
-        ModalRoute.of(context)?.settings.arguments as DamagedPartsScreenArgs?;
+    final args = ModalRoute.of(context)?.settings.arguments as DamagedPartsScreenArgs?;
     bloc = DamagedPartsBloc(
       vehicleType: args?.vehicleType ?? VehicleType.auto,
       accidentRepository: getIt<AccidentRepositoryImpl>(),
@@ -59,60 +58,60 @@ class _DamagedPartsScreenState extends State<DamagedPartsScreen> {
       child: BlocBuilder<DamagedPartsBloc, DamagedPartsState>(
         bloc: bloc,
         builder: (context, state) {
-          return Scaffold(
-            appBar: ProgressAppBar(
-              step: 10,
-              onSaveTap: () => bloc.onNextTap(context),
-            ),
-            body: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  top: 24.0,
+          return ScreenBackground(
+            body: Column(
+              children: [
+                ProgressAppBar(
+                  step: 10,
+                  onSaveTap: () => bloc.onNextTap(context),
                 ),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Text(
-                        '10. ${'strSelectDamage'.tr()}',
-                        style: AppTextStyles.s22W600,
-                      ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      top: 24.0,
                     ),
-                    SizedBox(
-                      height: 24.h,
-                    ),
-                    SelectedPartsList(
-                      controller: listScrollController,
-                    ),
-                    SizedBox(height: 24.h),
-                    CarPositionsSection(
-                      valueNotifier: valueNotifier,
-                    ),
-                    SizedBox(height: 12.h),
-                    Expanded(
-                      child: Stack(
-                        children: [
-                          RepaintBoundary(
-                            key: bloc.imagePreview,
-                            child: VehiclesList(
-                              pageController: pageController,
-                              listController: listScrollController,
-                              valueNotifier: valueNotifier,
-                            ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Text(
+                            '10. ${'strSelectDamage'.tr()}',
+                            style: AppTextStyles.s22W600,
                           ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(
+                          height: 24.h,
+                        ),
+                        SelectedPartsList(controller: listScrollController),
+                        SizedBox(height: 24.h),
+                        CarPositionsSection(valueNotifier: valueNotifier),
+                        SizedBox(height: 12.h),
+                        Expanded(
+                          child: Stack(
+                            children: [
+                              RepaintBoundary(
+                                key: bloc.imagePreview,
+                                child: VehiclesList(
+                                  pageController: pageController,
+                                  listController: listScrollController,
+                                  valueNotifier: valueNotifier,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 20.h),
+                        NavigationButton(
+                          padding: 16,
+                          loading: state.status == Status.loading,
+                          onNextTap: () => bloc.onNextTap(context),
+                        ),
+                        SizedBox(height: 20.h),
+                      ],
                     ),
-                    SizedBox(height: 20.h),
-                    NavigationButton(
-                      padding: 16,
-                      loading: state.status == Status.loading,
-                      onNextTap: () => bloc.onNextTap(context),
-                    ),
-                    SizedBox(height: 20.h),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
           );
         },

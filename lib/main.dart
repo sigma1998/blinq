@@ -53,8 +53,7 @@ Future<void> setUpSpeechRecognition() async {
   await SpeechToText().initialize(
     finalTimeout: const Duration(milliseconds: 500),
     onStatus: (String status) {
-      print('STATUS___________________$status');
     },
-    onError: (e) => print('Error speech:____________________ ${e}'),
+    onError: (e) => (){},
   );
 }

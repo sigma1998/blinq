@@ -225,7 +225,7 @@ class _$ConnectToBlinqStateImpl implements _ConnectToBlinqState {
       this.stateTexts = 'N/A',
       final List<String> receivedData = const [],
       this.connectAttempt = 0,
-      this.recentlyConnected = null})
+      this.recentlyConnected})
       : _scannedBleDevices = scannedBleDevices,
         _savedBleDevices = savedBleDevices,
         _receivedData = receivedData;
@@ -277,7 +277,6 @@ class _$ConnectToBlinqStateImpl implements _ConnectToBlinqState {
   @JsonKey()
   final int connectAttempt;
   @override
-  @JsonKey()
   final DiscoveredDevice? recentlyConnected;
 
   @override

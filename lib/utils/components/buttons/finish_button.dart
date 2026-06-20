@@ -1,6 +1,9 @@
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/generated/assets.dart';
+import 'package:blinq/utils/components/wrappers/glass_container.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -24,55 +27,52 @@ class FinishButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        width: double.infinity,
+      child: SizedBox(
         height: 100.h,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        decoration: BoxDecoration(
-          color: AppColors.white.withOpacity(0.16),
-          borderRadius: BorderRadius.circular(26),
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 60,
-              height: 60,
-              alignment: Alignment.center,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.black,
-              ),
-              child: SvgPicture.asset(
-                iconPath,
-                width: 28,
-                height: 28,
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    text,
-                    style: AppTextStyles.s17W600,
+        width: double.infinity,
+        child: GlassContainer(
+          radius: 20,
+          tint: 0.06,
+          blur: 10,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
+            children: [
+              SizedBox(
+                width: 60,
+                height: 60,
+                child: GlassContainer(
+                  isCircle: true,
+                  tint: 0.16,
+                  child: SvgPicture.asset(
+                    iconPath,
+                    width: 28,
+                    height: 28,
+                    colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
                   ),
-                  Text(
-                    email,
-                    style: AppTextStyles.s15W400.copyWith(
-                      color: AppColors.grey2,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      text,
+                      style: AppTextStyles.s17W600,
                     ),
-                  ),
-                ],
+                    Text(
+                      email,
+                      style: AppTextStyles.s15W400.copyWith(
+                        color: AppColors.grey2,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SvgPicture.asset(
-              AppDrawables.right,
-              width: 24,
-              height: 24,
-            )
-          ],
+              SvgPicture.asset(Assets.iconsThreeRightArrow),
+            ],
+          ),
         ),
       ),
     );

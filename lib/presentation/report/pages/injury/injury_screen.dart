@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:blinq/core/drawables/app_text_styles.dart';
 import 'package:blinq/utils/components/app_bar/progress_app_bar.dart';
+import 'package:blinq/utils/components/wrappers/screen_background.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -47,51 +48,61 @@ class _InjuryScreenState extends State<InjuryScreen> {
     return BlocBuilder<InjuryScreenCubit, InjuryScreenState>(
       bloc: cubit,
       builder: (context, state) {
-        return SafeArea(
-          child: ModalProgressHud(
-            isLoading: state.status == Status.loading,
-            child: Scaffold(
-              appBar: ProgressAppBar(
-                step: 2,
-                onSaveTap: cubit.isNextEnabled ? cubit.onNext : null,
-              ),
-              extendBody: true,
-              body: ListView(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 24,
+        return ModalProgressHud(
+          isLoading: state.status == Status.loading,
+          child: ScreenBackground(
+            body: Stack(
+              children: [
+                Column(
+                  children: [
+                    ProgressAppBar(
+                      step: 2,
+                      onSaveTap: cubit.isNextEnabled ? cubit.onNext : null,
+                    ),
+                    Expanded(
+                      child: ListView(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 24,
+                        ),
+                        physics: const ClampingScrollPhysics(),
+                        children: [
+                          const Text(
+                            '2. Short questions',
+                            style: AppTextStyles.s22W600,
+                          ),
+                          const SizedBox(height: 32),
+                          InjuryItem(
+                            title: 'strMinorInjuries'.tr(),
+                            onChanged: cubit.onAnyInjuriesChanged,
+                          ),
+                          const SizedBox(height: 50),
+                          InjuryItem(
+                            title: 'strDamagedVehicle'.tr(),
+                            onChanged: cubit.onDamagedVehiclesChanged,
+                          ),
+                          const SizedBox(height: 50),
+                          InjuryItem(
+                            title: 'strDamagedBesidesVehicle'.tr(),
+                            onChanged: cubit.onDamageBesideVehicleChanged,
+                          ),
+                          const SizedBox(height: 100),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                physics: const ClampingScrollPhysics(),
-                children: [
-                  const Text(
-                    '2. Short questions',
-                    style: AppTextStyles.s22W600,
+                Positioned(
+                  bottom: 16,
+                  right: 0,
+                  left: 0,
+                  child: NavigationButton(
+                    padding: 16,
+                    onNextTap: cubit.onNext,
+                    canGoForward: cubit.isNextEnabled,
                   ),
-                  const SizedBox(height: 32),
-                  InjuryItem(
-                    title: 'strMinorInjuries'.tr(),
-                    onChanged: cubit.onAnyInjuriesChanged,
-                  ),
-                  const SizedBox(height: 50),
-                  InjuryItem(
-                    title: 'strDamagedVehicle'.tr(),
-                    onChanged: cubit.onDamagedVehiclesChanged,
-                  ),
-                  const SizedBox(height: 50),
-                  InjuryItem(
-                    title: 'strDamagedBesidesVehicle'.tr(),
-                    onChanged: cubit.onDamageBesideVehicleChanged,
-                  ),
-                  const SizedBox(height: 100),
-                ],
-              ),
-              floatingActionButton: NavigationButton(
-                padding: 16,
-                onNextTap: cubit.onNext,
-                canGoForward: cubit.isNextEnabled,
-              ),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerFloat,
+                ),
+              ],
             ),
           ),
         );

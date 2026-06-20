@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:blinq/core/drawables/app_text_styles.dart';
 import 'package:blinq/utils/components/app_bar/progress_app_bar.dart';
+import 'package:blinq/utils/components/wrappers/screen_background.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -22,6 +23,7 @@ import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
 
 import '../../../../../core/locale/app_locale.dart';
+import '../../../../../core/theme/app_colors.dart';
 
 class SecondDriverEditorInsuranceScreen extends StatefulWidget {
   //
@@ -30,12 +32,10 @@ class SecondDriverEditorInsuranceScreen extends StatefulWidget {
   const SecondDriverEditorInsuranceScreen({super.key});
 
   @override
-  State<SecondDriverEditorInsuranceScreen> createState() =>
-      _SecondDriverEditorInsuranceScreenState();
+  State<SecondDriverEditorInsuranceScreen> createState() => _SecondDriverEditorInsuranceScreenState();
 }
 
-class _SecondDriverEditorInsuranceScreenState
-    extends State<SecondDriverEditorInsuranceScreen> {
+class _SecondDriverEditorInsuranceScreenState extends State<SecondDriverEditorInsuranceScreen> {
   //
   late SecondDriverInsuranceCubit cubit;
 
@@ -54,127 +54,136 @@ class _SecondDriverEditorInsuranceScreenState
     return BlocBuilder<SecondDriverInsuranceCubit, SecondDriverInsuranceState>(
       bloc: cubit,
       builder: (context, state) {
-        return SafeArea(
-          child: KeyboardEscape(
-            child: Scaffold(
-              appBar: ProgressAppBar(step: 3),
-              body: Form(
-                key: cubit.formKey,
-                child: ListView(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 24,
-                    horizontal: 16,
+        return KeyboardEscape(
+          child: ScreenBackground(
+            floatingActionButton: NavigationButton(
+              padding: 16,
+              onNextTap: () {
+                if (cubit.validateForm()) {
+                  cubit.onSubmit();
+                }
+              },
+              loading: state.status == Status.loading,
+            ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+            body: Column(
+              children: [
+                ProgressAppBar(step: 3),
+                Expanded(
+                  child: Form(
+                    key: cubit.formKey,
+                    child: ListView(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 24,
+                        horizontal: 16,
+                      ),
+                      physics: const BouncingScrollPhysics(),
+                      children: [
+                        Text(
+                          'strInformationAboutInsuranceCompany'.tr(),
+                          style: AppTextStyles.s22W600,
+                        ),
+                        const SizedBox(height: 24),
+                        Text(
+                          'Insurance company information',
+                          style: AppTextStyles.s20W600.copyWith(color: AppColors.c_808080),
+                        ),
+                        const SizedBox(height: 16),
+                        NameTextField(
+                          labelText: 'strName'.tr(),
+                          controller: cubit.nameController,
+                        ),
+                        const SizedBox(height: 16),
+                        NameTextField(
+                          labelText: 'strPolicyNumber'.tr(),
+                          controller: cubit.policyNumberController,
+                        ),
+                        const SizedBox(height: 16),
+                        NameTextField(
+                          labelText: 'strGreenCardNumber'.tr(),
+                          controller: cubit.greenCardNumberController,
+                        ),
+                        const SizedBox(height: 24),
+                        Text(
+                          'strInsuranceCertificateGreenCardValid'.tr(),
+                          style: AppTextStyles.s20W600.copyWith(color: AppColors.c_808080),
+                        ),
+                        const SizedBox(height: 16),
+                        DatePickerTextField(
+                          labelText: 'strFrom'.tr(),
+                          controller: cubit.certificateValidFromController,
+                        ),
+                        const SizedBox(height: 16),
+                        DatePickerTextField(
+                          labelText: 'strTo'.tr(),
+                          controller: cubit.certificateValidToController,
+                        ),
+                        const SizedBox(height: 16),
+                        NameTextField(
+                          labelText: 'strAgency'.tr(),
+                          controller: cubit.agencyController,
+                        ),
+                        const SizedBox(height: 24),
+                        Text(
+                          'Address',
+                          style: AppTextStyles.s20W600.copyWith(color: AppColors.c_808080),
+                        ),
+                        const SizedBox(height: 16),
+                        PickerTextField(
+                          labelText: 'strCountry'.tr(),
+                          controller: cubit.countryController,
+                          onTap: cubit.onSelectCountriesPressed,
+                        ),
+                        const SizedBox(height: 16),
+                        NameTextField(
+                          labelText: AppLocale.city.tr(), //'strAddress'.tr(),
+                          controller: cubit.cityController,
+                        ),
+                        const SizedBox(height: 16),
+                        NameTextField(
+                          labelText: AppLocale.stateRegion.tr(),
+                          controller: cubit.stateController,
+                        ),
+                        const SizedBox(height: 16),
+                        NameTextField(
+                          labelText: AppLocale.street.tr(),
+                          controller: cubit.streetController,
+                        ),
+                        const SizedBox(height: 16),
+                        NameTextField(
+                          labelText: AppLocale.zipPostal.tr(),
+                          controller: cubit.zipController,
+                        ),
+                        const SizedBox(height: 16),
+                        NameTextField(
+                          labelText: AppLocale.phoneNumberEmail.tr(),
+                          controller: cubit.phoneNumberController,
+                        ),
+                        // PhoneTextField(
+                        //   labelText: 'strPhoneNumber'.tr(),
+                        //   controller: cubit.phoneNumberController,
+                        // ),
+                        // const SizedBox(height: 16),
+                        // EmailTextField(
+                        //   controller: cubit.emailController,
+                        // ),
+                        const SizedBox(height: 40),
+                        const Text(
+                          'Does the policy cover material damage to the vehicle?',
+                          style: AppTextStyles.s22W600,
+                        ),
+                        const SizedBox(height: 36),
+                        PickerTextField(
+                          labelText: 'strPolicCover'.tr(),
+                          onTap: cubit.onPolicyCoverPressed,
+                          controller: cubit.policyCoverController,
+                        ),
+                        const SizedBox(height: 136),
+                      ],
+                    ),
                   ),
-                  physics: const BouncingScrollPhysics(),
-                  children: [
-                    Text(
-                      'strInformationAboutInsuranceCompany'.tr(),
-                      style: AppTextStyles.s22W600,
-                    ),
-                    const SizedBox(height: 40),
-                    NameTextField(
-                      labelText: 'strName'.tr(),
-                      controller: cubit.nameController,
-                    ),
-                    const SizedBox(height: 16),
-                    NameTextField(
-                      labelText: 'strPolicyNumber'.tr(),
-                      controller: cubit.policyNumberController,
-                    ),
-                    const SizedBox(height: 16),
-                    NameTextField(
-                      labelText: 'strGreenCardNumber'.tr(),
-                      controller: cubit.greenCardNumberController,
-                    ),
-                    const SizedBox(height: 40),
-                    Text(
-                      'strInsuranceCertificateGreenCardValid'.tr(),
-                      style: AppTextStyles.s22W600,
-                    ),
-                    const SizedBox(height: 36),
-                    DatePickerTextField(
-                      labelText: 'strFrom'.tr(),
-                      controller: cubit.certificateValidFromController,
-                    ),
-                    const SizedBox(height: 16),
-                    DatePickerTextField(
-                      labelText: 'strTo'.tr(),
-                      controller: cubit.certificateValidToController,
-                    ),
-                    const SizedBox(height: 16),
-                    NameTextField(
-                      labelText: 'strAgency'.tr(),
-                      controller: cubit.agencyController,
-                    ),
-                    const SizedBox(height: 40),
-                    const Text(
-                      'Address',
-                      style: AppTextStyles.s22W600,
-                    ),
-                    const SizedBox(height: 36),
-                    PickerTextField(
-                      labelText: 'strCountry'.tr(),
-                      controller: cubit.countryController,
-                      onTap: cubit.onSelectCountriesPressed,
-                    ),
-                    const SizedBox(height: 16),
-                    NameTextField(
-                      labelText: AppLocale.city.tr(), //'strAddress'.tr(),
-                      controller: cubit.cityController,
-                    ),
-                    const SizedBox(height: 16),
-                    NameTextField(
-                      labelText: AppLocale.stateRegion.tr(),
-                      controller: cubit.stateController,
-                    ),
-                    const SizedBox(height: 16),
-                    NameTextField(
-                      labelText: AppLocale.street.tr(),
-                      controller: cubit.streetController,
-                    ),
-                    const SizedBox(height: 16),
-                    NameTextField(
-                      labelText: AppLocale.zipPostal.tr(),
-                      controller: cubit.zipController,
-                    ),
-                    const SizedBox(height: 16),
-                    NameTextField(
-                      labelText: AppLocale.phoneNumberEmail.tr(),
-                      controller: cubit.phoneNumberController,
-                    ),
-                    // PhoneTextField(
-                    //   labelText: 'strPhoneNumber'.tr(),
-                    //   controller: cubit.phoneNumberController,
-                    // ),
-                    // const SizedBox(height: 16),
-                    // EmailTextField(
-                    //   controller: cubit.emailController,
-                    // ),
-                    const SizedBox(height: 40),
-                    const Text(
-                      'Does the policy cover material damage to the vehicle?',
-                      style: AppTextStyles.s22W600,
-                    ),
-                    const SizedBox(height: 36),
-                    PickerTextField(
-                      labelText: 'strPolicCover'.tr(),
-                      onTap: cubit.onPolicyCoverPressed,
-                      controller: cubit.policyCoverController,
-                    ),
-                    const SizedBox(height: 136),
-                  ],
                 ),
-              ),
-              floatingActionButton: NavigationButton(
-                onNextTap: () {
-                  if (cubit.validateForm()) {
-                    cubit.onSubmit();
-                  }
-                },
-                loading: state.status == Status.loading,
-              ),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerFloat,
+              ],
             ),
           ),
         );

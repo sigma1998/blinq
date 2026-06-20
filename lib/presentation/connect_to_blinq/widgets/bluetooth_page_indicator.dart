@@ -1,5 +1,6 @@
 import 'package:blinq/core/drawables/app_text_styles.dart';
 import 'package:blinq/core/theme/app_colors.dart';
+import 'package:blinq/utils/components/wrappers/glass_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,16 +16,13 @@ class BluetoothPageIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Container(
-        width: double.infinity,
-        height: 44.h,
-        padding: const EdgeInsets.all(2),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: AppColors.darkGrey,
-        ),
+    return Container(
+    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      width: double.infinity,
+      height: 44.h,
+      child: GlassContainer(
+        radius: 12,
+        padding: const EdgeInsets.all(4),
         child: Row(
           children: Iterable.generate(2).map<Widget>((e) {
             return getButton(e);
@@ -37,12 +35,8 @@ class BluetoothPageIndicator extends StatelessWidget {
   getButton(int index) {
     if (currentIndex == index) {
       return Expanded(
-        child: Container(
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: AppColors.black,
-          ),
+        child: GlassContainer(
+          radius: 10,
           child: Text(
             texts[index],
             style: AppTextStyles.s15W600.copyWith(
@@ -81,7 +75,7 @@ class BluetoothPageIndicator extends StatelessWidget {
             texts[index],
             textAlign: TextAlign.center,
             style: AppTextStyles.s15W600.copyWith(
-              color: AppColors.grey2,
+              color: AppColors.white,
             ),
           ),
         ),

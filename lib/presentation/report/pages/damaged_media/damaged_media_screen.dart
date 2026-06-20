@@ -2,6 +2,7 @@
 import 'package:blinq/core/theme/app_colors.dart';
 import 'package:blinq/presentation/report/pages/damaged_media/widgets/photo_item.dart';
 import 'package:blinq/utils/components/app_bar/progress_app_bar.dart';
+import 'package:blinq/utils/components/wrappers/screen_background.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -65,73 +66,72 @@ class _DamagedMediaScreenState extends State<DamagedMediaScreen> {
 
           return Stack(
             children: [
-              SafeArea(
-                child: Scaffold(
-                  appBar: ProgressAppBar(
-                    step: 11,
-                    onSaveTap: cubit.onUploadDamagedMediaFiles,
-                  ),
-                  extendBody: true,
-                  body: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 24.0,
-                      horizontal: 16,
+              ScreenBackground(
+                body: Column(
+                  children: [
+                    ProgressAppBar(
+                      step: 11,
+                      onSaveTap: cubit.onUploadDamagedMediaFiles,
                     ),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: ListView(
-                            children: [
-                              const DamagedMediaEmptyStateWidget(),
-                              const SizedBox(height: 32),
-                              if (list.isNotEmpty)
-                                GridView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: list.length + 1,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemBuilder: (_, index) {
-                                    if (index == list.length) {
-                                      return PhotoItem(
-                                        onTap: cubit.imagePickerPressed,
-                                      );
-                                    } else {
-                                      final file = list[index];
-                                      return DamagedMediaItem(
-                                        file: file,
-                                        onRemove:
-                                            cubit.removeDamagedMediaPressed,
-                                      );
-                                    }
-                                  },
-                                  gridDelegate:
-                                      const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    childAspectRatio: 172 / 200,
-                                    crossAxisSpacing: 8,
-                                    mainAxisSpacing: 8,
-                                  ),
-                                ),
-                            ],
-                          ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 16.0,
+                          horizontal: 16,
                         ),
-                        if (state.files.isEmpty)
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 160.0.h),
-                            child: DamagedMediaButton(
-                              onTap: cubit.imagePickerPressed,
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: ListView(
+                                children: [
+                                  const DamagedMediaEmptyStateWidget(),
+                                  const SizedBox(height: 32),
+                                  if (list.isNotEmpty)
+                                    GridView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: list.length + 1,
+                                      physics: const NeverScrollableScrollPhysics(),
+                                      itemBuilder: (_, index) {
+                                        if (index == list.length) {
+                                          return PhotoItem(
+                                            onTap: cubit.imagePickerPressed,
+                                          );
+                                        } else {
+                                          final file = list[index];
+                                          return DamagedMediaItem(
+                                            file: file,
+                                            onRemove: cubit.removeDamagedMediaPressed,
+                                          );
+                                        }
+                                      },
+                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        childAspectRatio: 172 / 200,
+                                        crossAxisSpacing: 8,
+                                        mainAxisSpacing: 8,
+                                      ),
+                                    ),
+                                ],
+                              ),
                             ),
-                          ),
-                        const SizedBox(height: 10),
-                        NavigationButton(
-                          padding: 0,
-                          onNextTap: cubit.onUploadDamagedMediaFiles,
-                          label: state.files.isEmpty
-                              ? 'strNo'.tr()
-                              : 'strNext'.tr(),
+                            if (state.files.isEmpty)
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 160.0.h),
+                                child: DamagedMediaButton(
+                                  onTap: cubit.imagePickerPressed,
+                                ),
+                              ),
+                            const SizedBox(height: 10),
+                            NavigationButton(
+                              padding: 0,
+                              onNextTap: cubit.onUploadDamagedMediaFiles,
+                              label: state.files.isEmpty ? 'strNo'.tr() : 'strNext'.tr(),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
               isUploading

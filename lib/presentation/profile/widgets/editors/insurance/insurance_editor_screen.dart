@@ -17,8 +17,12 @@ import 'package:blinq/utils/custom_widgets/text_fields/email_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/drawables/app_text_styles.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../utils/components/app_bar/save_app_bar.dart';
 import '../../../../../utils/components/buttons/regular_button.dart';
+import '../../../../../utils/components/wrappers/screen_background.dart';
 import 'bloc/insurance_editor_bloc.dart';
 import 'bloc/insurance_editor_event.dart';
 
@@ -51,14 +55,12 @@ class _InsuranceEditorScreenState extends State<InsuranceEditorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return KeyboardEscape(
-      child: BlocBuilder<InsuranceEditorBloc, InsuranceEditorState>(
-        bloc: bloc,
-        builder: (context, state) {
-          return Scaffold(
-            extendBody: true,
-            appBar: MyAppBar(title: 'strInsurance'.tr()),
-            body: Form(
+    return ScreenBackground(
+      body: KeyboardEscape(
+        child: BlocBuilder<InsuranceEditorBloc, InsuranceEditorState>(
+          bloc: bloc,
+          builder: (context, state) {
+            return Form(
               key: bloc.formKey,
               child: ListView(
                 padding: const EdgeInsets.symmetric(
@@ -67,12 +69,26 @@ class _InsuranceEditorScreenState extends State<InsuranceEditorScreen> {
                 ),
                 physics: const BouncingScrollPhysics(),
                 children: [
-                  const SizedBox(height: 40),
-                  const Text(
-                    'Insurance company information',
-                    style: AppTextStyles.s20W600,
+                  SaveAppBar(
+                    title: 'strPolicyHolder'.tr(),
+                    actionTitle: 'strSave'.tr(),
+                    hPadding: 0,
+                    onActionPressed: () {
+                      if (bloc.validateForm()) {
+                        bloc.add(OnSubmitInsurance());
+                      }
+                    },
                   ),
-                  const SizedBox(height: 32),
+                  SizedBox(height: 32.h),
+                  Row(
+                    children: [
+                      Text(
+                        'Insurance company information',
+                        style: AppTextStyles.s20W600.copyWith(color: AppColors.c_808080),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
                   NameTextField(
                     labelText: 'strName'.tr(),
                     controller: bloc.nameController,
@@ -89,12 +105,16 @@ class _InsuranceEditorScreenState extends State<InsuranceEditorScreen> {
                     labelText: 'strGreenCardNumber'.tr(),
                     controller: bloc.greenCardNumberController,
                   ),
-                  const SizedBox(height: 40),
-                  Text(
-                    'strInsuranceCertificateGreenCardValid'.tr(),
-                    style: AppTextStyles.s20W600,
-                  ),
                   const SizedBox(height: 32),
+                  Row(
+                    children: [
+                      Text(
+                        'strInsuranceCertificateGreenCardValid'.tr(),
+                        style: AppTextStyles.s20W600.copyWith(color: AppColors.c_808080),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
                   DatePickerTextField(
                     labelText: 'strFrom'.tr(),
                     controller: bloc.certificateValidFromController,
@@ -109,12 +129,16 @@ class _InsuranceEditorScreenState extends State<InsuranceEditorScreen> {
                     labelText: 'strAgency'.tr(),
                     controller: bloc.agencyController,
                   ),
-                  const SizedBox(height: 40),
-                  const Text(
-                    'Address',
-                    style: AppTextStyles.s20W600,
-                  ),
                   const SizedBox(height: 32),
+                  Row(
+                    children: [
+                      Text(
+                        'Address',
+                        style: AppTextStyles.s20W600.copyWith(color: AppColors.c_808080),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
                   PickerTextField(
                     labelText: 'strCountry'.tr(),
                     controller: bloc.countryController,
@@ -148,12 +172,18 @@ class _InsuranceEditorScreenState extends State<InsuranceEditorScreen> {
                   EmailTextField(
                     controller: bloc.emailController,
                   ),
-                  const SizedBox(height: 40),
-                  const Text(
-                    'Does the policy cover material damage to the vehicle?',
-                    style: AppTextStyles.s20W600,
-                  ),
                   const SizedBox(height: 32),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Does the policy cover material damage to the vehicle?',
+                          style: AppTextStyles.s20W600.copyWith(color: AppColors.c_808080),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
                   PickerTextField(
                     labelText: 'strPolicCover'.tr(),
                     onTap: bloc.onPolicyCoverPressed,
@@ -162,20 +192,9 @@ class _InsuranceEditorScreenState extends State<InsuranceEditorScreen> {
                   const SizedBox(height: 110),
                 ],
               ),
-            ),
-            bottomNavigationBar: SafeArea(
-              child: RegularButton(
-                title: 'strSave'.tr(),
-                loading: state.status == Status.loading,
-                onTap: () {
-                  if (bloc.validateForm()) {
-                    bloc.add(OnSubmitInsurance());
-                  }
-                },
-              ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

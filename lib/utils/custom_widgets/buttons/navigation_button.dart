@@ -1,10 +1,12 @@
 // Flutter imports:
 import 'package:blinq/core/theme/app_colors.dart';
 import 'package:blinq/utils/components/buttons/regular_button.dart';
+import 'package:blinq/utils/components/wrappers/glass_container.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 // Project imports:
@@ -47,24 +49,34 @@ class NavigationButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
-            child: RegularButton(
-              padding: 0,
-              background: AppColors.darkGrey,
-              title: 'Back',
-              onTap: onBack ??
-                      () => NavigationService.homeNavigatorKey.currentState?.pop(),
+            child: GestureDetector(
+              onTap: onBack ?? () => NavigationService.homeNavigatorKey.currentState?.pop(),
+              child: SizedBox(
+                height: 44.h,
+                child: GlassContainer(
+                  radius: 12,
+                  tint: 0.14,
+                  child: Text('Back'),
+                ),
+              ),
             ),
           ),
           const SizedBox(width: 8),
           if (onNextTap != null)
-          Expanded(
-            child: RegularButton(
-              enable: canGoForward,
-              padding: 0,
-              title: 'Next',
-              onTap: onNextTap!,
+            Expanded(
+              child: GestureDetector(
+                onTap: canGoForward ? onNextTap! : null,
+                child: SizedBox(
+                  height: 44.h,
+                  child: GlassContainer(
+                    radius: 12,
+                    tint: 0.3,
+                    tintColor: AppColors.primaryColor,
+                    child: Text('Next'),
+                  ),
+                ),
+              ),
             ),
-          ),
         ],
       ),
     );

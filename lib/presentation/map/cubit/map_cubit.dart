@@ -15,6 +15,7 @@ import 'package:blinq/utils/navigation_service.dart';
 import 'package:blinq/utils/services/location/location_service.dart';
 
 part 'map_state.dart';
+
 part 'map_cubit.freezed.dart';
 
 class MapCubit extends Cubit<MapState> {
@@ -33,16 +34,14 @@ class MapCubit extends Cubit<MapState> {
   void onMapCreated(GoogleMapController controller) {
     mapController = controller;
     mapController!.setMapStyle(mapStyle);
+    onDeterminePosition();
   }
 
   void onCameraMove(CameraPosition newPosition) {
     if (state.status != Status.loading) {
       emit(state.copyWith(status: Status.loading));
     }
-    position = CameraPosition(
-      target: newPosition.target,
-      zoom: 14.4746,
-    );
+    position = CameraPosition(target: newPosition.target, zoom: 14.4746);
     mapPickerController.mapMoving!();
   }
 
@@ -56,8 +55,7 @@ class MapCubit extends Cubit<MapState> {
     if (currentPosition == null) {
       return;
     }
-    mapController?.animateCamera(CameraUpdate.newLatLng(
-        LatLng(currentPosition.latitude, currentPosition.longitude)));
+    mapController?.animateCamera(CameraUpdate.newLatLng(LatLng(currentPosition.latitude, currentPosition.longitude)));
   }
 
   void onNavigateBack() {

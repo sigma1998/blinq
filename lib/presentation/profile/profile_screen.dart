@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:blinq/presentation/profile/widgets/pages/settings/settings_page.dart';
+import 'package:blinq/utils/components/wrappers/screen_background.dart';
 import 'package:blinq/utils/custom_widgets/tab_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +21,7 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen>
-    with SingleTickerProviderStateMixin {
+class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProviderStateMixin {
   //
   late TabController _tabController;
 
@@ -40,35 +40,37 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        toolbarHeight: 0,
-        backgroundColor: Colors.transparent,
-      ),
+    return ScreenBackground(
+      darBackground: false,
+      body: ProfilePage(),
+      // appBar: AppBar(
+      //   elevation: 0,
+      //   toolbarHeight: 0,
+      //   backgroundColor: Colors.transparent,
+      // ),
       // body: const ProfilePage(),
-      body: Column(
-        children: [
-          MyTabBar(
-            tabLabels: [
-              '  ${'strMyProfile'.tr()}  ',
-              '  ${'strSettings'.tr()}  ',
-            ],
-            tabController: _tabController,
-            margin: const EdgeInsets.symmetric(horizontal: 72),
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              physics: const NeverScrollableScrollPhysics(),
-              children: const [
-                ProfilePage(),
-                SettingsPage(),
-              ],
-            ),
-          ),
-        ],
-      ),
+      // body: Column(
+      //   children: [
+      //     MyTabBar(
+      //       tabLabels: [
+      //         '  ${'strMyProfile'.tr()}  ',
+      //         '  ${'strSettings'.tr()}  ',
+      //       ],
+      //       tabController: _tabController,
+      //       margin: const EdgeInsets.symmetric(horizontal: 72),
+      //     ),
+      //     Expanded(
+      //       child: TabBarView(
+      //         controller: _tabController,
+      //         physics: const NeverScrollableScrollPhysics(),
+      //         children: const [
+      //           ProfilePage(),
+      //           SettingsPage(),
+      //         ],
+      //       ),
+      //     ),
+      //   ],
+      // ),
     );
   }
 }

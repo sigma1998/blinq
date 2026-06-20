@@ -2,6 +2,9 @@ import 'dart:ui';
 
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/generated/assets.dart';
+import 'package:blinq/utils/components/wrappers/bottom_sheet_wrapper.dart';
+import 'package:blinq/utils/components/wrappers/glass_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -48,72 +51,33 @@ class _ServiceTypesState extends State<ServiceTypes> {
     return BlocBuilder<CreateReportBloc, GenericBlocState>(
       bloc: bloc,
       builder: (context, state) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 7, sigmaY: 7),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(1),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        AppColors.white.withOpacity(0.8),
-                        AppColors.white.withOpacity(0.06),
-                      ],
-                    ),
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.only(
-                      left: 16,
-                      right: 16,
-                      bottom: 16,
-                      top: 8,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24),
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          AppColors.darkGrey.withOpacity(0.63),
-                          AppColors.darkGrey.withOpacity(0.06),
-                        ],
-                      ),
-                    ),
-                    child: Column(
-                      children: [
-                        Container(
-                          width: 36,
-                          height: 5,
-                          decoration: BoxDecoration(
-                            color: AppColors.white.withOpacity(0.4),
-                            borderRadius: BorderRadius.circular(24),
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        getItem(0, widget.onEmergencyPressed),
-                        SizedBox(height: 12.h),
-                        getItem(1, widget.onBreakdownPressed),
-                        SizedBox(height: 12.h),
-                        getItem(2, () {
-                          widget.onAccidentPressed();
-                          bloc.onCreateReportPressed();
-                        }),
-                      ],
+        return BottomSheetGlassWrapper(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // const SizedBox(height: 8),
+              // getItem(0, widget.onEmergencyPressed),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'What do you need help with?',
+                      textAlign: TextAlign.center,
+                      style: AppTextStyles.s26W700.copyWith(fontSize: 24),
                     ),
                   ),
-                ),
+                ],
               ),
-            ),
-            SizedBox(height: 100.h),
-          ],
+              SizedBox(height: 24.h),
+              getItem(1, widget.onBreakdownPressed),
+              SizedBox(height: 24.h),
+              getItem(2, () {
+                widget.onAccidentPressed();
+                bloc.onCreateReportPressed();
+              }),
+            ],
+          ),
         );
       },
     );
@@ -122,12 +86,11 @@ class _ServiceTypesState extends State<ServiceTypes> {
   getItem(int index, VoidCallback onTap) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: AppColors.darkGrey,
-          borderRadius: BorderRadius.circular(12),
-        ),
+      child: GlassContainer(
+        radius: 16,
+        padding: EdgeInsets.all(8.h),
+        tint: 0.1,
+        blur: 2,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -139,8 +102,7 @@ class _ServiceTypesState extends State<ServiceTypes> {
                 Expanded(
                   child: Text(
                     texts[index],
-                    style:
-                        AppTextStyles.s16W700.copyWith(color: AppColors.white),
+                    style: AppTextStyles.s16W700.copyWith(color: AppColors.white),
                   ),
                 ),
                 const Icon(
@@ -150,7 +112,6 @@ class _ServiceTypesState extends State<ServiceTypes> {
                 const SizedBox(width: 8),
               ],
             ),
-            SizedBox(height: 16.h),
           ],
         ),
       ),
@@ -164,7 +125,7 @@ class _ServiceTypesState extends State<ServiceTypes> {
   ];
   final List<String> images = [
     AppDrawables.emergency,
-    AppDrawables.breakdownImage,
-    AppDrawables.accidentImage,
+    Assets.imagesAccidentNew,
+    Assets.imagesCarCrashNew,
   ];
 }

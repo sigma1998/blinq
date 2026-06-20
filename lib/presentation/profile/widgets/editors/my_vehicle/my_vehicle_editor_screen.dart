@@ -15,7 +15,9 @@ import 'package:blinq/utils/custom_widgets/keyboard_escape.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/date_picker_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/number_text_field.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import '../../../../../utils/components/app_bar/save_app_bar.dart';
 import '../../../../../utils/components/buttons/regular_button.dart';
+import '../../../../../utils/components/wrappers/screen_background.dart';
 import 'bloc/my_vehicle_editor_bloc.dart';
 import 'bloc/my_vehicle_editor_event.dart';
 
@@ -47,13 +49,12 @@ class _MyVehicleEditorScreenState extends State<MyVehicleEditorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return KeyboardEscape(
-      child: BlocBuilder<MyVehicleEditorBloc, MyVehicleEditorState>(
-        bloc: bloc,
-        builder: (context, state) {
-          return Scaffold(
-            appBar: MyAppBar(title: 'strMyVehicle'.tr()),
-            body: Form(
+    return ScreenBackground(
+      body: KeyboardEscape(
+        child: BlocBuilder<MyVehicleEditorBloc, MyVehicleEditorState>(
+          bloc: bloc,
+          builder: (context, state) {
+            return Form(
               key: bloc.formKey,
               child: ListView(
                 padding: const EdgeInsets.symmetric(
@@ -62,6 +63,15 @@ class _MyVehicleEditorScreenState extends State<MyVehicleEditorScreen> {
                 ),
                 physics: const BouncingScrollPhysics(),
                 children: [
+                  SaveAppBar(
+                    title: 'strMyVehicle'.tr(),
+                    actionTitle: 'strSave'.tr(),
+                    onActionPressed: () {
+                      if (bloc.validateForm()) {
+                        bloc.add(OnSubmitMyVehicle());
+                      }
+                    },
+                  ),
                   NumberTextField(
                     labelText: 'strMilesTravelled'.tr(),
                     controller: bloc.traveledKmController,
@@ -95,9 +105,9 @@ class _MyVehicleEditorScreenState extends State<MyVehicleEditorScreen> {
                   const SizedBox(height: 24),
                 ],
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

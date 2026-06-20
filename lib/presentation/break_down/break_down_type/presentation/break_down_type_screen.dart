@@ -1,19 +1,21 @@
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/generated/assets.dart';
 import 'package:blinq/utils/components/app_bar/only_back_app_bar.dart';
 import 'package:blinq/utils/components/items/break_down_type_items.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../app/locator.dart';
 import '../../../../domain/bloc/report_bloc/report_bloc.dart';
 import '../../../../domain/repositories/accident_repository.dart';
 import '../../../../domain/repositories/profile_repository.dart';
+import '../../../../utils/components/wrappers/screen_background.dart';
 import '../../../../utils/generic_bloc_state.dart';
 import '../../../../utils/navigation_service.dart';
 import '../../../create_report/bloc/create_report_bloc.dart';
 import '../../../create_report/create_report_screen.dart';
-
 
 class BreakDownTypeScreen extends StatefulWidget {
   static const route = '/BreakDownTypeScreen';
@@ -39,43 +41,44 @@ class _BreakDownTypeScreenState extends State<BreakDownTypeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const OnlyBackAppBar(),
+    return ScreenBackground(
       body: BlocBuilder<CreateReportBloc, GenericBlocState>(
         bloc: bloc,
         builder: (context, state) {
-          return ListView(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 20,
+          return SafeArea(
+            bottom: false,
+            child: ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              children: [
+                SizedBox(height: 16.h),
+                const OnlyBackAppBar(),
+                SizedBox(height: 16.h),
+                const Text('Breakdown', style: AppTextStyles.s34W600),
+                const SizedBox(height: 4),
+                const Text('Select the cause of the failure', style: AppTextStyles.s15W400),
+                const SizedBox(height: 32),
+                BreakDownTypeItem(
+                  iconPath: AppDrawables.flatTire,
+                  text: 'Flat tire',
+                  onTap: bloc.onCreateReportPressed,
+                ),
+                BreakDownTypeItem(
+                  iconPath: AppDrawables.fuel,
+                  text: 'Fuel',
+                  onTap: bloc.onCreateReportPressed,
+                ),
+                BreakDownTypeItem(
+                  iconPath: Assets.iconsZap,
+                  text: 'EV charge',
+                  onTap: bloc.onCreateReportPressed,
+                ),
+                BreakDownTypeItem(
+                  iconPath: AppDrawables.engine,
+                  text: 'Engine problem',
+                  onTap: bloc.onCreateReportPressed,
+                ),
+              ],
             ),
-            children: [
-              const Text(
-                'Breakdown',
-                style: AppTextStyles.s34W600,
-              ),
-              const SizedBox(height: 4),
-              const Text(
-                'Select the cause of the failure',
-                style: AppTextStyles.s15W400,
-              ),
-              const SizedBox(height: 32),
-              BreakDownTypeItem(
-                iconPath: AppDrawables.flatTire,
-                text: 'Flat tire',
-                onTap: bloc.onCreateReportPressed,
-              ),
-              BreakDownTypeItem(
-                iconPath: AppDrawables.fuel,
-                text: 'Fuel',
-                onTap: bloc.onCreateReportPressed,
-              ),
-              BreakDownTypeItem(
-                iconPath: AppDrawables.engine,
-                text: 'Engine problem',
-                onTap: bloc.onCreateReportPressed,
-              ),
-            ],
           );
         },
       ),

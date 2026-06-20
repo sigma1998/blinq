@@ -21,12 +21,11 @@ class CustomInterceptor extends Interceptor {
         err.type == DioExceptionType.sendTimeout ||
         err.type == DioExceptionType.receiveTimeout ||
         err.error is SocketException) {
-      // NavigationService.showErrorToast('strBadConnection'.tr());
-      // return handler.next(err);
-      final bool? res =
-          await NavigationService.pushNamed(routeName: OfflineScreen.route);
+      final bool? res = await NavigationService.pushNamed(routeName: OfflineScreen.route);
       if (res ?? false) {
-        final retry = await dio.request(err.requestOptions.path,
+        try {
+          final retry = await dio.request(
+            err.requestOptions.path,
             cancelToken: err.requestOptions.cancelToken,
             data: err.requestOptions.data,
             onReceiveProgress: err.requestOptions.onReceiveProgress,
@@ -41,29 +40,34 @@ class CustomInterceptor extends Interceptor {
               responseType: err.requestOptions.responseType,
               contentType: err.requestOptions.contentType,
               validateStatus: err.requestOptions.validateStatus,
-              receiveDataWhenStatusError:
-                  err.requestOptions.receiveDataWhenStatusError,
+              receiveDataWhenStatusError: err.requestOptions.receiveDataWhenStatusError,
               followRedirects: err.requestOptions.followRedirects,
               maxRedirects: err.requestOptions.maxRedirects,
               requestEncoder: err.requestOptions.requestEncoder,
               responseDecoder: err.requestOptions.responseDecoder,
               listFormat: err.requestOptions.listFormat,
-            ));
-        handler.resolve(retry);
+            ),
+          );
+          return handler.resolve(retry);
+        } catch (e) {
+          return handler.next(err);
+        }
+      } else {
+        return handler.next(err);
       }
     }
+
     int statusCode = (err.response?.statusCode ?? 0);
     if (statusCode == 400 &&
-        (err.requestOptions.path == NetworkConstants.createAccident ||
-            err.requestOptions.path == NetworkConstants.createBreakdown)) {
+        (err.requestOptions.path == NetworkConstants.createAccident || err.requestOptions.path == NetworkConstants.createBreakdown)) {
       final data = err.response?.data;
       final list = data['active_reports'];
-
       return handler.next(HaveActiveReportException(
-          id: list[0]['id'],
-          reportType: list[0]['type'],
-          createdAt: list[0]['created_datetime'],
-          requestOptions: err.requestOptions));
+        id: list[0]['id'],
+        reportType: list[0]['type'],
+        createdAt: list[0]['created_datetime'],
+        requestOptions: err.requestOptions,
+      ));
     } else if (statusCode >= 400 && statusCode < 500) {
       String? text;
       try {
@@ -75,14 +79,10 @@ class CustomInterceptor extends Interceptor {
         print('ERROR INTERCEPTOR_________$e');
       }
       text ??= 'Error';
-      NavigationService.showErrorToast(
-          (text! == 'Null' || text! == 'null') ? 'Error' : text!);
-      // final text = err.response?.data?['message'] ??
-      //     err.response?.data['detail'] ??
-      //     err.response?.data['error'];
-      // NavigationService.showErrorToast((text).toString());
+      NavigationService.showErrorToast((text! == 'Null' || text! == 'null') ? 'Error' : text!);
+      return handler.next(err);
+    } else {
+      return handler.next(err);
     }
-
-    return handler.next(err);
   }
 }

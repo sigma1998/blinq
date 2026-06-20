@@ -262,6 +262,24 @@ class MockPreMadeMessagesBloc extends _i1.Mock
       );
 
   @override
+  void onDone(
+    _i8.PreMadeMessagesEvent? event, [
+    Object? error,
+    StackTrace? stackTrace,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onDone,
+          [
+            event,
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
   _i6.Future<void> close() => (super.noSuchMethod(
         Invocation.method(
           #close,

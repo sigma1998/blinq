@@ -133,6 +133,15 @@ class MockReportBloc extends _i1.Mock implements _i7.ReportBloc {
       ) as _i4.ProfileBloc);
 
   @override
+  set secondUser(_i6.ProfileResponseModel? _secondUser) => super.noSuchMethod(
+        Invocation.setter(
+          #secondUser,
+          _secondUser,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
   _i8.ReportType get reportType => (super.noSuchMethod(
         Invocation.getter(#reportType),
         returnValue: _i8.ReportType.accident,
@@ -185,10 +194,25 @@ class MockReportBloc extends _i1.Mock implements _i7.ReportBloc {
       ));
 
   @override
-  dynamic setUser(_i8.User? user) => super.noSuchMethod(Invocation.method(
-        #setUser,
-        [user],
-      ));
+  _i10.Future<void> setUser(_i8.User? user) => (super.noSuchMethod(
+        Invocation.method(
+          #setUser,
+          [user],
+        ),
+        returnValue: _i10.Future<void>.value(),
+        returnValueForMissingStub: _i10.Future<void>.value(),
+      ) as _i10.Future<void>);
+
+  @override
+  _i10.Future<void> fetchUserData(_i6.ProfileResponseModel? user) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #fetchUserData,
+          [user],
+        ),
+        returnValue: _i10.Future<void>.value(),
+        returnValueForMissingStub: _i10.Future<void>.value(),
+      ) as _i10.Future<void>);
 
   @override
   _i10.Future<_i7.RouteAndArgs?> onCreateReport() => (super.noSuchMethod(

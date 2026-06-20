@@ -3,6 +3,8 @@ import 'dart:async';
 import 'dart:io';
 
 // Flutter imports:
+import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -58,13 +60,12 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<OnUpdateProfileImage>(_onUpdateProfileImage);
   }
 
-  FutureOr<void> _onFetchProfile(
-      OnFetchProfile event, Emitter<ProfileState> emit) async {
+  FutureOr<void> _onFetchProfile(OnFetchProfile event, Emitter<ProfileState> emit) async {
     try {
       emit(const ProfileState(status: Status.loading));
       final data = await repository.fetch();
       for (var element in VehicleType.values) {
-        if(data.car?.vehicleType == element.name){
+        if (data.car?.vehicleType == element.name) {
           vehicleType = element;
         }
       }
@@ -86,8 +87,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     }
   }
 
-  FutureOr<void> _onUpdateProfileImage(
-      OnUpdateProfileImage event, Emitter<ProfileState> emit) async {
+  FutureOr<void> _onUpdateProfileImage(OnUpdateProfileImage event, Emitter<ProfileState> emit) async {
     try {
       emit(state.copyWith(status: Status.loading));
       await repository.updateProfileImage(event.file);
@@ -101,29 +101,49 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   Future<void> imagePickerPressed() async {
     final result = await NavigationService.showMyCupertinoModalPopup(
       actions: [
-        MyCupertinoActionSheetAction(
-          label: 'strTakeImage'.tr(),
-          onPressed: () async {
-            final imagePath =
-                await mediaService.pickImagePath(AppImageSource.camera);
+        GestureDetector(
+          onTap: () async {
+            final imagePath = await mediaService.pickImagePath(AppImageSource.camera);
             final result = await ImageCropHelper.cropImage(
               imagePath,
               cropStyle: CropStyle.circle,
             );
             NavigationService.back(result: result);
           },
+          child: Container(
+            alignment: Alignment.center,
+            height: 56,
+            color: AppColors.white.withAlpha(180),
+            child: Material(
+              color: Colors.transparent,
+              child: Text(
+                'strTakeImage'.tr(),
+                style: AppTextStyles.s17W400.copyWith(color: AppColors.blue),
+              ),
+            ),
+          ),
         ),
-        MyCupertinoActionSheetAction(
-          label: 'strSelectPhoto'.tr(),
-          onPressed: () async {
-            final imagePath =
-                await mediaService.pickImagePath(AppImageSource.gallery);
+        GestureDetector(
+          onTap: () async {
+            final imagePath = await mediaService.pickImagePath(AppImageSource.gallery);
             final result = await ImageCropHelper.cropImage(
               imagePath,
               cropStyle: CropStyle.circle,
             );
             NavigationService.back(result: result);
           },
+          child: Container(
+            alignment: Alignment.center,
+            height: 56,
+            color: AppColors.white.withAlpha(180),
+            child: Material(
+              color: Colors.transparent,
+              child: Text(
+                'strSelectPhoto'.tr(),
+                style: AppTextStyles.s17W400.copyWith(color: AppColors.blue),
+              ),
+            ),
+          ),
         ),
       ],
     );
@@ -134,20 +154,15 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   //* My Information
 
-  void onDriverPressed() =>
-      NavigationService.pushNamed(routeName: DriverEditorScreen.route);
+  void onDriverPressed() => NavigationService.pushNamed(routeName: DriverEditorScreen.route);
 
-  void onPolicyHolderPressed() =>
-      NavigationService.pushNamed(routeName: PolicyHolderEditorScreen.route);
+  void onPolicyHolderPressed() => NavigationService.pushNamed(routeName: PolicyHolderEditorScreen.route);
 
-  void onVehiclePressed() =>
-      NavigationService.pushNamed(routeName: VehicleEditorScreen.route);
+  void onVehiclePressed() => NavigationService.pushNamed(routeName: VehicleEditorScreen.route);
 
-  void onInsurancePressed() =>
-      NavigationService.pushNamed(routeName: InsuranceEditorScreen.route);
+  void onInsurancePressed() => NavigationService.pushNamed(routeName: InsuranceEditorScreen.route);
 
-  void onMyCarPressed() =>
-      NavigationService.pushNamed(routeName: EditorMyCarScreen.route);
+  void onMyCarPressed() => NavigationService.pushNamed(routeName: EditorMyCarScreen.route);
 
   void onQrCodePressed() => NavigationService.showDialog(
         dialog: const QrDialog(),
@@ -156,9 +171,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   //& My Vehicle
 
-  void onMyVehiclePressed() =>
-      NavigationService.pushNamed(routeName: MyVehicleEditorScreen.route);
+  void onMyVehiclePressed() => NavigationService.pushNamed(routeName: MyVehicleEditorScreen.route);
 
-  void onReportsPressed() =>
-      NavigationService.pushNamed(routeName: ReportsScreen.route);
+  void onReportsPressed() => NavigationService.pushNamed(routeName: ReportsScreen.route);
 }

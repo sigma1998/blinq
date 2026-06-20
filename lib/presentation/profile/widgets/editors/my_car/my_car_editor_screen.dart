@@ -18,9 +18,12 @@ import 'package:blinq/utils/custom_widgets/modal_progress_hud.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/drawables/app_text_styles.dart';
+import '../../../../../utils/components/app_bar/save_app_bar.dart';
 import '../../../../../utils/components/buttons/regular_button.dart';
+import '../../../../../utils/components/wrappers/screen_background.dart';
 
 class EditorMyCarScreen extends StatefulWidget {
   //
@@ -37,34 +40,38 @@ class _EditorMyCarScreenState extends State<EditorMyCarScreen> {
 
   @override
   void initState() {
-    bloc = EditMyCarBloc(
-        profileRepository: getIt<ProfileRepositoryImpl>(),
-        profileBloc: context.read<ProfileBloc>());
+    bloc = EditMyCarBloc(profileRepository: getIt<ProfileRepositoryImpl>(), profileBloc: context.read<ProfileBloc>());
     bloc.init();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return KeyboardEscape(
-        child: BlocBuilder<EditMyCarBloc, EditMyCarState>(
-      bloc: bloc,
-      builder: (context, state) {
-        return Scaffold(
-          appBar: MyAppBar(title: 'strMyCar'.tr()),
-          body: ModalProgressHud(
+    return ScreenBackground(
+      body: KeyboardEscape(
+          child: BlocBuilder<EditMyCarBloc, EditMyCarState>(
+        bloc: bloc,
+        builder: (context, state) {
+          return ModalProgressHud(
             isLoading: state.status == Status.loading,
             child: Form(
               key: bloc.formKey,
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 24,
-                  horizontal: 26,
-                ),
+                padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 26),
                 physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
-                    const SizedBox(height: 40),
+                    SaveAppBar(
+                      title: 'strMyCar'.tr(),
+                      actionTitle: 'strSave'.tr(),
+                      hPadding: 0,
+                      onActionPressed: () {
+                        if (bloc.validateForm()) {
+                          bloc.onSubmit();
+                        }
+                      },
+                    ),
+                    SizedBox(height: 32.h),
                     const Text(
                       'Information about car',
                       style: AppTextStyles.s20W600,
@@ -103,7 +110,7 @@ class _EditorMyCarScreenState extends State<EditorMyCarScreen> {
                     RegularButton(
                       title: 'strSave'.tr(),
                       loading: state.status == Status.loading,
-                      onTap:() {
+                      onTap: () {
                         if (bloc.validateForm()) {
                           bloc.onSubmit();
                         }
@@ -114,9 +121,9 @@ class _EditorMyCarScreenState extends State<EditorMyCarScreen> {
                 ),
               ),
             ),
-          ),
-        );
-      },
-    ));
+          );
+        },
+      )),
+    );
   }
 }

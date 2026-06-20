@@ -1,6 +1,7 @@
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/core/drawables/app_text_styles.dart';
 import 'package:blinq/core/theme/app_colors.dart';
+import 'package:blinq/utils/components/wrappers/glass_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -47,19 +48,18 @@ class _CircularBluetoothItemState extends State<CircularBluetoothItem> {
           onTap: widget.onTap,
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 width: sizes[widget.type],
                 height: sizes[widget.type],
-                padding: const EdgeInsets.all(15),
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.primaryColor,
-                ),
-                child: SvgPicture.asset(
-                  AppDrawables.bluetoothIcon,
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.white,
-                    BlendMode.srcIn,
+                child: GlassContainer(
+                  isCircle: true,
+                  tint: 0.3,
+                  child: SvgPicture.asset(
+                    AppDrawables.bluetoothIcon,
+                    colorFilter: const ColorFilter.mode(
+                      AppColors.white,
+                      BlendMode.srcIn,
+                    ),
                   ),
                 ),
               ),

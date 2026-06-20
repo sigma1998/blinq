@@ -109,6 +109,7 @@ class AppDrawables {
   ///
   /// Images
   ///
+  static const String bg = '$images/bg.png';
   static const String welcome = '$images/welcome.png';
   static const String apple = '$images/apple.png';
   static const String google = '$images/google.png';
@@ -154,7 +155,7 @@ class AppDrawables {
   static const String carLeft = '$cars/left.png';
   static const String carRight = '$cars/right.png';
   static const String carTop = '$cars/top.png';
-  static const String newImage = '$cars/Left side.svg';
+  static const String newImage = '$cars/Left-side.svg';
   //car blank
   static const String blankCarBack = '$cars/blank/back.png';
   static const String blankCarFront = '$cars/blank/front.png';
@@ -184,106 +185,106 @@ class AppDrawables {
 
 
 
-  //new2,1
-  static const String homeContainer = 'assets/images/new2,1/home_container.png';
-  static const String bluetoothConnected = 'assets/images/new2,1/blutooth_connected.png';
-  static const String bluetoothNotConnected = 'assets/images/new2,1/blutooth_not_connected.png';
-  static const String mainButton = 'assets/images/new2,1/main_button.png';
-  static const String mainBottomImage = 'assets/images/new2,1/main_bottom_image.png';
-  static const String mainHelpButton = 'assets/images/new2,1/main_help_button.png';
-  static const String botNavContainer = 'assets/images/new2,1/bot_nav_container.png';
-  static const String botNavItem = 'assets/images/new2,1/home_bot_nav_item.png';
-  static const String appLogoSVG = 'assets/images/new2,1/Logo.svg';
-  static const String contact = 'assets/images/new2,1/phone-contact.svg';
-  static const String profileIcon = 'assets/images/new2,1/profile.svg';
-  static const String emergency = 'assets/images/new2,1/emergency.png';
-  static const String accidentImage = 'assets/images/new2,1/accident.png';
-  static const String breakdownImage = 'assets/images/new2,1/breakdown.png';
-  static const String animFirst = 'assets/images/new2,1/anim_first.svg';
-  static const String animSecond = 'assets/images/new2,1/anim_second.svg';
-  static const String animThird = 'assets/images/new2,1/anim_third.svg';
-  static const String bluetoothIcon = 'assets/images/new2,1/bluetooth_icon.svg';
-  static const String one = 'assets/images/new2,1/first.svg';
-  static const String two = 'assets/images/new2,1/second.svg';
-  static const String three = 'assets/images/new2,1/third.svg';
-  static const String connecting = 'assets/images/new2,1/connecting.svg';
-  static const String edit2 = 'assets/images/new2,1/edit-2.svg';
-  static const String link = 'assets/images/new2,1/link.svg';
-  static const String power = 'assets/images/new2,1/power.svg';
-  static const String breakDownTypeContainer = 'assets/images/new2,1/type_container.png';
-  static const String flatTire = 'assets/images/new2,1/flat_tire.svg';
-  static const String fuel = 'assets/images/new2,1/fuel.svg';
-  static const String engine = 'assets/images/new2,1/engine.svg';
-  static const String empty = 'assets/images/new2,1/empty.svg';
-  static const String phoneRed = 'assets/images/new2,1/phone_red.svg';
-  static const String messageYellow = 'assets/images/new2,1/message_yellow.svg';
-  static const String globe = 'assets/images/new2,1/globe.svg';
-  static const String camerNew = 'assets/images/new2,1/camer_new.svg';
-  static const String keyboard = 'assets/images/new2,1/keeyboard.svg';
-  static const String cornerUpRight = 'assets/images/new2,1/corner-up-right.svg';
-  static const String cornerUpLeft = 'assets/images/new2,1/corner-up-left.svg';
-  static const String penBig = 'assets/images/new2,1/Qalam.svg';
-  static const String eraser = 'assets/images/new2,1/Text input.svg';
-  static const String sketch = 'assets/images/new2,1/sketch.svg';
-  static const String cameraFilled = 'assets/images/new2,1/camera_filled.svg';
-  static const String ems = 'assets/images/new2,1/EMS.svg';
-  static const String fire = 'assets/images/new2,1/fire.svg';
-  static const String police = 'assets/images/new2,1/police.svg';
-  static const String right = 'assets/images/new2,1/right.svg';
-  static const String myEmail = 'assets/images/new2,1/email_1.svg';
-  static const String insuranceEmail = 'assets/images/new2,1/insurance_email.svg';
-  static const String messageSend = 'assets/images/new2,1/message_send.svg';
-  static const String call = 'assets/images/new2,1/call.svg';
-  static const String sendMessage = 'assets/images/new2,1/send_message.svg';
-  static const String galleryNew = 'assets/images/new2,1/gallery.svg';
-  static const String haveBlinqIcon = 'assets/images/new2,1/have_blinq_icon.svg';
-  static const String accidentCar = 'assets/images/new2,1/accident_car.png';
-  static const String sketchBack = 'assets/images/new2,1/sketch_back.png';
-  static const String twoPeople = 'assets/images/new2,1/two_people.svg';
-  static const String leftCar = 'assets/images/car/Left side.svg';
+  //new2_1
+  static const String homeContainer = 'assets/images/new2_1/home_container.png';
+  static const String bluetoothConnected = 'assets/images/new2_1/blutooth_connected.png';
+  static const String bluetoothNotConnected = 'assets/images/bluetooth_not_connected.png';
+  static const String mainButton = 'assets/images/new2_1/main_button.png';
+  static const String mainBottomImage = 'assets/images/new2_1/main_bottom_image.png';
+  static const String mainHelpButton = 'assets/images/new2_1/main_help_button.png';
+  static const String botNavContainer = 'assets/images/new2_1/bot_nav_container.png';
+  static const String botNavItem = 'assets/images/new2_1/home_bot_nav_item.png';
+  static const String appLogoSVG = 'assets/images/new2_1/Logo.svg';
+  static const String contact = 'assets/images/new2_1/phone-contact.svg';
+  static const String profileIcon = 'assets/images/new2_1/profile.svg';
+  static const String emergency = 'assets/images/new2_1/emergency.png';
+  static const String accidentImage = 'assets/images/new2_1/accident.png';
+  static const String breakdownImage = 'assets/images/new2_1/breakdown.png';
+  static const String animFirst = 'assets/images/new2_1/anim_first.svg';
+  static const String animSecond = 'assets/images/new2_1/anim_second.svg';
+  static const String animThird = 'assets/images/new2_1/anim_third.svg';
+  static const String bluetoothIcon = 'assets/images/new2_1/bluetooth_icon.svg';
+  static const String one = 'assets/images/new2_1/first.svg';
+  static const String two = 'assets/images/new2_1/second.svg';
+  static const String three = 'assets/images/new2_1/third.svg';
+  static const String connecting = 'assets/images/new2_1/connecting.svg';
+  static const String edit2 = 'assets/images/new2_1/edit-2.svg';
+  static const String link = 'assets/images/new2_1/link.svg';
+  static const String power = 'assets/images/new2_1/power.svg';
+  static const String breakDownTypeContainer = 'assets/images/new2_1/type_container.png';
+  static const String flatTire = 'assets/images/new2_1/flat_tire.svg';
+  static const String fuel = 'assets/images/new2_1/fuel.svg';
+  static const String engine = 'assets/images/new2_1/engine.svg';
+  static const String empty = 'assets/images/new2_1/empty.svg';
+  static const String phoneRed = 'assets/images/new2_1/phone_red.svg';
+  static const String messageYellow = 'assets/images/new2_1/message_yellow.svg';
+  static const String globe = 'assets/images/new2_1/globe.svg';
+  static const String camerNew = 'assets/images/new2_1/camer_new.svg';
+  static const String keyboard = 'assets/images/new2_1/keeyboard.svg';
+  static const String cornerUpRight = 'assets/images/new2_1/corner-up-right.svg';
+  static const String cornerUpLeft = 'assets/images/new2_1/corner-up-left.svg';
+  static const String penBig = 'assets/images/new2_1/Qalam.svg';
+  static const String eraser = 'assets/images/new2_1/Text-input.svg';
+  static const String sketch = 'assets/images/new2_1/sketch.svg';
+  static const String cameraFilled = 'assets/images/new2_1/camera_filled.svg';
+  static const String ems = 'assets/images/new2_1/EMS.svg';
+  static const String fire = 'assets/images/new2_1/fire.svg';
+  static const String police = 'assets/images/new2_1/police.svg';
+  static const String right = 'assets/images/new2_1/right.svg';
+  static const String myEmail = 'assets/images/new2_1/email_1.svg';
+  static const String insuranceEmail = 'assets/images/new2_1/insurance_email.svg';
+  static const String messageSend = 'assets/images/new2_1/message_send.svg';
+  static const String call = 'assets/images/new2_1/call.svg';
+  static const String sendMessage = 'assets/images/new2_1/send_message.svg';
+  static const String galleryNew = 'assets/images/new2_1/gallery.svg';
+  static const String haveBlinqIcon = 'assets/images/new2_1/have_blinq_icon.svg';
+  static const String accidentCar = 'assets/images/new2_1/accident_car.png';
+  static const String sketchBack = 'assets/images/new2_1/sketch_back.png';
+  static const String twoPeople = 'assets/images/new2_1/two_people.svg';
+  static const String leftCar = 'assets/images/car/Left-side.svg';
 
 
   ///car
   //vehicle front
   static const String front = 'assets/images/car/new/front/Front.svg';
-  static const String frontBumpers = 'assets/images/car/new/front/Front bumpers.svg';
+  static const String frontBumpers = 'assets/images/car/new/front/Front-bumpers.svg';
   static const String hood = 'assets/images/car/new/front/Hood.svg';
-  static const String leftMirror = 'assets/images/car/new/front/Left mirror.svg';
-  static const String rightMirror = 'assets/images/car/new/front/Right mirror.svg';
+  static const String leftMirror = 'assets/images/car/new/front/Left-mirror.svg';
+  static const String rightMirror = 'assets/images/car/new/front/Right-mirror.svg';
   //vehicle left
-  static const String left = 'assets/images/car/new/left/Left side.svg';
-  static const String leftLeftTire = 'assets/images/car/new/left/Left Front left tire.svg';
-  static const String leftLeftWindow = 'assets/images/car/new/left/Left Front left window.svg';
-  static const String leftLeftWing = 'assets/images/car/new/left/Left Front left wing.svg';
-  static const String leftLeftDoor = 'assets/images/car/new/left/Left left door.svg';
-  static const String leftRightDoor = 'assets/images/car/new/left/Left Rear left door.svg';
-  static const String leftRightWindow = 'assets/images/car/new/left/Left Rear left window.svg';
-  static const String leftRearLeftWing = 'assets/images/car/new/left/Left Rear left wing.svg';
-  static const String leftRightTire = 'assets/images/car/new/left/Left right tire.svg';
+  static const String left = 'assets/images/car/new/left/Left-side.svg';
+  static const String leftLeftTire = 'assets/images/car/new/left/Left-Front-left-tire.svg';
+  static const String leftLeftWindow = 'assets/images/car/new/left/Left-Front-left-window.svg';
+  static const String leftLeftWing = 'assets/images/car/new/left/Left-Front-left-wing.svg';
+  static const String leftLeftDoor = 'assets/images/car/new/left/Left-left-door.svg';
+  static const String leftRightDoor = 'assets/images/car/new/left/Left-Rear-left-door.svg';
+  static const String leftRightWindow = 'assets/images/car/new/left/Left-Rear-left-window.svg';
+  static const String leftRearLeftWing = 'assets/images/car/new/left/Left-Rear-left-wing.svg';
+  static const String leftRightTire = 'assets/images/car/new/left/Left-right-tire.svg';
   //vehicle right
   static const String rightSide = 'assets/images/car/new/right/Right.svg';
-  static const String rightBackDoor = 'assets/images/car/new/right/right back door.svg';
-  static const String rightBackTire = 'assets/images/car/new/right/Right back tire.svg';
-  static const String rightBackWindow = 'assets/images/car/new/right/Right back window.svg';
-  static const String rightBackWing = 'assets/images/car/new/right/right back wing.svg';
-  static const String rightFrontDoor = 'assets/images/car/new/right/right fornt door.svg';
-  static const String rightFrontTire = 'assets/images/car/new/right/Right front tire.svg';
-  static const String rightFrontWindow = 'assets/images/car/new/right/Right front window.svg';
-  static const String rightRightWing = 'assets/images/car/new/right/right right wing.svg';
+  static const String rightBackDoor = 'assets/images/car/new/right/right-back-door.svg';
+  static const String rightBackTire = 'assets/images/car/new/right/Right-back-tire.svg';
+  static const String rightBackWindow = 'assets/images/car/new/right/Right-back-window.svg';
+  static const String rightBackWing = 'assets/images/car/new/right/right-back-wing.svg';
+  static const String rightFrontDoor = 'assets/images/car/new/right/right-fornt-door.svg';
+  static const String rightFrontTire = 'assets/images/car/new/right/Right-front-tire.svg';
+  static const String rightFrontWindow = 'assets/images/car/new/right/Right-front-window.svg';
+  static const String rightRightWing = 'assets/images/car/new/right/right-right-wing.svg';
 
   //vehicle back
   static const String back = 'assets/images/car/new/back/back.svg';
-  static const String backLeftHeadLight = 'assets/images/car/new/back/left head light.svg';
-  static const String backRightHeadLight = 'assets/images/car/new/back/right head light.svg';
-  static const String backRearBumper = 'assets/images/car/new/back/rear bumpers.svg';
-  static const String backRearWindow = 'assets/images/car/new/back/rear window.svg';
+  static const String backLeftHeadLight = 'assets/images/car/new/back/left-head-light.svg';
+  static const String backRightHeadLight = 'assets/images/car/new/back/right-head-light.svg';
+  static const String backRearBumper = 'assets/images/car/new/back/rear-bumpers.svg';
+  static const String backRearWindow = 'assets/images/car/new/back/rear-window.svg';
 
   //vehicle top
   static const String top = 'assets/images/car/new/top/Top.svg';
   static const String frontHood = 'assets/images/car/new/top/frontHood.svg';
   static const String rearWindow = 'assets/images/car/new/top/rearWindow.svg';
   static const String roof = 'assets/images/car/new/top/roof.svg';
-  static const String windScreen = 'assets/images/car/new/top/wind screen.svg';
+  static const String windScreen = 'assets/images/car/new/top/wind-screen.svg';
   static const String backWindScreen = 'assets/images/car/new/top/backWindScreen.svg';
 
 
@@ -291,80 +292,80 @@ class AppDrawables {
   //top
   static const String vanTopSide = 'assets/images/car/van/top/Top.svg';
   static const String vanRoof = 'assets/images/car/van/top/roof.svg';
-  static const String vanWindScreen = 'assets/images/car/van/top/wind screen.svg';
+  static const String vanWindScreen = 'assets/images/car/van/top/wind-screen.svg';
   static const String vanBonnet = 'assets/images/car/van/top/bonnet.svg';
   //front
-  static const String vanFrontSide = 'assets/images/car/van/front/Van Front.svg';
-  static const String vanAeroBumper = 'assets/images/car/van/front/Van aero bumper.svg';
-  static const String vanAeroBumper2 = 'assets/images/car/van/front/Van aero bumper 2.svg';
-  static const String vanFrontGrill = 'assets/images/car/van/front/Van front grill.svg';
-  static const String vanFrontLeftLight = 'assets/images/car/van/front/Van left light.svg';
-  static const String vanFrontRightLight = 'assets/images/car/van/front/Van right light.svg';
-  static const String vanFrontRightMirror = 'assets/images/car/van/front/Van right side mirror.svg';
-  static const String vanFrontLeftMirror = 'assets/images/car/van/front/Van left side mirror.svg';
+  static const String vanFrontSide = 'assets/images/car/van/front/Van-Front.svg';
+  static const String vanAeroBumper = 'assets/images/car/van/front/Van-aero-bumper.svg';
+  static const String vanAeroBumper2 = 'assets/images/car/van/front/Van-aero-bumper-2.svg';
+  static const String vanFrontGrill = 'assets/images/car/van/front/Van-front-grill.svg';
+  static const String vanFrontLeftLight = 'assets/images/car/van/front/Van-left-light.svg';
+  static const String vanFrontRightLight = 'assets/images/car/van/front/Van-right-light.svg';
+  static const String vanFrontRightMirror = 'assets/images/car/van/front/Van-right-side-mirror.svg';
+  static const String vanFrontLeftMirror = 'assets/images/car/van/front/Van-left-side-mirror.svg';
   //back
-  static const String vanBackSide = 'assets/images/car/van/back/Van back.svg';
-  static const String vanBackCargoDoorRight = 'assets/images/car/van/back/cargo door right.svg';
-  static const String vanBackCargoLeftDoor = 'assets/images/car/van/back/cargo left door.svg';
-  static const String vanBackRearLeftHeadLight = 'assets/images/car/van/back/rear left head light.svg';
-  static const String vanBackRearRightHeadLight = 'assets/images/car/van/back/rear right head light.svg';
-  static const String vanBackRearWindow = 'assets/images/car/van/back/rear window.svg';
+  static const String vanBackSide = 'assets/images/car/van/back/Van-back.svg';
+  static const String vanBackCargoDoorRight = 'assets/images/car/van/back/cargo-door-right.svg';
+  static const String vanBackCargoLeftDoor = 'assets/images/car/van/back/cargo-left-door.svg';
+  static const String vanBackRearLeftHeadLight = 'assets/images/car/van/back/rear-left-head-light.svg';
+  static const String vanBackRearRightHeadLight = 'assets/images/car/van/back/rear-right-head-light.svg';
+  static const String vanBackRearWindow = 'assets/images/car/van/back/rear-window.svg';
   //left
-  static const String vanLeftSide = 'assets/images/car/van/left/Van Left.svg';
-  static const String vanLeftFrontLeftWindow = 'assets/images/car/van/left/front left window.svg';
-  static const String vanLeftFrontLeftWing = 'assets/images/car/van/left/front left wing.svg';
-  static const String vanLeftMiddleLeftWindow = 'assets/images/car/van/left/middle left window.svg';
-  static const String vanLeftRearLeftWindow = 'assets/images/car/van/left/rear left window.svg';
-  static const String vanLeftFrontLeftDoor = 'assets/images/car/van/left/front left door.svg';
-  static const String vanLeftRearLeftDoor = 'assets/images/car/van/left/rear left door.svg';
-  static const String vanLeftRearLeftWing = 'assets/images/car/van/left/rear left wing.svg';
-  static const String vanLeftLeftTire = 'assets/images/car/van/left/left tire.svg';
-  static const String vanLeftRightTire = 'assets/images/car/van/left/right tire.svg';
+  static const String vanLeftSide = 'assets/images/car/van/left/Van-Left.svg';
+  static const String vanLeftFrontLeftWindow = 'assets/images/car/van/left/front-left-window.svg';
+  static const String vanLeftFrontLeftWing = 'assets/images/car/van/left/front-left-wing.svg';
+  static const String vanLeftMiddleLeftWindow = 'assets/images/car/van/left/middle-left-window.svg';
+  static const String vanLeftRearLeftWindow = 'assets/images/car/van/left/rear-left-window.svg';
+  static const String vanLeftFrontLeftDoor = 'assets/images/car/van/left/front-left-door.svg';
+  static const String vanLeftRearLeftDoor = 'assets/images/car/van/left/rear-left-door.svg';
+  static const String vanLeftRearLeftWing = 'assets/images/car/van/left/rear-left-wing.svg';
+  static const String vanLeftLeftTire = 'assets/images/car/van/left/left-tire.svg';
+  static const String vanLeftRightTire = 'assets/images/car/van/left/right-tire.svg';
   //right
-  static const String vanRightSide = 'assets/images/car/van/right/Van right.svg';
-  static const String vanRightFrontRightWindow = 'assets/images/car/van/right/front right window.svg';
-  static const String vanRightMiddleRightWindow = 'assets/images/car/van/right/middle right window.svg';
-  static const String vanRightRearRightWindow = 'assets/images/car/van/right/rear right window.svg';
-  static const String vanRightFrontRightWing = 'assets/images/car/van/right/front right wing.svg';
-  static const String vanRightFrontRightDoor = 'assets/images/car/van/right/front right door.svg';
-  static const String vanRightRearRightDoor = 'assets/images/car/van/right/rear right door.svg';
-  static const String vanRightRearRightWing = 'assets/images/car/van/right/rear right wing.svg';
-  static const String vanRightRearRightTire = 'assets/images/car/van/right/rear right tire.svg';
-  static const String vanRightFrontRightTire = 'assets/images/car/van/right/front right tire.svg';
+  static const String vanRightSide = 'assets/images/car/van/right/Van-right.svg';
+  static const String vanRightFrontRightWindow = 'assets/images/car/van/right/front-right-window.svg';
+  static const String vanRightMiddleRightWindow = 'assets/images/car/van/right/middle-right-window.svg';
+  static const String vanRightRearRightWindow = 'assets/images/car/van/right/rear-right-window.svg';
+  static const String vanRightFrontRightWing = 'assets/images/car/van/right/front-right-wing.svg';
+  static const String vanRightFrontRightDoor = 'assets/images/car/van/right/front-right-door.svg';
+  static const String vanRightRearRightDoor = 'assets/images/car/van/right/rear-right-door.svg';
+  static const String vanRightRearRightWing = 'assets/images/car/van/right/rear-right-wing.svg';
+  static const String vanRightRearRightTire = 'assets/images/car/van/right/rear-right-tire.svg';
+  static const String vanRightFrontRightTire = 'assets/images/car/van/right/front-right-tire.svg';
 
   ///moto
   //front
-  static const String motoFrondSide = 'assets/images/car/moto/Moto front.svg';
-  static const String motoLeftViewMirror = 'assets/images/car/moto/left view window.svg';
-  static const String motoRightViewMirror = 'assets/images/car/moto/right view mirror.svg';
-  static const String motoRightHandClutch = 'assets/images/car/moto/right hand clutch.svg';
-  static const String motoLeftHandClutch = 'assets/images/car/moto/left hand clutch.svg';
-  static const String motoHeadLight = 'assets/images/car/moto/head light.svg';
-  static const String motoWindScreen = 'assets/images/car/moto/wind screen.svg';
-  static const String motoWindShield = 'assets/images/car/moto/wind shield.svg';
+  static const String motoFrondSide = 'assets/images/car/moto/Moto-front.svg';
+  static const String motoLeftViewMirror = 'assets/images/car/moto/left-view-window.svg';
+  static const String motoRightViewMirror = 'assets/images/car/moto/right-view-mirror.svg';
+  static const String motoRightHandClutch = 'assets/images/car/moto/right-hand-clutch.svg';
+  static const String motoLeftHandClutch = 'assets/images/car/moto/left-hand-clutch.svg';
+  static const String motoHeadLight = 'assets/images/car/moto/head-light.svg';
+  static const String motoWindScreen = 'assets/images/car/moto/wind-screen.svg';
+  static const String motoWindShield = 'assets/images/car/moto/wind-shield.svg';
   //left
-  static const String motoLeftSide = 'assets/images/car/moto/Moto left.svg';
-  static const String motoFrontTire = 'assets/images/car/moto/front tire.svg';
-  static const String motoFrontFender = 'assets/images/car/moto/front fender.svg';
-  static const String motoFrontFork = 'assets/images/car/moto/front fork.svg';
-  static const String motoFuelTank = 'assets/images/car/moto/fuel tank.svg';
+  static const String motoLeftSide = 'assets/images/car/moto/Moto-left.svg';
+  static const String motoFrontTire = 'assets/images/car/moto/front-tire.svg';
+  static const String motoFrontFender = 'assets/images/car/moto/front-fender.svg';
+  static const String motoFrontFork = 'assets/images/car/moto/front-fork.svg';
+  static const String motoFuelTank = 'assets/images/car/moto/fuel-tank.svg';
   static const String motoSeat = 'assets/images/car/moto/seat.svg';
-  static const String motoRareFender = 'assets/images/car/moto/rare fender.svg';
-  static const String motoStopLight = 'assets/images/car/moto/stop light.svg';
+  static const String motoRareFender = 'assets/images/car/moto/rare-fender.svg';
+  static const String motoStopLight = 'assets/images/car/moto/stop-light.svg';
   static const String motoHorn = 'assets/images/car/moto/horn.svg';
   static const String motoEngine = 'assets/images/car/moto/engine.svg';
-  static const String motoRareFork = 'assets/images/car/moto/rere fork.svg';
+  static const String motoRareFork = 'assets/images/car/moto/rere-fork.svg';
   static const String motoTransmission = 'assets/images/car/moto/transmission.svg';
-  static const String motoExhaustSystem = 'assets/images/car/moto/exhaust system.svg';
-  static const String motoRareTire = 'assets/images/car/moto/rare tire.svg';
+  static const String motoExhaustSystem = 'assets/images/car/moto/exhaust-system.svg';
+  static const String motoRareTire = 'assets/images/car/moto/rare-tire.svg';
 
 
   ///new
   //profile
   static const String driverImage = 'assets/images/profile/driver.png';
   static const String insuranceImage = 'assets/images/profile/insurance.png';
-  static const String myCarImage = 'assets/images/profile/my car.png';
-  static const String policyHolderImage = 'assets/images/profile/policy holder.png';
-  static const String qrCodeImage = 'assets/images/profile/qr code.png';
+  static const String myCarImage = 'assets/images/profile/my-car.png';
+  static const String policyHolderImage = 'assets/images/profile/policy-holder.png';
+  static const String qrCodeImage = 'assets/images/profile/qr-code.png';
 
 }

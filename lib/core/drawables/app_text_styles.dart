@@ -25,6 +25,11 @@ class AppTextStyles {
     fontWeight: FontWeight.w600,
     fontSize: 28,
   );
+  static const s26W700 = TextStyle(
+    fontFamily: _archivo,
+    fontWeight: FontWeight.w700,
+    fontSize: 26,
+  );
   static const s22W600 = TextStyle(
     fontFamily: _archivo,
     fontWeight: FontWeight.w600,

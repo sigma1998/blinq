@@ -20,56 +20,59 @@ class AccidentAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              alignment: Alignment.centerLeft,
-              width: 80.w,
-              child: IconButton(
-                icon: const Icon(
-                  size: 20,
-                  Icons.arrow_back_ios_new_rounded,
-                  color: Colors.white,
+    return SafeArea(
+      bottom: false,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                alignment: Alignment.centerLeft,
+                width: 80.w,
+                child: IconButton(
+                  icon: const Icon(
+                    size: 20,
+                    Icons.arrow_back_ios_new_rounded,
+                    color: Colors.white,
+                  ),
+                  onPressed: onBackTap ??
+                          () {
+                        NavigationService.homeNavigatorKey.currentState?.pop();
+                      },
                 ),
-                onPressed: onBackTap ??
-                        () {
-                      NavigationService.homeNavigatorKey.currentState?.pop();
+              ),
+              Expanded(
+                child: Text(
+                  title ?? 'Accident - B driver part',
+                  textAlign: TextAlign.center,
+                  style: AppTextStyles.s15W600,
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  NavigationService.homeNavigatorKey.currentState
+                      ?.pushNamedAndRemoveUntil(
+                    HomeScreen.route,
+                        (_) {
+                      return false;
                     },
-              ),
-            ),
-            Expanded(
-              child: Text(
-                title ?? 'Accident - B driver part',
-                textAlign: TextAlign.center,
-                style: AppTextStyles.s15W600,
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                NavigationService.homeNavigatorKey.currentState
-                    ?.pushNamedAndRemoveUntil(
-                  HomeScreen.route,
-                      (_) {
-                    return false;
-                  },
-                );
-              },
-              child: Text(
-                title ?? 'Save',
-                textAlign: TextAlign.center,
-                style: AppTextStyles.s16W600.copyWith(
-                  color: AppColors.white,
+                  );
+                },
+                child: Text(
+                  title ?? 'Save',
+                  textAlign: TextAlign.center,
+                  style: AppTextStyles.s16W600.copyWith(
+                    color: AppColors.white,
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 

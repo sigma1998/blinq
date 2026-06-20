@@ -83,8 +83,7 @@ Map<String, WidgetBuilder> getRoutes(BuildContext context) {
 
     //! Profile Editors
     DriverEditorScreen.route: (context) => const DriverEditorScreen(),
-    PolicyHolderEditorScreen.route: (context) =>
-        const PolicyHolderEditorScreen(),
+    PolicyHolderEditorScreen.route: (context) => const PolicyHolderEditorScreen(),
     VehicleEditorScreen.route: (context) => const VehicleEditorScreen(),
     InsuranceEditorScreen.route: (context) => const InsuranceEditorScreen(),
     EditorMyCarScreen.route: (context) => const EditorMyCarScreen(),

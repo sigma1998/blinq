@@ -1,13 +1,14 @@
 // Flutter imports:
+import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/core/theme/app_colors.dart';
+import 'package:blinq/generated/assets.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 
 // Project imports:
-import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
 import 'cards/report_card.dart';
 import 'cards/vehicle_card.dart';
@@ -33,10 +34,11 @@ class ProfileVehicleWidget extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
-                GestureDetector(
-                  onTap: bloc.onMyVehiclePressed,
-                  child: SvgPicture.asset(
-                    AppDrawables.edit,
+                TextButton(
+                  onPressed: bloc.onMyVehiclePressed,
+                  child: Text(
+                    'Edit',
+                    style: AppTextStyles.s17W600.copyWith(color: AppColors.primaryColor),
                   ),
                 ),
               ],
@@ -46,7 +48,7 @@ class ProfileVehicleWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: ProfileVehicleCard(
-                    icon: AppDrawables.wheel,
+                    icon: Assets.iconsRoute,
                     unit: 'km',
                     desc: 'strAllTime'.tr(),
                     title: 'strKMTravelled'.tr(),
@@ -56,12 +58,11 @@ class ProfileVehicleWidget extends StatelessWidget {
                 const SizedBox(width: 10),
                 Expanded(
                   child: ProfileVehicleCard(
-                    icon: AppDrawables.gear,
+                    icon: Assets.iconsCarTechnicalInspection,
                     unit: 'strDaysLeft'.tr(),
                     title: 'strNextTechnicalins'.tr(),
-                    value: '${state.profile?.car?.nextTechnical  ?? '-'}',
-                    desc:
-                    (state.profile?.car?.nextTechnicalUpdatedDate ?? '-').toString(),
+                    value: '${state.profile?.car?.nextTechnical ?? '-'}',
+                    desc: (state.profile?.car?.nextTechnicalUpdatedDate ?? '-').toString(),
                   ),
                 ),
               ],
@@ -71,12 +72,11 @@ class ProfileVehicleWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: ProfileVehicleCard(
-                    icon: AppDrawables.oil,
+                    icon: Assets.iconsOilcanFill,
                     unit: 'strKmLeft'.tr(),
                     title: 'strOilReplacement'.tr(),
-                    value: '${state.profile?.car?.oilReplacement  ?? '-'}',
-                    desc:
-                        '${'strLastReplacement'.tr()}\n${(state.profile?.car?.oilReplacementUpdatedDate ??'-').toString() ?? ''}',
+                    value: '${state.profile?.car?.oilReplacement ?? '-'}',
+                    desc: '${'strLastReplacement'.tr()}\n${(state.profile?.car?.oilReplacementUpdatedDate ?? '-').toString() ?? ''}',
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -84,10 +84,9 @@ class ProfileVehicleWidget extends StatelessWidget {
                   child: ProfileVehicleCard(
                     unit: 'strDaysLeft'.tr(),
                     title: 'strBatteryReplacement'.tr(),
-                    icon: AppDrawables.batteryReplacement,
-                    value: '${state.profile?.car?.batterReplacement  ?? '-'}',
-                    desc:
-                        '${'strLastReplacement'.tr()}\n${(state.profile?.car?.batteryReplacementUpdatedDate ?? '-') ?? ''}',
+                    icon: Assets.iconsBoltBatteryblockFill,
+                    value: '${state.profile?.car?.batterReplacement ?? '-'}',
+                    desc: '${'strLastReplacement'.tr()}\n${(state.profile?.car?.batteryReplacementUpdatedDate ?? '-') ?? ''}',
                   ),
                 ),
               ],

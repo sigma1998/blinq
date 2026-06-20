@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:blinq/core/drawables/app_text_styles.dart';
 import 'package:blinq/core/theme/app_colors.dart';
+import 'package:blinq/utils/components/wrappers/glass_container.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -25,32 +26,36 @@ class ProfileImageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MyInfoContainer(
+    return GestureDetector(
       onTap: onTap,
-      height: 163,
-      width: double.infinity,
-      padding: EdgeInsets.zero,
-      child: Row(
-        children: [
-          const SizedBox(width: 24),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  desc,
-                  style: AppTextStyles.s28W600,
+      child: SizedBox(
+        height: 163,
+        width: double.infinity,
+        child: GlassContainer(
+          child: Row(
+            children: [
+              const SizedBox(width: 24),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      desc,
+                      style: AppTextStyles.s28W600,
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      title,
+                      style: AppTextStyles.s13W400.copyWith(color: AppColors.lightGreyVariant),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  title,
-                  style:AppTextStyles.s13W400.copyWith(color: AppColors.grey1),
-                ),
-              ],
-            ),
+              ),
+              image,
+            ],
           ),
-          image,
-        ],
+        ),
       ),
     );
   }

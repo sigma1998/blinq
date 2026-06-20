@@ -3,8 +3,11 @@ import 'dart:math';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../../generated/assets.dart';
 
 class WaveWidget extends StatefulWidget {
   //
@@ -116,10 +119,10 @@ class _WaveWidgetState extends State<WaveWidget> with TickerProviderStateMixin {
 
               widget.onPressed();
             },
-            child: Icon(
-              widget.animate ? Icons.mic : Icons.mic_none,
-              size: 48,
-              color: Colors.white,
+            child: SvgPicture.asset(
+              Assets.iconsMic,
+              width: 48.h,
+              height: 48.h,
             ),
           ),
         ),

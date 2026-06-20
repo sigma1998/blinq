@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert' as convert;
 
 // Flutter imports:
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
 // Package imports:
@@ -114,14 +115,23 @@ class LocationService {
   }
 
   static Future<String?> getAddressFromLatLng(double lat, double lng) async {
-    String host = 'https://maps.google.com/maps/api/geocode/json';
-    final url = '$host?key=$key&language=en&latlng=$lat,$lng';
-    var response = await http.get(Uri.parse(url));
+    final nominatimDio = Dio()
+      ..options.headers = {
+        'User-Agent': 'Blinq/1.0 (akhror.saydaliyev@samurai.uz)',
+        'Accept-Language': 'uz',
+      };
+
+
+    final response = await nominatimDio.get(
+      'https://nominatim.openstreetmap.org/reverse',
+      queryParameters: {
+        'lat': lat,
+        'lon': lng,
+        'format': 'json',
+      },
+    );
     if (response.statusCode == 200) {
-      Map data = convert.jsonDecode(response.body);
-      String formattedAddress = data["results"][0]["formatted_address"];
-      debugPrint("response ==== $formattedAddress");
-      return formattedAddress;
+      return response.data['display_name'] ?? '';
     } else {
       return null;
     }

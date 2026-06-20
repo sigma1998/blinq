@@ -64,19 +64,12 @@ class _YesNoButtonState extends State<YesNoButton> {
             height: 24,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: clicked ? AppColors.primaryColor : Colors.transparent,
               border: Border.all(
-                color: AppColors.primaryColor,
-                width: 1.5,
+                color: AppColors.white,
+                width: clicked  ? 7 : 1.5,
               ),
             ),
             padding: const EdgeInsets.all(6),
-            child: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: clicked ? AppColors.white : Colors.transparent,
-              ),
-            ),
           ),
           const SizedBox(width: 8),
           Text(

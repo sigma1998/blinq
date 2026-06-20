@@ -2,6 +2,7 @@
 import 'package:blinq/core/drawables/app_text_styles.dart';
 import 'package:blinq/domain/bloc/report_bloc/report_type.dart';
 import 'package:blinq/utils/components/app_bar/progress_app_bar.dart';
+import 'package:blinq/utils/components/wrappers/screen_background.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -17,6 +18,7 @@ import 'package:blinq/domain/repositories/breakdown_repository.dart';
 import 'package:blinq/utils/custom_widgets/arrow_button.dart';
 import 'package:blinq/utils/custom_widgets/buttons/navigation_button.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import '../../../../generated/assets.dart';
 import 'bloc/points_of_impact_bloc.dart';
 import 'bloc/points_of_impact_state.dart';
 
@@ -34,10 +36,8 @@ class _PointsOfImpactScreenState extends State<PointsOfImpactScreen> {
   //
   late final PointsOfImpactBloc bloc;
 
-
   @override
   void didChangeDependencies() {
-
     bloc = PointsOfImpactBloc(
       reportBloc: context.read(),
       accidentRepository: getIt<AccidentRepositoryImpl>(),
@@ -52,123 +52,100 @@ class _PointsOfImpactScreenState extends State<PointsOfImpactScreen> {
       bloc: bloc,
       builder: (context, state) {
         final primary = Theme.of(context).colorScheme.primary;
-        return Scaffold(
-          appBar: ProgressAppBar(
-            step: 4,
-            onSaveTap: () => bloc.onNextPressed(context),
-          ),
-          body: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 24.0,
-                horizontal: 16,
+        return ScreenBackground(
+          body: Column(
+            children: [
+              ProgressAppBar(
+                step: 4,
+                onSaveTap: () => bloc.onNextPressed(context),
               ),
-              child: Column(
-                children: [
-                  Text(
-                    '4. ${'strIndicateDescription'.tr()}',
-                    style: AppTextStyles.s22W600,
-                  ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 24),
-                      color: Theme.of(context).colorScheme.background,
-                      alignment: Alignment.center,
-                      child: RepaintBoundary(
-                        key: bloc.key,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        '4. ${'strIndicateDescription'.tr()}',
+                        style: AppTextStyles.s22W600,
+                      ),
+                      const SizedBox(height: 24),
+                      Expanded(
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 24),
+                          alignment: Alignment.center,
+                          child: RepaintBoundary(
+                            key: bloc.key,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
                               children: [
-                                ArrowButtonWidget(
-                                    color:
-                                        state.isTopLeftActive ? primary : null,
-                                    onTap: () => bloc.onArrowPressed(
-                                        pointOfImpact: PointOfImpact.topLeft),
-                                    icon: AppDrawables.topLeftArrow),
-                                ArrowButtonWidget(
-                                  color: state.isTopActive ? primary : null,
-                                  onTap: () => bloc.onArrowPressed(
-                                      pointOfImpact: PointOfImpact.top),
-                                  icon: AppDrawables.topArrow,
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    ArrowButtonWidget(
+                                        color: state.isTopLeftActive ? primary : null,
+                                        onTap: () => bloc.onArrowPressed(pointOfImpact: PointOfImpact.topLeft),
+                                        icon: AppDrawables.topLeftArrow),
+                                    ArrowButtonWidget(
+                                      color: state.isTopActive ? primary : null,
+                                      onTap: () => bloc.onArrowPressed(pointOfImpact: PointOfImpact.top),
+                                      icon: AppDrawables.topArrow,
+                                    ),
+                                    ArrowButtonWidget(
+                                        color: state.isTopRightActive ? primary : null,
+                                        onTap: () => bloc.onArrowPressed(pointOfImpact: PointOfImpact.topRight),
+                                        icon: AppDrawables.topRightArrow),
+                                  ],
                                 ),
-                                ArrowButtonWidget(
-                                    color:
-                                        state.isTopRightActive ? primary : null,
-                                    onTap: () => bloc.onArrowPressed(
-                                        pointOfImpact: PointOfImpact.topRight),
-                                    icon: AppDrawables.topRightArrow),
+                                const SizedBox(height: 24),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ArrowButtonWidget(
+                                        color: state.isLeftActive ? primary : null,
+                                        onTap: () => bloc.onArrowPressed(pointOfImpact: PointOfImpact.left),
+                                        icon: AppDrawables.leftArrow),
+                                    SvgPicture.asset(Assets.iconsDefaultCar),
+                                    ArrowButtonWidget(
+                                        color: state.isRightActive ? primary : null,
+                                        onTap: () => bloc.onArrowPressed(pointOfImpact: PointOfImpact.right),
+                                        icon: AppDrawables.rightArrow),
+                                  ],
+                                ),
+                                const SizedBox(height: 24),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    ArrowButtonWidget(
+                                        color: state.isBottomLeftActive ? primary : null,
+                                        onTap: () => bloc.onArrowPressed(pointOfImpact: PointOfImpact.bottomLeft),
+                                        icon: AppDrawables.bottomLeftArrow),
+                                    ArrowButtonWidget(
+                                        color: state.isBottomActive ? primary : null,
+                                        onTap: () => bloc.onArrowPressed(pointOfImpact: PointOfImpact.bottom),
+                                        icon: AppDrawables.bottomArrow),
+                                    ArrowButtonWidget(
+                                        color: state.isBottomRightActive ? primary : null,
+                                        onTap: () => bloc.onArrowPressed(pointOfImpact: PointOfImpact.bottomRight),
+                                        icon: AppDrawables.bottomRightArrow),
+                                  ],
+                                ),
                               ],
                             ),
-                            const SizedBox(
-                              height: 24,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ArrowButtonWidget(
-                                    color: state.isLeftActive ? primary : null,
-                                    onTap: () => bloc.onArrowPressed(
-                                        pointOfImpact: PointOfImpact.left),
-                                    icon: AppDrawables.leftArrow),
-                                SvgPicture.asset(AppDrawables.defaultCar),
-                                ArrowButtonWidget(
-                                    color: state.isRightActive ? primary : null,
-                                    onTap: () => bloc.onArrowPressed(
-                                        pointOfImpact: PointOfImpact.right),
-                                    icon: AppDrawables.rightArrow),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 24,
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                ArrowButtonWidget(
-                                    color: state.isBottomLeftActive
-                                        ? primary
-                                        : null,
-                                    onTap: () => bloc.onArrowPressed(
-                                        pointOfImpact:
-                                            PointOfImpact.bottomLeft),
-                                    icon: AppDrawables.bottomLeftArrow),
-                                ArrowButtonWidget(
-                                    color:
-                                        state.isBottomActive ? primary : null,
-                                    onTap: () => bloc.onArrowPressed(
-                                        pointOfImpact: PointOfImpact.bottom),
-                                    icon: AppDrawables.bottomArrow),
-                                ArrowButtonWidget(
-                                    color: state.isBottomRightActive
-                                        ? primary
-                                        : null,
-                                    onTap: () => bloc.onArrowPressed(
-                                        pointOfImpact:
-                                            PointOfImpact.bottomRight),
-                                    icon: AppDrawables.bottomRightArrow),
-                              ],
-                            ),
-                          ],
+                          ),
                         ),
                       ),
-                    ),
+                      NavigationButton(
+                        padding: 0,
+                        loading: state.status == Status.loading,
+                        onNextTap: () => bloc.onNextPressed(context),
+                      ),
+                    ],
                   ),
-                  NavigationButton(
-                    padding: 0,
-                    loading: state.status == Status.loading,
-                    onNextTap: () => bloc.onNextPressed(context),
-                  ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
         );
       },

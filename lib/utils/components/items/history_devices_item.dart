@@ -1,4 +1,6 @@
 import 'package:blinq/presentation/connect_to_blinq/widgets/discovered_ble_devices.dart';
+import 'package:blinq/utils/components/buttons/glass_button.dart';
+import 'package:blinq/utils/components/wrappers/glass_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 import 'package:flutter_svg/svg.dart';
@@ -24,31 +26,23 @@ class HistoryDevicesItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: AppColors.white.withOpacity(0.17),
-        borderRadius: BorderRadius.circular(26),
-      ),
+    return GlassContainer(
+      padding: const EdgeInsets.all(18),
       child: Column(
         children: [
           Row(
             children: [
-              Container(
-                alignment: Alignment.center,
+              SizedBox(
                 width: 52,
                 height: 52,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.black,
-                ),
-                child: SvgPicture.asset(
-                  AppDrawables.bluetoothIcon,
-                  width: 20,
-                  height: 20,
-                  colorFilter: ColorFilter.mode(
-                    AppColors.white.withOpacity(0.17),
-                    BlendMode.srcIn,
+                child: GlassContainer(
+                  isCircle: true,
+                  tint: 0.15,
+                  child: SvgPicture.asset(
+                    AppDrawables.bluetoothIcon,
+                    width: 20,
+                    height: 20,
+                    colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
                   ),
                 ),
               ),
@@ -68,51 +62,20 @@ class HistoryDevicesItem extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: RegularButton(
+                child: GlassButton(
                   onTap: onEdit,
-                  background: AppColors.black,
-                  padding: 0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        AppDrawables.edit2,
-                        width: 16,
-                        height: 16,
-                      ),
-                      const SizedBox(width: 4),
-                      const Text(
-                        'Edit',
-                        style: AppTextStyles.s15W600,
-                      )
-                    ],
-                  ),
+                  title: 'Edit',
+                  tint: 0.10,
+                  radius: 12,
                 ),
               ),
               const SizedBox(width: 8),
               Expanded(
-                child: RegularButton(
+                child: GlassButton(
                   onTap: onLink,
-                  background: AppColors.activeReportColor,
-                  padding: 0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        AppDrawables.link,
-                        width: 16,
-                        height: 16,
-
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        'Connect',
-                        style: AppTextStyles.s15W600.copyWith(
-                          color: AppColors.black,
-                        ),
-                      )
-                    ],
-                  ),
+                  title: 'Connect',
+                  backgroundColor: AppColors.primaryColor,
+                  tint: 0.4,
                 ),
               ),
             ],

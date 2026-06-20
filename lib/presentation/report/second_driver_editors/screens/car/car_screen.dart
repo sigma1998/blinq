@@ -2,6 +2,7 @@
 import 'package:blinq/core/drawables/app_text_styles.dart';
 import 'package:blinq/core/locale/app_locale.dart';
 import 'package:blinq/utils/components/app_bar/progress_app_bar.dart';
+import 'package:blinq/utils/components/wrappers/screen_background.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -55,8 +56,19 @@ class _SecondDriverEditorCarScreenState
       builder: (context, state) {
         return SafeArea(
           child: KeyboardEscape(
-            child: Scaffold(
+            child: ScreenBackground(
               appBar: const ProgressAppBar(step: 4),
+              floatingActionButton: NavigationButton(
+                padding: 16,
+                onNextTap: () {
+                  if (cubit.validateForm()) {
+                    cubit.onSubmit();
+                  }
+                },
+                loading: state.status == Status.loading,
+              ),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerFloat,
               body: Form(
                 key: cubit.formKey,
                 child: SingleChildScrollView(
@@ -134,16 +146,6 @@ class _SecondDriverEditorCarScreenState
                   ),
                 ),
               ),
-              floatingActionButton: NavigationButton(
-                onNextTap: () {
-                  if (cubit.validateForm()) {
-                    cubit.onSubmit();
-                  }
-                },
-                loading: state.status == Status.loading,
-              ),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerFloat,
             ),
           ),
         );

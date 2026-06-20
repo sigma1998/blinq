@@ -108,13 +108,18 @@ class MyAppState extends State<MyApp> {
       ],
       child: ScreenUtilInit(
         designSize: const Size(392, 852),
-        child: MaterialApp(
-          locale: context.locale,
-          theme: AppTheme.darkTheme,
-          routes: getRoutes(context),
-          supportedLocales: context.supportedLocales,
-          navigatorKey: NavigationService.navigatorKey,
-          localizationsDelegates: context.localizationDelegates,
+        child: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: MaterialApp(
+            locale: context.locale,
+            theme: AppTheme.darkTheme,
+            routes: getRoutes(context),
+            supportedLocales: context.supportedLocales,
+            navigatorKey: NavigationService.navigatorKey,
+            localizationsDelegates: context.localizationDelegates,
+          ),
         ),
       ),
     );

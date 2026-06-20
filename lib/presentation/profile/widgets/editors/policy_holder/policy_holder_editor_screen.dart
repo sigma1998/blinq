@@ -20,7 +20,10 @@ import 'package:blinq/utils/custom_widgets/text_fields/email_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/theme/app_colors.dart';
+import '../../../../../utils/components/app_bar/save_app_bar.dart';
+import '../../../../../utils/components/wrappers/screen_background.dart';
 import '../../../../../utils/states/action_type.dart';
 import 'bloc/policy_holder_editor_bloc.dart';
 import 'bloc/policy_holder_editor_event.dart';
@@ -32,8 +35,7 @@ class PolicyHolderEditorScreen extends StatefulWidget {
   const PolicyHolderEditorScreen({super.key});
 
   @override
-  State<PolicyHolderEditorScreen> createState() =>
-      _PolicyHolderEditorScreenState();
+  State<PolicyHolderEditorScreen> createState() => _PolicyHolderEditorScreenState();
 }
 
 class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
@@ -55,23 +57,28 @@ class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return KeyboardEscape(
-      child: BlocBuilder<PolicyHolderEditorBloc, PolicyHolderEditorState>(
-        bloc: bloc,
-        builder: (context, state) {
-          return Scaffold(
-            extendBody: true,
-            appBar: MyAppBar(title: 'strPolicyHolder'.tr()),
-            body: Form(
+    return ScreenBackground(
+      body: KeyboardEscape(
+        child: BlocBuilder<PolicyHolderEditorBloc, PolicyHolderEditorState>(
+          bloc: bloc,
+          builder: (context, state) {
+            return Form(
               key: bloc.formKey,
               child: ListView(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 24,
-                  horizontal: 16,
-                ),
+                padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
                 physics: const BouncingScrollPhysics(),
                 children: [
-                  const SizedBox(height: 40),
+                  SaveAppBar(
+                    title: 'strPolicyHolder'.tr(),
+                    actionTitle: 'strSave'.tr(),
+                    hPadding: 0,
+                    onActionPressed: () {
+                      if (bloc.validateForm()) {
+                        bloc.add(OnSubmitPolicyHolder());
+                      }
+                    },
+                  ),
+                  SizedBox(height: 32.h),
                   Row(
                     children: [
                       Expanded(
@@ -86,18 +93,6 @@ class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
                       ),
                       CupertinoSwitch(
                         activeColor: AppColors.grey2,
-                        // Set transparent so the active track color shows through
-                        // activeTrackColor: AppColors.grey2,
-                        // thumbColor: MaterialStateProperty.resolveWith<Color?>(
-                        //   (Set<MaterialState> states) {
-                        //     return Colors.white;
-                        //   },
-                        // ),
-                        // // Background color when switch is on
-                        // inactiveThumbColor: AppColors.grey2,
-                        // // Round color when switch is off
-                        // inactiveTrackColor: AppColors.grey1,
-                        // Set transparent so the inactive thumb color shows through
                         value: sameAsDriver,
                         onChanged: (bool val) {
                           setState(() {
@@ -108,12 +103,16 @@ class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
                       )
                     ],
                   ),
-                  const SizedBox(height: 40),
-                  const Text(
-                    'Personal info',
-                    style: AppTextStyles.s20W600,
-                  ),
                   const SizedBox(height: 32),
+                  Row(
+                    children: [
+                      Text(
+                        'Personal info',
+                        style: AppTextStyles.s20W600.copyWith(color: AppColors.c_808080),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
                   NameTextField(
                     labelText: 'strFirstName'.tr(),
                     controller: bloc.firstNameController,
@@ -124,12 +123,16 @@ class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
                     labelText: 'strLastName'.tr(),
                     controller: bloc.lastNameController,
                   ),
-                  const SizedBox(height: 40),
-                  const Text(
-                    'Address',
-                    style: AppTextStyles.s20W600,
-                  ),
                   const SizedBox(height: 32),
+                  Row(
+                    children: [
+                      Text(
+                        'Address',
+                        style: AppTextStyles.s20W600.copyWith(color: AppColors.c_808080),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
                   PickerTextField(
                     labelText: 'strCountry'.tr(),
                     controller: bloc.countryController,
@@ -172,20 +175,9 @@ class _PolicyHolderEditorScreenState extends State<PolicyHolderEditorScreen> {
                   const SizedBox(height: 90),
                 ],
               ),
-            ),
-            bottomNavigationBar: SafeArea(
-              child: RegularButton(
-                title: 'strSave'.tr(),
-                loading: state.status == Status.loading,
-                onTap: () {
-                  if (bloc.validateForm()) {
-                    bloc.add(OnSubmitPolicyHolder());
-                  }
-                },
-              ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:blinq/generated/assets.dart';
+import 'package:blinq/utils/components/wrappers/glass_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,7 +10,7 @@ import '../../../core/theme/app_colors.dart';
 
 class MainBotNav extends StatefulWidget {
   final int currentIndex;
-  final Function onTap;
+  final Function(int) onTap;
 
   const MainBotNav({
     super.key,
@@ -22,106 +23,112 @@ class MainBotNav extends StatefulWidget {
 }
 
 class _MainBotNavState extends State<MainBotNav> {
+  static const _texts = ['Home', 'Map', 'Profile'];
+  static const _icons = [
+    AppDrawables.appLogoSVG,
+    Assets.iconsMap,
+    AppDrawables.profileIcon,
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        Image.asset(
-          height: 74.h,
-          width: 260.w,
-          AppDrawables.botNavContainer,
-          fit: BoxFit.fill,
-        ),
-        Container(
-          width: 260.w,
-          height: 74.h,
-          padding: const EdgeInsets.symmetric(horizontal: 2),
-          child: Row(
-            children: Iterable.generate(3).map<Widget>((e) {
-              return getButton(e);
-            }).toList(),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget getButton(int index) {
-    if (widget.currentIndex == index) {
-      return Expanded(
-        child: Container(
-          height: 69.h,
-          width: 80.w,
-          padding: const EdgeInsets.all(1),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(36),
-            gradient: LinearGradient(
-              colors: [
-                AppColors.white,
-                AppColors.white.withOpacity(0.5),
-                AppColors.white.withOpacity(0.2),
-              ], // Gradient colors
-              begin: Alignment.topCenter, // Start from the top
-              end: Alignment.bottomCenter, // End at the bottom
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      height: 70.h,
+      child: GlassContainer(
+        radius: 24,
+        blur: 12,
+        child: SizedBox(
+          height: 70.h,
+          child: Padding(
+            padding: const EdgeInsets.all(4),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: List.generate(3, _buildTab),
             ),
           ),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(36),
-              gradient: LinearGradient(
-                colors: [
-                  AppColors.black,
-                  AppColors.black.withOpacity(0.8),
-                  AppColors.black.withOpacity(0.5),
-                ], // Gradient colors
-                begin: Alignment.topCenter, // Start from the top
-                end: Alignment.bottomCenter, // End at the bottom
-              ),
-            ),
-            child: getCol(index),
-          ),
         ),
-      );
-    }
-
-    return Expanded(
-      child: IconButton(
-        onPressed: () {
-          widget.onTap.call(index);
-        },
-        icon: getCol(index),
       ),
     );
   }
 
-  getCol(int index) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        SvgPicture.asset(
-          icons[index],
-          width: 24.h,
-          height: 24.h,
+  Widget _buildTab(int index) {
+    final isActive = widget.currentIndex == index;
+
+    return Expanded(
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () => widget.onTap(index),
+        child: _TabContent(
+          icon: _icons[index],
+          label: _texts[index],
+          isActive: isActive,
         ),
-        Text(
-          texts[index],
-          style: AppTextStyles.s10W500,
-        )
-      ],
+      ),
     );
   }
+}
 
-  List<String> texts = [
-    'Home',
-    'Contacts',
-    'Profile',
-  ];
+class _TabContent extends StatelessWidget {
+  final String icon;
+  final String label;
+  final bool isActive;
 
-  List<String> icons = [
-    AppDrawables.appLogoSVG,
-    AppDrawables.contact,
-    AppDrawables.profileIcon,
-  ];
+  const _TabContent({
+    required this.icon,
+    required this.label,
+    required this.isActive,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if(!isActive) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPicture.asset(
+            icon,
+            width: 24.h,
+            height: 24.h,
+            colorFilter: ColorFilter.mode(
+              AppColors.white.withAlpha(180),
+              BlendMode.srcIn,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            label,
+            style: AppTextStyles.s10W500.copyWith(
+              color: AppColors.white.withAlpha(180),
+            ),
+          ),
+        ],
+      );
+    }
+    return GlassContainer(
+      radius: 20,
+      tintColor: AppColors.primaryColor,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPicture.asset(
+            icon,
+            width: 24.h,
+            height: 24.h,
+            colorFilter: ColorFilter.mode(
+              isActive ? AppColors.primaryColor : AppColors.white.withAlpha(180),
+              BlendMode.srcIn,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            label,
+            style: AppTextStyles.s10W500.copyWith(
+              color: isActive ? AppColors.white : AppColors.white.withAlpha(180),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

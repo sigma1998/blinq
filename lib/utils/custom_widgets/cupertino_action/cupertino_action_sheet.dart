@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/core/theme/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
 import 'package:blinq/utils/navigation_service.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyCupertinoActionSheet extends StatelessWidget {
   //
@@ -31,13 +33,16 @@ class MyCupertinoActionSheet extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyLarge,
               )
             : null,
-        cancelButton: CupertinoActionSheetAction(
-          isDefaultAction: true,
-          isDestructiveAction: false,
-          onPressed: NavigationService.back,
-          child: Text(
-            'strCancel'.tr(),
-            style: Theme.of(context).textTheme.bodyLarge,
+        cancelButton: GestureDetector(
+          onTap: NavigationService.back,
+          child: Container(
+            height: 56.h,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(color: AppColors.white),
+            child: Text(
+              'strCancel'.tr(),
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: AppColors.blue),
+            ),
           ),
         ),
       ),

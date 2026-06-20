@@ -14,6 +14,7 @@ import 'package:blinq/utils/navigation_service.dart';
 import '../../../second_driver_editors/screens/driver/driver_screen.dart';
 
 part 'connect_to_driver_cubit.freezed.dart';
+
 part 'connect_to_driver_state.dart';
 
 class ConnectToDriverCubit extends Cubit<ConnectToDriverState> {
@@ -45,9 +46,7 @@ class ConnectToDriverCubit extends Cubit<ConnectToDriverState> {
 
     emit(state.copyWith(status: Status.loading));
     try {
-      await accidentRepository.connectToNoBlinqDriver(
-        reportBloc.reportId,
-      );
+      await accidentRepository.connectToNoBlinqDriver(reportBloc.reportId);
       emit(state.copyWith(status: Status.success));
 
       NavigationService.pushNamed(

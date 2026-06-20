@@ -30,7 +30,6 @@ class ProfileInfoWidget extends StatelessWidget {
                   child: ProfileInfoCard(
                     title: 'strDriver'.tr(),
                     onTap: () {
-
                       bloc.onDriverPressed();
                     },
                     image: AppDrawables.myCarImage,

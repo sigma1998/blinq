@@ -1,4 +1,7 @@
 // Flutter imports:
+import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/core/theme/app_colors.dart';
+import 'package:blinq/utils/components/wrappers/glass_container.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -28,54 +31,53 @@ class ProfileVehicleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MyInfoContainer(
-      padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
+    return GlassContainer(
+      padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          SvgPicture.asset(icon),
-          const SizedBox(height: 24),
+          SizedBox(
+            width: 48,
+            height: 48,
+            child: GlassContainer(
+              isCircle: true,
+              tint: 0.1,
+              child: SvgPicture.asset(icon),
+            ),
+          ),
+          const SizedBox(height: 48),
           Text(
             title,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
-              fontWeight: FontWeight.w700,
-            ),
+            style: AppTextStyles.s13W400.copyWith(color: AppColors.lightGreyVariant),
           ),
-          if (desc.isNotEmpty) ...[
-            const SizedBox(height: 4),
-            Text(
-              desc,
-              style: TextStyle(
-                fontSize: 11,
-                fontWeight: FontWeight.w700,
-                overflow: TextOverflow.ellipsis,
-                color: Theme.of(context).colorScheme.onSecondary,
-              ),
-            ),
-          ],
-          const SizedBox(height: 24),
+          // if (desc.isNotEmpty) ...[
+          //   const SizedBox(height: 4),
+          //   Text(
+          //     desc,
+          //     style: TextStyle(
+          //       fontSize: 11,
+          //       fontWeight: FontWeight.w700,
+          //       overflow: TextOverflow.ellipsis,
+          //       color: Theme.of(context).colorScheme.onSecondary,
+          //     ),
+          //   ),
+          // ],
+          const SizedBox(height: 8),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
                 value,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontSize: 26,
-                  height: 16 / 34,
-                  fontWeight: FontWeight.w700,
-                ),
+                style: AppTextStyles.s20W400.copyWith(color: AppColors.neutralLight),
               ),
               const SizedBox(width: 6),
               Flexible(
                 child: Text(
                   unit,
-                  style: const TextStyle(
-                    height: 16 / 20,
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: AppTextStyles.s20W400.copyWith(color: AppColors.neutralGrey),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),

@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:blinq/utils/components/app_bar/progress_app_bar.dart';
+import 'package:blinq/utils/components/wrappers/screen_background.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -55,46 +56,57 @@ class _SpeechToTextScreenState extends State<SpeechToTextScreen> {
       bloc: bloc,
       builder: (context, state) {
         return KeyboardEscape(
-          child: SafeArea(
-            child: WillPopScope(
-              onWillPop: () async {
-                bloc.toggleRecording(context.locale.languageCode);
-                return true;
-              },
-              child: Scaffold(
-                appBar: ProgressAppBar(
-                  step: step ?? 3,
-                  onSaveTap: bloc.onNextTap,
-                ),
-                body: ListView(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  children: [
-                    const SizedBox(height: 24),
-                    SpeechToTextField(
-                      autofocus: focus,
-                      maxLines: 10,
-                      labelText: bloc.title,
-                      soundLevel: state.soundLevel,
-                      isRecording: state.isRecording,
-                      controller: bloc.textController,
-                      scrollController: bloc.scrollController,
-                      toggleRecording: () =>
-                          bloc.toggleRecording(context.locale.languageCode),
-                      onKeyBoardTap: () {
-                        setState(() {
-                          focus = !focus;
-                        });
-                      },
+          child: WillPopScope(
+            onWillPop: () async {
+              bloc.toggleRecording(context.locale.languageCode);
+              return true;
+            },
+            child: ScreenBackground(
+              body: Stack(
+                children: [
+                  Column(
+                    children: [
+                      ProgressAppBar(
+                        step: step ?? 3,
+                        onSaveTap: bloc.onNextTap,
+                      ),
+                      Expanded(
+                        child: ListView(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          children: [
+                            const SizedBox(height: 24),
+                            SpeechToTextField(
+                              hint: 'type...',
+                              autofocus: focus,
+                              maxLines: 10,
+                              labelText: bloc.title,
+                              soundLevel: state.soundLevel,
+                              isRecording: state.isRecording,
+                              controller: bloc.textController,
+                              scrollController: bloc.scrollController,
+                              toggleRecording: () => bloc.toggleRecording(context.locale.languageCode),
+                              onKeyBoardTap: () {
+                                setState(() {
+                                  focus = !focus;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  Positioned(
+                    bottom: 16,
+                    right: 0,
+                    left: 0,
+                    child: NavigationButton(
+                      padding: 16,
+                      loading: state.status == Status.loading,
+                      onNextTap: bloc.onNextTap,
                     ),
-                  ],
-                ),
-                floatingActionButton: NavigationButton(
-                  padding: 16,
-                  loading: state.status == Status.loading,
-                  onNextTap: bloc.onNextTap,
-                ),
-                floatingActionButtonLocation:
-                    FloatingActionButtonLocation.centerFloat,
+                  ),
+                ],
               ),
             ),
           ),

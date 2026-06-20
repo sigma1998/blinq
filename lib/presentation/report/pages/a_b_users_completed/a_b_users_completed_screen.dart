@@ -2,7 +2,10 @@
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/core/drawables/app_text_styles.dart';
 import 'package:blinq/core/theme/app_colors.dart';
+import 'package:blinq/utils/components/buttons/glass_button.dart';
 import 'package:blinq/utils/components/buttons/regular_button.dart';
+import 'package:blinq/utils/components/wrappers/glass_container.dart';
+import 'package:blinq/utils/components/wrappers/screen_background.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -24,66 +27,76 @@ class ABUsersCompletedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: const ProgressAppBar(
-          step: 10,
-          title: 'Accident',
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 96,
-                      height: 96,
+    return ScreenBackground(
+      appBar: const ProgressAppBar(
+        step: 10,
+        title: 'Accident',
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 96,
+                    height: 96,
+                    child: GlassContainer(
                       padding: const EdgeInsets.all(12),
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColors.darkGrey,
-                      ),
+                      isCircle: true,
+                      tint: 0.1,
                       child: SvgPicture.asset(
                         AppDrawables.twoPeople,
+                        colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
                       ),
                     ),
-                    const SizedBox(height: 24),
-                    Text(
-                      'strABCompleted'.tr(),
-                      textAlign: TextAlign.center,
-                      style: AppTextStyles.s34W600,
-                    ),
-                    const SizedBox(height: 24),
-                    Text(
-                      'strPartsCommon'.tr(),
-                      textAlign: TextAlign.center,
-                      style: AppTextStyles.s17W400,
-                    ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    'strABCompleted'.tr(),
+                    textAlign: TextAlign.center,
+                    style: AppTextStyles.s28W600,
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    'strPartsCommon'.tr(),
+                    textAlign: TextAlign.center,
+                    style: AppTextStyles.s17W400,
+                  ),
+                ],
               ),
             ),
-            RegularButton(
-              title: 'Next',
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: GlassButton(
+              backgroundColor: AppColors.primaryColor,
+              tint: 0.4,
+              title: 'Continue',
               onTap: () {
                 NavigationService.pushNamed(
-                    routeName: CircumstancesScreen.route,
-                    nestedKey: NavigationService.homeNavigatorKey);
+                  routeName: CircumstancesScreen.route,
+                  nestedKey: NavigationService.homeNavigatorKey,
+                );
               },
             ),
-            const SizedBox(height: 12),
-            RegularButton(
-              title: 'Back',
-              background: AppColors.darkGrey,
-              onTap: () {},
+          ),
+          const SizedBox(height: 12),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: GlassButton(
+              title: 'Go Back',
+              tint: 0.08,
+              onTap: () {
+                Navigator.of(context).pop();
+              },
             ),
-            const SizedBox(height: 12),
-          ],
-        ),
+          ),
+          const SizedBox(height: 12),
+        ],
       ),
     );
   }

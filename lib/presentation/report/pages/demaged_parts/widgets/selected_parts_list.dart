@@ -14,8 +14,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class SelectedPartsList extends StatefulWidget {
   final ScrollController controller;
 
-  const SelectedPartsList({Key? key, required this.controller})
-      : super(key: key);
+  const SelectedPartsList({Key? key, required this.controller}) : super(key: key);
 
   @override
   State<SelectedPartsList> createState() => _SelectedPartsListState();
@@ -47,8 +46,7 @@ class _SelectedPartsListState extends State<SelectedPartsList> {
                       borderRadius: BorderRadius.circular(50),
                       color: AppColors.primaryColor,
                     ),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                    padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
                     child: Row(
                       children: [
                         const SizedBox(width: 12),
@@ -98,8 +96,7 @@ class _SelectedPartsListState extends State<SelectedPartsList> {
                     borderRadius: BorderRadius.circular(50),
                     color: AppColors.primaryColor,
                   ),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                  padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
                   child: Row(
                     children: [
                       const SizedBox(width: 12),

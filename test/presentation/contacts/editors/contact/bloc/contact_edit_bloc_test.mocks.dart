@@ -195,6 +195,24 @@ class MockContactsBloc extends _i1.Mock implements _i3.ContactsBloc {
       );
 
   @override
+  void onDone(
+    _i7.ContactsEvent? event, [
+    Object? error,
+    StackTrace? stackTrace,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onDone,
+          [
+            event,
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
   _i6.Future<void> close() => (super.noSuchMethod(
         Invocation.method(
           #close,

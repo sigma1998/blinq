@@ -17,6 +17,9 @@ import 'package:blinq/utils/custom_widgets/text_fields/name_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/number_text_field.dart';
 import 'package:blinq/utils/custom_widgets/text_fields/picker_text_field.dart';
 import 'package:blinq/utils/generic_bloc_state.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../utils/components/app_bar/save_app_bar.dart';
+import '../../../../../utils/components/wrappers/screen_background.dart';
 import '../../../../../utils/states/action_type.dart';
 import 'bloc/vehicle_editor_bloc.dart';
 import 'bloc/vehicle_editor_event.dart';
@@ -49,22 +52,28 @@ class _VehicleEditorScreenState extends State<VehicleEditorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return KeyboardEscape(
-      child: BlocBuilder<VehicleEditorBloc, VehicleEditorState>(
-        bloc: bloc,
-        builder: (context, state) {
-          return Scaffold(
-            extendBody: true,
-            appBar: MyAppBar(title: 'strMyCar'.tr()),
-            body: Form(
+    return ScreenBackground(
+      body: KeyboardEscape(
+        child: BlocBuilder<VehicleEditorBloc, VehicleEditorState>(
+          bloc: bloc,
+          builder: (context, state) {
+            return  Form(
               key: bloc.formKey,
               child: ListView(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 40,
-                  horizontal: 32,
-                ),
+                padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
                 physics: const BouncingScrollPhysics(),
                 children: [
+                  SaveAppBar(
+                    hPadding: 0,
+                    actionTitle: 'strSave'.tr(),
+                    title: 'strPolicyHolder'.tr(),
+                    onActionPressed: () {
+                      if (bloc.validateForm()) {
+                        bloc.add(OnSubmitVehicle());
+                      }
+                    },
+                  ),
+                  SizedBox(height: 32.h),
                   PickerTextField(
                     labelText: 'strMark'.tr(),
                     controller: bloc.markController,
@@ -120,31 +129,9 @@ class _VehicleEditorScreenState extends State<VehicleEditorScreen> {
                   const SizedBox(height: 90),
                 ],
               ),
-            ),
-            bottomNavigationBar: Padding(
-              padding: const EdgeInsets.only(bottom: 60),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  MyButton.primary(
-                    label: 'strSave'.tr(),
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 8,
-                      horizontal: 60,
-                    ),
-                    isLoading: state.status == Status.loading,
-                    onTap: () {
-                      if (bloc.validateForm()) {
-                        bloc.add(OnSubmitVehicle());
-                      }
-                    },
-                    labelStyle: const TextStyle(fontWeight: FontWeight.w500),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

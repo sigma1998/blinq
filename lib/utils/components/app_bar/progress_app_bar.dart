@@ -30,67 +30,87 @@ class ProgressAppBar extends StatelessWidget implements PreferredSizeWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              alignment: Alignment.centerLeft,
-              width: 80.w,
-              child: IconButton(
-                icon: const Icon(
-                  size: 20,
-                  Icons.arrow_back_ios_new_rounded,
-                  color: Colors.white,
+        SafeArea(
+          bottom: false,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  alignment: Alignment.centerLeft,
+                  width: 80.w,
+                  child: IconButton(
+                    icon: const Icon(
+                      size: 20,
+                      Icons.arrow_back_ios_new_rounded,
+                      color: Colors.white,
+                    ),
+                    onPressed: onBackTap ??
+                        () {
+                          NavigationService.homeNavigatorKey.currentState?.pop();
+                        },
+                  ),
                 ),
-                onPressed: onBackTap ??
-                    () {
-                      NavigationService.homeNavigatorKey.currentState?.pop();
-                    },
-              ),
-            ),
-            Expanded(
-              child: Text(
-                rBloc.reportType.description,
-                textAlign: TextAlign.center,
-                style: AppTextStyles.s15W600,
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                NavigationService.homeNavigatorKey.currentState
-                    ?.pushNamedAndRemoveUntil(
-                  HomeScreen.route,
-                  (_) {
-                    return false;
+                Expanded(
+                  child: Text(
+                    rBloc.reportType.description,
+                    textAlign: TextAlign.center,
+                    style: AppTextStyles.s15W600,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    NavigationService.homeNavigatorKey.currentState?.pushNamedAndRemoveUntil(
+                      HomeScreen.route,
+                      (_) {
+                        return false;
+                      },
+                    );
                   },
-                );
-              },
-              child: Text(
-                'Save',
-                textAlign: TextAlign.center,
-                style: AppTextStyles.s16W600.copyWith(
-                  color: AppColors.white,
+                  child: Text(
+                    'Save',
+                    textAlign: TextAlign.center,
+                    style: AppTextStyles.s16W600.copyWith(
+                      color: AppColors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Stack(
+          children: [
+            Row(
+              children: [
+                Container(
+                  height: 4,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    color: Color(0xff372825),
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              height: 4,
+              width: MediaQuery.of(context).size.width / 13 * step,
+              decoration: BoxDecoration(
+                color: Color(0xff805D56),
+                gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Color(0xff805D56).withOpacity(0.1),
+                    Color(0xff805D56).withOpacity(0.5),
+                    Color(0xff805D56).withOpacity(0.7),
+                    Color(0xff805D56),
+                  ],
                 ),
               ),
             ),
           ],
-        ),
-        Container(
-          height: 4,
-          width: MediaQuery.of(context).size.width / 13 * step,
-          decoration: BoxDecoration(
-            color: AppColors.primaryColor,
-            gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [
-                AppColors.primaryColor.withOpacity(0.1),
-                AppColors.primaryColor.withOpacity(0.5),
-                AppColors.primaryColor.withOpacity(0.7),
-                AppColors.primaryColor
-              ],
-            ),
-          ),
         ),
       ],
     );

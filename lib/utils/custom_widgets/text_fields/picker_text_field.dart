@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:blinq/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -67,14 +68,10 @@ class PickerTextField extends StatelessWidget {
   Widget get _suffixIcon {
     return Padding(
       padding: const EdgeInsets.only(right: 8.0),
-      child: SvgPicture.asset(
-        AppDrawables.arrowDown,
-        width: 16,
-        height: 20,
-        colorFilter: const ColorFilter.mode(
-          Colors.white,
-          BlendMode.srcIn,
-        ),
+      child: Icon(
+        Icons.keyboard_arrow_down_rounded,
+        size: 22,
+        color: AppColors.white,
       ),
     );
   }

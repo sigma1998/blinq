@@ -7,6 +7,7 @@ import 'package:blinq/presentation/report/pages/sketch/widget/custom_paletter.da
 import 'package:blinq/presentation/report/pages/sketch/widget/sketch_button.dart';
 import 'package:blinq/utils/components/app_bar/progress_app_bar.dart';
 import 'package:blinq/utils/components/dialogs/modal/sketch_or_phot.dart';
+import 'package:blinq/utils/components/wrappers/screen_background.dart';
 import 'package:blinq/utils/services/dialogs/custom_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -84,139 +85,152 @@ class _SketchScreenState extends State<SketchScreen> {
       builder: (context, state) {
         final bool visible = state.data ?? false;
         return KeyboardEscape(
-          child: Scaffold(
-            appBar: ProgressAppBar(
-              step: 7,
-              onSaveTap: () => bloc.onSubmitted(context),
-              onBackTap: () => NavigationService.back(),
-            ),
-            body: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              child: Column(
-                children: [
-                  SketchButton(
-                    iconPath: AppDrawables.camera,
-                    text: 'strSketchAccident'.tr(),
-                    onPressed: () async {
-                      final res = await NavigationService.pushNamed(
-                        routeName: SketchPhotoScreen.route,
-                      );
-                      if (res != null) {
-                        NavigationService.back(result: true);
-                      }
-                    },
-                  ),
-                  Expanded(
-                    child: Stack(
-                      children: [
-                        Image.asset(
-                          AppDrawables.sketchBack,
-                          fit: BoxFit.fitWidth,
-                          width: double.infinity,
+          child: ScreenBackground(
+            body: Column(
+              children: [
+                ProgressAppBar(
+                  step: 7,
+                  onSaveTap: () => bloc.onSubmitted(context),
+                  onBackTap: () => NavigationService.back(),
+                ),
+                Expanded(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 28),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                        child: SketchButton(
+                          iconPath: AppDrawables.camera,
+                          text: 'strSketchAccident'.tr(),
+                          onPressed: () async {
+                            final res = await NavigationService.pushNamed(
+                              routeName: SketchPhotoScreen.route,
+                            );
+                            if (res != null) {
+                              NavigationService.back(result: true);
+                            }
+                          },
                         ),
-                        RepaintBoundary(
-                          key: bloc.key,
-                          child: FlutterPainter(
-                            controller: bloc.painterController,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  visible
-                      ? Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                      ),
+                      Expanded(
+                        child: Stack(
                           children: [
-                            const SizedBox(height: 12),
-                            Row(
-                              children: [
-                                getCircle(
-                                  big: true,
-                                  onTap: () {
-                                    bloc.painterController
-                                        .freeStyleStrokeWidth = 10;
-                                  },
-                                ),
-                                const SizedBox(width: 20),
-                                getCircle(
-                                  onTap: () {
-                                    bloc.painterController
-                                        .freeStyleStrokeWidth = 4;
-                                  },
-                                ),
-                                const Spacer(),
-                                getIconBtn(
-                                  iconPath: AppDrawables.delete,
-                                  onTap: () {
-                                    bloc.painterController.clearDrawables();
-                                  },
-                                ),
-                                getIconBtn(
-                                  iconPath: AppDrawables.cornerUpLeft,
-                                  onTap: () {
-                                    bloc.painterController.undo();
-                                  },
-                                ),
-                                getIconBtn(
-                                  iconPath: AppDrawables.cornerUpRight,
-                                  onTap: () {
-                                    bloc.painterController.redo();
-                                  },
-                                ),
-                              ],
+                            Image.asset(
+                              AppDrawables.sketchBack,
+                              fit: BoxFit.fitWidth,
+                              width: double.infinity,
                             ),
-                            const SizedBox(height: 20),
-                            ValueListenableBuilder(
-                              valueListenable: bloc.painterController,
-                              builder: (context, _, __) => Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  CustomPalette(
-                                    colors: bloc.customColors,
-                                    painterController: bloc.painterController,
-                                  ),
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
-                                  // Free-style eraser
-                                  getClickable(
-                                    clicked:
-                                        bloc.painterController.freeStyleMode ==
-                                            FreeStyleMode.erase,
-                                    iconPath: AppDrawables.eraser,
-                                    onTap: bloc.toggleFreeStyleErase,
-                                  ),
-                                  const SizedBox(width: 24),
-                                  // Free-style drawing
-                                  getClickable(
-                                    clicked:
-                                        bloc.painterController.freeStyleMode ==
-                                            FreeStyleMode.draw,
-                                    iconPath: AppDrawables.penBig,
-                                    onTap: bloc.toggleFreeStyleDraw,
-                                  ),
-                                ],
+                            RepaintBoundary(
+                              key: bloc.key,
+                              child: FlutterPainter(
+                                controller: bloc.painterController,
                               ),
                             ),
-                            const SizedBox(height: 20),
                           ],
-                        )
-                      : const SizedBox(),
-                  visible
-                      ? Align(
-                          alignment: Alignment.bottomCenter,
-                          child: NavigationButton(
-                            padding: 0,
-                            loading: state.status == Status.loading,
-                            onNextTap: () {
-                              bloc.onSubmitted(context);
-                            },
-                            onBack: () => NavigationService.back(),
-                          ),
-                        )
-                      : const SizedBox(),
-                ],
-              ),
+                        ),
+                      ),
+                      visible
+                          ? Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  const SizedBox(height: 12),
+                                  Row(
+                                    children: [
+                                      getCircle(
+                                        big: true,
+                                        onTap: () {
+                                          bloc.painterController
+                                              .freeStyleStrokeWidth = 10;
+                                        },
+                                      ),
+                                      const SizedBox(width: 20),
+                                      getCircle(
+                                        onTap: () {
+                                          bloc.painterController
+                                              .freeStyleStrokeWidth = 4;
+                                        },
+                                      ),
+                                      const Spacer(),
+                                      getIconBtn(
+                                        iconPath: AppDrawables.delete,
+                                        onTap: () {
+                                          bloc.painterController.clearDrawables();
+                                        },
+                                      ),
+                                      getIconBtn(
+                                        iconPath: AppDrawables.cornerUpLeft,
+                                        onTap: () {
+                                          bloc.painterController.undo();
+                                        },
+                                      ),
+                                      getIconBtn(
+                                        iconPath: AppDrawables.cornerUpRight,
+                                        onTap: () {
+                                          bloc.painterController.redo();
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 20),
+                                  ValueListenableBuilder(
+                                    valueListenable: bloc.painterController,
+                                    builder: (context, _, __) => Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        CustomPalette(
+                                          colors: bloc.customColors,
+                                          painterController: bloc.painterController,
+                                        ),
+                                        const SizedBox(
+                                          width: 20,
+                                        ),
+                                        // Free-style eraser
+                                        getClickable(
+                                          clicked:
+                                              bloc.painterController.freeStyleMode ==
+                                                  FreeStyleMode.erase,
+                                          iconPath: AppDrawables.eraser,
+                                          onTap: bloc.toggleFreeStyleErase,
+                                        ),
+                                        const SizedBox(width: 24),
+                                        // Free-style drawing
+                                        getClickable(
+                                          clicked:
+                                              bloc.painterController.freeStyleMode ==
+                                                  FreeStyleMode.draw,
+                                          iconPath: AppDrawables.penBig,
+                                          onTap: bloc.toggleFreeStyleDraw,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(height: 20),
+                                ],
+                              ),
+                          )
+                          : const SizedBox(),
+                      visible
+                          ? Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                                child: NavigationButton(
+                                  padding: 0,
+                                  loading: state.status == Status.loading,
+                                  onNextTap: () {
+                                    bloc.onSubmitted(context);
+                                  },
+                                  onBack: () => NavigationService.back(),
+                                ),
+                              ),
+                            )
+                          : const SizedBox(),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         );

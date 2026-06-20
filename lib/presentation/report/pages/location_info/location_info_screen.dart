@@ -2,6 +2,8 @@
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/core/drawables/app_text_styles.dart';
 import 'package:blinq/core/theme/app_colors.dart';
+import 'package:blinq/utils/components/wrappers/glass_container.dart';
+import 'package:blinq/utils/components/wrappers/screen_background.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -22,7 +24,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../utils/components/app_bar/progress_app_bar.dart';
 import '../../../../utils/date_formatter.dart';
+import '../../../../utils/navigation_service.dart';
 import '../../../../utils/services/location/location_service.dart';
+import '../../../home/home_screen.dart';
 
 class LocationInfoScreen extends StatefulWidget {
   //
@@ -65,129 +69,129 @@ class _LocationInfoScreenState extends State<LocationInfoScreen> {
       bloc: cubit,
       builder: (context, state) {
         return KeyboardEscape(
-          child: SafeArea(
-            child: ModalProgressHud(
-              isLoading: state.status == Status.loading,
-              child: Scaffold(
-                extendBody: true,
-                appBar: ProgressAppBar(
-                  step: 1,
-                ),
-                body: ListView(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: MediaQuery.of(context).viewInsets.bottom + 24,
-                  ),
-                  physics: const ClampingScrollPhysics(),
-                  children: [
-                    const Text(
-                      '1. Time and place of breakdown',
-                      style: AppTextStyles.s22W600,
-                    ),
-                    const SizedBox(height: 32),
-                    getButton(
-                      iconPath: AppDrawables.calendar,
-                      title: DateFormat('dd.MM.yyyy').format(date),
-                      defaultTitle: 'Date',
-                      onTap: () async {
-                        final newDate = await showDatePicker(
-                          context: context,
-                          initialDate: date,
-                          lastDate: DateTime(DateTime.now().year + 100),
-                          firstDate: DateTime(DateTime.now().year - 100),
-                        );
-                        if (newDate != null) {
-                          setState(() {
-                            date = newDate;
-                          });
-                        }
-                      },
-                    ),
-                    getButton(
-                      iconPath: AppDrawables.time,
-                      title: DateFormat('HH:mm').format(time),
-                      defaultTitle: 'Time',
-                      onTap: () async {
-                        final newDate = await showTimePicker(
-                          context: context,
-                          initialTime:
-                              TimeOfDay(hour: time.hour, minute: time.minute),
-                        );
-                        if (newDate != null) {
-                          time = DateTime(
-                            2024,
-                            1,
-                            1,
-                            newDate.hour,
-                            newDate.minute,
-                          );
-                        }
-                      },
-                    ),
-                    getButton(
-                      iconPath: AppDrawables.globe,
-                      title: country,
-                      defaultTitle: 'Country',
-                      onTap: () async {
-                        country = await cubit.onCountryPressed();
-                        setState(() {});
-                      },
-                    ),
-                    // getButton(
-                    //   iconPath: AppDrawables.globe,
-                    //   title: place,
-                    //   defaultTitle: 'Place',
-                    //   showArrow: false,
-                    //   onTap: () {},
-                    // ),
+          child: ModalProgressHud(
+            isLoading: state.status == Status.loading,
+            child: ScreenBackground(
+              body: Stack(
+                children: [
+                  Column(
+                    children: [
+                      ProgressAppBar(step: 1),
+                      Expanded(
+                        child: ListView(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: MediaQuery.of(context).viewInsets.bottom + 24,
+                          ),
+                          physics: const ClampingScrollPhysics(),
+                          children: [
+                            const Text(
+                              '1. Time and place of breakdown',
+                              style: AppTextStyles.s22W600,
+                            ),
+                            const SizedBox(height: 32),
+                            getButton(
+                              iconPath: AppDrawables.calendar,
+                              title: DateFormat('dd.MM.yyyy').format(date),
+                              defaultTitle: 'Date',
+                              onTap: () async {
+                                final newDate = await showDatePicker(
+                                  context: context,
+                                  initialDate: date,
+                                  lastDate: DateTime(DateTime.now().year + 100),
+                                  firstDate: DateTime(DateTime.now().year - 100),
+                                );
+                                if (newDate != null) {
+                                  setState(() {
+                                    date = newDate;
+                                  });
+                                }
+                              },
+                            ),
+                            getButton(
+                              iconPath: AppDrawables.time,
+                              title: DateFormat('HH:mm').format(time),
+                              defaultTitle: 'Time',
+                              onTap: () async {
+                                final newDate = await showTimePicker(
+                                  context: context,
+                                  initialTime: TimeOfDay(hour: time.hour, minute: time.minute),
+                                );
+                                if (newDate != null) {
+                                  time = DateTime(
+                                    2024,
+                                    1,
+                                    1,
+                                    newDate.hour,
+                                    newDate.minute,
+                                  );
+                                }
+                              },
+                            ),
+                            getButton(
+                              iconPath: AppDrawables.globe,
+                              title: country,
+                              defaultTitle: 'Country',
+                              onTap: () async {
+                                country = await cubit.onCountryPressed();
+                                setState(() {});
+                              },
+                            ),
+                            // getButton(
+                            //   iconPath: AppDrawables.globe,
+                            //   title: place,
+                            //   defaultTitle: 'Place',
+                            //   showArrow: false,
+                            //   onTap: () {},
+                            // ),
 
-                    getPlaceBtn(),
+                            getPlaceBtn(),
 
-                    // const SizedBox(height: 200),
-                    // RoundedDatePickerTextField(
-                    //   maxDate: DateTime.now(),
-                    //   initialDate: DateTime.now(),
-                    //   controller: cubit.dateController,
-                    // ),
-                    // const SizedBox(height: 36),
-                    // Text(
-                    //   'strTimeOfAccident'.tr(),
-                    //   style: const TextStyle(
-                    //     fontSize: 26,
-                    //     fontWeight: FontWeight.w700,
-                    //   ),
-                    // ),
-                    // const SizedBox(height: 12),
-                    // RoundedTimePickerTextField(
-                    //   initialTime: TimeOfDay.now(),
-                    //   controller: cubit.timeController,
-                    // ),
-                    // const SizedBox(height: 36),
-                    // PickerTextField(
-                    //   onTap: cubit.onCountryPressed,
-                    //   labelText: 'strCountry'.tr(),
-                    //   controller: cubit.countryController,
-                    // ),
-                    // const SizedBox(height: 36),
-                    // NameTextField(
-                    //   labelText: 'strPlace'.tr(),
-                    //   maxLines: 3,
-                    //   controller: cubit.placeController,
-                    // ),
-                  ],
-                ),
-                resizeToAvoidBottomInset: true,
-                floatingActionButton: opened
-                    ? const SizedBox()
-                    : NavigationButton(
-                        onNextTap:
-                            placeController.text.isNotEmpty && country != null
-                                ? onSubmit
-                                : null,
-                        padding: 16,
+                            // const SizedBox(height: 200),
+                            // RoundedDatePickerTextField(
+                            //   maxDate: DateTime.now(),
+                            //   initialDate: DateTime.now(),
+                            //   controller: cubit.dateController,
+                            // ),
+                            // const SizedBox(height: 36),
+                            // Text(
+                            //   'strTimeOfAccident'.tr(),
+                            //   style: const TextStyle(
+                            //     fontSize: 26,
+                            //     fontWeight: FontWeight.w700,
+                            //   ),
+                            // ),
+                            // const SizedBox(height: 12),
+                            // RoundedTimePickerTextField(
+                            //   initialTime: TimeOfDay.now(),
+                            //   controller: cubit.timeController,
+                            // ),
+                            // const SizedBox(height: 36),
+                            // PickerTextField(
+                            //   onTap: cubit.onCountryPressed,
+                            //   labelText: 'strCountry'.tr(),
+                            //   controller: cubit.countryController,
+                            // ),
+                            // const SizedBox(height: 36),
+                            // NameTextField(
+                            //   labelText: 'strPlace'.tr(),
+                            //   maxLines: 3,
+                            //   controller: cubit.placeController,
+                            // ),
+                          ],
+                        ),
                       ),
-                floatingActionButtonLocation:
-                    FloatingActionButtonLocation.centerFloat,
+                    ],
+                  ),
+                  Positioned(
+                    bottom: 16,
+                    right: 0,
+                    left: 0,
+                    child: opened
+                        ? const SizedBox()
+                        : NavigationButton(padding: 16, onNextTap: placeController.text.isNotEmpty && country != null ? onSubmit : null),
+                  )
+                ],
               ),
             ),
           ),
@@ -237,13 +241,9 @@ class _LocationInfoScreenState extends State<LocationInfoScreen> {
   bool opened = false;
 
   getPlaceBtn() {
-    return Container(
+    return GlassContainer(
+      radius: 12,
       padding: const EdgeInsets.symmetric(vertical: 4),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: AppColors.grey1),
-      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -286,12 +286,9 @@ class _LocationInfoScreenState extends State<LocationInfoScreen> {
       onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.only(bottom: 16.0),
-        child: Container(
+        child: GlassContainer(
           padding: const EdgeInsets.symmetric(vertical: 12),
-          width: double.infinity,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: AppColors.grey1)),
+          radius: 12,
           child: Row(
             children: <Widget>[
               const SizedBox(width: 16),

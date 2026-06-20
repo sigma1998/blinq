@@ -1,5 +1,6 @@
 import 'package:blinq/core/drawables/app_drawables.dart';
 import 'package:blinq/core/drawables/app_text_styles.dart';
+import 'package:blinq/generated/assets.dart';
 import 'package:blinq/utils/components/dialogs/bottom_sheet/edit_name.dart';
 import 'package:blinq/utils/components/items/history_devices_item.dart';
 import 'package:blinq/utils/services/dialogs/bottom_sheet.dart';
@@ -30,19 +31,9 @@ class BluetoothHistoryPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SvgPicture.asset(
-                    AppDrawables.empty,
-                    width: 136,
-                    height: 102,
-                  ),
-                  const SizedBox(
-                    height: 24,
-                    width: double.infinity,
-                  ),
-                  const Text(
-                    'Empty',
-                    style: AppTextStyles.s17W600,
-                  )
+                  Image.asset(Assets.imagesEmptyList),
+                  const SizedBox(height: 16),
+                  const Text('Your history list is empty', style: AppTextStyles.s17W600)
                 ],
               )
             : ListView.builder(
@@ -51,9 +42,7 @@ class BluetoothHistoryPage extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   final device = state.savedBleDevices[index];
                   return HistoryDevicesItem(
-                    isConnected: (device.id == state.recentlyConnected?.id &&
-                        state.bleConnectionState ==
-                            BleConnectionState.paired),
+                    isConnected: (device.id == state.recentlyConnected?.id && state.bleConnectionState == BleConnectionState.paired),
                     onEdit: () async {
                       final res = await showCustomBottomSheet(
                         context: context,
