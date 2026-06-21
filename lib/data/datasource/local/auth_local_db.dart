@@ -33,6 +33,8 @@ abstract class AuthLocalStorage {
   void setUserPhone(String phone);
 
   String getUserPhone();
+
+  void clearAll();
 }
 
 class AuthLocalStorageImpl implements AuthLocalStorage {
@@ -126,5 +128,13 @@ class AuthLocalStorageImpl implements AuthLocalStorage {
   void setFirebaseToken(String token) {
     final box = Hive.box(StorageConstants.appBox);
     box.put(StorageConstants.firebaseToken, token);
+  }
+
+  @override
+  void clearAll() {
+    final box = Hive.box(StorageConstants.appBox);
+    box.clear();
+    final statusBox = Hive.box(StorageConstants.userStatusBox);
+    statusBox.clear();
   }
 }

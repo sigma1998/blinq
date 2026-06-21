@@ -1,7 +1,10 @@
 // Flutter imports:
 import 'package:blinq/core/drawables/app_text_styles.dart';
 import 'package:blinq/core/theme/app_colors.dart';
+import 'package:blinq/data/datasource/local/auth_local_db.dart';
 import 'package:blinq/generated/assets.dart';
+import 'package:blinq/presentation/auth/sign_in_screen/sign_in_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -10,6 +13,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:blinq/presentation/profile/bloc/profile_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import '../../../../../../app/locator.dart';
+import '../../../../../../core/drawables/app_drawables.dart';
+import '../../../../../../utils/components/wrappers/glass_container.dart';
 import 'cards/report_card.dart';
 import 'cards/vehicle_card.dart';
 
@@ -93,6 +100,50 @@ class ProfileVehicleWidget extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             const ProfileReportCard(),
+            const SizedBox(height: 10),
+            GestureDetector(
+              onTap: () {
+                showCupertinoDialog(
+                  context: context,
+                  builder: (context) => CupertinoAlertDialog(
+                    title: const Text('Log out'),
+                    content: const Text('Are you sure you want to log out?'),
+                    actions: [
+                      CupertinoDialogAction(
+                        isDefaultAction: true,
+                        child: const Text('No'),
+                        onPressed: () => Navigator.of(context).pop(),
+                      ),
+                      CupertinoDialogAction(
+                        isDestructiveAction: true,
+                        child: const Text('Yes'),
+                        onPressed: () async {
+                          getIt.get<AuthLocalStorageImpl>().clearAll();
+                          Navigator.of(context).pushNamedAndRemoveUntil(SignInScreen.route, (route) => false);
+                        },
+                      ),
+                    ],
+                  ),
+                );
+              },
+              child: GlassContainer(
+                radius: 16,
+                padding: EdgeInsets.zero,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Log out',
+                        style: AppTextStyles.s17W600.copyWith(color: AppColors.primaryColor),
+                      ),
+                      const Expanded(child: SizedBox(width: 16)),
+                      SvgPicture.asset(AppDrawables.arrowRight),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ],
         );
       },

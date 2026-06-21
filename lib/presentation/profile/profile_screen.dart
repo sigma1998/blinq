@@ -43,34 +43,6 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
     return ScreenBackground(
       darBackground: false,
       body: ProfilePage(),
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   toolbarHeight: 0,
-      //   backgroundColor: Colors.transparent,
-      // ),
-      // body: const ProfilePage(),
-      // body: Column(
-      //   children: [
-      //     MyTabBar(
-      //       tabLabels: [
-      //         '  ${'strMyProfile'.tr()}  ',
-      //         '  ${'strSettings'.tr()}  ',
-      //       ],
-      //       tabController: _tabController,
-      //       margin: const EdgeInsets.symmetric(horizontal: 72),
-      //     ),
-      //     Expanded(
-      //       child: TabBarView(
-      //         controller: _tabController,
-      //         physics: const NeverScrollableScrollPhysics(),
-      //         children: const [
-      //           ProfilePage(),
-      //           SettingsPage(),
-      //         ],
-      //       ),
-      //     ),
-      //   ],
-      // ),
     );
   }
 }
